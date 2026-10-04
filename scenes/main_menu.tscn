@@ -1,0 +1,107 @@
+[gd_scene format=3 uid="uid://d13bwhs04t8ux"]
+
+[ext_resource type="Script" uid="uid://liittspmfd6j" path="res://scripts/ui/main_menu.gd" id="1_l6cm7"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vue75"]
+content_margin_left = 24.0
+content_margin_top = 16.0
+content_margin_right = 24.0
+content_margin_bottom = 16.0
+bg_color = Color(0.8509804, 0.6784314, 0.33333334, 1)
+corner_radius_top_left = 12
+corner_radius_top_right = 12
+corner_radius_bottom_right = 12
+corner_radius_bottom_left = 12
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_l6cm7"]
+content_margin_left = 24.0
+content_margin_top = 16.0
+content_margin_right = 24.0
+content_margin_bottom = 16.0
+bg_color = Color(0.70980394, 0.54509807, 0.22352941, 1)
+corner_radius_top_left = 12
+corner_radius_top_right = 12
+corner_radius_bottom_right = 12
+corner_radius_bottom_left = 12
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ekxnf"]
+content_margin_left = 24.0
+content_margin_top = 16.0
+content_margin_right = 24.0
+content_margin_bottom = 16.0
+bg_color = Color(0.9254902, 0.78039217, 0.48235294, 1)
+corner_radius_top_left = 12
+corner_radius_top_right = 12
+corner_radius_bottom_right = 12
+corner_radius_bottom_left = 12
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bqqt6"]
+bg_color = Color(0, 0, 0, 0)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(1, 0.9411765, 0.7607843, 1)
+corner_radius_top_left = 12
+corner_radius_top_right = 12
+corner_radius_bottom_right = 12
+corner_radius_bottom_left = 12
+
+[node name="MainMenu" type="Control" unique_id=1345894397]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_l6cm7")
+
+[node name="Background" type="ColorRect" parent="." unique_id=1672288483]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0.0627451, 0.08235294, 0.13333334, 1)
+
+[node name="Center" type="CenterContainer" parent="." unique_id=1535144353]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBox" type="VBoxContainer" parent="Center" unique_id=997310434]
+layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="Title" type="Label" parent="Center/VBox" unique_id=1343097107]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.96862745, 0.8352941, 0.5411765, 1)
+theme_override_font_sizes/font_size = 48
+text = "SUMMONER TOWER"
+horizontal_alignment = 1
+
+[node name="Spacer" type="Control" parent="Center/VBox" unique_id=1512882103]
+custom_minimum_size = Vector2(0, 56)
+layout_mode = 2
+
+[node name="PlayButton" type="Button" parent="Center/VBox" unique_id=1375759145]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(360, 96)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.0627451, 0.08235294, 0.13333334, 1)
+theme_override_colors/font_focus_color = Color(0.0627451, 0.08235294, 0.13333334, 1)
+theme_override_colors/font_pressed_color = Color(0.0627451, 0.08235294, 0.13333334, 1)
+theme_override_colors/font_hover_color = Color(0.0627451, 0.08235294, 0.13333334, 1)
+theme_override_font_sizes/font_size = 32
+theme_override_styles/normal = SubResource("StyleBoxFlat_vue75")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_l6cm7")
+theme_override_styles/hover = SubResource("StyleBoxFlat_ekxnf")
+theme_override_styles/focus = SubResource("StyleBoxFlat_bqqt6")
+text = "PLAY"
+
+[connection signal="pressed" from="Center/VBox/PlayButton" to="." method="_on_play_button_pressed"]
