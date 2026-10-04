@@ -6,6 +6,8 @@
 /build/
 /builds/
 /exports/
+/.tools/
+/scrinshots/
 *.log
 
 # Local secrets and OS files
