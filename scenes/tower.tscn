@@ -1,0 +1,14 @@
+[gd_scene format=3 uid="uid://bkmm5tldq4x6c"]
+
+[ext_resource type="Script" uid="uid://dymyt3sgiw53w" path="res://scripts/combat/tower_health.gd" id="1_2x682"]
+[ext_resource type="Texture2D" uid="uid://csuujqnn38wtt" path="res://assets/tower.svg" id="2_ay4al"]
+
+[node name="Tower" type="Node2D" unique_id=873803062]
+script = ExtResource("1_2x682")
+
+[node name="Visual" type="Sprite2D" parent="." unique_id=51669297]
+position = Vector2(0, -17)
+texture = ExtResource("2_ay4al")
+
+[node name="ContactPoint" type="Marker2D" parent="." unique_id=2121389323]
+position = Vector2(0, -120)

@@ -1,3 +1,183 @@
 [gd_scene format=3 uid="uid://rkmlqc5qcsrs"]
 
+[ext_resource type="Script" uid="uid://c67cxl6m0h3b5" path="res://scripts/game/game_manager.gd" id="1_lbhrr"]
+[ext_resource type="PackedScene" uid="uid://bkmm5tldq4x6c" path="res://scenes/tower.tscn" id="1_uwrxv"]
+[ext_resource type="Theme" uid="uid://bufjhwj3mejwx" path="res://resources/ui/game_theme.tres" id="2_lnu2h"]
+[ext_resource type="Resource" uid="uid://be2d7ahgtbjub" path="res://resources/balance/first_encounter.tres" id="2_p57ef"]
+[ext_resource type="Script" uid="uid://c8cpj6ixtxugj" path="res://scripts/ui/game_hud.gd" id="2_yqjtg"]
+[ext_resource type="PackedScene" uid="uid://bofw8cla40ece" path="res://scenes/enemy.tscn" id="3_u5sy4"]
+[ext_resource type="Texture2D" uid="uid://m3obcl82lbrw" path="res://assets/arena.svg" id="4_u5sy4"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lnu2h"]
+content_margin_left = 36.0
+content_margin_top = 40.0
+content_margin_right = 36.0
+content_margin_bottom = 40.0
+bg_color = Color(0.105882354, 0.14117648, 0.2, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.32156864, 0.3764706, 0.4392157, 1)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+
 [node name="Game" type="Node2D" unique_id=469266139]
+script = ExtResource("1_lbhrr")
+config = ExtResource("2_p57ef")
+enemy_scene = ExtResource("3_u5sy4")
+
+[node name="World" type="Node2D" parent="." unique_id=1754034890]
+
+[node name="Background" type="Sprite2D" parent="World" unique_id=1928593795]
+texture = ExtResource("4_u5sy4")
+centered = false
+
+[node name="SpawnPoint" type="Marker2D" parent="World" unique_id=1693467739]
+position = Vector2(360, 190)
+
+[node name="Enemies" type="Node2D" parent="World" unique_id=421865247]
+
+[node name="Tower" parent="World" unique_id=873803062 instance=ExtResource("1_uwrxv")]
+position = Vector2(360, 1040)
+
+[node name="SpawnTimer" type="Timer" parent="." unique_id=273221870]
+one_shot = true
+
+[node name="Interface" type="CanvasLayer" parent="." unique_id=242053494]
+
+[node name="Hud" type="Control" parent="Interface" unique_id=1417951609]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme = ExtResource("2_lnu2h")
+script = ExtResource("2_yqjtg")
+
+[node name="Header" type="MarginContainer" parent="Interface/Hud" unique_id=1488580138]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 114.0
+grow_horizontal = 2
+mouse_filter = 2
+theme_override_constants/margin_left = 32
+theme_override_constants/margin_top = 32
+theme_override_constants/margin_right = 32
+theme_override_constants/margin_bottom = 32
+
+[node name="Title" type="Label" parent="Interface/Hud/Header" unique_id=1564434610]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.96862745, 0.8352941, 0.5411765, 1)
+theme_override_font_sizes/font_size = 36
+text = "SUMMONER TOWER"
+horizontal_alignment = 1
+
+[node name="Health" type="MarginContainer" parent="Interface/Hud" unique_id=1214229673]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 48.0
+offset_top = -168.0
+offset_right = -48.0
+offset_bottom = -48.0
+grow_horizontal = 2
+grow_vertical = 0
+mouse_filter = 2
+
+[node name="Stack" type="VBoxContainer" parent="Interface/Hud/Health" unique_id=1756145999]
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/separation = 16
+
+[node name="HealthLabel" type="Label" parent="Interface/Hud/Health/Stack" unique_id=6683040]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(0.85490197, 0.89411765, 0.93333334, 1)
+theme_override_font_sizes/font_size = 28
+text = "TOWER HP  100 / 100"
+horizontal_alignment = 1
+
+[node name="HealthBar" type="ProgressBar" parent="Interface/Hud/Health/Stack" unique_id=762233268]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 28)
+layout_mode = 2
+mouse_filter = 2
+show_percentage = false
+
+[node name="GameOverOverlay" type="Control" parent="Interface/Hud" unique_id=1342710346]
+unique_name_in_owner = true
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Shade" type="ColorRect" parent="Interface/Hud/GameOverOverlay" unique_id=1769126759]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.02745098, 0.043137256, 0.07058824, 0.8745098)
+
+[node name="Center" type="CenterContainer" parent="Interface/Hud/GameOverOverlay" unique_id=509327819]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Panel" type="PanelContainer" parent="Interface/Hud/GameOverOverlay/Center" unique_id=734330472]
+custom_minimum_size = Vector2(500, 0)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_lnu2h")
+
+[node name="Stack" type="VBoxContainer" parent="Interface/Hud/GameOverOverlay/Center/Panel" unique_id=1514523921]
+layout_mode = 2
+theme_override_constants/separation = 24
+
+[node name="Title" type="Label" parent="Interface/Hud/GameOverOverlay/Center/Panel/Stack" unique_id=330956670]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.96862745, 0.8352941, 0.5411765, 1)
+theme_override_font_sizes/font_size = 48
+text = "GAME OVER"
+horizontal_alignment = 1
+
+[node name="Message" type="Label" parent="Interface/Hud/GameOverOverlay/Center/Panel/Stack" unique_id=1201837376]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.85490197, 0.89411765, 0.93333334, 1)
+theme_override_font_sizes/font_size = 28
+text = "The tower has fallen."
+horizontal_alignment = 1
+
+[node name="RestartButton" type="Button" parent="Interface/Hud/GameOverOverlay/Center/Panel/Stack" unique_id=1234443234]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 96)
+layout_mode = 2
+text = "RESTART"
+
+[node name="MenuButton" type="Button" parent="Interface/Hud/GameOverOverlay/Center/Panel/Stack" unique_id=1736271558]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 84)
+layout_mode = 2
+text = "MENU"
+
+[connection signal="destroyed" from="World/Tower" to="." method="_on_tower_destroyed"]
+[connection signal="health_changed" from="World/Tower" to="." method="_on_tower_health_changed"]
+[connection signal="timeout" from="SpawnTimer" to="." method="_spawn_enemy"]
+[connection signal="menu_requested" from="Interface/Hud" to="." method="_on_menu_requested"]
+[connection signal="restart_requested" from="Interface/Hud" to="." method="_on_restart_requested"]
+[connection signal="pressed" from="Interface/Hud/GameOverOverlay/Center/Panel/Stack/RestartButton" to="Interface/Hud" method="_on_restart_button_pressed"]
+[connection signal="pressed" from="Interface/Hud/GameOverOverlay/Center/Panel/Stack/MenuButton" to="Interface/Hud" method="_on_menu_button_pressed"]

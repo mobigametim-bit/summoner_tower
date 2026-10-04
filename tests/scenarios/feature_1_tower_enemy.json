@@ -1,0 +1,61 @@
+{
+  "name": "Feature 1: sequential tower damage and game over",
+  "scene": "res://scenes/game.tscn",
+  "keep_running": true,
+  "steps": [
+    {
+      "assert": "get_node('World/Tower').current_health == 100",
+      "message": "Tower starts with full HP"
+    },
+    {
+      "assert": "get_node('World/Enemies').get_child_count() == 1",
+      "message": "One enemy starts the encounter"
+    },
+    {
+      "sample": {
+        "path": "World/Enemies/Enemy",
+        "props": [
+          "global_position"
+        ],
+        "seconds": 1,
+        "interval": 0.25
+      }
+    },
+    {
+      "wait_for": "get_node('World/Tower').current_health == 80"
+    },
+    {
+      "assert": "get_node('World/Enemies').get_child_count() == 0",
+      "message": "Reached enemy is removed"
+    },
+    {
+      "wait_for": "get_node('World/Tower').current_health == 60"
+    },
+    {
+      "wait_for": "get_node('World/Tower').current_health == 40"
+    },
+    {
+      "wait_for": "get_node('World/Tower').current_health == 20"
+    },
+    {
+      "wait_for": "get_node('World/Tower').current_health == 0"
+    },
+    {
+      "assert": "state == 1 and get_node('SpawnTimer').is_stopped() and get_node('World/Enemies').get_child_count() == 0 and get_node('Interface/Hud/GameOverOverlay').visible",
+      "message": "Fifth hit ends the encounter"
+    },
+    {
+      "wait": 2
+    },
+    {
+      "assert": "state == 1 and get_node('World/Enemies').get_child_count() == 0 and get_node('World/Tower').current_health == 0",
+      "message": "No new spawning after game over"
+    },
+    {
+      "assert_no_errors": true
+    },
+    {
+      "screenshot": "game_over"
+    }
+  ]
+}

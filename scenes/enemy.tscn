@@ -1,0 +1,10 @@
+[gd_scene format=3 uid="uid://bofw8cla40ece"]
+
+[ext_resource type="Script" uid="uid://di4mpnwaikk8a" path="res://scripts/combat/approaching_enemy.gd" id="1_7p1mj"]
+[ext_resource type="Texture2D" uid="uid://dfnsaprp1a8y1" path="res://assets/enemy.svg" id="2_md0e3"]
+
+[node name="Enemy" type="Node2D" unique_id=1962163179]
+script = ExtResource("1_7p1mj")
+
+[node name="Visual" type="Sprite2D" parent="." unique_id=606921741]
+texture = ExtResource("2_md0e3")
