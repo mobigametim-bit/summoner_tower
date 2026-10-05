@@ -12,6 +12,7 @@ enum State { RUNNING, GAME_OVER, LEAVING }
 @onready var enemies: Node2D = $World/Enemies
 @onready var projectiles: Node2D = $World/Projectiles
 @onready var summon_manager: SummonManager = $SummonManager
+@onready var drag_controller: UnitDragController = $World/DragController
 @onready var spawn_timer: Timer = $SpawnTimer
 @onready var hud: GameHud = $Interface/Hud
 
@@ -21,6 +22,7 @@ var _active_enemy: ApproachingEnemy
 
 func _ready() -> void:
 	summon_manager.configure($World/Slots, enemies, projectiles)
+	drag_controller.configure(summon_manager, $World/Slots)
 	tower.initialize(config.tower_max_health)
 	_spawn_enemy()
 
@@ -67,6 +69,7 @@ func _on_tower_destroyed() -> void:
 
 func _stop_encounter() -> void:
 	spawn_timer.stop()
+	drag_controller.stop()
 	summon_manager.stop()
 	for projectile: Node in projectiles.get_children():
 		projectile.queue_free()

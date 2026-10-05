@@ -80,5 +80,37 @@ func stop() -> void:
 	_emit_state()
 
 
+func can_rearrange() -> bool:
+	return _running and not _busy
+
+
+func try_transfer(source: SummonSlot, destination: SummonSlot, expected_unit: Archer) -> bool:
+	if not can_rearrange() or not is_instance_valid(expected_unit):
+		return false
+	if not _slots.has(source) or not _slots.has(destination) or source == destination:
+		return false
+	if source.unit != expected_unit or expected_unit.get_parent() != source.unit_host:
+		return false
+	var other: Archer = destination.unit if not destination.is_empty() else null
+	if other != null and other.get_parent() != destination.unit_host:
+		return false
+
+	_busy = true
+	# Фиксируем обе ссылки до reparent: сигналы дерева видят согласованную операцию.
+	source.assign_unit(other)
+	destination.assign_unit(expected_unit)
+	expected_unit.reparent(destination.unit_host, false)
+	if other != null:
+		other.reparent(source.unit_host, false)
+	source.align_unit()
+	destination.align_unit()
+	expected_unit.refresh_target()
+	if other != null:
+		other.refresh_target()
+	_busy = false
+	_emit_state()
+	return true
+
+
 func _emit_state() -> void:
 	state_changed.emit(mana, current_cost(), occupied_count(), _slots.size(), can_summon())

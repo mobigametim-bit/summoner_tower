@@ -1,0 +1,26 @@
+{
+  "name": "Feature 4: mouse move, swap, cancel and summon",
+  "scene": "res://scenes/game.tscn",
+  "keep_running": true,
+  "steps": [
+    { "call": { "path": "SummonManager", "method": "try_summon" } },
+    { "call": { "path": "SummonManager", "method": "try_summon" } },
+    { "eval": "set_meta('first_unit', get_node('World/Slots/Slot1').unit.get_instance_id())" },
+    { "eval": "set_meta('second_unit', get_node('World/Slots/Slot2').unit.get_instance_id())" },
+    { "input": [{ "drag": [[180, 360], [540, 840]], "seconds": 0.3 }] },
+    { "assert": "get_node('World/Slots/Slot1').is_empty() and get_node('World/Slots/Slot6').unit.get_instance_id() == get_meta('first_unit') and get_node('World/Slots/Slot6').unit.get_parent() == get_node('World/Slots/Slot6/UnitHost')" },
+    { "input": [{ "drag": [[540, 840], [540, 360]], "seconds": 0.3 }] },
+    { "assert": "get_node('World/Slots/Slot2').unit.get_instance_id() == get_meta('first_unit') and get_node('World/Slots/Slot6').unit.get_instance_id() == get_meta('second_unit')" },
+    { "input": [{ "drag": [[540, 360], [360, 700]], "seconds": 0.3 }] },
+    { "input": [{ "drag": [[540, 360], [545, 363]], "seconds": 0.2 }] },
+    { "input": [{ "drag": [[540, 360], [360, 1220]], "seconds": 0.3 }] },
+    { "assert": "get_node('World/Slots/Slot2').unit.get_instance_id() == get_meta('first_unit') and get_node('SummonManager').occupied_count() == 2 and get_node('SummonManager').mana == 55 and get_node('SummonManager').current_cost() == 30 and not get_node('World/DragController/Preview').visible" },
+    { "input": [{ "drag": [[540, 360], [180, 360]], "seconds": 0.3 }] },
+    { "assert": "get_node('World/Slots/Slot1').unit.get_instance_id() == get_meta('first_unit') and get_node('World/Slots/Slot2').is_empty()" },
+    { "input": [{ "click_node": "Interface/Hud/SummonButton" }] },
+    { "assert": "not get_node('World/Slots/Slot2').is_empty() and get_node('SummonManager').occupied_count() == 3 and get_node('SummonManager').mana == 25 and get_node('SummonManager').current_cost() == 35" },
+    { "wait": 5 },
+    { "assert": "state == 0 and get_node('World/Tower').current_health == 100 and get_node('World/Slots/Slot1').unit.get_instance_id() == get_meta('first_unit') and get_node('World/Slots/Slot6').unit.get_instance_id() == get_meta('second_unit')" },
+    { "assert_no_errors": true }
+  ]
+}

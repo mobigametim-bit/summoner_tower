@@ -3,9 +3,11 @@ extends Node2D
 
 @export_range(1, 6, 1) var slot_index: int = 1
 @export var faces_left: bool = false
+@export var hit_rect: Rect2 = Rect2(-70.0, -64.0, 140.0, 160.0)
 
 @onready var unit_host: Node2D = $UnitHost
 @onready var empty_label: Label = $EmptyLabel
+@onready var highlight: Sprite2D = $Highlight
 
 var unit: Archer
 
@@ -18,9 +20,26 @@ func place_unit(archer: Archer) -> bool:
 	if not is_empty() or not is_instance_valid(archer):
 		return false
 
-	unit = archer
+	assign_unit(archer)
 	unit_host.add_child(unit)
-	unit.position = Vector2.ZERO
-	unit.set_facing_left(faces_left)
-	empty_label.hide()
+	align_unit()
 	return true
+
+
+func assign_unit(archer: Archer) -> void:
+	unit = archer
+	empty_label.visible = is_empty()
+
+
+func align_unit() -> void:
+	if not is_empty():
+		unit.position = Vector2.ZERO
+		unit.set_facing_left(faces_left)
+
+
+func contains_point(world_position: Vector2) -> bool:
+	return hit_rect.has_point(to_local(world_position))
+
+
+func set_drop_highlight(enabled: bool) -> void:
+	highlight.visible = enabled

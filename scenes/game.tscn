@@ -9,6 +9,8 @@
 [ext_resource type="Texture2D" uid="uid://m3obcl82lbrw" path="res://assets/arena.svg" id="4_u5sy4"]
 [ext_resource type="PackedScene" uid="uid://4ghsox5owi25" path="res://scenes/archer.tscn" id="6_gee14"]
 [ext_resource type="PackedScene" uid="uid://7utrx5k06gtp" path="res://scenes/summon_slot.tscn" id="6_kvpfn"]
+[ext_resource type="Script" uid="uid://bj8a3ymfdffgo" path="res://scripts/game/unit_drag_controller.gd" id="7_kvuet"]
+[ext_resource type="Texture2D" uid="uid://cktgfcgc5nyox" path="res://assets/archer.svg" id="8_trtic"]
 [ext_resource type="Script" uid="uid://l6tfxq6xwsuh" path="res://scripts/game/summon_manager.gd" id="9_dinhu"]
 [ext_resource type="Resource" uid="uid://cuks6vm6g65ce" path="res://resources/balance/summon_config.tres" id="10_kvuet"]
 
@@ -76,6 +78,17 @@ slot_index = 5
 position = Vector2(540, 840)
 slot_index = 6
 faces_left = true
+
+[node name="DragController" type="Node2D" parent="World" unique_id=1932309985]
+script = ExtResource("7_kvuet")
+
+[node name="Preview" type="Node2D" parent="World/DragController" unique_id=1539613388]
+visible = false
+modulate = Color(1, 1, 1, 0.8)
+z_index = 100
+
+[node name="Visual" type="Sprite2D" parent="World/DragController/Preview" unique_id=1834101813]
+texture = ExtResource("8_trtic")
 
 [node name="SpawnTimer" type="Timer" parent="." unique_id=273221870]
 one_shot = true

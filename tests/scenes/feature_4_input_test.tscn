@@ -1,0 +1,9 @@
+[gd_scene format=3 uid="uid://cj16nsutrlq2q"]
+
+[ext_resource type="Script" uid="uid://ceulduspv1u1n" path="res://tests/support/feature_4_test_scene.gd" id="1_as35r"]
+[ext_resource type="PackedScene" uid="uid://rkmlqc5qcsrs" path="res://scenes/game.tscn" id="2_nqhea"]
+
+[node name="Feature4InputTest" type="Node" unique_id=464338617]
+script = ExtResource("1_as35r")
+
+[node name="Game" parent="." unique_id=469266139 instance=ExtResource("2_nqhea")]

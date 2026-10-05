@@ -28,6 +28,11 @@ func set_facing_left(faces_left: bool) -> void:
 	muzzle.position.x = -absf(muzzle.position.x) if faces_left else absf(muzzle.position.x)
 
 
+func refresh_target() -> void:
+	_target = null
+	_search_remaining = 0.0
+
+
 func _physics_process(delta: float) -> void:
 	if not _running or not attack_enabled:
 		return
