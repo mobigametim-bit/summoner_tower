@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="SummonConfig" format=3 uid="uid://cuks6vm6g65ce"]
+
+[ext_resource type="Script" uid="uid://clcgq6pl8ormp" path="res://scripts/data/summon_config.gd" id="1_d8ikx"]
+
+[resource]
+script = ExtResource("1_d8ikx")
+starting_mana = 100
+initial_cost = 20
+cost_increase = 5

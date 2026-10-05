@@ -1,0 +1,85 @@
+{
+  "name": "Feature 3: six slots, rejection and restart",
+  "scene": "res://scenes/game.tscn",
+  "keep_running": true,
+  "steps": [
+    {
+      "set": {
+        "path": "SummonManager",
+        "props": {
+          "mana": 1000
+        }
+      }
+    },
+    {
+      "call": {
+        "path": "SummonManager",
+        "method": "try_summon"
+      }
+    },
+    {
+      "call": {
+        "path": "SummonManager",
+        "method": "try_summon"
+      }
+    },
+    {
+      "call": {
+        "path": "SummonManager",
+        "method": "try_summon"
+      }
+    },
+    {
+      "call": {
+        "path": "SummonManager",
+        "method": "try_summon"
+      }
+    },
+    {
+      "call": {
+        "path": "SummonManager",
+        "method": "try_summon"
+      }
+    },
+    {
+      "call": {
+        "path": "SummonManager",
+        "method": "try_summon"
+      }
+    },
+    {
+      "assert": "get_node('SummonManager').occupied_count() == 6 and get_node('SummonManager').successful_summons == 6 and get_node('SummonManager').mana == 805 and get_node('SummonManager').current_cost() == 50 and get_node('Interface/Hud/SummonButton').disabled"
+    },
+    {
+      "assert": "not get_node('SummonManager').try_summon()"
+    },
+    {
+      "assert": "get_node('SummonManager').mana == 805 and get_node('SummonManager').occupied_count() == 6 and get_node('SummonManager').current_cost() == 50"
+    },
+    {
+      "call": {
+        "path": "World/Tower",
+        "method": "take_damage",
+        "args": [
+          100
+        ]
+      }
+    },
+    {
+      "assert": "state == 1 and not get_node('SummonManager').try_summon() and get_node('Interface/Hud/SummonButton').disabled"
+    },
+    {
+      "input": [
+        {
+          "click_node": "Interface/Hud/GameOverOverlay/Center/Panel/Stack/RestartButton"
+        }
+      ]
+    },
+    {
+      "assert": "state == 0 and get_node('SummonManager').mana == 100 and get_node('SummonManager').current_cost() == 20 and get_node('SummonManager').occupied_count() == 0 and get_node('World/Projectiles').get_child_count() == 0 and get_node('World/Tower').current_health == 100 and not get_node('Interface/Hud/SummonButton').disabled"
+    },
+    {
+      "assert_no_errors": true
+    }
+  ]
+}

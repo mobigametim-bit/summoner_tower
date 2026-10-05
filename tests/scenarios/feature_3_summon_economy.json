@@ -1,0 +1,61 @@
+{
+  "name": "Feature 3: summon economy and insufficient mana",
+  "scene": "res://scenes/game.tscn",
+  "keep_running": true,
+  "steps": [
+    {
+      "assert": "get_node('SummonManager').mana == 100 and get_node('SummonManager').current_cost() == 20 and get_node('SummonManager').occupied_count() == 0 and get_node('World/Slots').get_child_count() == 6 and not get_node('Interface/Hud/SummonButton').disabled"
+    },
+    {
+      "input": [
+        {
+          "click_node": "Interface/Hud/SummonButton"
+        }
+      ]
+    },
+    {
+      "assert": "get_node('SummonManager').mana == 80 and get_node('SummonManager').current_cost() == 25 and get_node('SummonManager').occupied_count() == 1 and not get_node('World/Slots/Slot1').is_empty()"
+    },
+    {
+      "input": [
+        {
+          "click_node": "Interface/Hud/SummonButton"
+        }
+      ]
+    },
+    {
+      "assert": "get_node('SummonManager').mana == 55 and get_node('SummonManager').current_cost() == 30 and get_node('SummonManager').occupied_count() == 2 and not get_node('World/Slots/Slot2').is_empty()"
+    },
+    {
+      "input": [
+        {
+          "click_node": "Interface/Hud/SummonButton"
+        },
+        {
+          "click_node": "Interface/Hud/SummonButton"
+        },
+        {
+          "click_node": "Interface/Hud/SummonButton"
+        }
+      ]
+    },
+    {
+      "assert": "get_node('SummonManager').mana == 25 and get_node('SummonManager').current_cost() == 35 and get_node('SummonManager').successful_summons == 3 and get_node('SummonManager').occupied_count() == 3 and get_node('Interface/Hud/SummonButton').disabled"
+    },
+    {
+      "assert": "not get_node('SummonManager').try_summon()"
+    },
+    {
+      "assert": "get_node('SummonManager').mana == 25 and get_node('SummonManager').current_cost() == 35 and get_node('SummonManager').occupied_count() == 3"
+    },
+    {
+      "wait": 5
+    },
+    {
+      "assert": "get_node('World/Tower').current_health == 100 and get_node('SummonManager').mana == 25 and state == 0"
+    },
+    {
+      "assert_no_errors": true
+    }
+  ]
+}

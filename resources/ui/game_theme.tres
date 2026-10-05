@@ -1,5 +1,16 @@
 [gd_resource type="Theme" format=3 uid="uid://bufjhwj3mejwx"]
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rrhgg"]
+content_margin_left = 24.0
+content_margin_top = 16.0
+content_margin_right = 24.0
+content_margin_bottom = 16.0
+bg_color = Color(0.15294118, 0.20392157, 0.2784314, 1)
+corner_radius_top_left = 12
+corner_radius_top_right = 12
+corner_radius_bottom_right = 12
+corner_radius_bottom_left = 12
+
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_q4uia"]
 content_margin_left = 24.0
 content_margin_top = 16.0
@@ -66,9 +77,11 @@ corner_radius_bottom_left = 8
 [resource]
 default_font_size = 32
 Button/colors/font_color = Color(0.0627451, 0.08235294, 0.13333334, 1)
+Button/colors/font_disabled_color = Color(0.5803922, 0.6392157, 0.7058824, 1)
 Button/colors/font_focus_color = Color(0.0627451, 0.08235294, 0.13333334, 1)
 Button/colors/font_hover_color = Color(0.0627451, 0.08235294, 0.13333334, 1)
 Button/colors/font_pressed_color = Color(0.0627451, 0.08235294, 0.13333334, 1)
+Button/styles/disabled = SubResource("StyleBoxFlat_rrhgg")
 Button/styles/focus = SubResource("StyleBoxFlat_q4uia")
 Button/styles/hover = SubResource("StyleBoxFlat_wir6v")
 Button/styles/normal = SubResource("StyleBoxFlat_1e81c")

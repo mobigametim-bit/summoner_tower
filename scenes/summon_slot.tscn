@@ -1,0 +1,23 @@
+[gd_scene format=3 uid="uid://7utrx5k06gtp"]
+
+[ext_resource type="Script" uid="uid://cy6nolunev6qe" path="res://scripts/game/summon_slot.gd" id="1_khq7p"]
+[ext_resource type="Texture2D" uid="uid://c4aqa615xyf73" path="res://assets/summon_slot.svg" id="2_7ycnf"]
+
+[node name="SummonSlot" type="Node2D" unique_id=315674392]
+script = ExtResource("1_khq7p")
+
+[node name="Visual" type="Sprite2D" parent="." unique_id=1192205008]
+position = Vector2(0, 16)
+texture = ExtResource("2_7ycnf")
+
+[node name="UnitHost" type="Node2D" parent="." unique_id=1947917686]
+
+[node name="EmptyLabel" type="Label" parent="." unique_id=1569170328]
+offset_left = -64.0
+offset_top = 54.0
+offset_right = 64.0
+offset_bottom = 86.0
+theme_override_colors/font_color = Color(0.42745098, 0.5176471, 0.6117647, 1)
+theme_override_font_sizes/font_size = 20
+text = "EMPTY"
+horizontal_alignment = 1

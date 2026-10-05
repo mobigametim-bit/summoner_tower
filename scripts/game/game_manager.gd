@@ -11,7 +11,7 @@ enum State { RUNNING, GAME_OVER, LEAVING }
 @onready var spawn_point: Marker2D = $World/SpawnPoint
 @onready var enemies: Node2D = $World/Enemies
 @onready var projectiles: Node2D = $World/Projectiles
-@onready var archer: Archer = $World/Archer
+@onready var summon_manager: SummonManager = $SummonManager
 @onready var spawn_timer: Timer = $SpawnTimer
 @onready var hud: GameHud = $Interface/Hud
 
@@ -20,7 +20,7 @@ var _active_enemy: ApproachingEnemy
 
 
 func _ready() -> void:
-	archer.configure(enemies, projectiles)
+	summon_manager.configure($World/Slots, enemies, projectiles)
 	tower.initialize(config.tower_max_health)
 	_spawn_enemy()
 
@@ -51,6 +51,11 @@ func _on_tower_health_changed(current: int, maximum: int) -> void:
 	hud.update_health(current, maximum)
 
 
+func _on_summon_requested() -> void:
+	if state == State.RUNNING:
+		summon_manager.try_summon()
+
+
 func _on_tower_destroyed() -> void:
 	if state != State.RUNNING:
 		return
@@ -62,7 +67,7 @@ func _on_tower_destroyed() -> void:
 
 func _stop_encounter() -> void:
 	spawn_timer.stop()
-	archer.stop()
+	summon_manager.stop()
 	for projectile: Node in projectiles.get_children():
 		projectile.queue_free()
 	for child: Node in enemies.get_children():

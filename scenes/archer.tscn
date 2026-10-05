@@ -17,11 +17,11 @@ texture = ExtResource("4_c85qa")
 position = Vector2(32, -8)
 
 [node name="NameLabel" type="Label" parent="." unique_id=1040845679]
-offset_left = -64.0
+offset_left = -68.0
 offset_top = 54.0
-offset_right = 64.0
+offset_right = 68.0
 offset_bottom = 86.0
 theme_override_colors/font_color = Color(0.6392157, 0.78039217, 0.93333334, 1)
-theme_override_font_sizes/font_size = 22
-text = "ARCHER"
+theme_override_font_sizes/font_size = 20
+text = "ARCHER Lv1"
 horizontal_alignment = 1

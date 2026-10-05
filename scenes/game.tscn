@@ -8,6 +8,9 @@
 [ext_resource type="PackedScene" uid="uid://bofw8cla40ece" path="res://scenes/enemy.tscn" id="3_u5sy4"]
 [ext_resource type="Texture2D" uid="uid://m3obcl82lbrw" path="res://assets/arena.svg" id="4_u5sy4"]
 [ext_resource type="PackedScene" uid="uid://4ghsox5owi25" path="res://scenes/archer.tscn" id="6_gee14"]
+[ext_resource type="PackedScene" uid="uid://7utrx5k06gtp" path="res://scenes/summon_slot.tscn" id="6_kvpfn"]
+[ext_resource type="Script" uid="uid://l6tfxq6xwsuh" path="res://scripts/game/summon_manager.gd" id="9_dinhu"]
+[ext_resource type="Resource" uid="uid://cuks6vm6g65ce" path="res://resources/balance/summon_config.tres" id="10_kvuet"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lnu2h"]
 content_margin_left = 36.0
@@ -46,8 +49,33 @@ position = Vector2(360, 1040)
 
 [node name="Projectiles" type="Node2D" parent="World" unique_id=1570384389]
 
-[node name="Archer" parent="World" unique_id=1677709423 instance=ExtResource("6_gee14")]
+[node name="Slots" type="Node2D" parent="World" unique_id=987547701]
+
+[node name="Slot1" parent="World/Slots" unique_id=315674392 instance=ExtResource("6_kvpfn")]
+position = Vector2(180, 360)
+
+[node name="Slot2" parent="World/Slots" unique_id=262702249 instance=ExtResource("6_kvpfn")]
+position = Vector2(540, 360)
+slot_index = 2
+faces_left = true
+
+[node name="Slot3" parent="World/Slots" unique_id=1934411132 instance=ExtResource("6_kvpfn")]
 position = Vector2(180, 600)
+slot_index = 3
+
+[node name="Slot4" parent="World/Slots" unique_id=518396065 instance=ExtResource("6_kvpfn")]
+position = Vector2(540, 600)
+slot_index = 4
+faces_left = true
+
+[node name="Slot5" parent="World/Slots" unique_id=1164201984 instance=ExtResource("6_kvpfn")]
+position = Vector2(180, 840)
+slot_index = 5
+
+[node name="Slot6" parent="World/Slots" unique_id=572343835 instance=ExtResource("6_kvpfn")]
+position = Vector2(540, 840)
+slot_index = 6
+faces_left = true
 
 [node name="SpawnTimer" type="Timer" parent="." unique_id=273221870]
 one_shot = true
@@ -91,9 +119,9 @@ anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
 offset_left = 48.0
-offset_top = -168.0
+offset_top = -166.0
 offset_right = -48.0
-offset_bottom = -48.0
+offset_bottom = -114.0
 grow_horizontal = 2
 grow_vertical = 0
 mouse_filter = 2
@@ -101,22 +129,54 @@ mouse_filter = 2
 [node name="Stack" type="VBoxContainer" parent="Interface/Hud/Health" unique_id=1756145999]
 layout_mode = 2
 mouse_filter = 2
-theme_override_constants/separation = 16
+theme_override_constants/separation = 4
 
 [node name="HealthLabel" type="Label" parent="Interface/Hud/Health/Stack" unique_id=6683040]
 unique_name_in_owner = true
 layout_mode = 2
 theme_override_colors/font_color = Color(0.85490197, 0.89411765, 0.93333334, 1)
-theme_override_font_sizes/font_size = 28
+theme_override_font_sizes/font_size = 22
 text = "TOWER HP  100 / 100"
 horizontal_alignment = 1
 
 [node name="HealthBar" type="ProgressBar" parent="Interface/Hud/Health/Stack" unique_id=762233268]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(0, 28)
+custom_minimum_size = Vector2(0, 16)
 layout_mode = 2
 mouse_filter = 2
 show_percentage = false
+
+[node name="ManaLabel" type="Label" parent="Interface/Hud" unique_id=1792798406]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_left = 32.0
+offset_top = 94.0
+offset_right = -32.0
+offset_bottom = 138.0
+grow_horizontal = 2
+theme_override_colors/font_color = Color(0.6392157, 0.78039217, 0.93333334, 1)
+theme_override_font_sizes/font_size = 28
+text = "MANA 100"
+horizontal_alignment = 1
+
+[node name="SummonButton" type="Button" parent="Interface/Hud" unique_id=1892588874]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 84)
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 48.0
+offset_top = -102.0
+offset_right = -48.0
+offset_bottom = -18.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_font_sizes/font_size = 28
+text = "SUMMON · 20 MANA"
 
 [node name="GameOverOverlay" type="Control" parent="Interface/Hud" unique_id=1342710346]
 unique_name_in_owner = true
@@ -180,10 +240,18 @@ custom_minimum_size = Vector2(0, 84)
 layout_mode = 2
 text = "MENU"
 
+[node name="SummonManager" type="Node" parent="." unique_id=1068555550]
+script = ExtResource("9_dinhu")
+config = ExtResource("10_kvuet")
+unit_scene = ExtResource("6_gee14")
+
 [connection signal="destroyed" from="World/Tower" to="." method="_on_tower_destroyed"]
 [connection signal="health_changed" from="World/Tower" to="." method="_on_tower_health_changed"]
 [connection signal="timeout" from="SpawnTimer" to="." method="_spawn_enemy"]
 [connection signal="menu_requested" from="Interface/Hud" to="." method="_on_menu_requested"]
 [connection signal="restart_requested" from="Interface/Hud" to="." method="_on_restart_requested"]
+[connection signal="summon_requested" from="Interface/Hud" to="." method="_on_summon_requested"]
+[connection signal="pressed" from="Interface/Hud/SummonButton" to="Interface/Hud" method="_on_summon_button_pressed"]
 [connection signal="pressed" from="Interface/Hud/GameOverOverlay/Center/Panel/Stack/RestartButton" to="Interface/Hud" method="_on_restart_button_pressed"]
 [connection signal="pressed" from="Interface/Hud/GameOverOverlay/Center/Panel/Stack/MenuButton" to="Interface/Hud" method="_on_menu_button_pressed"]
+[connection signal="state_changed" from="SummonManager" to="Interface/Hud" method="update_summon"]

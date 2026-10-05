@@ -23,6 +23,11 @@ func configure(enemies: Node2D, projectiles: Node2D) -> void:
 	_running = true
 
 
+func set_facing_left(faces_left: bool) -> void:
+	$Visual.flip_h = faces_left
+	muzzle.position.x = -absf(muzzle.position.x) if faces_left else absf(muzzle.position.x)
+
+
 func _physics_process(delta: float) -> void:
 	if not _running or not attack_enabled:
 		return
