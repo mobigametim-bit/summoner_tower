@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="UnitStats" format=3 uid="uid://bgb7v7r0ismi6"]
+
+[ext_resource type="Resource" uid="uid://ctna74xgfbg3d" path="res://resources/balance/mage_lv2.tres" id="1_xtt6d"]
+[ext_resource type="Script" uid="uid://t5wl1e4nf5h1" path="res://scripts/data/unit_stats.gd" id="2_khsbf"]
+[ext_resource type="Texture2D" uid="uid://dwrrjux2jma0k" path="res://assets/mage.svg" id="3_pcby2"]
+
+[resource]
+script = ExtResource("2_khsbf")
+unit_type = &"mage"
+display_name = "MAGE"
+visual_texture = ExtResource("3_pcby2")
+next_level = ExtResource("1_xtt6d")
+damage = 24
+attack_interval = 1.2
+attack_range = 260.0
+projectile_speed = 700.0

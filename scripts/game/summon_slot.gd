@@ -9,25 +9,25 @@ extends Node2D
 @onready var empty_label: Label = $EmptyLabel
 @onready var highlight: Sprite2D = $Highlight
 
-var unit: Archer
+var unit: CombatUnit
 
 
 func is_empty() -> bool:
 	return not is_instance_valid(unit)
 
 
-func place_unit(archer: Archer) -> bool:
-	if not is_empty() or not is_instance_valid(archer):
+func place_unit(creature: CombatUnit) -> bool:
+	if not is_empty() or not is_instance_valid(creature):
 		return false
 
-	assign_unit(archer)
+	assign_unit(creature)
 	unit_host.add_child(unit)
 	align_unit()
 	return true
 
 
-func assign_unit(archer: Archer) -> void:
-	unit = archer
+func assign_unit(creature: CombatUnit) -> void:
+	unit = creature
 	empty_label.visible = is_empty()
 
 

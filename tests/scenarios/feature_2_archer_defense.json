@@ -3,6 +3,7 @@
   "scene": "res://scenes/game.tscn",
   "keep_running": true,
   "steps": [
+    { "set": { "path": "SummonManager", "props": { "pool": "res://tests/resources/archer_only_pool.tres" } } },
     {
       "eval": "get_node('WaveManager/SpawnTimer').stop()"
     },

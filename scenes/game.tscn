@@ -7,12 +7,12 @@
 [ext_resource type="Script" uid="uid://c8cpj6ixtxugj" path="res://scripts/ui/game_hud.gd" id="2_yqjtg"]
 [ext_resource type="PackedScene" uid="uid://bofw8cla40ece" path="res://scenes/enemy.tscn" id="3_u5sy4"]
 [ext_resource type="Texture2D" uid="uid://m3obcl82lbrw" path="res://assets/arena.svg" id="4_u5sy4"]
-[ext_resource type="PackedScene" uid="uid://4ghsox5owi25" path="res://scenes/archer.tscn" id="6_gee14"]
 [ext_resource type="PackedScene" uid="uid://7utrx5k06gtp" path="res://scenes/summon_slot.tscn" id="6_kvpfn"]
 [ext_resource type="Script" uid="uid://bj8a3ymfdffgo" path="res://scripts/game/unit_drag_controller.gd" id="7_kvuet"]
 [ext_resource type="Texture2D" uid="uid://cktgfcgc5nyox" path="res://assets/archer.svg" id="8_trtic"]
 [ext_resource type="Script" uid="uid://l6tfxq6xwsuh" path="res://scripts/game/summon_manager.gd" id="9_dinhu"]
 [ext_resource type="Resource" uid="uid://cuks6vm6g65ce" path="res://resources/balance/summon_config.tres" id="10_kvuet"]
+[ext_resource type="Resource" uid="uid://dpalsfkfhty6d" path="res://resources/balance/summon_pool.tres" id="12_ir15t"]
 [ext_resource type="Script" uid="uid://6g8kr8xeny10" path="res://scripts/game/wave_manager.gd" id="13_ir15t"]
 [ext_resource type="Resource" uid="uid://ciuquwmxvll24" path="res://resources/balance/wave_config.tres" id="14_ca42v"]
 
@@ -267,7 +267,7 @@ horizontal_alignment = 1
 [node name="SummonManager" type="Node" parent="." unique_id=1068555550]
 script = ExtResource("9_dinhu")
 config = ExtResource("10_kvuet")
-unit_scene = ExtResource("6_gee14")
+pool = ExtResource("12_ir15t")
 
 [node name="WaveManager" type="Node" parent="." unique_id=2106110378]
 script = ExtResource("13_ir15t")

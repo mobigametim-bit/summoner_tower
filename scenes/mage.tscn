@@ -1,0 +1,27 @@
+[gd_scene format=3 uid="uid://cg5lcquj0fmj2"]
+
+[ext_resource type="Script" uid="uid://8px6pnunwy18" path="res://scripts/combat/combat_unit.gd" id="1_r5lxc"]
+[ext_resource type="Resource" uid="uid://bgb7v7r0ismi6" path="res://resources/balance/mage_lv1.tres" id="2_yb71v"]
+[ext_resource type="PackedScene" uid="uid://x1f1qqgnx585" path="res://scenes/fireball.tscn" id="3_nc4w5"]
+[ext_resource type="Texture2D" uid="uid://dwrrjux2jma0k" path="res://assets/mage.svg" id="4_r5lxc"]
+
+[node name="Mage" type="Node2D" unique_id=1677709423]
+script = ExtResource("1_r5lxc")
+stats = ExtResource("2_yb71v")
+projectile_scene = ExtResource("3_nc4w5")
+
+[node name="Visual" type="Sprite2D" parent="." unique_id=1262552869]
+texture = ExtResource("4_r5lxc")
+
+[node name="Muzzle" type="Marker2D" parent="." unique_id=1043330293]
+position = Vector2(32, -8)
+
+[node name="NameLabel" type="Label" parent="." unique_id=1040845679]
+offset_left = -68.0
+offset_top = 54.0
+offset_right = 68.0
+offset_bottom = 86.0
+theme_override_colors/font_color = Color(0.85882354, 0.9137255, 0.89411765, 1)
+theme_override_font_sizes/font_size = 20
+text = "MAGE"
+horizontal_alignment = 1

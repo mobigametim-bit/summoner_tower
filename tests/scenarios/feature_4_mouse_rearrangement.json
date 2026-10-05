@@ -3,6 +3,7 @@
   "scene": "res://scenes/game.tscn",
   "keep_running": true,
   "steps": [
+    { "set": { "path": "SummonManager", "props": { "pool": "res://tests/resources/archer_only_pool.tres" } } },
     { "eval": "get_node('WaveManager/SpawnTimer').stop()" },
     { "set": { "path": "World/Enemies/Enemy", "props": { "move_speed": 0, "current_health": 10000, "max_health": 10000 } } },
     { "call": { "path": "SummonManager", "method": "try_summon" } },

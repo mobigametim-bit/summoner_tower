@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://4ghsox5owi25"]
 
-[ext_resource type="Script" uid="uid://8px6pnunwy18" path="res://scripts/combat/archer.gd" id="1_jggnj"]
+[ext_resource type="Script" uid="uid://8px6pnunwy18" path="res://scripts/combat/combat_unit.gd" id="1_jggnj"]
 [ext_resource type="Resource" uid="uid://d3fugk8lns56s" path="res://resources/balance/archer_lv1.tres" id="2_cctdm"]
 [ext_resource type="PackedScene" uid="uid://ds1milb6xgln6" path="res://scenes/arrow.tscn" id="3_ejvcm"]
 [ext_resource type="Texture2D" uid="uid://cktgfcgc5nyox" path="res://assets/archer.svg" id="4_c85qa"]

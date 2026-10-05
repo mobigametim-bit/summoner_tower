@@ -7,8 +7,8 @@ func run(scene: Node) -> Dictionary:
 	var slots: Array[Node] = scene.get_node("World/Slots").get_children()
 	var viewport: Viewport = scene.get_viewport()
 	assert(manager.try_summon() and manager.try_summon())
-	var first: Archer = slots[0].unit
-	var second: Archer = slots[1].unit
+	var first: CombatUnit = slots[0].unit
+	var second: CombatUnit = slots[1].unit
 	# Разные уровни сохраняют проверку swap после появления merge одинаковых юнитов.
 	second.promote()
 	first._cooldown = 0.42
@@ -105,15 +105,15 @@ func run(scene: Node) -> Dictionary:
 	return {"passed": true, "ordered_slot_pairs": transfers, "reentry": reentry, "touch": true, "cancellation": true}
 
 
-func _slot_for(slots: Array[Node], unit: Archer) -> SummonSlot:
+func _slot_for(slots: Array[Node], unit: CombatUnit) -> SummonSlot:
 	for slot: SummonSlot in slots:
 		if slot.unit == unit:
 			return slot
 	return null
 
 
-func _assert_field(slots: Array[Node], first: Archer, second: Archer) -> void:
-	var found: Array[Archer] = []
+func _assert_field(slots: Array[Node], first: CombatUnit, second: CombatUnit) -> void:
+	var found: Array[CombatUnit] = []
 	for slot: SummonSlot in slots:
 		assert(slot.unit_host.get_child_count() == (0 if slot.is_empty() else 1))
 		if not slot.is_empty():
@@ -123,7 +123,7 @@ func _assert_field(slots: Array[Node], first: Archer, second: Archer) -> void:
 	assert(found.size() == 2 and found.has(first) and found.has(second))
 
 
-func _assert_cancelled(drag: UnitDragController, slots: Array[Node], unit: Archer) -> void:
+func _assert_cancelled(drag: UnitDragController, slots: Array[Node], unit: CombatUnit) -> void:
 	assert(drag._pointer == UnitDragController.Pointer.NONE and not drag.preview.visible)
 	assert(unit.modulate == Color.WHITE)
 	for slot: SummonSlot in slots:

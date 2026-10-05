@@ -1,9 +1,9 @@
-class_name Archer
+class_name CombatUnit
 extends Node2D
 
 const TARGET_SEARCH_INTERVAL: float = 0.1
 
-@export var stats: ArcherStats
+@export var stats: UnitStats
 @export var projectile_scene: PackedScene
 @export var attack_enabled: bool = true
 
@@ -24,9 +24,10 @@ func _ready() -> void:
 func refresh_visual() -> void:
 	if stats.visual_texture != null:
 		$Visual.texture = stats.visual_texture
+	$NameLabel.text = stats.display_name
 
 
-func can_merge_with(other: Archer) -> bool:
+func can_merge_with(other: CombatUnit) -> bool:
 	return (
 		is_instance_valid(other) and other != self
 		and stats.unit_type == other.stats.unit_type and stats.level == other.stats.level
@@ -43,11 +44,11 @@ func promote() -> void:
 	_cooldown = stats.attack_interval
 
 
-func retire_into(successor: Archer) -> void:
+func retire_into(successor: CombatUnit) -> void:
 	stop()
 	# Стрелы сохраняют снимок урона, но больше не зависят от удаляемого участника merge.
 	for child: Node in _projectiles.get_children():
-		var arrow: ArrowProjectile = child as ArrowProjectile
+		var arrow: CombatProjectile = child as CombatProjectile
 		if arrow != null:
 			arrow.reassign_attacker(self, successor)
 
@@ -104,7 +105,7 @@ func _find_nearest_target() -> ApproachingEnemy:
 
 
 func _fire() -> void:
-	var arrow: ArrowProjectile = projectile_scene.instantiate() as ArrowProjectile
+	var arrow: CombatProjectile = projectile_scene.instantiate() as CombatProjectile
 	_projectiles.add_child(arrow)
 	arrow.launch(muzzle.global_position, _target, stats, self)
 

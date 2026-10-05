@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://di4mpnwaikk8a" path="res://scripts/combat/approaching_enemy.gd" id="1_7p1mj"]
 [ext_resource type="Texture2D" uid="uid://dfnsaprp1a8y1" path="res://assets/enemy.svg" id="2_md0e3"]
+[ext_resource type="Texture2D" uid="uid://dk3ix6arlq4pu" path="res://assets/slow_indicator.svg" id="3_4ra3w"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_md0e3"]
 bg_color = Color(0.14901961, 0.19215687, 0.25882354, 1)
@@ -19,6 +20,10 @@ corner_radius_bottom_left = 3
 
 [node name="Enemy" type="Node2D" unique_id=1962163179]
 script = ExtResource("1_7p1mj")
+
+[node name="SlowIndicator" type="Sprite2D" parent="." unique_id=1953666337]
+visible = false
+texture = ExtResource("3_4ra3w")
 
 [node name="Visual" type="Sprite2D" parent="." unique_id=606921741]
 texture = ExtResource("2_md0e3")

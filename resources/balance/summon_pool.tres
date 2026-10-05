@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="SummonPool" format=3 uid="uid://dpalsfkfhty6d"]
+
+[ext_resource type="PackedScene" uid="uid://4ghsox5owi25" path="res://scenes/archer.tscn" id="1_15pqp"]
+[ext_resource type="PackedScene" uid="uid://cg5lcquj0fmj2" path="res://scenes/mage.tscn" id="2_hgiic"]
+[ext_resource type="PackedScene" uid="uid://diqm4tk3ev8bp" path="res://scenes/frost_mage.tscn" id="3_0vjo8"]
+[ext_resource type="Script" uid="uid://b870214dxmmxw" path="res://scripts/data/summon_pool.gd" id="4_riitv"]
+
+[resource]
+script = ExtResource("4_riitv")
+scenes = [ExtResource("1_15pqp"), ExtResource("2_hgiic"), ExtResource("3_0vjo8")]
+weights = [40, 35, 25]

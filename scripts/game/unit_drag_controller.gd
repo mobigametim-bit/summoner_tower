@@ -14,7 +14,7 @@ var _enabled: bool = false
 var _pointer: Pointer = Pointer.NONE
 var _touch_index: int = -1
 var _source: SummonSlot
-var _unit: Archer
+var _unit: CombatUnit
 var _press_position: Vector2
 var _grab_offset: Vector2
 var _original_modulate: Color
@@ -139,7 +139,7 @@ func _update_drag(viewport_position: Vector2) -> void:
 func _finish(viewport_position: Vector2) -> void:
 	_update_drag(viewport_position)
 	var source: SummonSlot = _source
-	var unit: Archer = _unit
+	var unit: CombatUnit = _unit
 	var destination: SummonSlot = _slot_at(_world_position(viewport_position)) if _dragging else null
 	cancel_drag()
 	if destination != null:

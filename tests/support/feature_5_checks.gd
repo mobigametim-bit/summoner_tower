@@ -7,9 +7,9 @@ func run(scene: Node) -> Dictionary:
 	var drag: UnitDragController = scene.get_node("World/DragController")
 	var enemy: ApproachingEnemy = scene.get_node("World/Enemies").get_child(0)
 	var projectiles: Node2D = scene.get_node("World/Projectiles")
-	var base: ArcherStats = load("res://resources/balance/archer_lv1.tres")
-	var second_level: ArcherStats = base.next_level
-	var third_level: ArcherStats = second_level.next_level
+	var base: UnitStats = load("res://resources/balance/archer_lv1.tres")
+	var second_level: UnitStats = base.next_level
+	var third_level: UnitStats = second_level.next_level
 	assert(base.level == 1 and base.damage == 10)
 	assert(second_level.level == 2 and second_level.damage == 22)
 	assert(third_level.level == 3 and third_level.damage == 50 and third_level.next_level == null)
@@ -26,11 +26,11 @@ func run(scene: Node) -> Dictionary:
 	assert(manager.mana == 805 and manager.current_cost() == 50)
 	_assert_field(slots, 6)
 
-	var source: Archer = slots[0].unit
-	var survivor: Archer = slots[1].unit
+	var source: CombatUnit = slots[0].unit
+	var survivor: CombatUnit = slots[1].unit
 	var survivor_id: int = survivor.get_instance_id()
-	var old_source_arrow: ArrowProjectile = _arrow(projectiles, enemy, source)
-	var old_target_arrow: ArrowProjectile = _arrow(projectiles, enemy, survivor)
+	var old_source_arrow: CombatProjectile = _arrow(projectiles, enemy, source)
+	var old_target_arrow: CombatProjectile = _arrow(projectiles, enemy, survivor)
 	var reentry: Array[bool] = []
 	slots[0].unit_host.child_exiting_tree.connect(func(_child: Node) -> void:
 		assert(slots[0].is_empty() and slots[1].unit.stats.level == 2)
@@ -70,7 +70,7 @@ func run(scene: Node) -> Dictionary:
 	assert(manager.try_transfer(slots[4], slots[5], slots[4].unit))
 	_assert_field(slots, 3)
 
-	var old_level_two_arrow: ArrowProjectile = _arrow(projectiles, enemy, survivor)
+	var old_level_two_arrow: CombatProjectile = _arrow(projectiles, enemy, survivor)
 	assert(manager.try_transfer(slots[1], slots[3], survivor))
 	assert(slots[1].is_empty() and slots[3].unit.stats == third_level)
 	assert(old_level_two_arrow._attacker == slots[3].unit and old_level_two_arrow._damage == 22)
@@ -85,8 +85,8 @@ func run(scene: Node) -> Dictionary:
 	assert(manager.try_transfer(slots[0], slots[1], slots[0].unit))
 	assert(manager.try_transfer(slots[1], slots[5], slots[1].unit))
 	_assert_field(slots, 2)
-	var red_left: Archer = slots[3].unit
-	var red_right: Archer = slots[5].unit
+	var red_left: CombatUnit = slots[3].unit
+	var red_right: CombatUnit = slots[5].unit
 	red_left._cooldown = 0.42
 	red_right._cooldown = 0.37
 	assert(not red_left.can_merge_with(red_right))
@@ -97,12 +97,12 @@ func run(scene: Node) -> Dictionary:
 	_assert_field(slots, 2)
 
 	assert(manager.try_summon())
-	var green: Archer = slots[0].unit
+	var green: CombatUnit = slots[0].unit
 	assert(not green.can_merge_with(red_left))
 	assert(manager.try_transfer(slots[0], slots[5], green))
 	assert(slots[0].unit == red_left and slots[5].unit == green)
 	assert(manager.try_transfer(slots[5], slots[1], green))
-	var orange: Archer = manager.unit_scene.instantiate() as Archer
+	var orange: CombatUnit = load("res://scenes/archer.tscn").instantiate() as CombatUnit
 	assert(slots[2].place_unit(orange))
 	orange.configure(scene.get_node("World/Enemies"), projectiles)
 	orange.promote()
@@ -112,7 +112,7 @@ func run(scene: Node) -> Dictionary:
 	_assert_field(slots, 4)
 
 	# Отличающийся тип использует тот же swap-контракт без добавления игрового контента.
-	var alternate: ArcherStats = base.duplicate() as ArcherStats
+	var alternate: UnitStats = base.duplicate() as UnitStats
 	alternate.unit_type = &"test_only"
 	orange.stats = alternate
 	orange.refresh_visual()
@@ -124,7 +124,7 @@ func run(scene: Node) -> Dictionary:
 	_assert_field(slots, 4)
 
 	var damage_by_level: Array[int] = []
-	for unit: Archer in [green, orange, red_left]:
+	for unit: CombatUnit in [green, orange, red_left]:
 		var previous_health: int = enemy.current_health
 		_arrow(projectiles, enemy, unit)._physics_process(0.001)
 		damage_by_level.append(previous_health - enemy.current_health)
@@ -140,8 +140,8 @@ func run(scene: Node) -> Dictionary:
 	return {"passed": true, "levels": 3, "damage": damage_by_level, "in_flight_damage": [10, 10, 22], "reentry": reentry, "touch_merge": true, "capacity": true, "lv3_swap": true}
 
 
-func _arrow(projectiles: Node2D, enemy: ApproachingEnemy, attacker: Archer) -> ArrowProjectile:
-	var arrow: ArrowProjectile = attacker.projectile_scene.instantiate() as ArrowProjectile
+func _arrow(projectiles: Node2D, enemy: ApproachingEnemy, attacker: CombatUnit) -> CombatProjectile:
+	var arrow: CombatProjectile = attacker.projectile_scene.instantiate() as CombatProjectile
 	projectiles.add_child(arrow)
 	arrow.launch(enemy.global_position, enemy, attacker.stats, attacker)
 	return arrow

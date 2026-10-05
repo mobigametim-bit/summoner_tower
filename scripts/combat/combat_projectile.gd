@@ -1,9 +1,11 @@
-class_name ArrowProjectile
+class_name CombatProjectile
 extends Node2D
 
 var _target: ApproachingEnemy
 var _attacker: Node2D
 var _damage: int = 0
+var _slow_ratio: float = 0.0
+var _slow_duration: float = 0.0
 var _speed: float = 0.0
 var _remaining_lifetime: float = 0.0
 var _resolved: bool = false
@@ -13,11 +15,13 @@ func _ready() -> void:
 	set_physics_process(false)
 
 
-func launch(origin: Vector2, target: ApproachingEnemy, stats: ArcherStats, attacker: Node2D) -> void:
+func launch(origin: Vector2, target: ApproachingEnemy, stats: UnitStats, attacker: Node2D) -> void:
 	global_position = origin
 	_target = target
 	_attacker = attacker
 	_damage = stats.damage
+	_slow_ratio = stats.slow_ratio
+	_slow_duration = stats.slow_duration
 	_speed = stats.projectile_speed
 	_remaining_lifetime = stats.projectile_lifetime
 	set_physics_process(true)
@@ -63,6 +67,8 @@ func _hit_target() -> void:
 	set_physics_process(false)
 	if _has_valid_participants():
 		_target.take_damage(_damage)
+		if is_instance_valid(_target) and _target.is_targetable():
+			_target.apply_slow(_slow_ratio, _slow_duration)
 	queue_free()
 
 

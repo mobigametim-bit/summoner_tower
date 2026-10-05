@@ -3,6 +3,7 @@
   "scene": "res://tests/scenes/feature_6_wave_test.tscn",
   "keep_running": true,
   "steps": [
+    { "set": { "path": "Game/SummonManager", "props": { "pool": "res://tests/resources/archer_only_pool.tres" } } },
     {
       "call": {
         "path": "",

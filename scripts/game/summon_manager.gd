@@ -4,7 +4,7 @@ extends Node
 signal state_changed(mana: int, cost: int, occupied: int, capacity: int, available: bool)
 
 @export var config: SummonConfig
-@export var unit_scene: PackedScene
+@export var pool: SummonPool
 
 var mana: int = 0
 var successful_summons: int = 0
@@ -14,6 +14,7 @@ var _enemies: Node2D
 var _projectiles: Node2D
 var _running: bool = false
 var _busy: bool = false
+var _rng: RandomNumberGenerator = RandomNumberGenerator.new()
 
 
 func configure(slots: Node2D, enemies: Node2D, projectiles: Node2D) -> void:
@@ -24,7 +25,12 @@ func configure(slots: Node2D, enemies: Node2D, projectiles: Node2D) -> void:
 	mana = config.starting_mana
 	successful_summons = 0
 	_running = true
+	_rng.randomize()
 	_emit_state()
+
+
+func set_random_seed(value: int) -> void:
+	_rng.seed = value
 
 
 func current_cost() -> int:
@@ -40,7 +46,7 @@ func occupied_count() -> int:
 
 
 func can_summon() -> bool:
-	return _running and not _busy and mana >= current_cost() and occupied_count() < _slots.size()
+	return _running and not _busy and pool != null and pool.is_valid() and mana >= current_cost() and occupied_count() < _slots.size()
 
 
 func try_summon() -> bool:
@@ -57,14 +63,26 @@ func try_summon() -> bool:
 
 	# Добавление узла вызывает сигналы дерева: исключаем повторный призыв до завершения операции.
 	_busy = true
-	var instance: Node = unit_scene.instantiate()
-	var archer: Archer = instance as Archer
-	if archer == null or not destination.place_unit(archer):
+	var previous_random_state: int = _rng.state
+	var instance: Node = pool.roll(_rng).instantiate()
+	var unit: CombatUnit = instance as CombatUnit
+	if unit == null or unit.stats == null or unit.stats.level != 1 or not destination.place_unit(unit):
 		instance.free()
+		_rng.state = previous_random_state
 		_busy = false
 		return false
 
-	archer.configure(_enemies, _projectiles)
+	# Сигнал добавления узла может завершить забег: откатываем незавершённый призыв.
+	if not _running:
+		destination.assign_unit(null)
+		unit.stop()
+		destination.unit_host.remove_child(unit)
+		unit.free()
+		_rng.state = previous_random_state
+		_busy = false
+		return false
+
+	unit.configure(_enemies, _projectiles)
 	mana -= current_cost()
 	successful_summons += 1
 	_busy = false
@@ -91,14 +109,14 @@ func can_rearrange() -> bool:
 	return _running and not _busy
 
 
-func try_transfer(source: SummonSlot, destination: SummonSlot, expected_unit: Archer) -> bool:
+func try_transfer(source: SummonSlot, destination: SummonSlot, expected_unit: CombatUnit) -> bool:
 	if not can_rearrange() or not is_instance_valid(expected_unit) or expected_unit.is_queued_for_deletion():
 		return false
 	if not _slots.has(source) or not _slots.has(destination) or source == destination:
 		return false
 	if source.unit != expected_unit or expected_unit.get_parent() != source.unit_host:
 		return false
-	var other: Archer = destination.unit if not destination.is_empty() else null
+	var other: CombatUnit = destination.unit if not destination.is_empty() else null
 	if other != null and (other.get_parent() != destination.unit_host or other.is_queued_for_deletion()):
 		return false
 

@@ -1,0 +1,51 @@
+{
+  "name": "Feature 7: random types, merge, Frost lifecycle and atomic summon",
+  "scene": "res://tests/scenes/feature_7_units_test.tscn",
+  "keep_running": true,
+  "steps": [
+    {
+      "call": {
+        "path": "",
+        "method": "run_unit_checks"
+      }
+    },
+    {
+      "assert": "get_meta('feature7_checks').passed and get_meta('feature7_checks').types == ['archer', 'mage', 'frost_mage'] and get_node('Game').state == 1"
+    },
+    {
+      "wait": 0.1
+    },
+    {
+      "input": [
+        {
+          "click_node": "Game/Interface/Hud/GameOverOverlay/Center/Panel/Stack/RestartButton"
+        },
+        {
+          "wait": 0.2
+        }
+      ]
+    },
+    {
+      "assert": "get_node('Game').state == 0 and get_node('Game/SummonManager').mana == 100 and get_node('Game/SummonManager').occupied_count() == 0 and get_node('Game/SummonManager').pool.weights == [40,35,25] and get_node('Game/WaveManager').wave_number == 1"
+    },
+    {
+      "input": [
+        {
+          "click_node": "Game/Interface/Hud/SummonButton"
+        },
+        {
+          "click_node": "Game/Interface/Hud/SummonButton"
+        },
+        {
+          "click_node": "Game/Interface/Hud/SummonButton"
+        }
+      ]
+    },
+    {
+      "assert": "get_node('Game/World/Slots/Slot1').unit.stats.unit_type == 'archer' and get_node('Game/World/Slots/Slot2').unit.stats.unit_type == 'mage' and get_node('Game/World/Slots/Slot3').unit.stats.unit_type == 'frost_mage' and get_node('Game/SummonManager').successful_summons == 3"
+    },
+    {
+      "assert_no_errors": true
+    }
+  ]
+}
