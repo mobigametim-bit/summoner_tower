@@ -1,43 +1,55 @@
 {
-  "name": "Feature 2: automatic Archer defense",
+  "name": "Feature 2: automatic Archer attack, kill income and next wave",
   "scene": "res://scenes/game.tscn",
   "keep_running": true,
   "steps": [
     {
-      "call": { "path": "SummonManager", "method": "try_summon" }
+      "eval": "get_node('WaveManager/SpawnTimer').stop()"
+    },
+    {
+      "call": {
+        "path": "SummonManager",
+        "method": "try_summon"
+      }
+    },
+    {
+      "wait_for": "get_node('World/Enemies').get_child_count() > 0 and get_node('World/Enemies').get_child(0).current_health == 20"
+    },
+    {
+      "wait_for": "get_node('World/Enemies').get_child_count() > 0 and get_node('World/Enemies').get_child(0).current_health == 10"
+    },
+    {
+      "wait_for": "get_node('SummonManager').mana >= 83"
     },
     {
       "assert": "get_node('World/Tower').current_health == 100"
     },
     {
-      "wait_for": "get_node('World/Enemies').get_child_count() == 1 and get_node('World/Enemies').get_child(0).current_health == 20"
+      "call": {
+        "path": "SummonManager",
+        "method": "try_summon"
+      }
     },
     {
-      "wait_for": "get_node('World/Enemies').get_child_count() == 1 and get_node('World/Enemies').get_child(0).current_health == 10"
+      "call": {
+        "path": "SummonManager",
+        "method": "try_summon"
+      }
     },
     {
-      "wait_for": "get_node('World/Enemies').get_child_count() == 0"
+      "eval": "get_node('WaveManager/SpawnTimer').start(get_node('WaveManager').config.spawn_interval)"
     },
     {
-      "assert": "get_node('World/Tower').current_health == 100 and not get_node('SpawnTimer').is_stopped()"
+      "wait_for": "get_node('WaveManager').wave_number == 1 and get_node('WaveManager').phase == 2"
     },
     {
-      "wait_for": "get_node('World/Enemies').get_child_count() == 1"
+      "assert": "get_node('SummonManager').mana == 37 and get_node('WaveManager').active_count() == 0 and get_node('World/Enemies').get_child_count() == 0 and not get_node('WaveManager/IntermissionTimer').is_stopped() and get_node('World/Tower').current_health == 100"
     },
     {
-      "assert": "get_node('World/Enemies').get_child(0).current_health == 30"
+      "wait_for": "get_node('WaveManager').wave_number == 2 and get_node('World/Enemies').get_child_count() > 0"
     },
     {
-      "wait_for": "get_node('World/Enemies').get_child_count() == 1 and get_node('World/Enemies').get_child(0).current_health == 20"
-    },
-    {
-      "wait_for": "get_node('World/Enemies').get_child_count() == 1 and get_node('World/Enemies').get_child(0).current_health == 10"
-    },
-    {
-      "wait_for": "get_node('World/Enemies').get_child_count() == 0"
-    },
-    {
-      "assert": "state == 0 and get_node('World/Tower').current_health == 100 and get_node('World/Projectiles').get_child_count() == 0 and not get_node('Interface/Hud/GameOverOverlay').visible"
+      "assert": "get_node('World/Enemies').get_child(0).max_health == 35 and get_node('WaveManager').active_count() + get_node('WaveManager')._spawn_remaining == 5 and state == 0"
     },
     {
       "assert_no_errors": true

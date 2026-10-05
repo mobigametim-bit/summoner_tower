@@ -72,6 +72,13 @@ func try_summon() -> bool:
 	return true
 
 
+func add_mana(amount: int) -> void:
+	if not _running or amount <= 0:
+		return
+	mana += amount
+	_emit_state()
+
+
 func stop() -> void:
 	_running = false
 	for slot: SummonSlot in _slots:

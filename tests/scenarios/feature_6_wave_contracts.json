@@ -1,0 +1,12 @@
+{
+  "name": "Feature 6: wave quotas, rewards, escapes, reentry and timers",
+  "scene": "res://tests/scenes/feature_6_wave_test.tscn",
+  "keep_running": true,
+  "steps": [
+    { "call": { "path": "", "method": "run_checks" } },
+    { "assert": "get_meta('feature6_checks').passed and get_node('Game').state == 1 and kills == 3 and escapes == 1 and earned == 9" },
+    { "input": [{ "click_node": "Game/Interface/Hud/GameOverOverlay/Center/Panel/Stack/RestartButton" }, { "wait": 0.2 }] },
+    { "assert": "get_node('Game').state == 0 and get_node('Game/WaveManager').wave_number == 1 and get_node('Game/WaveManager').active_count() == 1 and get_node('Game/SummonManager').mana == 100 and get_node('Game/SummonManager').current_cost() == 20 and get_node('Game/SummonManager').occupied_count() == 0 and earned == 0 and completed.size() == 0" },
+    { "assert_no_errors": true }
+  ]
+}

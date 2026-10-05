@@ -12,6 +12,16 @@ signal summon_requested
 @onready var menu_button: Button = %MenuButton
 @onready var mana_label: Label = %ManaLabel
 @onready var summon_button: Button = %SummonButton
+@onready var wave_label: Label = %WaveLabel
+
+
+func update_wave(wave: int, phase: WaveManager.Phase, seconds: int, alive: int, pending: int) -> void:
+	if phase == WaveManager.Phase.INTERMISSION:
+		wave_label.text = "WAVE %d CLEAR · NEXT IN %d" % [wave, seconds]
+	elif phase == WaveManager.Phase.FIGHTING:
+		wave_label.text = "WAVE %d · ENEMIES %d" % [wave, alive + pending]
+	else:
+		wave_label.text = "WAVE %d" % wave
 
 
 func update_health(current: int, maximum: int) -> void:

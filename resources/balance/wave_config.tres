@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="WaveConfig" format=3 uid="uid://ciuquwmxvll24"]
+
+[ext_resource type="Script" uid="uid://27u7nusjawkc" path="res://scripts/data/wave_config.gd" id="1_config"]
+
+[resource]
+script = ExtResource("1_config")
+first_enemy_count = 4
+enemy_count_growth = 1
+enemy_health_growth = 5
+spawn_interval = 1.0
+intermission_duration = 3.0
+kill_mana = 3

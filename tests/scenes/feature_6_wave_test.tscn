@@ -1,0 +1,9 @@
+[gd_scene format=3 uid="uid://boo7cgwcaeahw"]
+
+[ext_resource type="Script" uid="uid://cg73wtyc4vn0w" path="res://tests/support/feature_6_test_scene.gd" id="1_8vm0x"]
+[ext_resource type="PackedScene" uid="uid://rkmlqc5qcsrs" path="res://scenes/game.tscn" id="2_05f5s"]
+
+[node name="Feature6WaveTest" type="Node" unique_id=621825790]
+script = ExtResource("1_8vm0x")
+
+[node name="Game" parent="." unique_id=469266139 instance=ExtResource("2_05f5s")]

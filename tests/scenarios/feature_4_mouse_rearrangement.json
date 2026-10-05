@@ -3,6 +3,8 @@
   "scene": "res://scenes/game.tscn",
   "keep_running": true,
   "steps": [
+    { "eval": "get_node('WaveManager/SpawnTimer').stop()" },
+    { "set": { "path": "World/Enemies/Enemy", "props": { "move_speed": 0, "current_health": 10000, "max_health": 10000 } } },
     { "call": { "path": "SummonManager", "method": "try_summon" } },
     { "call": { "path": "SummonManager", "method": "try_summon" } },
     { "eval": "set_meta('first_unit', get_node('World/Slots/Slot1').unit.get_instance_id())" },

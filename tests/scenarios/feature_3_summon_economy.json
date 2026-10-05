@@ -3,6 +3,8 @@
   "scene": "res://scenes/game.tscn",
   "keep_running": true,
   "steps": [
+    { "eval": "get_node('WaveManager/SpawnTimer').stop()" },
+    { "set": { "path": "World/Enemies/Enemy", "props": { "move_speed": 0, "current_health": 10000, "max_health": 10000 } } },
     {
       "assert": "get_node('SummonManager').mana == 100 and get_node('SummonManager').current_cost() == 20 and get_node('SummonManager').occupied_count() == 0 and get_node('World/Slots').get_child_count() == 6 and not get_node('Interface/Hud/SummonButton').disabled"
     },

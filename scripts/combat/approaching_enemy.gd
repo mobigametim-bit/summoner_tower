@@ -20,11 +20,11 @@ func _ready() -> void:
 	set_physics_process(false)
 
 
-func configure(config: EncounterConfig, spawn_position: Vector2, target_y: float) -> void:
+func configure(config: EncounterConfig, spawn_position: Vector2, target_y: float, health: int = 0) -> void:
 	global_position = spawn_position
 	tower_damage = config.enemy_tower_damage
 	move_speed = config.enemy_move_speed
-	max_health = config.enemy_max_health
+	max_health = health if health > 0 else config.enemy_max_health
 	current_health = max_health
 	_update_health_bar()
 	_target_y = target_y
