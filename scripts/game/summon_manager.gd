@@ -15,17 +15,21 @@ var _enemies: Node2D
 var _projectiles: Node2D
 var _running: bool = false
 var _busy: bool = false
+var _interaction_enabled: bool = true
+var _run_bonuses: RunBonuses
 var _rng: RandomNumberGenerator = RandomNumberGenerator.new()
 
 
-func configure(slots: Node2D, enemies: Node2D, projectiles: Node2D) -> void:
+func configure(slots: Node2D, enemies: Node2D, projectiles: Node2D, bonuses: RunBonuses = null) -> void:
 	_enemies = enemies
 	_projectiles = projectiles
+	_run_bonuses = bonuses
 	for child: Node in slots.get_children():
 		_slots.append(child as SummonSlot)
 	mana = config.starting_mana
 	successful_summons = 0
 	_running = true
+	_interaction_enabled = true
 	_rng.randomize()
 	_emit_state()
 
@@ -35,7 +39,13 @@ func set_random_seed(value: int) -> void:
 
 
 func current_cost() -> int:
-	return config.cost_after(successful_summons)
+	var base_cost: int = config.cost_after(successful_summons)
+	return _run_bonuses.summon_cost_for(base_cost) if _run_bonuses != null else base_cost
+
+
+func set_interaction_enabled(enabled: bool) -> void:
+	_interaction_enabled = enabled
+	_emit_state()
 
 
 func occupied_count() -> int:
@@ -47,7 +57,7 @@ func occupied_count() -> int:
 
 
 func can_summon() -> bool:
-	return _running and not _busy and pool != null and pool.is_valid() and mana >= current_cost() and occupied_count() < _slots.size()
+	return _running and _interaction_enabled and not _busy and pool != null and pool.is_valid() and mana >= current_cost() and occupied_count() < _slots.size()
 
 
 func try_summon() -> bool:
@@ -74,7 +84,7 @@ func try_summon() -> bool:
 		return false
 
 	# Сигнал добавления узла может завершить забег: откатываем незавершённый призыв.
-	if not _running:
+	if not _running or not _interaction_enabled:
 		destination.assign_unit(null)
 		unit.stop()
 		destination.unit_host.remove_child(unit)
@@ -83,7 +93,7 @@ func try_summon() -> bool:
 		_busy = false
 		return false
 
-	unit.configure(_enemies, _projectiles)
+	unit.configure(_enemies, _projectiles, _run_bonuses)
 	unit.paid_mana = current_cost()
 	mana -= unit.paid_mana
 	successful_summons += 1
@@ -108,7 +118,7 @@ func stop() -> void:
 
 
 func can_rearrange() -> bool:
-	return _running and not _busy
+	return _running and _interaction_enabled and not _busy
 
 
 func try_transfer(source: SummonSlot, destination: SummonSlot, expected_unit: CombatUnit) -> bool:

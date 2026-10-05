@@ -15,12 +15,12 @@ func _ready() -> void:
 	set_physics_process(false)
 
 
-func launch(origin: Vector2, target: ApproachingEnemy, stats: UnitStats, attacker: Node2D) -> void:
+func launch(origin: Vector2, target: ApproachingEnemy, stats: UnitStats, attacker: Node2D, bonuses: RunBonuses = null) -> void:
 	global_position = origin
 	_target = target
 	_attacker = attacker
-	_damage = stats.damage
-	_slow_ratio = stats.slow_ratio
+	_damage = bonuses.damage_for(stats) if bonuses != null else stats.damage
+	_slow_ratio = bonuses.slow_ratio_for(stats) if bonuses != null else stats.slow_ratio
 	_slow_duration = stats.slow_duration
 	_speed = stats.projectile_speed
 	_remaining_lifetime = stats.projectile_lifetime

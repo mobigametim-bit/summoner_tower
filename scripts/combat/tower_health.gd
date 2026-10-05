@@ -34,6 +34,14 @@ func take_damage(amount: int) -> void:
 		destroyed.emit()
 
 
+func increase_max_health(health: int) -> void:
+	if _is_destroyed or health <= max_health:
+		return
+	current_health += health - max_health
+	max_health = health
+	health_changed.emit(current_health, max_health)
+
+
 func update_summon(_mana: int, cost: int, _occupied: int, _capacity: int, available: bool) -> void:
 	cost_label.text = str(cost)
 	summon_button.disabled = not available

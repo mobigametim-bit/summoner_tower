@@ -1,11 +1,12 @@
 class_name WaveManager
 extends Node
 
-enum Phase { STOPPED, FIGHTING, INTERMISSION }
+enum Phase { STOPPED, FIGHTING, INTERMISSION, UPGRADE_CHOICE }
 
 signal state_changed(wave: int, phase: Phase, seconds: int, alive: int, pending: int)
 signal enemy_resolved(enemy: ApproachingEnemy, outcome: ApproachingEnemy.Outcome, mana: int)
 signal wave_completed(wave: int)
+signal upgrade_requested(wave: int)
 
 @export var config: WaveConfig
 
@@ -22,6 +23,7 @@ var _active: Array[ApproachingEnemy] = []
 var _spawn_remaining: int = 0
 var _countdown_seconds: int = -1
 var _sequence: Array[PackedScene] = []
+var _boss_killed: bool = false
 
 
 func configure(enemies: Node2D, spawn_point: Marker2D, contact_point: Marker2D) -> void:
@@ -44,6 +46,7 @@ func active_count() -> int:
 
 
 func _begin_wave() -> void:
+	_boss_killed = false
 	_sequence = config.sequence_for(wave_number)
 	_spawn_remaining = _sequence.size()
 	_emit_state()
@@ -84,6 +87,8 @@ func _on_enemy_resolved(enemy: ApproachingEnemy, outcome: ApproachingEnemy.Outco
 	if phase != Phase.FIGHTING or not _active.has(enemy):
 		return
 	_active.erase(enemy)
+	if enemy.stats.is_boss and outcome == ApproachingEnemy.Outcome.KILLED:
+		_boss_killed = true
 	var mana: int = enemy.stats.kill_mana if outcome == ApproachingEnemy.Outcome.KILLED else 0
 	# Сначала закрываем событие; урон башне может остановить WaveManager из сигнала.
 	enemy_resolved.emit(enemy, outcome, mana)
@@ -95,12 +100,30 @@ func _on_enemy_resolved(enemy: ApproachingEnemy, outcome: ApproachingEnemy.Outco
 func _try_finish_wave() -> void:
 	if phase != Phase.FIGHTING or _spawn_remaining > 0 or not _active.is_empty():
 		return
-	phase = Phase.INTERMISSION
 	spawn_timer.stop()
+	if config.is_boss_wave(wave_number) and _boss_killed:
+		phase = Phase.UPGRADE_CHOICE
+		_emit_state()
+		wave_completed.emit(wave_number)
+		if phase == Phase.UPGRADE_CHOICE:
+			upgrade_requested.emit(wave_number)
+		return
+	_begin_intermission()
+	wave_completed.emit(wave_number)
+
+
+func finish_upgrade_choice() -> bool:
+	if phase != Phase.UPGRADE_CHOICE:
+		return false
+	_begin_intermission()
+	return true
+
+
+func _begin_intermission() -> void:
+	phase = Phase.INTERMISSION
 	intermission_timer.start(config.intermission_duration)
 	_countdown_seconds = ceili(config.intermission_duration)
 	_emit_state()
-	wave_completed.emit(wave_number)
 
 
 func _process(_delta: float) -> void:

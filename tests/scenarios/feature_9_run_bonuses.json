@@ -1,0 +1,9 @@
+{
+  "name": "Feature 9: six bonuses, stacking, fractions, merge and actual-cost refunds",
+  "scene": "res://tests/scenes/feature_9_upgrades_test.tscn",
+  "steps": [
+    { "call": { "path": ".", "method": "run_bonus_checks" } },
+    { "assert": "get_meta('bonus_checks').passed and get_meta('bonus_checks').effects == 6" },
+    { "assert_no_errors": true }
+  ]
+}

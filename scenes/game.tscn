@@ -13,9 +13,12 @@
 [ext_resource type="Resource" uid="uid://cuks6vm6g65ce" path="res://resources/balance/summon_config.tres" id="10_kvuet"]
 [ext_resource type="Resource" uid="uid://dpalsfkfhty6d" path="res://resources/balance/summon_pool.tres" id="12_ir15t"]
 [ext_resource type="Texture2D" uid="uid://k17uuaqhmgkm" path="res://assets/heart_full.svg" id="12_ssvqc"]
+[ext_resource type="PackedScene" uid="uid://mbs73l0rftqi" path="res://scenes/upgrade_choice.tscn" id="13_1kice"]
 [ext_resource type="Texture2D" uid="uid://c1i4x5u3ypwhb" path="res://assets/mana_flame.svg" id="13_264po"]
 [ext_resource type="Script" uid="uid://6g8kr8xeny10" path="res://scripts/game/wave_manager.gd" id="13_ir15t"]
 [ext_resource type="Resource" uid="uid://ciuquwmxvll24" path="res://resources/balance/wave_config.tres" id="14_ca42v"]
+[ext_resource type="Script" uid="uid://dpp2k5bpxesj7" path="res://scripts/game/run_bonuses.gd" id="18_5newe"]
+[ext_resource type="Resource" path="res://resources/balance/run_upgrade_pool.tres" id="19_37s47"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lnu2h"]
 content_margin_left = 36.0
@@ -34,6 +37,7 @@ corner_radius_bottom_right = 16
 corner_radius_bottom_left = 16
 
 [node name="Game" type="Node2D" unique_id=469266139]
+process_mode = 1
 script = ExtResource("1_lbhrr")
 config = ExtResource("2_p57ef")
 
@@ -238,6 +242,9 @@ custom_minimum_size = Vector2(0, 84)
 layout_mode = 2
 text = "MENU"
 
+[node name="UpgradeChoice" parent="Interface/Hud" unique_id=1166018989 instance=ExtResource("13_1kice")]
+layout_mode = 1
+
 [node name="SummonManager" type="Node" parent="." unique_id=1068555550]
 script = ExtResource("9_dinhu")
 config = ExtResource("10_kvuet")
@@ -253,6 +260,10 @@ one_shot = true
 [node name="IntermissionTimer" type="Timer" parent="WaveManager" unique_id=1737258099]
 one_shot = true
 
+[node name="RunBonuses" type="Node" parent="." unique_id=1640489827]
+script = ExtResource("18_5newe")
+pool = ExtResource("19_37s47")
+
 [connection signal="destroyed" from="World/Tower" to="." method="_on_tower_destroyed"]
 [connection signal="health_changed" from="World/Tower" to="." method="_on_tower_health_changed"]
 [connection signal="summon_requested" from="World/Tower" to="." method="_on_summon_requested"]
@@ -260,9 +271,11 @@ one_shot = true
 [connection signal="restart_requested" from="Interface/Hud" to="." method="_on_restart_requested"]
 [connection signal="pressed" from="Interface/Hud/GameOverOverlay/Center/Panel/Stack/RestartButton" to="Interface/Hud" method="_on_restart_button_pressed"]
 [connection signal="pressed" from="Interface/Hud/GameOverOverlay/Center/Panel/Stack/MenuButton" to="Interface/Hud" method="_on_menu_button_pressed"]
+[connection signal="upgrade_chosen" from="Interface/Hud/UpgradeChoice" to="." method="_on_upgrade_chosen"]
 [connection signal="state_changed" from="SummonManager" to="World/Tower" method="update_summon"]
 [connection signal="state_changed" from="SummonManager" to="Interface/Hud" method="update_summon"]
 [connection signal="enemy_resolved" from="WaveManager" to="." method="_on_enemy_resolved"]
 [connection signal="state_changed" from="WaveManager" to="Interface/Hud" method="update_wave"]
+[connection signal="upgrade_requested" from="WaveManager" to="." method="_on_wave_upgrade_requested"]
 [connection signal="timeout" from="WaveManager/SpawnTimer" to="WaveManager" method="_on_spawn_timeout"]
 [connection signal="timeout" from="WaveManager/IntermissionTimer" to="WaveManager" method="_on_intermission_timeout"]

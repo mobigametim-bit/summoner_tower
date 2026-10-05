@@ -81,6 +81,14 @@ func run(game: Node2D) -> Dictionary:
 				boss._resolve_at_tower()
 				waves._on_enemy_resolved(boss, ApproachingEnemy.Outcome.KILLED)
 				assert(manager.mana == before and game.tower.current_health == 50)
+		if number == 5:
+			assert(waves.phase == WaveManager.Phase.UPGRADE_CHOICE and game.get_tree().paused)
+			# Для прежней проверки наград/HP выбираем бонус, который их не меняет.
+			for index: int in game._offered_upgrades.size():
+				var kind: RunUpgrade.Kind = game._offered_upgrades[index].kind
+				if kind != RunUpgrade.Kind.TOWER_ARMOR and kind != RunUpgrade.Kind.MANA_FLOW:
+					game._on_upgrade_chosen(index)
+					break
 		assert(waves.phase == WaveManager.Phase.INTERMISSION and waves.active_count() == 0)
 		compositions.append(counts)
 		waves.intermission_timer.stop()

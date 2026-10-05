@@ -17,6 +17,7 @@ var _target: ApproachingEnemy
 var _cooldown: float = 0.0
 var _search_remaining: float = 0.0
 var _running: bool = false
+var _run_bonuses: RunBonuses
 
 
 func _ready() -> void:
@@ -42,7 +43,7 @@ func promote() -> void:
 	stats = stats.next_level
 	refresh_visual()
 	refresh_target()
-	_cooldown = stats.attack_interval
+	_cooldown = effective_attack_interval()
 
 
 func retire_into(successor: CombatUnit) -> void:
@@ -54,10 +55,15 @@ func retire_into(successor: CombatUnit) -> void:
 			arrow.reassign_attacker(self, successor)
 
 
-func configure(enemies: Node2D, projectiles: Node2D) -> void:
+func configure(enemies: Node2D, projectiles: Node2D, bonuses: RunBonuses = null) -> void:
 	_enemies = enemies
 	_projectiles = projectiles
+	_run_bonuses = bonuses
 	_running = true
+
+
+func effective_attack_interval() -> float:
+	return _run_bonuses.attack_interval_for(stats) if _run_bonuses != null else stats.attack_interval
 
 
 func set_facing_left(faces_left: bool) -> void:
@@ -88,7 +94,7 @@ func _physics_process(delta: float) -> void:
 		return
 
 	_fire()
-	_cooldown = stats.attack_interval
+	_cooldown = effective_attack_interval()
 
 
 func _find_nearest_target() -> ApproachingEnemy:
@@ -108,7 +114,7 @@ func _find_nearest_target() -> ApproachingEnemy:
 func _fire() -> void:
 	var arrow: CombatProjectile = projectile_scene.instantiate() as CombatProjectile
 	_projectiles.add_child(arrow)
-	arrow.launch(muzzle.global_position, _target, stats, self)
+	arrow.launch(muzzle.global_position, _target, stats, self, _run_bonuses)
 
 
 func stop() -> void:

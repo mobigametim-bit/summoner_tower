@@ -1,0 +1,444 @@
+[gd_scene format=3 uid="uid://mbs73l0rftqi"]
+
+[ext_resource type="Theme" uid="uid://bufjhwj3mejwx" path="res://resources/ui/game_theme.tres" id="1_0bakg"]
+[ext_resource type="Script" uid="uid://duard1ewnomso" path="res://scripts/ui/upgrade_choice.gd" id="2_d3dag"]
+[ext_resource type="Texture2D" uid="uid://dpswmoaksimx3" path="res://assets/upgrades/rapid_fire.svg" id="3_d3dag"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0bakg"]
+content_margin_left = 28.0
+content_margin_top = 28.0
+content_margin_right = 28.0
+content_margin_bottom = 28.0
+bg_color = Color(0.06666667, 0.101960786, 0.16078432, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.25882354, 0.3647059, 0.47058824, 1)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_d3dag"]
+bg_color = Color(0.105882354, 0.16470589, 0.23137255, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.25882354, 0.3647059, 0.47058824, 1)
+corner_radius_top_left = 12
+corner_radius_top_right = 12
+corner_radius_bottom_right = 12
+corner_radius_bottom_left = 12
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4i4xc"]
+bg_color = Color(0.27450982, 0.39607844, 0.4745098, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.50980395, 0.9137255, 0.92941177, 1)
+corner_radius_top_left = 12
+corner_radius_top_right = 12
+corner_radius_bottom_right = 12
+corner_radius_bottom_left = 12
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5sr3c"]
+bg_color = Color(0.1882353, 0.28235295, 0.36862746, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.50980395, 0.9137255, 0.92941177, 1)
+corner_radius_top_left = 12
+corner_radius_top_right = 12
+corner_radius_bottom_right = 12
+corner_radius_bottom_left = 12
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dohbr"]
+bg_color = Color(0.105882354, 0.16470589, 0.23137255, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.25882354, 0.3647059, 0.47058824, 1)
+corner_radius_top_left = 12
+corner_radius_top_right = 12
+corner_radius_bottom_right = 12
+corner_radius_bottom_left = 12
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_b8g85"]
+bg_color = Color(0, 0, 0, 0)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.50980395, 0.9137255, 0.92941177, 1)
+corner_radius_top_left = 12
+corner_radius_top_right = 12
+corner_radius_bottom_right = 12
+corner_radius_bottom_left = 12
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_kvip4"]
+bg_color = Color(0.105882354, 0.16470589, 0.23137255, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.25882354, 0.3647059, 0.47058824, 1)
+corner_radius_top_left = 12
+corner_radius_top_right = 12
+corner_radius_bottom_right = 12
+corner_radius_bottom_left = 12
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_frft2"]
+bg_color = Color(0.27450982, 0.39607844, 0.4745098, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.50980395, 0.9137255, 0.92941177, 1)
+corner_radius_top_left = 12
+corner_radius_top_right = 12
+corner_radius_bottom_right = 12
+corner_radius_bottom_left = 12
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hbsmc"]
+bg_color = Color(0.1882353, 0.28235295, 0.36862746, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.50980395, 0.9137255, 0.92941177, 1)
+corner_radius_top_left = 12
+corner_radius_top_right = 12
+corner_radius_bottom_right = 12
+corner_radius_bottom_left = 12
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vh3pj"]
+bg_color = Color(0.105882354, 0.16470589, 0.23137255, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.25882354, 0.3647059, 0.47058824, 1)
+corner_radius_top_left = 12
+corner_radius_top_right = 12
+corner_radius_bottom_right = 12
+corner_radius_bottom_left = 12
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1so5o"]
+bg_color = Color(0, 0, 0, 0)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.50980395, 0.9137255, 0.92941177, 1)
+corner_radius_top_left = 12
+corner_radius_top_right = 12
+corner_radius_bottom_right = 12
+corner_radius_bottom_left = 12
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gdnmk"]
+bg_color = Color(0.105882354, 0.16470589, 0.23137255, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.25882354, 0.3647059, 0.47058824, 1)
+corner_radius_top_left = 12
+corner_radius_top_right = 12
+corner_radius_bottom_right = 12
+corner_radius_bottom_left = 12
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1382x"]
+bg_color = Color(0.27450982, 0.39607844, 0.4745098, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.50980395, 0.9137255, 0.92941177, 1)
+corner_radius_top_left = 12
+corner_radius_top_right = 12
+corner_radius_bottom_right = 12
+corner_radius_bottom_left = 12
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_adi06"]
+bg_color = Color(0.1882353, 0.28235295, 0.36862746, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.50980395, 0.9137255, 0.92941177, 1)
+corner_radius_top_left = 12
+corner_radius_top_right = 12
+corner_radius_bottom_right = 12
+corner_radius_bottom_left = 12
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3cblg"]
+bg_color = Color(0.105882354, 0.16470589, 0.23137255, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.25882354, 0.3647059, 0.47058824, 1)
+corner_radius_top_left = 12
+corner_radius_top_right = 12
+corner_radius_bottom_right = 12
+corner_radius_bottom_left = 12
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_pc20p"]
+bg_color = Color(0, 0, 0, 0)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.50980395, 0.9137255, 0.92941177, 1)
+corner_radius_top_left = 12
+corner_radius_top_right = 12
+corner_radius_bottom_right = 12
+corner_radius_bottom_left = 12
+
+[node name="UpgradeChoice" type="Control" unique_id=1166018989]
+process_mode = 3
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_0bakg")
+script = ExtResource("2_d3dag")
+
+[node name="Shade" type="ColorRect" parent="." unique_id=955845493]
+layout_mode = 0
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.02745098, 0.043137256, 0.07058824, 0.92941177)
+
+[node name="Center" type="CenterContainer" parent="." unique_id=1439539315]
+layout_mode = 0
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Panel" type="PanelContainer" parent="Center" unique_id=433970]
+custom_minimum_size = Vector2(600, 0)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_0bakg")
+
+[node name="Stack" type="VBoxContainer" parent="Center/Panel" unique_id=2050268858]
+layout_mode = 2
+theme_override_constants/separation = 18
+
+[node name="Title" type="Label" parent="Center/Panel/Stack" unique_id=1159774623]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.8745098, 0.5568628, 1)
+theme_override_font_sizes/font_size = 36
+text = "BOSS DEFEATED"
+horizontal_alignment = 1
+
+[node name="Subtitle" type="Label" parent="Center/Panel/Stack" unique_id=1828558797]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.50980395, 0.9137255, 0.92941177, 1)
+theme_override_font_sizes/font_size = 24
+text = "CHOOSE ONE UPGRADE"
+horizontal_alignment = 1
+
+[node name="Card0" type="Button" parent="Center/Panel/Stack" unique_id=1920766055]
+custom_minimum_size = Vector2(0, 166)
+layout_mode = 2
+mouse_default_cursor_shape = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_d3dag")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_4i4xc")
+theme_override_styles/hover = SubResource("StyleBoxFlat_5sr3c")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_dohbr")
+theme_override_styles/focus = SubResource("StyleBoxFlat_b8g85")
+disabled = true
+
+[node name="Margin" type="MarginContainer" parent="Center/Panel/Stack/Card0" unique_id=1829029777]
+layout_mode = 0
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_constants/margin_left = 24
+theme_override_constants/margin_top = 18
+theme_override_constants/margin_right = 24
+theme_override_constants/margin_bottom = 18
+
+[node name="Row" type="HBoxContainer" parent="Center/Panel/Stack/Card0/Margin" unique_id=529617830]
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/separation = 20
+
+[node name="Content" type="VBoxContainer" parent="Center/Panel/Stack/Card0/Margin/Row" unique_id=1082869175]
+layout_mode = 2
+size_flags_horizontal = 3
+mouse_filter = 2
+theme_override_constants/separation = 6
+
+[node name="Title" type="Label" parent="Center/Panel/Stack/Card0/Margin/Row/Content" unique_id=1116912106]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.8745098, 0.5568628, 1)
+theme_override_font_sizes/font_size = 32
+text = "UPGRADE"
+
+[node name="Description" type="Label" parent="Center/Panel/Stack/Card0/Margin/Row/Content" unique_id=315185165]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_colors/font_color = Color(0.8627451, 0.9019608, 0.93333334, 1)
+theme_override_font_sizes/font_size = 24
+text = "Bonus for this run"
+autowrap_mode = 2
+
+[node name="Rank" type="Label" parent="Center/Panel/Stack/Card0/Margin/Row/Content" unique_id=1847002998]
+visible = false
+layout_mode = 2
+theme_override_colors/font_color = Color(0.5882353, 0.7058824, 0.7882353, 1)
+theme_override_font_sizes/font_size = 18
+
+[node name="Icon" type="TextureRect" parent="Center/Panel/Stack/Card0/Margin/Row" unique_id=1560817746]
+custom_minimum_size = Vector2(96, 96)
+layout_mode = 2
+size_flags_vertical = 4
+mouse_filter = 2
+texture = ExtResource("3_d3dag")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Card1" type="Button" parent="Center/Panel/Stack" unique_id=162587822]
+custom_minimum_size = Vector2(0, 166)
+layout_mode = 2
+mouse_default_cursor_shape = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_kvip4")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_frft2")
+theme_override_styles/hover = SubResource("StyleBoxFlat_hbsmc")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_vh3pj")
+theme_override_styles/focus = SubResource("StyleBoxFlat_1so5o")
+disabled = true
+
+[node name="Margin" type="MarginContainer" parent="Center/Panel/Stack/Card1" unique_id=1617225414]
+layout_mode = 0
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_constants/margin_left = 24
+theme_override_constants/margin_top = 18
+theme_override_constants/margin_right = 24
+theme_override_constants/margin_bottom = 18
+
+[node name="Row" type="HBoxContainer" parent="Center/Panel/Stack/Card1/Margin" unique_id=1971991663]
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/separation = 20
+
+[node name="Content" type="VBoxContainer" parent="Center/Panel/Stack/Card1/Margin/Row" unique_id=736253381]
+layout_mode = 2
+size_flags_horizontal = 3
+mouse_filter = 2
+theme_override_constants/separation = 6
+
+[node name="Title" type="Label" parent="Center/Panel/Stack/Card1/Margin/Row/Content" unique_id=1725860465]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.8745098, 0.5568628, 1)
+theme_override_font_sizes/font_size = 32
+text = "UPGRADE"
+
+[node name="Description" type="Label" parent="Center/Panel/Stack/Card1/Margin/Row/Content" unique_id=559332704]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_colors/font_color = Color(0.8627451, 0.9019608, 0.93333334, 1)
+theme_override_font_sizes/font_size = 24
+text = "Bonus for this run"
+autowrap_mode = 2
+
+[node name="Rank" type="Label" parent="Center/Panel/Stack/Card1/Margin/Row/Content" unique_id=1922329962]
+visible = false
+layout_mode = 2
+theme_override_colors/font_color = Color(0.5882353, 0.7058824, 0.7882353, 1)
+theme_override_font_sizes/font_size = 18
+
+[node name="Icon" type="TextureRect" parent="Center/Panel/Stack/Card1/Margin/Row" unique_id=1340006659]
+custom_minimum_size = Vector2(96, 96)
+layout_mode = 2
+size_flags_vertical = 4
+mouse_filter = 2
+texture = ExtResource("3_d3dag")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Card2" type="Button" parent="Center/Panel/Stack" unique_id=1076553694]
+custom_minimum_size = Vector2(0, 166)
+layout_mode = 2
+mouse_default_cursor_shape = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_gdnmk")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_1382x")
+theme_override_styles/hover = SubResource("StyleBoxFlat_adi06")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_3cblg")
+theme_override_styles/focus = SubResource("StyleBoxFlat_pc20p")
+disabled = true
+
+[node name="Margin" type="MarginContainer" parent="Center/Panel/Stack/Card2" unique_id=2138370658]
+layout_mode = 0
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_constants/margin_left = 24
+theme_override_constants/margin_top = 18
+theme_override_constants/margin_right = 24
+theme_override_constants/margin_bottom = 18
+
+[node name="Row" type="HBoxContainer" parent="Center/Panel/Stack/Card2/Margin" unique_id=1789569951]
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/separation = 20
+
+[node name="Content" type="VBoxContainer" parent="Center/Panel/Stack/Card2/Margin/Row" unique_id=1234424569]
+layout_mode = 2
+size_flags_horizontal = 3
+mouse_filter = 2
+theme_override_constants/separation = 6
+
+[node name="Title" type="Label" parent="Center/Panel/Stack/Card2/Margin/Row/Content" unique_id=1211044518]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.8745098, 0.5568628, 1)
+theme_override_font_sizes/font_size = 32
+text = "UPGRADE"
+
+[node name="Description" type="Label" parent="Center/Panel/Stack/Card2/Margin/Row/Content" unique_id=432383107]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_colors/font_color = Color(0.8627451, 0.9019608, 0.93333334, 1)
+theme_override_font_sizes/font_size = 24
+text = "Bonus for this run"
+autowrap_mode = 2
+
+[node name="Rank" type="Label" parent="Center/Panel/Stack/Card2/Margin/Row/Content" unique_id=129889407]
+visible = false
+layout_mode = 2
+theme_override_colors/font_color = Color(0.5882353, 0.7058824, 0.7882353, 1)
+theme_override_font_sizes/font_size = 18
+
+[node name="Icon" type="TextureRect" parent="Center/Panel/Stack/Card2/Margin/Row" unique_id=1982377452]
+custom_minimum_size = Vector2(96, 96)
+layout_mode = 2
+size_flags_vertical = 4
+mouse_filter = 2
+texture = ExtResource("3_d3dag")
+expand_mode = 1
+stretch_mode = 5
+
+[connection signal="pressed" from="Center/Panel/Stack/Card0" to="." method="_on_card_0_pressed"]
+[connection signal="pressed" from="Center/Panel/Stack/Card1" to="." method="_on_card_1_pressed"]
+[connection signal="pressed" from="Center/Panel/Stack/Card2" to="." method="_on_card_2_pressed"]

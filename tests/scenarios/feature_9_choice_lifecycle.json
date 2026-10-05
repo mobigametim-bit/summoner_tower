@@ -1,0 +1,20 @@
+{
+  "name": "Feature 9: boss completion, pause, choice, repeat guard, escape and restart",
+  "scene": "res://tests/scenes/feature_9_upgrades_test.tscn",
+  "steps": [
+    { "call": { "path": ".", "method": "prepare_first_choice" } },
+    { "wait": 0.6 },
+    { "assert": "get_tree().paused and get_node('Game/World/Slots/Slot1').unit._cooldown == 5.0 and get_node('Game/World/Projectiles').get_child(0)._remaining_lifetime == get_node('Game/World/Slots/Slot1').unit.stats.projectile_lifetime" },
+    { "input": [{ "click_node": "Game/World/Tower/SummonButton" }] },
+    { "assert": "get_node('Game/SummonManager').successful_summons == 2 and get_node('Game').state == 3" },
+    { "input": [{ "click_node": "Game/Interface/Hud/UpgradeChoice/Center/Panel/Stack/Card0" }] },
+    { "assert": "not get_tree().paused and get_node('Game').state == 0 and get_node('Game/World/Tower').current_health == 95 and get_node('Game/World/Tower').max_health == 125" },
+    { "call": { "path": ".", "method": "prepare_second_choice" } },
+    { "input": [{ "click_node": "Game/Interface/Hud/UpgradeChoice/Center/Panel/Stack/Card0" }] },
+    { "call": { "path": ".", "method": "check_escape_and_shutdown" } },
+    { "assert": "get_meta('choice_checks').passed and get_node('Game').state == 1" },
+    { "input": [{ "click_node": "Game/Interface/Hud/GameOverOverlay/Center/Panel/Stack/RestartButton" }] },
+    { "assert": "get_node('Game').state == 0 and not get_tree().paused and get_node('Game/RunBonuses')._counts.is_empty() and get_node('Game/RunBonuses')._mana_remainder == 0.0 and get_node('Game/SummonManager').mana == 100 and get_node('Game/SummonManager').current_cost() == 20 and get_node('Game/World/Tower').max_health == 100 and get_node('Game/World/Tower').current_health == 100 and not get_node('Game/Interface/Hud/UpgradeChoice').visible" },
+    { "assert_no_errors": true }
+  ]
+}

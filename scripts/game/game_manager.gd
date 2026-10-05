@@ -1,6 +1,6 @@
 extends Node2D
 
-enum State { RUNNING, GAME_OVER, LEAVING }
+enum State { RUNNING, GAME_OVER, LEAVING, UPGRADE_CHOICE }
 
 @export var config: EncounterConfig
 @export_file("*.tscn") var menu_scene_path: String = "res://scenes/main_menu.tscn"
@@ -14,12 +14,16 @@ enum State { RUNNING, GAME_OVER, LEAVING }
 @onready var drag_controller: UnitDragController = $World/DragController
 @onready var wave_manager: WaveManager = $WaveManager
 @onready var hud: GameHud = $Interface/Hud
+@onready var run_bonuses: RunBonuses = $RunBonuses
+@onready var upgrade_choice: UpgradeChoice = $Interface/Hud/UpgradeChoice
 
 var state: State = State.RUNNING
+var _offered_upgrades: Array[RunUpgrade] = []
 
 
 func _ready() -> void:
-	summon_manager.configure($World/Slots, enemies, projectiles)
+	run_bonuses.reset()
+	summon_manager.configure($World/Slots, enemies, projectiles, run_bonuses)
 	drag_controller.configure(summon_manager, $World/Slots, $World/Tower/ReturnZone)
 	tower.initialize(config.tower_max_health)
 	wave_manager.configure(enemies, spawn_point, contact_point)
@@ -33,7 +37,7 @@ func _on_enemy_resolved(enemy: ApproachingEnemy, outcome: ApproachingEnemy.Outco
 	if outcome == ApproachingEnemy.Outcome.REACHED_TOWER:
 		tower.take_damage(enemy.tower_damage)
 	else:
-		summon_manager.add_mana(mana)
+		summon_manager.add_mana(run_bonuses.kill_mana_for(mana))
 
 
 func _on_tower_health_changed(current: int, maximum: int) -> void:
@@ -45,8 +49,34 @@ func _on_summon_requested() -> void:
 		summon_manager.try_summon()
 
 
-func _on_tower_destroyed() -> void:
+func _on_wave_upgrade_requested(_wave: int) -> void:
 	if state != State.RUNNING:
+		return
+	state = State.UPGRADE_CHOICE
+	drag_controller.cancel_drag()
+	summon_manager.set_interaction_enabled(false)
+	_offered_upgrades = run_bonuses.roll_choices()
+	get_tree().paused = true
+	upgrade_choice.show_choices(_offered_upgrades, run_bonuses)
+
+
+func _on_upgrade_chosen(index: int) -> void:
+	if state != State.UPGRADE_CHOICE or index < 0 or index >= _offered_upgrades.size():
+		return
+	var upgrade: RunUpgrade = _offered_upgrades[index]
+	# Закрываем выбор до сигналов лечения и изменения цены: повторный клик не выдаст бонус.
+	_offered_upgrades.clear()
+	state = State.RUNNING
+	upgrade_choice.close_choice()
+	run_bonuses.apply(upgrade)
+	tower.increase_max_health(run_bonuses.tower_health_for(config.tower_max_health))
+	wave_manager.finish_upgrade_choice()
+	summon_manager.set_interaction_enabled(true)
+	get_tree().paused = false
+
+
+func _on_tower_destroyed() -> void:
+	if state != State.RUNNING and state != State.UPGRADE_CHOICE:
 		return
 
 	state = State.GAME_OVER
@@ -55,6 +85,9 @@ func _on_tower_destroyed() -> void:
 
 
 func _stop_encounter() -> void:
+	get_tree().paused = false
+	_offered_upgrades.clear()
+	upgrade_choice.close_choice()
 	wave_manager.stop()
 	drag_controller.stop()
 	summon_manager.stop()
@@ -91,3 +124,7 @@ func _handle_scene_change_error(error: Error) -> void:
 	state = State.GAME_OVER
 	hud.set_actions_enabled(true)
 	push_error("Cannot change scene (error %s)" % error)
+
+
+func _exit_tree() -> void:
+	get_tree().paused = false

@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="RunUpgrade" format=3]
+
+[ext_resource type="Script" path="res://scripts/data/run_upgrade.gd" id="1"]
+[ext_resource type="Texture2D" path="res://assets/upgrades/rapid_fire.svg" id="2"]
+
+[resource]
+script = ExtResource("1")
+kind = 0
+icon = ExtResource("2")
+title = "RAPID FIRE"
+description = "+15% attack speed\nAll units attack faster."
+strength = 0.15

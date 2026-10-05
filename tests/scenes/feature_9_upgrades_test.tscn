@@ -1,0 +1,10 @@
+[gd_scene format=3 uid="uid://5o17331h5ckc"]
+
+[ext_resource type="Script" uid="uid://bne5iqsd1riia" path="res://tests/support/feature_9_test_scene.gd" id="1_kqyqk"]
+[ext_resource type="PackedScene" uid="uid://rkmlqc5qcsrs" path="res://scenes/game.tscn" id="2_anlsm"]
+
+[node name="Feature9UpgradesTest" type="Node" unique_id=2134232684]
+process_mode = 3
+script = ExtResource("1_kqyqk")
+
+[node name="Game" parent="." unique_id=469266139 instance=ExtResource("2_anlsm")]

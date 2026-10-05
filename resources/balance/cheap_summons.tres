@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="RunUpgrade" format=3]
+
+[ext_resource type="Script" path="res://scripts/data/run_upgrade.gd" id="1"]
+[ext_resource type="Texture2D" path="res://assets/upgrades/cheap_summons.svg" id="2"]
+
+[resource]
+script = ExtResource("1")
+kind = 5
+icon = ExtResource("2")
+title = "CHEAP SUMMONS"
+description = "-15% summon cost\nSpend less on future units."
+strength = 0.15
