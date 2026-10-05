@@ -1,9 +1,11 @@
 class_name UnitStats
 extends Resource
 
+const MAX_LEVEL: int = 5
+
 @export var unit_type: StringName = &"archer"
 @export var display_name: String = "ARCHER"
-@export_range(1, 3, 1) var level: int = 1
+@export_range(1, MAX_LEVEL, 1) var level: int = 1
 @export var visual_texture: Texture2D
 @export var next_level: UnitStats
 

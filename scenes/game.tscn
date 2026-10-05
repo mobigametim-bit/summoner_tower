@@ -18,6 +18,8 @@
 [ext_resource type="Texture2D" uid="uid://c1i4x5u3ypwhb" path="res://assets/mana_flame.svg" id="13_264po"]
 [ext_resource type="Script" uid="uid://6g8kr8xeny10" path="res://scripts/game/wave_manager.gd" id="13_ir15t"]
 [ext_resource type="Resource" uid="uid://ciuquwmxvll24" path="res://resources/balance/wave_config.tres" id="14_ca42v"]
+[ext_resource type="Texture2D" uid="uid://cgyt3kaapnire" path="res://assets/ui/restart.svg" id="14_e1j6l"]
+[ext_resource type="Texture2D" uid="uid://ckpokawdmyc0b" path="res://assets/ui/home.svg" id="15_pl11u"]
 [ext_resource type="Script" uid="uid://dpp2k5bpxesj7" path="res://scripts/game/run_bonuses.gd" id="18_5newe"]
 [ext_resource type="Resource" path="res://resources/balance/run_upgrade_pool.tres" id="19_37s47"]
 [ext_resource type="Script" uid="uid://dl57wkelh3atf" path="res://scripts/game/run_statistics.gd" id="20_5newe"]
@@ -327,17 +329,32 @@ theme_override_colors/font_color = Color(0.83137256, 0.7254902, 1, 1)
 theme_override_font_sizes/font_size = 52
 text = "+0"
 
-[node name="RestartButton" type="Button" parent="Interface/Hud/GameOverOverlay/Center/Panel/Stack" unique_id=1234443234]
-unique_name_in_owner = true
-custom_minimum_size = Vector2(0, 96)
+[node name="Actions" type="HBoxContainer" parent="Interface/Hud/GameOverOverlay/Center/Panel/Stack" unique_id=274981029]
 layout_mode = 2
-text = "RESTART"
+size_flags_horizontal = 4
+theme_override_constants/separation = 24
 
-[node name="MenuButton" type="Button" parent="Interface/Hud/GameOverOverlay/Center/Panel/Stack" unique_id=1736271558]
+[node name="RestartButton" type="Button" parent="Interface/Hud/GameOverOverlay/Center/Panel/Stack/Actions" unique_id=1234443234]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(0, 84)
+custom_minimum_size = Vector2(128, 128)
 layout_mode = 2
-text = "MENU"
+size_flags_horizontal = 0
+size_flags_vertical = 0
+tooltip_text = "Restart"
+theme_override_constants/icon_max_width = 48
+icon = ExtResource("14_e1j6l")
+icon_alignment = 1
+
+[node name="MenuButton" type="Button" parent="Interface/Hud/GameOverOverlay/Center/Panel/Stack/Actions" unique_id=1736271558]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(128, 128)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+tooltip_text = "Main menu"
+theme_override_constants/icon_max_width = 48
+icon = ExtResource("15_pl11u")
+icon_alignment = 1
 
 [node name="UpgradeChoice" parent="Interface/Hud" unique_id=1166018989 instance=ExtResource("13_1kice")]
 layout_mode = 1
@@ -370,8 +387,8 @@ config = ExtResource("21_37s47")
 [connection signal="summon_requested" from="World/Tower" to="." method="_on_summon_requested"]
 [connection signal="menu_requested" from="Interface/Hud" to="." method="_on_menu_requested"]
 [connection signal="restart_requested" from="Interface/Hud" to="." method="_on_restart_requested"]
-[connection signal="pressed" from="Interface/Hud/GameOverOverlay/Center/Panel/Stack/RestartButton" to="Interface/Hud" method="_on_restart_button_pressed"]
-[connection signal="pressed" from="Interface/Hud/GameOverOverlay/Center/Panel/Stack/MenuButton" to="Interface/Hud" method="_on_menu_button_pressed"]
+[connection signal="pressed" from="Interface/Hud/GameOverOverlay/Center/Panel/Stack/Actions/RestartButton" to="Interface/Hud" method="_on_restart_button_pressed"]
+[connection signal="pressed" from="Interface/Hud/GameOverOverlay/Center/Panel/Stack/Actions/MenuButton" to="Interface/Hud" method="_on_menu_button_pressed"]
 [connection signal="upgrade_chosen" from="Interface/Hud/UpgradeChoice" to="." method="_on_upgrade_chosen"]
 [connection signal="state_changed" from="SummonManager" to="World/Tower" method="update_summon"]
 [connection signal="state_changed" from="SummonManager" to="Interface/Hud" method="update_summon"]

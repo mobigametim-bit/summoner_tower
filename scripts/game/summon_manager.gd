@@ -27,7 +27,7 @@ func configure(slots: Node2D, enemies: Node2D, projectiles: Node2D, bonuses: Run
 	_run_bonuses = bonuses
 	for child: Node in slots.get_children():
 		_slots.append(child as SummonSlot)
-	mana = config.starting_mana
+	mana = _run_bonuses.starting_mana_for(config.starting_mana) if _run_bonuses != null else config.starting_mana
 	successful_summons = 0
 	_running = true
 	_interaction_enabled = true

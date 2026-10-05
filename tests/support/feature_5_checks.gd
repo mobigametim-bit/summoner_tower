@@ -12,7 +12,8 @@ func run(scene: Node) -> Dictionary:
 	var third_level: UnitStats = second_level.next_level
 	assert(base.level == 1 and base.damage == 10)
 	assert(second_level.level == 2 and second_level.damage == 22)
-	assert(third_level.level == 3 and third_level.damage == 50 and third_level.next_level == null)
+	assert(third_level.level == 3 and third_level.damage == 50 and third_level.next_level.level == 4)
+	check_extended_levels(scene)
 	assert(base.attack_interval == second_level.attack_interval and base.attack_interval == third_level.attack_interval)
 	assert(base.attack_range == second_level.attack_range and base.attack_range == third_level.attack_range)
 	enemy.set_physics_process(false)
@@ -87,6 +88,9 @@ func run(scene: Node) -> Dictionary:
 	_assert_field(slots, 2)
 	var red_left: CombatUnit = slots[3].unit
 	var red_right: CombatUnit = slots[5].unit
+	for unit: CombatUnit in [red_left, red_right]:
+		unit.promote()
+		unit.promote()
 	red_left._cooldown = 0.42
 	red_right._cooldown = 0.37
 	assert(not red_left.can_merge_with(red_right))
@@ -128,7 +132,7 @@ func run(scene: Node) -> Dictionary:
 		var previous_health: int = enemy.current_health
 		_arrow(projectiles, enemy, unit)._physics_process(0.001)
 		damage_by_level.append(previous_health - enemy.current_health)
-	assert(damage_by_level == [10, 22, 50])
+	assert(damage_by_level == [10, 22, 250])
 	assert(base.level == 1 and base.damage == 10 and base.next_level == second_level)
 	assert(second_level.level == 2 and second_level.damage == 22)
 	assert(third_level.level == 3 and third_level.damage == 50)
@@ -137,7 +141,70 @@ func run(scene: Node) -> Dictionary:
 	scene.get_node("World/Tower").take_damage(100)
 	assert(not manager.try_transfer(slots[1], slots[2], green))
 	assert(manager.mana == final_mana and manager.current_cost() == final_cost)
-	return {"passed": true, "levels": 3, "damage": damage_by_level, "in_flight_damage": [10, 10, 22], "reentry": reentry, "touch_merge": true, "capacity": true, "lv3_swap": true}
+	return {"passed": true, "levels": 5, "damage": damage_by_level, "in_flight_damage": [10, 10, 22], "reentry": reentry, "touch_merge": true, "capacity": true, "lv5_swap": true}
+
+
+func check_extended_levels(scene: Node) -> void:
+	var manager: SummonManager = scene.get_node("SummonManager")
+	var slots: Array[Node] = scene.get_node("World/Slots").get_children()
+	var enemies: Node2D = scene.get_node("World/Enemies")
+	var projectiles: Node2D = scene.get_node("World/Projectiles")
+	var starting_mana: int = manager.mana
+	var starting_cost: int = manager.current_cost()
+	var expected_damage: Array[Array] = [[10, 22, 50, 110, 250], [24, 53, 120, 264, 600], [6, 13, 30, 66, 150]]
+	var types: Array[String] = ["archer", "mage", "frost_mage"]
+	var bonuses: RunBonuses = RunBonuses.new()
+	bonuses.pool = load("res://resources/balance/run_upgrade_pool.tres")
+	for index: int in types.size():
+		var stats: UnitStats = load("res://resources/balance/%s_lv1.tres" % types[index])
+		var interval: float = stats.attack_interval
+		var reach: float = stats.attack_range
+		for level: int in range(1, 6):
+			assert(stats.level == level and stats.damage == expected_damage[index][level - 1])
+			assert(stats.attack_interval == interval and stats.attack_range == reach)
+			if index == 2:
+				assert(is_equal_approx(stats.slow_ratio, 0.2 + 0.1 * level) and stats.slow_duration == 1.5)
+				assert(bonuses.slow_ratio_for(stats) <= 0.7)
+			stats = stats.next_level
+		assert(stats == null)
+		var unit_scene: PackedScene = load("res://scenes/%s.tscn" % types[index])
+		var target: CombatUnit = _place_level(unit_scene, slots[1], 3, enemies, projectiles, 160)
+		var source: CombatUnit = _place_level(unit_scene, slots[0], 3, enemies, projectiles, 140)
+		assert(manager.try_transfer(slots[0], slots[1], source))
+		assert(slots[0].is_empty() and slots[1].unit == target and target.stats.level == 4)
+		assert(target.paid_mana == 300 and target.get_node("Visual").texture == target.stats.visual_texture)
+		source = _place_level(unit_scene, slots[0], 4, enemies, projectiles, 340)
+		assert(manager.try_transfer(slots[0], slots[1], source))
+		assert(slots[0].is_empty() and target.stats.level == 5 and target.paid_mana == 640)
+		assert(is_equal_approx(target._cooldown, interval))
+		source = _place_level(unit_scene, slots[0], 5, enemies, projectiles, 680)
+		assert(not source.can_merge_with(target))
+		assert(manager.try_transfer(slots[0], slots[1], source))
+		assert(slots[0].unit == target and slots[1].unit == source and manager.occupied_count() == 2)
+		assert(manager.refund_amount(target) == 320 and manager.refund_amount(source) == 340)
+		assert(manager.try_refund(slots[0], target) and not manager.try_refund(slots[0], target))
+		assert(manager.try_refund(slots[1], source))
+		assert(manager.mana == starting_mana + 660 and manager.current_cost() == starting_cost)
+		manager.mana = starting_mana
+	bonuses.apply(bonuses.pool.get_upgrade(RunUpgrade.Kind.FROST_POWER))
+	bonuses.apply(bonuses.pool.get_upgrade(RunUpgrade.Kind.FROST_POWER))
+	for level: int in [4, 5]:
+		var frost: UnitStats = load("res://resources/balance/frost_mage_lv%d.tres" % level)
+		assert(is_equal_approx(bonuses.slow_ratio_for(frost), 0.7))
+	bonuses.free()
+	assert(manager.occupied_count() == 0 and manager.mana == starting_mana)
+
+
+func _place_level(packed: PackedScene, slot: SummonSlot, level: int, enemies: Node2D, projectiles: Node2D, cost: int) -> CombatUnit:
+	var unit: CombatUnit = packed.instantiate() as CombatUnit
+	var placed: bool = slot.place_unit(unit)
+	assert(placed)
+	unit.configure(enemies, projectiles)
+	unit.attack_enabled = false
+	for step: int in level - 1:
+		unit.promote()
+	unit.paid_mana = cost
+	return unit
 
 
 func _arrow(projectiles: Node2D, enemy: ApproachingEnemy, attacker: CombatUnit) -> CombatProjectile:

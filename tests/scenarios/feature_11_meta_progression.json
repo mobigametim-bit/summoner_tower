@@ -1,0 +1,32 @@
+{
+  "name": "Feature 11: purchases, upgrade caps, fractional bonuses and stronger next run",
+  "scene": "res://tests/scenes/feature_11_meta_test.tscn",
+  "steps": [
+    {"call":{"path":".","method":"run_meta_checks"}},
+    {"assert":"get_meta('meta_checks').passed"},
+    {"call":{"path":".","method":"prepare_result","args":[8]}},
+    {"wait":0.15},
+    {"assert":"get_node('/root/SessionProgress').crystals == 26"},
+    {"input":[{"click_node":"Game/Interface/Hud/GameOverOverlay/Center/Panel/Stack/Actions/MenuButton"}]},
+    {"expect_node":"Center/VBox/Actions/UpgradesButton"},
+    {"input":[{"click_node":"Center/VBox/Actions/UpgradesButton"}]},
+    {"expect_node":"Center/Stack/Cards/TowerHealth"},
+    {"input":[{"click_node":"Center/Stack/Cards/TowerHealth"}]},
+    {"assert":"get_node('/root/SessionProgress').crystals == 1 and get_node('/root/SessionProgress').upgrade_level(0) == 1 and get_node('Center/Stack/Cards/TowerHealth/Margin/Row/Price/Amount').text == '50'"},
+    {"input":[{"click_node":"Center/Stack/Cards/UnitDamage"}]},
+    {"assert":"get_node('/root/SessionProgress').crystals == 1 and get_node('/root/SessionProgress').upgrade_level(1) == 0 and get_node('Center/Stack/Cards/UnitDamage').disabled"},
+    {"eval":"get_node('/root/SessionProgress').add_crystals(75)"},
+    {"input":[{"click_node":"Center/Stack/Cards/UnitDamage"},{"click_node":"Center/Stack/Cards/ManaIncome"},{"click_node":"Center/Stack/Cards/StartingMana"}]},
+    {"assert":"get_node('/root/SessionProgress').crystals == 1 and get_node('/root/SessionProgress').upgrade_levels == [1,1,1,1]"},
+    {"input":[{"click_node":"Center/Stack/Header/BackButton"}]},
+    {"expect_node":"Center/VBox/Actions/PlayButton"},
+    {"input":[{"click_node":"Center/VBox/Actions/PlayButton"}]},
+    {"assert":"state == 0 and tower.max_health == 110 and tower.current_health == 110 and summon_manager.mana == 110 and run_bonuses._meta_levels == [1,1,1,1]"},
+    {"eval":"wave_manager.stop()"},
+    {"eval":"tower.take_damage(tower.max_health)"},
+    {"wait":0.15},
+    {"input":[{"click_node":"Interface/Hud/GameOverOverlay/Center/Panel/Stack/Actions/RestartButton"}]},
+    {"assert":"tower.max_health == 110 and tower.current_health == 110 and summon_manager.mana == 110 and get_node('/root/SessionProgress').upgrade_levels == [1,1,1,1] and run_bonuses._counts.is_empty()"},
+    {"assert_no_errors":true}
+  ]
+}

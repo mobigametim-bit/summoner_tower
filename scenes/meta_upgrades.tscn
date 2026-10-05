@@ -1,0 +1,166 @@
+[gd_scene format=3 uid="uid://bee4hnr6ji7r8"]
+
+[ext_resource type="Script" uid="uid://v0pfkjc54drj" path="res://scripts/ui/meta_upgrades.gd" id="1_2c6fg"]
+[ext_resource type="Texture2D" uid="uid://csm26k25s2aqw" path="res://assets/ui/back.svg" id="1_dqg5i"]
+[ext_resource type="Texture2D" uid="uid://b7v6r0i243ofk" path="res://assets/soul_crystal.svg" id="2_2c6fg"]
+[ext_resource type="PackedScene" uid="uid://bbwv2ai7vefgp" path="res://scenes/meta_upgrade_card.tscn" id="4_m0i5v"]
+[ext_resource type="Texture2D" uid="uid://b42xmdjvv32vv" path="res://assets/upgrades/power.svg" id="5_02tnn"]
+[ext_resource type="Texture2D" uid="uid://dxno5kasfncq2" path="res://assets/upgrades/mana_income.svg" id="6_708r6"]
+[ext_resource type="Texture2D" uid="uid://bji12or1tb4ma" path="res://assets/upgrades/starting_mana.svg" id="7_vuhjh"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_m0i5v"]
+bg_color = Color(0.8509804, 0.6784314, 0.33333334, 1)
+corner_radius_top_left = 14
+corner_radius_top_right = 14
+corner_radius_bottom_right = 14
+corner_radius_bottom_left = 14
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gdhkj"]
+bg_color = Color(0.70980394, 0.54509807, 0.22352941, 1)
+corner_radius_top_left = 14
+corner_radius_top_right = 14
+corner_radius_bottom_right = 14
+corner_radius_bottom_left = 14
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0es21"]
+bg_color = Color(0.9254902, 0.78039217, 0.48235294, 1)
+corner_radius_top_left = 14
+corner_radius_top_right = 14
+corner_radius_bottom_right = 14
+corner_radius_bottom_left = 14
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_02tnn"]
+bg_color = Color(0, 0, 0, 0)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(1, 0.8352941, 0.5411765, 1)
+corner_radius_top_left = 14
+corner_radius_top_right = 14
+corner_radius_bottom_right = 14
+corner_radius_bottom_left = 14
+
+[node name="MetaUpgrades" type="Control" unique_id=1721011767]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_2c6fg")
+
+[node name="Background" type="ColorRect" parent="." unique_id=1607076031]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0.0627451, 0.08235294, 0.13333334, 1)
+
+[node name="Center" type="CenterContainer" parent="." unique_id=529502070]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Stack" type="VBoxContainer" parent="Center" unique_id=964060317]
+custom_minimum_size = Vector2(624, 0)
+layout_mode = 2
+theme_override_constants/separation = 22
+
+[node name="Header" type="HBoxContainer" parent="Center/Stack" unique_id=846593607]
+layout_mode = 2
+theme_override_constants/separation = 18
+
+[node name="BackButton" type="Button" parent="Center/Stack/Header" unique_id=2087059535]
+custom_minimum_size = Vector2(84, 84)
+layout_mode = 2
+tooltip_text = "Back"
+theme_override_constants/icon_max_width = 40
+theme_override_styles/normal = SubResource("StyleBoxFlat_m0i5v")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_gdhkj")
+theme_override_styles/hover = SubResource("StyleBoxFlat_0es21")
+theme_override_styles/focus = SubResource("StyleBoxFlat_02tnn")
+icon = ExtResource("1_dqg5i")
+icon_alignment = 1
+
+[node name="Title" type="Label" parent="Center/Stack/Header" unique_id=1822820644]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0.96862745, 0.8352941, 0.5411765, 1)
+theme_override_font_sizes/font_size = 44
+text = "UPGRADES"
+horizontal_alignment = 1
+
+[node name="BalanceSpacer" type="Control" parent="Center/Stack/Header" unique_id=556105990]
+custom_minimum_size = Vector2(84, 0)
+layout_mode = 2
+mouse_filter = 2
+
+[node name="Wallet" type="HBoxContainer" parent="Center/Stack" unique_id=143044171]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_constants/separation = 12
+
+[node name="Icon" type="TextureRect" parent="Center/Stack/Wallet" unique_id=1333180775]
+custom_minimum_size = Vector2(44, 50)
+layout_mode = 2
+mouse_filter = 2
+texture = ExtResource("2_2c6fg")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Amount" type="Label" parent="Center/Stack/Wallet" unique_id=421740318]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.83137256, 0.7254902, 1, 1)
+theme_override_font_sizes/font_size = 36
+text = "0"
+
+[node name="Cards" type="VBoxContainer" parent="Center/Stack" unique_id=1760869794]
+layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="TowerHealth" parent="Center/Stack/Cards" unique_id=2135619170 instance=ExtResource("4_m0i5v")]
+layout_mode = 2
+
+[node name="UnitDamage" parent="Center/Stack/Cards" unique_id=78372351 instance=ExtResource("4_m0i5v")]
+layout_mode = 2
+kind = 1
+
+[node name="Icon" parent="Center/Stack/Cards/UnitDamage/Margin/Row" parent_id_path=PackedInt32Array(78372351, 936242740) index="0" unique_id=1207761789]
+texture = ExtResource("5_02tnn")
+
+[node name="Title" parent="Center/Stack/Cards/UnitDamage/Margin/Row/Info" parent_id_path=PackedInt32Array(78372351, 803336639) index="0" unique_id=1649898687]
+text = "UNIT DAMAGE"
+
+[node name="ManaIncome" parent="Center/Stack/Cards" unique_id=1511232248 instance=ExtResource("4_m0i5v")]
+layout_mode = 2
+kind = 2
+
+[node name="Icon" parent="Center/Stack/Cards/ManaIncome/Margin/Row" parent_id_path=PackedInt32Array(1511232248, 936242740) index="0" unique_id=1207761789]
+texture = ExtResource("6_708r6")
+
+[node name="Title" parent="Center/Stack/Cards/ManaIncome/Margin/Row/Info" parent_id_path=PackedInt32Array(1511232248, 803336639) index="0" unique_id=1649898687]
+text = "MANA INCOME"
+
+[node name="StartingMana" parent="Center/Stack/Cards" unique_id=1344456356 instance=ExtResource("4_m0i5v")]
+layout_mode = 2
+kind = 3
+
+[node name="Icon" parent="Center/Stack/Cards/StartingMana/Margin/Row" parent_id_path=PackedInt32Array(1344456356, 936242740) index="0" unique_id=1207761789]
+texture = ExtResource("7_vuhjh")
+
+[node name="Title" parent="Center/Stack/Cards/StartingMana/Margin/Row/Info" parent_id_path=PackedInt32Array(1344456356, 803336639) index="0" unique_id=1649898687]
+text = "STARTING MANA"
+
+[connection signal="pressed" from="Center/Stack/Header/BackButton" to="." method="_on_back_pressed"]
+
+[editable path="Center/Stack/Cards/TowerHealth"]
+[editable path="Center/Stack/Cards/UnitDamage"]
+[editable path="Center/Stack/Cards/ManaIncome"]
+[editable path="Center/Stack/Cards/StartingMana"]

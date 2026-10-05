@@ -27,7 +27,7 @@ func _ready() -> void:
 	run_bonuses.reset()
 	summon_manager.configure($World/Slots, enemies, projectiles, run_bonuses)
 	drag_controller.configure(summon_manager, $World/Slots, $World/Tower/ReturnZone)
-	tower.initialize(config.tower_max_health)
+	tower.initialize(run_bonuses.tower_health_for(config.tower_max_health))
 	wave_manager.configure(enemies, spawn_point, contact_point)
 	wave_manager.start()
 

@@ -1,7 +1,9 @@
 class_name EnemyStats
 extends Resource
 
-const TIER_COLORS: Array[Color] = [Color("88b96b"), Color("ec9b49"), Color("df5654")]
+const TIER_COLORS: Array[Color] = [
+	Color("88b96b"), Color("ec9b49"), Color("df5654"), Color("5295ef"), Color("b66dea")
+]
 
 @export var enemy_type: StringName = &"goblin"
 @export_range(1, 100000, 1) var base_health: int = 30
@@ -14,11 +16,12 @@ const TIER_COLORS: Array[Color] = [Color("88b96b"), Color("ec9b49"), Color("df56
 func difficulty_tier(health: int) -> int:
 	if is_boss:
 		return 0
-	if health >= base_health * 4:
-		return 3
-	if health >= base_health * 2:
-		return 2
-	return 1
+	var tier: int = 1
+	var next_threshold: int = base_health * 2
+	while tier < TIER_COLORS.size() and health >= next_threshold:
+		tier += 1
+		next_threshold *= 2
+	return tier
 
 
 func color_for(health: int) -> Color:

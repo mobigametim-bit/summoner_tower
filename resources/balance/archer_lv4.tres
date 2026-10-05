@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="UnitStats" format=3]
+
+[ext_resource type="Script" path="res://scripts/data/unit_stats.gd" id="1_stats"]
+[ext_resource type="Texture2D" path="res://assets/archer_lv4.svg" id="2_visual"]
+[ext_resource type="Resource" path="res://resources/balance/archer_lv5.tres" id="3_next"]
+
+[resource]
+script = ExtResource("1_stats")
+unit_type = &"archer"
+display_name = "ARCHER"
+level = 4
+visual_texture = ExtResource("2_visual")
+next_level = ExtResource("3_next")
+damage = 110
+attack_interval = 0.6
+attack_range = 300.0
+projectile_speed = 700.0

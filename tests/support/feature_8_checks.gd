@@ -14,9 +14,12 @@ func run(game: Node2D) -> Dictionary:
 		game.enemies.add_child(enemy)
 		var original_base: int = enemy.stats.base_health
 		assert(original_base == bases[index])
-		for health: int in [original_base, original_base * 2 - 1, original_base * 2, original_base * 4 - 1, original_base * 4]:
+		var health_cases: Array[int] = [original_base, original_base * 2 - 1, original_base * 2, original_base * 4 - 1, original_base * 4, original_base * 8 - 1, original_base * 8, original_base * 16 - 1, original_base * 16, original_base * 32]
+		var expected_tiers: Array[int] = [1, 1, 2, 2, 3, 3, 4, 4, 5, 5]
+		for boundary: int in health_cases.size():
+			var health: int = health_cases[boundary]
 			enemy.configure(Vector2.ZERO, 100000.0, health)
-			var expected: int = 3 if health >= original_base * 4 else (2 if health >= original_base * 2 else 1)
+			var expected: int = expected_tiers[boundary]
 			assert(enemy.difficulty_tier == expected and enemy.visual.modulate == EnemyStats.TIER_COLORS[expected - 1])
 			assert(enemy.health_bar.max_value == health and enemy.health_bar.value == health)
 			enemy.take_damage(1)
@@ -25,10 +28,11 @@ func run(game: Node2D) -> Dictionary:
 			enemy._physics_process(0.5)
 			assert(is_equal_approx(enemy.global_position.y, enemy.stats.move_speed * 0.25))
 			assert(enemy.difficulty_tier == expected and enemy.slow_indicator.visible)
-		thresholds.append({"type": str(enemy.stats.enemy_type), "orange": original_base * 2, "red": original_base * 4})
+		thresholds.append({"type": str(enemy.stats.enemy_type), "orange": original_base * 2, "red": original_base * 4, "blue": original_base * 8, "purple": original_base * 16})
 		assert(enemy.stats.base_health == original_base)
 		enemy.free()
 	assert(config.enemy_health_for(7, 30) == 60 and config.enemy_health_for(19, 30) == 120)
+	assert(config.enemy_health_for(43, 30) == 240 and config.enemy_health_for(91, 30) == 480)
 	assert(config.enemy_health_for(13, 60) == 120 and config.enemy_health_for(37, 60) == 240)
 	assert(config.enemy_health_for(25, 120) == 240 and config.enemy_health_for(73, 120) == 480)
 	assert(config.boss_health_for(5, 350) == 350 and config.boss_health_for(10, 350) == 600)

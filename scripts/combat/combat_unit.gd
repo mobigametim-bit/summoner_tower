@@ -18,6 +18,7 @@ var _cooldown: float = 0.0
 var _search_remaining: float = 0.0
 var _running: bool = false
 var _run_bonuses: RunBonuses
+var _damage_remainder: float = 0.0
 
 
 func _ready() -> void:
@@ -33,7 +34,7 @@ func can_merge_with(other: CombatUnit) -> bool:
 	return (
 		is_instance_valid(other) and other != self
 		and stats.unit_type == other.stats.unit_type and stats.level == other.stats.level
-		and stats.level < 3 and other.stats.next_level != null
+		and stats.level < UnitStats.MAX_LEVEL and other.stats.next_level != null
 		and other.stats.next_level.level == stats.level + 1
 		and other.stats.next_level.unit_type == stats.unit_type
 	)
@@ -59,6 +60,7 @@ func configure(enemies: Node2D, projectiles: Node2D, bonuses: RunBonuses = null)
 	_enemies = enemies
 	_projectiles = projectiles
 	_run_bonuses = bonuses
+	_damage_remainder = 0.0
 	_running = true
 
 
@@ -114,7 +116,16 @@ func _find_nearest_target() -> ApproachingEnemy:
 func _fire() -> void:
 	var arrow: CombatProjectile = projectile_scene.instantiate() as CombatProjectile
 	_projectiles.add_child(arrow)
-	arrow.launch(muzzle.global_position, _target, stats, self, _run_bonuses)
+	arrow.launch(muzzle.global_position, _target, stats, self, _run_bonuses, _next_damage())
+
+
+func _next_damage() -> int:
+	# Дробь переносится между выстрелами конкретного бойца: +5% полезны уже на Lv1.
+	var amount: float = _run_bonuses.damage_amount_for(stats) if _run_bonuses != null else float(stats.damage)
+	amount += _damage_remainder
+	var damage: int = maxi(floori(amount + RunBonuses.ROUNDING_EPSILON), 1)
+	_damage_remainder = maxf(amount - damage, 0.0)
+	return damage
 
 
 func stop() -> void:

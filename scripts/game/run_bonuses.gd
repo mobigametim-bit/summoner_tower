@@ -8,10 +8,13 @@ const ROUNDING_EPSILON: float = 0.000001
 var _counts: Dictionary = {}
 var _mana_remainder: float = 0.0
 var _rng: RandomNumberGenerator = RandomNumberGenerator.new()
+var _meta_levels: Array[int] = [0, 0, 0, 0]
 
 
 func reset() -> void:
 	_counts.clear()
+	# Снимок исключает повторное применение и изменение бонусов посреди забега.
+	_meta_levels = SessionProgress.upgrade_levels.duplicate()
 	_mana_remainder = 0.0
 	_rng.randomize()
 
@@ -52,7 +55,11 @@ func attack_interval_for(stats: UnitStats) -> float:
 
 
 func damage_for(stats: UnitStats) -> int:
-	return maxi(floori(stats.damage * multiplier(RunUpgrade.Kind.POWER) + ROUNDING_EPSILON), 1)
+	return maxi(floori(damage_amount_for(stats) + ROUNDING_EPSILON), 1)
+
+
+func damage_amount_for(stats: UnitStats) -> float:
+	return stats.damage * _meta_multiplier(MetaUpgradeConfig.Kind.UNIT_DAMAGE) * multiplier(RunUpgrade.Kind.POWER)
 
 
 func slow_ratio_for(stats: UnitStats) -> float:
@@ -63,7 +70,15 @@ func slow_ratio_for(stats: UnitStats) -> float:
 
 
 func tower_health_for(base_health: int) -> int:
-	return maxi(floori(base_health * multiplier(RunUpgrade.Kind.TOWER_ARMOR) + ROUNDING_EPSILON), 1)
+	return maxi(floori(base_health * _meta_multiplier(MetaUpgradeConfig.Kind.TOWER_HEALTH) * multiplier(RunUpgrade.Kind.TOWER_ARMOR) + ROUNDING_EPSILON), 1)
+
+
+func starting_mana_for(base_mana: int) -> int:
+	return base_mana + SessionProgress.UPGRADE_CONFIG.starting_mana_bonus(_meta_levels[MetaUpgradeConfig.Kind.STARTING_MANA])
+
+
+func _meta_multiplier(kind: MetaUpgradeConfig.Kind) -> float:
+	return SessionProgress.UPGRADE_CONFIG.multiplier_for(kind, _meta_levels[kind])
 
 
 func summon_cost_for(base_cost: int) -> int:
@@ -73,7 +88,7 @@ func summon_cost_for(base_cost: int) -> int:
 
 func kill_mana_for(base_mana: int) -> int:
 	# Сохраняем дроби между убийствами: +20% полезны и при награде всего в 3 маны.
-	var total: float = base_mana * multiplier(RunUpgrade.Kind.MANA_FLOW) + _mana_remainder
+	var total: float = base_mana * _meta_multiplier(MetaUpgradeConfig.Kind.MANA_INCOME) * multiplier(RunUpgrade.Kind.MANA_FLOW) + _mana_remainder
 	var amount: int = floori(total + ROUNDING_EPSILON)
 	_mana_remainder = maxf(total - amount, 0.0)
 	return amount

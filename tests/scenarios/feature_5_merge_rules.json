@@ -5,8 +5,8 @@
   "steps": [
     { "set": { "path": "Game/SummonManager", "props": { "pool": "res://tests/resources/archer_only_pool.tres" } } },
     { "call": { "path": "", "method": "run_checks" } },
-    { "assert": "get_meta('feature5_checks').passed and get_meta('feature5_checks').levels == 3 and get_node('Game').state == 1" },
-    { "input": [{ "click_node": "Game/Interface/Hud/GameOverOverlay/Center/Panel/Stack/RestartButton" }, { "wait": 0.2 }] },
+    { "assert": "get_meta('feature5_checks').passed and get_meta('feature5_checks').levels == 5 and get_node('Game').state == 1" },
+    { "input": [{ "click_node": "Game/Interface/Hud/GameOverOverlay/Center/Panel/Stack/Actions/RestartButton" }, { "wait": 0.2 }] },
     { "set": { "path": "Game/SummonManager", "props": { "pool": "res://tests/resources/archer_only_pool.tres" } } },
     { "eval": "get_node('Game/WaveManager/SpawnTimer').stop()" },
     { "set": { "path": "Game/World/Enemies/Enemy", "props": { "move_speed": 0, "current_health": 10000, "max_health": 10000 } } },

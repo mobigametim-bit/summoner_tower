@@ -18,7 +18,7 @@
     {
       "input": [
         {
-          "click_node": "Game/Interface/Hud/GameOverOverlay/Center/Panel/Stack/RestartButton"
+          "click_node": "Game/Interface/Hud/GameOverOverlay/Center/Panel/Stack/Actions/RestartButton"
         },
         {
           "wait": 0.2

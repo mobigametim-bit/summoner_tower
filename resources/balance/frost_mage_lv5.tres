@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="UnitStats" format=3]
+
+[ext_resource type="Script" path="res://scripts/data/unit_stats.gd" id="1_stats"]
+[ext_resource type="Texture2D" path="res://assets/frost_mage_lv5.svg" id="2_visual"]
+
+[resource]
+script = ExtResource("1_stats")
+unit_type = &"frost_mage"
+display_name = "FROST MAGE"
+level = 5
+visual_texture = ExtResource("2_visual")
+damage = 150
+attack_interval = 0.8
+attack_range = 280.0
+projectile_speed = 700.0
+slow_ratio = 0.7
+slow_duration = 1.5
