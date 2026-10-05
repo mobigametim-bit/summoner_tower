@@ -6,4 +6,5 @@
 script = ExtResource("1_v8sra")
 tower_max_health = 100
 enemy_tower_damage = 20
+enemy_max_health = 30
 enemy_move_speed = 160.0

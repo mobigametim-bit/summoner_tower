@@ -4,6 +4,9 @@
   "keep_running": true,
   "steps": [
     {
+      "set": { "path": "World/Archer", "props": { "attack_enabled": false } }
+    },
+    {
       "assert": "get_node('World/Tower').current_health == 100",
       "message": "Tower starts with full HP"
     },

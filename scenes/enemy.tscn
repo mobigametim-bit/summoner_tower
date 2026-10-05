@@ -3,8 +3,34 @@
 [ext_resource type="Script" uid="uid://di4mpnwaikk8a" path="res://scripts/combat/approaching_enemy.gd" id="1_7p1mj"]
 [ext_resource type="Texture2D" uid="uid://dfnsaprp1a8y1" path="res://assets/enemy.svg" id="2_md0e3"]
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_md0e3"]
+bg_color = Color(0.14901961, 0.19215687, 0.25882354, 1)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4ra3w"]
+bg_color = Color(0.8745098, 0.4745098, 0.4, 1)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+
 [node name="Enemy" type="Node2D" unique_id=1962163179]
 script = ExtResource("1_7p1mj")
 
 [node name="Visual" type="Sprite2D" parent="." unique_id=606921741]
 texture = ExtResource("2_md0e3")
+
+[node name="HealthBar" type="ProgressBar" parent="." unique_id=193745244]
+offset_left = -44.0
+offset_top = -53.0
+offset_right = 44.0
+offset_bottom = -43.0
+mouse_filter = 2
+theme_override_styles/background = SubResource("StyleBoxFlat_md0e3")
+theme_override_styles/fill = SubResource("StyleBoxFlat_4ra3w")
+max_value = 30.0
+value = 30.0
+show_percentage = false

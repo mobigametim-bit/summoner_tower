@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="ArcherStats" format=3 uid="uid://d3fugk8lns56s"]
+
+[ext_resource type="Script" uid="uid://t5wl1e4nf5h1" path="res://scripts/data/archer_stats.gd" id="1_yb6kq"]
+
+[resource]
+script = ExtResource("1_yb6kq")
+damage = 10
+attack_interval = 0.6
+attack_range = 300.0
+projectile_speed = 700.0

@@ -10,6 +10,8 @@ enum State { RUNNING, GAME_OVER, LEAVING }
 @onready var contact_point: Marker2D = $World/Tower/ContactPoint
 @onready var spawn_point: Marker2D = $World/SpawnPoint
 @onready var enemies: Node2D = $World/Enemies
+@onready var projectiles: Node2D = $World/Projectiles
+@onready var archer: Archer = $World/Archer
 @onready var spawn_timer: Timer = $SpawnTimer
 @onready var hud: GameHud = $Interface/Hud
 
@@ -18,6 +20,7 @@ var _active_enemy: ApproachingEnemy
 
 
 func _ready() -> void:
+	archer.configure(enemies, projectiles)
 	tower.initialize(config.tower_max_health)
 	_spawn_enemy()
 
@@ -28,17 +31,18 @@ func _spawn_enemy() -> void:
 
 	_active_enemy = enemy_scene.instantiate() as ApproachingEnemy
 	enemies.add_child(_active_enemy)
-	_active_enemy.reached_tower.connect(_on_enemy_reached_tower)
+	_active_enemy.resolved.connect(_on_enemy_resolved)
 	_active_enemy.configure(config, spawn_point.global_position, contact_point.global_position.y)
 
 
-func _on_enemy_reached_tower(enemy: ApproachingEnemy) -> void:
+func _on_enemy_resolved(enemy: ApproachingEnemy, outcome: ApproachingEnemy.Outcome) -> void:
 	if state != State.RUNNING or enemy != _active_enemy:
 		return
 
 	# Сначала учитываем врага, поскольку сигнал урона может завершить забег.
 	_active_enemy = null
-	tower.take_damage(enemy.tower_damage)
+	if outcome == ApproachingEnemy.Outcome.REACHED_TOWER:
+		tower.take_damage(enemy.tower_damage)
 	if state == State.RUNNING:
 		spawn_timer.start(config.next_enemy_delay)
 
@@ -58,6 +62,9 @@ func _on_tower_destroyed() -> void:
 
 func _stop_encounter() -> void:
 	spawn_timer.stop()
+	archer.stop()
+	for projectile: Node in projectiles.get_children():
+		projectile.queue_free()
 	for child: Node in enemies.get_children():
 		var enemy: ApproachingEnemy = child as ApproachingEnemy
 		enemy.stop()

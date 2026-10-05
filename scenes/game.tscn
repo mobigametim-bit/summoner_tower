@@ -7,6 +7,7 @@
 [ext_resource type="Script" uid="uid://c8cpj6ixtxugj" path="res://scripts/ui/game_hud.gd" id="2_yqjtg"]
 [ext_resource type="PackedScene" uid="uid://bofw8cla40ece" path="res://scenes/enemy.tscn" id="3_u5sy4"]
 [ext_resource type="Texture2D" uid="uid://m3obcl82lbrw" path="res://assets/arena.svg" id="4_u5sy4"]
+[ext_resource type="PackedScene" uid="uid://4ghsox5owi25" path="res://scenes/archer.tscn" id="6_gee14"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lnu2h"]
 content_margin_left = 36.0
@@ -42,6 +43,11 @@ position = Vector2(360, 190)
 
 [node name="Tower" parent="World" unique_id=873803062 instance=ExtResource("1_uwrxv")]
 position = Vector2(360, 1040)
+
+[node name="Projectiles" type="Node2D" parent="World" unique_id=1570384389]
+
+[node name="Archer" parent="World" unique_id=1677709423 instance=ExtResource("6_gee14")]
+position = Vector2(180, 600)
 
 [node name="SpawnTimer" type="Timer" parent="." unique_id=273221870]
 one_shot = true
