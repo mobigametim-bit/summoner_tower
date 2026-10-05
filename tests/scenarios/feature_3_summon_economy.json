@@ -7,12 +7,12 @@
     { "eval": "get_node('WaveManager/SpawnTimer').stop()" },
     { "set": { "path": "World/Enemies/Enemy", "props": { "move_speed": 0, "current_health": 10000, "max_health": 10000 } } },
     {
-      "assert": "get_node('SummonManager').mana == 100 and get_node('SummonManager').current_cost() == 20 and get_node('SummonManager').occupied_count() == 0 and get_node('World/Slots').get_child_count() == 6 and not get_node('Interface/Hud/SummonButton').disabled"
+      "assert": "get_node('SummonManager').mana == 100 and get_node('SummonManager').current_cost() == 20 and get_node('SummonManager').occupied_count() == 0 and get_node('World/Slots').get_child_count() == 6 and not get_node('World/Tower/SummonButton').disabled"
     },
     {
       "input": [
         {
-          "click_node": "Interface/Hud/SummonButton"
+          "click_node": "World/Tower/SummonButton"
         }
       ]
     },
@@ -22,7 +22,7 @@
     {
       "input": [
         {
-          "click_node": "Interface/Hud/SummonButton"
+          "click_node": "World/Tower/SummonButton"
         }
       ]
     },
@@ -32,18 +32,18 @@
     {
       "input": [
         {
-          "click_node": "Interface/Hud/SummonButton"
+          "click_node": "World/Tower/SummonButton"
         },
         {
-          "click_node": "Interface/Hud/SummonButton"
+          "click_node": "World/Tower/SummonButton"
         },
         {
-          "click_node": "Interface/Hud/SummonButton"
+          "click_node": "World/Tower/SummonButton"
         }
       ]
     },
     {
-      "assert": "get_node('SummonManager').mana == 25 and get_node('SummonManager').current_cost() == 35 and get_node('SummonManager').successful_summons == 3 and get_node('SummonManager').occupied_count() == 3 and get_node('Interface/Hud/SummonButton').disabled"
+      "assert": "get_node('SummonManager').mana == 25 and get_node('SummonManager').current_cost() == 35 and get_node('SummonManager').successful_summons == 3 and get_node('SummonManager').occupied_count() == 3 and get_node('World/Tower/SummonButton').disabled"
     },
     {
       "assert": "not get_node('SummonManager').try_summon()"

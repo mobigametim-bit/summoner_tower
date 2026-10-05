@@ -3,31 +3,25 @@ extends Control
 
 signal restart_requested
 signal menu_requested
-signal summon_requested
 
-@onready var health_bar: ProgressBar = %HealthBar
 @onready var health_label: Label = %HealthLabel
 @onready var game_over_overlay: Control = %GameOverOverlay
 @onready var restart_button: Button = %RestartButton
 @onready var menu_button: Button = %MenuButton
 @onready var mana_label: Label = %ManaLabel
-@onready var summon_button: Button = %SummonButton
 @onready var wave_label: Label = %WaveLabel
+@export var wave_config: WaveConfig
 
 
-func update_wave(wave: int, phase: WaveManager.Phase, seconds: int, alive: int, pending: int) -> void:
-	if phase == WaveManager.Phase.INTERMISSION:
-		wave_label.text = "WAVE %d CLEAR · NEXT IN %d" % [wave, seconds]
-	elif phase == WaveManager.Phase.FIGHTING:
-		wave_label.text = "WAVE %d · ENEMIES %d" % [wave, alive + pending]
-	else:
-		wave_label.text = "WAVE %d" % wave
+func update_wave(wave: int, _phase: WaveManager.Phase, _seconds: int, _alive: int, _pending: int) -> void:
+	var boss_wave: bool = wave_config != null and wave_config.is_boss_wave(wave)
+	var title: String = "BOSS WAVE" if boss_wave else "WAVE"
+	wave_label.modulate = Color("ffb968") if boss_wave else Color.WHITE
+	wave_label.text = "%s %d" % [title, wave]
 
 
-func update_health(current: int, maximum: int) -> void:
-	health_bar.max_value = maximum
-	health_bar.value = current
-	health_label.text = "TOWER HP  %d / %d" % [current, maximum]
+func update_health(current: int, _maximum: int) -> void:
+	health_label.text = str(current)
 
 
 func show_game_over() -> void:
@@ -35,14 +29,8 @@ func show_game_over() -> void:
 	restart_button.grab_focus()
 
 
-func update_summon(mana: int, cost: int, occupied: int, capacity: int, available: bool) -> void:
-	mana_label.text = "MANA %d" % mana
-	if occupied >= capacity:
-		mana_label.text += " / FIELD FULL"
-	elif mana < cost:
-		mana_label.text += " / NEED %d" % cost
-	summon_button.text = "SUMMON · %d MANA" % cost
-	summon_button.disabled = not available
+func update_summon(mana: int, _cost: int, _occupied: int, _capacity: int, _available: bool) -> void:
+	mana_label.text = str(mana)
 
 
 func set_actions_enabled(enabled: bool) -> void:
@@ -56,7 +44,3 @@ func _on_restart_button_pressed() -> void:
 
 func _on_menu_button_pressed() -> void:
 	menu_requested.emit()
-
-
-func _on_summon_button_pressed() -> void:
-	summon_requested.emit()

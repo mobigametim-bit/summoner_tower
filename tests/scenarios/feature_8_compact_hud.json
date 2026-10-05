@@ -1,0 +1,22 @@
+{
+  "name": "feature_8_compact_hud",
+  "scene": "res://scenes/game.tscn",
+  "steps": [
+    { "assert": "get_node('Interface/Hud').health_label.text == '100' and get_node('Interface/Hud').mana_label.text == '100' and get_node('Interface/Hud').wave_label.text == 'WAVE 1' and get_node('World/Tower/CostLabel').text == '20'" },
+    { "assert": "get_node('World/Slots/Slot1').hit_rect == Rect2(-70, -70, 140, 140) and get_node('World/Slots/Slot1/Visual').texture.get_size() == Vector2(140, 140) and get_node('World/Slots/Slot1/Highlight').texture.get_size() == Vector2(140, 140)" },
+    { "assert": "get_node('World/Slots/Slot1').contains_point(Vector2(180, 291)) and not get_node('World/Slots/Slot1').contains_point(Vector2(180, 431)) and not get_node('World/Slots/Slot1').contains_point(Vector2(180, 450)) and not has_node('Interface/Hud/Status/Hearts')" },
+    { "assert": "get_node('Interface/Hud').health_label.get_parent() == get_node('Interface/Hud').mana_label.get_parent() and get_node('Interface/Hud').health_label.global_position.x < get_node('Interface/Hud').mana_label.global_position.x and get_node('Interface/Hud').health_label.global_position.y > get_node('World/Tower').global_position.y + 76" },
+    { "assert": "not has_node('Interface/Hud/Header') and not has_node('Interface/Hud/Health') and not has_node('Interface/Hud/SummonButton') and not has_node('World/Slots/Slot1/EmptyLabel')" },
+    { "input": [{ "click_node": "World/Tower/SummonButton" }] },
+    { "assert": "get_node('SummonManager').successful_summons == 1 and get_node('Interface/Hud').mana_label.text == '80' and get_node('World/Tower/CostLabel').text == '25' and not get_node('World/Slots/Slot1').unit.has_node('NameLabel')" },
+    { "input": [{ "drag": [[180, 360], [360, 1040]], "seconds": 0.3 }] },
+    { "assert": "get_node('SummonManager').successful_summons == 1 and get_node('SummonManager').occupied_count() == 0 and get_node('Interface/Hud').mana_label.text == '90' and get_node('World/Tower/CostLabel').text == '25'" },
+    { "call": { "path": "World/Tower", "method": "take_damage", "args": [25] } },
+    { "assert": "get_node('Interface/Hud').health_label.text == '75'" },
+    { "call": { "path": "Interface/Hud", "method": "update_wave", "args": [5, 1, 3, 2, 4] } },
+    { "assert": "get_node('Interface/Hud').wave_label.text == 'BOSS WAVE 5'" },
+    { "call": { "path": "World/Tower", "method": "take_damage", "args": [75] } },
+    { "assert": "state == 1 and get_node('World/Tower/SummonButton').disabled and get_node('Interface/Hud').health_label.text == '0'" },
+    { "assert_no_errors": true }
+  ]
+}

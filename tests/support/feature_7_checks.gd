@@ -74,7 +74,7 @@ func run(game: Node2D) -> Dictionary:
 			slots[index].unit.set_physics_process(false)
 		var first: CombatUnit = slots[0].unit
 		var base: UnitStats = first.stats
-		assert(first.get_node("NameLabel").text == base.display_name)
+		assert(not first.has_node("NameLabel"))
 		var survivor: CombatUnit = slots[1].unit
 		var bolt: CombatProjectile = first.projectile_scene.instantiate() as CombatProjectile
 		game.projectiles.add_child(bolt)

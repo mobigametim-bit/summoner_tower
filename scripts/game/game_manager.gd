@@ -20,7 +20,7 @@ var state: State = State.RUNNING
 
 func _ready() -> void:
 	summon_manager.configure($World/Slots, enemies, projectiles)
-	drag_controller.configure(summon_manager, $World/Slots)
+	drag_controller.configure(summon_manager, $World/Slots, $World/Tower/ReturnZone)
 	tower.initialize(config.tower_max_health)
 	wave_manager.configure(enemies, spawn_point, contact_point)
 	wave_manager.start()

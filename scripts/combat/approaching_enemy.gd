@@ -5,11 +5,15 @@ enum Outcome { KILLED, REACHED_TOWER }
 
 signal resolved(enemy: ApproachingEnemy, outcome: Outcome)
 
+@export var stats: EnemyStats
+
 var tower_damage: int = 0
 var move_speed: float = 0.0
 var current_health: int = 0
 var max_health: int = 0
+var difficulty_tier: int = 1
 
+@onready var visual: Sprite2D = $Visual
 @onready var health_bar: ProgressBar = $HealthBar
 @onready var slow_indicator: Sprite2D = $SlowIndicator
 
@@ -23,12 +27,14 @@ func _ready() -> void:
 	set_physics_process(false)
 
 
-func configure(config: EncounterConfig, spawn_position: Vector2, target_y: float, health: int = 0) -> void:
+func configure(spawn_position: Vector2, target_y: float, health: int = 0) -> void:
 	global_position = spawn_position
-	tower_damage = config.enemy_tower_damage
-	move_speed = config.enemy_move_speed
-	max_health = health if health > 0 else config.enemy_max_health
+	tower_damage = stats.tower_damage
+	move_speed = stats.move_speed
+	max_health = health if health > 0 else stats.base_health
 	current_health = max_health
+	difficulty_tier = stats.difficulty_tier(max_health)
+	visual.modulate = stats.color_for(max_health)
 	_update_health_bar()
 	_target_y = target_y
 	_clear_slow()

@@ -3,10 +3,9 @@ extends Node2D
 
 @export_range(1, 6, 1) var slot_index: int = 1
 @export var faces_left: bool = false
-@export var hit_rect: Rect2 = Rect2(-70.0, -64.0, 140.0, 160.0)
+@export var hit_rect: Rect2 = Rect2(-70.0, -70.0, 140.0, 140.0)
 
 @onready var unit_host: Node2D = $UnitHost
-@onready var empty_label: Label = $EmptyLabel
 @onready var highlight: Sprite2D = $Highlight
 
 var unit: CombatUnit
@@ -28,7 +27,6 @@ func place_unit(creature: CombatUnit) -> bool:
 
 func assign_unit(creature: CombatUnit) -> void:
 	unit = creature
-	empty_label.visible = is_empty()
 
 
 func align_unit() -> void:

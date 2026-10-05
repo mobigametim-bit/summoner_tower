@@ -1,0 +1,13 @@
+{
+  "name": "Feature 8: enemy colors, quotas, boss lifetime and individual rewards",
+  "scene": "res://tests/scenes/feature_8_enemies_test.tscn",
+  "keep_running": true,
+  "steps": [
+    {"call": {"path": "", "method": "run_enemy_checks"}},
+    {"assert": "get_meta('feature8_checks').passed and get_node('Game').state == 1 and completed.size() == 10 and escapes == 1 and economy_valid()"},
+    {"call": {"path": "Game", "method": "_on_restart_requested"}},
+    {"wait": 0.3},
+    {"assert": "get_node('Game').state == 0 and get_node('Game/WaveManager').wave_number == 1 and get_node('Game/SummonManager').mana == 100 and get_node('Game/World/Tower').current_health == 100 and completed.is_empty() and boss_outcomes.is_empty() and earned == 0"},
+    {"assert_no_errors": true}
+  ]
+}

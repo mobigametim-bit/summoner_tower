@@ -7,6 +7,8 @@ const TARGET_SEARCH_INTERVAL: float = 0.1
 @export var projectile_scene: PackedScene
 @export var attack_enabled: bool = true
 
+var paid_mana: int = 0
+
 @onready var muzzle: Marker2D = $Muzzle
 
 var _enemies: Node2D
@@ -24,7 +26,6 @@ func _ready() -> void:
 func refresh_visual() -> void:
 	if stats.visual_texture != null:
 		$Visual.texture = stats.visual_texture
-	$NameLabel.text = stats.display_name
 
 
 func can_merge_with(other: CombatUnit) -> bool:

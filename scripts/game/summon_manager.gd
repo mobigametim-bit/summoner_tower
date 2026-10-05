@@ -2,6 +2,7 @@ class_name SummonManager
 extends Node
 
 signal state_changed(mana: int, cost: int, occupied: int, capacity: int, available: bool)
+signal unit_refunded(amount: int)
 
 @export var config: SummonConfig
 @export var pool: SummonPool
@@ -83,7 +84,8 @@ func try_summon() -> bool:
 		return false
 
 	unit.configure(_enemies, _projectiles)
-	mana -= current_cost()
+	unit.paid_mana = current_cost()
+	mana -= unit.paid_mana
 	successful_summons += 1
 	_busy = false
 	_emit_state()
@@ -124,6 +126,8 @@ func try_transfer(source: SummonSlot, destination: SummonSlot, expected_unit: Co
 	if other != null and expected_unit.can_merge_with(other):
 		# Ссылки и уровень фиксируются до сигналов удаления исходного узла.
 		source.assign_unit(null)
+		other.paid_mana += expected_unit.paid_mana
+		expected_unit.paid_mana = 0
 		other.promote()
 		expected_unit.retire_into(other)
 		expected_unit.queue_free()
@@ -144,6 +148,37 @@ func try_transfer(source: SummonSlot, destination: SummonSlot, expected_unit: Co
 	if other != null:
 		other.refresh_target()
 	_busy = false
+	_emit_state()
+	return true
+
+
+func refund_amount(unit: CombatUnit) -> int:
+	return config.refund_for(unit.paid_mana) if is_instance_valid(unit) else 0
+
+
+func try_refund(source: SummonSlot, expected_unit: CombatUnit) -> bool:
+	if not can_rearrange() or not is_instance_valid(expected_unit) or expected_unit.is_queued_for_deletion():
+		return false
+	if not _slots.has(source) or source.unit != expected_unit or expected_unit.get_parent() != source.unit_host:
+		return false
+	if expected_unit.paid_mana <= 0:
+		return false
+
+	_busy = true
+	var amount: int = refund_amount(expected_unit)
+	# Фиксируем возврат до callbacks удаления: повторный запрос не найдёт бойца в слоте.
+	source.assign_unit(null)
+	expected_unit.paid_mana = 0
+	expected_unit.stop()
+	mana += amount
+	for child: Node in _projectiles.get_children():
+		var projectile: CombatProjectile = child as CombatProjectile
+		if projectile != null:
+			projectile.cancel_from(expected_unit)
+	expected_unit.queue_free()
+	source.unit_host.remove_child(expected_unit)
+	_busy = false
+	unit_refunded.emit(amount)
 	_emit_state()
 	return true
 

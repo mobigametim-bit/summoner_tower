@@ -31,13 +31,13 @@
     {
       "input": [
         {
-          "click_node": "Game/Interface/Hud/SummonButton"
+          "click_node": "Game/World/Tower/SummonButton"
         },
         {
-          "click_node": "Game/Interface/Hud/SummonButton"
+          "click_node": "Game/World/Tower/SummonButton"
         },
         {
-          "click_node": "Game/Interface/Hud/SummonButton"
+          "click_node": "Game/World/Tower/SummonButton"
         }
       ]
     },

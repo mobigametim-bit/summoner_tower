@@ -56,7 +56,7 @@ func run(game: Node2D) -> Dictionary:
 	waves._on_intermission_timeout()
 	waves._on_intermission_timeout()
 	assert(waves.wave_number == 2 and waves.active_count() == 1 and waves._spawn_remaining == 4)
-	assert(waves._active[0].max_health == 35 and waves.enemy_config.enemy_max_health == 30)
+	assert(waves._active[0].max_health == 35 and waves._active[0].stats.base_health == 30)
 	game.tower.take_damage(100)
 	assert(game.state == 1 and waves.phase == WaveManager.Phase.STOPPED)
 	assert(waves.spawn_timer.is_stopped() and waves.intermission_timer.is_stopped())
@@ -67,7 +67,7 @@ func run(game: Node2D) -> Dictionary:
 	manager.add_mana(3)
 	assert(manager.mana == stopped_mana and waves.active_count() == 0 and waves.wave_number == 2)
 	assert(not waves.start() and not manager.try_summon())
-	assert(waves.config.kill_mana == 3 and waves.config.spawn_interval == 1.0)
+	assert(initial.stats.kill_mana == 3 and waves.config.spawn_interval == 1.0)
 	return {"passed": true, "kills": 3, "escapes": 1, "reward": 9,
 		"reentry": reentry, "completed": completions, "intermission_summon_merge": true,
 		"duplicate_timeouts": true, "stopped_callbacks": true}

@@ -1,0 +1,13 @@
+{
+  "name": "Feature 8 addition: actual-cost refunds, merge, touch and lifecycle",
+  "scene": "res://tests/scenes/feature_8_enemies_test.tscn",
+  "keep_running": true,
+  "steps": [
+    {"call": {"path": "", "method": "run_refund_checks"}},
+    {"assert": "get_meta('refund_checks').passed and get_node('Game').state == 1"},
+    {"call": {"path": "Game", "method": "_on_restart_requested"}},
+    {"wait": 0.3},
+    {"assert": "get_node('Game').state == 0 and get_node('Game/SummonManager').mana == 100 and refunded == 0 and get_node('Game/SummonManager').successful_summons == 0 and get_node('Game/SummonManager').current_cost() == 20"},
+    {"assert_no_errors": true}
+  ]
+}

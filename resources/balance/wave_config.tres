@@ -1,6 +1,10 @@
 [gd_resource type="Resource" script_class="WaveConfig" format=3 uid="uid://ciuquwmxvll24"]
 
 [ext_resource type="Script" uid="uid://27u7nusjawkc" path="res://scripts/data/wave_config.gd" id="1_config"]
+[ext_resource type="PackedScene" path="res://scenes/enemy.tscn" id="2_goblin"]
+[ext_resource type="PackedScene" path="res://scenes/orc.tscn" id="3_orc"]
+[ext_resource type="PackedScene" path="res://scenes/golem.tscn" id="4_golem"]
+[ext_resource type="PackedScene" path="res://scenes/boss.tscn" id="5_boss"]
 
 [resource]
 script = ExtResource("1_config")
@@ -9,4 +13,13 @@ enemy_count_growth = 1
 enemy_health_growth = 5
 spawn_interval = 1.0
 intermission_duration = 3.0
-kill_mana = 3
+goblin_scene = ExtResource("2_goblin")
+orc_scene = ExtResource("3_orc")
+golem_scene = ExtResource("4_golem")
+boss_scene = ExtResource("5_boss")
+orc_first_wave = 3
+golem_first_wave = 6
+orc_share = 0.3
+golem_share = 0.15
+boss_interval = 5
+boss_health_growth = 250

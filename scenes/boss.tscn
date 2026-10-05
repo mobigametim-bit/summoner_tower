@@ -1,0 +1,44 @@
+[gd_scene format=3 uid="uid://q2y7yxh8fst7"]
+
+[ext_resource type="Script" uid="uid://di4mpnwaikk8a" path="res://scripts/combat/approaching_enemy.gd" id="1_jncid"]
+[ext_resource type="Texture2D" uid="uid://dk3ix6arlq4pu" path="res://assets/slow_indicator.svg" id="2_qnbj4"]
+[ext_resource type="Resource" path="res://resources/balance/boss_stats.tres" id="2_r3bxh"]
+[ext_resource type="Texture2D" uid="uid://bdd1kj4bdk3ee" path="res://assets/boss.svg" id="4_wqpjq"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_md0e3"]
+bg_color = Color(0.14901961, 0.19215687, 0.25882354, 1)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4ra3w"]
+bg_color = Color(0.8745098, 0.4745098, 0.4, 1)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+
+[node name="Boss" type="Node2D" unique_id=1962163179]
+script = ExtResource("1_jncid")
+stats = ExtResource("2_r3bxh")
+
+[node name="SlowIndicator" type="Sprite2D" parent="." unique_id=1953666337]
+visible = false
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("2_qnbj4")
+
+[node name="Visual" type="Sprite2D" parent="." unique_id=606921741]
+texture = ExtResource("4_wqpjq")
+
+[node name="HealthBar" type="ProgressBar" parent="." unique_id=193745244]
+offset_left = -70.0
+offset_top = -95.0
+offset_right = 70.0
+offset_bottom = -68.0
+mouse_filter = 2
+theme_override_styles/background = SubResource("StyleBoxFlat_md0e3")
+theme_override_styles/fill = SubResource("StyleBoxFlat_4ra3w")
+max_value = 30.0
+value = 30.0
+show_percentage = false

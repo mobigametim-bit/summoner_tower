@@ -9,6 +9,7 @@ enum Pointer { NONE, MOUSE, TOUCH }
 @onready var preview_visual: Sprite2D = $Preview/Visual
 
 var _manager: SummonManager
+var _return_zone: UnitReturnZone
 var _slots: Array[SummonSlot] = []
 var _enabled: bool = false
 var _pointer: Pointer = Pointer.NONE
@@ -46,8 +47,9 @@ func _on_web_touch_cancel(arguments: Array) -> void:
 			return
 
 
-func configure(manager: SummonManager, slots: Node2D) -> void:
+func configure(manager: SummonManager, slots: Node2D, return_zone: UnitReturnZone) -> void:
 	_manager = manager
+	_return_zone = return_zone
 	for child: Node in slots.get_children():
 		_slots.append(child as SummonSlot)
 	_enabled = true
@@ -134,15 +136,20 @@ func _update_drag(viewport_position: Vector2) -> void:
 	for slot: SummonSlot in _slots:
 		var merging: bool = slot != _source and not slot.is_empty() and _unit.can_merge_with(slot.unit)
 		slot.set_drop_highlight(slot == destination and slot != _source, merging)
+	_return_zone.set_preview(true, _return_zone.contains_point(world_position), _manager.refund_amount(_unit))
 
 
 func _finish(viewport_position: Vector2) -> void:
 	_update_drag(viewport_position)
 	var source: SummonSlot = _source
 	var unit: CombatUnit = _unit
-	var destination: SummonSlot = _slot_at(_world_position(viewport_position)) if _dragging else null
+	var world_position: Vector2 = _world_position(viewport_position)
+	var returning: bool = _dragging and _return_zone.contains_point(world_position)
+	var destination: SummonSlot = _slot_at(world_position) if _dragging else null
 	cancel_drag()
-	if destination != null:
+	if returning:
+		_manager.try_refund(source, unit)
+	elif destination != null:
 		_manager.try_transfer(source, destination, unit)
 
 
@@ -153,6 +160,8 @@ func cancel_drag() -> void:
 		preview.hide()
 	for slot: SummonSlot in _slots:
 		slot.set_drop_highlight(false)
+	if is_instance_valid(_return_zone):
+		_return_zone.set_preview(false)
 	_pointer = Pointer.NONE
 	_touch_index = -1
 	_source = null

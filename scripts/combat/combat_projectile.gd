@@ -32,6 +32,11 @@ func reassign_attacker(previous: Node2D, successor: Node2D) -> void:
 		_attacker = successor
 
 
+func cancel_from(attacker: CombatUnit) -> void:
+	if not _resolved and _attacker == attacker:
+		_dispose()
+
+
 func _physics_process(delta: float) -> void:
 	if _resolved:
 		return

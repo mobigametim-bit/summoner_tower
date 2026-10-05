@@ -3,6 +3,10 @@ extends Node2D
 
 signal health_changed(current: int, maximum: int)
 signal destroyed
+signal summon_requested
+
+@onready var summon_button: Button = $SummonButton
+@onready var cost_label: Label = $CostLabel
 
 var current_health: int = 0
 var max_health: int = 0
@@ -28,3 +32,13 @@ func take_damage(amount: int) -> void:
 	health_changed.emit(current_health, max_health)
 	if _is_destroyed:
 		destroyed.emit()
+
+
+func update_summon(_mana: int, cost: int, _occupied: int, _capacity: int, available: bool) -> void:
+	cost_label.text = str(cost)
+	summon_button.disabled = not available
+	cost_label.modulate = Color.WHITE if available else Color("7c8999")
+
+
+func _on_summon_button_pressed() -> void:
+	summon_requested.emit()

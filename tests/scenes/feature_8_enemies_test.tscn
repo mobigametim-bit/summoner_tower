@@ -1,0 +1,9 @@
+[gd_scene format=3 uid="uid://cxv1vj2hmw7bc"]
+
+[ext_resource type="Script" uid="uid://xfb5l1qt1loe" path="res://tests/support/feature_8_test_scene.gd" id="1_510iy"]
+[ext_resource type="PackedScene" uid="uid://rkmlqc5qcsrs" path="res://scenes/game.tscn" id="2_s6dq6"]
+
+[node name="EnemyTest" type="Node" unique_id=1997121266]
+script = ExtResource("1_510iy")
+
+[node name="Game" parent="." unique_id=469266139 instance=ExtResource("2_s6dq6")]

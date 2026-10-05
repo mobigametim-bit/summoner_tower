@@ -51,7 +51,7 @@
       }
     },
     {
-      "assert": "get_node('SummonManager').occupied_count() == 6 and get_node('SummonManager').successful_summons == 6 and get_node('SummonManager').mana == 805 and get_node('SummonManager').current_cost() == 50 and get_node('Interface/Hud/SummonButton').disabled"
+      "assert": "get_node('SummonManager').occupied_count() == 6 and get_node('SummonManager').successful_summons == 6 and get_node('SummonManager').mana == 805 and get_node('SummonManager').current_cost() == 50 and get_node('World/Tower/SummonButton').disabled"
     },
     {
       "assert": "not get_node('SummonManager').try_summon()"
@@ -69,7 +69,7 @@
       }
     },
     {
-      "assert": "state == 1 and not get_node('SummonManager').try_summon() and get_node('Interface/Hud/SummonButton').disabled"
+      "assert": "state == 1 and not get_node('SummonManager').try_summon() and get_node('World/Tower/SummonButton').disabled"
     },
     {
       "input": [
@@ -79,7 +79,7 @@
       ]
     },
     {
-      "assert": "state == 0 and get_node('SummonManager').mana == 100 and get_node('SummonManager').current_cost() == 20 and get_node('SummonManager').occupied_count() == 0 and get_node('World/Projectiles').get_child_count() == 0 and get_node('World/Tower').current_health == 100 and not get_node('Interface/Hud/SummonButton').disabled"
+      "assert": "state == 0 and get_node('SummonManager').mana == 100 and get_node('SummonManager').current_cost() == 20 and get_node('SummonManager').occupied_count() == 0 and get_node('World/Projectiles').get_child_count() == 0 and get_node('World/Tower').current_health == 100 and not get_node('World/Tower/SummonButton').disabled"
     },
     {
       "assert_no_errors": true

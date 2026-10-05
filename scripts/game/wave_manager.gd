@@ -8,8 +8,6 @@ signal enemy_resolved(enemy: ApproachingEnemy, outcome: ApproachingEnemy.Outcome
 signal wave_completed(wave: int)
 
 @export var config: WaveConfig
-@export var enemy_config: EncounterConfig
-@export var enemy_scene: PackedScene
 
 @onready var spawn_timer: Timer = $SpawnTimer
 @onready var intermission_timer: Timer = $IntermissionTimer
@@ -23,6 +21,7 @@ var _contact_point: Marker2D
 var _active: Array[ApproachingEnemy] = []
 var _spawn_remaining: int = 0
 var _countdown_seconds: int = -1
+var _sequence: Array[PackedScene] = []
 
 
 func configure(enemies: Node2D, spawn_point: Marker2D, contact_point: Marker2D) -> void:
@@ -45,7 +44,8 @@ func active_count() -> int:
 
 
 func _begin_wave() -> void:
-	_spawn_remaining = config.enemy_count_for(wave_number)
+	_sequence = config.sequence_for(wave_number)
+	_spawn_remaining = _sequence.size()
 	_emit_state()
 	_spawn_next()
 
@@ -54,8 +54,9 @@ func _spawn_next() -> void:
 	if phase != Phase.FIGHTING or _spawn_remaining <= 0:
 		return
 	# Учитываем экземпляр до add_child: callbacks дерева не могут создать лишний спавн.
+	var next_scene: PackedScene = _sequence[_sequence.size() - _spawn_remaining]
 	_spawn_remaining -= 1
-	var enemy: ApproachingEnemy = enemy_scene.instantiate() as ApproachingEnemy
+	var enemy: ApproachingEnemy = next_scene.instantiate() as ApproachingEnemy
 	_active.append(enemy)
 	enemy.resolved.connect(_on_enemy_resolved)
 	_enemies.add_child(enemy)
@@ -63,8 +64,8 @@ func _spawn_next() -> void:
 		enemy.stop()
 		enemy.queue_free()
 		return
-	enemy.configure(enemy_config, _spawn_point.global_position, _contact_point.global_position.y,
-		config.enemy_health_for(wave_number, enemy_config.enemy_max_health))
+	var health: int = config.boss_health_for(wave_number, enemy.stats.base_health) if enemy.stats.is_boss else config.enemy_health_for(wave_number, enemy.stats.base_health)
+	enemy.configure(_spawn_point.global_position, _contact_point.global_position.y, health)
 	if phase != Phase.FIGHTING:
 		return
 	if _spawn_remaining > 0:
@@ -83,7 +84,7 @@ func _on_enemy_resolved(enemy: ApproachingEnemy, outcome: ApproachingEnemy.Outco
 	if phase != Phase.FIGHTING or not _active.has(enemy):
 		return
 	_active.erase(enemy)
-	var mana: int = config.kill_mana if outcome == ApproachingEnemy.Outcome.KILLED else 0
+	var mana: int = enemy.stats.kill_mana if outcome == ApproachingEnemy.Outcome.KILLED else 0
 	# Сначала закрываем событие; урон башне может остановить WaveManager из сигнала.
 	enemy_resolved.emit(enemy, outcome, mana)
 	if phase == Phase.FIGHTING:
@@ -126,6 +127,7 @@ func stop() -> void:
 	spawn_timer.stop()
 	intermission_timer.stop()
 	_spawn_remaining = 0
+	_sequence.clear()
 	var remaining: Array[ApproachingEnemy] = _active.duplicate()
 	_active.clear()
 	for enemy: ApproachingEnemy in remaining:

@@ -7,6 +7,7 @@ var completed: Array[int] = []
 var kills: int = 0
 var escapes: int = 0
 var earned: int = 0
+var refunded: int = 0
 var _bot_enabled: bool = false
 var _bot_elapsed: float = 0.0
 var _web_elapsed: float = 0.0
@@ -15,6 +16,7 @@ var _web_elapsed: float = 0.0
 func _ready() -> void:
 	game.wave_manager.wave_completed.connect(_on_wave_completed)
 	game.wave_manager.enemy_resolved.connect(_on_enemy_resolved)
+	game.summon_manager.unit_refunded.connect(func(amount: int) -> void: refunded += amount)
 
 
 func run_checks() -> void:
@@ -70,7 +72,7 @@ func economy_valid() -> bool:
 	var spent: int = 0
 	for index: int in game.summon_manager.successful_summons:
 		spent += game.summon_manager.config.cost_after(index)
-	return game.summon_manager.mana == game.summon_manager.config.starting_mana + earned - spent
+	return game.summon_manager.mana == game.summon_manager.config.starting_mana + earned + refunded - spent
 
 
 func snapshot() -> Dictionary:
@@ -78,7 +80,7 @@ func snapshot() -> Dictionary:
 	for slot: SummonSlot in slots:
 		levels.append(0 if slot.is_empty() else slot.unit.stats.level)
 	return {"wave": game.wave_manager.wave_number, "phase": game.wave_manager.phase,
-		"completed": completed, "kills": kills, "escapes": escapes, "earned": earned,
+		"completed": completed, "kills": kills, "escapes": escapes, "earned": earned, "refunded": refunded,
 		"mana": game.summon_manager.mana, "cost": game.summon_manager.current_cost(),
 		"summons": game.summon_manager.successful_summons, "levels": levels,
 		"health": game.tower.current_health, "active": game.wave_manager.active_count(),

@@ -8,7 +8,7 @@
     { "assert": "get_meta('feature4_checks').passed and get_meta('feature4_checks').ordered_slot_pairs == 30 and get_node('Game').state == 1" },
     { "input": [{ "click_node": "Game/Interface/Hud/GameOverOverlay/Center/Panel/Stack/RestartButton" }, { "wait": 0.2 }] },
     { "assert": "get_node('Game').state == 0 and get_node('Game/SummonManager').mana == 100 and get_node('Game/SummonManager').current_cost() == 20 and get_node('Game/SummonManager').occupied_count() == 0 and not get_node('Game/World/DragController/Preview').visible" },
-    { "input": [{ "click_node": "Game/Interface/Hud/SummonButton" }, { "drag": [[180, 360], [540, 840]], "seconds": 0.3 }] },
+    { "input": [{ "click_node": "Game/World/Tower/SummonButton" }, { "drag": [[180, 360], [540, 840]], "seconds": 0.3 }] },
     { "assert": "get_node('Game/World/Slots/Slot1').is_empty() and not get_node('Game/World/Slots/Slot6').is_empty() and get_node('Game/SummonManager').mana == 80 and get_node('Game/SummonManager').current_cost() == 25" },
     { "assert_no_errors": true }
   ]
