@@ -22,6 +22,10 @@ func enemy_count_for(wave: int) -> int:
 	return first_enemy_count + maxi(wave - 1, 0) * enemy_count_growth
 
 
+func total_enemy_count_for(wave: int) -> int:
+	return enemy_count_for(wave) + (1 if is_boss_wave(wave) else 0)
+
+
 func enemy_health_for(wave: int, base_health: int) -> int:
 	return base_health + maxi(wave - 1, 0) * enemy_health_growth
 
@@ -35,7 +39,7 @@ func boss_health_for(wave: int, base_health: int) -> int:
 
 
 func sequence_for(wave: int) -> Array[PackedScene]:
-	var count: int = enemy_count_for(wave) - (1 if is_boss_wave(wave) else 0)
+	var count: int = enemy_count_for(wave)
 	var orcs: int = mini(maxi(1, floori(count * orc_share)), count) if wave >= orc_first_wave else 0
 	var golems: int = mini(maxi(1, floori(count * golem_share)), count - orcs) if wave >= golem_first_wave else 0
 	var remaining: Array[int] = [count - orcs - golems, orcs, golems]
@@ -48,5 +52,5 @@ func sequence_for(wave: int) -> Array[PackedScene]:
 				result.append(types[index])
 				remaining[index] -= 1
 	if is_boss_wave(wave):
-		result.append(boss_scene)
+		result.push_front(boss_scene)
 	return result

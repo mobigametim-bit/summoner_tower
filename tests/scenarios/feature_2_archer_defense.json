@@ -50,7 +50,7 @@
       "wait_for": "get_node('WaveManager').wave_number == 2 and get_node('World/Enemies').get_child_count() > 0"
     },
     {
-      "assert": "get_node('World/Enemies').get_child(0).max_health == 35 and get_node('WaveManager').active_count() + get_node('WaveManager')._spawn_remaining == 5 and state == 0"
+      "assert": "get_node('World/Enemies').get_child(0).max_health == 35 and get_node('WaveManager').active_count() + get_node('WaveManager')._spawn_remaining == 6 and state == 0"
     },
     {
       "assert_no_errors": true

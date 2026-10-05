@@ -16,12 +16,14 @@ enum State { RUNNING, GAME_OVER, LEAVING, UPGRADE_CHOICE }
 @onready var hud: GameHud = $Interface/Hud
 @onready var run_bonuses: RunBonuses = $RunBonuses
 @onready var upgrade_choice: UpgradeChoice = $Interface/Hud/UpgradeChoice
+@onready var run_statistics: RunStatistics = $RunStatistics
 
 var state: State = State.RUNNING
 var _offered_upgrades: Array[RunUpgrade] = []
 
 
 func _ready() -> void:
+	run_statistics.reset()
 	run_bonuses.reset()
 	summon_manager.configure($World/Slots, enemies, projectiles, run_bonuses)
 	drag_controller.configure(summon_manager, $World/Slots, $World/Tower/ReturnZone)
@@ -33,6 +35,7 @@ func _ready() -> void:
 func _on_enemy_resolved(enemy: ApproachingEnemy, outcome: ApproachingEnemy.Outcome, mana: int) -> void:
 	if state != State.RUNNING:
 		return
+	run_statistics.record_enemy(enemy, outcome)
 
 	if outcome == ApproachingEnemy.Outcome.REACHED_TOWER:
 		tower.take_damage(enemy.tower_damage)
@@ -80,8 +83,9 @@ func _on_tower_destroyed() -> void:
 		return
 
 	state = State.GAME_OVER
+	run_statistics.finish()
 	_stop_encounter()
-	hud.show_game_over()
+	hud.show_game_over(run_statistics)
 
 
 func _stop_encounter() -> void:

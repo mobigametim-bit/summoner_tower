@@ -1,0 +1,8 @@
+[gd_resource type="Resource" script_class="RunRewardConfig" format=3]
+
+[ext_resource type="Script" path="res://scripts/data/run_reward_config.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+crystals_per_wave = 2
+crystals_per_boss = 10

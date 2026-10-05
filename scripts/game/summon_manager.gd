@@ -3,6 +3,7 @@ extends Node
 
 signal state_changed(mana: int, cost: int, occupied: int, capacity: int, available: bool)
 signal unit_refunded(amount: int)
+signal unit_merged
 
 @export var config: SummonConfig
 @export var pool: SummonPool
@@ -141,6 +142,7 @@ func try_transfer(source: SummonSlot, destination: SummonSlot, expected_unit: Co
 		other.promote()
 		expected_unit.retire_into(other)
 		expected_unit.queue_free()
+		unit_merged.emit()
 		source.unit_host.remove_child(expected_unit)
 		_busy = false
 		_emit_state()

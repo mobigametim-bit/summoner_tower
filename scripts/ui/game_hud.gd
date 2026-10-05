@@ -24,7 +24,13 @@ func update_health(current: int, _maximum: int) -> void:
 	health_label.text = str(current)
 
 
-func show_game_over() -> void:
+func show_game_over(stats: RunStatistics) -> void:
+	var stack: VBoxContainer = game_over_overlay.get_node("Center/Panel/Stack")
+	stack.get_node("Stats/Wave/Value").text = str(stats.reached_wave)
+	stack.get_node("Stats/Enemies/Value").text = str(stats.killed_enemies)
+	stack.get_node("Stats/Bosses/Value").text = str(stats.killed_bosses)
+	stack.get_node("Stats/Merges/Value").text = str(stats.merges)
+	stack.get_node("Reward/Amount").text = "+%d" % stats.earned_crystals
 	game_over_overlay.show()
 	restart_button.grab_focus()
 

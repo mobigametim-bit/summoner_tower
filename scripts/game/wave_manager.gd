@@ -51,6 +51,10 @@ func _begin_wave() -> void:
 	_spawn_remaining = _sequence.size()
 	_emit_state()
 	_spawn_next()
+	# Boss дополнительный: обычный первый враг появляется в тот же кадр.
+	if config.is_boss_wave(wave_number) and phase == Phase.FIGHTING:
+		spawn_timer.stop()
+		_spawn_next()
 
 
 func _spawn_next() -> void:

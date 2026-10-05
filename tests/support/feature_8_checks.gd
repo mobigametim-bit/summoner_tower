@@ -39,7 +39,7 @@ func run(game: Node2D) -> Dictionary:
 		while waves._spawn_remaining > 0:
 			waves._on_spawn_timeout()
 			waves.spawn_timer.stop()
-		assert(waves.active_count() == number + 3)
+		assert(waves.active_count() == config.total_enemy_count_for(number))
 		var counts: Dictionary = {"goblin": 0, "orc": 0, "golem": 0, "boss": 0}
 		var boss: ApproachingEnemy
 		var active: Array[ApproachingEnemy] = waves._active.duplicate()
@@ -55,7 +55,7 @@ func run(game: Node2D) -> Dictionary:
 		assert(counts.boss == (1 if number % 5 == 0 else 0))
 		assert(game.hud.wave_label.text.begins_with("BOSS WAVE") == (boss != null))
 		if boss != null:
-			assert(active.back() == boss and boss.difficulty_tier == 0 and boss.visual.modulate == Color.WHITE)
+			assert(active.front() == boss and boss.difficulty_tier == 0 and boss.visual.modulate == Color.WHITE)
 			boss.apply_slow(0.5, 1.5)
 			assert(is_equal_approx(boss.current_move_speed(), 35.0) and boss.slow_indicator.visible)
 		for enemy: ApproachingEnemy in active:

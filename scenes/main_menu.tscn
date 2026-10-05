@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://d13bwhs04t8ux"]
 
 [ext_resource type="Script" uid="uid://liittspmfd6j" path="res://scripts/ui/main_menu.gd" id="1_l6cm7"]
+[ext_resource type="Texture2D" uid="uid://b7v6r0i243ofk" path="res://assets/soul_crystal.svg" id="2_ekxnf"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vue75"]
 content_margin_left = 24.0
@@ -83,6 +84,27 @@ layout_mode = 2
 theme_override_colors/font_color = Color(0.96862745, 0.8352941, 0.5411765, 1)
 theme_override_font_sizes/font_size = 48
 text = "SUMMONER TOWER"
+horizontal_alignment = 1
+
+[node name="CrystalWallet" type="HBoxContainer" parent="Center/VBox" unique_id=1794124139]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_constants/separation = 12
+
+[node name="Icon" type="TextureRect" parent="Center/VBox/CrystalWallet" unique_id=1142055971]
+custom_minimum_size = Vector2(40, 45)
+layout_mode = 2
+size_flags_vertical = 4
+mouse_filter = 2
+texture = ExtResource("2_ekxnf")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="CrystalBalance" type="Label" parent="Center/VBox/CrystalWallet" unique_id=441376114]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.83137256, 0.7254902, 1, 1)
+theme_override_font_sizes/font_size = 32
+text = "0"
 horizontal_alignment = 1
 
 [node name="Spacer" type="Control" parent="Center/VBox" unique_id=1512882103]

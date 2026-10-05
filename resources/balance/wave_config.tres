@@ -9,7 +9,7 @@
 [resource]
 script = ExtResource("1_config")
 first_enemy_count = 4
-enemy_count_growth = 1
+enemy_count_growth = 2
 enemy_health_growth = 5
 spawn_interval = 1.0
 intermission_duration = 3.0

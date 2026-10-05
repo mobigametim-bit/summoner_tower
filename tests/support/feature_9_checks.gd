@@ -121,7 +121,7 @@ func prepare_first_choice(game: Node2D) -> void:
 	game.tower.take_damage(30)
 	prepare_wave(game, 5, RunUpgrade.Kind.TOWER_ARMOR)
 	var active: Array[ApproachingEnemy] = game.wave_manager._active.duplicate()
-	var boss: ApproachingEnemy = active.back()
+	var boss: ApproachingEnemy = active.front()
 	var unit: CombatUnit = game.get_node("World/Slots/Slot1").unit
 	unit._target = boss
 	unit._fire()
@@ -161,7 +161,7 @@ func check_escape_and_shutdown(game: Node2D) -> Dictionary:
 	assert(game.tower.max_health == 125 and game.tower.current_health == 95)
 	prepare_wave(game, 15, RunUpgrade.Kind.POWER)
 	var active: Array[ApproachingEnemy] = game.wave_manager._active.duplicate()
-	var boss: ApproachingEnemy = active.back()
+	var boss: ApproachingEnemy = active.front()
 	for enemy: ApproachingEnemy in active:
 		if enemy != boss:
 			enemy.take_damage(enemy.max_health)

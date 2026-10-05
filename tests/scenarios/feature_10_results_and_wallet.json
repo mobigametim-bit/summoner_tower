@@ -1,0 +1,27 @@
+{
+  "name": "Feature 10: new boss spawn, result statistics, rewards once and session wallet",
+  "scene": "res://tests/scenes/feature_10_results_test.tscn",
+  "steps": [
+    {"call": {"path": ".", "method": "prepare_result", "args": [0]}},
+    {"wait": 0.15},
+    {"expect_no_node": "Game/Interface/Hud/GameOverOverlay/Center/Panel/Stack/Total"},
+    {"expect_no_node": "Game/Interface/Hud/GameOverOverlay/Center/Panel/Stack/Breakdown"},
+    {"assert": "get_meta('result_checks').passed and get_node('Game/RunStatistics').killed_enemies == 1 and get_node('/root/SessionProgress').crystals == 0"},
+    {"input": [{"click_node": "Game/Interface/Hud/GameOverOverlay/Center/Panel/Stack/RestartButton"}]},
+    {"assert": "get_node('Game/RunStatistics').killed_enemies == 0 and get_node('Game/RunStatistics').completed_waves == 0 and not get_node('Game/RunStatistics').finished"},
+    {"call": {"path": ".", "method": "prepare_result", "args": [5]}},
+    {"wait": 0.15},
+    {"assert": "get_node('Game/RunStatistics').earned_crystals == 20 and get_node('/root/SessionProgress').crystals == 20 and get_node('Game/RunStatistics').killed_enemies == 41 and get_node('Game/RunStatistics').merges == 1"},
+    {"input": [{"click_node": "Game/Interface/Hud/GameOverOverlay/Center/Panel/Stack/RestartButton"}]},
+    {"assert": "get_node('Game').state == 0 and get_node('/root/SessionProgress').crystals == 20 and get_node('Game/RunStatistics').merges == 0 and get_node('Game/RunBonuses')._counts.is_empty() and get_node('Game/SummonManager').mana == 100 and get_node('Game/World/Tower').current_health == 100"},
+    {"call": {"path": ".", "method": "prepare_result", "args": [10]}},
+    {"wait": 0.15},
+    {"assert": "get_node('Game/RunStatistics').earned_crystals == 40 and get_node('/root/SessionProgress').crystals == 60 and get_node('Game/RunStatistics').killed_enemies == 132 and get_node('Game/RunStatistics').killed_bosses == 2"},
+    {"input": [{"click_node": "Game/Interface/Hud/GameOverOverlay/Center/Panel/Stack/MenuButton"}]},
+    {"expect_node": "Center/VBox/PlayButton"},
+    {"assert": "get_node('Center/VBox/CrystalWallet/CrystalBalance').text == '60' and get_node('Center/VBox/CrystalWallet/Icon').texture != null"},
+    {"input": [{"click_node": "Center/VBox/PlayButton"}]},
+    {"assert": "state == 0 and get_node('RunStatistics').completed_waves == 0 and get_node('RunStatistics').killed_enemies == 0 and get_node('RunStatistics').merges == 0 and get_node('/root/SessionProgress').crystals == 60"},
+    {"assert_no_errors": true}
+  ]
+}
