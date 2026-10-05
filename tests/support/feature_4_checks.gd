@@ -9,6 +9,8 @@ func run(scene: Node) -> Dictionary:
 	assert(manager.try_summon() and manager.try_summon())
 	var first: Archer = slots[0].unit
 	var second: Archer = slots[1].unit
+	# Разные уровни сохраняют проверку swap после появления merge одинаковых юнитов.
+	second.promote()
 	first._cooldown = 0.42
 	second._cooldown = 0.37
 

@@ -23,6 +23,11 @@ func launch(origin: Vector2, target: ApproachingEnemy, stats: ArcherStats, attac
 	set_physics_process(true)
 
 
+func reassign_attacker(previous: Node2D, successor: Node2D) -> void:
+	if not _resolved and _attacker == previous:
+		_attacker = successor
+
+
 func _physics_process(delta: float) -> void:
 	if _resolved:
 		return

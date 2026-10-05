@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="ArcherStats" format=3 uid="uid://cxke7ots14mrn"]
+
+[ext_resource type="Script" uid="uid://t5wl1e4nf5h1" path="res://scripts/data/archer_stats.gd" id="1_stats"]
+[ext_resource type="Texture2D" uid="uid://dmcp14pqh2na7" path="res://assets/archer_lv3.svg" id="2_visual"]
+
+[resource]
+script = ExtResource("1_stats")
+level = 3
+visual_texture = ExtResource("2_visual")
+damage = 50
+attack_interval = 0.6
+attack_range = 300.0
+projectile_speed = 700.0

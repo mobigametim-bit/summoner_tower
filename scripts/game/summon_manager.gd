@@ -85,17 +85,28 @@ func can_rearrange() -> bool:
 
 
 func try_transfer(source: SummonSlot, destination: SummonSlot, expected_unit: Archer) -> bool:
-	if not can_rearrange() or not is_instance_valid(expected_unit):
+	if not can_rearrange() or not is_instance_valid(expected_unit) or expected_unit.is_queued_for_deletion():
 		return false
 	if not _slots.has(source) or not _slots.has(destination) or source == destination:
 		return false
 	if source.unit != expected_unit or expected_unit.get_parent() != source.unit_host:
 		return false
 	var other: Archer = destination.unit if not destination.is_empty() else null
-	if other != null and other.get_parent() != destination.unit_host:
+	if other != null and (other.get_parent() != destination.unit_host or other.is_queued_for_deletion()):
 		return false
 
 	_busy = true
+	if other != null and expected_unit.can_merge_with(other):
+		# Ссылки и уровень фиксируются до сигналов удаления исходного узла.
+		source.assign_unit(null)
+		other.promote()
+		expected_unit.retire_into(other)
+		expected_unit.queue_free()
+		source.unit_host.remove_child(expected_unit)
+		_busy = false
+		_emit_state()
+		return true
+
 	# Фиксируем обе ссылки до reparent: сигналы дерева видят согласованную операцию.
 	source.assign_unit(other)
 	destination.assign_unit(expected_unit)

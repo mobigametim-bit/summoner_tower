@@ -41,5 +41,6 @@ func contains_point(world_position: Vector2) -> bool:
 	return hit_rect.has_point(to_local(world_position))
 
 
-func set_drop_highlight(enabled: bool) -> void:
+func set_drop_highlight(enabled: bool, merging: bool = false) -> void:
 	highlight.visible = enabled
+	highlight.modulate = Color("ffc45c") if merging else Color("82e9ed")

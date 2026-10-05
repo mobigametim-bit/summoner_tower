@@ -1,0 +1,9 @@
+[gd_scene format=3 uid="uid://beis8k1x6gnc1"]
+
+[ext_resource type="Script" uid="uid://h5ocr7y0e1ui" path="res://tests/support/feature_5_test_scene.gd" id="1_d60tu"]
+[ext_resource type="PackedScene" uid="uid://rkmlqc5qcsrs" path="res://scenes/game.tscn" id="2_0k0vw"]
+
+[node name="Feature5MergeTest" type="Node" unique_id=631910093]
+script = ExtResource("1_d60tu")
+
+[node name="Game" parent="." unique_id=469266139 instance=ExtResource("2_0k0vw")]

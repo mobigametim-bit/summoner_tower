@@ -17,6 +17,41 @@ var _search_remaining: float = 0.0
 var _running: bool = false
 
 
+func _ready() -> void:
+	refresh_visual()
+
+
+func refresh_visual() -> void:
+	if stats.visual_texture != null:
+		$Visual.texture = stats.visual_texture
+
+
+func can_merge_with(other: Archer) -> bool:
+	return (
+		is_instance_valid(other) and other != self
+		and stats.unit_type == other.stats.unit_type and stats.level == other.stats.level
+		and stats.level < 3 and other.stats.next_level != null
+		and other.stats.next_level.level == stats.level + 1
+		and other.stats.next_level.unit_type == stats.unit_type
+	)
+
+
+func promote() -> void:
+	stats = stats.next_level
+	refresh_visual()
+	refresh_target()
+	_cooldown = stats.attack_interval
+
+
+func retire_into(successor: Archer) -> void:
+	stop()
+	# Стрелы сохраняют снимок урона, но больше не зависят от удаляемого участника merge.
+	for child: Node in _projectiles.get_children():
+		var arrow: ArrowProjectile = child as ArrowProjectile
+		if arrow != null:
+			arrow.reassign_attacker(self, successor)
+
+
 func configure(enemies: Node2D, projectiles: Node2D) -> void:
 	_enemies = enemies
 	_projectiles = projectiles

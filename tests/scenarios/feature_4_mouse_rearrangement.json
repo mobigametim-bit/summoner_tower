@@ -6,6 +6,7 @@
     { "call": { "path": "SummonManager", "method": "try_summon" } },
     { "call": { "path": "SummonManager", "method": "try_summon" } },
     { "eval": "set_meta('first_unit', get_node('World/Slots/Slot1').unit.get_instance_id())" },
+    { "call": { "path": "World/Slots/Slot2/UnitHost/Archer", "method": "promote" } },
     { "eval": "set_meta('second_unit', get_node('World/Slots/Slot2').unit.get_instance_id())" },
     { "input": [{ "drag": [[180, 360], [540, 840]], "seconds": 0.3 }] },
     { "assert": "get_node('World/Slots/Slot1').is_empty() and get_node('World/Slots/Slot6').unit.get_instance_id() == get_meta('first_unit') and get_node('World/Slots/Slot6').unit.get_parent() == get_node('World/Slots/Slot6/UnitHost')" },

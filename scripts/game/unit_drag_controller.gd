@@ -115,6 +115,7 @@ func _begin(viewport_position: Vector2, pointer: Pointer, touch_index: int = -1)
 	_press_position = world_position
 	_grab_offset = slot.global_position - world_position
 	_original_modulate = _unit.modulate
+	preview_visual.texture = _unit.get_node("Visual").texture
 	preview_visual.flip_h = slot.faces_left
 	get_viewport().set_input_as_handled()
 
@@ -131,7 +132,8 @@ func _update_drag(viewport_position: Vector2) -> void:
 	if destination != null:
 		preview_visual.flip_h = destination.faces_left
 	for slot: SummonSlot in _slots:
-		slot.set_drop_highlight(slot == destination and slot != _source)
+		var merging: bool = slot != _source and not slot.is_empty() and _unit.can_merge_with(slot.unit)
+		slot.set_drop_highlight(slot == destination and slot != _source, merging)
 
 
 func _finish(viewport_position: Vector2) -> void:
