@@ -115,10 +115,12 @@ func _begin(viewport_position: Vector2, pointer: Pointer, touch_index: int = -1)
 	_pointer = pointer
 	_touch_index = touch_index
 	_press_position = world_position
-	_grab_offset = slot.global_position - world_position
+	_grab_offset = _unit.global_position - world_position
 	_original_modulate = _unit.modulate
-	preview_visual.texture = _unit.get_node("Visual").texture
+	preview_visual.texture = _unit.drag_texture()
+	preview_visual.material = _unit.drag_material()
 	preview_visual.flip_h = slot.faces_left
+	preview.scale = _unit.drag_scale()
 	get_viewport().set_input_as_handled()
 
 

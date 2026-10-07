@@ -1,0 +1,33 @@
+[gd_scene format=3 uid="uid://bwsmythmymfgd"]
+
+[ext_resource type="Script" uid="uid://b6odkc3td2tgk" path="res://scripts/debug/archer_gameplay_review.gd" id="1_5150m"]
+[ext_resource type="PackedScene" uid="uid://rkmlqc5qcsrs" path="res://scenes/game.tscn" id="1_lu5k1"]
+[ext_resource type="Resource" uid="uid://ckd48k302fnrq" path="res://resources/debug/archer_review_pool.tres" id="19_5150m"]
+
+[node name="ArcherGameplayReview" unique_id=469266139 instance=ExtResource("1_lu5k1")]
+script = ExtResource("1_5150m")
+review_summon_seed = 7
+
+[node name="ArcherReview" type="HBoxContainer" parent="Interface" parent_id_path=PackedInt32Array(242053494) index="1" unique_id=1146139498]
+offset_left = 36.0
+offset_top = 1220.0
+offset_right = 684.0
+offset_bottom = 1270.0
+theme_override_constants/separation = 18
+
+[node name="Title" type="Label" parent="Interface/ArcherReview" index="0" unique_id=681571439]
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+text = "ARCHER REVIEW"
+
+[node name="Animated" type="CheckButton" parent="Interface/ArcherReview" index="1" unique_id=221517472]
+layout_mode = 2
+tooltip_text = "Switch Archer STATIC / ANIMATED"
+theme_override_font_sizes/font_size = 20
+button_pressed = true
+text = "ANIMATED"
+
+[node name="SummonManager" parent="." index="2" unique_id=1068555550]
+pool = ExtResource("19_5150m")
+
+[connection signal="toggled" from="Interface/ArcherReview/Animated" to="." method="_on_animated_toggled"]

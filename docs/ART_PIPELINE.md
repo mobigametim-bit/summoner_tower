@@ -1,0 +1,118 @@
+# SUMMONER TOWER — art и animation pipeline
+
+Стандарт зафиксирован после финальной приёмки Archer 07.10.2026. Решение пользователя: **KEEP RIGID CUTOUT**. [Отчёт пилота](done/ARCHER_GAMEPLAY_REVIEW.md).
+
+## Порядок работы
+
+Один asset: обсуждение и план → явное подтверждение → SVG art → ручная приёмка art → rig/animations → ручная приёмка animation → настоящий gameplay → финальная приёмка → отдельный commit. Перед следующим asset снова обсуждаем план. Push только по отдельному разрешению пользователя.
+
+Порядок: Archer (принят), Goblin, Mage, Frost Mage, Orc, Golem, Boss, Summoner Tower. Новые сущности, skins, equipment и изменения баланса не входят в art pass. Image generators, Krita, готовые чужие sprites запрещены; production art пишется вручную как SVG-код.
+
+## Стиль
+
+- Chunky squat силуэт, крупная голова/корпус, короткие конечности, простые округлые формы. Приоритет: силуэт → читаемость → анимация → детали.
+- Cartoon fantasy, flat fills, максимум 1–2 простых уровня света/тени. Без текстур, мелких узоров, ремешков и декоративного мусора.
+- Главный style reference — `art/references/archer_STYLE_MASTER.png`; для следующего asset отдельно рассматривается его исходный reference.
+- Outline Archer: #29180f, 7 px на холсте 256×256, round linecap/linejoin. Для следующих персонажей сохраняется визуальная толщина; внутренние границы, оружие и лицо могут использовать более узкие strokes.
+- Проверяем 100/140/180 px и фактический gameplay scale. На текущем телефоне холст союзника может занимать всего 37–52 физических px: детализация должна выдерживать это уменьшение.
+
+## SVG и имена
+
+```text
+art/source/<entity>/
+  master.svg
+  parts/<part_name>.svg
+  rig_manifest.json
+  README.md
+scenes/visuals/<Entity>Visual.tscn
+scripts/visuals/<entity>_visual.gd
+```
+
+`master.svg` — review-сборка тех же частей в том же порядке, не замена cutout rig. В Archer он также используется для drag preview. `.import` и необходимые `.uid` сохраняются в git; `.godot/` и экспортированные сборки исключены.
+
+Применяем простые path, ellipse, circle, polygon и группы, flat fills/strokes. Без raster embedding, фильтров, сотен микроскопических paths и зависимостей от шрифтов. Parts добавляем только ради реально нужного движения. Кисти, лицо, уши, ботинки и украшения не отделяем автоматически.
+
+## Pivot и overlap
+
+Все parts персонажа сохраняют один полный прозрачный холст; случайный trimming запрещён. Пилот Archer: 256×256, actor_origin=(128,128), baseline ступней примерно y=239. Эти значения для другого asset сначала проверяются на его силуэте.
+
+Manifest хранит canvas, actor_origin, pivot каждой части, parent_bone, имя bone, sprite_offset и z_index. Координаты — исходный SVG canvas.
+
+- Root.position = −actor_origin.
+- Sprite2D.centered=false; sprite.position = −pivot своей кости.
+- Bone.position = pivot части −pivot родительской кости. Для Body под Root pivot родителя равен (0,0).
+- Rest задаётся явно по исходному transform; нулевой rest запрещён. Автоподбор длины отключён, длина кости задана явно.
+- Часть без отдельной кости использует pivot родителя: Quiver под Body получает offset −Body.pivot.
+- Pivot руки — плечо/локоть, ноги — бедро, головы — основание головы/шея, оружия — хват. Не использовать центр bounding box вместо сустава.
+- Скрытые участки плеч, локтей, ног и головы дорисовываются округлыми формами. Части перекрываются, не сходятся стык в стык. Проверяем крайние позы и зеркалирование.
+
+Archer: 9 частей и 9 костей вместе с Root. Quiver следует Body без отдельной кости. Z-order: Quiver 0, LeftLeg 1, RightLeg 2, DrawUpperArm 3, BowArm 4, Body 5, Head 6, Bow 7, DrawForearm 8. Рука с луком за телом, лук перед рукой. NockedArrow — вспомогательный Sprite2D из существующей arrow.svg, без кости.
+
+## Godot и ответственность
+
+```text
+GameplayEntity
+  Visual                 # сохранённый static Sprite2D
+  Muzzle / collision     # существующие gameplay anchors
+  <Entity>Visual
+    Skeleton2D
+      Root : Bone2D
+        Body : Bone2D
+          ... минимальные Bone2D + Sprite2D
+    AnimationPlayer
+    SpawnPlayer          # только если нужен независимый spawn overlay
+```
+
+ArcherVisual — сосед прежнего Visual; static сохраняется для rollback. Gameplay выбирает цель, ведёт cooldown, создаёт projectile и выполняет damage/награды. Visual выдаёт события и меняет только позу/цвет. Он не управляет gameplay и не содержит root motion.
+
+Кости/узлы — PascalCase, части/скрипты — snake_case, клипы — snake_case. Риг около 6–12 bones максимум; сокращаем там, где дополнительная кость не даёт видимого результата. Skeleton2D/Bone2D с отдельными жёсткими Sprite2D; без weights, Polygon2D deformation, complex IK или constraints.
+
+Редактор, сцены, узлы, анимации, inspection, запуск и export — через Godot MCP. Код и SVG — через apply_patch. Перед preload нового SVG ждём завершения импорта. Перед сохранением/экспортом проверяем несохранённые сцены. Сложные .tscn не правим вручную.
+
+## Анимации и события
+
+| Entity | Реальные клипы |
+|---|---|
+| Archer | idle_loop, attack, spawn |
+| Mage / Frost Mage | idle_loop, cast, spawn |
+| Goblin / Orc / Golem | walk_loop, attack, hit, death |
+| Boss | walk_loop, attack, hit, death, spawn_or_intro |
+| Tower | crystal_pulse либо idle_loop, hit, destroyed; без humanoid skeleton |
+
+Союзники не получают hit/death. Idle слабый: дыхание, небольшое движение головы/оружия. RESET восстанавливает изменяемые свойства, завершившийся клип возвращается в подходящее состояние. Spawn/merge VFX не разрастаются в отдельную систему без согласования.
+
+Archer: idle_loop 2,4 s, attack 0,52 s, release 0,24 s, spawn 0,4 s. В review AnimationPlayer обновляется в physics mode с immediate method callbacks. В бою — manual mode, обновляемый CombatUnit:
+
+1. Подготовка проходит во время прежнего cooldown. Seek задаёт pose и не исполняет method events заранее.
+2. В прежний кадр готовности gameplay переводит visual на release, visual выдаёт событие один раз, CombatUnit вызывает прежний `_fire()`.
+3. Первый выстрел и новая доступная цель после истёкшего cooldown не ждут полного windup.
+4. Скорость клипа max(1, 0,52 / effective_interval), характеристики остаются прежними.
+5. Исчезновение цели/перенос отменяет подготовку. Stop останавливает animation players; повторные release не создают новые снаряды.
+
+SpawnPlayer отдельно анимирует Root теми же spawn-треками. RESET атаки сохраняет transform/modulate Root, поэтому spawn не задерживает первый выстрел. Пауза SceneTree останавливает обе анимации.
+
+Настоящий projectile использует существующие scene/script/Muzzle; ReleasePoint внутри visual — ориентир позы. Для Archer gameplay Muzzle=(32,−8), зеркалируется как прежде. Скорость, damage snapshot, размер стрелы, target validation, reassign при merge и cancel при refund сохранены.
+
+Для врагов movement остаётся в ApproachingEnemy; walk только сопровождает движение. Их атака башни/смерть должны сохранить прежний момент damage, разрешение волны и награды. Перед реализацией обсуждаем, как показать recovery/death после мгновенного удаления gameplay entity.
+
+## Палитра уровней и текстуры
+
+Один rig на все уровни. Archer: Lv1 зелёный, Lv2 оранжевый, Lv3 красный, Lv4 синий, Lv5 фиолетовый. Перекрашивается только ткань четырёх частей простым canvas_item shader; кожа/волосы/кожаные детали/лук/колчан сохраняют цвета. Материал локален для экземпляра и общий для его частей. Другие персонажи получают отдельно согласованный принцип; нельзя автоматически перекрашивать всё тело через modulate.
+
+Runtime части Archer — 256×256 без mipmaps, общий набор Texture2D для всех экземпляров, без текстур на каждый level. Visual.scale=100/256; масштаб клетки задаёт существующий UnitHost. Drag preview использует master.svg, тот же материал и этот коэффициент. Другой масштаб enemy visual определяется по текущей entity, не изменением gameplay range/collision.
+
+## Проверки и performance
+
+Development-only `scenes/debug/ArtAnimationTest.tscn`: asset/animation selector, replay, pause, 0.5×/1×/2×, mirror и реальные масштабы. Производим только текущий asset; остальные пока недоступны. Debug scenes/scripts/assets/resources исключаются из обычного Web export.
+
+На gate проверяем силуэт, gaps/clipping, pivots/overlap/z-order, reset/interruption, события и совместную работу экземпляров. В реальном бою — projectile timing, merge/move/refund/pause/restart и console. Для общих кодовых изменений выбираем затронутые существующие сценарии, не повторяем полный набор без нового риска. Приёмка/перенос отчёта/commit без gameplay правок не требуют повторного длительного прогона.
+
+Web: Godot 4.7.2, Compatibility, соответствующие templates, single-thread, без native extensions. Не вводим большие rasterized SVG и незаметную в игре сложность.
+
+Archer: 9 общих RGBA текстур частей ~2,25 MiB, master ~0,25 MiB без mipmaps. Native замер 10 Archer: ~145 FPS / 103 draw calls со всей ареной против ~144 FPS / 51 STATIC; это desktop evidence. Draw calls, прозрачный overdraw и bones растут с числом enemies. Проверка массовых врагов в Web и на физическом телефоне ещё нужна; pooling и другие оптимизации только по измеренной проблеме.
+
+## Mesh exceptions
+
+По принятому решению сохраняем rigid cutout. Сначала исправляем art shape, overlap, pivot, z-order и keys. Mesh допускается только по новому явному подтверждению и для конкретной гибкой части (длинная ткань, хвост, щупальце). Head/body/arms/legs/weapon остаются rigid. Не переводим весь персонаж на deformation и не переносим исключение автоматически на остальные assets.
+
+Legacy art не удаляется; cleanup — отдельная задача. После финальной приёмки Archer animated visual включён по умолчанию, STATIC доступен в review. Отчёты принятых assets лежат в docs/done; этот стандарт остаётся в docs.

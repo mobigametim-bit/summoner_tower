@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="256" height="256" viewBox="0 0 256 256">
+  <title>Archer — bow</title>
+  <g id="bow" stroke="#29180f" stroke-width="7" stroke-linecap="round" stroke-linejoin="round" data-pivot-x="218" data-pivot-y="176">
+    <path d="m208 92-36 142" fill="none" stroke="#d4c49c" stroke-width="3"/>
+    <path d="M208 92Q185 102 191 123L206 144Q225 168 203 190 197 199 192 212 190 225 171 229L173 238Q198 238 206 224L216 200Q241 172 216 143L203 124Q191 109 208 92Z" fill="#a0602a" stroke-width="6"/>
+    <path d="M202 104Q190 114 202 129L213 143Q233 170 212 193L207 189Q226 167 207 144L197 129Q187 116 202 104Z" fill="#c48036" stroke="none"/>
+    <path d="m199 128 10-6 8 10-12 7Z M179 226l12-2 3 10-13 3Z" fill="#f4dfae" stroke-width="3"/>
+    <path d="m212 163 17 5-3 14-17-5Z" fill="#754229" stroke-width="4"/>
+  </g>
+</svg>

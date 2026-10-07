@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="256" height="256" viewBox="0 0 256 256">
+  <title>Archer — leg_left</title>
+  <g id="leg_left" stroke="#29180f" stroke-width="7" stroke-linecap="round" stroke-linejoin="round" data-pivot-x="107" data-pivot-y="202">
+    <path d="M96 192Q107 187 119 197L118 218 113 235Q99 240 86 235L89 213Z" fill="#78462d"/>
+    <path d="m93 217 23 3-5 12-21-1Z" fill="#a5663e" stroke="none"/>
+    <path d="m93 208 24 7" fill="none" stroke="#452315" stroke-width="5"/>
+  </g>
+</svg>

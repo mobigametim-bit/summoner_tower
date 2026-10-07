@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="256" height="256" viewBox="0 0 256 256">
+  <title>Archer — bow_arm</title>
+  <g id="bow_arm" stroke="#29180f" stroke-width="7" stroke-linecap="round" stroke-linejoin="round" data-pivot-x="164" data-pivot-y="157">
+    <path d="M155 148Q165 138 177 148L194 162Q209 170 202 183 195 192 183 185L158 169Q149 160 155 148Z" fill="#628834"/>
+    <path d="m176 158 21 13-12 11-23-16Z" fill="#476a2b" stroke="none"/>
+    <path d="M189 162Q198 157 204 166L216 176Q220 187 209 193L185 185Z" fill="#825030" stroke-width="5"/>
+    <path d="M207 171Q215 170 219 178 222 187 214 190L203 185Z" fill="#fac795" stroke-width="4"/>
+  </g>
+</svg>

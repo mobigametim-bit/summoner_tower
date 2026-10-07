@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="256" height="256" viewBox="0 0 256 256">
+  <title>Archer — draw_upper_arm</title>
+  <g id="draw_upper_arm" stroke="#29180f" stroke-width="7" stroke-linecap="round" stroke-linejoin="round" data-pivot-x="87" data-pivot-y="157">
+    <path d="M98 147Q91 140 80 146L67 161Q56 173 64 183 70 191 81 181L98 164Q105 155 98 147Z" fill="#638a35"/>
+    <path d="M76 154 68 168Q62 177 70 180L88 160Z" fill="#486a2c" stroke="none"/>
+  </g>
+</svg>

@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="256" height="256" viewBox="0 0 256 256">
+  <title>Archer — body</title>
+  <g id="body" stroke="#29180f" stroke-width="7" stroke-linecap="round" stroke-linejoin="round" data-pivot-x="127" data-pivot-y="176">
+    <path d="M91 138Q124 126 159 141L175 165 173 205Q150 217 128 210 109 216 83 210L87 182 80 163Z" fill="#6e9637"/>
+    <path d="m93 151 13 36-17 16 4-23-7-17Z M155 150l14 21-3 32-15-3 3-20Z" fill="#4d702d" stroke="none"/>
+    <path d="m106 144 48 10-10 18-28-5Z" fill="#8bac42" stroke="none"/>
+    <path d="m97 139 65 40-10 15-64-41Z" fill="#754229" stroke-width="5"/>
+    <path d="m88 188 82-7 2 16-83 8Z" fill="#754229" stroke-width="5"/>
+    <rect x="126" y="182" width="24" height="22" rx="4" fill="#dacba5" stroke-width="4"/>
+    <rect x="133" y="188" width="11" height="10" rx="1" fill="#754229" stroke-width="3"/>
+  </g>
+</svg>

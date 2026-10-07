@@ -1,0 +1,22 @@
+[gd_scene format=3 uid="uid://c4ncdjm4c2e1c"]
+
+[ext_resource type="Script" uid="uid://8px6pnunwy18" path="res://scripts/combat/combat_unit.gd" id="1_ew5nx"]
+[ext_resource type="Resource" uid="uid://d3fugk8lns56s" path="res://resources/balance/archer_lv1.tres" id="2_7f7ab"]
+[ext_resource type="PackedScene" uid="uid://ds1milb6xgln6" path="res://scenes/arrow.tscn" id="3_lpf8i"]
+[ext_resource type="Texture2D" uid="uid://cktgfcgc5nyox" path="res://assets/archer.svg" id="4_wqerp"]
+[ext_resource type="PackedScene" uid="uid://dppy0wu685mq7" path="res://scenes/visuals/ArcherVisual.tscn" id="5_6qmbt"]
+
+[node name="AnimatedArcher" type="Node2D" unique_id=1677709423]
+script = ExtResource("1_ew5nx")
+stats = ExtResource("2_7f7ab")
+projectile_scene = ExtResource("3_lpf8i")
+animated_visual_enabled = true
+
+[node name="Visual" type="Sprite2D" parent="." unique_id=1262552869]
+texture = ExtResource("4_wqerp")
+
+[node name="Muzzle" type="Marker2D" parent="." unique_id=1043330293]
+position = Vector2(32, -8)
+
+[node name="ArcherVisual" parent="." unique_id=655393526 instance=ExtResource("5_6qmbt")]
+visible = false

@@ -1,0 +1,69 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="256" height="256" viewBox="0 0 256 256">
+  <title>Archer — rigid cutout art pilot</title>
+  <desc>Hand-authored SVG. All parts share this 256 × 256 canvas; no trimming or external images.</desc>
+  <g stroke="#29180f" stroke-width="7" stroke-linecap="round" stroke-linejoin="round">
+    <g id="quiver">
+    <path d="M62 111 42 75 M75 101 56 61 M88 103 75 55" fill="none" stroke="#995c31" stroke-width="6"/>
+    <path d="M30 66 41 67 52 89 40 84Z M45 50 57 53 66 77 54 69Z M66 45 76 41 85 68 74 62Z" fill="#f4dfae" stroke-width="5"/>
+    <path d="m37 69 7 13 m10-26 6 14 m13-22 5 13" fill="none" stroke="#637e39" stroke-width="3"/>
+    <path d="M54 109 84 93 105 149 75 174Q65 171 61 156Z" fill="#754229"/>
+    <path d="M54 109 84 93 89 109 60 125Z" fill="#a96537"/>
+    <path d="m69 132 20-12 8 23-22 20Z" fill="#925231" stroke="none"/>
+    </g>
+    <g id="leg_left">
+    <path d="M96 192Q107 187 119 197L118 218 113 235Q99 240 86 235L89 213Z" fill="#78462d"/>
+    <path d="m93 217 23 3-5 12-21-1Z" fill="#a5663e" stroke="none"/>
+    <path d="m93 208 24 7" fill="none" stroke="#452315" stroke-width="5"/>
+    </g>
+    <g id="leg_right">
+    <path d="M137 197Q148 187 158 195L162 213 169 235Q154 240 141 235L136 218Z" fill="#78462d"/>
+    <path d="m141 220 19-3 5 14-21 1Z" fill="#a5663e" stroke="none"/>
+    <path d="m138 215 24-7" fill="none" stroke="#452315" stroke-width="5"/>
+    </g>
+    <g id="draw_upper_arm">
+    <path d="M98 147Q91 140 80 146L67 161Q56 173 64 183 70 191 81 181L98 164Q105 155 98 147Z" fill="#638a35"/>
+    <path d="M76 154 68 168Q62 177 70 180L88 160Z" fill="#486a2c" stroke="none"/>
+    </g>
+    <g id="bow_arm">
+    <path d="M155 148Q165 138 177 148L194 162Q209 170 202 183 195 192 183 185L158 169Q149 160 155 148Z" fill="#628834"/>
+    <path d="m176 158 21 13-12 11-23-16Z" fill="#476a2b" stroke="none"/>
+    <path d="M189 162Q198 157 204 166L216 176Q220 187 209 193L185 185Z" fill="#825030" stroke-width="5"/>
+    <path d="M207 171Q215 170 219 178 222 187 214 190L203 185Z" fill="#fac795" stroke-width="4"/>
+    </g>
+    <g id="body">
+    <path d="M91 138Q124 126 159 141L175 165 173 205Q150 217 128 210 109 216 83 210L87 182 80 163Z" fill="#6e9637"/>
+    <path d="m93 151 13 36-17 16 4-23-7-17Z M155 150l14 21-3 32-15-3 3-20Z" fill="#4d702d" stroke="none"/>
+    <path d="m106 144 48 10-10 18-28-5Z" fill="#8bac42" stroke="none"/>
+    <path d="m97 139 65 40-10 15-64-41Z" fill="#754229" stroke-width="5"/>
+    <path d="m88 188 82-7 2 16-83 8Z" fill="#754229" stroke-width="5"/>
+    <rect x="126" y="182" width="24" height="22" rx="4" fill="#dacba5" stroke-width="4"/>
+    <rect x="133" y="188" width="11" height="10" rx="1" fill="#754229" stroke-width="3"/>
+    </g>
+    <g id="head">
+    <path d="M86 27Q118 10 149 23 178 33 191 64 203 92 203 135Q193 154 166 159 132 169 100 160 72 154 65 132 59 112 81 64Q77 48 86 27Z" fill="#72983b"/>
+    <path d="M87 31Q117 15 148 30L180 69 147 58 123 41 99 43Z" fill="#91b346" stroke="none"/>
+    <path d="M85 57 102 65Q83 99 84 125L100 151Q75 147 70 129 66 110 85 72Z M181 75l15 35-1 23-19 20-19 6 13-27Z" fill="#4e742f" stroke="none"/>
+    <path d="M106 88Q139 55 164 72L187 103 177 133Q148 150 106 137L94 120Z" fill="#fac795"/>
+    <path d="m106 90 12-11 44 22-4 10-32-18-22 23-5 14-5-10Z" fill="#eaa16d" stroke="none"/>
+    <path d="M103 87 161 63Q181 75 190 108L165 96 163 110 144 87 134 92 119 84Z" fill="#a76228" stroke-width="6"/>
+    <path d="m133 81 26-10 20 24-17-14-11 10Z" fill="#c67e32" stroke="none"/>
+    <path d="M87 129Q123 144 177 128L175 144Q158 160 124 155 100 154 87 140Z" fill="#648e35"/>
+    <path d="M95 136Q129 148 166 135L154 146 123 149Z" fill="#82a53d" stroke="none"/>
+    <ellipse cx="120" cy="113" rx="6" ry="10" fill="#29180f" stroke="none"/>
+    <ellipse cx="158" cy="113" rx="6" ry="10" fill="#29180f" stroke="none"/>
+    <path d="m111 101 17 7 m22 0 16-7" fill="none" stroke-width="6"/>
+    </g>
+    <g id="bow">
+    <path d="m208 92-36 142" fill="none" stroke="#d4c49c" stroke-width="3"/>
+    <path d="M208 92Q185 102 191 123L206 144Q225 168 203 190 197 199 192 212 190 225 171 229L173 238Q198 238 206 224L216 200Q241 172 216 143L203 124Q191 109 208 92Z" fill="#a0602a" stroke-width="6"/>
+    <path d="M202 104Q190 114 202 129L213 143Q233 170 212 193L207 189Q226 167 207 144L197 129Q187 116 202 104Z" fill="#c48036" stroke="none"/>
+    <path d="m199 128 10-6 8 10-12 7Z M179 226l12-2 3 10-13 3Z" fill="#f4dfae" stroke-width="3"/>
+    <path d="m212 163 17 5-3 14-17-5Z" fill="#754229" stroke-width="4"/>
+    </g>
+    <g id="draw_forearm">
+    <path d="M61 176Q64 165 75 169L100 178Q110 185 103 195 98 201 88 198L67 190Q60 187 61 176Z" fill="#825030"/>
+    <path d="m70 173 17 7-4 14-16-8Z" fill="#a66b40" stroke="none"/>
+    <path d="M93 177Q102 173 109 181 116 190 104 196 96 199 89 192Z" fill="#fac795" stroke-width="5"/>
+    </g>
+  </g>
+</svg>

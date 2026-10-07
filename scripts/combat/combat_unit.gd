@@ -6,10 +6,12 @@ const TARGET_SEARCH_INTERVAL: float = 0.1
 @export var stats: UnitStats
 @export var projectile_scene: PackedScene
 @export var attack_enabled: bool = true
+@export var animated_visual_enabled: bool = false
 
 var paid_mana: int = 0
 
 @onready var muzzle: Marker2D = $Muzzle
+@onready var archer_visual: ArcherVisual = get_node_or_null("ArcherVisual") as ArcherVisual
 
 var _enemies: Node2D
 var _projectiles: Node2D
@@ -19,15 +21,49 @@ var _search_remaining: float = 0.0
 var _running: bool = false
 var _run_bonuses: RunBonuses
 var _damage_remainder: float = 0.0
+var _visual_release_pending: bool = false
 
 
 func _ready() -> void:
 	refresh_visual()
+	if archer_visual != null:
+		archer_visual.release.connect(_on_visual_release)
+		archer_visual.enable_gameplay(animated_visual_enabled)
+		_apply_visual_mode()
 
 
 func refresh_visual() -> void:
 	if stats.visual_texture != null:
 		$Visual.texture = stats.visual_texture
+	if archer_visual != null:
+		archer_visual.set_level(stats.level)
+
+
+func set_animated_visual(enabled: bool) -> void:
+	animated_visual_enabled = enabled and archer_visual != null
+	if archer_visual != null:
+		archer_visual.cancel_preparation()
+		archer_visual.enable_gameplay()
+		_apply_visual_mode()
+
+
+func _apply_visual_mode() -> void:
+	$Visual.visible = not animated_visual_enabled
+	archer_visual.visible = animated_visual_enabled
+	if not animated_visual_enabled:
+		archer_visual.stop_gameplay()
+
+
+func drag_texture() -> Texture2D:
+	return ArcherVisual.DRAG_TEXTURE if animated_visual_enabled else $Visual.texture
+
+
+func drag_material() -> Material:
+	return archer_visual.cloth_material if animated_visual_enabled else null
+
+
+func drag_scale() -> Vector2:
+	return global_scale * absf(archer_visual.scale.x) if animated_visual_enabled else global_scale
 
 
 func can_merge_with(other: CombatUnit) -> bool:
@@ -71,11 +107,15 @@ func effective_attack_interval() -> float:
 func set_facing_left(faces_left: bool) -> void:
 	$Visual.flip_h = faces_left
 	muzzle.position.x = -absf(muzzle.position.x) if faces_left else absf(muzzle.position.x)
+	if archer_visual != null:
+		archer_visual.scale.x = -absf(archer_visual.scale.x) if faces_left else absf(archer_visual.scale.x)
 
 
 func refresh_target() -> void:
 	_target = null
 	_search_remaining = 0.0
+	if archer_visual != null:
+		archer_visual.cancel_preparation()
 
 
 func _physics_process(delta: float) -> void:
@@ -87,6 +127,12 @@ func _physics_process(delta: float) -> void:
 	if _search_remaining <= 0.0:
 		_target = _find_nearest_target()
 		_search_remaining = TARGET_SEARCH_INTERVAL
+	if animated_visual_enabled:
+		var has_target: bool = (
+			is_instance_valid(_target) and _target.is_targetable()
+			and global_position.distance_squared_to(_target.global_position) <= stats.attack_range ** 2
+		)
+		archer_visual.advance_gameplay(delta, _cooldown, effective_attack_interval(), has_target)
 	if _cooldown > 0.0 or not is_instance_valid(_target):
 		return
 	if not _target.is_targetable():
@@ -95,8 +141,19 @@ func _physics_process(delta: float) -> void:
 	if global_position.distance_squared_to(_target.global_position) > stats.attack_range ** 2:
 		return
 
-	_fire()
+	if animated_visual_enabled:
+		_visual_release_pending = true
+		archer_visual.release_now()
+	else:
+		_fire()
 	_cooldown = effective_attack_interval()
+
+
+func _on_visual_release() -> void:
+	if not _visual_release_pending or not _running:
+		return
+	_visual_release_pending = false
+	_fire()
 
 
 func _find_nearest_target() -> ApproachingEnemy:
@@ -131,4 +188,7 @@ func _next_damage() -> int:
 func stop() -> void:
 	_running = false
 	_target = null
+	_visual_release_pending = false
+	if archer_visual != null:
+		archer_visual.stop_gameplay()
 	set_physics_process(false)

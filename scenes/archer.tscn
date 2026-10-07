@@ -4,14 +4,19 @@
 [ext_resource type="Resource" uid="uid://d3fugk8lns56s" path="res://resources/balance/archer_lv1.tres" id="2_cctdm"]
 [ext_resource type="PackedScene" uid="uid://ds1milb6xgln6" path="res://scenes/arrow.tscn" id="3_ejvcm"]
 [ext_resource type="Texture2D" uid="uid://cktgfcgc5nyox" path="res://assets/archer.svg" id="4_c85qa"]
+[ext_resource type="PackedScene" uid="uid://dppy0wu685mq7" path="res://scenes/visuals/ArcherVisual.tscn" id="5_ejvcm"]
 
 [node name="Archer" type="Node2D" unique_id=1677709423]
 script = ExtResource("1_jggnj")
 stats = ExtResource("2_cctdm")
 projectile_scene = ExtResource("3_ejvcm")
+animated_visual_enabled = true
 
 [node name="Visual" type="Sprite2D" parent="." unique_id=1262552869]
 texture = ExtResource("4_c85qa")
 
 [node name="Muzzle" type="Marker2D" parent="." unique_id=1043330293]
 position = Vector2(32, -8)
+
+[node name="ArcherVisual" parent="." unique_id=655393526 instance=ExtResource("5_ejvcm")]
+visible = false

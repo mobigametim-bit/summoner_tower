@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="256" height="256" viewBox="0 0 256 256">
+  <title>Archer — quiver</title>
+  <g id="quiver" stroke="#29180f" stroke-width="7" stroke-linecap="round" stroke-linejoin="round" data-pivot-x="86" data-pivot-y="158">
+    <path d="M62 111 42 75 M75 101 56 61 M88 103 75 55" fill="none" stroke="#995c31" stroke-width="6"/>
+    <path d="M30 66 41 67 52 89 40 84Z M45 50 57 53 66 77 54 69Z M66 45 76 41 85 68 74 62Z" fill="#f4dfae" stroke-width="5"/>
+    <path d="m37 69 7 13 m10-26 6 14 m13-22 5 13" fill="none" stroke="#637e39" stroke-width="3"/>
+    <path d="M54 109 84 93 105 149 75 174Q65 171 61 156Z" fill="#754229"/>
+    <path d="M54 109 84 93 89 109 60 125Z" fill="#a96537"/>
+    <path d="m69 132 20-12 8 23-22 20Z" fill="#925231" stroke="none"/>
+  </g>
+</svg>
