@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="256" height="256" viewBox="0 0 256 256">
+  <title>Goblin — leg_right</title>
+  <g id="leg_right" stroke="#29180f" stroke-width="7" stroke-linecap="round" stroke-linejoin="round" data-pivot-x="146" data-pivot-y="203">
+    <path d="M134 190Q147 180 156 192L163 211 170 229 166 237Q146 241 132 234L131 220 128 203Z" fill="#98bf45"/>
+    <path d="m141 194 13-1 5 24-9 14-17-3 3-15Z" fill="#728f32" stroke="none"/>
+    <path d="m131 217 31-4 9 22Q153 242 132 236L130 227Z" fill="#754229" stroke-width="6"/>
+    <path d="m136 219 23-4 3 8-25 7Z" fill="#aa7540" stroke="none"/>
+    <path d="m143 226 14-4 9 12-27 2Z" fill="#98bf45" stroke-width="4"/>
+  </g>
+</svg>

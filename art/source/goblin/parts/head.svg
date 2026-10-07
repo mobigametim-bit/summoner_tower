@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="256" height="256" viewBox="0 0 256 256">
+  <title>Goblin — head</title>
+  <g id="head" stroke="#29180f" stroke-width="7" stroke-linecap="round" stroke-linejoin="round" data-pivot-x="133" data-pivot-y="145">
+    <path d="M82 70Q60 48 23 51L35 82Q48 111 75 113L89 99Z" fill="#98bf45"/>
+    <path d="M35 59Q57 60 73 78L70 98Q50 92 43 76Z" fill="#ce8e62" stroke-width="4"/>
+    <path d="m48 67 22 14-2 15-11-8Z" fill="#a86342" stroke="none"/>
+    <path d="M174 76Q194 58 213 62L197 88Q185 110 172 112L164 95Z" fill="#98bf45"/>
+    <path d="m183 78 18-8-15 25-11 6Z" fill="#ce8e62" stroke-width="4"/>
+    <path d="M92 46Q124 23 153 33 178 40 190 72L195 110Q192 137 175 150 149 169 119 158L91 147Q70 135 68 110 65 75 92 46Z" fill="#98bf45"/>
+    <path d="M96 48Q124 28 151 40L166 60 145 52 127 47 108 58Z" fill="#afd15b" stroke="none"/>
+    <path d="M84 68 92 79Q75 113 93 137L126 153 116 154 93 142Q72 132 74 105Z M181 84l10 25-4 23-21 22-16 5 20-23Z" fill="#728f32" stroke="none"/>
+    <ellipse cx="109" cy="112" rx="8" ry="12" transform="rotate(17 109 112)" fill="#29180f" stroke="none"/>
+    <ellipse cx="164" cy="112" rx="7" ry="11" transform="rotate(12 164 112)" fill="#29180f" stroke="none"/>
+    <path d="m94 96 27 14 m34 0 24-14" fill="none" stroke-width="6"/>
+    <path d="M123 110Q135 100 145 111L154 125Q150 136 140 131L123 120Z" fill="#728f32" stroke-width="6"/>
+    <path d="m130 112 9-2 9 11-8-4Z" fill="#98bf45" stroke="none"/>
+    <path d="m124 146 10-13 8 21Z" fill="#ead5a2" stroke-width="5"/>
+  </g>
+</svg>

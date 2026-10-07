@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="256" height="256" viewBox="0 0 256 256">
+  <title>Goblin — equipment recolor mask</title>
+  <!-- All parts retain the same canvas. Only these five clothing shapes are masked. -->
+  <g fill="#ffffff">
+    <path d="m41 176 30 10-4 15-33-10Z"/>
+    <path d="m178 173 22 11-9 18-23-12Z"/>
+    <path d="M89 187Q125 200 164 185L163 204 151 218 138 208 125 220 111 208 94 217 80 205Z"/>
+    <path d="m84 217 30-4 5 23Q101 241 78 237L77 229Z"/>
+    <path d="m131 217 31-4 9 22Q153 242 132 236L130 227Z"/>
+  </g>
+</svg>

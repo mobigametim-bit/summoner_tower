@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="256" height="256" viewBox="0 0 256 256">
+  <title>Goblin — dagger</title>
+  <g id="dagger" stroke="#29180f" stroke-width="7" stroke-linecap="round" stroke-linejoin="round" data-pivot-x="205" data-pivot-y="190">
+    <path d="m204 175 18 8-15 30Q201 221 188 211L185 206Z" fill="#754229" stroke-width="6"/>
+    <path d="m202 188 9 6-10 17-9-4Z" fill="#aa7540" stroke="none"/>
+    <path d="m207 173 33-58 4 28-22 38Z" fill="#ead5a2" stroke-width="6"/>
+    <path d="m213 172 26-49-7 25-11 27Z" fill="#c6ab7f" stroke="none"/>
+    <path d="m199 168 29 14-5 9-28-15Z" fill="#9c642d" stroke-width="5"/>
+  </g>
+</svg>

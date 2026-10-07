@@ -1,0 +1,136 @@
+{
+  "version": 1,
+  "entity": "Goblin",
+  "stage": "accepted",
+  "canvas": [
+    256,
+    256
+  ],
+  "actor_origin": [
+    128,
+    128
+  ],
+  "feet_baseline_y": 239,
+  "gameplay_canvas_size": 108,
+  "coordinates": "Full untrimmed canvas. Sprite2D centered=false, position=-bone pivot. Root=-actor_origin; Bone local position=part pivot-parent pivot. Bone rest explicitly equals initial transform.",
+  "outline": {
+    "color": "#29180f",
+    "width": 7
+  },
+  "parts": [
+    {
+      "file": "parts/arm_back.svg",
+      "pivot": [
+        83,
+        159
+      ],
+      "parent_bone": "Body",
+      "bone": "BackArm",
+      "sprite_offset": [
+        -83,
+        -159
+      ],
+      "z_index": 0
+    },
+    {
+      "file": "parts/leg_left.svg",
+      "pivot": [
+        101,
+        203
+      ],
+      "parent_bone": "Body",
+      "bone": "LeftLeg",
+      "sprite_offset": [
+        -101,
+        -203
+      ],
+      "z_index": 1
+    },
+    {
+      "file": "parts/leg_right.svg",
+      "pivot": [
+        146,
+        203
+      ],
+      "parent_bone": "Body",
+      "bone": "RightLeg",
+      "sprite_offset": [
+        -146,
+        -203
+      ],
+      "z_index": 2
+    },
+    {
+      "file": "parts/body.svg",
+      "pivot": [
+        126,
+        179
+      ],
+      "parent_bone": "Root",
+      "bone": "Body",
+      "sprite_offset": [
+        -126,
+        -179
+      ],
+      "z_index": 3
+    },
+    {
+      "file": "parts/arm_front.svg",
+      "pivot": [
+        164,
+        161
+      ],
+      "parent_bone": "Body",
+      "bone": "FrontArm",
+      "sprite_offset": [
+        -164,
+        -161
+      ],
+      "z_index": 4
+    },
+    {
+      "file": "parts/head.svg",
+      "pivot": [
+        133,
+        145
+      ],
+      "parent_bone": "Body",
+      "bone": "Head",
+      "sprite_offset": [
+        -133,
+        -145
+      ],
+      "z_index": 5
+    },
+    {
+      "file": "parts/dagger.svg",
+      "pivot": [
+        205,
+        190
+      ],
+      "parent_bone": "FrontArm",
+      "bone": "Dagger",
+      "sprite_offset": [
+        -205,
+        -190
+      ],
+      "z_index": 6
+    }
+  ],
+  "visual_scene": "res://scenes/visuals/GoblinVisual.tscn",
+  "visual_scale": 0.421875,
+  "bone_count": 8,
+  "animations": {
+    "walk_loop": 0.64,
+    "attack": 0.34,
+    "hit": 0.16,
+    "death": 0.32
+  },
+  "attack_impact_time": 0.16,
+  "gameplay_entity": "res://scenes/enemy.tscn",
+  "static_fallback": "res://assets/enemy.svg",
+  "equipment_shader": "res://art/source/goblin/equipment_palette.gdshader",
+  "equipment_mask": "res://art/source/goblin/equipment_mask.svg",
+  "difficulty_recolor": "Boots, bracers and loincloth only. Skin, shoulder strap, shoulder pad, eyes, fang and dagger retain their source colors. All five equipment colors use EnemyStats thresholds.",
+  "note": "Final asset accepted on 2026-10-07, including equipment-only difficulty colors. Animated visual is the normal enemy default; static fallback is preserved. Separate asset commit; push requires explicit permission."
+}

@@ -4,10 +4,12 @@
 [ext_resource type="PackedScene" uid="uid://dppy0wu685mq7" path="res://scenes/visuals/ArcherVisual.tscn" id="1_ft3xg"]
 [ext_resource type="Texture2D" uid="uid://sc7pwaj7sduv" path="res://assets/environment/ground_cell.svg" id="1_ydapb"]
 [ext_resource type="Texture2D" uid="uid://cdllm4abl5k4e" path="res://assets/debug/animation_controls/previous.svg" id="2_0iks8"]
+[ext_resource type="Texture2D" uid="uid://jk7um1wnikmc" path="res://assets/environment/paved_road.svg" id="2_0osjj"]
 [ext_resource type="Texture2D" uid="uid://d03birb54d1he" path="res://assets/environment/pedestal.svg" id="2_ft3xg"]
 [ext_resource type="Texture2D" uid="uid://ivqfnctrgiq1" path="res://assets/debug/animation_controls/next.svg" id="3_wn2je"]
 [ext_resource type="Texture2D" uid="uid://vxilfcvid4jy" path="res://assets/debug/animation_controls/replay.svg" id="5_0osjj"]
 [ext_resource type="Texture2D" uid="uid://c5ba2p5wccy1h" path="res://assets/debug/animation_controls/pause.svg" id="6_lv00d"]
+[ext_resource type="PackedScene" uid="uid://oc8xhrjf4wpc" path="res://scenes/visuals/GoblinVisual.tscn" id="10_lv00d"]
 
 [node name="ArtAnimationTest" type="Control" unique_id=1958274146]
 layout_mode = 3
@@ -48,7 +50,7 @@ theme_override_constants/separation = 16
 layout_mode = 2
 theme_override_colors/font_color = Color(0.89411765, 0.7490196, 0.40784314, 1)
 theme_override_font_sizes/font_size = 30
-text = "ARCHER · ANIMATION REVIEW"
+text = "ART · ANIMATION REVIEW"
 horizontal_alignment = 1
 
 [node name="AssetRow" type="HBoxContainer" parent="Margin/Content" unique_id=176351381]
@@ -136,6 +138,9 @@ color = Color(0.105882354, 0.1882353, 0.15686275, 1)
 [node name="PreviewHost" type="Node2D" parent="Margin/Content/Stage" unique_id=1627029676]
 
 [node name="ArcherVisual" parent="Margin/Content/Stage/PreviewHost" unique_id=655393526 instance=ExtResource("1_ft3xg")]
+
+[node name="GoblinVisual" parent="Margin/Content/Stage/PreviewHost" unique_id=756032484 instance=ExtResource("10_lv00d")]
+visible = false
 
 [node name="Playback" type="HBoxContainer" parent="Margin/Content" unique_id=1971342820]
 layout_mode = 2
@@ -242,12 +247,19 @@ mouse_filter = 2
 scale = Vector2(0.8, 0.8)
 texture = ExtResource("1_ydapb")
 
+[node name="Road" type="Sprite2D" parent="Margin/Content/Samples/Columns6/Cell/Anchor" unique_id=1267105660]
+visible = false
+texture = ExtResource("2_0osjj")
+
 [node name="Pedestal" type="Sprite2D" parent="Margin/Content/Samples/Columns6/Cell/Anchor" unique_id=1481490025]
 texture = ExtResource("2_ft3xg")
 
 [node name="UnitHost" type="Node2D" parent="Margin/Content/Samples/Columns6/Cell/Anchor" unique_id=1410686089]
 
 [node name="ArcherVisual" parent="Margin/Content/Samples/Columns6/Cell/Anchor/UnitHost" unique_id=715324703 instance=ExtResource("1_ft3xg")]
+
+[node name="GoblinVisual" parent="Margin/Content/Samples/Columns6/Cell/Anchor/UnitHost" unique_id=1089014142 instance=ExtResource("10_lv00d")]
+visible = false
 
 [node name="SizeLabel" type="Label" parent="Margin/Content/Samples/Columns6" unique_id=1980167003]
 layout_mode = 2
@@ -270,12 +282,19 @@ mouse_filter = 2
 scale = Vector2(0.8, 0.8)
 texture = ExtResource("1_ydapb")
 
+[node name="Road" type="Sprite2D" parent="Margin/Content/Samples/Columns7/Cell/Anchor" unique_id=258787677]
+visible = false
+texture = ExtResource("2_0osjj")
+
 [node name="Pedestal" type="Sprite2D" parent="Margin/Content/Samples/Columns7/Cell/Anchor" unique_id=1506071200]
 texture = ExtResource("2_ft3xg")
 
 [node name="UnitHost" type="Node2D" parent="Margin/Content/Samples/Columns7/Cell/Anchor" unique_id=1202941876]
 
 [node name="ArcherVisual" parent="Margin/Content/Samples/Columns7/Cell/Anchor/UnitHost" unique_id=1938133722 instance=ExtResource("1_ft3xg")]
+
+[node name="GoblinVisual" parent="Margin/Content/Samples/Columns7/Cell/Anchor/UnitHost" unique_id=1419638306 instance=ExtResource("10_lv00d")]
+visible = false
 
 [node name="SizeLabel" type="Label" parent="Margin/Content/Samples/Columns7" unique_id=211708040]
 layout_mode = 2
@@ -298,12 +317,19 @@ mouse_filter = 2
 scale = Vector2(0.8, 0.8)
 texture = ExtResource("1_ydapb")
 
+[node name="Road" type="Sprite2D" parent="Margin/Content/Samples/Columns8/Cell/Anchor" unique_id=2043524781]
+visible = false
+texture = ExtResource("2_0osjj")
+
 [node name="Pedestal" type="Sprite2D" parent="Margin/Content/Samples/Columns8/Cell/Anchor" unique_id=1111419278]
 texture = ExtResource("2_ft3xg")
 
 [node name="UnitHost" type="Node2D" parent="Margin/Content/Samples/Columns8/Cell/Anchor" unique_id=1140667402]
 
 [node name="ArcherVisual" parent="Margin/Content/Samples/Columns8/Cell/Anchor/UnitHost" unique_id=363990514 instance=ExtResource("1_ft3xg")]
+
+[node name="GoblinVisual" parent="Margin/Content/Samples/Columns8/Cell/Anchor/UnitHost" unique_id=225279598 instance=ExtResource("10_lv00d")]
+visible = false
 
 [node name="SizeLabel" type="Label" parent="Margin/Content/Samples/Columns8" unique_id=252214829]
 layout_mode = 2
@@ -322,18 +348,23 @@ horizontal_alignment = 1
 layout_mode = 2
 theme_override_colors/font_color = Color(0.68235296, 0.7490196, 0.78431374, 1)
 theme_override_font_sizes/font_size = 18
-text = "Art pilot · 9 bones · rigid cutout"
+text = "SVG cutout · Bone2D · AnimationPlayer
+Preview only · gameplay unchanged"
 horizontal_alignment = 1
 
 [node name="RepeatTimer" type="Timer" parent="." unique_id=311967]
 wait_time = 0.6
 one_shot = true
 
+[connection signal="pressed" from="Margin/Content/AssetRow/PreviousAsset" to="." method="_on_previous_asset"]
+[connection signal="pressed" from="Margin/Content/AssetRow/NextAsset" to="." method="_on_next_asset"]
 [connection signal="pressed" from="Margin/Content/AnimationRow/PreviousAnimation" to="." method="_on_previous_animation"]
 [connection signal="pressed" from="Margin/Content/AnimationRow/NextAnimation" to="." method="_on_next_animation"]
 [connection signal="resized" from="Margin/Content/Stage" to="." method="_layout_previews"]
 [connection signal="release" from="Margin/Content/Stage/PreviewHost/ArcherVisual" to="." method="_on_visual_release"]
 [connection signal="visual_animation_finished" from="Margin/Content/Stage/PreviewHost/ArcherVisual" to="." method="_on_visual_animation_finished"]
+[connection signal="attack_impact" from="Margin/Content/Stage/PreviewHost/GoblinVisual" to="." method="_on_visual_impact"]
+[connection signal="visual_animation_finished" from="Margin/Content/Stage/PreviewHost/GoblinVisual" to="." method="_on_visual_animation_finished"]
 [connection signal="pressed" from="Margin/Content/Playback/Replay" to="." method="replay"]
 [connection signal="pressed" from="Margin/Content/Playback/Pause" to="." method="_on_pause"]
 [connection signal="pressed" from="Margin/Content/SpeedRow/Half" to="." method="_on_half_speed"]

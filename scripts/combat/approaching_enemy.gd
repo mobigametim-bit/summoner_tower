@@ -6,6 +6,7 @@ enum Outcome { KILLED, REACHED_TOWER }
 signal resolved(enemy: ApproachingEnemy, outcome: Outcome)
 
 @export var stats: EnemyStats
+@export var animated_visual_enabled: bool = false
 
 var tower_damage: int = 0
 var move_speed: float = 0.0
@@ -16,6 +17,7 @@ var difficulty_tier: int = 1
 @onready var visual: Sprite2D = $Visual
 @onready var health_bar: ProgressBar = $HealthBar
 @onready var slow_indicator: Sprite2D = $SlowIndicator
+@onready var goblin_visual: GoblinVisual = get_node_or_null("GoblinVisual") as GoblinVisual
 
 var _target_y: float = 0.0
 var _resolved: bool = false
@@ -25,6 +27,7 @@ var _slow_remaining: float = 0.0
 
 func _ready() -> void:
 	set_physics_process(false)
+	set_animated_visual(animated_visual_enabled)
 
 
 func configure(spawn_position: Vector2, target_y: float, health: int = 0) -> void:
@@ -35,6 +38,7 @@ func configure(spawn_position: Vector2, target_y: float, health: int = 0) -> voi
 	current_health = max_health
 	difficulty_tier = stats.difficulty_tier(max_health)
 	visual.modulate = stats.color_for(max_health)
+	set_animated_visual(animated_visual_enabled)
 	_update_health_bar()
 	_target_y = target_y
 	_clear_slow()
@@ -48,16 +52,45 @@ func _physics_process(delta: float) -> void:
 	# Последний неполный кадр эффекта учитывается отдельно, чтобы срок не зависел от FPS.
 	var slowed_delta: float = minf(delta, _slow_remaining)
 	var distance: float = move_speed * (delta - slowed_delta * _slow_ratio)
+	var previous_position: Vector2 = global_position
 	global_position.y = move_toward(global_position.y, _target_y, distance)
 	_slow_remaining = maxf(_slow_remaining - delta, 0.0)
 	if _slow_remaining <= 0.0 and _slow_ratio > 0.0:
 		_clear_slow()
+	if animated_visual_enabled:
+		goblin_visual.advance_gameplay(delta, _time_to_contact(), global_position - previous_position)
 	if global_position.y >= _target_y:
 		_resolve_at_tower()
 
 
 func _resolve_at_tower() -> void:
+	if _resolved:
+		return
+	if animated_visual_enabled:
+		goblin_visual.impact_now()
 	_finish(Outcome.REACHED_TOWER)
+
+
+func set_animated_visual(enabled: bool) -> void:
+	animated_visual_enabled = enabled and goblin_visual != null
+	visual.visible = not animated_visual_enabled
+	if goblin_visual == null:
+		return
+	goblin_visual.visible = animated_visual_enabled
+	if animated_visual_enabled:
+		goblin_visual.enable_gameplay()
+		goblin_visual.set_difficulty(difficulty_tier, stats.color_for(max_health))
+	else:
+		goblin_visual.stop_gameplay()
+
+
+func _time_to_contact() -> float:
+	var remaining: float = maxf(_target_y - global_position.y, 0.0)
+	var speed: float = current_move_speed()
+	var slow_distance: float = speed * _slow_remaining
+	if remaining <= slow_distance:
+		return remaining / maxf(speed, 0.001)
+	return _slow_remaining + (remaining - slow_distance) / maxf(move_speed, 0.001)
 
 
 func take_damage(amount: int) -> void:
@@ -68,6 +101,8 @@ func take_damage(amount: int) -> void:
 	_update_health_bar()
 	if current_health == 0:
 		_finish(Outcome.KILLED)
+	elif animated_visual_enabled:
+		goblin_visual.show_hit()
 
 
 func is_targetable() -> bool:
@@ -111,6 +146,11 @@ func _finish(outcome: Outcome) -> void:
 	_resolved = true
 	set_physics_process(false)
 	_clear_slow()
+	if animated_visual_enabled:
+		# Only the visual survives; it is neither a target nor an active wave enemy.
+		goblin_visual.reparent(get_parent().get_parent(), true)
+		goblin_visual.add_to_group("enemy_visual_tails")
+		goblin_visual.finish_as_tail(outcome == Outcome.KILLED)
 	resolved.emit(self, outcome)
 	queue_free()
 
@@ -119,3 +159,5 @@ func stop() -> void:
 	_resolved = true
 	set_physics_process(false)
 	_clear_slow()
+	if goblin_visual != null and is_instance_valid(goblin_visual):
+		goblin_visual.stop_gameplay()

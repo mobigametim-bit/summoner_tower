@@ -93,6 +93,7 @@ func _stop_encounter() -> void:
 	_offered_upgrades.clear()
 	upgrade_choice.close_choice()
 	wave_manager.stop()
+	get_tree().call_group(&"enemy_visual_tails", &"queue_free")
 	drag_controller.stop()
 	summon_manager.stop()
 	for projectile: Node in projectiles.get_children():

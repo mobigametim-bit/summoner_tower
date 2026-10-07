@@ -6,7 +6,7 @@
 
 Один asset: обсуждение и план → явное подтверждение → SVG art → ручная приёмка art → rig/animations → ручная приёмка animation → настоящий gameplay → финальная приёмка → отдельный commit. Перед следующим asset снова обсуждаем план. Push только по отдельному разрешению пользователя.
 
-Порядок: Archer (принят), Goblin, Mage, Frost Mage, Orc, Golem, Boss, Summoner Tower. Новые сущности, skins, equipment и изменения баланса не входят в art pass. Image generators, Krita, готовые чужие sprites запрещены; production art пишется вручную как SVG-код.
+Порядок: Archer (принят), Goblin (принят), Mage, Frost Mage, Orc, Golem, Boss, Summoner Tower. Новые сущности, skins, equipment и изменения баланса не входят в art pass. Image generators, Krita, готовые чужие sprites запрещены; production art пишется вручную как SVG-код. [Итог Goblin](done/GOBLIN_GAMEPLAY_REVIEW.md).
 
 ## Стиль
 
@@ -47,6 +47,8 @@ Manifest хранит canvas, actor_origin, pivot каждой части, paren
 - Скрытые участки плеч, локтей, ног и головы дорисовываются округлыми формами. Части перекрываются, не сходятся стык в стык. Проверяем крайние позы и зеркалирование.
 
 Archer: 9 частей и 9 костей вместе с Root. Quiver следует Body без отдельной кости. Z-order: Quiver 0, LeftLeg 1, RightLeg 2, DrawUpperArm 3, BowArm 4, Body 5, Head 6, Bow 7, DrawForearm 8. Рука с луком за телом, лук перед рукой. NockedArrow — вспомогательный Sprite2D из существующей arrow.svg, без кости.
+
+Goblin: 7 частей и 8 костей вместе с Root; руки цельные с кистями, ноги с ботинками, лицо/уши/клык внутри Head. Z-order: BackArm 0, LeftLeg 1, RightLeg 2, Body 3, FrontArm 4, Head 5, Dagger 6. Кинжал отдельным Sprite2D следует Dagger под FrontArm, голова закрывает скрытое плечо. Canvas 256×256, origin=(128,128), baseline y=239, gameplay visual.scale=108/256.
 
 ## Godot и ответственность
 
@@ -95,9 +97,13 @@ SpawnPlayer отдельно анимирует Root теми же spawn-тре�
 
 Для врагов movement остаётся в ApproachingEnemy; walk только сопровождает движение. Их атака башни/смерть должны сохранить прежний момент damage, разрешение волны и награды. Перед реализацией обсуждаем, как показать recovery/death после мгновенного удаления gameplay entity.
 
+Принятый Goblin: walk_loop 0,64 s, attack 0,34 s с impact 0,16 s, hit 0,16 s, death 0,32 s. В gameplay manual AnimationPlayer получает оставшееся время до контакта с учётом slow; preparation использует seek без событий. В прежний contact frame pose устанавливается на impact, затем выполняется однократный gameplay outcome. Entity сразу перестаёт быть целью и учитываться в волне; только visual переносится в World, заканчивает death/recovery и удаляется. Group enemy_visual_tails очищается при остановке боя. Движение, HP, damage и награды не ждут окончания animation.
+
 ## Палитра уровней и текстуры
 
 Один rig на все уровни. Archer: Lv1 зелёный, Lv2 оранжевый, Lv3 красный, Lv4 синий, Lv5 фиолетовый. Перекрашивается только ткань четырёх частей простым canvas_item shader; кожа/волосы/кожаные детали/лук/колчан сохраняют цвета. Материал локален для экземпляра и общий для его частей. Другие персонажи получают отдельно согласованный принцип; нельзя автоматически перекрашивать всё тело через modulate.
+
+Goblin: только ботинки, напульсники и набедренная повязка получают пять цветов из EnemyStats по max HP при spawn. Кожа всегда зелёная, плечевой ремень/наплечник/уши/глаза/клык/кинжал сохраняют цвета. equipment_palette.gdshader выделяет исходные brown fills внутри общей equipment_mask.svg; один локальный материал назначен Body, обеим рукам и ногам, Head/Dagger без него. Общий mask canvas совпадает с полным canvas частей, поэтому pivots не нарушают UV.
 
 Runtime части Archer — 256×256 без mipmaps, общий набор Texture2D для всех экземпляров, без текстур на каждый level. Visual.scale=100/256; масштаб клетки задаёт существующий UnitHost. Drag preview использует master.svg, тот же материал и этот коэффициент. Другой масштаб enemy visual определяется по текущей entity, не изменением gameplay range/collision.
 
@@ -109,10 +115,10 @@ Development-only `scenes/debug/ArtAnimationTest.tscn`: asset/animation selector,
 
 Web: Godot 4.7.2, Compatibility, соответствующие templates, single-thread, без native extensions. Не вводим большие rasterized SVG и незаметную в игре сложность.
 
-Archer: 9 общих RGBA текстур частей ~2,25 MiB, master ~0,25 MiB без mipmaps. Native замер 10 Archer: ~145 FPS / 103 draw calls со всей ареной против ~144 FPS / 51 STATIC; это desktop evidence. Draw calls, прозрачный overdraw и bones растут с числом enemies. Проверка массовых врагов в Web и на физическом телефоне ещё нужна; pooling и другие оптимизации только по измеренной проблеме.
+Archer: 9 общих RGBA текстур частей ~2,25 MiB, master ~0,25 MiB без mipmaps. Native замер 10 Archer: ~145 FPS / 103 draw calls со всей ареной против ~144 FPS / 51 STATIC; это desktop evidence. Goblin: 7 textures и общая маска ~2 MiB RGBA8. До последней цветовой правки 40 Goblin в Edge показали 144 FPS при 354 draw calls ANIMATED против 153 STATIC; после добавления маски FPS повторно не измерялся. Это короткие desktop замеры с ограничением частоты экрана, не гарантия для телефона. Draw calls, прозрачный overdraw и bones растут с числом enemies; физический телефон и большие поздние волны требуют отдельной проверки при конкретном риске. Pooling и другие оптимизации только по измеренной проблеме.
 
 ## Mesh exceptions
 
 По принятому решению сохраняем rigid cutout. Сначала исправляем art shape, overlap, pivot, z-order и keys. Mesh допускается только по новому явному подтверждению и для конкретной гибкой части (длинная ткань, хвост, щупальце). Head/body/arms/legs/weapon остаются rigid. Не переводим весь персонаж на deformation и не переносим исключение автоматически на остальные assets.
 
-Legacy art не удаляется; cleanup — отдельная задача. После финальной приёмки Archer animated visual включён по умолчанию, STATIC доступен в review. Отчёты принятых assets лежат в docs/done; этот стандарт остаётся в docs.
+Legacy art не удаляется; cleanup — отдельная задача. После финальной приёмки Archer и Goblin animated visuals включены по умолчанию, STATIC доступен в review. Отчёты принятых assets лежат в docs/done; этот стандарт остаётся в docs.

@@ -1,14 +1,17 @@
 extends Control
 
-const ANIMATIONS: Array[StringName] = [&"idle_loop", &"attack", &"spawn"]
-const PREVIEW_SCALES: Array[float] = [3.0, 0.96, 0.8, 0.68]
+const ASSETS: Array[String] = ["Archer", "Goblin"]
+const ARCHER_ANIMATIONS: Array[StringName] = [&"idle_loop", &"attack", &"spawn"]
+const GOBLIN_ANIMATIONS: Array[StringName] = [&"walk_loop", &"attack", &"hit", &"death"]
 const PAUSE_ICON: Texture2D = preload("res://assets/debug/animation_controls/pause.svg")
 const PLAY_ICON: Texture2D = preload("res://assets/debug/animation_controls/play.svg")
+
+@export_range(0, 1) var initial_asset_index: int = 0
 
 @onready var content: VBoxContainer = $Margin/Content
 @onready var stage: Control = $Margin/Content/Stage
 @onready var preview_host: Node2D = $Margin/Content/Stage/PreviewHost
-@onready var preview_visual: Node2D = $Margin/Content/Stage/PreviewHost/ArcherVisual
+@onready var entity_label: Label = $Margin/Content/AssetRow/Entity
 @onready var animation_label: Label = $Margin/Content/AnimationRow/AnimationName
 @onready var event_label: Label = $Margin/Content/Event
 @onready var pause_button: Button = $Margin/Content/Playback/Pause
@@ -18,6 +21,7 @@ const PLAY_ICON: Texture2D = preload("res://assets/debug/animation_controls/play
 @onready var repeat_timer: Timer = $RepeatTimer
 
 var _visuals: Array[Node2D] = []
+var _asset_index: int = 0
 var _animation_index: int = 0
 var _speed: float = 1.0
 var _paused: bool = false
@@ -25,33 +29,67 @@ var _release_count: int = 0
 
 
 func _ready() -> void:
-	_visuals.append(preview_visual)
+	_select_asset(initial_asset_index)
+	_set_speed(1.0)
+
+
+func _animations() -> Array[StringName]:
+	return ARCHER_ANIMATIONS if _asset_index == 0 else GOBLIN_ANIMATIONS
+
+
+func _select_asset(index: int) -> void:
+	repeat_timer.stop()
+	_asset_index = posmod(index, ASSETS.size())
+	_animation_index = 0
+	entity_label.text = ASSETS[_asset_index].to_upper()
+	_visuals.clear()
+	_select_host(preview_host)
+	scale_picker.set_item_text(0, "Large preview")
 	for columns: int in [6, 7, 8]:
 		var cell: Control = content.get_node("Samples/Columns%d/Cell" % columns)
 		var anchor: Node2D = cell.get_node("Anchor")
 		var host: Node2D = anchor.get_node("UnitHost")
-		var cell_size: float = 672.0 / float(columns) - 4.0
-		var unit_scale: float = minf((cell_size - 12.0) / 100.0, 1.0)
+		var grid_size: float = 672.0 / float(columns)
+		var cell_size: float = grid_size - 4.0
+		var unit_scale: float = _sample_scale(columns)
 		var ground: Sprite2D = anchor.get_node("Ground")
 		ground.scale = Vector2.ONE * (cell_size + 4.0) / float(ground.texture.get_width())
 		var pedestal: Sprite2D = anchor.get_node("Pedestal")
 		pedestal.scale = Vector2.ONE * cell_size / 140.0
-		host.position.y = 26.0 * cell_size / 140.0 - 42.0 * unit_scale
+		pedestal.visible = _asset_index == 0
+		var road: Sprite2D = anchor.get_node("Road")
+		road.visible = _asset_index == 1
+		road.scale = Vector2.ONE * grid_size / float(road.texture.get_width())
+		host.position.y = 26.0 * cell_size / 140.0 - 42.0 * unit_scale if _asset_index == 0 else 0.0
 		host.scale = Vector2.ONE * unit_scale
-		_visuals.append(host.get_node("ArcherVisual") as Node2D)
-
-	$Margin/Content/AssetRow/PreviousAsset.disabled = true
-	$Margin/Content/AssetRow/NextAsset.disabled = true
+		_select_host(host)
+		var canvas_size: float = 100.0 if _asset_index == 0 else 108.0
+		var size_label: Label = content.get_node("Samples/Columns%d/SizeLabel" % columns)
+		size_label.text = "%d columns · %d px" % [columns, roundi(canvas_size * unit_scale)]
+		scale_picker.set_item_text(columns - 5, "%d columns · %d px" % [columns, roundi(canvas_size * unit_scale)])
 	_layout_previews()
-	_set_speed(1.0)
 	replay()
+
+
+func _select_host(host: Node2D) -> void:
+	for index: int in ASSETS.size():
+		var visual: Node2D = host.get_node(ASSETS[index] + "Visual")
+		visual.visible = index == _asset_index
+		visual.call(&"set_animation_paused", true)
+		if visual.visible:
+			_visuals.append(visual)
+
+
+func _sample_scale(columns: int) -> float:
+	var cell_size: float = 672.0 / float(columns)
+	return minf((cell_size - 16.0) / 100.0, 1.0) if _asset_index == 0 else minf((cell_size - 12.0) / 140.0, 1.0)
 
 
 func _layout_previews() -> void:
 	if not is_node_ready():
 		return
 	preview_host.position = stage.size * 0.5 + Vector2(0.0, 8.0)
-	var multiplier: float = PREVIEW_SCALES[scale_picker.selected]
+	var multiplier: float = 3.0 if scale_picker.selected == 0 else _sample_scale(scale_picker.selected + 5)
 	preview_host.scale = Vector2(-multiplier if mirror_button.button_pressed else multiplier, multiplier)
 	for columns: int in [6, 7, 8]:
 		var cell: Control = content.get_node("Samples/Columns%d/Cell" % columns)
@@ -65,21 +103,29 @@ func replay() -> void:
 	repeat_timer.stop()
 	_set_paused(false)
 	_release_count = 0
-	event_label.text = "Release: —"
-	var animation_name: StringName = ANIMATIONS[_animation_index]
+	event_label.text = "Release: —" if _asset_index == 0 else "Impact: —"
+	var animation_name: StringName = _animations()[_animation_index]
 	animation_label.text = String(animation_name)
 	for visual: Node2D in _visuals:
 		visual.call(&"set_playback_speed", _speed)
 		visual.call(&"play_animation", animation_name)
 
 
+func _on_previous_asset() -> void:
+	_select_asset(_asset_index - 1)
+
+
+func _on_next_asset() -> void:
+	_select_asset(_asset_index + 1)
+
+
 func _on_previous_animation() -> void:
-	_animation_index = posmod(_animation_index - 1, ANIMATIONS.size())
+	_animation_index = posmod(_animation_index - 1, _animations().size())
 	replay()
 
 
 func _on_next_animation() -> void:
-	_animation_index = posmod(_animation_index + 1, ANIMATIONS.size())
+	_animation_index = posmod(_animation_index + 1, _animations().size())
 	replay()
 
 
@@ -132,8 +178,17 @@ func _on_repeat_toggled(enabled: bool) -> void:
 
 
 func _on_visual_release() -> void:
+	if _asset_index != 0:
+		return
 	_release_count += 1
 	event_label.text = "Release: %.2f s · %d event" % [0.24, _release_count]
+
+
+func _on_visual_impact() -> void:
+	if _asset_index != 1:
+		return
+	_release_count += 1
+	event_label.text = "Impact: %.2f s · %d event" % [GoblinVisual.ATTACK_IMPACT_TIME, _release_count]
 
 
 func _on_visual_animation_finished(_animation_name: StringName) -> void:

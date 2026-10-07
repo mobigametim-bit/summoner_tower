@@ -1,0 +1,133 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Goblin · SVG art review</title>
+<link rel="icon" type="image/svg+xml" href="master.svg">
+<style>
+:root {color-scheme:dark;font-family:system-ui,sans-serif;color:#e7e4da;background:#101521}
+* {box-sizing:border-box}
+body {max-width:1050px;margin:0 auto;padding:28px 20px 60px}
+h1 {margin:0;font-size:30px;color:#e4bf68} h2 {font-size:21px;margin:0 0 18px}
+p {line-height:1.5;color:#b7c5ce} a {color:#8edce4}
+section {margin-top:25px;padding:24px;border:1px solid #30444c;border-radius:16px;background:#151e28}
+.compare {display:grid;grid-template-columns:1fr 1fr;gap:20px}
+figure {margin:0;text-align:center} figcaption {margin-top:10px;color:#afc1c7;font-size:14px}
+.frame {height:330px;display:grid;place-items:center;background:#1b3028;border-radius:12px}
+.frame img {display:block;height:100%;max-width:100%;min-height:0;object-fit:contain}
+.ref {background:#3c96c5}.ref img {width:330px}
+.master img {width:320px}
+.scales {display:flex;gap:24px;flex-wrap:wrap;align-items:flex-end}
+.scales figure {min-width:100px}
+.scales img {display:block;margin:auto}
+.cells {display:flex;gap:35px;align-items:flex-end;flex-wrap:wrap}
+.cell {position:relative;background:#646a54 url("../../../assets/environment/paved_road.svg") center/cover}
+.cell .pedestal {position:absolute;left:2px;top:2px}
+.cell .unit {position:absolute}
+.phone {display:flex;align-items:flex-end;gap:25px;min-height:100px}
+.phone .screen-cell {transform-origin:bottom left}
+.controls {display:flex;align-items:center;gap:14px;flex-wrap:wrap;margin-bottom:18px}
+.controls select,.controls button {font:inherit;color:#f0eadf;background:#24353e;border:1px solid #52636c;border-radius:6px;padding:8px}
+.controls input {accent-color:#8edce4}
+.part-area {display:grid;grid-template-columns:300px 1fr;gap:24px;align-items:start}
+.stage {width:280px;height:280px;position:relative;background:#1b3028;border-radius:10px}
+.stage img,.stage svg {position:absolute;width:100%;height:100%;left:0;top:0;pointer-events:none}
+.stage svg circle {fill:#ff65c5;stroke:#fff;stroke-width:1}
+table {width:100%;border-collapse:collapse;font-size:13px}
+th,td {text-align:left;padding:8px 6px;border-bottom:1px solid #30444c}
+th {color:#9bcad0} td:first-child {font-family:ui-monospace,monospace}
+.note {font-size:13px;margin-top:16px}
+@media(max-width:680px) {body {padding:20px 12px} section {padding:18px 12px}.compare,.part-area {grid-template-columns:1fr}.frame {height:300px}.stage {margin:auto}.scales {gap:14px}.cells {gap:15px}}
+</style>
+</head>
+<body>
+<h1>Goblin · проверка SVG-art</h1>
+<p>Первый вариант для ручной приёмки. Отрисован вручную SVG-кодом: 7 отдельных частей, canvas 256×256, прозрачный фон.</p>
+<section>
+<h2>Reference и новая сборка</h2>
+<div class="compare">
+<figure><div class="frame ref"><img src="../../references/goblin.png" alt="Исходный Goblin reference"></div><figcaption>Исходный reference</figcaption></figure>
+<figure><div class="frame master"><img src="master.svg" alt="Goblin из SVG частей"></div><figcaption>Новая сборка · <a href="master.svg" target="_blank">открыть SVG</a></figcaption></figure>
+</div>
+</section>
+<section>
+<h2>Читаемость при уменьшении</h2>
+<div class="scales">
+<figure><img src="master.svg" width="100" height="100" alt="100 px"><figcaption>100 px</figcaption></figure>
+<figure><img src="master.svg" width="140" height="140" alt="140 px"><figcaption>140 px</figcaption></figure>
+<figure><img src="master.svg" width="180" height="180" alt="180 px"><figcaption>180 px</figcaption></figure>
+</div>
+</section>
+<section>
+<h2>Примерка в текущем размере врага</h2>
+<div class="cells" id="logical-cells"></div>
+<p class="note">77 / 65 / 56 px полного canvas при 6 / 7 / 8 столбцах. Сохраняем ширину старого enemy.svg (108) и коэффициент Enemy.follow_route. Окончательная интеграция и позиционирование будут позже.</p>
+<p>На экране телефона шириной 390 px</p>
+<div class="cells" id="phone-cells"></div>
+<p class="note">30–42 физических px полного canvas. Здесь эти размеры показаны без увеличения.</p>
+</section>
+<section>
+<h2>Сравнение с принятым Archer</h2>
+<div class="scales">
+<figure><img src="../archer/master.svg" width="140" height="140" alt="Принятый Archer"><figcaption>Archer · принят</figcaption></figure>
+<figure><img src="master.svg" width="140" height="140" alt="Новый Goblin"><figcaption>Goblin · art review</figcaption></figure>
+</div>
+<p class="note">Общий тёмный outline, плоские заливки, крупная голова и короткие конечности.</p>
+</section>
+<section>
+<h2>Части и будущие pivots</h2>
+<div class="controls">
+<label>Часть <select id="part"><option value="all">Вся сборка</option></select></label>
+<label><input id="pivots" type="checkbox"> Pivots</label>
+<label><input id="mirror" type="checkbox"> Зеркало сборки</label>
+</div>
+<div class="part-area">
+<div class="stage" id="stage"></div>
+<table><thead><tr><th>SVG part</th><th>Pivot</th><th>Слой</th></tr></thead><tbody id="part-table"></tbody></table>
+</div>
+<p class="note">Уши, нос и лицо входят в голову; кисти в руки, ботинки в ноги. Кинжал отдельный. Голова скрывает плечо передней руки, кинжал перед кистью. Скрытые округлые окончания перекрываются.</p>
+</section>
+<p class="note">SVG-art принят. <a href="http://127.0.0.1:4175/preview/goblin-animation/">Rig и анимации Goblin — отдельный Godot preview</a>. Gameplay integration — после приёмки анимаций.</p>
+<script>
+function makeCell(columns, screenScale) {
+  const cellSize=672/columns, imageSize=108*Math.min((cellSize-12)/140,1);
+  const figure=document.createElement('figure'), wrap=document.createElement('div'), cell=document.createElement('div');
+  wrap.style.cssText='width:'+cellSize*screenScale+'px;height:'+cellSize*screenScale+'px;position:relative;margin:auto';
+  cell.className='cell';
+  cell.style.cssText='width:'+cellSize+'px;height:'+cellSize+'px;transform:scale('+screenScale+');transform-origin:top left';
+  const unit=document.createElement('img');unit.className='unit';unit.src='master.svg';unit.alt='Goblin на дороге';
+  unit.style.cssText='width:'+imageSize+'px;height:'+imageSize+'px;left:'+(cellSize-imageSize)/2+'px;top:'+(cellSize-imageSize)/2+'px';
+  cell.append(unit);wrap.append(cell);figure.append(wrap);
+  const caption=document.createElement('figcaption');
+  caption.textContent=columns+' столбцов · '+Math.round(imageSize*screenScale)+' px';figure.append(caption);
+  return figure;
+}
+for (const columns of [6,7,8]) {
+  document.getElementById('logical-cells').append(makeCell(columns,1));
+  document.getElementById('phone-cells').append(makeCell(columns,390/720));
+}
+fetch('rig_manifest.json').then(r=>{if(!r.ok)throw Error('manifest '+r.status);return r.json()}).then(manifest=>{
+  const stage=document.getElementById('stage'), table=document.getElementById('part-table'), select=document.getElementById('part'), pivots=document.getElementById('pivots');
+  for (const part of manifest.parts) {
+    const name=part.file.split('/').pop().replace('.svg','');
+    const image=document.createElement('img');image.src=part.file;image.alt=name;image.dataset.part=name;stage.append(image);
+    const option=document.createElement('option');option.value=name;option.textContent=name;select.append(option);
+    const row=document.createElement('tr');
+    for (const value of [name,part.pivot.join(', '),part.z_index]) {const td=document.createElement('td');td.textContent=value;row.append(td)} table.append(row);
+  }
+  const ns='http://www.w3.org/2000/svg', overlay=document.createElementNS(ns,'svg');overlay.setAttribute('viewBox','0 0 256 256');stage.append(overlay);
+  function update() {
+    stage.querySelectorAll('img').forEach(img=>img.hidden=select.value!=='all'&&img.dataset.part!==select.value);
+    overlay.replaceChildren();
+    if(pivots.checked) for(const part of manifest.parts) {
+      const name=part.file.split('/').pop().replace('.svg','');if(select.value!=='all'&&select.value!==name)continue;
+      const dot=document.createElementNS(ns,'circle');dot.setAttribute('cx',part.pivot[0]);dot.setAttribute('cy',part.pivot[1]);dot.setAttribute('r','3.5');overlay.append(dot);
+    }
+  }
+  document.getElementById('mirror').addEventListener('change',e=>stage.style.transform=e.target.checked?'scaleX(-1)':'');
+  select.addEventListener('change',update);pivots.addEventListener('change',update);update();
+}).catch(error=>{document.getElementById('stage').textContent='Ошибка загрузки: '+error.message;console.error(error)});
+</script>
+</body>
+</html>

@@ -1,0 +1,40 @@
+[gd_scene format=3 uid="uid://bms134e8dbbrq"]
+
+[ext_resource type="PackedScene" uid="uid://rkmlqc5qcsrs" path="res://scenes/game.tscn" id="1_8oxfk"]
+[ext_resource type="Script" uid="uid://dy4lpc52gb4hr" path="res://scripts/debug/goblin_gameplay_review.gd" id="2_veh04"]
+[ext_resource type="Texture2D" uid="uid://c5ba2p5wccy1h" path="res://assets/debug/animation_controls/pause.svg" id="3_veh04"]
+
+[node name="GoblinGameplayReview" unique_id=469266139 instance=ExtResource("1_8oxfk")]
+script = ExtResource("2_veh04")
+review_summon_seed = 23
+
+[node name="GoblinReview" type="HBoxContainer" parent="Interface" parent_id_path=PackedInt32Array(242053494) index="1" unique_id=1548244471]
+process_mode = 3
+offset_left = 36.0
+offset_top = 1220.0
+offset_right = 684.0
+offset_bottom = 1270.0
+theme_override_constants/separation = 18
+
+[node name="Title" type="Label" parent="Interface/GoblinReview" index="0" unique_id=1505245209]
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+text = "GOBLIN REVIEW"
+
+[node name="Animated" type="CheckButton" parent="Interface/GoblinReview" index="1" unique_id=606428689]
+layout_mode = 2
+tooltip_text = "Goblin STATIC / ANIMATED"
+theme_override_font_sizes/font_size = 20
+button_pressed = true
+text = "ANIMATED"
+
+[node name="Pause" type="Button" parent="Interface/GoblinReview" index="2" unique_id=434498534]
+custom_minimum_size = Vector2(60, 50)
+layout_mode = 2
+tooltip_text = "Pause / Resume"
+theme_override_constants/icon_max_width = 32
+icon = ExtResource("3_veh04")
+expand_icon = true
+
+[connection signal="toggled" from="Interface/GoblinReview/Animated" to="." method="_on_animated_toggled"]
+[connection signal="pressed" from="Interface/GoblinReview/Pause" to="." method="_on_review_pause"]
