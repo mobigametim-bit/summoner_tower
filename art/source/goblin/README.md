@@ -1,6 +1,6 @@
 # Goblin — SVG art и rigid cutout animation review
 
-07.10.2026. **Goblin полностью принят пользователем**, включая gameplay integration и окраску только одежды. Animated visual включён по умолчанию, static fallback сохранён.
+07.10.2026. **Goblin полностью принят пользователем**, включая gameplay integration, окраску только одежды и дополнительное заметное качание головы/руки с кинжалом при ходьбе. Animated visual включён по умолчанию, static fallback сохранён.
 
 Референс: `art/references/goblin.png`. SVG написаны вручную, без image generators, Krita, растровых вставок или сторонних assets. Старый `assets/enemy.svg` и gameplay не изменены.
 

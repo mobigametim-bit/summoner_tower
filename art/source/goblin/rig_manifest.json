@@ -127,6 +127,7 @@
     "death": 0.32
   },
   "attack_impact_time": 0.16,
+  "walk_rotation_degrees": {"head_local": 8, "head_world": 7, "front_arm_local": 18, "dagger_local": 5, "dagger_world": 24},
   "gameplay_entity": "res://scenes/enemy.tscn",
   "static_fallback": "res://assets/enemy.svg",
   "equipment_shader": "res://art/source/goblin/equipment_palette.gdshader",
