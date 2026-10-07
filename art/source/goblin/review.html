@@ -62,7 +62,7 @@ th {color:#9bcad0} td:first-child {font-family:ui-monospace,monospace}
 <section>
 <h2>Примерка в текущем размере врага</h2>
 <div class="cells" id="logical-cells"></div>
-<p class="note">77 / 65 / 56 px полного canvas при 6 / 7 / 8 столбцах. Сохраняем ширину старого enemy.svg (108) и коэффициент Enemy.follow_route. Окончательная интеграция и позиционирование будут позже.</p>
+<p class="note">62 / 52 / 44 px полного canvas при 6 / 7 / 8 столбцах. По правке пользователя Goblin уменьшен на 20%: 86.4 вместо 108; коэффициент Enemy.follow_route сохранён.</p>
 <p>На экране телефона шириной 390 px</p>
 <div class="cells" id="phone-cells"></div>
 <p class="note">30–42 физических px полного canvas. Здесь эти размеры показаны без увеличения.</p>
@@ -91,7 +91,7 @@ th {color:#9bcad0} td:first-child {font-family:ui-monospace,monospace}
 <p class="note">SVG-art принят. <a href="http://127.0.0.1:4175/preview/goblin-animation/">Rig и анимации Goblin — отдельный Godot preview</a>. Gameplay integration — после приёмки анимаций.</p>
 <script>
 function makeCell(columns, screenScale) {
-  const cellSize=672/columns, imageSize=108*Math.min((cellSize-12)/140,1);
+  const cellSize=672/columns, imageSize=86.4*Math.min((cellSize-12)/140,1);
   const figure=document.createElement('figure'), wrap=document.createElement('div'), cell=document.createElement('div');
   wrap.style.cssText='width:'+cellSize*screenScale+'px;height:'+cellSize*screenScale+'px;position:relative;margin:auto';
   cell.className='cell';

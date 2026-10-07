@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="256" height="256" viewBox="0 0 256 256">
+  <g id="arm_back" stroke="#29180f" stroke-width="7" stroke-linecap="round" stroke-linejoin="round" data-pivot-x="75" data-pivot-y="148">
+    <path d="M70 128Q90 128 90 149L73 178 66 201Q58 217 42 212L28 206Q21 196 28 179L43 150Z" fill="#7fa443"/>
+    <path d="m57 151 20-9-7 24-17 23-5 18-13-4 4-21Z" fill="#5f8134" stroke="none"/>
+    <g data-equipment="bracer_back">
+      <path d="m33 174 39 11-8 19-39-12Z" fill="#9c642d" stroke-width="5" data-mask="true"/>
+      <path d="m34 180 31 9-3 7-30-9Z" fill="#b77e42" stroke="none"/>
+    </g>
+    <path d="m50 198-5 10" fill="none" stroke-width="5"/>
+    <path d="m41 110 31-3 24 26-16 28-26-6-27-22Z" fill="#895334" stroke-width="6"/>
+    <path d="m49 117 22-2 16 20-13 15-31-13Z" fill="#8d8981" stroke-width="5"/>
+    <path d="m53 119 15-2 10 12-7 7-21-8Z" fill="#c5c0b6" stroke="none"/>
+    <path d="M35 124 33 91 59 112Q52 129 35 124Z" fill="#f3e7ce" stroke-width="6"/>
+    <path d="m39 104 15 10-10 6Z" fill="#d9c39e" stroke="none"/>
+    <path d="m58 112 10-29 13 30Q70 120 58 112Z" fill="#f3e7ce" stroke-width="6"/>
+  </g>
+</svg>

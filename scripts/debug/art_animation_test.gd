@@ -1,13 +1,13 @@
 extends Control
 
-const ASSETS: Array[String] = ["Archer", "Goblin", "Mage", "FrostMage"]
+const ASSETS: Array[String] = ["Archer", "Goblin", "Mage", "FrostMage", "Orc"]
 const ARCHER_ANIMATIONS: Array[StringName] = [&"idle_loop", &"attack", &"spawn"]
 const GOBLIN_ANIMATIONS: Array[StringName] = [&"walk_loop", &"attack", &"hit", &"death"]
 const MAGE_ANIMATIONS: Array[StringName] = [&"idle_loop", &"cast", &"spawn"]
 const PAUSE_ICON: Texture2D = preload("res://assets/debug/animation_controls/pause.svg")
 const PLAY_ICON: Texture2D = preload("res://assets/debug/animation_controls/play.svg")
 
-@export_range(0, 3) var initial_asset_index: int = 0
+@export_range(0, 4) var initial_asset_index: int = 0
 
 @onready var content: VBoxContainer = $Margin/Content
 @onready var stage: Control = $Margin/Content/Stage
@@ -35,9 +35,13 @@ func _ready() -> void:
 
 
 func _animations() -> Array[StringName]:
-	if _asset_index == 1:
+	if _is_enemy():
 		return GOBLIN_ANIMATIONS
 	return MAGE_ANIMATIONS if _asset_index >= 2 else ARCHER_ANIMATIONS
+
+
+func _is_enemy() -> bool:
+	return _asset_index == 1 or _asset_index == 4
 
 
 func _select_asset(index: int) -> void:
@@ -59,14 +63,14 @@ func _select_asset(index: int) -> void:
 		ground.scale = Vector2.ONE * (cell_size + 4.0) / float(ground.texture.get_width())
 		var pedestal: Sprite2D = anchor.get_node("Pedestal")
 		pedestal.scale = Vector2.ONE * cell_size / 140.0
-		pedestal.visible = _asset_index != 1
+		pedestal.visible = not _is_enemy()
 		var road: Sprite2D = anchor.get_node("Road")
-		road.visible = _asset_index == 1
+		road.visible = _is_enemy()
 		road.scale = Vector2.ONE * grid_size / float(road.texture.get_width())
-		host.position.y = 26.0 * cell_size / 140.0 - 42.0 * unit_scale if _asset_index != 1 else 0.0
+		host.position.y = 0.0 if _is_enemy() else 26.0 * cell_size / 140.0 - 42.0 * unit_scale
 		host.scale = Vector2.ONE * unit_scale
 		_select_host(host)
-		var canvas_size: float = 108.0 if _asset_index == 1 else 100.0
+		var canvas_size: float = 120.0 if _asset_index == 4 else (GoblinVisual.GAMEPLAY_CANVAS_SIZE if _asset_index == 1 else 100.0)
 		var size_label: Label = content.get_node("Samples/Columns%d/SizeLabel" % columns)
 		size_label.text = "%d columns · %d px" % [columns, roundi(canvas_size * unit_scale)]
 		scale_picker.set_item_text(columns - 5, "%d columns · %d px" % [columns, roundi(canvas_size * unit_scale)])
@@ -85,7 +89,7 @@ func _select_host(host: Node2D) -> void:
 
 func _sample_scale(columns: int) -> float:
 	var cell_size: float = 672.0 / float(columns)
-	return minf((cell_size - 12.0) / 140.0, 1.0) if _asset_index == 1 else minf((cell_size - 16.0) / 100.0, 1.0)
+	return minf((cell_size - 12.0) / 140.0, 1.0) if _is_enemy() else minf((cell_size - 16.0) / 100.0, 1.0)
 
 
 func _layout_previews() -> void:
@@ -106,7 +110,7 @@ func replay() -> void:
 	repeat_timer.stop()
 	_set_paused(false)
 	_release_count = 0
-	event_label.text = "Impact: —" if _asset_index == 1 else "Release: —"
+	event_label.text = "Impact: —" if _is_enemy() else "Release: —"
 	var animation_name: StringName = _animations()[_animation_index]
 	animation_label.text = String(animation_name)
 	for visual: Node2D in _visuals:
@@ -181,7 +185,7 @@ func _on_repeat_toggled(enabled: bool) -> void:
 
 
 func _on_visual_release() -> void:
-	if _asset_index == 1:
+	if _is_enemy():
 		return
 	_release_count += 1
 	var release_time: float = MageVisual.CAST_RELEASE_TIME if _asset_index >= 2 else ArcherVisual.ATTACK_RELEASE_TIME
@@ -189,10 +193,11 @@ func _on_visual_release() -> void:
 
 
 func _on_visual_impact() -> void:
-	if _asset_index != 1:
+	if not _is_enemy():
 		return
 	_release_count += 1
-	event_label.text = "Impact: %.2f s · %d event" % [GoblinVisual.ATTACK_IMPACT_TIME, _release_count]
+	var impact_time: float = OrcVisual.ATTACK_IMPACT_TIME if _asset_index == 4 else GoblinVisual.ATTACK_IMPACT_TIME
+	event_label.text = "Impact: %.2f s · %d event" % [impact_time, _release_count]
 
 
 func _on_visual_animation_finished(_animation_name: StringName) -> void:

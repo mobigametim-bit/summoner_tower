@@ -1,11 +1,10 @@
-class_name GoblinVisual
+class_name OrcVisual
 extends Node2D
 
 signal attack_impact
 signal visual_animation_finished(animation_name: StringName)
 
-const ATTACK_IMPACT_TIME: float = 0.16
-const GAMEPLAY_CANVAS_SIZE: float = 86.4
+const ATTACK_IMPACT_TIME: float = 0.18
 
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 @onready var equipment_material: ShaderMaterial = $Skeleton2D/Root/Body/Sprite.material
@@ -60,12 +59,12 @@ func set_difficulty(tier: int, equipment_color: Color) -> void:
 
 func advance_gameplay(delta: float, time_to_contact: float, direction: Vector2) -> void:
 	if absf(direction.x) > 0.001:
-		scale = Vector2(-1.0 if direction.x < 0.0 else 1.0, 1.0) * (GAMEPLAY_CANVAS_SIZE / 256.0)
+		scale = Vector2(-120.0 / 256.0 if direction.x < 0.0 else 120.0 / 256.0, 120.0 / 256.0)
 	if time_to_contact <= ATTACK_IMPACT_TIME:
 		if not _preparing:
 			play_animation(&"attack")
 			_preparing = true
-		# Seek only changes the pose. Gameplay decides the exact contact frame.
+		# Подготовка меняет позу; кадр контакта по-прежнему выбирает gameplay.
 		animation_player.seek(clampf(ATTACK_IMPACT_TIME - time_to_contact, 0.0, ATTACK_IMPACT_TIME - 0.0001), true, true)
 	elif _preparing:
 		_preparing = false
@@ -83,7 +82,7 @@ func impact_now() -> void:
 
 
 func show_hit() -> void:
-	# Contact windup takes priority; repeated hits cannot postpone tower damage.
+	# Повторные попадания не откладывают удар башне и не прерывают его подготовку.
 	if _preparing or _active_animation == &"hit":
 		return
 	play_animation(&"hit")
@@ -120,6 +119,6 @@ func _on_animation_finished(animation_name: StringName) -> void:
 	if _tail:
 		queue_free()
 		return
-	# Standalone review holds death's final pose until Replay.
+	# В standalone review смерть удерживает финальную позу до Replay.
 	if _active_animation == animation_name and animation_name != &"death":
 		play_animation(&"walk_loop")

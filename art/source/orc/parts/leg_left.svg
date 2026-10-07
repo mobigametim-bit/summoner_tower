@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="256" height="256" viewBox="0 0 256 256">
+  <g id="leg_left" stroke="#29180f" stroke-width="7" stroke-linecap="round" stroke-linejoin="round" data-pivot-x="102" data-pivot-y="207">
+    <path d="M91 191Q112 186 121 200L117 220 118 234Q107 243 83 237L82 230 87 207Z" fill="#7fa443"/>
+    <path d="m101 198 13 3-9 27-15 7-1-14Z" fill="#5f8134" stroke="none"/>
+    <g data-equipment="boot_left">
+      <path d="m86 216 31-2 4 23Q102 242 81 237L80 230Z" fill="#9c642d" stroke-width="6" data-mask="true"/>
+      <path d="m88 221 25-3 2 7-30 4Z" fill="#b77e42" stroke="none"/>
+    </g>
+  </g>
+</svg>

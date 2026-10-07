@@ -566,7 +566,7 @@ _data = {
 }
 
 [node name="GoblinVisual" type="Node2D" unique_id=756032484]
-scale = Vector2(0.421875, 0.421875)
+scale = Vector2(0.3375, 0.3375)
 script = ExtResource("1_5pv1n")
 
 [node name="Skeleton2D" type="Skeleton2D" parent="." unique_id=1640628009]

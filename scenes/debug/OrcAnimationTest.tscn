@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://coalou32d43r4"]
+
+[ext_resource type="PackedScene" uid="uid://cxulhbufjisa3" path="res://scenes/debug/ArtAnimationTest.tscn" id="1_4grss"]
+
+[node name="OrcAnimationTest" unique_id=1958274146 instance=ExtResource("1_4grss")]
+initial_asset_index = 4

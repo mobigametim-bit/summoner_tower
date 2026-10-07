@@ -4,6 +4,7 @@
 [ext_resource type="Resource" path="res://resources/balance/orc_stats.tres" id="2_nvs4g"]
 [ext_resource type="Texture2D" uid="uid://dk3ix6arlq4pu" path="res://assets/slow_indicator.svg" id="2_s5mlm"]
 [ext_resource type="Texture2D" uid="uid://cs2j7x65fvccm" path="res://assets/orc.svg" id="4_xme4o"]
+[ext_resource type="PackedScene" uid="uid://dudedbfh5mj08" path="res://scenes/visuals/OrcVisual.tscn" id="5_nvs4g"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_md0e3"]
 bg_color = Color(0.14901961, 0.19215687, 0.25882354, 1)
@@ -22,6 +23,7 @@ corner_radius_bottom_left = 3
 [node name="Orc" type="Node2D" unique_id=1962163179]
 script = ExtResource("1_hu8b3")
 stats = ExtResource("2_nvs4g")
+animated_visual_enabled = true
 
 [node name="SlowIndicator" type="Sprite2D" parent="." unique_id=1953666337]
 visible = false
@@ -32,12 +34,14 @@ texture = ExtResource("4_xme4o")
 
 [node name="HealthBar" type="ProgressBar" parent="." unique_id=193745244]
 offset_left = -44.0
-offset_top = -66.0
+offset_top = -82.0
 offset_right = 44.0
-offset_bottom = -39.0
+offset_bottom = -55.0
 mouse_filter = 2
 theme_override_styles/background = SubResource("StyleBoxFlat_md0e3")
 theme_override_styles/fill = SubResource("StyleBoxFlat_4ra3w")
 max_value = 30.0
 value = 30.0
 show_percentage = false
+
+[node name="OrcVisual" parent="." unique_id=244155946 instance=ExtResource("5_nvs4g")]

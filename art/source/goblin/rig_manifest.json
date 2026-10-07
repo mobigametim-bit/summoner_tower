@@ -11,7 +11,7 @@
     128
   ],
   "feet_baseline_y": 239,
-  "gameplay_canvas_size": 108,
+  "gameplay_canvas_size": 86.4,
   "coordinates": "Full untrimmed canvas. Sprite2D centered=false, position=-bone pivot. Root=-actor_origin; Bone local position=part pivot-parent pivot. Bone rest explicitly equals initial transform.",
   "outline": {
     "color": "#29180f",
@@ -118,7 +118,7 @@
     }
   ],
   "visual_scene": "res://scenes/visuals/GoblinVisual.tscn",
-  "visual_scale": 0.421875,
+  "visual_scale": 0.3375,
   "bone_count": 8,
   "animations": {
     "walk_loop": 0.64,

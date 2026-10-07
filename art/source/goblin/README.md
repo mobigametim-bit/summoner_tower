@@ -38,7 +38,7 @@ Outline #29180f, 7 px на общем canvas, round linecap/linejoin; более
 
 Origin (128,128), baseline ступней около y=239. Sprite2D centered=false, position=−pivot; Bone.position=pivot−parent_pivot. Все parts сохраняют полный canvas, trimming отсутствует. В rig 8 bones вместе с Root, явные rest transforms с determinant=1, без mesh/IK/root motion.
 
-Примерка масштаба использует полный canvas 108 логических единиц (ширина текущего enemy.svg) и существующий коэффициент min((cell_size−12)/140,1). При 6/7/8 столбцах получаются примерно 77/65/56 логических px, а на экране шириной 390 px — 42/35/30 физических px. Это art preview, не утверждение о выполненной gameplay integration.
+По правке пользователя от 07.10.2026 Goblin уменьшен на 20%: полный canvas 86.4 логических единиц вместо 108, visual.scale=0.3375. При 6/7/8 столбцах и существующем коэффициенте min((cell_size−12)/140,1) получаются примерно 62/52/44 логических px, а на экране шириной 390 px — 33/28/24 физических px. Static fallback, полоска HP и индикатор slow уменьшены тем же коэффициентом. Mirror сохраняет новый размер; движение, HP, урон и награды не менялись.
 
 ## Выполненные проверки
 

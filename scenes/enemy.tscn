@@ -27,17 +27,19 @@ animated_visual_enabled = true
 
 [node name="SlowIndicator" type="Sprite2D" parent="." unique_id=1953666337]
 visible = false
+scale = Vector2(0.8, 0.8)
 texture = ExtResource("3_4ra3w")
 
 [node name="Visual" type="Sprite2D" parent="." unique_id=606921741]
 modulate = Color(0.53333336, 0.7254902, 0.41960785, 1)
+scale = Vector2(0.8, 0.8)
 texture = ExtResource("2_md0e3")
 
 [node name="HealthBar" type="ProgressBar" parent="." unique_id=193745244]
-offset_left = -44.0
-offset_top = -53.0
-offset_right = 44.0
-offset_bottom = -43.0
+offset_left = -35.2
+offset_top = -42.4
+offset_right = 35.2
+offset_bottom = -34.4
 mouse_filter = 2
 theme_override_styles/background = SubResource("StyleBoxFlat_md0e3")
 theme_override_styles/fill = SubResource("StyleBoxFlat_4ra3w")

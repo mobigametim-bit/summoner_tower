@@ -1,0 +1,140 @@
+{
+  "version": 1,
+  "entity": "Orc",
+  "stage": "accepted",
+  "canvas": [
+    256,
+    256
+  ],
+  "actor_origin": [
+    128,
+    128
+  ],
+  "feet_baseline_y": 239,
+  "gameplay_canvas_size": 120,
+  "bone_count": 8,
+  "coordinates": "Full untrimmed canvas. Root=-actor_origin; Sprite2D centered=false, position=-pivot; bone position=pivot-parent pivot. Rest explicitly equals initial transform.",
+  "outline": {
+    "color": "#29180f",
+    "width": 7
+  },
+  "parts": [
+    {
+      "file": "parts/arm_back.svg",
+      "pivot": [
+        75,
+        148
+      ],
+      "bone": "BackArm",
+      "parent_bone": "Body",
+      "sprite_offset": [
+        -75,
+        -148
+      ],
+      "z_index": 0
+    },
+    {
+      "file": "parts/leg_left.svg",
+      "pivot": [
+        102,
+        207
+      ],
+      "bone": "LeftLeg",
+      "parent_bone": "Body",
+      "sprite_offset": [
+        -102,
+        -207
+      ],
+      "z_index": 1
+    },
+    {
+      "file": "parts/leg_right.svg",
+      "pivot": [
+        147,
+        207
+      ],
+      "bone": "RightLeg",
+      "parent_bone": "Body",
+      "sprite_offset": [
+        -147,
+        -207
+      ],
+      "z_index": 2
+    },
+    {
+      "file": "parts/body.svg",
+      "pivot": [
+        126,
+        176
+      ],
+      "bone": "Body",
+      "parent_bone": "Root",
+      "sprite_offset": [
+        -126,
+        -176
+      ],
+      "z_index": 3
+    },
+    {
+      "file": "parts/axe.svg",
+      "pivot": [
+        203,
+        184
+      ],
+      "bone": "Axe",
+      "parent_bone": "FrontArm",
+      "sprite_offset": [
+        -203,
+        -184
+      ],
+      "z_index": 4
+    },
+    {
+      "file": "parts/arm_front.svg",
+      "pivot": [
+        171,
+        150
+      ],
+      "bone": "FrontArm",
+      "parent_bone": "Body",
+      "sprite_offset": [
+        -171,
+        -150
+      ],
+      "z_index": 5
+    },
+    {
+      "file": "parts/head.svg",
+      "pivot": [
+        128,
+        142
+      ],
+      "bone": "Head",
+      "parent_bone": "Body",
+      "sprite_offset": [
+        -128,
+        -142
+      ],
+      "z_index": 6
+    }
+  ],
+  "visual_scene": "res://scenes/visuals/OrcVisual.tscn",
+  "visual_scale": 0.46875,
+  "animation_review_scene": "res://scenes/debug/OrcAnimationTest.tscn",
+  "animations": {"walk_loop": 0.8, "attack": 0.4, "hit": 0.16, "death": 0.32},
+  "attack_impact_time": 0.18,
+  "walk_rotation_degrees": {"head_world": 7, "axe_world": 16.5},
+  "equipment_mask": "res://art/source/orc/equipment_mask.svg",
+  "equipment_shader": "res://art/source/goblin/equipment_palette.gdshader",
+  "gameplay_review_scene": "res://scenes/debug/OrcGameplayReview.tscn",
+  "gameplay_entity": "res://scenes/orc.tscn",
+  "static_fallback": "res://assets/orc.svg",
+  "level_color_rule": "Only boots, bracers and loincloth. Skin, straps, armor, metal, fangs and axe remain fixed. GPU checked; accepted and enabled by default.",
+  "difficulty_hp_thresholds": [
+    60,
+    120,
+    240,
+    480,
+    960
+  ]
+}

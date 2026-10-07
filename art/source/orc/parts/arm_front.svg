@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="256" height="256" viewBox="0 0 256 256">
+  <g id="arm_front" stroke="#29180f" stroke-width="7" stroke-linecap="round" stroke-linejoin="round" data-pivot-x="171" data-pivot-y="150">
+    <path d="M160 136Q174 130 185 143L193 165 207 177Q215 190 205 200 195 206 183 193L165 178Q153 160 160 136Z" fill="#7fa443"/>
+    <path d="m172 145 9 3 3 22 15 10-4 17-16-13-17-28Z" fill="#5f8134" stroke="none"/>
+    <g data-equipment="bracer_front">
+      <path d="m170 167 25-5 8 16-27 10Z" fill="#9c642d" stroke-width="5" data-mask="true"/>
+      <path d="m176 171 17-4 4 7-19 6Z" fill="#b77e42" stroke="none"/>
+    </g>
+    <path d="m199 181-4 10" fill="none" stroke-width="5"/>
+    <path d="m161 124 25-4 17 24-8 17-23 3-22-23Z" fill="#895334" stroke-width="6"/>
+    <path d="m164 130 19-4 13 19-7 8-15 2-14-15Z" fill="#8d8981" stroke-width="5"/>
+    <path d="m168 132 12-2 8 11-8 6-14-8Z" fill="#c5c0b6" stroke="none"/>
+    <path d="m178 131 16-24 6 28Q190 140 178 131Z" fill="#f3e7ce" stroke-width="6"/>
+  </g>
+</svg>

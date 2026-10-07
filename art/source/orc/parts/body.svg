@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="256" height="256" viewBox="0 0 256 256">
+  <g id="body" stroke="#29180f" stroke-width="7" stroke-linecap="round" stroke-linejoin="round" data-pivot-x="126" data-pivot-y="176">
+    <path d="M89 132Q129 120 164 134L180 163 174 191Q154 215 90 201L78 173Z" fill="#7fa443"/>
+    <path d="m89 149 24 15 30 2 21-19 9 23-21 23-47-3-22-19Z" fill="#5f8134" stroke="none"/>
+    <path d="m100 136 24-6 30 7-10 10-27-2Z" fill="#a0bf60" stroke="none"/>
+    <g data-equipment="loincloth">
+      <path d="M88 188Q126 199 164 188L174 211 154 207 131 222 113 209 92 215 83 200Z" fill="#9c642d" stroke-width="6" data-mask="true"/>
+      <path d="m108 199 21 4 26-6-24 19Z" fill="#b77e42" stroke="none"/>
+    </g>
+    <path d="m91 132 77 45-11 16-77-45Z" fill="#895334" stroke-width="5"/>
+    <path d="m99 140 58 35-5 5-60-35Z" fill="#a46b42" stroke="none"/>
+    <path d="m119 148 12-12 19 15-13 15Z" fill="#c5c0b6" stroke-width="5"/>
+    <path d="m130 146 8 6-3 4-8-6Z" fill="#613821" stroke="none"/>
+    <path d="M84 181Q126 192 174 181L175 197Q127 207 83 197Z" fill="#613821" stroke-width="5"/>
+    <path d="M90 187Q104 191 118 190L117 196 89 191Z" fill="#895334" stroke="none"/>
+    <rect x="121" y="184" width="24" height="20" rx="3" fill="#c5c0b6" stroke-width="5"/>
+    <rect x="128" y="190" width="10" height="8" rx="1" fill="#613821" stroke="none"/>
+  </g>
+</svg>

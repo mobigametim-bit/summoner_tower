@@ -18,6 +18,9 @@ var difficulty_tier: int = 1
 @onready var health_bar: ProgressBar = $HealthBar
 @onready var slow_indicator: Sprite2D = $SlowIndicator
 @onready var goblin_visual: GoblinVisual = get_node_or_null("GoblinVisual") as GoblinVisual
+@onready var orc_visual: OrcVisual = get_node_or_null("OrcVisual") as OrcVisual
+# Оба visual реализуют один контракт; gameplay сохраняет движение и outcomes.
+@onready var _animated_visual: Variant = goblin_visual if goblin_visual != null else orc_visual
 
 var _target_y: float = 0.0
 var _resolved: bool = false
@@ -58,7 +61,7 @@ func _physics_process(delta: float) -> void:
 	if _slow_remaining <= 0.0 and _slow_ratio > 0.0:
 		_clear_slow()
 	if animated_visual_enabled:
-		goblin_visual.advance_gameplay(delta, _time_to_contact(), global_position - previous_position)
+		_animated_visual.advance_gameplay(delta, _time_to_contact(), global_position - previous_position)
 	if global_position.y >= _target_y:
 		_resolve_at_tower()
 
@@ -67,21 +70,21 @@ func _resolve_at_tower() -> void:
 	if _resolved:
 		return
 	if animated_visual_enabled:
-		goblin_visual.impact_now()
+		_animated_visual.impact_now()
 	_finish(Outcome.REACHED_TOWER)
 
 
 func set_animated_visual(enabled: bool) -> void:
-	animated_visual_enabled = enabled and goblin_visual != null
+	animated_visual_enabled = enabled and _animated_visual != null
 	visual.visible = not animated_visual_enabled
-	if goblin_visual == null:
+	if _animated_visual == null:
 		return
-	goblin_visual.visible = animated_visual_enabled
+	_animated_visual.visible = animated_visual_enabled
 	if animated_visual_enabled:
-		goblin_visual.enable_gameplay()
-		goblin_visual.set_difficulty(difficulty_tier, stats.color_for(max_health))
+		_animated_visual.enable_gameplay()
+		_animated_visual.set_difficulty(difficulty_tier, stats.color_for(max_health))
 	else:
-		goblin_visual.stop_gameplay()
+		_animated_visual.stop_gameplay()
 
 
 func _time_to_contact() -> float:
@@ -102,7 +105,7 @@ func take_damage(amount: int) -> void:
 	if current_health == 0:
 		_finish(Outcome.KILLED)
 	elif animated_visual_enabled:
-		goblin_visual.show_hit()
+		_animated_visual.show_hit()
 
 
 func is_targetable() -> bool:
@@ -148,9 +151,9 @@ func _finish(outcome: Outcome) -> void:
 	_clear_slow()
 	if animated_visual_enabled:
 		# Only the visual survives; it is neither a target nor an active wave enemy.
-		goblin_visual.reparent(get_parent().get_parent(), true)
-		goblin_visual.add_to_group("enemy_visual_tails")
-		goblin_visual.finish_as_tail(outcome == Outcome.KILLED)
+		_animated_visual.reparent(get_parent().get_parent(), true)
+		_animated_visual.add_to_group("enemy_visual_tails")
+		_animated_visual.finish_as_tail(outcome == Outcome.KILLED)
 	resolved.emit(self, outcome)
 	queue_free()
 
@@ -159,5 +162,5 @@ func stop() -> void:
 	_resolved = true
 	set_physics_process(false)
 	_clear_slow()
-	if goblin_visual != null and is_instance_valid(goblin_visual):
-		goblin_visual.stop_gameplay()
+	if _animated_visual != null and is_instance_valid(_animated_visual):
+		_animated_visual.stop_gameplay()

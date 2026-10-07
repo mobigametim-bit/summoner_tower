@@ -1,0 +1,14 @@
+[gd_scene format=3 uid="uid://b4keo6apfi52g"]
+
+[ext_resource type="PackedScene" uid="uid://bms134e8dbbrq" path="res://scenes/debug/GoblinGameplayReview.tscn" id="1_votw4"]
+[ext_resource type="Script" uid="uid://dbhqggv6fxak5" path="res://scripts/debug/orc_gameplay_review.gd" id="2_rc7wx"]
+
+[node name="OrcGameplayReview" unique_id=469266139 instance=ExtResource("1_votw4")]
+script = ExtResource("2_rc7wx")
+battlefield_seed = 101
+
+[node name="Title" parent="Interface/GoblinReview" parent_id_path=PackedInt32Array(1548244471) index="0" unique_id=1505245209]
+text = "ORC REVIEW"
+
+[node name="Animated" parent="Interface/GoblinReview" parent_id_path=PackedInt32Array(1548244471) index="1" unique_id=606428689]
+tooltip_text = "Orc STATIC / ANIMATED"

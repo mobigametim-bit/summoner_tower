@@ -6,7 +6,7 @@
 
 Один asset: обсуждение и план → явное подтверждение → SVG art → ручная приёмка art → rig/animations → ручная приёмка animation → настоящий gameplay → финальная приёмка → отдельный commit. Перед следующим asset снова обсуждаем план. Push только по отдельному разрешению пользователя.
 
-Порядок: Archer (принят), Goblin (принят), Mage (принят), Frost Mage (принят), Orc, Golem, Boss, Summoner Tower. Новые сущности, skins, equipment и изменения баланса не входят в art pass. Image generators, Krita, готовые чужие sprites запрещены; production art пишется вручную как SVG-код. [Итог Goblin](done/GOBLIN_GAMEPLAY_REVIEW.md), [итог Frost Mage](done/FROST_MAGE_GAMEPLAY_REVIEW.md).
+Порядок: Archer (принят), Goblin (принят), Mage (принят), Frost Mage (принят), Orc (принят 08.10.2026), Golem, Boss, Summoner Tower. Новые сущности, skins, equipment и изменения баланса не входят в art pass. Image generators, Krita, готовые чужие sprites запрещены; production art пишется вручную как SVG-код. [Итог Goblin](done/GOBLIN_GAMEPLAY_REVIEW.md), [итог Frost Mage](done/FROST_MAGE_GAMEPLAY_REVIEW.md), [итог Orc](done/ORC_GAMEPLAY_REVIEW.md).
 
 ## Стиль
 
@@ -48,9 +48,11 @@ Manifest хранит canvas, actor_origin, pivot каждой части, paren
 
 Archer: 9 частей и 9 костей вместе с Root. Quiver следует Body без отдельной кости. Z-order: Quiver 0, LeftLeg 1, RightLeg 2, DrawUpperArm 3, BowArm 4, Body 5, Head 6, Bow 7, DrawForearm 8. Рука с луком за телом, лук перед рукой. NockedArrow — вспомогательный Sprite2D из существующей arrow.svg, без кости.
 
-Goblin: 7 частей и 8 костей вместе с Root; руки цельные с кистями, ноги с ботинками, лицо/уши/клык внутри Head. Z-order: BackArm 0, LeftLeg 1, RightLeg 2, Body 3, FrontArm 4, Head 5, Dagger 6. Кинжал отдельным Sprite2D следует Dagger под FrontArm, голова закрывает скрытое плечо. Canvas 256×256, origin=(128,128), baseline y=239, gameplay visual.scale=108/256.
+Goblin: 7 частей и 8 костей вместе с Root; руки цельные с кистями, ноги с ботинками, лицо/уши/клык внутри Head. Z-order: BackArm 0, LeftLeg 1, RightLeg 2, Body 3, FrontArm 4, Head 5, Dagger 6. Кинжал отдельным Sprite2D следует Dagger под FrontArm, голова закрывает скрытое плечо. Canvas 256×256, origin=(128,128), baseline y=239. По правке пользователя от 07.10.2026 visual уменьшен на 20%: gameplay visual.scale=86.4/256 (0.3375) вместо 108/256; тот же коэффициент применяется после mirror. Static fallback, HealthBar и SlowIndicator уменьшены на 20%; entity position, движение и баланс сохранены.
 
 ## Godot и ответственность
+
+Orc: 7 SVG parts, 8 bones вместе с Root, canvas 256×256, origin=(128,128), baseline=239, visual.scale=120/256. Z-order: BackArm, LeftLeg, RightLeg, Body, Axe, FrontArm, Head; Axe следует FrontArm, располагается перед Body и за кистью. Локальная equipment mask меняет только ботинки, напульсники и повязку. Clips: walk_loop 0.8 s, attack 0.4 s / impact 0.18 s, hit 0.16 s, death 0.32 s. Gameplay сохраняет кадр контакта, visual tails не являются целями. Animated default включён после финальной приёмки; прежний static сохранён.
 
 ```text
 GameplayEntity
@@ -125,6 +127,8 @@ Archer: 9 общих RGBA текстур частей ~2,25 MiB, master ~0,25 Mi
 
 ## Mesh exceptions
 
+Orc: 7 textures и mask около 2 MiB RGBA8; desktop Edge, 40 экземпляров — около 65 FPS / 325 draw calls ANIMATED против 63 FPS / 163 draw calls STATIC. Это короткий тест текущего компьютера, не гарантия для телефона. Новый набор textures на каждый цвет не нужен.
+
 По принятому решению сохраняем rigid cutout. Сначала исправляем art shape, overlap, pivot, z-order и keys. Mesh допускается только по новому явному подтверждению и для конкретной гибкой части (длинная ткань, хвост, щупальце). Head/body/arms/legs/weapon остаются rigid. Не переводим весь персонаж на deformation и не переносим исключение автоматически на остальные assets.
 
-Legacy art не удаляется; cleanup — отдельная задача. После финальной приёмки Archer, Goblin, Mage и Frost Mage animated visuals включены по умолчанию, STATIC доступен в review. Планы и отчёты принятых assets сразу переносятся в docs/done с обновлением ссылок; этот стандарт остаётся в docs.
+Legacy art не удаляется; cleanup — отдельная задача. После финальной приёмки Archer, Goblin, Mage, Frost Mage и Orc animated visuals включены по умолчанию, STATIC доступен в review. Планы и отчёты принятых assets сразу переносятся в docs/done с обновлением ссылок; этот стандарт остаётся в docs.
