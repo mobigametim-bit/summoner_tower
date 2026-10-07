@@ -99,7 +99,7 @@ SpawnPlayer отдельно анимирует Root теми же spawn-тре�
 
 Принятый Goblin: walk_loop 0,64 s, attack 0,34 s с impact 0,16 s, hit 0,16 s, death 0,32 s. В gameplay manual AnimationPlayer получает оставшееся время до контакта с учётом slow; preparation использует seek без событий. В прежний contact frame pose устанавливается на impact, затем выполняется однократный gameplay outcome. Entity сразу перестаёт быть целью и учитываться в волне; только visual переносится в World, заканчивает death/recovery и удаляется. Group enemy_visual_tails очищается при остановке боя. Движение, HP, damage и награды не ждут окончания animation.
 
-Принятый Mage: idle_loop 1,2 s, cast 0,42 s, release 0,18 s, spawn 0,4 s; синхронизация с gameplay аналогична Archer. Свечение посоха — три небольших Polygon2D с opacity/scale tracks внутри cast, без postprocessing или новых textures. [Итог Mage](done/MAGE_GAMEPLAY_REVIEW.md).
+Принятый Mage: idle_loop 1,2 s, cast 0,42 s, release 0,18 s, spawn 0,4 s; синхронизация с gameplay аналогична Archer. Свечение посоха — три небольших Polygon2D с opacity/scale tracks внутри cast, без postprocessing или новых textures. По правке пользователя от 07.10.2026 кристалл посоха красный, свечение тёплое красно-оранжевое; форма и timing прежние. [Итог Mage](done/MAGE_GAMEPLAY_REVIEW.md).
 
 ## Палитра уровней и текстуры
 

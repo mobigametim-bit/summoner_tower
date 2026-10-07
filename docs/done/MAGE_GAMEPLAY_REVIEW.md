@@ -44,3 +44,9 @@
 4. Проверить pause/restart и удобство на своём экране.
 
 Финальная приёмка получена. После включения default короткий native запуск обычной game scene подтвердил animated=true, MageVisual.visible=true, static Visual.visible=false, idle 1.2 s и работающий spawn; новых runtime errors нет. Ordinary Web build обновлена, короткий Edge запуск из меню в бой прошёл без console/page/resource errors. Полный игровой набор не повторялся: изменён только default visual. Планы и отчёты перенесены в docs/done. Push только с отдельным разрешением. Перед Frost Mage — отдельное обсуждение и план.
+
+## Принятая правка огненного кристалла
+
+07.10.2026. По запросу пользователя кристалл посоха в staff.svg и той же группе master.svg перекрашен в красный: #ed5158 / #9f293f / #ffb0a0 / #fff0ce. Цвета существующих Halo/Aura/Core изменены через Godot MCP на тёплые красно-оранжевые. Формы, pivots, outline, opacity/scale tracks, timing, fireball и баланс прежние; маленькие украшения одежды остаются cyan.
+
+Правка показана в Godot и Mage Web gameplay preview, короткий Edge запуск с animated Mage прошёл без console/page errors. Обычная Web build и Mage previews обновлены. Пользователь принял результат вместе с анимациями Frost Mage следующей репликой «принимаю, дальше». Правка фиксируется отдельно от ещё не принятой gameplay integration Frost Mage. Push не разрешён.
