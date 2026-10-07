@@ -12,8 +12,9 @@
 [ext_resource type="Texture2D" uid="uid://c5ba2p5wccy1h" path="res://assets/debug/animation_controls/pause.svg" id="6_lv00d"]
 [ext_resource type="PackedScene" uid="uid://kwx0o48hixmp" path="res://scenes/visuals/FrostMageVisual.tscn" id="7_chbiy"]
 [ext_resource type="PackedScene" uid="uid://dudedbfh5mj08" path="res://scenes/visuals/OrcVisual.tscn" id="8_ktkvm"]
-[ext_resource type="Script" uid="uid://7y2cv5e5w4vi" path="res://scripts/visuals/orc_visual.gd" id="9_spws7"]
+[ext_resource type="PackedScene" uid="uid://c5l4266trpqnf" path="res://scenes/visuals/GolemVisual.tscn" id="9_spws7"]
 [ext_resource type="PackedScene" uid="uid://oc8xhrjf4wpc" path="res://scenes/visuals/GoblinVisual.tscn" id="10_lv00d"]
+[ext_resource type="Script" uid="uid://oc8jchgd6pj0" path="res://scripts/visuals/golem_visual.gd" id="10_wauqn"]
 
 [node name="ArtAnimationTest" type="Control" unique_id=1958274146]
 layout_mode = 3
@@ -152,10 +153,13 @@ visible = false
 [node name="FrostMageVisual" parent="Margin/Content/Stage/PreviewHost" unique_id=2090942253 instance=ExtResource("7_chbiy")]
 visible = false
 
-[node name="OrcVisual" type="Node2D" parent="Margin/Content/Stage/PreviewHost" unique_id=244155946 instance=ExtResource("8_ktkvm")]
+[node name="OrcVisual" parent="Margin/Content/Stage/PreviewHost" unique_id=244155946 instance=ExtResource("8_ktkvm")]
 visible = false
-scale = Vector2(0.46875, 0.46875)
-script = ExtResource("9_spws7")
+
+[node name="GolemVisual" type="Node2D" parent="Margin/Content/Stage/PreviewHost" unique_id=1849001153 instance=ExtResource("9_spws7")]
+visible = false
+scale = Vector2(0.546875, 0.546875)
+script = ExtResource("10_wauqn")
 
 [node name="Playback" type="HBoxContainer" parent="Margin/Content" unique_id=1971342820]
 layout_mode = 2
@@ -282,10 +286,13 @@ visible = false
 [node name="FrostMageVisual" parent="Margin/Content/Samples/Columns6/Cell/Anchor/UnitHost" unique_id=1900722147 instance=ExtResource("7_chbiy")]
 visible = false
 
-[node name="OrcVisual" type="Node2D" parent="Margin/Content/Samples/Columns6/Cell/Anchor/UnitHost" unique_id=1244023067 instance=ExtResource("8_ktkvm")]
+[node name="OrcVisual" parent="Margin/Content/Samples/Columns6/Cell/Anchor/UnitHost" unique_id=1244023067 instance=ExtResource("8_ktkvm")]
 visible = false
-scale = Vector2(0.46875, 0.46875)
-script = ExtResource("9_spws7")
+
+[node name="GolemVisual" type="Node2D" parent="Margin/Content/Samples/Columns6/Cell/Anchor/UnitHost" unique_id=1218166184 instance=ExtResource("9_spws7")]
+visible = false
+scale = Vector2(0.546875, 0.546875)
+script = ExtResource("10_wauqn")
 
 [node name="SizeLabel" type="Label" parent="Margin/Content/Samples/Columns6" unique_id=1980167003]
 layout_mode = 2
@@ -328,10 +335,13 @@ visible = false
 [node name="FrostMageVisual" parent="Margin/Content/Samples/Columns7/Cell/Anchor/UnitHost" unique_id=1389112943 instance=ExtResource("7_chbiy")]
 visible = false
 
-[node name="OrcVisual" type="Node2D" parent="Margin/Content/Samples/Columns7/Cell/Anchor/UnitHost" unique_id=483808385 instance=ExtResource("8_ktkvm")]
+[node name="OrcVisual" parent="Margin/Content/Samples/Columns7/Cell/Anchor/UnitHost" unique_id=483808385 instance=ExtResource("8_ktkvm")]
 visible = false
-scale = Vector2(0.46875, 0.46875)
-script = ExtResource("9_spws7")
+
+[node name="GolemVisual" type="Node2D" parent="Margin/Content/Samples/Columns7/Cell/Anchor/UnitHost" unique_id=921985370 instance=ExtResource("9_spws7")]
+visible = false
+scale = Vector2(0.546875, 0.546875)
+script = ExtResource("10_wauqn")
 
 [node name="SizeLabel" type="Label" parent="Margin/Content/Samples/Columns7" unique_id=211708040]
 layout_mode = 2
@@ -374,10 +384,13 @@ visible = false
 [node name="FrostMageVisual" parent="Margin/Content/Samples/Columns8/Cell/Anchor/UnitHost" unique_id=161612793 instance=ExtResource("7_chbiy")]
 visible = false
 
-[node name="OrcVisual" type="Node2D" parent="Margin/Content/Samples/Columns8/Cell/Anchor/UnitHost" unique_id=1052176931 instance=ExtResource("8_ktkvm")]
+[node name="OrcVisual" parent="Margin/Content/Samples/Columns8/Cell/Anchor/UnitHost" unique_id=1052176931 instance=ExtResource("8_ktkvm")]
 visible = false
-scale = Vector2(0.46875, 0.46875)
-script = ExtResource("9_spws7")
+
+[node name="GolemVisual" type="Node2D" parent="Margin/Content/Samples/Columns8/Cell/Anchor/UnitHost" unique_id=111056085 instance=ExtResource("9_spws7")]
+visible = false
+scale = Vector2(0.546875, 0.546875)
+script = ExtResource("10_wauqn")
 
 [node name="SizeLabel" type="Label" parent="Margin/Content/Samples/Columns8" unique_id=252214829]
 layout_mode = 2
@@ -419,6 +432,8 @@ one_shot = true
 [connection signal="visual_animation_finished" from="Margin/Content/Stage/PreviewHost/FrostMageVisual" to="." method="_on_visual_animation_finished"]
 [connection signal="attack_impact" from="Margin/Content/Stage/PreviewHost/OrcVisual" to="." method="_on_visual_impact"]
 [connection signal="visual_animation_finished" from="Margin/Content/Stage/PreviewHost/OrcVisual" to="." method="_on_visual_animation_finished"]
+[connection signal="attack_impact" from="Margin/Content/Stage/PreviewHost/GolemVisual" to="." method="_on_visual_impact"]
+[connection signal="visual_animation_finished" from="Margin/Content/Stage/PreviewHost/GolemVisual" to="." method="_on_visual_animation_finished"]
 [connection signal="pressed" from="Margin/Content/Playback/Replay" to="." method="replay"]
 [connection signal="pressed" from="Margin/Content/Playback/Pause" to="." method="_on_pause"]
 [connection signal="pressed" from="Margin/Content/SpeedRow/Half" to="." method="_on_half_speed"]

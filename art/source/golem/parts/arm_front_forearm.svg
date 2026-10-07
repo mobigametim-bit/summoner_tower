@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="256" height="256" viewBox="0 0 256 256">
+<g id="arm_front_forearm" stroke="#29180f" stroke-width="7" stroke-linecap="round" stroke-linejoin="round" data-pivot-x="210" data-pivot-y="157">
+    <path d="M205 143 224 146 241 164 246 184 242 211 228 225 207 222 188 207 185 180 192 159Z" fill="#bba58b" />
+    <path d="m204 150 17 2 13 16 5 17-18 7-24-12-6-9Z" fill="#dfcbae" stroke="none" />
+    <path d="m220 192 25-10 1 2-4 27-14 14-21-3-19-15 1-14Z" fill="#887562" stroke="none" />
+    <path d="m197 191 16-7 16 14-8 18-13-1-13-11Z" fill="#bba58b" stroke="none" />
+    <g data-moss="forearm_front" stroke="none">
+      <path d="m205 151 17 5 14 15-12 6-10-8-7 13-12-8-2-9Z" fill="#88b96b" data-mask="true" />
+      <path d="m207 161 7 8 10 8-10-8-7 13-12-8-2-9 8 4Z" fill="#668b50" />
+    </g>
+  </g>
+</svg>

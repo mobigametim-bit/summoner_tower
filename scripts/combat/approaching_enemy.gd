@@ -19,8 +19,9 @@ var difficulty_tier: int = 1
 @onready var slow_indicator: Sprite2D = $SlowIndicator
 @onready var goblin_visual: GoblinVisual = get_node_or_null("GoblinVisual") as GoblinVisual
 @onready var orc_visual: OrcVisual = get_node_or_null("OrcVisual") as OrcVisual
-# Оба visual реализуют один контракт; gameplay сохраняет движение и outcomes.
-@onready var _animated_visual: Variant = goblin_visual if goblin_visual != null else orc_visual
+@onready var golem_visual: GolemVisual = get_node_or_null("GolemVisual") as GolemVisual
+# Все visual реализуют один контракт; gameplay сохраняет движение и outcomes.
+@onready var _animated_visual: Variant = goblin_visual if goblin_visual != null else (orc_visual if orc_visual != null else golem_visual)
 
 var _target_y: float = 0.0
 var _resolved: bool = false

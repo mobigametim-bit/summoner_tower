@@ -1,0 +1,14 @@
+[gd_scene format=3 uid="uid://b4rwgcxjesh83"]
+
+[ext_resource type="PackedScene" uid="uid://bms134e8dbbrq" path="res://scenes/debug/GoblinGameplayReview.tscn" id="1_xe35d"]
+[ext_resource type="Script" uid="uid://quvvbgnoyqhi" path="res://scripts/debug/golem_gameplay_review.gd" id="2_e38gl"]
+
+[node name="GolemGameplayReview" unique_id=469266139 instance=ExtResource("1_xe35d")]
+script = ExtResource("2_e38gl")
+battlefield_seed = 101
+
+[node name="Title" parent="Interface/GoblinReview" parent_id_path=PackedInt32Array(1548244471) index="0" unique_id=1505245209]
+text = "GOLEM REVIEW"
+
+[node name="Animated" parent="Interface/GoblinReview" parent_id_path=PackedInt32Array(1548244471) index="1" unique_id=606428689]
+tooltip_text = "Golem STATIC / ANIMATED"

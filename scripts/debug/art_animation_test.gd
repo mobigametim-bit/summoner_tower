@@ -1,13 +1,13 @@
 extends Control
 
-const ASSETS: Array[String] = ["Archer", "Goblin", "Mage", "FrostMage", "Orc"]
+const ASSETS: Array[String] = ["Archer", "Goblin", "Mage", "FrostMage", "Orc", "Golem"]
 const ARCHER_ANIMATIONS: Array[StringName] = [&"idle_loop", &"attack", &"spawn"]
 const GOBLIN_ANIMATIONS: Array[StringName] = [&"walk_loop", &"attack", &"hit", &"death"]
 const MAGE_ANIMATIONS: Array[StringName] = [&"idle_loop", &"cast", &"spawn"]
 const PAUSE_ICON: Texture2D = preload("res://assets/debug/animation_controls/pause.svg")
 const PLAY_ICON: Texture2D = preload("res://assets/debug/animation_controls/play.svg")
 
-@export_range(0, 4) var initial_asset_index: int = 0
+@export_range(0, 5) var initial_asset_index: int = 0
 
 @onready var content: VBoxContainer = $Margin/Content
 @onready var stage: Control = $Margin/Content/Stage
@@ -41,7 +41,7 @@ func _animations() -> Array[StringName]:
 
 
 func _is_enemy() -> bool:
-	return _asset_index == 1 or _asset_index == 4
+	return _asset_index == 1 or _asset_index == 4 or _asset_index == 5
 
 
 func _select_asset(index: int) -> void:
@@ -70,7 +70,7 @@ func _select_asset(index: int) -> void:
 		host.position.y = 0.0 if _is_enemy() else 26.0 * cell_size / 140.0 - 42.0 * unit_scale
 		host.scale = Vector2.ONE * unit_scale
 		_select_host(host)
-		var canvas_size: float = 120.0 if _asset_index == 4 else (GoblinVisual.GAMEPLAY_CANVAS_SIZE if _asset_index == 1 else 100.0)
+		var canvas_size: float = 140.0 if _asset_index == 5 else (120.0 if _asset_index == 4 else (GoblinVisual.GAMEPLAY_CANVAS_SIZE if _asset_index == 1 else 100.0))
 		var size_label: Label = content.get_node("Samples/Columns%d/SizeLabel" % columns)
 		size_label.text = "%d columns · %d px" % [columns, roundi(canvas_size * unit_scale)]
 		scale_picker.set_item_text(columns - 5, "%d columns · %d px" % [columns, roundi(canvas_size * unit_scale)])
@@ -196,7 +196,7 @@ func _on_visual_impact() -> void:
 	if not _is_enemy():
 		return
 	_release_count += 1
-	var impact_time: float = OrcVisual.ATTACK_IMPACT_TIME if _asset_index == 4 else GoblinVisual.ATTACK_IMPACT_TIME
+	var impact_time: float = GolemVisual.ATTACK_IMPACT_TIME if _asset_index == 5 else (OrcVisual.ATTACK_IMPACT_TIME if _asset_index == 4 else GoblinVisual.ATTACK_IMPACT_TIME)
 	event_label.text = "Impact: %.2f s · %d event" % [impact_time, _release_count]
 
 

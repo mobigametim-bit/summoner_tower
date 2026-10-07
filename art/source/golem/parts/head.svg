@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="256" height="256" viewBox="0 0 256 256">
+<g id="head" stroke="#29180f" stroke-width="7" stroke-linecap="round" stroke-linejoin="round" data-pivot-x="133" data-pivot-y="147">
+    <path d="M97 40 121 30Q131 27 141 32L170 43Q180 48 184 62L190 87 186 124Q183 139 170 148L148 163 112 158 88 143Q81 136 79 121L76 94 82 63Z" fill="#bba58b" />
+    <path d="m84 67 22 11-11 27 10 36 25 19-18-2-24-15-9-22-3-27Z" fill="#887562" stroke="none" />
+    <path d="m101 44 21-8 18 3 28 11 10 19-25-4-29-15-19 19-19-4Z" fill="#dfcbae" stroke="none" />
+    <path d="m160 66 23 7 7 14-4 37-17 19-16 10 16-39Z" fill="#887562" stroke="none" />
+    <g data-moss="head" stroke="none">
+      <path d="m101 44 21-8 19 3 27 12 9 17-17-6-12 7-17-11-12 16-10-11-9 7-6-15Z" fill="#88b96b" data-mask="true" />
+      <path d="m101 55 10 2 9-5 11 6 17 11-17-11-12 16-10-11-9 7-6-15Z" fill="#668b50" />
+    </g>
+    <path d="m91 89 19-8 26 15 27-9 20 7-2 27-21 14-32-4-32-14Z" fill="#49392c" stroke-width="5" />
+    <path d="M102 98 126 108Q124 121 113 119 104 117 102 108Z" fill="#ffd16c" stroke="none" />
+    <path d="m148 108 25-9-1 11Q170 122 157 119Z" fill="#ffd16c" stroke="none" />
+    <path d="m95 124 32 6 30-3 20-10 3 17-15 16-20 8-32-6-19-14Z" fill="#bba58b" stroke-width="5" />
+    <path d="m101 131 24 5 28-4 16-9 2 8-25 12-27-5Z" fill="#dfcbae" stroke="none" />
+    <path d="m127 143 21 1 28-18-5 13-26 19-22-4-14-8Z" fill="#887562" stroke="none" />
+  </g>
+</svg>

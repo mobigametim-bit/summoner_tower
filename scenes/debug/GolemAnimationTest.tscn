@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://yre3jdwl523u"]
+
+[ext_resource type="PackedScene" uid="uid://cxulhbufjisa3" path="res://scenes/debug/ArtAnimationTest.tscn" id="1_fc87k"]
+
+[node name="GolemAnimationTest" unique_id=1958274146 instance=ExtResource("1_fc87k")]
+initial_asset_index = 5

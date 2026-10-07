@@ -131,4 +131,8 @@ Orc: 7 textures и mask около 2 MiB RGBA8; desktop Edge, 40 экземпл�
 
 По принятому решению сохраняем rigid cutout. Сначала исправляем art shape, overlap, pivot, z-order и keys. Mesh допускается только по новому явному подтверждению и для конкретной гибкой части (длинная ткань, хвост, щупальце). Head/body/arms/legs/weapon остаются rigid. Не переводим весь персонаж на deformation и не переносим исключение автоматически на остальные assets.
 
-Legacy art не удаляется; cleanup — отдельная задача. После финальной приёмки Archer, Goblin, Mage, Frost Mage и Orc animated visuals включены по умолчанию, STATIC доступен в review. Планы и отчёты принятых assets сразу переносятся в docs/done с обновлением ссылок; этот стандарт остаётся в docs.
+Golem: восемь SVG частей 256×256 и moss_mask, девять bones вместе с Root; visual.scale=140/256. Цвет сложности меняет только исходные зелёные fills мха внутри маски, камень/глаза/outline сохраняются. Один local-to-scene moss material общий для восьми частей экземпляра. Walk 1.2 s, attack двумя руками 0.5 s с impact 0.20 s, hit 0.16 s, death 0.35 s. Gameplay использует тот же manual/contact/tail контракт, что Goblin/Orc. [Итог Golem](done/GOLEM_GAMEPLAY_REVIEW.md).
+
+Golem performance: textures и mask ≈2.25 MiB RGBA8, без набора на каждый tier. Desktop Edge, 40 экземпляров: ≈72 FPS / 443 draw calls ANIMATED против ≈144 FPS / 163 STATIC. Это измерение текущего компьютера; физический телефон и большие поздние волны не проверены.
+
+Legacy art не удаляется; cleanup — отдельная задача. После финальной приёмки Archer, Goblin, Mage, Frost Mage, Orc и Golem animated visuals включены по умолчанию, STATIC доступен в review. Планы и отчёты принятых assets сразу переносятся в docs/done с обновлением ссылок; этот стандарт остаётся в docs.

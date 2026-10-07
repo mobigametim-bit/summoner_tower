@@ -1,0 +1,195 @@
+{
+  "version": 1,
+  "entity": "Golem",
+  "stage": "complete",
+  "animated_default": true,
+  "rig_created": true,
+  "canvas": [
+    256,
+    256
+  ],
+  "actor_origin": [
+    128,
+    128
+  ],
+  "feet_baseline_y": 239,
+  "gameplay_canvas_size": 140,
+  "visual_scale": 0.546875,
+  "bone_count": 9,
+  "outline": {
+    "color": "#29180f",
+    "width": 7
+  },
+  "coordinates": "Full untrimmed canvas. Root=-actor_origin; Sprite centered=false, position=-pivot; Bone local position=pivot-parent pivot. Rest explicitly equals initial transform.",
+  "parts": [
+    {
+      "file": "parts/arm_back_upper.svg",
+      "pivot": [
+        85,
+        126
+      ],
+      "bone": "BackUpperArm",
+      "parent_bone": "Body",
+      "bone_position": [
+        -43,
+        -44
+      ],
+      "sprite_offset": [
+        -85,
+        -126
+      ],
+      "z_index": 0
+    },
+    {
+      "file": "parts/arm_back_forearm.svg",
+      "pivot": [
+        57,
+        147
+      ],
+      "bone": "BackForearm",
+      "parent_bone": "BackUpperArm",
+      "bone_position": [
+        -28,
+        21
+      ],
+      "sprite_offset": [
+        -57,
+        -147
+      ],
+      "z_index": 1
+    },
+    {
+      "file": "parts/leg_left.svg",
+      "pivot": [
+        100,
+        196
+      ],
+      "bone": "LeftLeg",
+      "parent_bone": "Body",
+      "bone_position": [
+        -28,
+        26
+      ],
+      "sprite_offset": [
+        -100,
+        -196
+      ],
+      "z_index": 2
+    },
+    {
+      "file": "parts/leg_right.svg",
+      "pivot": [
+        151,
+        196
+      ],
+      "bone": "RightLeg",
+      "parent_bone": "Body",
+      "bone_position": [
+        23,
+        26
+      ],
+      "sprite_offset": [
+        -151,
+        -196
+      ],
+      "z_index": 3
+    },
+    {
+      "file": "parts/body.svg",
+      "pivot": [
+        128,
+        170
+      ],
+      "bone": "Body",
+      "parent_bone": "Root",
+      "bone_position": [
+        128,
+        170
+      ],
+      "sprite_offset": [
+        -128,
+        -170
+      ],
+      "z_index": 4
+    },
+    {
+      "file": "parts/arm_front_upper.svg",
+      "pivot": [
+        171,
+        130
+      ],
+      "bone": "FrontUpperArm",
+      "parent_bone": "Body",
+      "bone_position": [
+        43,
+        -40
+      ],
+      "sprite_offset": [
+        -171,
+        -130
+      ],
+      "z_index": 5
+    },
+    {
+      "file": "parts/arm_front_forearm.svg",
+      "pivot": [
+        210,
+        157
+      ],
+      "bone": "FrontForearm",
+      "parent_bone": "FrontUpperArm",
+      "bone_position": [
+        39,
+        27
+      ],
+      "sprite_offset": [
+        -210,
+        -157
+      ],
+      "z_index": 6
+    },
+    {
+      "file": "parts/head.svg",
+      "pivot": [
+        133,
+        147
+      ],
+      "bone": "Head",
+      "parent_bone": "Body",
+      "bone_position": [
+        5,
+        -23
+      ],
+      "sprite_offset": [
+        -133,
+        -147
+      ],
+      "z_index": 7
+    }
+  ],
+  "moss_mask": "res://art/source/golem/moss_mask.svg",
+  "moss_color_rule": "Only moss. Stone, outline, seams and yellow eyes keep their source colors. A local material shared by eight parts selects green fills inside the common moss mask.",
+  "moss_shader": "res://art/source/golem/moss_palette.gdshader",
+  "moss_fills": {
+    "base": "#88b96b",
+    "shadow": "#668b50",
+    "shadow_factor": 0.75
+  },
+  "difficulty_hp_thresholds": [
+    120,
+    240,
+    480,
+    960,
+    1920
+  ],
+  "visual_scene": "res://scenes/visuals/GolemVisual.tscn",
+  "gameplay_entity": "res://scenes/golem.tscn",
+  "static_fallback": "res://assets/golem.svg",
+  "animations": {
+    "walk_loop": 1.2,
+    "attack": 0.5,
+    "hit": 0.16,
+    "death": 0.35
+  },
+  "attack_impact_time": 0.2
+}
