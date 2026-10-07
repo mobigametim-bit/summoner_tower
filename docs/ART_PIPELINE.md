@@ -6,7 +6,7 @@
 
 Один asset: обсуждение и план → явное подтверждение → SVG art → ручная приёмка art → rig/animations → ручная приёмка animation → настоящий gameplay → финальная приёмка → отдельный commit. Перед следующим asset снова обсуждаем план. Push только по отдельному разрешению пользователя.
 
-Порядок: Archer (принят), Goblin (принят), Mage (принят), Frost Mage (принят), Orc (принят 08.10.2026), Golem, Boss, Summoner Tower. Новые сущности, skins, equipment и изменения баланса не входят в art pass. Image generators, Krita, готовые чужие sprites запрещены; production art пишется вручную как SVG-код. [Итог Goblin](done/GOBLIN_GAMEPLAY_REVIEW.md), [итог Frost Mage](done/FROST_MAGE_GAMEPLAY_REVIEW.md), [итог Orc](done/ORC_GAMEPLAY_REVIEW.md).
+Порядок: Archer (принят), Goblin (принят), Mage (принят), Frost Mage (принят), Orc (принят), Golem (принят), Boss (принят 08.10.2026), Summoner Tower (следующий PLAN gate). Новые сущности, skins, equipment и изменения баланса не входят в art pass. Image generators, Krita, готовые чужие sprites запрещены; production art пишется вручную как SVG-код. [Итог Goblin](done/GOBLIN_GAMEPLAY_REVIEW.md), [итог Frost Mage](done/FROST_MAGE_GAMEPLAY_REVIEW.md), [итог Orc](done/ORC_GAMEPLAY_REVIEW.md), [итог Boss](done/BOSS_GAMEPLAY_REVIEW.md).
 
 ## Стиль
 
@@ -135,4 +135,8 @@ Golem: восемь SVG частей 256×256 и moss_mask, девять bones �
 
 Golem performance: textures и mask ≈2.25 MiB RGBA8, без набора на каждый tier. Desktop Edge, 40 экземпляров: ≈72 FPS / 443 draw calls ANIMATED против ≈144 FPS / 163 STATIC. Это измерение текущего компьютера; физический телефон и большие поздние волны не проверены.
 
-Legacy art не удаляется; cleanup — отдельная задача. После финальной приёмки Archer, Goblin, Mage, Frost Mage, Orc и Golem animated visuals включены по умолчанию, STATIC доступен в review. Планы и отчёты принятых assets сразу переносятся в docs/done с обновлением ссылок; этот стандарт остаётся в docs.
+Boss: 8 SVG parts 256×256, 9 bones, visual.scale=166/256. Палитра фиксированная при любом HP. Walk 1.2 s, attack двумя руками 0.55 s / impact 0.22 s, hit 0.16 s, death 0.45 s, spawn_or_intro 0.35 s. Manual/contact/tail contract сохраняет movement, контакт, награды и wave logic; intro однократный и не задерживает движение / targetability. CanvasGroup root (наследник Node2D), self_modulate для общего fade/flash скрывает overlap, без custom shader / mipmaps; fit_margin=0, clear_margin=2. Стандартный Skeleton2D остаётся жёстким cutout. [Итог Boss](done/BOSS_GAMEPLAY_REVIEW.md).
+
+Boss performance: 8 textures ≈2 MiB RGBA8. Один Boss на desktop Edge: 144 FPS / 54 draw calls ANIMATED против 144 FPS / 46 STATIC. Это целевой замер отдельного Boss, не гарантия для телефона или массовых поздних волн.
+
+Legacy art не удаляется; cleanup — отдельная задача. После финальной приёмки Archer, Goblin, Mage, Frost Mage, Orc, Golem и Boss animated visuals включены по умолчанию, STATIC доступен в review. Планы и отчёты принятых assets сразу переносятся в docs/done с обновлением ссылок; этот стандарт остаётся в docs.

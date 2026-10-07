@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="256" height="256" viewBox="0 0 256 256"><g id="leg_left" stroke="#29180f" stroke-width="7" stroke-linecap="round" stroke-linejoin="round" data-pivot-x="101" data-pivot-y="201">
+    <path d="M85 184Q105 179 117 194L116 218 119 237Q98 242 79 236L79 224Z" fill="#9876af" />
+    <path d="m91 192 19-1-11 32-14 8Z" fill="#6b4b7e" stroke="none" />
+    <path d="m82 214 34-2 4 24Q99 242 77 236L77 227Z" fill="#503456" stroke-width="6" />
+    <path d="m84 220 26-2" fill="none" stroke="#e3b552" stroke-width="5" />
+  </g>
+  </svg>

@@ -20,8 +20,9 @@ var difficulty_tier: int = 1
 @onready var goblin_visual: GoblinVisual = get_node_or_null("GoblinVisual") as GoblinVisual
 @onready var orc_visual: OrcVisual = get_node_or_null("OrcVisual") as OrcVisual
 @onready var golem_visual: GolemVisual = get_node_or_null("GolemVisual") as GolemVisual
+@onready var boss_visual: BossVisual = get_node_or_null("BossVisual") as BossVisual
 # Все visual реализуют один контракт; gameplay сохраняет движение и outcomes.
-@onready var _animated_visual: Variant = goblin_visual if goblin_visual != null else (orc_visual if orc_visual != null else golem_visual)
+@onready var _animated_visual: Variant = goblin_visual if goblin_visual != null else (orc_visual if orc_visual != null else (golem_visual if golem_visual != null else boss_visual))
 
 var _target_y: float = 0.0
 var _resolved: bool = false

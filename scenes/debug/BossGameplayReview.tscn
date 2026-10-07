@@ -1,0 +1,14 @@
+[gd_scene format=3 uid="uid://dn2e86eumd63b"]
+
+[ext_resource type="PackedScene" uid="uid://bms134e8dbbrq" path="res://scenes/debug/GoblinGameplayReview.tscn" id="1_dbgl5"]
+[ext_resource type="Script" uid="uid://iyucf5iu1k05" path="res://scripts/debug/boss_gameplay_review.gd" id="2_7hei5"]
+
+[node name="BossGameplayReview" unique_id=469266139 instance=ExtResource("1_dbgl5")]
+script = ExtResource("2_7hei5")
+battlefield_seed = 101
+
+[node name="Title" parent="Interface/GoblinReview" parent_id_path=PackedInt32Array(1548244471) index="0" unique_id=1505245209]
+text = "BOSS REVIEW"
+
+[node name="Animated" parent="Interface/GoblinReview" parent_id_path=PackedInt32Array(1548244471) index="1" unique_id=606428689]
+tooltip_text = "Boss STATIC / ANIMATED"
