@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="256" height="256" viewBox="0 0 256 256">
+  <title>Mage — head</title>
+  <g id="head" stroke="#29180f" stroke-width="7" stroke-linecap="round" stroke-linejoin="round" data-pivot-x="128" data-pivot-y="144">
+    <path d="M92 88Q119 76 150 88L166 106 178 130 164 124 171 146 153 137 134 151 109 148 96 155 85 134 73 141 81 121 73 113Z" fill="#f3e7ce" stroke-width="6"/>
+    <path d="m88 115 14-7-10 25 6 16-10-16-9 4Z M158 106l12 20-14-5 10 20-16-11Z" fill="#d4c4a8" stroke="none"/>
+    <path d="M106 104Q131 93 154 105L166 128Q163 147 138 149L112 144Q96 139 99 124Z" fill="#ffc18c" stroke-width="6"/>
+    <path d="m105 108 22-8 18 6-20 4-22 12Z" fill="#de9668" stroke="none"/>
+    <path d="m105 100 35-4 23 14 10 19-14-9-10-10-23-7-23 21Z" fill="#f3e7ce" stroke-width="5"/>
+    <ellipse cx="118" cy="129" rx="6" ry="9" fill="#29180f" stroke="none"/>
+    <ellipse cx="150" cy="127" rx="6" ry="9" fill="#29180f" stroke="none"/>
+    <path d="m109 117 17 6 m16-1 17-7" fill="none" stroke-width="5"/>
+    <path d="M106 142Q133 150 159 140L155 153 135 164 112 153Z" fill="#f3e7ce" stroke-width="6"/>
+    <path d="m114 147 33 1-12 9Z" fill="#d4c4a8" stroke="none"/>
+  </g>
+</svg>

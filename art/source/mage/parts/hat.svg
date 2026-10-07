@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="256" height="256" viewBox="0 0 256 256">
+  <title>Mage — hat</title>
+  <g id="hat" stroke="#29180f" stroke-width="7" stroke-linecap="round" stroke-linejoin="round" data-pivot-x="128" data-pivot-y="144">
+    <path d="M61 53Q81 29 104 24 137 27 160 44L173 79 65 112 68 70 53 77Q45 65 45 54Z" fill="#3568b6"/>
+    <path d="M65 56Q85 34 104 30L136 42 151 64 112 49 80 59 55 64 50 59Z" fill="#5488d0" stroke="none"/>
+    <path d="m91 56-8 32-15 17 6-33-16 3Z M155 46l13 31-36 19 10-26Z" fill="#254b85" stroke="none"/>
+    <path d="m67 88 88-36 17 24-109 37Z" fill="#e5b34f" stroke-width="5"/>
+    <path d="m76 90 69-28 8 4-76 32Z" fill="#f4d17e" stroke="none"/>
+    <path d="M29 120Q86 78 190 77L187 89Q159 103 80 136 48 140 29 128Z" fill="#3568b6"/>
+    <path d="M34 122Q60 135 80 130L181 86 181 91Q132 113 78 133 50 137 34 127Z" fill="#254b85" stroke="none"/>
+    <path d="M30 120Q92 106 187 81L187 89Q108 120 56 134L31 129Z" fill="#e5b34f" stroke-width="5"/>
+    <path d="M41 123Q96 109 177 85L157 94 48 128Z" fill="#f4d17e" stroke="none"/>
+    <path d="m139 51 17 16-12 24-18-16Z" fill="#e5b34f" stroke-width="5"/>
+    <path d="m140 59 9 9-7 14-9-9Z" fill="#56d9ed" stroke="none"/>
+    <path d="m140 59 0 13-7 1Z" fill="#b5f4f4" stroke="none"/>
+  </g>
+</svg>

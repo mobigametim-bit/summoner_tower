@@ -282,7 +282,7 @@ tracks/8/keys = {
 
 [sub_resource type="Animation" id="Animation_33g3l"]
 resource_name = "idle_loop"
-length = 2.4
+length = 1.2
 loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -291,7 +291,7 @@ tracks/0/path = NodePath("Skeleton2D/Root/Body:scale")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.6, 1.2, 1.8, 2.4),
+"times": PackedFloat32Array(0, 0.3, 0.6, 0.9, 1.2),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1),
 "update": 0,
 "values": [Vector2(1, 1), Vector2(1.004, 1.005), Vector2(1, 1), Vector2(0.997, 0.998), Vector2(1, 1)]
@@ -303,7 +303,7 @@ tracks/1/path = NodePath("Skeleton2D/Root/Body/Head:rotation_degrees")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.6, 1.2, 1.8, 2.4),
+"times": PackedFloat32Array(0, 0.3, 0.6, 0.9, 1.2),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1),
 "update": 0,
 "values": [0.0, -0.65, 0.0, 0.65, 0.0]
@@ -315,7 +315,7 @@ tracks/2/path = NodePath("Skeleton2D/Root/Body/BowArm:rotation_degrees")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.6, 1.2, 1.8, 2.4),
+"times": PackedFloat32Array(0, 0.3, 0.6, 0.9, 1.2),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1),
 "update": 0,
 "values": [0.0, 0.7, 0.0, -0.7, 0.0]

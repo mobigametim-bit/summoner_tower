@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="256" height="256" viewBox="0 0 256 256">
+  <title>Mage — staff</title>
+  <g id="staff" stroke="#29180f" stroke-width="7" stroke-linecap="round" stroke-linejoin="round" data-pivot-x="203" data-pivot-y="175">
+    <path d="m215 128 12 5-31 94-10 9-8-4 12-13Z" fill="#895334" stroke-width="6"/>
+    <path d="m216 137 5 2-29 84-6 6Z" fill="#a46b42" stroke="none"/>
+    <path d="m201 149 17 6-4 10-17-6Z M184 218l14 5-4 10-15-6Z" fill="#e5b34f" stroke-width="4"/>
+    <path d="m204 104-12 13 6 19 14 9 22-12 9-16-3-11-11 13-16 10-7-12Z" fill="#e5b34f" stroke-width="6"/>
+    <path d="m199 119 5 13 9 5 18-10-3 7-17 7-9-8Z" fill="#b87a32" stroke="none"/>
+    <path d="m223 65 15 29-10 27-17 16-8-28 5-18Z" fill="#56d9ed" stroke-width="6"/>
+    <path d="m223 65 0 36-12 36 17-16 10-27Z" fill="#2999c0" stroke="none"/>
+    <path d="m208 92 15-27-6 27 6 9-16 12Z" fill="#b5f4f4" stroke="none"/>
+    <path d="m213 100 9 1-11 25Z" fill="#e8ffff" stroke="none"/>
+  </g>
+</svg>

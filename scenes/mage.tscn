@@ -4,14 +4,19 @@
 [ext_resource type="Resource" uid="uid://bgb7v7r0ismi6" path="res://resources/balance/mage_lv1.tres" id="2_yb71v"]
 [ext_resource type="PackedScene" uid="uid://x1f1qqgnx585" path="res://scenes/fireball.tscn" id="3_nc4w5"]
 [ext_resource type="Texture2D" uid="uid://dwrrjux2jma0k" path="res://assets/mage.svg" id="4_r5lxc"]
+[ext_resource type="PackedScene" uid="uid://4j2yvn8jcf21" path="res://scenes/visuals/MageVisual.tscn" id="5_yb71v"]
 
 [node name="Mage" type="Node2D" unique_id=1677709423]
 script = ExtResource("1_r5lxc")
 stats = ExtResource("2_yb71v")
 projectile_scene = ExtResource("3_nc4w5")
+animated_visual_enabled = true
 
 [node name="Visual" type="Sprite2D" parent="." unique_id=1262552869]
 texture = ExtResource("4_r5lxc")
 
 [node name="Muzzle" type="Marker2D" parent="." unique_id=1043330293]
 position = Vector2(32, -8)
+
+[node name="MageVisual" parent="." unique_id=916861954 instance=ExtResource("5_yb71v")]
+visible = false

@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="256" height="256" viewBox="0 0 256 256">
+  <title>Mage — arm_back</title>
+  <g id="arm_back" stroke="#29180f" stroke-width="7" stroke-linecap="round" stroke-linejoin="round" data-pivot-x="94" data-pivot-y="158">
+    <path d="M94 146Q80 140 70 150L59 166Q53 173 58 181L70 193Q83 199 109 175L105 158Q101 149 94 146Z" fill="#3568b6"/>
+    <path d="m78 151 14 4-13 24-14-3Z" fill="#5488d0" stroke="none"/>
+    <path d="m60 166 16 8 8 14-14 10-14-17Z" fill="#e5b34f" stroke-width="5"/>
+    <path d="M64 179Q74 175 80 185L79 192Q70 200 60 192 54 185 64 179Z" fill="#ffc18c" stroke-width="5"/>
+  </g>
+</svg>

@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="256" height="256" viewBox="0 0 256 256">
+  <title>Mage — arm_front</title>
+  <g id="arm_front" stroke="#29180f" stroke-width="7" stroke-linecap="round" stroke-linejoin="round" data-pivot-x="163" data-pivot-y="159">
+    <path d="M156 150Q168 141 178 151L190 163 196 173Q199 184 185 190L164 181 154 173Q148 163 156 150Z" fill="#3568b6"/>
+    <path d="m160 153 11 1 12 20-11 7-14-13Z" fill="#5488d0" stroke="none"/>
+    <path d="m181 161 19 7-4 17-14-2-8-12Z" fill="#e5b34f" stroke-width="5"/>
+    <path d="M199 162Q209 156 215 169L211 184Q207 194 198 188L189 181Q185 172 199 162Z" fill="#ffc18c" stroke-width="5"/>
+    <path d="m209 165 3 6-5 12-6 3 4-10Z" fill="#de9668" stroke="none"/>
+  </g>
+</svg>

@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="256" height="256" viewBox="0 0 256 256">
+  <title>Mage — body</title>
+  <g id="body" stroke="#29180f" stroke-width="7" stroke-linecap="round" stroke-linejoin="round" data-pivot-x="127" data-pivot-y="175">
+    <path d="M96 140Q126 129 155 141L169 162 162 183 180 214 144 222 125 213 103 223 76 215 91 179 85 159Z" fill="#3568b6"/>
+    <path d="m93 160 15 15-11 22-12 10 11-30Z M151 150l12 15-10 20 20 26-22 4-17-34Z" fill="#254b85" stroke="none"/>
+    <path d="m110 143 25-3 14 15-14 13Z M114 202l11-20 12 31-11-7-15 9Z" fill="#5488d0" stroke="none"/>
+    <path d="m90 140 38 25 27-25 10 10-31 30-14-1-37-28Z" fill="#e5b34f" stroke-width="5"/>
+    <path d="m91 148 35 25 6-2-36-25Z" fill="#f4d17e" stroke="none"/>
+    <path d="m84 202-7 13 26 6 11-10-9 2-17-4Z M145 211l27-6 7 10-34 8Z" fill="#e5b34f" stroke-width="4"/>
+    <path d="m126 181-15 40 9-5 14-34Z" fill="#e5b34f" stroke="none"/>
+    <path d="m88 186 68-5 5 15-71 7Z" fill="#613821" stroke-width="5"/>
+    <path d="m99 184 18 8-7 23-27-6 5-23Z" fill="#895334" stroke-width="5"/>
+    <path d="m94 188 15 6-2 8-17-5Z" fill="#a46b42" stroke="none"/>
+    <rect x="132" y="183" width="24" height="22" rx="4" fill="#e5b34f" stroke-width="4"/>
+    <rect x="139" y="189" width="10" height="10" rx="1" fill="#895334" stroke-width="3"/>
+    <circle cx="130" cy="172" r="12" fill="#e5b34f" stroke-width="5"/>
+    <circle cx="130" cy="171" r="6" fill="#56d9ed" stroke="#2999c0" stroke-width="3"/>
+  </g>
+</svg>

@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="256" height="256" viewBox="0 0 256 256">
+  <title>Mage — leg_right</title>
+  <g id="leg_right" stroke="#29180f" stroke-width="7" stroke-linecap="round" stroke-linejoin="round" data-pivot-x="148" data-pivot-y="211">
+    <path d="M136 202Q149 194 158 204L160 220 169 237Q150 241 135 236L133 221Z" fill="#895334"/>
+    <path d="m139 222 20-1 6 13-25-1Z" fill="#a46b42" stroke="none"/>
+    <path d="m135 219 24-5" fill="none" stroke="#613821" stroke-width="5"/>
+  </g>
+</svg>

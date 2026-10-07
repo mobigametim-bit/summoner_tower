@@ -12,6 +12,9 @@ var paid_mana: int = 0
 
 @onready var muzzle: Marker2D = $Muzzle
 @onready var archer_visual: ArcherVisual = get_node_or_null("ArcherVisual") as ArcherVisual
+@onready var mage_visual: MageVisual = get_node_or_null("MageVisual") as MageVisual
+# Godot не поддерживает union types; оба визуала реализуют один небольшой контракт.
+@onready var _animated_visual: Variant = archer_visual if archer_visual != null else mage_visual
 
 var _enemies: Node2D
 var _projectiles: Node2D
@@ -26,44 +29,44 @@ var _visual_release_pending: bool = false
 
 func _ready() -> void:
 	refresh_visual()
-	if archer_visual != null:
-		archer_visual.release.connect(_on_visual_release)
-		archer_visual.enable_gameplay(animated_visual_enabled)
+	if _animated_visual != null:
+		_animated_visual.release.connect(_on_visual_release)
+		_animated_visual.enable_gameplay(animated_visual_enabled)
 		_apply_visual_mode()
 
 
 func refresh_visual() -> void:
 	if stats.visual_texture != null:
 		$Visual.texture = stats.visual_texture
-	if archer_visual != null:
-		archer_visual.set_level(stats.level)
+	if _animated_visual != null:
+		_animated_visual.set_level(stats.level)
 
 
-func set_animated_visual(enabled: bool) -> void:
-	animated_visual_enabled = enabled and archer_visual != null
-	if archer_visual != null:
-		archer_visual.cancel_preparation()
-		archer_visual.enable_gameplay()
+func set_animated_visual(enabled: bool, play_spawn: bool = false) -> void:
+	animated_visual_enabled = enabled and _animated_visual != null
+	if _animated_visual != null:
+		_animated_visual.cancel_preparation()
+		_animated_visual.enable_gameplay(animated_visual_enabled and play_spawn)
 		_apply_visual_mode()
 
 
 func _apply_visual_mode() -> void:
 	$Visual.visible = not animated_visual_enabled
-	archer_visual.visible = animated_visual_enabled
+	_animated_visual.visible = animated_visual_enabled
 	if not animated_visual_enabled:
-		archer_visual.stop_gameplay()
+		_animated_visual.stop_gameplay()
 
 
 func drag_texture() -> Texture2D:
-	return ArcherVisual.DRAG_TEXTURE if animated_visual_enabled else $Visual.texture
+	return _animated_visual.DRAG_TEXTURE if animated_visual_enabled else $Visual.texture
 
 
 func drag_material() -> Material:
-	return archer_visual.cloth_material if animated_visual_enabled else null
+	return _animated_visual.cloth_material if animated_visual_enabled else null
 
 
 func drag_scale() -> Vector2:
-	return global_scale * absf(archer_visual.scale.x) if animated_visual_enabled else global_scale
+	return global_scale * absf(_animated_visual.scale.x) if animated_visual_enabled else global_scale
 
 
 func can_merge_with(other: CombatUnit) -> bool:
@@ -107,15 +110,15 @@ func effective_attack_interval() -> float:
 func set_facing_left(faces_left: bool) -> void:
 	$Visual.flip_h = faces_left
 	muzzle.position.x = -absf(muzzle.position.x) if faces_left else absf(muzzle.position.x)
-	if archer_visual != null:
-		archer_visual.scale.x = -absf(archer_visual.scale.x) if faces_left else absf(archer_visual.scale.x)
+	if _animated_visual != null:
+		_animated_visual.scale.x = -absf(_animated_visual.scale.x) if faces_left else absf(_animated_visual.scale.x)
 
 
 func refresh_target() -> void:
 	_target = null
 	_search_remaining = 0.0
-	if archer_visual != null:
-		archer_visual.cancel_preparation()
+	if _animated_visual != null:
+		_animated_visual.cancel_preparation()
 
 
 func _physics_process(delta: float) -> void:
@@ -132,7 +135,7 @@ func _physics_process(delta: float) -> void:
 			is_instance_valid(_target) and _target.is_targetable()
 			and global_position.distance_squared_to(_target.global_position) <= stats.attack_range ** 2
 		)
-		archer_visual.advance_gameplay(delta, _cooldown, effective_attack_interval(), has_target)
+		_animated_visual.advance_gameplay(delta, _cooldown, effective_attack_interval(), has_target)
 	if _cooldown > 0.0 or not is_instance_valid(_target):
 		return
 	if not _target.is_targetable():
@@ -143,7 +146,7 @@ func _physics_process(delta: float) -> void:
 
 	if animated_visual_enabled:
 		_visual_release_pending = true
-		archer_visual.release_now()
+		_animated_visual.release_now()
 	else:
 		_fire()
 	_cooldown = effective_attack_interval()
@@ -189,6 +192,6 @@ func stop() -> void:
 	_running = false
 	_target = null
 	_visual_release_pending = false
-	if archer_visual != null:
-		archer_visual.stop_gameplay()
+	if _animated_visual != null:
+		_animated_visual.stop_gameplay()
 	set_physics_process(false)

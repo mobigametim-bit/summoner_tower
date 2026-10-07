@@ -1,0 +1,42 @@
+[gd_scene format=3 uid="uid://c063yf8ostjx7"]
+
+[ext_resource type="PackedScene" uid="uid://rkmlqc5qcsrs" path="res://scenes/game.tscn" id="1_bmujs"]
+[ext_resource type="Script" uid="uid://cfyma13k2ls5h" path="res://scripts/debug/mage_gameplay_review.gd" id="2_86f1c"]
+[ext_resource type="Texture2D" uid="uid://c5ba2p5wccy1h" path="res://assets/debug/animation_controls/pause.svg" id="3_nptna"]
+[ext_resource type="Texture2D" uid="uid://vxilfcvid4jy" path="res://assets/debug/animation_controls/replay.svg" id="4_fgl74"]
+
+[node name="MageGameplayReview" unique_id=469266139 instance=ExtResource("1_bmujs")]
+script = ExtResource("2_86f1c")
+review_summon_seed = 10
+review_battlefield_seed = 101
+
+[node name="MageReview" type="HBoxContainer" parent="Interface" parent_id_path=PackedInt32Array(242053494) index="1" unique_id=1939178917]
+process_mode = 3
+offset_left = 70.0
+offset_top = 1200.0
+offset_right = 650.0
+offset_bottom = 1260.0
+theme_override_constants/separation = 18
+
+[node name="Animated" type="CheckButton" parent="Interface/MageReview" index="0" unique_id=775408242]
+custom_minimum_size = Vector2(310, 60)
+layout_mode = 2
+theme_override_font_sizes/font_size = 22
+button_pressed = true
+text = "ANIMATED"
+
+[node name="Pause" type="Button" parent="Interface/MageReview" index="1" unique_id=557805123]
+custom_minimum_size = Vector2(90, 60)
+layout_mode = 2
+icon = ExtResource("3_nptna")
+expand_icon = true
+
+[node name="Restart" type="Button" parent="Interface/MageReview" index="2" unique_id=842831590]
+custom_minimum_size = Vector2(90, 60)
+layout_mode = 2
+icon = ExtResource("4_fgl74")
+expand_icon = true
+
+[connection signal="toggled" from="Interface/MageReview/Animated" to="." method="_on_animated_toggled"]
+[connection signal="pressed" from="Interface/MageReview/Pause" to="." method="_on_review_pause"]
+[connection signal="pressed" from="Interface/MageReview/Restart" to="." method="_on_review_restart"]

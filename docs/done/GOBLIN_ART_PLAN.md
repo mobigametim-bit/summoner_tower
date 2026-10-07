@@ -1,10 +1,10 @@
 # Goblin — план для согласования
 
-07.10.2026. **Goblin полностью принят пользователем; animated visual включён по умолчанию.** Archer принят, commit `847ccfc`, выбран rigid cutout. Используем [ART_PIPELINE.md](ART_PIPELINE.md). Приняты замах на последних шагах и окончательная окраска только одежды. Фактические результаты: [GOBLIN_ANIMATION_REVIEW.md](done/GOBLIN_ANIMATION_REVIEW.md), [GOBLIN_GAMEPLAY_REVIEW.md](done/GOBLIN_GAMEPLAY_REVIEW.md).
+07.10.2026. **Goblin полностью принят пользователем; animated visual включён по умолчанию.** Archer принят, commit `847ccfc`, выбран rigid cutout. Используем [ART_PIPELINE.md](../ART_PIPELINE.md). Приняты замах на последних шагах и окончательная окраска только одежды. Фактические результаты: [GOBLIN_ANIMATION_REVIEW.md](GOBLIN_ANIMATION_REVIEW.md), [GOBLIN_GAMEPLAY_REVIEW.md](GOBLIN_GAMEPLAY_REVIEW.md).
 
 ## 1. Reference и текущая entity
 
-Исходный reference: [art/references/goblin.png](../art/references/goblin.png), PNG 1254×1254. Крупная зелёная голова, широкие заострённые уши, короткий нос, сердитые глаза, один крупный клык, маленькое тело, коричневая одежда и короткий кинжал. Синий фон и нарисованная тень из reference не переносятся в runtime.
+Исходный reference: [art/references/goblin.png](../../art/references/goblin.png), PNG 1254×1254. Крупная зелёная голова, широкие заострённые уши, короткий нос, сердитые глаза, один крупный клык, маленькое тело, коричневая одежда и короткий кинжал. Синий фон и нарисованная тень из reference не переносятся в runtime.
 
 Текущая gameplay entity — `scenes/enemy.tscn`, скрипт `scripts/combat/approaching_enemy.gd`, stats `resources/balance/goblin_stats.tres`. Старый Sprite2D Visual использует `assets/enemy.svg`; HealthBar и SlowIndicator отдельные. Movement и попадания рассчитываются скриптами, физического столкновения/отдельной CollisionShape2D в этой сцене нет. Новый visual не добавляет collision или projectile: Goblin не стреляет.
 

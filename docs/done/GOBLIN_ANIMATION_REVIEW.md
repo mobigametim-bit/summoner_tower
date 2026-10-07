@@ -50,4 +50,4 @@ Impact пока является только visual signal. Согласова�
 3. Проверить hit и death на 1×. Для death отключить Repeat, дождаться исчезновения, нажать Replay.
 4. Проверить Pause/Resume, смену скорости и размера. После смены animation не должно оставаться fade/scale предыдущей.
 
-Animation gate и последующий gameplay gate приняты. [План Goblin](../GOBLIN_ART_PLAN.md) сохраняет согласованные решения; отдельный commit закрывает объект. Mage проходит новое согласование плана до создания art.
+Animation gate и последующий gameplay gate приняты. [План Goblin](GOBLIN_ART_PLAN.md) сохраняет согласованные решения; отдельный commit закрывает объект. Mage проходит новое согласование плана до создания art.

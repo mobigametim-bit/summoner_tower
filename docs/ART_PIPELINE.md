@@ -6,7 +6,7 @@
 
 Один asset: обсуждение и план → явное подтверждение → SVG art → ручная приёмка art → rig/animations → ручная приёмка animation → настоящий gameplay → финальная приёмка → отдельный commit. Перед следующим asset снова обсуждаем план. Push только по отдельному разрешению пользователя.
 
-Порядок: Archer (принят), Goblin (принят), Mage, Frost Mage, Orc, Golem, Boss, Summoner Tower. Новые сущности, skins, equipment и изменения баланса не входят в art pass. Image generators, Krita, готовые чужие sprites запрещены; production art пишется вручную как SVG-код. [Итог Goblin](done/GOBLIN_GAMEPLAY_REVIEW.md).
+Порядок: Archer (принят), Goblin (принят), Mage (принят), Frost Mage, Orc, Golem, Boss, Summoner Tower. Новые сущности, skins, equipment и изменения баланса не входят в art pass. Image generators, Krita, готовые чужие sprites запрещены; production art пишется вручную как SVG-код. [Итог Goblin](done/GOBLIN_GAMEPLAY_REVIEW.md).
 
 ## Стиль
 
@@ -83,7 +83,7 @@ ArcherVisual — сосед прежнего Visual; static сохраняетс
 
 Союзники не получают hit/death. Idle слабый: дыхание, небольшое движение головы/оружия. RESET восстанавливает изменяемые свойства, завершившийся клип возвращается в подходящее состояние. Spawn/merge VFX не разрастаются в отдельную систему без согласования.
 
-Archer: idle_loop 2,4 s, attack 0,52 s, release 0,24 s, spawn 0,4 s. В review AnimationPlayer обновляется в physics mode с immediate method callbacks. В бою — manual mode, обновляемый CombatUnit:
+Archer: idle_loop 1,2 s, attack 0,52 s, release 0,24 s, spawn 0,4 s. По правке пользователя от 07.10.2026 idle Archer и Mage ускорены вдвое: 2,4 → 1,2 s при прежней амплитуде. Уменьшены только времена ключей idle; attack/cast/spawn и gameplay timing не изменены. В review AnimationPlayer обновляется в physics mode с immediate method callbacks. В бою — manual mode, обновляемый CombatUnit:
 
 1. Подготовка проходит во время прежнего cooldown. Seek задаёт pose и не исполняет method events заранее.
 2. В прежний кадр готовности gameplay переводит visual на release, visual выдаёт событие один раз, CombatUnit вызывает прежний `_fire()`.
@@ -99,11 +99,15 @@ SpawnPlayer отдельно анимирует Root теми же spawn-тре�
 
 Принятый Goblin: walk_loop 0,64 s, attack 0,34 s с impact 0,16 s, hit 0,16 s, death 0,32 s. В gameplay manual AnimationPlayer получает оставшееся время до контакта с учётом slow; preparation использует seek без событий. В прежний contact frame pose устанавливается на impact, затем выполняется однократный gameplay outcome. Entity сразу перестаёт быть целью и учитываться в волне; только visual переносится в World, заканчивает death/recovery и удаляется. Group enemy_visual_tails очищается при остановке боя. Движение, HP, damage и награды не ждут окончания animation.
 
+Принятый Mage: idle_loop 1,2 s, cast 0,42 s, release 0,18 s, spawn 0,4 s; синхронизация с gameplay аналогична Archer. Свечение посоха — три небольших Polygon2D с opacity/scale tracks внутри cast, без postprocessing или новых textures. [Итог Mage](done/MAGE_GAMEPLAY_REVIEW.md).
+
 ## Палитра уровней и текстуры
 
 Один rig на все уровни. Archer: Lv1 зелёный, Lv2 оранжевый, Lv3 красный, Lv4 синий, Lv5 фиолетовый. Перекрашивается только ткань четырёх частей простым canvas_item shader; кожа/волосы/кожаные детали/лук/колчан сохраняют цвета. Материал локален для экземпляра и общий для его частей. Другие персонажи получают отдельно согласованный принцип; нельзя автоматически перекрашивать всё тело через modulate.
 
 Goblin: только ботинки, напульсники и набедренная повязка получают пять цветов из EnemyStats по max HP при spawn. Кожа всегда зелёная, плечевой ремень/наплечник/уши/глаза/клык/кинжал сохраняют цвета. equipment_palette.gdshader выделяет исходные brown fills внутри общей equipment_mask.svg; один локальный материал назначен Body, обеим рукам и ногам, Head/Dagger без него. Общий mask canvas совпадает с полным canvas частей, поэтому pivots не нарушают UV.
+
+Mage: общий локальный cloth_palette.gdshader на robe/hat/sleeves заменяет синие fills ткани на пять цветов уровня. Skin/hair/beard/gold/boots/bag/staff/crystal сохраняются; Head и Staff без материала. Drag preview использует master и тот же material. Восемь parts и восемь bones, без mesh.
 
 Runtime части Archer — 256×256 без mipmaps, общий набор Texture2D для всех экземпляров, без текстур на каждый level. Visual.scale=100/256; масштаб клетки задаёт существующий UnitHost. Drag preview использует master.svg, тот же материал и этот коэффициент. Другой масштаб enemy visual определяется по текущей entity, не изменением gameplay range/collision.
 
@@ -121,4 +125,4 @@ Archer: 9 общих RGBA текстур частей ~2,25 MiB, master ~0,25 Mi
 
 По принятому решению сохраняем rigid cutout. Сначала исправляем art shape, overlap, pivot, z-order и keys. Mesh допускается только по новому явному подтверждению и для конкретной гибкой части (длинная ткань, хвост, щупальце). Head/body/arms/legs/weapon остаются rigid. Не переводим весь персонаж на deformation и не переносим исключение автоматически на остальные assets.
 
-Legacy art не удаляется; cleanup — отдельная задача. После финальной приёмки Archer и Goblin animated visuals включены по умолчанию, STATIC доступен в review. Отчёты принятых assets лежат в docs/done; этот стандарт остаётся в docs.
+Legacy art не удаляется; cleanup — отдельная задача. После финальной приёмки Archer, Goblin и Mage animated visuals включены по умолчанию, STATIC доступен в review. Планы и отчёты принятых assets сразу переносятся в docs/done с обновлением ссылок; этот стандарт остаётся в docs.
