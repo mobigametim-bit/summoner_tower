@@ -1,0 +1,75 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="256" height="256" viewBox="0 0 256 256">
+  <title>Frost Mage - rigid cutout art review</title>
+  <desc>Hand-authored SVG paths. Eight full-canvas parts, flat colors and transparent background.</desc>
+  <g id="arm_back" stroke="#29180f" stroke-width="7" stroke-linecap="round" stroke-linejoin="round" data-pivot-x="94" data-pivot-y="158">
+    <path d="M94 146Q80 143 72 153L58 171Q52 179 59 186L73 194Q86 197 108 175L106 159Q102 149 94 146Z" fill="#3568b6"/>
+    <path d="m76 154 13 1-13 24-15-5Z" fill="#5488d0" stroke="none"/>
+    <path d="m58 170 13 1 4 7 9-3 6 12-17 9-17-14Z" fill="#f3f2ec" stroke-width="5"/>
+    <path d="M61 180Q74 177 79 187L76 196Q67 201 58 194 53 185 61 180Z" fill="#ffc18c" stroke-width="5"/>
+    <path d="M57 188Q63 196 74 194L72 198Q62 200 57 191Z" fill="#de9668" stroke="none"/>
+  </g>
+  <g id="leg_left" stroke="#29180f" stroke-width="7" stroke-linecap="round" stroke-linejoin="round" data-pivot-x="102" data-pivot-y="211">
+    <path d="M95 200Q108 195 117 204L113 220 114 236Q99 240 80 237L82 226 89 213Z" fill="#895334"/>
+    <path d="m90 220 22 3-4 10-22 1Z" fill="#a46b42" stroke="none"/>
+    <path d="m89 213 25 7" fill="none" stroke="#613821" stroke-width="5"/>
+  </g>
+  <g id="leg_right" stroke="#29180f" stroke-width="7" stroke-linecap="round" stroke-linejoin="round" data-pivot-x="148" data-pivot-y="211">
+    <path d="M137 202Q148 195 158 204L160 220 169 237Q151 241 136 237L132 221Z" fill="#895334"/>
+    <path d="m139 222 19-2 7 14-23-1Z" fill="#a46b42" stroke="none"/>
+    <path d="m135 220 23-5" fill="none" stroke="#613821" stroke-width="5"/>
+  </g>
+  <g id="body" stroke="#29180f" stroke-width="7" stroke-linecap="round" stroke-linejoin="round" data-pivot-x="127" data-pivot-y="175">
+    <path d="m87 147-36 13 17 18 28-6Z M80 199l-26 26 35-12 8-12Z" fill="#3568b6"/>
+    <path d="m55 162 26-9-12 19-12-8Z M60 218l17-17 10 8-11 5Z" fill="#b5f4f4" stroke="none"/>
+    <path d="M100 145Q126 135 154 145L170 166 160 184 178 216 145 224 128 214 108 226 78 217 94 180 89 163Z" fill="#3568b6"/>
+    <path d="m100 160 16 18-17 32-14 2 13-31Z M153 151l10 15-10 19 17 29-24 5-12-34Z" fill="#254b85" stroke="none"/>
+    <path d="m108 150 21-8 16 14-13 15Z M114 206l13-21 9 29-10-6-14 12Z" fill="#5488d0" stroke="none"/>
+    <path d="m97 145 31 21 27-22 12 10-32 29-12-1-36-26Z" fill="#f3f2ec" stroke-width="5"/>
+    <path d="m94 197-13 19 27 8 20-43-12-5-17 33-9-2Z M141 178l-10 5 16 40 28-7-8-12-14 6Z" fill="#f3f2ec" stroke-width="5"/>
+    <path d="m98 202 15-27 7 6-12 26Z M145 189l9 20 12-3-6-12Z" fill="#5488d0" stroke="none"/>
+    <path d="m90 185 64-5 9 15-73 8Z" fill="#613821" stroke-width="5"/>
+    <path d="m107 151 11 7-21 40-11-4Z M137 178l21-25 8 8-16 20Z" fill="#895334" stroke-width="5"/>
+    <circle cx="129" cy="175" r="12" fill="#f3f2ec" stroke-width="5"/>
+    <path d="m129 167 7 8-7 8-7-8Z" fill="#56d9ed" stroke="#2999c0" stroke-width="2"/>
+    <path d="m129 167 0 8-7 0Z" fill="#b5f4f4" stroke="none"/>
+  </g>
+  <g id="staff" stroke="#29180f" stroke-width="7" stroke-linecap="round" stroke-linejoin="round" data-pivot-x="203" data-pivot-y="175">
+    <path d="m213 124 12 5-30 98-9 9-10-4 12-15Z" fill="#895334" stroke-width="6"/>
+    <path d="m215 136 5 2-29 85-8 6Z" fill="#a46b42" stroke="none"/>
+    <path d="m202 150 14 5-4 12-14-5Z" fill="#f3f2ec" stroke-width="4"/>
+    <path d="m195 93-10 14 13 30 11 8 23-14 5-21-9 12-17 8-5-15Z" fill="#895334" stroke-width="6"/>
+    <path d="m190 108 11 25 9 5 16-9-15 4-8-23Z" fill="#a46b42" stroke="none"/>
+    <path d="m222 55 15 44-23 30-15-29Z" fill="#56d9ed" stroke-width="6"/>
+    <path d="m222 55 0 44-8 30 23-30Z" fill="#2999c0" stroke="none"/>
+    <path d="m222 55-23 45 14 5 9-6Z" fill="#e8ffff" stroke="none"/>
+    <path d="m213 105 9-6-8 24Z" fill="#b5f4f4" stroke="none"/>
+  </g>
+  <g id="arm_front" stroke="#29180f" stroke-width="7" stroke-linecap="round" stroke-linejoin="round" data-pivot-x="163" data-pivot-y="159">
+    <path d="M155 150Q167 141 178 151L193 164 198 178Q199 187 186 191L164 181 154 172Q149 162 155 150Z" fill="#3568b6"/>
+    <path d="m158 152 12 2 11 17-12 7-12-11Z" fill="#5488d0" stroke="none"/>
+    <path d="m183 159 16 9-4 19-14-5-8-12 10 2Z" fill="#f3f2ec" stroke-width="5"/>
+    <path d="M199 162Q209 157 215 169L211 184Q208 193 199 189L190 181Q186 172 199 162Z" fill="#ffc18c" stroke-width="5"/>
+    <path d="m209 165 3 6-5 12-6 3 4-10Z" fill="#de9668" stroke="none"/>
+  </g>
+  <g id="head" stroke="#29180f" stroke-width="7" stroke-linecap="round" stroke-linejoin="round" data-pivot-x="128" data-pivot-y="144">
+    <path d="M118 130Q130 123 142 132L146 159 113 160Z" fill="#ffc18c" stroke-width="6"/>
+    <path d="M115 92Q140 78 162 93L179 112 180 132Q177 151 153 158L114 150Q97 145 100 128Z" fill="#ffc18c" stroke-width="6"/>
+    <path d="m115 106 20-16 17 5-24 6-17 20Z" fill="#de9668" stroke="none"/>
+    <path d="M136 87Q151 78 162 88L179 106 190 124 172 118 155 103 158 124 136 110 123 101Z" fill="#f3f2ec" stroke-width="6"/>
+    <path d="m145 91 13-3 19 20-15-10-9-2 4 20-13-9-11-9Z" fill="#d4d0df" stroke="none"/>
+    <ellipse cx="121" cy="130" rx="6" ry="9" fill="#29180f" stroke="none"/>
+    <ellipse cx="158" cy="130" rx="6" ry="9" fill="#29180f" stroke="none"/>
+    <path d="m112 117 18 6 m19 0 18-7" fill="none" stroke-width="5"/>
+  </g>
+  <g id="hood" stroke="#29180f" stroke-width="7" stroke-linecap="round" stroke-linejoin="round" data-pivot-x="128" data-pivot-y="144">
+    <path d="M66 30Q118 9 157 38 181 62 187 105L196 126 183 130Q190 152 173 164L145 173Q100 174 76 156L49 133Q53 121 62 104L88 63Q67 78 66 30Z M159 79Q134 92 110 121L96 141Q120 153 147 154 165 153 176 142L176 120 187 126Q173 102 159 79Z" fill="#3568b6" fill-rule="evenodd"/>
+    <path d="M71 32Q117 16 150 37L129 47 109 43 87 52 72 57Z M86 73l-27 56 22 20-9-27 33-50Z" fill="#5488d0" stroke="none"/>
+    <path d="m142 43 16 6 18 30-14-11-27 11Z M62 113l13 5-12 14 20 20-9-1-20-18Z M179 131l-3 16-24 18 18-5 12-12Z" fill="#254b85" stroke="none"/>
+    <path d="M76 27Q116 15 150 35L138 66 122 62 110 95 94 90 90 107 83 91 55 126 74 83 87 74 88 52 104 33Z" fill="#f3f2ec" stroke="none"/>
+    <path d="M162 72Q130 88 105 119L91 142 107 156 92 153 82 139Q104 96 148 65L172 81 184 105Z" fill="#f3f2ec" stroke="none"/>
+    <path d="m181 131-6 16-18 15 12-22Z" fill="#f3f2ec" stroke="none"/>
+    <path d="M98 145Q124 158 168 146L163 162 139 176 114 165Z" fill="#3568b6" stroke-width="6"/>
+    <path d="M107 152Q130 161 161 152L154 159 129 163Z" fill="#5488d0" stroke="none"/>
+    <path d="m114 164 14-1 11 10Z" fill="#254b85" stroke="none"/>
+  </g>
+</svg>

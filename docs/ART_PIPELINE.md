@@ -6,7 +6,7 @@
 
 Один asset: обсуждение и план → явное подтверждение → SVG art → ручная приёмка art → rig/animations → ручная приёмка animation → настоящий gameplay → финальная приёмка → отдельный commit. Перед следующим asset снова обсуждаем план. Push только по отдельному разрешению пользователя.
 
-Порядок: Archer (принят), Goblin (принят), Mage (принят), Frost Mage, Orc, Golem, Boss, Summoner Tower. Новые сущности, skins, equipment и изменения баланса не входят в art pass. Image generators, Krita, готовые чужие sprites запрещены; production art пишется вручную как SVG-код. [Итог Goblin](done/GOBLIN_GAMEPLAY_REVIEW.md).
+Порядок: Archer (принят), Goblin (принят), Mage (принят), Frost Mage (принят), Orc, Golem, Boss, Summoner Tower. Новые сущности, skins, equipment и изменения баланса не входят в art pass. Image generators, Krita, готовые чужие sprites запрещены; production art пишется вручную как SVG-код. [Итог Goblin](done/GOBLIN_GAMEPLAY_REVIEW.md), [итог Frost Mage](done/FROST_MAGE_GAMEPLAY_REVIEW.md).
 
 ## Стиль
 
@@ -109,6 +109,8 @@ Goblin: только ботинки, напульсники и набедрен�
 
 Mage: общий локальный cloth_palette.gdshader на robe/hat/sleeves заменяет синие fills ткани на пять цветов уровня. Skin/hair/beard/gold/boots/bag/staff/crystal сохраняются; Head и Staff без материала. Drag preview использует master и тот же material. Восемь parts и восемь bones, без mesh.
 
+Frost Mage: тот же cloth shader на body/hood/arms; белая отделка, кожа, волосы, ремни, ботинки, дерево и cyan лёд не перекрашиваются. Восемь parts и восемь bones, 256×256, visual.scale=100/256. Idle 1.2 s, cast 0.42 s с release 0.18 s, spawn 0.4 s. Gameplay timing следует принятому контракту Mage: подготовка в cooldown, release в прежний кадр готовности. Три cyan/white Polygon2D создают короткое свечение без дополнительных textures. Static fallback и исходный Muzzle=(32,−8) сохранены.
+
 Runtime части Archer — 256×256 без mipmaps, общий набор Texture2D для всех экземпляров, без текстур на каждый level. Visual.scale=100/256; масштаб клетки задаёт существующий UnitHost. Drag preview использует master.svg, тот же материал и этот коэффициент. Другой масштаб enemy visual определяется по текущей entity, не изменением gameplay range/collision.
 
 ## Проверки и performance
@@ -125,4 +127,4 @@ Archer: 9 общих RGBA текстур частей ~2,25 MiB, master ~0,25 Mi
 
 По принятому решению сохраняем rigid cutout. Сначала исправляем art shape, overlap, pivot, z-order и keys. Mesh допускается только по новому явному подтверждению и для конкретной гибкой части (длинная ткань, хвост, щупальце). Head/body/arms/legs/weapon остаются rigid. Не переводим весь персонаж на deformation и не переносим исключение автоматически на остальные assets.
 
-Legacy art не удаляется; cleanup — отдельная задача. После финальной приёмки Archer, Goblin и Mage animated visuals включены по умолчанию, STATIC доступен в review. Планы и отчёты принятых assets сразу переносятся в docs/done с обновлением ссылок; этот стандарт остаётся в docs.
+Legacy art не удаляется; cleanup — отдельная задача. После финальной приёмки Archer, Goblin, Mage и Frost Mage animated visuals включены по умолчанию, STATIC доступен в review. Планы и отчёты принятых assets сразу переносятся в docs/done с обновлением ссылок; этот стандарт остаётся в docs.

@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="256" height="256" viewBox="0 0 256 256">
+  <g id="hood" stroke="#29180f" stroke-width="7" stroke-linecap="round" stroke-linejoin="round" data-pivot-x="128" data-pivot-y="144">
+    <path d="M66 30Q118 9 157 38 181 62 187 105L196 126 183 130Q190 152 173 164L145 173Q100 174 76 156L49 133Q53 121 62 104L88 63Q67 78 66 30Z M159 79Q134 92 110 121L96 141Q120 153 147 154 165 153 176 142L176 120 187 126Q173 102 159 79Z" fill="#3568b6" fill-rule="evenodd"/>
+    <path d="M71 32Q117 16 150 37L129 47 109 43 87 52 72 57Z M86 73l-27 56 22 20-9-27 33-50Z" fill="#5488d0" stroke="none"/>
+    <path d="m142 43 16 6 18 30-14-11-27 11Z M62 113l13 5-12 14 20 20-9-1-20-18Z M179 131l-3 16-24 18 18-5 12-12Z" fill="#254b85" stroke="none"/>
+    <path d="M76 27Q116 15 150 35L138 66 122 62 110 95 94 90 90 107 83 91 55 126 74 83 87 74 88 52 104 33Z" fill="#f3f2ec" stroke="none"/>
+    <path d="M162 72Q130 88 105 119L91 142 107 156 92 153 82 139Q104 96 148 65L172 81 184 105Z" fill="#f3f2ec" stroke="none"/>
+    <path d="m181 131-6 16-18 15 12-22Z" fill="#f3f2ec" stroke="none"/>
+    <path d="M98 145Q124 158 168 146L163 162 139 176 114 165Z" fill="#3568b6" stroke-width="6"/>
+    <path d="M107 152Q130 161 161 152L154 159 129 163Z" fill="#5488d0" stroke="none"/>
+    <path d="m114 164 14-1 11 10Z" fill="#254b85" stroke="none"/>
+  </g>
+</svg>

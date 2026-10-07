@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://c5xeqjo80g11h"]
+
+[ext_resource type="PackedScene" uid="uid://cxulhbufjisa3" path="res://scenes/debug/ArtAnimationTest.tscn" id="1_31seo"]
+
+[node name="FrostMageAnimationTest" unique_id=1958274146 instance=ExtResource("1_31seo")]
+initial_asset_index = 3

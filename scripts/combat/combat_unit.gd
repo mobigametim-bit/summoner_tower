@@ -13,8 +13,11 @@ var paid_mana: int = 0
 @onready var muzzle: Marker2D = $Muzzle
 @onready var archer_visual: ArcherVisual = get_node_or_null("ArcherVisual") as ArcherVisual
 @onready var mage_visual: MageVisual = get_node_or_null("MageVisual") as MageVisual
-# Godot не поддерживает union types; оба визуала реализуют один небольшой контракт.
-@onready var _animated_visual: Variant = archer_visual if archer_visual != null else mage_visual
+@onready var frost_mage_visual: FrostMageVisual = get_node_or_null("FrostMageVisual") as FrostMageVisual
+# Godot не поддерживает union types; визуалы реализуют один небольшой контракт.
+@onready var _animated_visual: Variant = archer_visual if archer_visual != null else (
+	mage_visual if mage_visual != null else frost_mage_visual
+)
 
 var _enemies: Node2D
 var _projectiles: Node2D

@@ -1,13 +1,13 @@
 extends Control
 
-const ASSETS: Array[String] = ["Archer", "Goblin", "Mage"]
+const ASSETS: Array[String] = ["Archer", "Goblin", "Mage", "FrostMage"]
 const ARCHER_ANIMATIONS: Array[StringName] = [&"idle_loop", &"attack", &"spawn"]
 const GOBLIN_ANIMATIONS: Array[StringName] = [&"walk_loop", &"attack", &"hit", &"death"]
 const MAGE_ANIMATIONS: Array[StringName] = [&"idle_loop", &"cast", &"spawn"]
 const PAUSE_ICON: Texture2D = preload("res://assets/debug/animation_controls/pause.svg")
 const PLAY_ICON: Texture2D = preload("res://assets/debug/animation_controls/play.svg")
 
-@export_range(0, 2) var initial_asset_index: int = 0
+@export_range(0, 3) var initial_asset_index: int = 0
 
 @onready var content: VBoxContainer = $Margin/Content
 @onready var stage: Control = $Margin/Content/Stage
@@ -37,14 +37,14 @@ func _ready() -> void:
 func _animations() -> Array[StringName]:
 	if _asset_index == 1:
 		return GOBLIN_ANIMATIONS
-	return MAGE_ANIMATIONS if _asset_index == 2 else ARCHER_ANIMATIONS
+	return MAGE_ANIMATIONS if _asset_index >= 2 else ARCHER_ANIMATIONS
 
 
 func _select_asset(index: int) -> void:
 	repeat_timer.stop()
 	_asset_index = posmod(index, ASSETS.size())
 	_animation_index = 0
-	entity_label.text = ASSETS[_asset_index].to_upper()
+	entity_label.text = "FROST MAGE" if _asset_index == 3 else ASSETS[_asset_index].to_upper()
 	_visuals.clear()
 	_select_host(preview_host)
 	scale_picker.set_item_text(0, "Large preview")
@@ -184,7 +184,7 @@ func _on_visual_release() -> void:
 	if _asset_index == 1:
 		return
 	_release_count += 1
-	var release_time: float = MageVisual.CAST_RELEASE_TIME if _asset_index == 2 else ArcherVisual.ATTACK_RELEASE_TIME
+	var release_time: float = MageVisual.CAST_RELEASE_TIME if _asset_index >= 2 else ArcherVisual.ATTACK_RELEASE_TIME
 	event_label.text = "Release: %.2f s · %d event" % [release_time, _release_count]
 
 

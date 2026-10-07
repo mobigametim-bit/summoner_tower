@@ -114,7 +114,7 @@ func run(game: Node2D) -> Dictionary:
 	var touch_checks: RefCounted = load("res://tests/support/feature_4_checks.gd").new()
 	touch_checks._touch(game.get_viewport(), 7, Vector2(180, 360), true)
 	touch_checks._motion_touch(game.get_viewport(), 7, Vector2(180, 840))
-	assert(game.drag_controller.preview.visible and game.drag_controller.preview_visual.texture == right.stats.visual_texture)
+	assert(game.drag_controller.preview.visible and game.drag_controller.preview_visual.texture == right.drag_texture())
 	touch_checks._touch(game.get_viewport(), 7, Vector2(180, 840), false, true)
 	assert(slots[0].unit == right and slots[4].is_empty() and not game.drag_controller.preview.visible)
 	# Завершение забега из add_child откатывает призыв без расхода и повторного RNG.

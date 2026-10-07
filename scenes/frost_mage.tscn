@@ -4,14 +4,18 @@
 [ext_resource type="Resource" uid="uid://cjsapsphtiutl" path="res://resources/balance/frost_mage_lv1.tres" id="2_w4cd8"]
 [ext_resource type="PackedScene" uid="uid://cuav5atfygykt" path="res://scenes/frost_bolt.tscn" id="3_obdbm"]
 [ext_resource type="Texture2D" uid="uid://n6ad00jtoctn" path="res://assets/frost_mage.svg" id="4_d1gvq"]
+[ext_resource type="PackedScene" uid="uid://kwx0o48hixmp" path="res://scenes/visuals/FrostMageVisual.tscn" id="5_w4cd8"]
 
 [node name="FrostMage" type="Node2D" unique_id=1677709423]
 script = ExtResource("1_d1gvq")
 stats = ExtResource("2_w4cd8")
 projectile_scene = ExtResource("3_obdbm")
+animated_visual_enabled = true
 
 [node name="Visual" type="Sprite2D" parent="." unique_id=1262552869]
 texture = ExtResource("4_d1gvq")
 
 [node name="Muzzle" type="Marker2D" parent="." unique_id=1043330293]
 position = Vector2(32, -8)
+
+[node name="FrostMageVisual" parent="." unique_id=2090942253 instance=ExtResource("5_w4cd8")]

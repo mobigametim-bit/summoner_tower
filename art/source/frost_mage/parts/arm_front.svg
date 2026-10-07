@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="256" height="256" viewBox="0 0 256 256">
+  <g id="arm_front" stroke="#29180f" stroke-width="7" stroke-linecap="round" stroke-linejoin="round" data-pivot-x="163" data-pivot-y="159">
+    <path d="M155 150Q167 141 178 151L193 164 198 178Q199 187 186 191L164 181 154 172Q149 162 155 150Z" fill="#3568b6"/>
+    <path d="m158 152 12 2 11 17-12 7-12-11Z" fill="#5488d0" stroke="none"/>
+    <path d="m183 159 16 9-4 19-14-5-8-12 10 2Z" fill="#f3f2ec" stroke-width="5"/>
+    <path d="M199 162Q209 157 215 169L211 184Q208 193 199 189L190 181Q186 172 199 162Z" fill="#ffc18c" stroke-width="5"/>
+    <path d="m209 165 3 6-5 12-6 3 4-10Z" fill="#de9668" stroke="none"/>
+  </g>
+</svg>

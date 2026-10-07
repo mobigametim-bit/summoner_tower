@@ -1,0 +1,149 @@
+{
+  "version": 1,
+  "canvas": [
+    256,
+    256
+  ],
+  "actor_origin": [
+    128,
+    128
+  ],
+  "feet_baseline_y": 239,
+  "gameplay_canvas_size": 100,
+  "coordinates": "Full untrimmed canvas. Root=-actor_origin; Bone local position=part pivot-parent pivot. Sprite2D centered=false, position=-pivot. Hood follows Head without its own bone. Rest equals initial transform.",
+  "outline": {
+    "color": "#29180f",
+    "width": 7
+  },
+  "parts": [
+    {
+      "file": "parts/arm_back.svg",
+      "pivot": [
+        94,
+        158
+      ],
+      "parent_bone": "Body",
+      "bone": "BackArm",
+      "sprite_offset": [
+        -94,
+        -158
+      ],
+      "z_index": 0
+    },
+    {
+      "file": "parts/leg_left.svg",
+      "pivot": [
+        102,
+        211
+      ],
+      "parent_bone": "Body",
+      "bone": "LeftLeg",
+      "sprite_offset": [
+        -102,
+        -211
+      ],
+      "z_index": 1
+    },
+    {
+      "file": "parts/leg_right.svg",
+      "pivot": [
+        148,
+        211
+      ],
+      "parent_bone": "Body",
+      "bone": "RightLeg",
+      "sprite_offset": [
+        -148,
+        -211
+      ],
+      "z_index": 2
+    },
+    {
+      "file": "parts/body.svg",
+      "pivot": [
+        127,
+        175
+      ],
+      "parent_bone": "Root",
+      "bone": "Body",
+      "sprite_offset": [
+        -127,
+        -175
+      ],
+      "z_index": 3
+    },
+    {
+      "file": "parts/staff.svg",
+      "pivot": [
+        203,
+        175
+      ],
+      "parent_bone": "FrontArm",
+      "bone": "Staff",
+      "sprite_offset": [
+        -203,
+        -175
+      ],
+      "z_index": 4
+    },
+    {
+      "file": "parts/arm_front.svg",
+      "pivot": [
+        163,
+        159
+      ],
+      "parent_bone": "Body",
+      "bone": "FrontArm",
+      "sprite_offset": [
+        -163,
+        -159
+      ],
+      "z_index": 5
+    },
+    {
+      "file": "parts/head.svg",
+      "pivot": [
+        128,
+        144
+      ],
+      "parent_bone": "Body",
+      "bone": "Head",
+      "sprite_offset": [
+        -128,
+        -144
+      ],
+      "z_index": 6
+    },
+    {
+      "file": "parts/hood.svg",
+      "pivot": [
+        128,
+        144
+      ],
+      "parent_bone": "Head",
+      "bone": null,
+      "sprite_offset": [
+        -128,
+        -144
+      ],
+      "z_index": 7
+    }
+  ],
+  "entity": "FrostMage",
+  "stage": "accepted",
+  "gameplay_entity": "res://scenes/frost_mage.tscn",
+  "gameplay_review_scene": "res://scenes/debug/FrostMageGameplayReview.tscn",
+  "static_fallback": "res://assets/frost_mage.svg",
+  "animated_default": true,
+  "cloth_shader": "res://art/source/mage/cloth_palette.gdshader",
+  "muzzle": [32, -8],
+  "attack_vfx": "Three cyan/white Polygon2D under Staff/ReleasePoint; cast opacity and scale tracks.",
+  "bone_count": 8,
+  "visual_scene": "res://scenes/visuals/FrostMageVisual.tscn",
+  "visual_scale": 0.390625,
+  "animations": {"idle_loop": 1.2, "cast": 0.42, "spawn": 0.4},
+  "cast_release_time": 0.18,
+  "release_point_staff_local": [6.92, -67.48],
+  "animation_review_scene": "res://scenes/debug/FrostMageAnimationTest.tscn",
+  "level_color_rule": "Only blue hood, robe and sleeve cloth. White trim, skin, hair, boots, belts, wood and cyan ice stay fixed. Local ShaderMaterial shares the Mage cloth mask; drag preview uses the same palette."
+}

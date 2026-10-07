@@ -1,0 +1,8 @@
+[gd_scene format=3 uid="uid://bq37i2eetfn3o"]
+
+[ext_resource type="PackedScene" uid="uid://c063yf8ostjx7" path="res://scenes/debug/MageGameplayReview.tscn" id="1_t5skn"]
+[ext_resource type="Script" uid="uid://br28m3deydi8q" path="res://scripts/debug/frost_mage_gameplay_review.gd" id="2_cxld1"]
+
+[node name="FrostMageGameplayReview" unique_id=469266139 instance=ExtResource("1_t5skn")]
+script = ExtResource("2_cxld1")
+review_summon_seed = 4
