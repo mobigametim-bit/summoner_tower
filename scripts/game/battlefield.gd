@@ -14,7 +14,7 @@ extends Node2D
 @onready var road_surfaces: Node2D = $RoadSurfaces
 @onready var decorations: Node2D = $Decorations
 @onready var cells: Node2D = $Cells
-@onready var portal: Sprite2D = $Portal
+@onready var portal: EnemyPortal = $Portal
 @onready var branches: Node2D = $Branches
 @onready var portals: Node2D = $Portals
 
@@ -33,6 +33,7 @@ func build(slots: Node2D, spawn: Marker2D, tower: TowerHealth, columns: int, see
 	spawn.global_position = to_global(layout.cell_center(layout.road_cells[0]))
 	portal.position = layout.cell_center(layout.road_cells[0])
 	portal.scale = Vector2.ONE * (layout.cell_size - config.cell_gap) / 128.0
+	portal.reset_effects()
 	tower.global_position = to_global(layout.cell_center(layout.road_cells[-1]))
 	tower.fit_to_cell(layout.cell_size - config.cell_gap, config.playable_rect.get_center().x)
 	for old: Node in cells.get_children():
@@ -88,11 +89,16 @@ func _build_branches() -> void:
 		surface.points = points
 		# Все обводки рисуются раньше мощения, чтобы на слиянии не возникала кромка.
 		surface.reparent(road_surfaces)
-		var entrance: Sprite2D = portal_scene.instantiate() as Sprite2D
+		var entrance: EnemyPortal = portal_scene.instantiate() as EnemyPortal
 		entrance.name = "Portal%d" % (index + 1)
 		portals.add_child(entrance)
 		entrance.position = layout.cell_center(layout.portal_cells[index])
 		entrance.scale = portal.scale
+
+
+func play_portal_exit(index: int) -> void:
+	var entrance: EnemyPortal = portal if index == 0 else portals.get_child(index - 1) as EnemyPortal
+	entrance.play_exit()
 
 
 func _resize_slots(slots: Node2D) -> void:

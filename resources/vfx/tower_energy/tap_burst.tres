@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="GFFParticles" format=3 uid="uid://dxwfajifdkh6x"]
+
+[ext_resource type="Script" uid="uid://d0raprnpaulqm" path="res://addons/game_feel_flow/effects/particles/gff_particles.gd" id="1"]
+[ext_resource type="PackedScene" uid="uid://ekk80ki1cakv" path="res://scenes/vfx/TowerEnergyTapBurst.tscn" id="2"]
+
+[resource]
+script = ExtResource("1")
+particle_scene = ExtResource("2")
+emit_count = 40
+label = "tower_preview_tap"
+overlap_strategy = 3
+duration = 0.82
+restore_after_play = false

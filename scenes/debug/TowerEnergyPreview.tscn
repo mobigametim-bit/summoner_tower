@@ -1,0 +1,162 @@
+[gd_scene format=3 uid="uid://dlx5k61gvsnif"]
+
+[ext_resource type="Script" uid="uid://d0b40a8ol1oee" path="res://scripts/debug/tower_energy_preview.gd" id="1_32d75"]
+[ext_resource type="PackedScene" uid="uid://csaovkiir3v5d" path="res://scenes/debug/TowerEnergyAvatar.tscn" id="2_hv4hr"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hv4hr"]
+bg_color = Color(0.09411765, 0.16862746, 0.16470589, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.20392157, 0.32156864, 0.32156864, 1)
+corner_radius_top_left = 18
+corner_radius_top_right = 18
+corner_radius_bottom_right = 18
+corner_radius_bottom_left = 18
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_gkvp3"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_564ij"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_71qtc"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_1l3t8"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_bwv1i"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_3ufn8"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_m3blp"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_gebyl"]
+
+[node name="TowerEnergyPreview" type="Control" unique_id=810021570]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_32d75")
+
+[node name="Background" type="ColorRect" parent="." unique_id=318135394]
+layout_mode = 0
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+color = Color(0.0627451, 0.08235294, 0.12941177, 1)
+
+[node name="Margin" type="MarginContainer" parent="." unique_id=1697137650]
+layout_mode = 0
+anchor_right = 1.0
+anchor_bottom = 1.0
+theme_override_constants/margin_left = 32
+theme_override_constants/margin_top = 28
+theme_override_constants/margin_right = 32
+theme_override_constants/margin_bottom = 28
+
+[node name="Content" type="VBoxContainer" parent="Margin" unique_id=1136650159]
+layout_mode = 2
+theme_override_constants/separation = 18
+
+[node name="Title" type="Label" parent="Margin/Content" unique_id=118634649]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.9529412, 0.8117647, 0.47058824, 1)
+theme_override_font_sizes/font_size = 34
+text = "ЭНЕРГИЯ КРИСТАЛЛА"
+horizontal_alignment = 1
+
+[node name="Hint" type="Label" parent="Margin/Content" unique_id=1633161062]
+layout_mode = 2
+theme_override_font_sizes/font_size = 22
+text = "Тапните любую башню, чтобы увидеть всплеск"
+horizontal_alignment = 1
+
+[node name="LargeStage" type="Panel" parent="Margin/Content" unique_id=1452861126]
+custom_minimum_size = Vector2(0, 510)
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_hv4hr")
+
+[node name="Caption" type="Label" parent="Margin/Content/LargeStage" unique_id=1687594158]
+layout_mode = 0
+anchor_right = 1.0
+offset_top = 18.0
+offset_bottom = 54.0
+theme_override_font_sizes/font_size = 24
+text = "Крупный план"
+horizontal_alignment = 1
+
+[node name="Tap" type="Button" parent="Margin/Content/LargeStage" unique_id=562479681]
+layout_mode = 0
+anchor_right = 1.0
+anchor_bottom = 1.0
+focus_mode = 0
+mouse_default_cursor_shape = 2
+theme_override_styles/normal = SubResource("StyleBoxEmpty_gkvp3")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_564ij")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_71qtc")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_1l3t8")
+flat = true
+
+[node name="Avatar" parent="Margin/Content/LargeStage" unique_id=258316483 instance=ExtResource("2_hv4hr")]
+scale = Vector2(1.25, 1.25)
+
+[node name="SmallStage" type="Panel" parent="Margin/Content" unique_id=1975762220]
+custom_minimum_size = Vector2(0, 280)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_hv4hr")
+
+[node name="Caption" type="Label" parent="Margin/Content/SmallStage" unique_id=1403885208]
+layout_mode = 0
+anchor_right = 1.0
+offset_top = 18.0
+offset_bottom = 54.0
+theme_override_font_sizes/font_size = 24
+text = "Игровой размер · 116 px"
+horizontal_alignment = 1
+
+[node name="Tap" type="Button" parent="Margin/Content/SmallStage" unique_id=1115890938]
+layout_mode = 0
+anchor_right = 1.0
+anchor_bottom = 1.0
+focus_mode = 0
+mouse_default_cursor_shape = 2
+theme_override_styles/normal = SubResource("StyleBoxEmpty_bwv1i")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_3ufn8")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_m3blp")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_gebyl")
+flat = true
+
+[node name="Avatar" parent="Margin/Content/SmallStage" unique_id=2000970687 instance=ExtResource("2_hv4hr")]
+scale = Vector2(0.453125, 0.453125)
+
+[node name="Actions" type="HBoxContainer" parent="Margin/Content" unique_id=1636396189]
+layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="Replay" type="Button" parent="Margin/Content/Actions" unique_id=744888969]
+custom_minimum_size = Vector2(0, 74)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 23
+text = "Повторить всплеск"
+
+[node name="Idle" type="Button" parent="Margin/Content/Actions" unique_id=659432793]
+custom_minimum_size = Vector2(0, 74)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 23
+text = "Свечение: вкл."
+
+[node name="Footer" type="Label" parent="Margin/Content" unique_id=1904660520]
+layout_mode = 2
+theme_override_font_sizes/font_size = 21
+text = "Только превью · в бой эффект не подключён"
+horizontal_alignment = 1
+
+[connection signal="pressed" from="Margin/Content/LargeStage/Tap" to="." method="_on_tap"]
+[connection signal="pressed" from="Margin/Content/SmallStage/Tap" to="." method="_on_tap"]
+[connection signal="pressed" from="Margin/Content/Actions/Replay" to="." method="_on_tap"]
+[connection signal="pressed" from="Margin/Content/Actions/Idle" to="." method="_on_idle_toggled"]

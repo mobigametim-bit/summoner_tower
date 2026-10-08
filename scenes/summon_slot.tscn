@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://cy6nolunev6qe" path="res://scripts/game/summon_slot.gd" id="1_khq7p"]
 [ext_resource type="Texture2D" uid="uid://d03birb54d1he" path="res://assets/environment/pedestal.svg" id="2_v7cng"]
 [ext_resource type="Texture2D" uid="uid://doel18wacxhii" path="res://assets/summon_slot_highlight.svg" id="3_v7cng"]
+[ext_resource type="PackedScene" uid="uid://ck8uqcc3nrmvm" path="res://scenes/vfx/SummonRays.tscn" id="4_d6sp2"]
 
 [node name="SummonSlot" type="Node2D" unique_id=315674392]
 script = ExtResource("1_khq7p")
@@ -16,3 +17,6 @@ z_index = 1
 texture = ExtResource("3_v7cng")
 
 [node name="UnitHost" type="Node2D" parent="." unique_id=1947917686]
+
+[node name="SummonRays" parent="." unique_id=216706316 instance=ExtResource("4_d6sp2")]
+position = Vector2(0, 44)

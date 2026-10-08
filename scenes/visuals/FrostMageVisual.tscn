@@ -9,6 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://bsrxqg3o7dd5c" path="res://art/source/frost_mage/parts/arm_front.svg" id="6_y0b18"]
 [ext_resource type="Texture2D" uid="uid://dsmguuh35meo5" path="res://art/source/frost_mage/parts/leg_left.svg" id="7_lhar6"]
 [ext_resource type="Script" uid="uid://b1twqmedjbhhw" path="res://scripts/visuals/energy_shape.gd" id="7_w2y22"]
+[ext_resource type="PackedScene" uid="uid://b3o7t2ap52f2b" path="res://scenes/vfx/FrostStaffParticles.tscn" id="8_o0lfd"]
 [ext_resource type="Texture2D" uid="uid://bhi1gml8udqbm" path="res://art/source/frost_mage/parts/leg_right.svg" id="8_r14ya"]
 [ext_resource type="Texture2D" uid="uid://c17ue72vqdsyx" path="res://art/source/frost_mage/parts/body.svg" id="9_5rgkp"]
 
@@ -648,6 +649,10 @@ color = Color(0.35, 0.9, 1, 0.32)
 script = ExtResource("7_w2y22")
 polygon = PackedVector2Array(6, 0, 5.7063394, 1.854102, 4.854102, 3.5267115, 3.5267115, 4.854102, 1.8541019, 5.7063394, -2.6226832e-07, 6, -1.8541021, 5.706339, -3.526711, 4.854102, -4.854102, 3.526711, -5.706339, 1.8541021, -6, -5.2453663e-07, -5.7063394, -1.8541019, -4.8541017, -3.5267122, -3.5267105, -4.8541026, -1.8541026, -5.706339, 7.154928e-08, -6, 1.8541027, -5.706339, 3.5267105, -4.8541026, 4.8541017, -3.526712, 5.7063394, -1.8541017)
 color = Color(0.8, 1, 1, 0.55)
+
+[node name="StaffParticles" parent="Skeleton2D/Root/Body/FrontArm/Staff/ReleasePoint" unique_id=1017312397 instance=ExtResource("8_o0lfd")]
+z_as_relative = false
+position = Vector2(7, -12)
 
 [node name="Sprite" type="Sprite2D" parent="Skeleton2D/Root/Body/FrontArm" unique_id=552682458]
 z_index = 5

@@ -1,0 +1,28 @@
+[gd_scene format=3 uid="uid://d2ajcbud3bqoh"]
+
+[ext_resource type="Texture2D" uid="uid://df4fl7gr5yawn" path="res://assets/vfx/flame.svg" id="1_8jmv5"]
+[ext_resource type="Gradient" path="res://resources/vfx/magic_particles/fade.tres" id="2_5wd3c"]
+[ext_resource type="Script" uid="uid://bw0cecxlsbsas" path="res://scripts/visuals/particle_burst.gd" id="3_0kap1"]
+
+[node name="Impact" type="CPUParticles2D" unique_id=150044286]
+z_index = 20
+emitting = false
+amount = 28
+texture = ExtResource("1_8jmv5")
+lifetime = 0.7
+one_shot = true
+explosiveness = 1.0
+local_coords = true
+emission_shape = 1
+emission_sphere_radius = 16.0
+direction = Vector2(0, -1)
+spread = 180.0
+gravity = Vector2(0, -32)
+initial_velocity_min = 110.0
+initial_velocity_max = 220.0
+angular_velocity_min = -35.0
+angular_velocity_max = 35.0
+scale_amount_min = 0.77
+scale_amount_max = 1.155
+color_ramp = ExtResource("2_5wd3c")
+script = ExtResource("3_0kap1")

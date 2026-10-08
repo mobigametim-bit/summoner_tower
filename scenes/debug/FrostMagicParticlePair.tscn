@@ -1,0 +1,36 @@
+[gd_scene format=3 uid="uid://qu7i6l5rc0nw"]
+
+[ext_resource type="Script" uid="uid://dgn3jua7g5c0p" path="res://scripts/debug/magic_particle_pair.gd" id="1_3e1nh"]
+[ext_resource type="PackedScene" uid="uid://bttxdmu1eqj8t" path="res://scenes/vfx/FrostMagicImpact.tscn" id="2_0oyhi"]
+[ext_resource type="PackedScene" uid="uid://kwx0o48hixmp" path="res://scenes/visuals/FrostMageVisual.tscn" id="3_spyjx"]
+[ext_resource type="PackedScene" uid="uid://oc8xhrjf4wpc" path="res://scenes/visuals/GoblinVisual.tscn" id="4_wlkaa"]
+[ext_resource type="Texture2D" uid="uid://dxpibtjuq0tik" path="res://assets/vfx/snowflake.svg" id="5_ed508"]
+[ext_resource type="PackedScene" uid="uid://b3o7t2ap52f2b" path="res://scenes/vfx/FrostStaffParticles.tscn" id="5_ne8f1"]
+[ext_resource type="Script" uid="uid://b6hb1c3t0eppb" path="res://addons/game_feel_flow/core/gff_player.gd" id="7_hh1jn"]
+
+[node name="MagicPair" type="Node2D" unique_id=759199909]
+script = ExtResource("1_3e1nh")
+frost = true
+impact_scene = ExtResource("2_0oyhi")
+
+[node name="Mage" parent="." unique_id=2090942253 instance=ExtResource("3_spyjx")]
+position = Vector2(-170, 0)
+scale = Vector2(1, 1)
+
+[node name="Enemy" parent="." unique_id=756032484 instance=ExtResource("4_wlkaa")]
+position = Vector2(210, 0)
+scale = Vector2(0.8, 0.8)
+
+[node name="StaffParticles" parent="." unique_id=1017312397 instance=ExtResource("5_ne8f1")]
+
+[node name="Projectile" type="Sprite2D" parent="." unique_id=365782943]
+visible = false
+z_index = 20
+scale = Vector2(1.2, 1.2)
+texture = ExtResource("5_ed508")
+
+[node name="ImpactHost" type="Node2D" parent="." unique_id=928868516]
+position = Vector2(210, 0)
+
+[node name="GFFPlayer" type="Node" parent="ImpactHost" unique_id=1449722590]
+script = ExtResource("7_hh1jn")

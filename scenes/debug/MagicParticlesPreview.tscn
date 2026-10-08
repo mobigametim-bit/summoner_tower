@@ -1,0 +1,190 @@
+[gd_scene format=3 uid="uid://bbxlagd252030"]
+
+[ext_resource type="Script" uid="uid://dwtqvnh3u5qn4" path="res://scripts/debug/magic_particles_preview.gd" id="1_f56lo"]
+[ext_resource type="PackedScene" uid="uid://c27w6t7anojqx" path="res://scenes/debug/FireMagicParticlePair.tscn" id="2_xtnvj"]
+[ext_resource type="PackedScene" uid="uid://qu7i6l5rc0nw" path="res://scenes/debug/FrostMagicParticlePair.tscn" id="3_6s8vi"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6s8vi"]
+bg_color = Color(0.09411765, 0.16862746, 0.16470589, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.20392157, 0.32156864, 0.32156864, 1)
+corner_radius_top_left = 18
+corner_radius_top_right = 18
+corner_radius_bottom_right = 18
+corner_radius_bottom_left = 18
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_6q4uu"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_v1ek5"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_i8n4q"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_7u3k1"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_7m3tq"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_bvjth"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_h0w04"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_dfekc"]
+
+[node name="MagicParticlesPreview" type="Control" unique_id=950892974]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_f56lo")
+
+[node name="Background" type="ColorRect" parent="." unique_id=88283588]
+layout_mode = 0
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+color = Color(0.0627451, 0.08235294, 0.12941177, 1)
+
+[node name="Margin" type="MarginContainer" parent="." unique_id=861461141]
+layout_mode = 0
+anchor_right = 1.0
+anchor_bottom = 1.0
+theme_override_constants/margin_left = 24
+theme_override_constants/margin_top = 24
+theme_override_constants/margin_right = 24
+theme_override_constants/margin_bottom = 24
+
+[node name="Content" type="VBoxContainer" parent="Margin" unique_id=1699775083]
+layout_mode = 2
+theme_override_constants/separation = 14
+
+[node name="Title" type="Label" parent="Margin/Content" unique_id=189732630]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.9529412, 0.8117647, 0.47058824, 1)
+theme_override_font_sizes/font_size = 32
+text = "МАГИЧЕСКИЕ ЧАСТИЦЫ"
+horizontal_alignment = 1
+
+[node name="Hint" type="Label" parent="Margin/Content" unique_id=1602977394]
+layout_mode = 2
+theme_override_font_sizes/font_size = 23
+text = "Тап по панели: заклинание и попадание"
+horizontal_alignment = 1
+
+[node name="FireStage" type="Panel" parent="Margin/Content" unique_id=281322207]
+custom_minimum_size = Vector2(0, 485)
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_6s8vi")
+
+[node name="Caption" type="Label" parent="Margin/Content/FireStage" unique_id=67980568]
+layout_mode = 0
+anchor_right = 1.0
+offset_top = 12.0
+offset_bottom = 48.0
+theme_override_font_sizes/font_size = 26
+text = "Огонь · кристалл и всплеск"
+horizontal_alignment = 1
+
+[node name="SmallCaption" type="Label" parent="Margin/Content/FireStage" unique_id=730996400]
+layout_mode = 0
+anchor_top = 0.65
+anchor_right = 1.0
+anchor_bottom = 0.65
+offset_bottom = 36.0
+theme_override_font_sizes/font_size = 21
+text = "Игровой размер"
+horizontal_alignment = 1
+
+[node name="Tap" type="Button" parent="Margin/Content/FireStage" unique_id=1390479799]
+layout_mode = 0
+anchor_right = 1.0
+anchor_bottom = 1.0
+focus_mode = 0
+mouse_default_cursor_shape = 2
+theme_override_styles/normal = SubResource("StyleBoxEmpty_6q4uu")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_v1ek5")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_i8n4q")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_7u3k1")
+flat = true
+
+[node name="Large" parent="Margin/Content/FireStage" unique_id=1006992701 instance=ExtResource("2_xtnvj")]
+scale = Vector2(0.95, 0.95)
+
+[node name="Small" parent="Margin/Content/FireStage" unique_id=1901573597 instance=ExtResource("2_xtnvj")]
+scale = Vector2(0.4, 0.4)
+
+[node name="FrostStage" type="Panel" parent="Margin/Content" unique_id=810799407]
+custom_minimum_size = Vector2(0, 485)
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_6s8vi")
+
+[node name="Caption" type="Label" parent="Margin/Content/FrostStage" unique_id=1504274941]
+layout_mode = 0
+anchor_right = 1.0
+offset_top = 12.0
+offset_bottom = 48.0
+theme_override_font_sizes/font_size = 26
+text = "Лёд · снежинки и попадание"
+horizontal_alignment = 1
+
+[node name="SmallCaption" type="Label" parent="Margin/Content/FrostStage" unique_id=2077942994]
+layout_mode = 0
+anchor_top = 0.65
+anchor_right = 1.0
+anchor_bottom = 0.65
+offset_bottom = 36.0
+theme_override_font_sizes/font_size = 21
+text = "Игровой размер"
+horizontal_alignment = 1
+
+[node name="Tap" type="Button" parent="Margin/Content/FrostStage" unique_id=950270731]
+layout_mode = 0
+anchor_right = 1.0
+anchor_bottom = 1.0
+focus_mode = 0
+mouse_default_cursor_shape = 2
+theme_override_styles/normal = SubResource("StyleBoxEmpty_7m3tq")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_bvjth")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_h0w04")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_dfekc")
+flat = true
+
+[node name="Large" parent="Margin/Content/FrostStage" unique_id=759199909 instance=ExtResource("3_6s8vi")]
+scale = Vector2(0.95, 0.95)
+
+[node name="Small" parent="Margin/Content/FrostStage" unique_id=751634470 instance=ExtResource("3_6s8vi")]
+scale = Vector2(0.4, 0.4)
+
+[node name="Actions" type="HBoxContainer" parent="Margin/Content" unique_id=1634120562]
+layout_mode = 2
+theme_override_constants/separation = 14
+
+[node name="Cast" type="Button" parent="Margin/Content/Actions" unique_id=1543179614]
+custom_minimum_size = Vector2(0, 68)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 23
+text = "Оба попадания"
+
+[node name="Idle" type="Button" parent="Margin/Content/Actions" unique_id=128630188]
+custom_minimum_size = Vector2(0, 68)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 23
+text = "Аура: вкл."
+
+[node name="Footer" type="Label" parent="Margin/Content" unique_id=1271221876]
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+text = "Превью эффектов магов · без изменения боя"
+horizontal_alignment = 1
+
+[connection signal="pressed" from="Margin/Content/FireStage/Tap" to="." method="_on_fire"]
+[connection signal="pressed" from="Margin/Content/FrostStage/Tap" to="." method="_on_frost"]
+[connection signal="pressed" from="Margin/Content/Actions/Cast" to="." method="_on_both"]
+[connection signal="pressed" from="Margin/Content/Actions/Idle" to="." method="_on_idle"]

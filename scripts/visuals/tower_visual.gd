@@ -7,6 +7,7 @@ const CANVAS_SIZE: float = 256.0
 const BASE_BOTTOM_Y: float = 254.0
 
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
+@onready var crystal_energy: TowerCrystalEnergy = $CrystalPivot/CrystalEnergy
 
 var _active_animation: StringName = &"crystal_pulse"
 var _pending_reaction: StringName = &""
@@ -28,6 +29,8 @@ func play_animation(animation_name: StringName) -> void:
 
 
 func _play_clip(animation_name: StringName) -> void:
+	if crystal_energy.idle_enabled == _destroyed:
+		crystal_energy.set_idle_enabled(not _destroyed)
 	animation_player.stop()
 	animation_player.play(&"RESET")
 	animation_player.advance(0.0)
@@ -38,6 +41,8 @@ func _play_clip(animation_name: StringName) -> void:
 
 
 func show_tap() -> void:
+	if not _destroyed:
+		crystal_energy.play_tap()
 	_request_reaction(&"tap")
 
 

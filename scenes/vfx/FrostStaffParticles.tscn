@@ -1,0 +1,27 @@
+[gd_scene format=3 uid="uid://b3o7t2ap52f2b"]
+
+[ext_resource type="Texture2D" uid="uid://dxpibtjuq0tik" path="res://assets/vfx/snowflake.svg" id="1_gv2ut"]
+[ext_resource type="Gradient" path="res://resources/vfx/magic_particles/fade.tres" id="2_haw8s"]
+
+[node name="StaffParticles" type="CPUParticles2D" unique_id=1017312397]
+z_index = 20
+amount = 12
+texture = ExtResource("1_gv2ut")
+lifetime = 1.5
+preprocess = 1.5
+local_coords = true
+emission_shape = 6
+emission_ring_inner_radius = 30.0
+emission_ring_radius = 50.0
+direction = Vector2(0, 1)
+spread = 35.0
+gravity = Vector2(0, 6)
+initial_velocity_min = 8.0
+initial_velocity_max = 18.0
+angular_velocity_min = -75.0
+angular_velocity_max = 75.0
+orbit_velocity_min = 0.08
+orbit_velocity_max = 0.16
+scale_amount_min = 0.595
+scale_amount_max = 0.805
+color_ramp = ExtResource("2_haw8s")

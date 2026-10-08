@@ -1,0 +1,208 @@
+[gd_scene format=3 uid="uid://62kgkt5u37dp"]
+
+[ext_resource type="Script" uid="uid://bhawub7bp82vx" path="res://scripts/debug/summon_portal_preview.gd" id="1_y4l5y"]
+[ext_resource type="PackedScene" uid="uid://xnfqajg0cm4j" path="res://scenes/debug/SummonParticlesAvatar.tscn" id="2_4rcti"]
+[ext_resource type="PackedScene" uid="uid://cihjwf7f7a6ov" path="res://scenes/debug/PortalParticlesAvatar.tscn" id="3_8xkq3"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8xkq3"]
+bg_color = Color(0.09411765, 0.16862746, 0.16470589, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.20392157, 0.32156864, 0.32156864, 1)
+corner_radius_top_left = 18
+corner_radius_top_right = 18
+corner_radius_bottom_right = 18
+corner_radius_bottom_left = 18
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_vcqwb"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_r30r6"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_yh760"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_44jcd"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_enk6t"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_le8n7"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_lpmro"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_37jkd"]
+
+[node name="SummonPortalPreview" type="Control" unique_id=472321759]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_y4l5y")
+
+[node name="Background" type="ColorRect" parent="." unique_id=1049287532]
+layout_mode = 0
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+color = Color(0.0627451, 0.08235294, 0.12941177, 1)
+
+[node name="Margin" type="MarginContainer" parent="." unique_id=488961165]
+layout_mode = 0
+anchor_right = 1.0
+anchor_bottom = 1.0
+theme_override_constants/margin_left = 24
+theme_override_constants/margin_top = 24
+theme_override_constants/margin_right = 24
+theme_override_constants/margin_bottom = 24
+
+[node name="Content" type="VBoxContainer" parent="Margin" unique_id=824896288]
+layout_mode = 2
+theme_override_constants/separation = 14
+
+[node name="Title" type="Label" parent="Margin/Content" unique_id=286713575]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.9529412, 0.8117647, 0.47058824, 1)
+theme_override_font_sizes/font_size = 32
+text = "ПРИЗЫВ И ПОРТАЛ"
+horizontal_alignment = 1
+
+[node name="Hint" type="Label" parent="Margin/Content" unique_id=631452865]
+layout_mode = 2
+theme_override_font_sizes/font_size = 23
+text = "Тапните панели, чтобы увидеть появление"
+horizontal_alignment = 1
+
+[node name="SummonStage" type="Panel" parent="Margin/Content" unique_id=766231150]
+custom_minimum_size = Vector2(0, 485)
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_8xkq3")
+
+[node name="Caption" type="Label" parent="Margin/Content/SummonStage" unique_id=934433607]
+layout_mode = 0
+anchor_right = 1.0
+offset_top = 12.0
+offset_bottom = 48.0
+theme_override_font_sizes/font_size = 25
+text = "Призыв из белых лучей"
+horizontal_alignment = 1
+
+[node name="LargeCaption" type="Label" parent="Margin/Content/SummonStage" unique_id=1487795247]
+layout_mode = 0
+anchor_left = 0.13
+anchor_right = 0.51
+offset_top = 60.0
+offset_bottom = 92.0
+theme_override_font_sizes/font_size = 21
+text = "Крупный план"
+horizontal_alignment = 1
+
+[node name="SmallCaption" type="Label" parent="Margin/Content/SummonStage" unique_id=748488941]
+layout_mode = 0
+anchor_left = 0.61
+anchor_right = 0.94
+offset_top = 60.0
+offset_bottom = 92.0
+theme_override_font_sizes/font_size = 21
+text = "Игровой размер"
+horizontal_alignment = 1
+
+[node name="Tap" type="Button" parent="Margin/Content/SummonStage" unique_id=2100481453]
+layout_mode = 0
+anchor_right = 1.0
+anchor_bottom = 1.0
+focus_mode = 0
+mouse_default_cursor_shape = 2
+theme_override_styles/normal = SubResource("StyleBoxEmpty_vcqwb")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_r30r6")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_yh760")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_44jcd")
+flat = true
+
+[node name="Large" parent="Margin/Content/SummonStage" unique_id=1450196433 instance=ExtResource("2_4rcti")]
+scale = Vector2(2.3, 2.3)
+
+[node name="Small" parent="Margin/Content/SummonStage" unique_id=2070283081 instance=ExtResource("2_4rcti")]
+
+[node name="PortalStage" type="Panel" parent="Margin/Content" unique_id=669471378]
+custom_minimum_size = Vector2(0, 485)
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_8xkq3")
+
+[node name="Caption" type="Label" parent="Margin/Content/PortalStage" unique_id=1666052233]
+layout_mode = 0
+anchor_right = 1.0
+offset_top = 12.0
+offset_bottom = 48.0
+theme_override_font_sizes/font_size = 25
+text = "Портал · круговорот и фиолетовый дым"
+horizontal_alignment = 1
+
+[node name="LargeCaption" type="Label" parent="Margin/Content/PortalStage" unique_id=198366703]
+layout_mode = 0
+anchor_left = 0.13
+anchor_right = 0.51
+offset_top = 60.0
+offset_bottom = 92.0
+theme_override_font_sizes/font_size = 21
+text = "Крупный план"
+horizontal_alignment = 1
+
+[node name="SmallCaption" type="Label" parent="Margin/Content/PortalStage" unique_id=339278954]
+layout_mode = 0
+anchor_left = 0.61
+anchor_right = 0.94
+offset_top = 60.0
+offset_bottom = 92.0
+theme_override_font_sizes/font_size = 21
+text = "Игровой размер"
+horizontal_alignment = 1
+
+[node name="Tap" type="Button" parent="Margin/Content/PortalStage" unique_id=694739583]
+layout_mode = 0
+anchor_right = 1.0
+anchor_bottom = 1.0
+focus_mode = 0
+mouse_default_cursor_shape = 2
+theme_override_styles/normal = SubResource("StyleBoxEmpty_enk6t")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_le8n7")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_lpmro")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_37jkd")
+flat = true
+
+[node name="Large" parent="Margin/Content/PortalStage" unique_id=134215386 instance=ExtResource("3_8xkq3")]
+scale = Vector2(2.1, 2.1)
+
+[node name="Small" parent="Margin/Content/PortalStage" unique_id=993927167 instance=ExtResource("3_8xkq3")]
+
+[node name="Actions" type="HBoxContainer" parent="Margin/Content" unique_id=979295135]
+layout_mode = 2
+theme_override_constants/separation = 14
+
+[node name="Summon" type="Button" parent="Margin/Content/Actions" unique_id=1797387633]
+custom_minimum_size = Vector2(0, 68)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 23
+text = "Призвать юнита"
+
+[node name="Exit" type="Button" parent="Margin/Content/Actions" unique_id=504531544]
+custom_minimum_size = Vector2(0, 68)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 23
+text = "Выход из портала"
+
+[node name="Footer" type="Label" parent="Margin/Content" unique_id=1322961269]
+layout_mode = 2
+theme_override_font_sizes/font_size = 21
+text = "Только превью · в бой пока не подключено"
+horizontal_alignment = 1
+
+[connection signal="pressed" from="Margin/Content/SummonStage/Tap" to="." method="_on_summon"]
+[connection signal="pressed" from="Margin/Content/PortalStage/Tap" to="." method="_on_portal"]
+[connection signal="pressed" from="Margin/Content/Actions/Summon" to="." method="_on_summon"]
+[connection signal="pressed" from="Margin/Content/Actions/Exit" to="." method="_on_portal"]

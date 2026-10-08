@@ -14,6 +14,7 @@ const CLOTH_COLORS: Array[Color] = [
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 @onready var spawn_player: AnimationPlayer = $SpawnPlayer
 @onready var release_point: Marker2D = $Skeleton2D/Root/Body/FrontArm/Staff/ReleasePoint
+@onready var staff_particles: CPUParticles2D = $Skeleton2D/Root/Body/FrontArm/Staff/ReleasePoint/StaffParticles
 @onready var rig_root: Bone2D = $Skeleton2D/Root
 @onready var cloth_material: ShaderMaterial = $Skeleton2D/Root/Body/Sprite.material
 
@@ -50,6 +51,8 @@ func play_animation(animation_name: StringName) -> void:
 
 
 func enable_gameplay(play_spawn: bool = false) -> void:
+	staff_particles.visible = true
+	staff_particles.emitting = true
 	_gameplay_mode = true
 	animation_player.callback_mode_process = AnimationMixer.ANIMATION_CALLBACK_MODE_PROCESS_MANUAL
 	_preparing = false
@@ -102,6 +105,8 @@ func cancel_preparation() -> void:
 
 
 func stop_gameplay() -> void:
+	staff_particles.visible = false
+	staff_particles.emitting = false
 	_preparing = false
 	_released = true
 	animation_player.pause()

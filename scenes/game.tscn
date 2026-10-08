@@ -540,6 +540,7 @@ config = ExtResource("21_37s47")
 [connection signal="unit_merged" from="SummonManager" to="RunStatistics" method="record_merge"]
 [connection signal="unit_refunded" from="SummonManager" to="World/Tower" method="_on_unit_refunded"]
 [connection signal="enemy_resolved" from="WaveManager" to="." method="_on_enemy_resolved"]
+[connection signal="enemy_spawned" from="WaveManager" to="." method="_on_enemy_spawned"]
 [connection signal="state_changed" from="WaveManager" to="Interface/Hud" method="update_wave"]
 [connection signal="state_changed" from="WaveManager" to="RunStatistics" method="record_wave_state"]
 [connection signal="upgrade_requested" from="WaveManager" to="." method="_on_wave_upgrade_requested"]

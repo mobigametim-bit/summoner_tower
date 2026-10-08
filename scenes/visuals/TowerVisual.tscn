@@ -4,6 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://dkxjieookbpm5" path="res://art/source/tower/parts/base.svg" id="2_ix4xp"]
 [ext_resource type="Texture2D" uid="uid://djvqkik2ktkvn" path="res://art/source/tower/parts/crystal.svg" id="3_gc2lq"]
 [ext_resource type="Texture2D" uid="uid://bq2bfffobh7h7" path="res://art/source/tower/parts/body.svg" id="4_fh2mj"]
+[ext_resource type="PackedScene" uid="uid://bhn51uel7v75a" path="res://scenes/vfx/TowerCrystalEnergy.tscn" id="4_gc2lq"]
 
 [sub_resource type="Animation" id="Animation_ix4xp"]
 resource_name = "RESET"
@@ -446,6 +447,8 @@ z_index = 1
 position = Vector2(-128, -95)
 texture = ExtResource("3_gc2lq")
 centered = false
+
+[node name="CrystalEnergy" parent="CrystalPivot" unique_id=676215147 instance=ExtResource("4_gc2lq")]
 
 [node name="BodyPivot" type="Node2D" parent="." unique_id=259907408]
 position = Vector2(0, 31.9)

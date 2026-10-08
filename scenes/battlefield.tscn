@@ -8,7 +8,6 @@
 [ext_resource type="Texture2D" uid="uid://jk7um1wnikmc" path="res://assets/environment/paved_road.svg" id="6_86tsl"]
 [ext_resource type="PackedScene" uid="uid://b2ua885nmtlx3" path="res://scenes/enemy_portal.tscn" id="6_htbo0"]
 [ext_resource type="PackedScene" uid="uid://fpv6ms0wks3i" path="res://scenes/battlefield_branch.tscn" id="7_3avj7"]
-[ext_resource type="Texture2D" uid="uid://dijknhm08ajan" path="res://assets/environment/portal.svg" id="7_lwkd3"]
 
 [node name="Battlefield" type="Node2D" unique_id=1060640720]
 script = ExtResource("1_5rve1")
@@ -43,7 +42,6 @@ end_cap_mode = 2
 
 [node name="Decorations" type="Node2D" parent="." unique_id=1381231376]
 
-[node name="Portal" type="Sprite2D" parent="." unique_id=1150243869]
-texture = ExtResource("7_lwkd3")
-
 [node name="Portals" type="Node2D" parent="." unique_id=394356681]
+
+[node name="Portal" parent="." unique_id=1162341560 instance=ExtResource("6_htbo0")]

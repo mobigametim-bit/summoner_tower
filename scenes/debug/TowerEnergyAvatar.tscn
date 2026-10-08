@@ -1,0 +1,9 @@
+[gd_scene format=3 uid="uid://csaovkiir3v5d"]
+
+[ext_resource type="Script" uid="uid://doww0dcrhc24y" path="res://scripts/debug/tower_energy_avatar.gd" id="1_h8nme"]
+[ext_resource type="PackedScene" uid="uid://c1a6looviafqr" path="res://scenes/visuals/TowerVisual.tscn" id="2_tg3em"]
+
+[node name="TowerEnergyAvatar" type="Node2D" unique_id=258316483]
+script = ExtResource("1_h8nme")
+
+[node name="TowerVisual" parent="." unique_id=1850618779 instance=ExtResource("2_tg3em")]

@@ -1,0 +1,27 @@
+[gd_scene format=3 uid="uid://5c03vf6mgsvr"]
+
+[ext_resource type="Texture2D" uid="uid://df4fl7gr5yawn" path="res://assets/vfx/flame.svg" id="1_wbo57"]
+[ext_resource type="Gradient" path="res://resources/vfx/magic_particles/fade.tres" id="2_et7vd"]
+
+[node name="StaffParticles" type="CPUParticles2D" unique_id=1876066698]
+z_index = 20
+amount = 14
+texture = ExtResource("1_wbo57")
+lifetime = 1.5
+preprocess = 1.5
+local_coords = true
+emission_shape = 6
+emission_ring_inner_radius = 30.0
+emission_ring_radius = 50.0
+direction = Vector2(0, -1)
+spread = 35.0
+gravity = Vector2(0, -8)
+initial_velocity_min = 16.0
+initial_velocity_max = 30.0
+angular_velocity_min = -10.0
+angular_velocity_max = 10.0
+orbit_velocity_min = 0.08
+orbit_velocity_max = 0.16
+scale_amount_min = 0.595
+scale_amount_max = 0.805
+color_ramp = ExtResource("2_et7vd")

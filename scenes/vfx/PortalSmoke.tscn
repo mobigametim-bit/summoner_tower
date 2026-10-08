@@ -1,0 +1,26 @@
+[gd_scene format=3 uid="uid://dfivouh0cw1hv"]
+
+[ext_resource type="Texture2D" uid="uid://dgqsby77rbndi" path="res://assets/vfx/summon_portal/smoke_puff.svg" id="1_wxpw2"]
+[ext_resource type="Gradient" path="res://resources/vfx/summon_portal/smoke_fade.tres" id="2_ib2cf"]
+
+[node name="Smoke" type="CPUParticles2D" unique_id=1918309506]
+z_index = 20
+emitting = false
+amount = 18
+texture = ExtResource("1_wxpw2")
+lifetime = 0.95
+one_shot = true
+explosiveness = 1.0
+local_coords = true
+emission_shape = 1
+emission_sphere_radius = 12.0
+direction = Vector2(1, -0.2)
+spread = 120.0
+gravity = Vector2(0, -10)
+initial_velocity_min = 45.0
+initial_velocity_max = 110.0
+angular_velocity_min = -45.0
+angular_velocity_max = 45.0
+scale_amount_min = 0.4
+scale_amount_max = 0.75
+color_ramp = ExtResource("2_ib2cf")

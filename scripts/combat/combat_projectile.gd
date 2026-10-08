@@ -1,6 +1,9 @@
 class_name CombatProjectile
 extends Node2D
 
+@export var impact_scene: PackedScene
+@export var impact_scale: float = 0.4
+
 var _target: ApproachingEnemy
 var _attacker: Node2D
 var _damage: int = 0
@@ -73,10 +76,21 @@ func _hit_target() -> void:
 	_resolved = true
 	set_physics_process(false)
 	if _has_valid_participants():
+		_show_impact()
 		_target.take_damage(_damage)
 		if is_instance_valid(_target) and _target.is_targetable():
 			_target.apply_slow(_slow_ratio, _slow_duration)
 	queue_free()
+
+
+func _show_impact() -> void:
+	if impact_scene == null:
+		return
+	# Соседний узел переживёт снаряд и цель; смена сцены удалит незавершённый эффект.
+	var effect: CPUParticles2D = impact_scene.instantiate() as CPUParticles2D
+	get_parent().add_child(effect)
+	effect.global_position = global_position
+	effect.global_scale = Vector2.ONE * impact_scale
 
 
 func _dispose() -> void:

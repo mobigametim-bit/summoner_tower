@@ -98,6 +98,7 @@ func try_summon() -> bool:
 	unit.paid_mana = current_cost()
 	mana -= unit.paid_mana
 	successful_summons += 1
+	destination.play_summon_effect()
 	_busy = false
 	_emit_state()
 	return true

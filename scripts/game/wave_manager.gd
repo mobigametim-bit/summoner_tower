@@ -5,6 +5,7 @@ enum Phase { STOPPED, FIGHTING, INTERMISSION, UPGRADE_CHOICE }
 
 signal state_changed(wave: int, phase: Phase, seconds: int, alive: int, pending: int)
 signal enemy_resolved(enemy: ApproachingEnemy, outcome: ApproachingEnemy.Outcome, mana: int)
+signal enemy_spawned(portal_index: int)
 signal wave_completed(wave: int)
 signal upgrade_requested(wave: int)
 
@@ -138,6 +139,7 @@ func _spawn_enemy() -> void:
 		enemy.follow_route(selected_route.curve, selected_route.global_transform, float(selected_route.get_meta("cell_size", 140.0)))
 	if phase != Phase.FIGHTING:
 		return
+	enemy_spawned.emit(portal_index)
 	_emit_state()
 	_try_finish_wave()
 

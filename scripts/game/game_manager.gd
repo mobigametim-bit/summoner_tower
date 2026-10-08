@@ -76,6 +76,11 @@ func _player_power() -> float:
 	return balance.player_power(total, tower.max_health)
 
 
+func _on_enemy_spawned(portal_index: int) -> void:
+	if procedural_battlefield_enabled:
+		battlefield.play_portal_exit(portal_index)
+
+
 func _on_enemy_resolved(enemy: ApproachingEnemy, outcome: ApproachingEnemy.Outcome, mana: int) -> void:
 	if state != State.RUNNING:
 		return

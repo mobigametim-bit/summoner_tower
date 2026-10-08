@@ -1,0 +1,20 @@
+[gd_scene format=3 uid="uid://xnfqajg0cm4j"]
+
+[ext_resource type="Script" uid="uid://domtnvp4pkaj5" path="res://scripts/debug/summon_particles_avatar.gd" id="1_gkgqx"]
+[ext_resource type="Texture2D" uid="uid://d03birb54d1he" path="res://assets/environment/pedestal.svg" id="2_pgwch"]
+[ext_resource type="PackedScene" uid="uid://dppy0wu685mq7" path="res://scenes/visuals/ArcherVisual.tscn" id="3_n15bu"]
+[ext_resource type="PackedScene" uid="uid://ck8uqcc3nrmvm" path="res://scenes/vfx/SummonRays.tscn" id="4_ss24j"]
+
+[node name="SummonAvatar" type="Node2D" unique_id=1450196433]
+script = ExtResource("1_gkgqx")
+
+[node name="Pedestal" type="Sprite2D" parent="." unique_id=1616963094]
+scale = Vector2(0.85, 0.85)
+texture = ExtResource("2_pgwch")
+
+[node name="Unit" parent="." unique_id=655393526 instance=ExtResource("3_n15bu")]
+visible = false
+position = Vector2(0, -30)
+
+[node name="Rays" parent="." unique_id=216706316 instance=ExtResource("4_ss24j")]
+position = Vector2(0, 14)

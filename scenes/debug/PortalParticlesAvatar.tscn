@@ -1,0 +1,22 @@
+[gd_scene format=3 uid="uid://cihjwf7f7a6ov"]
+
+[ext_resource type="Script" uid="uid://igiw8hfyh4ni" path="res://scripts/debug/portal_particles_avatar.gd" id="1_gsk80"]
+[ext_resource type="PackedScene" uid="uid://b2ua885nmtlx3" path="res://scenes/enemy_portal.tscn" id="2_rwvqy"]
+[ext_resource type="PackedScene" uid="uid://oc8xhrjf4wpc" path="res://scenes/visuals/GoblinVisual.tscn" id="3_dbx66"]
+[ext_resource type="PackedScene" uid="uid://b6dohvg34iudw" path="res://scenes/vfx/PortalSwirl.tscn" id="4_ewrma"]
+[ext_resource type="PackedScene" uid="uid://dfivouh0cw1hv" path="res://scenes/vfx/PortalSmoke.tscn" id="5_fspx5"]
+
+[node name="PortalAvatar" type="Node2D" unique_id=134215386]
+script = ExtResource("1_gsk80")
+
+[node name="Portal" parent="." unique_id=1162341560 instance=ExtResource("2_rwvqy")]
+scale = Vector2(0.85, 0.85)
+
+[node name="Enemy" parent="." unique_id=756032484 instance=ExtResource("3_dbx66")]
+visible = false
+
+[node name="Swirl" parent="." unique_id=1573594574 instance=ExtResource("4_ewrma")]
+position = Vector2(0, 4)
+
+[node name="Smoke" parent="." unique_id=1918309506 instance=ExtResource("5_fspx5")]
+position = Vector2(0, 7)

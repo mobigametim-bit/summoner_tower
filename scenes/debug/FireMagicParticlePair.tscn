@@ -1,0 +1,35 @@
+[gd_scene format=3 uid="uid://c27w6t7anojqx"]
+
+[ext_resource type="Script" uid="uid://dgn3jua7g5c0p" path="res://scripts/debug/magic_particle_pair.gd" id="1_cx36b"]
+[ext_resource type="PackedScene" uid="uid://d2ajcbud3bqoh" path="res://scenes/vfx/FireMagicImpact.tscn" id="2_vg7xl"]
+[ext_resource type="PackedScene" uid="uid://4j2yvn8jcf21" path="res://scenes/visuals/MageVisual.tscn" id="3_wk6n0"]
+[ext_resource type="PackedScene" uid="uid://oc8xhrjf4wpc" path="res://scenes/visuals/GoblinVisual.tscn" id="4_o4sv6"]
+[ext_resource type="PackedScene" uid="uid://5c03vf6mgsvr" path="res://scenes/vfx/FireStaffParticles.tscn" id="5_5pltd"]
+[ext_resource type="Texture2D" uid="uid://df4fl7gr5yawn" path="res://assets/vfx/flame.svg" id="5_y3w36"]
+[ext_resource type="Script" uid="uid://b6hb1c3t0eppb" path="res://addons/game_feel_flow/core/gff_player.gd" id="7_5fbn2"]
+
+[node name="MagicPair" type="Node2D" unique_id=1006992701]
+script = ExtResource("1_cx36b")
+impact_scene = ExtResource("2_vg7xl")
+
+[node name="Mage" parent="." unique_id=916861954 instance=ExtResource("3_wk6n0")]
+position = Vector2(-170, 0)
+scale = Vector2(1, 1)
+
+[node name="Enemy" parent="." unique_id=756032484 instance=ExtResource("4_o4sv6")]
+position = Vector2(210, 0)
+scale = Vector2(0.8, 0.8)
+
+[node name="StaffParticles" parent="." unique_id=1876066698 instance=ExtResource("5_5pltd")]
+
+[node name="Projectile" type="Sprite2D" parent="." unique_id=2107538451]
+visible = false
+z_index = 20
+scale = Vector2(1.2, 1.2)
+texture = ExtResource("5_y3w36")
+
+[node name="ImpactHost" type="Node2D" parent="." unique_id=1753077152]
+position = Vector2(210, 0)
+
+[node name="GFFPlayer" type="Node" parent="ImpactHost" unique_id=1000774649]
+script = ExtResource("7_5fbn2")
