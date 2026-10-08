@@ -6,7 +6,7 @@
 
 Один asset: обсуждение и план → явное подтверждение → SVG art → ручная приёмка art → rig/animations → ручная приёмка animation → настоящий gameplay → финальная приёмка → отдельный commit. Перед следующим asset снова обсуждаем план. Push только по отдельному разрешению пользователя.
 
-Порядок: Archer (принят), Goblin (принят), Mage (принят), Frost Mage (принят), Orc (принят), Golem (принят), Boss (принят 08.10.2026), Summoner Tower (следующий PLAN gate). Новые сущности, skins, equipment и изменения баланса не входят в art pass. Image generators, Krita, готовые чужие sprites запрещены; production art пишется вручную как SVG-код. [Итог Goblin](done/GOBLIN_GAMEPLAY_REVIEW.md), [итог Frost Mage](done/FROST_MAGE_GAMEPLAY_REVIEW.md), [итог Orc](done/ORC_GAMEPLAY_REVIEW.md), [итог Boss](done/BOSS_GAMEPLAY_REVIEW.md).
+Порядок: Archer (принят), Goblin (принят), Mage (принят), Frost Mage (принят), Orc (принят), Golem (принят), Boss (принят 08.10.2026), Summoner Tower (полностью принят 08.10.2026). Все восемь MVP assets приняты. Новые сущности, skins, equipment и изменения баланса не входят в art pass. Image generators, Krita, готовые чужие sprites запрещены; production art пишется вручную как SVG-код. [Итог Goblin](done/GOBLIN_GAMEPLAY_REVIEW.md), [итог Frost Mage](done/FROST_MAGE_GAMEPLAY_REVIEW.md), [итог Orc](done/ORC_GAMEPLAY_REVIEW.md), [итог Boss](done/BOSS_GAMEPLAY_REVIEW.md), [итог Tower](done/TOWER_GAMEPLAY_REVIEW.md).
 
 ## Стиль
 
@@ -139,4 +139,6 @@ Boss: 8 SVG parts 256×256, 9 bones, visual.scale=166/256. Палитра фик
 
 Boss performance: 8 textures ≈2 MiB RGBA8. Один Boss на desktop Edge: 144 FPS / 54 draw calls ANIMATED против 144 FPS / 46 STATIC. Это целевой замер отдельного Boss, не гарантия для телефона или массовых поздних волн.
 
-Legacy art не удаляется; cleanup — отдельная задача. После финальной приёмки Archer, Goblin, Mage, Frost Mage, Orc, Golem и Boss animated visuals включены по умолчанию, STATIC доступен в review. Планы и отчёты принятых assets сразу переносятся в docs/done с обновлением ссылок; этот стандарт остаётся в docs.
+Tower: три SVG parts256×256, три Sprite2D, один AnimationPlayer, без bones / mesh / CanvasGroup. Base неподвижен, Crystal за золотой оправой Body; origin=(128,128), CrystalPivot=(0,−33), BodyPivot=(0,31.9). Размер canvas108/92/80 при6/7/8 columns. CostLabel отдельный, z=10; нижняя обводка цифр совмещена с краем Base y=254 с учётом descent шрифта. Clips crystal_pulse1.6s / tap0.16s / refund0.26s / hit0.18s / destroyed0.45s. Существующие игровые события не ждут анимацию. Texture memory≈0.75 MiB; в коротком desktop Edge бою наблюдалось65 FPS, телефон и поздние массовые волны не проверены. Tower полностью принят; [итог gameplay](done/TOWER_GAMEPLAY_REVIEW.md), animated default включён.
+
+Legacy art не удаляется; cleanup — отдельная задача. После финальной приёмки всех восьми MVP assets animated visuals включены по умолчанию, STATIC доступен в review. Планы и отчёты принятых assets перенесены в docs/done с обновлением ссылок; этот стандарт остаётся в docs. После Tower следующая работа требует отдельного обсуждения.

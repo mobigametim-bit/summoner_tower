@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://cxvammw74ic52"]
+
+[ext_resource type="PackedScene" uid="uid://cxulhbufjisa3" path="res://scenes/debug/ArtAnimationTest.tscn" id="1_tc8rh"]
+
+[node name="TowerAnimationTest" unique_id=1958274146 instance=ExtResource("1_tc8rh")]
+initial_asset_index = 7

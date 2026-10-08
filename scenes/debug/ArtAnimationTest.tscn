@@ -14,9 +14,8 @@
 [ext_resource type="PackedScene" uid="uid://dudedbfh5mj08" path="res://scenes/visuals/OrcVisual.tscn" id="8_ktkvm"]
 [ext_resource type="PackedScene" uid="uid://c5l4266trpqnf" path="res://scenes/visuals/GolemVisual.tscn" id="9_spws7"]
 [ext_resource type="PackedScene" uid="uid://oc8xhrjf4wpc" path="res://scenes/visuals/GoblinVisual.tscn" id="10_lv00d"]
-[ext_resource type="Script" uid="uid://oc8jchgd6pj0" path="res://scripts/visuals/golem_visual.gd" id="10_wauqn"]
 [ext_resource type="PackedScene" uid="uid://c8sbg73c7vlfh" path="res://scenes/visuals/BossVisual.tscn" id="11_neuoy"]
-[ext_resource type="Script" uid="uid://tri2hoipi403" path="res://scripts/visuals/boss_visual.gd" id="12_ahx0g"]
+[ext_resource type="PackedScene" uid="uid://c1a6looviafqr" path="res://scenes/visuals/TowerVisual.tscn" id="11_wauqn"]
 
 [node name="ArtAnimationTest" type="Control" unique_id=1958274146]
 layout_mode = 3
@@ -158,15 +157,14 @@ visible = false
 [node name="OrcVisual" parent="Margin/Content/Stage/PreviewHost" unique_id=244155946 instance=ExtResource("8_ktkvm")]
 visible = false
 
-[node name="GolemVisual" type="Node2D" parent="Margin/Content/Stage/PreviewHost" unique_id=1849001153 instance=ExtResource("9_spws7")]
+[node name="GolemVisual" parent="Margin/Content/Stage/PreviewHost" unique_id=1849001153 instance=ExtResource("9_spws7")]
 visible = false
-scale = Vector2(0.546875, 0.546875)
-script = ExtResource("10_wauqn")
 
-[node name="BossVisual" type="Node2D" parent="Margin/Content/Stage/PreviewHost" unique_id=2027784703 instance=ExtResource("11_neuoy")]
+[node name="BossVisual" parent="Margin/Content/Stage/PreviewHost" unique_id=2027784703 instance=ExtResource("11_neuoy")]
 visible = false
-scale = Vector2(0.6484375, 0.6484375)
-script = ExtResource("12_ahx0g")
+
+[node name="TowerVisual" parent="Margin/Content/Stage/PreviewHost" unique_id=1850618779 instance=ExtResource("11_wauqn")]
+visible = false
 
 [node name="Playback" type="HBoxContainer" parent="Margin/Content" unique_id=1971342820]
 layout_mode = 2
@@ -296,15 +294,14 @@ visible = false
 [node name="OrcVisual" parent="Margin/Content/Samples/Columns6/Cell/Anchor/UnitHost" unique_id=1244023067 instance=ExtResource("8_ktkvm")]
 visible = false
 
-[node name="GolemVisual" type="Node2D" parent="Margin/Content/Samples/Columns6/Cell/Anchor/UnitHost" unique_id=1218166184 instance=ExtResource("9_spws7")]
+[node name="GolemVisual" parent="Margin/Content/Samples/Columns6/Cell/Anchor/UnitHost" unique_id=1218166184 instance=ExtResource("9_spws7")]
 visible = false
-scale = Vector2(0.546875, 0.546875)
-script = ExtResource("10_wauqn")
 
-[node name="BossVisual" type="Node2D" parent="Margin/Content/Samples/Columns6/Cell/Anchor/UnitHost" unique_id=108454086 instance=ExtResource("11_neuoy")]
+[node name="BossVisual" parent="Margin/Content/Samples/Columns6/Cell/Anchor/UnitHost" unique_id=108454086 instance=ExtResource("11_neuoy")]
 visible = false
-scale = Vector2(0.6484375, 0.6484375)
-script = ExtResource("12_ahx0g")
+
+[node name="TowerVisual" parent="Margin/Content/Samples/Columns6/Cell/Anchor/UnitHost" unique_id=1102102155 instance=ExtResource("11_wauqn")]
+visible = false
 
 [node name="SizeLabel" type="Label" parent="Margin/Content/Samples/Columns6" unique_id=1980167003]
 layout_mode = 2
@@ -350,15 +347,14 @@ visible = false
 [node name="OrcVisual" parent="Margin/Content/Samples/Columns7/Cell/Anchor/UnitHost" unique_id=483808385 instance=ExtResource("8_ktkvm")]
 visible = false
 
-[node name="GolemVisual" type="Node2D" parent="Margin/Content/Samples/Columns7/Cell/Anchor/UnitHost" unique_id=921985370 instance=ExtResource("9_spws7")]
+[node name="GolemVisual" parent="Margin/Content/Samples/Columns7/Cell/Anchor/UnitHost" unique_id=921985370 instance=ExtResource("9_spws7")]
 visible = false
-scale = Vector2(0.546875, 0.546875)
-script = ExtResource("10_wauqn")
 
-[node name="BossVisual" type="Node2D" parent="Margin/Content/Samples/Columns7/Cell/Anchor/UnitHost" unique_id=1629004588 instance=ExtResource("11_neuoy")]
+[node name="BossVisual" parent="Margin/Content/Samples/Columns7/Cell/Anchor/UnitHost" unique_id=1629004588 instance=ExtResource("11_neuoy")]
 visible = false
-scale = Vector2(0.6484375, 0.6484375)
-script = ExtResource("12_ahx0g")
+
+[node name="TowerVisual" parent="Margin/Content/Samples/Columns7/Cell/Anchor/UnitHost" unique_id=1723981435 instance=ExtResource("11_wauqn")]
+visible = false
 
 [node name="SizeLabel" type="Label" parent="Margin/Content/Samples/Columns7" unique_id=211708040]
 layout_mode = 2
@@ -404,15 +400,14 @@ visible = false
 [node name="OrcVisual" parent="Margin/Content/Samples/Columns8/Cell/Anchor/UnitHost" unique_id=1052176931 instance=ExtResource("8_ktkvm")]
 visible = false
 
-[node name="GolemVisual" type="Node2D" parent="Margin/Content/Samples/Columns8/Cell/Anchor/UnitHost" unique_id=111056085 instance=ExtResource("9_spws7")]
+[node name="GolemVisual" parent="Margin/Content/Samples/Columns8/Cell/Anchor/UnitHost" unique_id=111056085 instance=ExtResource("9_spws7")]
 visible = false
-scale = Vector2(0.546875, 0.546875)
-script = ExtResource("10_wauqn")
 
-[node name="BossVisual" type="Node2D" parent="Margin/Content/Samples/Columns8/Cell/Anchor/UnitHost" unique_id=1099560521 instance=ExtResource("11_neuoy")]
+[node name="BossVisual" parent="Margin/Content/Samples/Columns8/Cell/Anchor/UnitHost" unique_id=1099560521 instance=ExtResource("11_neuoy")]
 visible = false
-scale = Vector2(0.6484375, 0.6484375)
-script = ExtResource("12_ahx0g")
+
+[node name="TowerVisual" parent="Margin/Content/Samples/Columns8/Cell/Anchor/UnitHost" unique_id=1506738328 instance=ExtResource("11_wauqn")]
+visible = false
 
 [node name="SizeLabel" type="Label" parent="Margin/Content/Samples/Columns8" unique_id=252214829]
 layout_mode = 2
@@ -458,6 +453,7 @@ one_shot = true
 [connection signal="visual_animation_finished" from="Margin/Content/Stage/PreviewHost/GolemVisual" to="." method="_on_visual_animation_finished"]
 [connection signal="attack_impact" from="Margin/Content/Stage/PreviewHost/BossVisual" to="." method="_on_visual_impact"]
 [connection signal="visual_animation_finished" from="Margin/Content/Stage/PreviewHost/BossVisual" to="." method="_on_visual_animation_finished"]
+[connection signal="visual_animation_finished" from="Margin/Content/Stage/PreviewHost/TowerVisual" to="." method="_on_visual_animation_finished"]
 [connection signal="pressed" from="Margin/Content/Playback/Replay" to="." method="replay"]
 [connection signal="pressed" from="Margin/Content/Playback/Pause" to="." method="_on_pause"]
 [connection signal="pressed" from="Margin/Content/SpeedRow/Half" to="." method="_on_half_speed"]
@@ -467,6 +463,9 @@ one_shot = true
 [connection signal="toggled" from="Margin/Content/Options/Mirror" to="." method="_on_mirror_toggled"]
 [connection signal="item_selected" from="Margin/Content/Options/Scale" to="." method="_on_scale_selected"]
 [connection signal="resized" from="Margin/Content/Samples/Columns6/Cell" to="." method="_layout_previews"]
+[connection signal="visual_animation_finished" from="Margin/Content/Samples/Columns6/Cell/Anchor/UnitHost/TowerVisual" to="." method="_on_visual_animation_finished"]
 [connection signal="resized" from="Margin/Content/Samples/Columns7/Cell" to="." method="_layout_previews"]
+[connection signal="visual_animation_finished" from="Margin/Content/Samples/Columns7/Cell/Anchor/UnitHost/TowerVisual" to="." method="_on_visual_animation_finished"]
 [connection signal="resized" from="Margin/Content/Samples/Columns8/Cell" to="." method="_layout_previews"]
+[connection signal="visual_animation_finished" from="Margin/Content/Samples/Columns8/Cell/Anchor/UnitHost/TowerVisual" to="." method="_on_visual_animation_finished"]
 [connection signal="timeout" from="RepeatTimer" to="." method="_on_repeat_timeout"]

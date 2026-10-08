@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="256" height="256" viewBox="0 0 256 256"><g id="crystal" transform="translate(-19.2 -12.8) scale(1.15 1.1)" stroke="#29180f" stroke-width="7" stroke-linecap="round" stroke-linejoin="round" data-pivot-x="128" data-pivot-y="95">
+    <path d="M128 20 159 61v33l-31 33-31-33V61Z" fill="#28cce6" />
+    <path d="m128 26 26 36-26 21Z" fill="#b5f7fb" stroke="none" />
+    <path d="m128 26-26 36 26 21Z" fill="#28cce6" stroke="none" />
+    <path d="m128 83 26-21v30l-26 29-26-29Z" fill="#159bc9" stroke="none" />
+    <path d="m128 83 26 9-26 29Z" fill="#28cce6" stroke="none" />
+  </g>
+  </svg>

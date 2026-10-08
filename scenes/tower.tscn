@@ -4,6 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://csuujqnn38wtt" path="res://assets/tower.svg" id="2_ay4al"]
 [ext_resource type="Script" uid="uid://drhbf06cm23i2" path="res://scripts/game/unit_return_zone.gd" id="3_qrbg1"]
 [ext_resource type="Texture2D" uid="uid://t3tmb7ywd73w" path="res://assets/tower_return_highlight.svg" id="4_jfguu"]
+[ext_resource type="PackedScene" uid="uid://c1a6looviafqr" path="res://scenes/visuals/TowerVisual.tscn" id="5_jfguu"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_qrbg1"]
 
@@ -17,6 +18,7 @@
 script = ExtResource("1_2x682")
 
 [node name="Visual" type="Sprite2D" parent="." unique_id=51669297]
+visible = false
 position = Vector2(0, -17)
 texture = ExtResource("2_ay4al")
 
@@ -58,6 +60,7 @@ theme_override_styles/disabled = SubResource("StyleBoxEmpty_xl0gn")
 flat = true
 
 [node name="CostLabel" type="Label" parent="." unique_id=282383187]
+z_index = 10
 offset_left = -68.0
 offset_top = -9.0
 offset_right = 68.0
@@ -68,6 +71,10 @@ theme_override_constants/outline_size = 5
 theme_override_font_sizes/font_size = 34
 text = "20"
 horizontal_alignment = 1
-vertical_alignment = 1
+vertical_alignment = 2
+
+[node name="TowerVisual" parent="." unique_id=1850618779 instance=ExtResource("5_jfguu")]
+position = Vector2(0, -17)
+scale = Vector2(0.7109375, 0.7109375)
 
 [connection signal="pressed" from="SummonButton" to="." method="_on_summon_button_pressed"]

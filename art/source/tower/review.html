@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Summoner Tower · SVG art review</title>
+<link rel="icon" type="image/svg+xml" href="master.svg">
+<style>
+:root{color-scheme:dark;font-family:system-ui,sans-serif;background:#101521;color:#e7e4da}*{box-sizing:border-box}
+body{max-width:1040px;margin:auto;padding:28px 20px 60px}h1{color:#e4bf68;font-size:29px;margin:0}h2{font-size:21px;margin:0 0 18px}
+p{color:#b7c5ce;line-height:1.5}a{color:#8edce4}section{background:#151e28;border:1px solid #30444c;border-radius:16px;padding:24px;margin-top:24px}
+.compare{display:grid;grid-template-columns:1fr 1fr;gap:20px}figure{margin:0;text-align:center}figcaption{font-size:13px;color:#afc1c7;margin-top:10px}
+.frame{height:350px;display:grid;place-items:center;background:#1b3028;border-radius:12px;overflow:hidden}.frame img{width:100%;height:100%;object-fit:contain;min-height:0;min-width:0}
+.scales,.cells{display:flex;gap:24px;flex-wrap:wrap;align-items:flex-end}.scales img{display:block;margin:auto}.cell{position:relative;background:#1b3028 url('../../../assets/environment/ground_cell.svg') center/cover}.cell img{position:absolute}
+.price{position:absolute;color:#ffdf8e;font-family:Arial,sans-serif;font-size:28px;font-weight:bold;height:34px;line-height:34px;white-space:nowrap;text-align:center;-webkit-text-stroke:5px #101621;paint-order:stroke fill;pointer-events:none}
+.price.disabled{color:#7c8999}.controls{display:flex;gap:16px;align-items:center;flex-wrap:wrap;margin-bottom:18px}select,input[type=number]{font:inherit;max-width:100%;padding:8px;color:#e7e4da;background:#24353e;border:1px solid #52636c;border-radius:6px}input[type=number]{width:100px}input{accent-color:#8edce4}
+.part-area{display:grid;grid-template-columns:280px minmax(0,1fr);gap:24px}.stage{position:relative;width:256px;height:256px;background:#1b3028;border-radius:10px}.stage img,.stage svg{position:absolute;inset:0;width:100%;height:100%;pointer-events:none}.stage circle{fill:#ff65c5;stroke:#fff;stroke-width:1}
+table{border-collapse:collapse;width:100%;font-size:13px}th,td{text-align:left;padding:8px 6px;border-bottom:1px solid #30444c}th{color:#9bcad0}td:first-child{font-family:ui-monospace,monospace;font-size:12px}.note{font-size:13px}
+@media(max-width:680px){body{padding:20px 12px}section{padding:18px 12px}.compare,.part-area{grid-template-columns:1fr}.frame{height:300px}.stage{margin:auto}.scales,.cells{gap:14px}}
+</style>
+</head>
+<body>
+<h1>Summoner Tower · рисунок</h1>
+<p>Каменная башня с голубым кристаллом. Рисунок вручную в SVG; три части подготовлены для будущих реакций и пульсации.</p>
+<section id="main-preview">
+<h2>Референс и новый рисунок</h2>
+<div class="compare">
+<figure><div class="frame"><img src="../../references/tower.png" alt="Референс башни"></div><figcaption>Ваш референс</figcaption></figure>
+<figure><div class="frame"><img src="master.svg" alt="Новый рисунок башни"></div><figcaption>Новый SVG · <a href="master.svg" target="_blank" rel="noopener">открыть отдельно</a></figcaption></figure>
+</div>
+</section>
+<section>
+<h2>Читаемость и общий стиль</h2>
+<div class="scales">
+<figure><img src="master.svg" width="100" height="100" alt="Башня 100 px"><figcaption>100 px</figcaption></figure>
+<figure><img src="master.svg" width="140" height="140" alt="Башня 140 px"><figcaption>140 px</figcaption></figure>
+<figure><img src="master.svg" width="180" height="180" alt="Башня 180 px"><figcaption>180 px</figcaption></figure>
+<figure><img src="../archer/master.svg" width="140" height="140" alt="Принятый Archer"><figcaption>Archer · стиль</figcaption></figure>
+</div>
+</section>
+<section id="cell-preview">
+<h2>Башня с ценой призыва</h2>
+<div class="controls"><label>Цена <input id="cost" type="number" min="0" max="9999" value="175"></label><label><input id="available" type="checkbox" checked> Призыв доступен</label></div>
+<p class="note">Логический размер игры 720×1280; клетка башни при сетке 6, 7 и 8 столбцов.</p>
+<div class="cells" id="logical-cells"></div>
+<p>На экране шириной 390 px</p>
+<div class="cells" id="phone-cells"></div>
+<p class="note">Цена — независимая надпись поверх рисунка. Размер и область соответствуют текущему HUD; метрики браузерного шрифта приблизительные. Точный вид цены в Godot проверим при интеграции.</p>
+</section>
+<section>
+<h2>Сравнение с текущей башней</h2>
+<div class="cells" id="legacy-cells"></div>
+<p class="note">Одинаковая клетка при сетке 7 столбцов. Новый силуэт увеличен после замечания о размере: теперь он занимает почти всю высоту клетки, как текущая башня.</p>
+</section>
+<section>
+<h2>Отдельные части</h2>
+<div class="controls"><label>Часть <select id="part"><option value="all">Все части</option></select></label><label><input id="pivots" type="checkbox"> Pivots</label></div>
+<div class="part-area"><div class="stage" id="stage"></div><table><thead><tr><th>Часть</th><th>Pivot</th><th>Слой</th></tr></thead><tbody id="part-table"></tbody></table></div>
+<p class="note">Основание, кристалл, верхняя конструкция со знамёнами и оправой. Кристалл позади оправы. Скрытые участки продолжаются под соседними частями; подвижные стыки проверим на этапе анимации.</p>
+</section>
+<p class="note">Внешний вид принят. <a href="http://127.0.0.1:4175/preview/tower-animation/">Посмотреть пять анимаций в Godot Web</a>. При внедрении цена призыва будет придвинута вплотную к нижнему краю башни.</p>
+<script>
+const ns='http://www.w3.org/2000/svg';
+function towerCell(columns,screenScale=1,legacy=false){
+ const size=672/columns,canvas=size-4;
+ const figure=document.createElement('figure'),wrap=document.createElement('div'),cell=document.createElement('div');
+ wrap.style.cssText=`width:${size*screenScale}px;height:${size*screenScale}px;margin:auto`;cell.className='cell';
+ cell.style.cssText=`width:${size}px;height:${size}px;transform:scale(${screenScale});transform-origin:top left;background-image:url('../../../assets/environment/paved_road.svg'),url('../../../assets/environment/ground_cell.svg');background-size:62% auto,cover;background-repeat:repeat-y,no-repeat;background-position:center`;
+ const img=document.createElement('img');img.src=legacy?'../../../assets/tower.svg':'master.svg';img.alt=legacy?'Текущая башня':'Новая башня';
+ const width=legacy?168/182*canvas:canvas;
+ img.style.cssText=`width:${width}px;height:${canvas}px;left:${(size-width)/2}px;top:${(size-canvas)/2}px`;
+ const price=document.createElement('div');price.className='price';price.style.cssText=`width:${canvas}px;left:2px;top:${size/2+canvas*.06}px`;
+ cell.append(img,price);wrap.append(cell);figure.append(wrap);const caption=document.createElement('figcaption');
+ caption.textContent=legacy?'Текущая башня':`${columns} столбцов · ${Math.round(canvas*screenScale)} px`;figure.append(caption);return figure;
+}
+for(const columns of [6,7,8]){document.getElementById('logical-cells').append(towerCell(columns));document.getElementById('phone-cells').append(towerCell(columns,390/720))}
+document.getElementById('legacy-cells').append(towerCell(7,1,true),towerCell(7));
+function updatePrice(){const cost=document.getElementById('cost').value,available=document.getElementById('available').checked;document.querySelectorAll('.price').forEach(el=>{el.textContent=cost;el.classList.toggle('disabled',!available)})}
+document.getElementById('cost').addEventListener('input',updatePrice);document.getElementById('available').addEventListener('change',updatePrice);updatePrice();
+fetch('rig_manifest.json').then(r=>{if(!r.ok)throw Error('manifest '+r.status);return r.json()}).then(manifest=>{
+ const stage=document.getElementById('stage'),table=document.getElementById('part-table'),select=document.getElementById('part'),pivots=document.getElementById('pivots');
+ for(const part of manifest.parts){
+  const name=part.file.split('/').pop().replace('.svg',''),img=document.createElement('img');img.src=part.file;img.alt=name;img.dataset.part=name;stage.append(img);
+  const option=document.createElement('option');option.value=name;option.textContent=name;select.append(option);
+  const row=document.createElement('tr');for(const value of [name,part.pivot.join(', '),part.z_index]){const td=document.createElement('td');td.textContent=value;row.append(td)}table.append(row);
+ }
+ const overlay=document.createElementNS(ns,'svg');overlay.setAttribute('viewBox','0 0 256 256');stage.append(overlay);
+ function update(){stage.querySelectorAll('img').forEach(img=>img.hidden=select.value!=='all'&&img.dataset.part!==select.value);overlay.replaceChildren();if(pivots.checked)for(const part of manifest.parts){const name=part.file.split('/').pop().replace('.svg','');if(select.value!=='all'&&select.value!==name)continue;const dot=document.createElementNS(ns,'circle');dot.setAttribute('cx',part.pivot[0]);dot.setAttribute('cy',part.pivot[1]);dot.setAttribute('r','3.5');overlay.append(dot)}}
+ select.addEventListener('change',update);pivots.addEventListener('change',update);update();window.reviewReady=true;
+}).catch(error=>console.error(error));
+</script>
+</body>
+</html>

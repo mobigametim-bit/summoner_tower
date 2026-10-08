@@ -1,0 +1,101 @@
+{
+  "version": 1,
+  "entity": "Tower",
+  "stage": "accepted",
+  "rig_created": false,
+  "visual_created": true,
+  "art_accepted": true,
+  "animations_accepted": true,
+  "animated_default": true,
+  "gameplay_accepted": true,
+  "canvas": [
+    256,
+    256
+  ],
+  "actor_origin": [
+    128,
+    128
+  ],
+  "feet_baseline_y": 250.1,
+  "planned_bone_count": 0,
+  "outline": {
+    "color": "#29180f",
+    "width": 7
+  },
+  "coordinates": "Full untrimmed canvas. Base Sprite centered=false position=-origin. Pivot position=pivot-origin; child Sprite centered=false position=-pivot.",
+  "gameplay_scale": "(battlefield cell_size - 4) / 256",
+  "gameplay_canvas_sizes": {
+    "6_columns": 108,
+    "7_columns": 92,
+    "8_columns": 80
+  },
+  "parts": [
+    {
+      "file": "parts/base.svg",
+      "pivot": [
+        128.0,
+        128.0
+      ],
+      "parent_node": ".",
+      "pivot_node_position": [
+        0.0,
+        0.0
+      ],
+      "sprite_offset": [
+        -128.0,
+        -128.0
+      ],
+      "z_index": 0
+    },
+    {
+      "file": "parts/crystal.svg",
+      "pivot": [
+        128.0,
+        95.0
+      ],
+      "parent_node": "CrystalPivot",
+      "pivot_node_position": [
+        0.0,
+        -33.0
+      ],
+      "sprite_offset": [
+        -128.0,
+        -95.0
+      ],
+      "z_index": 1
+    },
+    {
+      "file": "parts/body.svg",
+      "pivot": [
+        128.0,
+        159.9
+      ],
+      "parent_node": "BodyPivot",
+      "pivot_node_position": [
+        0.0,
+        31.900000000000006
+      ],
+      "sprite_offset": [
+        -128.0,
+        -159.9
+      ],
+      "z_index": 2
+    }
+  ],
+  "fixed_palette": true,
+  "static_fallback": "res://assets/tower.svg",
+  "gameplay_entity": "res://scenes/tower.tscn",
+  "planned_visual_scene": "res://scenes/visuals/TowerVisual.tscn",
+  "visual_scene": "res://scenes/visuals/TowerVisual.tscn",
+  "review_scene": "res://scenes/debug/TowerAnimationTest.tscn",
+  "gameplay_review_scene": "res://scenes/debug/TowerGameplayReview.tscn",
+  "base_outline_bottom_y": 254,
+  "cost_label_integration": "Align the digit's lower edge with the bottom edge of the tower base; keep label independent of animated body and crystal.",
+  "planned_animations": {
+    "crystal_pulse": 1.6,
+    "tap": 0.16,
+    "refund": 0.26,
+    "hit": 0.18,
+    "destroyed": 0.45
+  }
+}
