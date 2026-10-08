@@ -7,3 +7,4 @@
 script = ExtResource("1_0sklg")
 
 [node name="Game" parent="." unique_id=469266139 instance=ExtResource("2_5aqv1")]
+procedural_battlefield_enabled = false

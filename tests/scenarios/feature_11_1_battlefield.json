@@ -1,0 +1,22 @@
+{
+  "name": "Feature 11.1: portal networks, wave distribution, movement and capacity",
+  "scene": "res://tests/scenes/feature_11_1_battlefield_test.tscn",
+  "keep_running": true,
+  "steps": [
+    {"call":{"path":"", "method":"run_battlefield_checks"}},
+    {"assert":"get_meta('battlefield_checks').passed and get_meta('battlefield_checks').layouts == 60"},
+    {"assert":"get_node('Game').battlefield.layout.seed_value == 7 and get_node('Game/World/Slots').get_child_count() >= 6 and get_node('Game/World/Slots').get_child_count() <= 10"},
+    {"wait":0.3},
+    {"eval":"get_node('Game')._on_wave_upgrade_requested(5)"},
+    {"wait":0.3},
+    {"assert":"get_tree().paused and get_node('Game').state == 3 and get_node('Game').upgrade_choice.visible"},
+    {"eval":"set_meta('route_distance', get_node('Game').enemies.get_child(0)._distance)"},
+    {"wait":0.5},
+    {"assert":"is_equal_approx(get_node('Game').enemies.get_child(0)._distance, get_meta('route_distance'))"},
+    {"eval":"get_node('Game')._on_upgrade_chosen(0)"},
+    {"wait":0.3},
+    {"assert":"not get_tree().paused and get_node('Game').state == 0 and not get_node('Game').upgrade_choice.visible"},
+    {"assert":"get_node('Game').enemies.get_child(0)._distance > get_meta('route_distance')"},
+    {"assert_no_errors":true}
+  ]
+}

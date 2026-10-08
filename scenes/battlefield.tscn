@@ -1,0 +1,49 @@
+[gd_scene format=3 uid="uid://dmep054iccu1s"]
+
+[ext_resource type="Script" uid="uid://ci2dwrjhnfepv" path="res://scripts/game/battlefield.gd" id="1_5rve1"]
+[ext_resource type="Resource" uid="uid://b3xuyqccsjnc8" path="res://resources/balance/battlefield_config.tres" id="2_21s54"]
+[ext_resource type="PackedScene" uid="uid://7utrx5k06gtp" path="res://scenes/summon_slot.tscn" id="3_jsyt3"]
+[ext_resource type="PackedScene" uid="uid://bxwkulitd7acd" path="res://scenes/battlefield_decoration.tscn" id="4_ixbtv"]
+[ext_resource type="PackedScene" uid="uid://dyu8d6tepnwqe" path="res://scenes/battlefield_cell.tscn" id="5_jsyt3"]
+[ext_resource type="Texture2D" uid="uid://jk7um1wnikmc" path="res://assets/environment/paved_road.svg" id="6_86tsl"]
+[ext_resource type="PackedScene" uid="uid://b2ua885nmtlx3" path="res://scenes/enemy_portal.tscn" id="6_htbo0"]
+[ext_resource type="PackedScene" uid="uid://fpv6ms0wks3i" path="res://scenes/battlefield_branch.tscn" id="7_3avj7"]
+[ext_resource type="Texture2D" uid="uid://dijknhm08ajan" path="res://assets/environment/portal.svg" id="7_lwkd3"]
+
+[node name="Battlefield" type="Node2D" unique_id=1060640720]
+script = ExtResource("1_5rve1")
+config = ExtResource("2_21s54")
+slot_scene = ExtResource("3_jsyt3")
+decoration_scene = ExtResource("4_ixbtv")
+cell_scene = ExtResource("5_jsyt3")
+portal_scene = ExtResource("6_htbo0")
+branch_scene = ExtResource("7_3avj7")
+
+[node name="Cells" type="Node2D" parent="." unique_id=77767941]
+
+[node name="EnemyRoute" type="Path2D" parent="." unique_id=438287798]
+
+[node name="RoadEdge" type="Line2D" parent="." unique_id=230848245]
+width = 168.0
+default_color = Color(0.3019608, 0.31764707, 0.2509804, 1)
+joint_mode = 2
+end_cap_mode = 2
+
+[node name="Branches" type="Node2D" parent="." unique_id=1269226101]
+
+[node name="RoadSurfaces" type="Node2D" parent="." unique_id=1244299265]
+
+[node name="RoadSurface" type="Line2D" parent="RoadSurfaces" unique_id=825880363]
+texture_repeat = 2
+width = 140.0
+texture = ExtResource("6_86tsl")
+texture_mode = 1
+joint_mode = 2
+end_cap_mode = 2
+
+[node name="Decorations" type="Node2D" parent="." unique_id=1381231376]
+
+[node name="Portal" type="Sprite2D" parent="." unique_id=1150243869]
+texture = ExtResource("7_lwkd3")
+
+[node name="Portals" type="Node2D" parent="." unique_id=394356681]

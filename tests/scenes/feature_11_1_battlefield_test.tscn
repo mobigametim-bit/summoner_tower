@@ -1,0 +1,12 @@
+[gd_scene format=3 uid="uid://cfp06koii6roc"]
+
+[ext_resource type="Script" uid="uid://cmkrqhdv7hewl" path="res://tests/support/feature_11_1_test_scene.gd" id="1_lft3s"]
+[ext_resource type="PackedScene" uid="uid://rkmlqc5qcsrs" path="res://scenes/game.tscn" id="2_fpx35"]
+
+[node name="Feature111BattlefieldTest" type="Node" unique_id=1699627191]
+process_mode = 3
+script = ExtResource("1_lft3s")
+
+[node name="Game" parent="." unique_id=469266139 instance=ExtResource("2_fpx35")]
+battlefield_seed = 7
+battlefield_columns = 6

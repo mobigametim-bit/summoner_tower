@@ -1,8 +1,13 @@
 extends Node2D
 
-enum State { RUNNING, GAME_OVER, LEAVING, UPGRADE_CHOICE }
+enum State { RUNNING, GAME_OVER, LEAVING, UPGRADE_CHOICE, SETTINGS }
 
 @export var config: EncounterConfig
+@export var procedural_battlefield_enabled: bool = true
+@export var battlefield_seed: int = -1
+@export_range(0, 10, 1) var battlefield_slot_count: int = 0
+@export_range(0, 8, 1) var battlefield_columns: int = 0
+@export_range(0, 3, 1) var battlefield_portal_count: int = 0
 @export_file("*.tscn") var menu_scene_path: String = "res://scenes/main_menu.tscn"
 
 @onready var tower: TowerHealth = $World/Tower
@@ -17,6 +22,7 @@ enum State { RUNNING, GAME_OVER, LEAVING, UPGRADE_CHOICE }
 @onready var run_bonuses: RunBonuses = $RunBonuses
 @onready var upgrade_choice: UpgradeChoice = $Interface/Hud/UpgradeChoice
 @onready var run_statistics: RunStatistics = $RunStatistics
+@onready var battlefield: Battlefield = $World/Battlefield
 
 var state: State = State.RUNNING
 var _offered_upgrades: Array[RunUpgrade] = []
@@ -25,10 +31,15 @@ var _offered_upgrades: Array[RunUpgrade] = []
 func _ready() -> void:
 	run_statistics.reset()
 	run_bonuses.reset()
+	if procedural_battlefield_enabled:
+		battlefield.build($World/Slots, spawn_point, tower, battlefield_columns, battlefield_seed, battlefield_slot_count, battlefield_portal_count)
+		hud.set_field_bottom(battlefield.layout.origin.y + battlefield.layout.grid_size.y * battlefield.layout.cell_size)
+	else:
+		battlefield.hide()
 	summon_manager.configure($World/Slots, enemies, projectiles, run_bonuses)
 	drag_controller.configure(summon_manager, $World/Slots, $World/Tower/ReturnZone)
 	tower.initialize(run_bonuses.tower_health_for(config.tower_max_health))
-	wave_manager.configure(enemies, spawn_point, contact_point)
+	wave_manager.configure(enemies, spawn_point, contact_point, battlefield.route if procedural_battlefield_enabled else null, battlefield.routes)
 	wave_manager.start()
 
 
@@ -60,6 +71,7 @@ func _on_wave_upgrade_requested(_wave: int) -> void:
 	summon_manager.set_interaction_enabled(false)
 	_offered_upgrades = run_bonuses.roll_choices()
 	get_tree().paused = true
+	hud.set_settings_available(false)
 	upgrade_choice.show_choices(_offered_upgrades, run_bonuses)
 
 
@@ -74,6 +86,26 @@ func _on_upgrade_chosen(index: int) -> void:
 	run_bonuses.apply(upgrade)
 	tower.increase_max_health(run_bonuses.tower_health_for(config.tower_max_health))
 	wave_manager.finish_upgrade_choice()
+	summon_manager.set_interaction_enabled(true)
+	get_tree().paused = false
+	hud.set_settings_available(true)
+
+
+func _on_settings_requested() -> void:
+	if state != State.RUNNING:
+		return
+	state = State.SETTINGS
+	drag_controller.cancel_drag()
+	summon_manager.set_interaction_enabled(false)
+	hud.show_settings()
+	get_tree().paused = true
+
+
+func _on_resume_requested() -> void:
+	if state != State.SETTINGS:
+		return
+	state = State.RUNNING
+	hud.close_settings()
 	summon_manager.set_interaction_enabled(true)
 	get_tree().paused = false
 
@@ -92,6 +124,8 @@ func _stop_encounter() -> void:
 	get_tree().paused = false
 	_offered_upgrades.clear()
 	upgrade_choice.close_choice()
+	hud.close_settings()
+	hud.set_settings_available(false)
 	wave_manager.stop()
 	get_tree().call_group(&"enemy_visual_tails", &"queue_free")
 	drag_controller.stop()
@@ -112,7 +146,7 @@ func _on_restart_requested() -> void:
 
 
 func _on_menu_requested() -> void:
-	if state != State.GAME_OVER:
+	if state != State.GAME_OVER and state != State.SETTINGS:
 		return
 
 	state = State.LEAVING

@@ -1,6 +1,6 @@
 {
   "name": "Feature 4: mouse move, swap, cancel and summon",
-  "scene": "res://scenes/game.tscn",
+  "scene": "res://tests/scenes/fixed_battlefield_game.tscn",
   "keep_running": true,
   "steps": [
     { "set": { "path": "SummonManager", "props": { "pool": "res://tests/resources/archer_only_pool.tres" } } },

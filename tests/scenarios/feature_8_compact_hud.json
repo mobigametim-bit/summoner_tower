@@ -1,6 +1,6 @@
 {
   "name": "feature_8_compact_hud",
-  "scene": "res://scenes/game.tscn",
+  "scene": "res://tests/scenes/fixed_battlefield_game.tscn",
   "steps": [
     { "assert": "get_node('Interface/Hud').health_label.text == '100' and get_node('Interface/Hud').mana_label.text == '100' and get_node('Interface/Hud').wave_label.text == 'WAVE 1' and get_node('World/Tower/CostLabel').text == '20'" },
     { "assert": "get_node('World/Slots/Slot1').hit_rect == Rect2(-70, -70, 140, 140) and get_node('World/Slots/Slot1/Visual').texture.get_size() == Vector2(140, 140) and get_node('World/Slots/Slot1/Highlight').texture.get_size() == Vector2(140, 140)" },
@@ -14,7 +14,7 @@
     { "call": { "path": "World/Tower", "method": "take_damage", "args": [25] } },
     { "assert": "get_node('Interface/Hud').health_label.text == '75'" },
     { "call": { "path": "Interface/Hud", "method": "update_wave", "args": [5, 1, 3, 2, 4] } },
-    { "assert": "get_node('Interface/Hud').wave_label.text == 'BOSS WAVE 5'" },
+    { "assert": "get_node('Interface/Hud').wave_label.text == 'BOSS 5'" },
     { "call": { "path": "World/Tower", "method": "take_damage", "args": [75] } },
     { "assert": "state == 1 and get_node('World/Tower/SummonButton').disabled and get_node('Interface/Hud').health_label.text == '0'" },
     { "assert_no_errors": true }

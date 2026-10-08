@@ -8,6 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://m3obcl82lbrw" path="res://assets/arena.svg" id="4_u5sy4"]
 [ext_resource type="PackedScene" uid="uid://7utrx5k06gtp" path="res://scenes/summon_slot.tscn" id="6_kvpfn"]
 [ext_resource type="Script" uid="uid://bj8a3ymfdffgo" path="res://scripts/game/unit_drag_controller.gd" id="7_kvuet"]
+[ext_resource type="PackedScene" uid="uid://dmep054iccu1s" path="res://scenes/battlefield.tscn" id="8_pl11u"]
 [ext_resource type="Texture2D" uid="uid://cktgfcgc5nyox" path="res://assets/archer.svg" id="8_trtic"]
 [ext_resource type="Script" uid="uid://l6tfxq6xwsuh" path="res://scripts/game/summon_manager.gd" id="9_dinhu"]
 [ext_resource type="Resource" uid="uid://cuks6vm6g65ce" path="res://resources/balance/summon_config.tres" id="10_kvuet"]
@@ -21,9 +22,37 @@
 [ext_resource type="Texture2D" uid="uid://cgyt3kaapnire" path="res://assets/ui/restart.svg" id="14_e1j6l"]
 [ext_resource type="Texture2D" uid="uid://ckpokawdmyc0b" path="res://assets/ui/home.svg" id="15_pl11u"]
 [ext_resource type="Script" uid="uid://dpp2k5bpxesj7" path="res://scripts/game/run_bonuses.gd" id="18_5newe"]
+[ext_resource type="Texture2D" uid="uid://d0es5bcr1fdsu" path="res://assets/ui/settings.svg" id="18_bhx41"]
 [ext_resource type="Resource" path="res://resources/balance/run_upgrade_pool.tres" id="19_37s47"]
+[ext_resource type="Texture2D" uid="uid://cunh3mw6fkux0" path="res://assets/ui/play.svg" id="19_qnb83"]
 [ext_resource type="Script" uid="uid://dl57wkelh3atf" path="res://scripts/game/run_statistics.gd" id="20_5newe"]
 [ext_resource type="Resource" path="res://resources/balance/run_reward_config.tres" id="21_37s47"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qnb83"]
+bg_color = Color(0.09019608, 0.14117648, 0.19215687, 1)
+border_width_top = 2
+border_color = Color(0.19215687, 0.25490198, 0.29803923, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_sww3w"]
+bg_color = Color(0.09019608, 0.14117648, 0.19215687, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_suyxu"]
+bg_color = Color(0.19215687, 0.29803923, 0.35686275, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_sgl2t"]
+bg_color = Color(0.14117648, 0.21960784, 0.2784314, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lnu2h"]
 content_margin_left = 36.0
@@ -41,6 +70,22 @@ corner_radius_top_right = 16
 corner_radius_bottom_right = 16
 corner_radius_bottom_left = 16
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qouja"]
+content_margin_left = 28.0
+content_margin_top = 28.0
+content_margin_right = 28.0
+content_margin_bottom = 28.0
+bg_color = Color(0.105882354, 0.15294118, 0.21176471, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.3764706, 0.44313726, 0.5137255, 1)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+
 [node name="Game" type="Node2D" unique_id=469266139]
 process_mode = 1
 script = ExtResource("1_lbhrr")
@@ -51,6 +96,8 @@ config = ExtResource("2_p57ef")
 [node name="Background" type="Sprite2D" parent="World" unique_id=1928593795]
 texture = ExtResource("4_u5sy4")
 centered = false
+
+[node name="Battlefield" parent="World" unique_id=1060640720 instance=ExtResource("8_pl11u")]
 
 [node name="SpawnPoint" type="Marker2D" parent="World" unique_id=1693467739]
 position = Vector2(360, 190)
@@ -104,6 +151,7 @@ texture = ExtResource("8_trtic")
 [node name="Interface" type="CanvasLayer" parent="." unique_id=242053494]
 
 [node name="Hud" type="Control" parent="Interface" unique_id=1417951609]
+process_mode = 3
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -115,27 +163,48 @@ theme = ExtResource("2_lnu2h")
 script = ExtResource("2_yqjtg")
 wave_config = ExtResource("14_ca42v")
 
-[node name="Status" type="VBoxContainer" parent="Interface/Hud" unique_id=386122477]
-layout_mode = 0
+[node name="BottomDock" type="PanelContainer" parent="Interface/Hud" unique_id=831478648]
+layout_mode = 1
+anchors_preset = 12
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 32.0
-offset_top = -140.0
-offset_right = -32.0
-offset_bottom = -80.0
+offset_top = -106.0
 grow_horizontal = 2
 grow_vertical = 0
-mouse_filter = 2
-theme_override_constants/separation = 14
+theme_override_styles/panel = SubResource("StyleBoxFlat_qnb83")
 
-[node name="Counters" type="HBoxContainer" parent="Interface/Hud/Status" unique_id=1214201480]
+[node name="Margin" type="MarginContainer" parent="Interface/Hud/BottomDock" unique_id=1897061150]
 layout_mode = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 8
+
+[node name="Row" type="HBoxContainer" parent="Interface/Hud/BottomDock/Margin" unique_id=1918551115]
+layout_mode = 2
+theme_override_constants/separation = 18
+
+[node name="WaveLabel" type="Label" parent="Interface/Hud/BottomDock/Margin/Row" unique_id=33230576]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(140, 48)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0.7058824, 0.83137256, 0.8509804, 1)
+theme_override_font_sizes/font_size = 28
+text = "WAVE 1"
+vertical_alignment = 1
+clip_text = true
+
+[node name="Counters" type="HBoxContainer" parent="Interface/Hud/BottomDock/Margin/Row" unique_id=1214201480]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
 mouse_filter = 2
-theme_override_constants/separation = 10
+theme_override_constants/separation = 12
 alignment = 1
 
-[node name="HealthIcon" type="TextureRect" parent="Interface/Hud/Status/Counters" unique_id=970988168]
+[node name="HealthIcon" type="TextureRect" parent="Interface/Hud/BottomDock/Margin/Row/Counters" unique_id=970988168]
 custom_minimum_size = Vector2(40, 40)
 layout_mode = 2
 size_flags_vertical = 4
@@ -143,47 +212,54 @@ mouse_filter = 2
 texture = ExtResource("12_ssvqc")
 stretch_mode = 5
 
-[node name="HealthLabel" type="Label" parent="Interface/Hud/Status/Counters" unique_id=345376129]
+[node name="HealthLabel" type="Label" parent="Interface/Hud/BottomDock/Margin/Row/Counters" unique_id=345376129]
 unique_name_in_owner = true
+custom_minimum_size = Vector2(84, 48)
 layout_mode = 2
 theme_override_colors/font_color = Color(1, 0.5764706, 0.58431375, 1)
-theme_override_font_sizes/font_size = 34
+theme_override_font_sizes/font_size = 32
 text = "100"
 vertical_alignment = 1
+clip_text = true
 
-[node name="Gap" type="Control" parent="Interface/Hud/Status/Counters" unique_id=1733236923]
+[node name="Gap" type="Control" parent="Interface/Hud/BottomDock/Margin/Row/Counters" unique_id=1733236923]
 custom_minimum_size = Vector2(24, 0)
 layout_mode = 2
 mouse_filter = 2
 
-[node name="ManaIcon" type="TextureRect" parent="Interface/Hud/Status/Counters" unique_id=251272733]
+[node name="ManaIcon" type="TextureRect" parent="Interface/Hud/BottomDock/Margin/Row/Counters" unique_id=251272733]
 custom_minimum_size = Vector2(40, 48)
 layout_mode = 2
 mouse_filter = 2
 texture = ExtResource("13_264po")
 stretch_mode = 5
 
-[node name="ManaLabel" type="Label" parent="Interface/Hud/Status/Counters" unique_id=1792798406]
+[node name="ManaLabel" type="Label" parent="Interface/Hud/BottomDock/Margin/Row/Counters" unique_id=1792798406]
 unique_name_in_owner = true
+custom_minimum_size = Vector2(84, 48)
 layout_mode = 2
 theme_override_colors/font_color = Color(0.50980395, 0.7921569, 1, 1)
-theme_override_font_sizes/font_size = 34
+theme_override_font_sizes/font_size = 32
 text = "100"
 horizontal_alignment = 1
 vertical_alignment = 1
+clip_text = true
 
-[node name="WaveLabel" type="Label" parent="Interface/Hud" unique_id=33230576]
+[node name="SettingsButton" type="Button" parent="Interface/Hud/BottomDock/Margin/Row" unique_id=248297785]
 unique_name_in_owner = true
-layout_mode = 0
-anchor_right = 1.0
-offset_left = 32.0
-offset_top = 40.0
-offset_right = -32.0
-offset_bottom = 90.0
-theme_override_colors/font_color = Color(0.7058824, 0.83137256, 0.8509804, 1)
-theme_override_font_sizes/font_size = 32
-text = "WAVE 1"
-horizontal_alignment = 1
+custom_minimum_size = Vector2(88, 88)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+tooltip_text = "Settings"
+focus_mode = 0
+theme_override_constants/icon_max_width = 48
+theme_override_styles/normal = SubResource("StyleBoxFlat_sww3w")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_suyxu")
+theme_override_styles/hover = SubResource("StyleBoxFlat_sgl2t")
+icon = ExtResource("18_bhx41")
+flat = true
+expand_icon = true
 
 [node name="GameOverOverlay" type="Control" parent="Interface/Hud" unique_id=1342710346]
 unique_name_in_owner = true
@@ -359,6 +435,70 @@ icon_alignment = 1
 [node name="UpgradeChoice" parent="Interface/Hud" unique_id=1166018989 instance=ExtResource("13_1kice")]
 layout_mode = 1
 
+[node name="SettingsOverlay" type="Control" parent="Interface/Hud" unique_id=215528813]
+unique_name_in_owner = true
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Dim" type="ColorRect" parent="Interface/Hud/SettingsOverlay" unique_id=85132607]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0.019607844, 0.03529412, 0.0627451, 0.7372549)
+
+[node name="Center" type="CenterContainer" parent="Interface/Hud/SettingsOverlay" unique_id=1791646195]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="Panel" type="PanelContainer" parent="Interface/Hud/SettingsOverlay/Center" unique_id=1200864453]
+custom_minimum_size = Vector2(560, 0)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_qouja")
+
+[node name="Stack" type="VBoxContainer" parent="Interface/Hud/SettingsOverlay/Center/Panel" unique_id=1743664172]
+layout_mode = 2
+theme_override_constants/separation = 22
+
+[node name="Title" type="Label" parent="Interface/Hud/SettingsOverlay/Center/Panel/Stack" unique_id=75628761]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.8901961, 0.7294118, 0.34509805, 1)
+theme_override_font_sizes/font_size = 36
+text = "SETTINGS"
+horizontal_alignment = 1
+
+[node name="SettingsMenuButton" type="Button" parent="Interface/Hud/SettingsOverlay/Center/Panel/Stack" unique_id=594077224]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(480, 88)
+layout_mode = 2
+tooltip_text = "Leave this run"
+theme_override_constants/icon_max_width = 34
+theme_override_font_sizes/font_size = 28
+text = "MAIN MENU"
+icon = ExtResource("15_pl11u")
+
+[node name="ResumeButton" type="Button" parent="Interface/Hud/SettingsOverlay/Center/Panel/Stack" unique_id=1486956169]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(480, 88)
+layout_mode = 2
+theme_override_constants/icon_max_width = 34
+theme_override_font_sizes/font_size = 28
+text = "CONTINUE"
+icon = ExtResource("19_qnb83")
+
 [node name="SummonManager" type="Node" parent="." unique_id=1068555550]
 script = ExtResource("9_dinhu")
 config = ExtResource("10_kvuet")
@@ -387,9 +527,14 @@ config = ExtResource("21_37s47")
 [connection signal="summon_requested" from="World/Tower" to="." method="_on_summon_requested"]
 [connection signal="menu_requested" from="Interface/Hud" to="." method="_on_menu_requested"]
 [connection signal="restart_requested" from="Interface/Hud" to="." method="_on_restart_requested"]
+[connection signal="resume_requested" from="Interface/Hud" to="." method="_on_resume_requested"]
+[connection signal="settings_requested" from="Interface/Hud" to="." method="_on_settings_requested"]
+[connection signal="pressed" from="Interface/Hud/BottomDock/Margin/Row/SettingsButton" to="Interface/Hud" method="_on_settings_button_pressed"]
 [connection signal="pressed" from="Interface/Hud/GameOverOverlay/Center/Panel/Stack/Actions/RestartButton" to="Interface/Hud" method="_on_restart_button_pressed"]
 [connection signal="pressed" from="Interface/Hud/GameOverOverlay/Center/Panel/Stack/Actions/MenuButton" to="Interface/Hud" method="_on_menu_button_pressed"]
 [connection signal="upgrade_chosen" from="Interface/Hud/UpgradeChoice" to="." method="_on_upgrade_chosen"]
+[connection signal="pressed" from="Interface/Hud/SettingsOverlay/Center/Panel/Stack/SettingsMenuButton" to="Interface/Hud" method="_on_menu_button_pressed"]
+[connection signal="pressed" from="Interface/Hud/SettingsOverlay/Center/Panel/Stack/ResumeButton" to="Interface/Hud" method="_on_resume_button_pressed"]
 [connection signal="state_changed" from="SummonManager" to="World/Tower" method="update_summon"]
 [connection signal="state_changed" from="SummonManager" to="Interface/Hud" method="update_summon"]
 [connection signal="unit_merged" from="SummonManager" to="RunStatistics" method="record_merge"]

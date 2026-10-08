@@ -1,0 +1,42 @@
+[gd_scene format=3 uid="uid://bahyl08blcvl2"]
+
+[ext_resource type="PackedScene" uid="uid://rkmlqc5qcsrs" path="res://scenes/game.tscn" id="1_opgp7"]
+[ext_resource type="Script" uid="uid://k5nyfgqbu8hk" path="res://scripts/debug/tower_gameplay_review.gd" id="2_jwt5v"]
+[ext_resource type="Texture2D" uid="uid://c5ba2p5wccy1h" path="res://assets/debug/animation_controls/pause.svg" id="3_6eec3"]
+
+[node name="HudGameplayReview" unique_id=469266139 instance=ExtResource("1_opgp7")]
+script = ExtResource("2_jwt5v")
+review_summon_seed = 23
+battlefield_seed = 101
+
+[node name="TowerReview" type="HBoxContainer" parent="Interface" parent_id_path=PackedInt32Array(242053494) index="1" unique_id=108329584]
+process_mode = 3
+visible = false
+offset_left = 36.0
+offset_top = 1220.0
+offset_right = 684.0
+offset_bottom = 1270.0
+theme_override_constants/separation = 18
+
+[node name="Title" type="Label" parent="Interface/TowerReview" index="0" unique_id=830969451]
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+text = "TOWER REVIEW"
+
+[node name="Animated" type="CheckButton" parent="Interface/TowerReview" index="1" unique_id=186736145]
+layout_mode = 2
+tooltip_text = "Tower STATIC / ANIMATED"
+theme_override_font_sizes/font_size = 20
+button_pressed = true
+text = "ANIMATED"
+
+[node name="Pause" type="Button" parent="Interface/TowerReview" index="2" unique_id=212716889]
+custom_minimum_size = Vector2(60, 50)
+layout_mode = 2
+tooltip_text = "Pause / Resume"
+theme_override_constants/icon_max_width = 32
+icon = ExtResource("3_6eec3")
+expand_icon = true
+
+[connection signal="toggled" from="Interface/TowerReview/Animated" to="." method="_on_animated_toggled"]
+[connection signal="pressed" from="Interface/TowerReview/Pause" to="." method="_on_review_pause"]

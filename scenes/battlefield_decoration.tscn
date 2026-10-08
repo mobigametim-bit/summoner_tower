@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://bxwkulitd7acd"]
+
+[ext_resource type="Texture2D" uid="uid://cxavjoeg65bwd" path="res://assets/environment/rock.svg" id="1_8bcyr"]
+
+[node name="BattlefieldDecoration" type="Sprite2D" unique_id=1676300734]
+texture = ExtResource("1_8bcyr")

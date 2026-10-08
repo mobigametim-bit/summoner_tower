@@ -3,6 +3,8 @@ extends Control
 
 signal restart_requested
 signal menu_requested
+signal settings_requested
+signal resume_requested
 
 @onready var health_label: Label = %HealthLabel
 @onready var game_over_overlay: Control = %GameOverOverlay
@@ -10,21 +12,66 @@ signal menu_requested
 @onready var menu_button: Button = %MenuButton
 @onready var mana_label: Label = %ManaLabel
 @onready var wave_label: Label = %WaveLabel
+@onready var bottom_dock: PanelContainer = $BottomDock
+@onready var settings_button: Button = %SettingsButton
+@onready var settings_overlay: Control = %SettingsOverlay
+@onready var resume_button: Button = %ResumeButton
 @export var wave_config: WaveConfig
 
 
 func update_wave(wave: int, _phase: WaveManager.Phase, _seconds: int, _alive: int, _pending: int) -> void:
 	var boss_wave: bool = wave_config != null and wave_config.is_boss_wave(wave)
-	var title: String = "BOSS WAVE" if boss_wave else "WAVE"
+	var title: String = "BOSS" if boss_wave else "WAVE"
 	wave_label.modulate = Color("ffb968") if boss_wave else Color.WHITE
 	wave_label.text = "%s %d" % [title, wave]
 
 
 func update_health(current: int, _maximum: int) -> void:
 	health_label.text = str(current)
+	_fit_counter(health_label)
+
+
+func set_field_bottom(bottom: float) -> void:
+	# Строки целые: HUD примыкает к последней клетке, остаток высоты принадлежит панели.
+	bottom_dock.offset_top = bottom - size.y
+
+
+func _fit_counter(label: Label) -> void:
+	var digits: int = label.text.length()
+	label.add_theme_font_size_override("font_size", clampi(floori(160.0 / float(maxi(digits, 5))), 20, 32))
+
+
+func set_settings_available(available: bool) -> void:
+	settings_button.disabled = not available
+
+
+func show_settings() -> void:
+	settings_overlay.show()
+	resume_button.grab_focus()
+
+
+func close_settings() -> void:
+	settings_overlay.hide()
+	resume_button.release_focus()
+
+
+func _unhandled_key_input(event: InputEvent) -> void:
+	if settings_overlay.visible and event.is_action_pressed(&"ui_cancel"):
+		resume_requested.emit()
+		get_viewport().set_input_as_handled()
+
+
+func _on_settings_button_pressed() -> void:
+	settings_requested.emit()
+
+
+func _on_resume_button_pressed() -> void:
+	resume_requested.emit()
 
 
 func show_game_over(stats: RunStatistics) -> void:
+	close_settings()
+	set_settings_available(false)
 	var stack: VBoxContainer = game_over_overlay.get_node("Center/Panel/Stack")
 	stack.get_node("Stats/Wave/Value").text = str(stats.reached_wave)
 	stack.get_node("Stats/Enemies/Value").text = str(stats.killed_enemies)
@@ -37,6 +84,7 @@ func show_game_over(stats: RunStatistics) -> void:
 
 func update_summon(mana: int, _cost: int, _occupied: int, _capacity: int, _available: bool) -> void:
 	mana_label.text = str(mana)
+	_fit_counter(mana_label)
 
 
 func set_actions_enabled(enabled: bool) -> void:

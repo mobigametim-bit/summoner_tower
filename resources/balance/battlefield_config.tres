@@ -1,0 +1,20 @@
+[gd_resource type="Resource" script_class="BattlefieldConfig" format=3 uid="uid://b3xuyqccsjnc8"]
+
+[ext_resource type="Script" uid="uid://danq0i0k5ycx3" path="res://scripts/data/battlefield_config.gd" id="1_config"]
+[ext_resource type="Texture2D" uid="uid://cxavjoeg65bwd" path="res://assets/environment/rock.svg" id="2_rock"]
+[ext_resource type="Texture2D" uid="uid://dvdfknnernf2y" path="res://assets/environment/shrub.svg" id="3_shrub"]
+[ext_resource type="Texture2D" uid="uid://dm6fyae0nuj6n" path="res://assets/environment/grass.svg" id="4_grass"]
+[ext_resource type="Texture2D" uid="uid://cuqtii2q3s26k" path="res://assets/environment/tree.svg" id="5_tree"]
+[ext_resource type="Texture2D" uid="uid://bc53p4fv2ri2n" path="res://assets/environment/gravestone.svg" id="6_gravestone"]
+[ext_resource type="Texture2D" uid="uid://cyyaw86bcwwo1" path="res://assets/environment/stump.svg" id="7_rmt2g"]
+[ext_resource type="Texture2D" uid="uid://c2458dv2abtbl" path="res://assets/environment/sheep.svg" id="7_sheep"]
+[ext_resource type="Texture2D" uid="uid://cn7smevrpli4q" path="res://assets/environment/mushrooms.svg" id="8_6rlxt"]
+[ext_resource type="Texture2D" uid="uid://dar22sich7o4j" path="res://assets/environment/flowers.svg" id="9_nwcug"]
+[ext_resource type="Texture2D" uid="uid://foy4vtufwijm" path="res://assets/environment/wall_fragment.svg" id="10_0c1k1"]
+[ext_resource type="Texture2D" uid="uid://k78qwsfvfurc" path="res://assets/environment/skull_bones.svg" id="11_erk2m"]
+[ext_resource type="Texture2D" uid="uid://bm7ushvl0d7c2" path="res://assets/environment/abandoned_shield.svg" id="12_u22em"]
+
+[resource]
+script = ExtResource("1_config")
+portal_count_weights = Vector3(50, 30, 20)
+decoration_textures = [ExtResource("2_rock"), ExtResource("3_shrub"), ExtResource("4_grass"), ExtResource("5_tree"), ExtResource("6_gravestone"), ExtResource("7_sheep"), ExtResource("7_rmt2g"), ExtResource("8_6rlxt"), ExtResource("9_nwcug"), ExtResource("10_0c1k1"), ExtResource("11_erk2m"), ExtResource("12_u22em")]

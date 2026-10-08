@@ -1,0 +1,13 @@
+[gd_scene format=3 uid="uid://dyu8d6tepnwqe"]
+
+[ext_resource type="Script" uid="uid://bdlwbsgosw1ng" path="res://scripts/game/battlefield_cell.gd" id="1_07ubh"]
+[ext_resource type="Texture2D" uid="uid://sc7pwaj7sduv" path="res://assets/environment/ground_cell.svg" id="2_ph4ah"]
+[ext_resource type="Texture2D" uid="uid://kpuis1ta0eb6" path="res://assets/environment/road_cell.svg" id="3_te51k"]
+
+[node name="BattlefieldCell" type="Node2D" unique_id=240485240]
+script = ExtResource("1_07ubh")
+environment_texture = ExtResource("2_ph4ah")
+road_texture = ExtResource("3_te51k")
+
+[node name="Fill" type="Sprite2D" parent="." unique_id=125372337]
+texture = ExtResource("2_ph4ah")

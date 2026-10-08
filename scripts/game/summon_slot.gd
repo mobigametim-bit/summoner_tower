@@ -1,7 +1,7 @@
 class_name SummonSlot
 extends Node2D
 
-@export_range(1, 6, 1) var slot_index: int = 1
+@export_range(1, 10, 1) var slot_index: int = 1
 @export var faces_left: bool = false
 @export var hit_rect: Rect2 = Rect2(-70.0, -70.0, 140.0, 140.0)
 
@@ -9,6 +9,15 @@ extends Node2D
 @onready var highlight: Sprite2D = $Highlight
 
 var unit: CombatUnit
+
+
+func fit_to_cell(size: float) -> void:
+	hit_rect = Rect2(-Vector2.ONE * size * 0.5, Vector2.ONE * size)
+	$Visual.scale = Vector2.ONE * size / 140.0
+	highlight.scale = $Visual.scale
+	unit_host.scale = Vector2.ONE * minf((size - 12.0) / 100.0, 1.0)
+	# Ступни стоят на верхней плоскости постамента; зона переноса остаётся всей клеткой.
+	unit_host.position.y = 26.0 * size / 140.0 - 42.0 * unit_host.scale.y
 
 
 func is_empty() -> bool:

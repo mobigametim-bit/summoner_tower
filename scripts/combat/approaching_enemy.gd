@@ -25,6 +25,10 @@ var difficulty_tier: int = 1
 @onready var _animated_visual: Variant = goblin_visual if goblin_visual != null else (orc_visual if orc_visual != null else (golem_visual if golem_visual != null else boss_visual))
 
 var _target_y: float = 0.0
+var _route: Curve2D
+var _route_transform: Transform2D = Transform2D.IDENTITY
+var _route_length: float = 0.0
+var _distance: float = 0.0
 var _resolved: bool = false
 var _slow_ratio: float = 0.0
 var _slow_remaining: float = 0.0
@@ -46,8 +50,19 @@ func configure(spawn_position: Vector2, target_y: float, health: int = 0) -> voi
 	set_animated_visual(animated_visual_enabled)
 	_update_health_bar()
 	_target_y = target_y
+	_route = null
+	_distance = 0.0
 	_clear_slow()
 	set_physics_process(true)
+
+
+func follow_route(curve: Curve2D, route_transform: Transform2D, cell_size: float = 140.0) -> void:
+	scale = Vector2.ONE * minf((cell_size - 12.0) / 140.0, 1.0)
+	_route = curve
+	_route_transform = route_transform
+	_route_length = curve.get_baked_length()
+	_distance = 0.0
+	global_position = _route_transform * curve.sample_baked(0.0)
 
 
 func _physics_process(delta: float) -> void:
@@ -58,13 +73,17 @@ func _physics_process(delta: float) -> void:
 	var slowed_delta: float = minf(delta, _slow_remaining)
 	var distance: float = move_speed * (delta - slowed_delta * _slow_ratio)
 	var previous_position: Vector2 = global_position
-	global_position.y = move_toward(global_position.y, _target_y, distance)
+	if _route != null:
+		_distance = minf(_distance + distance, _route_length)
+		global_position = _route_transform * _route.sample_baked(_distance)
+	else:
+		global_position.y = move_toward(global_position.y, _target_y, distance)
 	_slow_remaining = maxf(_slow_remaining - delta, 0.0)
 	if _slow_remaining <= 0.0 and _slow_ratio > 0.0:
 		_clear_slow()
 	if animated_visual_enabled:
 		_animated_visual.advance_gameplay(delta, _time_to_contact(), global_position - previous_position)
-	if global_position.y >= _target_y:
+	if (_route != null and _distance >= _route_length) or (_route == null and global_position.y >= _target_y):
 		_resolve_at_tower()
 
 
@@ -90,7 +109,7 @@ func set_animated_visual(enabled: bool) -> void:
 
 
 func _time_to_contact() -> float:
-	var remaining: float = maxf(_target_y - global_position.y, 0.0)
+	var remaining: float = maxf(_route_length - _distance, 0.0) if _route != null else maxf(_target_y - global_position.y, 0.0)
 	var speed: float = current_move_speed()
 	var slow_distance: float = speed * _slow_remaining
 	if remaining <= slow_distance:

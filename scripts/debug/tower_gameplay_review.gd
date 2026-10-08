@@ -15,6 +15,12 @@ func _ready() -> void:
 		var columns: int = int(JavaScriptBridge.eval("Number(new URL(window.location.href).searchParams.get('columns')) || 0", true))
 		if columns >= 6 and columns <= 8:
 			battlefield_columns = columns
+		var portals: int = int(JavaScriptBridge.eval("Number(new URL(window.location.href).searchParams.get('portals')) || 0", true))
+		if portals >= 1 and portals <= 3:
+			battlefield_portal_count = portals
+		var seed_value: int = int(JavaScriptBridge.eval("Number(new URL(window.location.href).searchParams.get('seed') || -1)", true))
+		if seed_value >= 0:
+			battlefield_seed = seed_value
 	super._ready()
 	tower.set_animated_visual(true)
 	animated_button.set_pressed_no_signal(true)
@@ -92,6 +98,22 @@ func _publish_snapshot(_arguments: Array) -> void:
 	var label: Label = tower.cost_label
 	var base_bottom: Vector2 = tower.tower_visual.to_global(Vector2(0.0, TowerVisual.BASE_BOTTOM_Y - TowerVisual.CANVAS_SIZE * 0.5))
 	var snapshot: Dictionary = {
+		"road_cells": battlefield.layout.road_cells.map(func(cell: Vector2i) -> Array: return [cell.x, cell.y]),
+		"paths": battlefield.layout.paths.map(func(path: Array) -> Array: return path.map(func(cell: Vector2i) -> Array: return [cell.x, cell.y])),
+		"portal_sides": battlefield.layout.portal_sides,
+		"portal_positions": battlefield.layout.portal_cells.map(func(cell: Vector2i) -> Array: var p: Vector2 = battlefield.layout.cell_center(cell); return [p.x, p.y]),
+		"route_lengths": battlefield.layout.curves.map(func(curve: Curve2D) -> float: return curve.get_baked_length()),
+		"routes": battlefield.routes.size(), "portal_nodes": battlefield.portals.get_child_count() + 1,
+		"route_length": battlefield.layout.curve.get_baked_length(), "seed": battlefield.layout.seed_value,
+		"used_fallback": battlefield.layout.used_fallback,
+		"field_origin": [battlefield.layout.origin.x, battlefield.layout.origin.y], "rows": battlefield.layout.grid_size.y,
+		"field_bottom": battlefield.layout.origin.y + battlefield.layout.grid_size.y * battlefield.layout.cell_size,
+		"dock": _rect(hud.bottom_dock), "settings_visible": hud.settings_overlay.visible,
+		"gear_disabled": hud.settings_button.disabled, "upgrade_visible": upgrade_choice.visible,
+		"enemy_distances": enemies.get_children().map(func(enemy: ApproachingEnemy) -> float: return enemy._distance),
+		"enemy_portals": enemies.get_children().map(func(enemy: ApproachingEnemy) -> int: return int(enemy.get_meta("portal_index", 0))),
+		"enemy_positions": enemies.get_children().map(func(enemy: ApproachingEnemy) -> Array: return [enemy.global_position.x, enemy.global_position.y]),
+		"spawn_remaining": wave_manager.get_node("SpawnTimer").time_left,
 		"slots": slots, "mana": summon_manager.mana, "cost": summon_manager.current_cost(),
 		"summons": summon_manager.successful_summons, "state": state, "wave": wave_manager.wave_number,
 		"health": tower.current_health, "max_health": tower.max_health, "kills": run_statistics.killed_enemies,
@@ -106,7 +128,9 @@ func _publish_snapshot(_arguments: Array) -> void:
 		"projectiles": projectiles.get_child_count(), "drag_visible": drag_controller.preview.visible,
 		"columns": battlefield.layout.grid_size.x, "canvas_size": tower.tower_visual.scale.y * TowerVisual.CANVAS_SIZE,
 		"fps": Engine.get_frames_per_second(), "draw_calls": Performance.get_monitor(Performance.RENDER_TOTAL_DRAW_CALLS_IN_FRAME),
-		"controls": {"animated": _center(animated_button), "pause": _center(pause_button)}
+		"controls": {"animated": _center(animated_button), "pause": _center(pause_button),
+			"settings": _center(hud.settings_button), "resume": _center(hud.resume_button),
+			"menu": _center(hud.get_node("SettingsOverlay/Center/Panel/Stack/SettingsMenuButton"))}
 	}
 	JavaScriptBridge.eval("window.towerReview = %s;" % JSON.stringify(snapshot), true)
 
@@ -114,6 +138,11 @@ func _publish_snapshot(_arguments: Array) -> void:
 func _center(control: Control) -> Array[float]:
 	var center: Vector2 = control.get_global_rect().get_center()
 	return [center.x, center.y]
+
+
+func _rect(control: Control) -> Array[float]:
+	var bounds: Rect2 = control.get_global_rect()
+	return [bounds.position.x, bounds.position.y, bounds.size.x, bounds.size.y]
 
 
 func _exit_tree() -> void:

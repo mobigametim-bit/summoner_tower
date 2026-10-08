@@ -8,3 +8,4 @@ process_mode = 3
 script = ExtResource("1_kqyqk")
 
 [node name="Game" parent="." unique_id=469266139 instance=ExtResource("2_anlsm")]
+procedural_battlefield_enabled = false

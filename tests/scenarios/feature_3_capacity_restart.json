@@ -1,6 +1,6 @@
 {
   "name": "Feature 3: six slots, rejection and restart",
-  "scene": "res://scenes/game.tscn",
+  "scene": "res://tests/scenes/fixed_battlefield_game.tscn",
   "keep_running": true,
   "steps": [
     { "set": { "path": "SummonManager", "props": { "pool": "res://tests/resources/archer_only_pool.tres" } } },

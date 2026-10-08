@@ -1,0 +1,83 @@
+{
+  "name": "Feature 11.1: random arena, menu transitions and restart",
+  "scene": "res://scenes/main_menu.tscn",
+  "steps": [
+    {
+      "expect_no_node": "Center/VBox/GridChoice"
+    },
+    {
+      "input": [
+        {
+          "click_node": "Center/VBox/Actions/UpgradesButton"
+        }
+      ]
+    },
+    {
+      "expect_node": "Center/Stack/Header/BackButton"
+    },
+    {
+      "input": [
+        {
+          "click_node": "Center/Stack/Header/BackButton"
+        }
+      ]
+    },
+    {
+      "expect_no_node": "Center/VBox/GridChoice"
+    },
+    {
+      "input": [
+        {
+          "click_node": "Center/VBox/Actions/PlayButton"
+        }
+      ]
+    },
+    {
+      "assert": "battlefield_columns == 0 and battlefield.layout.grid_size.x >= 6 and battlefield.layout.grid_size.x <= 8 and summon_manager._slots.size() >= 6 and summon_manager._slots.size() <= 10"
+    },
+    {
+      "assert": "battlefield.layout.curve.get_baked_length() >= 1300 and battlefield.layout.curve.get_baked_length() <= 2500"
+    },
+    {
+      "eval": "get_node('/root/SessionProgress').set_meta('previous_map_seed', battlefield.layout.seed_value)"
+    },
+    {
+      "eval": "tower.take_damage(tower.max_health)"
+    },
+    {
+      "wait": 0.15
+    },
+    {
+      "input": [
+        {
+          "click_node": "Interface/Hud/GameOverOverlay/Center/Panel/Stack/Actions/RestartButton"
+        }
+      ]
+    },
+    {
+      "assert": "battlefield.layout.seed_value != get_node('/root/SessionProgress').get_meta('previous_map_seed') and tower.current_health == 100 and summon_manager.mana == 100 and state == 0"
+    },
+    {
+      "assert": "battlefield_columns == 0 and battlefield.layout.grid_size.x >= 6 and battlefield.layout.grid_size.x <= 8 and battlefield.layout.curve.get_baked_length() >= 1300 and battlefield.layout.curve.get_baked_length() <= 2500"
+    },
+    {
+      "eval": "tower.take_damage(tower.max_health)"
+    },
+    {
+      "wait": 0.15
+    },
+    {
+      "input": [
+        {
+          "click_node": "Interface/Hud/GameOverOverlay/Center/Panel/Stack/Actions/MenuButton"
+        }
+      ]
+    },
+    {
+      "expect_no_node": "Center/VBox/GridChoice"
+    },
+    {
+      "assert_no_errors": true
+    }
+  ]
+}

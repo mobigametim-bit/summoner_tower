@@ -19,6 +19,8 @@ var phase: Phase = Phase.STOPPED
 var _enemies: Node2D
 var _spawn_point: Marker2D
 var _contact_point: Marker2D
+var _route: Path2D
+var _routes: Array[Path2D] = []
 var _active: Array[ApproachingEnemy] = []
 var _spawn_remaining: int = 0
 var _countdown_seconds: int = -1
@@ -26,10 +28,14 @@ var _sequence: Array[PackedScene] = []
 var _boss_killed: bool = false
 
 
-func configure(enemies: Node2D, spawn_point: Marker2D, contact_point: Marker2D) -> void:
+func configure(enemies: Node2D, spawn_point: Marker2D, contact_point: Marker2D, route: Path2D = null, routes: Array[Path2D] = []) -> void:
 	_enemies = enemies
 	_spawn_point = spawn_point
 	_contact_point = contact_point
+	_route = route
+	_routes.assign(routes)
+	if _routes.is_empty() and route != null:
+		_routes.append(route)
 
 
 func start() -> bool:
@@ -72,7 +78,17 @@ func _spawn_next() -> void:
 		enemy.queue_free()
 		return
 	var health: int = config.boss_health_for(wave_number, enemy.stats.base_health) if enemy.stats.is_boss else config.enemy_health_for(wave_number, enemy.stats.base_health)
-	enemy.configure(_spawn_point.global_position, _contact_point.global_position.y, health)
+	var sequence_index: int = _sequence.size() - _spawn_remaining - 1
+	var portal_index: int = (sequence_index + wave_number - 1) % _routes.size() if not _routes.is_empty() else 0
+	var selected_route: Path2D = _routes[portal_index] if not _routes.is_empty() else null
+	var position: Vector2 = _spawn_point.global_position
+	if selected_route != null:
+		position = selected_route.to_global(selected_route.curve.get_point_position(0))
+	enemy.set_meta("portal_index", portal_index)
+	enemy.set_meta("spawn_frame", Engine.get_process_frames())
+	enemy.configure(position, _contact_point.global_position.y, health)
+	if selected_route != null:
+		enemy.follow_route(selected_route.curve, selected_route.global_transform, float(selected_route.get_meta("cell_size", 140.0)))
 	if phase != Phase.FIGHTING:
 		return
 	if _spawn_remaining > 0:

@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://b2ua885nmtlx3"]
+
+[ext_resource type="Texture2D" uid="uid://dijknhm08ajan" path="res://assets/environment/portal.svg" id="1_83it0"]
+
+[node name="EnemyPortal" type="Sprite2D" unique_id=1162341560]
+texture = ExtResource("1_83it0")
