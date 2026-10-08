@@ -1,0 +1,343 @@
+[gd_scene format=3 uid="uid://cfkc2hyjpqqgq"]
+
+[ext_resource type="Texture2D" uid="uid://cgyt3kaapnire" path="res://assets/ui/restart.svg" id="1_7pk62"]
+[ext_resource type="Script" uid="uid://bw84at7ud0jxq" path="res://scripts/debug/game_feel_flow_pilot.gd" id="1_ggoui"]
+[ext_resource type="Texture2D" uid="uid://ckpokawdmyc0b" path="res://assets/ui/home.svg" id="2_cb4nb"]
+[ext_resource type="PackedScene" uid="uid://oc8xhrjf4wpc" path="res://scenes/visuals/GoblinVisual.tscn" id="3_jybka"]
+[ext_resource type="Script" uid="uid://b6hb1c3t0eppb" path="res://addons/game_feel_flow/core/gff_player.gd" id="4_ggoui"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jybka"]
+bg_color = Color(0.101960786, 0.1882353, 0.16078432, 1)
+corner_radius_top_left = 14
+corner_radius_top_right = 14
+corner_radius_bottom_right = 14
+corner_radius_bottom_left = 14
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ggoui"]
+bg_color = Color(0.85490197, 0.6901961, 0.34117648, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ymktd"]
+bg_color = Color(0.85490197, 0.6901961, 0.34117648, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_nmyyk"]
+bg_color = Color(0.69803923, 0.5529412, 0.27058825, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4621g"]
+bg_color = Color(0.9372549, 0.78039217, 0.4627451, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dg34a"]
+bg_color = Color(0.85490197, 0.6901961, 0.34117648, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xopgt"]
+bg_color = Color(0.69803923, 0.5529412, 0.27058825, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5jml6"]
+bg_color = Color(0.9372549, 0.78039217, 0.4627451, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_pgf4r"]
+bg_color = Color(0.85490197, 0.6901961, 0.34117648, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_p1kko"]
+bg_color = Color(0.69803923, 0.5529412, 0.27058825, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_e7jbd"]
+bg_color = Color(0.9372549, 0.78039217, 0.4627451, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2phku"]
+bg_color = Color(0.85490197, 0.6901961, 0.34117648, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_63chb"]
+bg_color = Color(0.69803923, 0.5529412, 0.27058825, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ckq5x"]
+bg_color = Color(0.9372549, 0.78039217, 0.4627451, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[node name="GameFeelFlowPilot" type="Control" unique_id=135843292]
+process_mode = 3
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_ggoui")
+
+[node name="Background" type="ColorRect" parent="." unique_id=218122556]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0.0627451, 0.08627451, 0.13333334, 1)
+
+[node name="Margin" type="MarginContainer" parent="." unique_id=972220246]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 28
+theme_override_constants/margin_top = 24
+theme_override_constants/margin_right = 28
+theme_override_constants/margin_bottom = 24
+
+[node name="Content" type="VBoxContainer" parent="Margin" unique_id=64862977]
+layout_mode = 2
+theme_override_constants/separation = 18
+
+[node name="Title" type="Label" parent="Margin/Content" unique_id=1987647124]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.90588236, 0.7372549, 0.3764706, 1)
+theme_override_font_sizes/font_size = 36
+text = "GAME FEEL · PILOT"
+horizontal_alignment = 1
+
+[node name="Note" type="Label" parent="Margin/Content" unique_id=2119255867]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.6784314, 0.7411765, 0.79607844, 1)
+theme_override_font_sizes/font_size = 22
+text = "Гоблин · скелетная анимация + эффекты
+Только тестовая сцена"
+horizontal_alignment = 1
+
+[node name="Stage" type="PanelContainer" parent="Margin/Content" unique_id=566804847]
+process_mode = 1
+custom_minimum_size = Vector2(0, 440)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_jybka")
+
+[node name="Anchor" type="Node2D" parent="Margin/Content/Stage" unique_id=129588674]
+
+[node name="EffectRoot" type="Node2D" parent="Margin/Content/Stage/Anchor" unique_id=1136264098]
+
+[node name="GoblinVisual" parent="Margin/Content/Stage/Anchor/EffectRoot" unique_id=756032484 instance=ExtResource("3_jybka")]
+
+[node name="GFFPlayer" type="Node" parent="Margin/Content/Stage/Anchor/EffectRoot" unique_id=142431252]
+script = ExtResource("4_ggoui")
+
+[node name="Particles" type="Node2D" parent="Margin/Content/Stage/Anchor" unique_id=655704776]
+z_index = 100
+
+[node name="GFFPlayer" type="Node" parent="Margin/Content/Stage/Anchor/Particles" unique_id=2061362010]
+script = ExtResource("4_ggoui")
+
+[node name="Options" type="HBoxContainer" parent="Margin/Content" unique_id=38130725]
+layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="Label" type="Label" parent="Margin/Content/Options" unique_id=675934704]
+layout_mode = 2
+theme_override_font_sizes/font_size = 22
+text = "Размер"
+
+[node name="Size" type="OptionButton" parent="Margin/Content/Options" unique_id=402350082]
+custom_minimum_size = Vector2(265, 62)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_font_sizes/font_size = 22
+selected = 0
+item_count = 2
+popup/item_0/text = "Крупный просмотр"
+popup/item_0/id = 0
+popup/item_1/text = "Игровой размер"
+popup/item_1/id = 1
+
+[node name="Label2" type="Label" parent="Margin/Content/Options" unique_id=796271655]
+layout_mode = 2
+theme_override_font_sizes/font_size = 22
+text = "Уровень"
+
+[node name="Tier" type="OptionButton" parent="Margin/Content/Options" unique_id=1024363823]
+custom_minimum_size = Vector2(120, 62)
+layout_mode = 2
+theme_override_font_sizes/font_size = 22
+selected = 2
+item_count = 5
+popup/item_0/text = "Lv1"
+popup/item_0/id = 0
+popup/item_1/text = "Lv2"
+popup/item_1/id = 1
+popup/item_2/text = "Lv3"
+popup/item_2/id = 2
+popup/item_3/text = "Lv4"
+popup/item_3/id = 3
+popup/item_4/text = "Lv5"
+popup/item_4/id = 4
+
+[node name="Actions" type="HBoxContainer" parent="Margin/Content" unique_id=910526582]
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="Pulse" type="Button" parent="Margin/Content/Actions" unique_id=940359340]
+custom_minimum_size = Vector2(0, 76)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+tooltip_text = "Импульс гоблина и кнопки"
+
+[node name="Face" type="Panel" parent="Margin/Content/Actions/Pulse" unique_id=52074890]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_ggoui")
+
+[node name="Caption" type="Label" parent="Margin/Content/Actions/Pulse/Face" unique_id=1553381853]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.1254902, 0.15686275, 0.21960784, 1)
+theme_override_font_sizes/font_size = 26
+text = "Импульс"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="GFFPlayer" type="Node" parent="Margin/Content/Actions/Pulse/Face" unique_id=1741412496]
+script = ExtResource("4_ggoui")
+
+[node name="Particles" type="Button" parent="Margin/Content/Actions" unique_id=1471541429]
+custom_minimum_size = Vector2(0, 76)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_colors/font_color = Color(0.1254902, 0.15686275, 0.21960784, 1)
+theme_override_colors/font_pressed_color = Color(0.1254902, 0.15686275, 0.21960784, 1)
+theme_override_colors/font_hover_color = Color(0.1254902, 0.15686275, 0.21960784, 1)
+theme_override_font_sizes/font_size = 26
+theme_override_styles/normal = SubResource("StyleBoxFlat_ymktd")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_nmyyk")
+theme_override_styles/hover = SubResource("StyleBoxFlat_4621g")
+text = "Частицы"
+
+[node name="Burst" type="Button" parent="Margin/Content/Actions" unique_id=1960174952]
+custom_minimum_size = Vector2(110, 76)
+layout_mode = 2
+tooltip_text = "10 запросов с интервалом 0,08 секунды"
+theme_override_colors/font_color = Color(0.1254902, 0.15686275, 0.21960784, 1)
+theme_override_colors/font_pressed_color = Color(0.1254902, 0.15686275, 0.21960784, 1)
+theme_override_colors/font_hover_color = Color(0.1254902, 0.15686275, 0.21960784, 1)
+theme_override_font_sizes/font_size = 28
+theme_override_styles/normal = SubResource("StyleBoxFlat_dg34a")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_xopgt")
+theme_override_styles/hover = SubResource("StyleBoxFlat_5jml6")
+text = "×10"
+
+[node name="Playback" type="HBoxContainer" parent="Margin/Content" unique_id=1099540315]
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="Stop" type="Button" parent="Margin/Content/Playback" unique_id=1746447417]
+custom_minimum_size = Vector2(0, 70)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_font_sizes/font_size = 24
+text = "Стоп"
+
+[node name="Pause" type="Button" parent="Margin/Content/Playback" unique_id=911342183]
+custom_minimum_size = Vector2(0, 70)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_font_sizes/font_size = 24
+text = "Пауза"
+
+[node name="Reset" type="Button" parent="Margin/Content/Playback" unique_id=746568941]
+custom_minimum_size = Vector2(74, 70)
+layout_mode = 2
+tooltip_text = "Сбросить тестовую сцену"
+theme_override_colors/font_color = Color(0.1254902, 0.15686275, 0.21960784, 1)
+theme_override_colors/font_pressed_color = Color(0.1254902, 0.15686275, 0.21960784, 1)
+theme_override_colors/font_hover_color = Color(0.1254902, 0.15686275, 0.21960784, 1)
+theme_override_styles/normal = SubResource("StyleBoxFlat_pgf4r")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_p1kko")
+theme_override_styles/hover = SubResource("StyleBoxFlat_e7jbd")
+icon = ExtResource("1_7pk62")
+
+[node name="Menu" type="Button" parent="Margin/Content/Playback" unique_id=1494700611]
+custom_minimum_size = Vector2(74, 70)
+layout_mode = 2
+tooltip_text = "Главное меню"
+theme_override_colors/font_color = Color(0.1254902, 0.15686275, 0.21960784, 1)
+theme_override_colors/font_pressed_color = Color(0.1254902, 0.15686275, 0.21960784, 1)
+theme_override_colors/font_hover_color = Color(0.1254902, 0.15686275, 0.21960784, 1)
+theme_override_styles/normal = SubResource("StyleBoxFlat_2phku")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_63chb")
+theme_override_styles/hover = SubResource("StyleBoxFlat_ckq5x")
+icon = ExtResource("2_cb4nb")
+
+[node name="Status" type="Label" parent="Margin/Content" unique_id=206354775]
+custom_minimum_size = Vector2(0, 66)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.6784314, 0.7411765, 0.79607844, 1)
+theme_override_font_sizes/font_size = 22
+text = "Game Feel Flow Free"
+horizontal_alignment = 1
+
+[node name="BurstTimer" type="Timer" parent="." unique_id=2032998360]
+process_mode = 1
+wait_time = 0.08

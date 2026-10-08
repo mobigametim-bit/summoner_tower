@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="GFFParticles" load_steps=3 format=3]
+
+[ext_resource type="Script" path="res://addons/game_feel_flow/effects/particles/gff_particles.gd" id="1"]
+[ext_resource type="PackedScene" path="res://scenes/debug/GameFeelPilotBurst.tscn" id="2"]
+
+[resource]
+script = ExtResource("1")
+label = "pilot_particle_burst"
+overlap_strategy = 3
+duration = 1.1
+restore_after_play = false
+particle_scene = ExtResource("2")
+emit_count = 16
+offset = Vector3(0, 60, 0)

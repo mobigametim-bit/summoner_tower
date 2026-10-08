@@ -19,6 +19,7 @@ config/icon="res://icon.svg"
 
 ForgeRuntime="*uid://c6pjrvgd2f7tg"
 SessionProgress="*uid://bt1lt51sbthe0"
+GameFeelFlow="*uid://ckhnfaf1odnpl"
 
 [display]
 
@@ -30,7 +31,7 @@ window/stretch/mode="canvas_items"
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/godot_forge/plugin.cfg")
+enabled=PackedStringArray("res://addons/game_feel_flow/plugin.cfg", "res://addons/godot_forge/plugin.cfg")
 
 [input]
 

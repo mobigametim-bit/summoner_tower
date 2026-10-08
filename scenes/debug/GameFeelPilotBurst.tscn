@@ -1,0 +1,28 @@
+[gd_scene format=3 uid="uid://cvi33n7qe861y"]
+
+[sub_resource type="Gradient" id="Gradient_go8ex"]
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_bvkmb"]
+gradient = SubResource("Gradient_go8ex")
+width = 16
+height = 16
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(1, 0.5)
+
+[node name="PilotBurst" type="CPUParticles2D" unique_id=1550549356]
+emitting = false
+amount = 16
+texture = SubResource("GradientTexture2D_bvkmb")
+lifetime = 0.65
+one_shot = true
+explosiveness = 1.0
+direction = Vector2(0, -1)
+spread = 180.0
+gravity = Vector2(0, 55)
+initial_velocity_min = 110.0
+initial_velocity_max = 180.0
+scale_amount_min = 0.3
+scale_amount_max = 0.5
+color = Color(0.4509804, 0.87058824, 1, 1)
