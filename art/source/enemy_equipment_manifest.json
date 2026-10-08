@@ -1,0 +1,320 @@
+{
+  "version": 1,
+  "canvas": [
+    256,
+    256
+  ],
+  "coordinate_workflow": "Untrimmed canvas; offset=-parent pivot; absolute z matches original part.",
+  "entities": {
+    "goblin": {
+      "scene": "res://scenes/visuals/GoblinVisual.tscn",
+      "bones": 8,
+      "parts": [
+        {
+          "node": "Skeleton2D/Root/Body/BodyArmor",
+          "parent_part": "body",
+          "offset": [
+            -126,
+            -179
+          ],
+          "z_index": 3,
+          "replacement": false,
+          "textures": [
+            null,
+            "res://art/source/goblin/equipment/body_armor_light.svg",
+            "res://art/source/goblin/equipment/body_armor_light.svg",
+            "res://art/source/goblin/equipment/body_armor_heavy.svg",
+            "res://art/source/goblin/equipment/body_armor_heavy.svg"
+          ]
+        },
+        {
+          "node": "Skeleton2D/Root/Body/BackArm/Shield",
+          "parent_part": "arm_back",
+          "offset": [
+            -83,
+            -159
+          ],
+          "z_index": 0,
+          "replacement": false,
+          "textures": [
+            null,
+            null,
+            "res://art/source/goblin/equipment/shield_wood.svg",
+            "res://art/source/goblin/equipment/shield_rimmed.svg",
+            "res://art/source/goblin/equipment/shield_metal.svg"
+          ]
+        },
+        {
+          "node": "Skeleton2D/Root/Body/Head/Helmet",
+          "parent_part": "head",
+          "offset": [
+            -133,
+            -145
+          ],
+          "z_index": 5,
+          "replacement": false,
+          "textures": [
+            null,
+            null,
+            null,
+            null,
+            "res://art/source/goblin/equipment/open_helmet.svg"
+          ]
+        },
+        {
+          "node": "Skeleton2D/Root/Body/FrontArm/Dagger/Sprite",
+          "parent_part": "dagger",
+          "offset": [
+            -205,
+            -190
+          ],
+          "z_index": 6,
+          "replacement": true,
+          "textures": [
+            "res://art/source/goblin/parts/dagger.svg",
+            "res://art/source/goblin/equipment/weapon_lv2.svg",
+            "res://art/source/goblin/equipment/weapon_lv3.svg",
+            "res://art/source/goblin/equipment/weapon_lv4.svg",
+            "res://art/source/goblin/equipment/weapon_lv5.svg"
+          ]
+        }
+      ],
+      "texture_count": 10
+    },
+    "orc": {
+      "scene": "res://scenes/visuals/OrcVisual.tscn",
+      "bones": 8,
+      "parts": [
+        {
+          "node": "Skeleton2D/Root/Body/BackArm/ShoulderArmor",
+          "parent_part": "arm_back",
+          "offset": [
+            -75,
+            -148
+          ],
+          "z_index": 0,
+          "replacement": false,
+          "textures": [
+            null,
+            "res://art/source/orc/equipment/shoulder_armor.svg",
+            "res://art/source/orc/equipment/shoulder_armor.svg",
+            "res://art/source/orc/equipment/shoulder_armor.svg",
+            "res://art/source/orc/equipment/shoulder_armor.svg"
+          ]
+        },
+        {
+          "node": "Skeleton2D/Root/Body/BackArm/Bracer",
+          "parent_part": "arm_back",
+          "offset": [
+            -75,
+            -148
+          ],
+          "z_index": 0,
+          "replacement": false,
+          "textures": [
+            null,
+            null,
+            "res://art/source/orc/equipment/bracer_back.svg",
+            "res://art/source/orc/equipment/bracer_back.svg",
+            "res://art/source/orc/equipment/bracer_back.svg"
+          ]
+        },
+        {
+          "node": "Skeleton2D/Root/Body/FrontArm/Bracer",
+          "parent_part": "arm_front",
+          "offset": [
+            -171,
+            -150
+          ],
+          "z_index": 5,
+          "replacement": false,
+          "textures": [
+            null,
+            null,
+            "res://art/source/orc/equipment/bracer_front.svg",
+            "res://art/source/orc/equipment/bracer_front.svg",
+            "res://art/source/orc/equipment/bracer_front.svg"
+          ]
+        },
+        {
+          "node": "Skeleton2D/Root/Body/BackArm/Shield",
+          "parent_part": "arm_back",
+          "offset": [
+            -75,
+            -148
+          ],
+          "z_index": 0,
+          "replacement": false,
+          "textures": [
+            null,
+            null,
+            null,
+            "res://art/source/orc/equipment/shield_round.svg",
+            "res://art/source/orc/equipment/shield_reinforced.svg"
+          ]
+        },
+        {
+          "node": "Skeleton2D/Root/Body/Breastplate",
+          "parent_part": "body",
+          "offset": [
+            -126,
+            -176
+          ],
+          "z_index": 3,
+          "replacement": false,
+          "textures": [
+            null,
+            null,
+            null,
+            "res://art/source/orc/equipment/breastplate.svg",
+            "res://art/source/orc/equipment/breastplate.svg"
+          ]
+        },
+        {
+          "node": "Skeleton2D/Root/Body/Head/Helmet",
+          "parent_part": "head",
+          "offset": [
+            -128,
+            -142
+          ],
+          "z_index": 6,
+          "replacement": false,
+          "textures": [
+            null,
+            null,
+            null,
+            null,
+            "res://art/source/orc/equipment/open_helmet.svg"
+          ]
+        },
+        {
+          "node": "Skeleton2D/Root/Body/FrontArm/Axe/Sprite",
+          "parent_part": "axe",
+          "offset": [
+            -203,
+            -184
+          ],
+          "z_index": 4,
+          "replacement": true,
+          "textures": [
+            "res://art/source/orc/parts/axe.svg",
+            "res://art/source/orc/equipment/weapon_lv2.svg",
+            "res://art/source/orc/equipment/weapon_lv3.svg",
+            "res://art/source/orc/equipment/weapon_lv4.svg",
+            "res://art/source/orc/equipment/weapon_lv5.svg"
+          ]
+        }
+      ],
+      "texture_count": 11
+    },
+    "golem": {
+      "scene": "res://scenes/visuals/GolemVisual.tscn",
+      "bones": 9,
+      "parts": [
+        {
+          "node": "Skeleton2D/Root/Body/BackUpperArm/BackForearm/FistArmor",
+          "parent_part": "arm_back_forearm",
+          "offset": [
+            -57,
+            -147
+          ],
+          "z_index": 1,
+          "replacement": false,
+          "textures": [
+            null,
+            "res://art/source/golem/equipment/fist_back_lv2.svg",
+            "res://art/source/golem/equipment/fist_back_lv3.svg",
+            "res://art/source/golem/equipment/fist_back_lv4.svg",
+            "res://art/source/golem/equipment/fist_back_lv5.svg"
+          ]
+        },
+        {
+          "node": "Skeleton2D/Root/Body/BackUpperArm/ShoulderArmor",
+          "parent_part": "arm_back_upper",
+          "offset": [
+            -85,
+            -126
+          ],
+          "z_index": 0,
+          "replacement": false,
+          "textures": [
+            null,
+            null,
+            "res://art/source/golem/equipment/shoulder_back_stone.svg",
+            "res://art/source/golem/equipment/shoulder_back_stone.svg",
+            "res://art/source/golem/equipment/shoulder_back_reinforced.svg"
+          ]
+        },
+        {
+          "node": "Skeleton2D/Root/Body/FrontUpperArm/FrontForearm/FistArmor",
+          "parent_part": "arm_front_forearm",
+          "offset": [
+            -210,
+            -157
+          ],
+          "z_index": 6,
+          "replacement": false,
+          "textures": [
+            null,
+            "res://art/source/golem/equipment/fist_front_lv2.svg",
+            "res://art/source/golem/equipment/fist_front_lv3.svg",
+            "res://art/source/golem/equipment/fist_front_lv4.svg",
+            "res://art/source/golem/equipment/fist_front_lv5.svg"
+          ]
+        },
+        {
+          "node": "Skeleton2D/Root/Body/FrontUpperArm/ShoulderArmor",
+          "parent_part": "arm_front_upper",
+          "offset": [
+            -171,
+            -130
+          ],
+          "z_index": 5,
+          "replacement": false,
+          "textures": [
+            null,
+            null,
+            "res://art/source/golem/equipment/shoulder_front_stone.svg",
+            "res://art/source/golem/equipment/shoulder_front_stone.svg",
+            "res://art/source/golem/equipment/shoulder_front_reinforced.svg"
+          ]
+        },
+        {
+          "node": "Skeleton2D/Root/Body/Breastplate",
+          "parent_part": "body",
+          "offset": [
+            -128,
+            -170
+          ],
+          "z_index": 4,
+          "replacement": false,
+          "textures": [
+            null,
+            null,
+            null,
+            "res://art/source/golem/equipment/breastplate.svg",
+            "res://art/source/golem/equipment/breastplate.svg"
+          ]
+        },
+        {
+          "node": "Skeleton2D/Root/Body/Head/BrowPlate",
+          "parent_part": "head",
+          "offset": [
+            -133,
+            -147
+          ],
+          "z_index": 7,
+          "replacement": false,
+          "textures": [
+            null,
+            null,
+            null,
+            null,
+            "res://art/source/golem/equipment/brow_plate.svg"
+          ]
+        }
+      ],
+      "texture_count": 14
+    }
+  }
+}

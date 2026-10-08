@@ -9,7 +9,19 @@
 [ext_resource type="Texture2D" uid="uid://dy2kjq8lx3y73" path="res://art/source/goblin/parts/leg_right.svg" id="5_essvn"]
 [ext_resource type="Texture2D" uid="uid://bfg3mqwl1kpxy" path="res://art/source/goblin/parts/arm_front.svg" id="6_x2lql"]
 [ext_resource type="Texture2D" uid="uid://b3a642huppqgs" path="res://art/source/goblin/parts/dagger.svg" id="7_2sc5m"]
+[ext_resource type="Texture2D" uid="uid://br0id3vp2m3vk" path="res://art/source/goblin/equipment/shield_wood.svg" id="7_6c0tc"]
 [ext_resource type="Texture2D" uid="uid://bjprbrsvly1ik" path="res://art/source/goblin/parts/head.svg" id="8_r34m6"]
+[ext_resource type="Texture2D" uid="uid://4bxg3ye2bf5c" path="res://art/source/goblin/equipment/shield_rimmed.svg" id="9_01qy7"]
+[ext_resource type="Texture2D" uid="uid://djpwqdpp46b6i" path="res://art/source/goblin/equipment/shield_metal.svg" id="10_x7ls7"]
+[ext_resource type="Material" uid="uid://c2y6fdui1qe4o" path="res://art/source/goblin/equipment/accent_material.tres" id="11_r34m6"]
+[ext_resource type="Texture2D" uid="uid://dxbf6hek4ettt" path="res://art/source/goblin/equipment/body_armor_light.svg" id="12_l3ieg"]
+[ext_resource type="Script" uid="uid://b2k7jwv17tpqj" path="res://scripts/visuals/enemy_equipment_part.gd" id="13_flig7"]
+[ext_resource type="Texture2D" uid="uid://dfxfjqt63y3o5" path="res://art/source/goblin/equipment/body_armor_heavy.svg" id="14_adnum"]
+[ext_resource type="Texture2D" uid="uid://rw1pygcahw4w" path="res://art/source/goblin/equipment/weapon_lv2.svg" id="15_f44oq"]
+[ext_resource type="Texture2D" uid="uid://6jsr5wofdy7" path="res://art/source/goblin/equipment/weapon_lv3.svg" id="16_noehh"]
+[ext_resource type="Texture2D" uid="uid://yv2wy5hkgap4" path="res://art/source/goblin/equipment/weapon_lv4.svg" id="17_0tlgo"]
+[ext_resource type="Texture2D" uid="uid://ctp0o2l8bjvmt" path="res://art/source/goblin/equipment/weapon_lv5.svg" id="18_j65gc"]
+[ext_resource type="Texture2D" uid="uid://22xl7jqb7o6t" path="res://art/source/goblin/equipment/open_helmet.svg" id="20_amf52"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_g61qc"]
 resource_local_to_scene = true
@@ -607,6 +619,16 @@ position = Vector2(-83, -159)
 texture = ExtResource("3_bbl2c")
 centered = false
 
+[node name="Shield" type="Sprite2D" parent="Skeleton2D/Root/Body/BackArm" unique_id=1816902325]
+visible = false
+z_as_relative = false
+material = ExtResource("11_r34m6")
+position = Vector2(-83, -159)
+texture = ExtResource("7_6c0tc")
+centered = false
+script = ExtResource("13_flig7")
+tier_textures = [null, null, ExtResource("7_6c0tc"), ExtResource("9_01qy7"), ExtResource("10_x7ls7")]
+
 [node name="LeftLeg" type="Bone2D" parent="Skeleton2D/Root/Body" unique_id=1986548086]
 position = Vector2(-25, 24)
 rest = Transform2D(1, 0, 0, 1, -25, 24)
@@ -662,9 +684,12 @@ bone_angle = 0.0
 [node name="Sprite" type="Sprite2D" parent="Skeleton2D/Root/Body/FrontArm/Dagger" unique_id=33045245]
 z_index = 6
 z_as_relative = false
+material = ExtResource("11_r34m6")
 position = Vector2(-205, -190)
 texture = ExtResource("7_2sc5m")
 centered = false
+script = ExtResource("13_flig7")
+tier_textures = [ExtResource("7_2sc5m"), ExtResource("15_f44oq"), ExtResource("16_noehh"), ExtResource("17_0tlgo"), ExtResource("18_j65gc")]
 
 [node name="Head" type="Bone2D" parent="Skeleton2D/Root/Body" unique_id=19833739]
 position = Vector2(7, -34)
@@ -679,6 +704,28 @@ z_as_relative = false
 position = Vector2(-133, -145)
 texture = ExtResource("8_r34m6")
 centered = false
+
+[node name="Helmet" type="Sprite2D" parent="Skeleton2D/Root/Body/Head" unique_id=116394398]
+visible = false
+z_index = 5
+z_as_relative = false
+material = ExtResource("11_r34m6")
+position = Vector2(-133, -145)
+texture = ExtResource("20_amf52")
+centered = false
+script = ExtResource("13_flig7")
+tier_textures = [null, null, null, null, ExtResource("20_amf52")]
+
+[node name="BodyArmor" type="Sprite2D" parent="Skeleton2D/Root/Body" unique_id=736200537]
+visible = false
+z_index = 3
+z_as_relative = false
+material = ExtResource("11_r34m6")
+position = Vector2(-126, -179)
+texture = ExtResource("12_l3ieg")
+centered = false
+script = ExtResource("13_flig7")
+tier_textures = [null, ExtResource("12_l3ieg"), ExtResource("12_l3ieg"), ExtResource("14_adnum"), ExtResource("14_adnum")]
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=901267714]
 callback_mode_process = 0

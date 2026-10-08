@@ -8,8 +8,21 @@
 [ext_resource type="Texture2D" uid="uid://vidkecj1b10s" path="res://art/source/orc/parts/leg_left.svg" id="4_mydau"]
 [ext_resource type="Texture2D" uid="uid://d0lqp5t0kk52k" path="res://art/source/orc/parts/leg_right.svg" id="5_8wdp3"]
 [ext_resource type="Texture2D" uid="uid://claoji133v7yb" path="res://art/source/orc/parts/arm_front.svg" id="6_1uhio"]
+[ext_resource type="Material" uid="uid://bponyr8swupdi" path="res://art/source/orc/equipment/accent_material.tres" id="6_fbpni"]
+[ext_resource type="Texture2D" uid="uid://cox0ld06ro8wp" path="res://art/source/orc/equipment/shoulder_armor.svg" id="7_4ohdq"]
 [ext_resource type="Texture2D" uid="uid://b5uuwse2ggir" path="res://art/source/orc/parts/axe.svg" id="7_enbsl"]
+[ext_resource type="Script" uid="uid://b2k7jwv17tpqj" path="res://scripts/visuals/enemy_equipment_part.gd" id="8_ecb3v"]
 [ext_resource type="Texture2D" uid="uid://bqw5hcskw706d" path="res://art/source/orc/parts/head.svg" id="8_le4iy"]
+[ext_resource type="Texture2D" uid="uid://dlk8e6v20nurl" path="res://art/source/orc/equipment/bracer_back.svg" id="9_fptxb"]
+[ext_resource type="Texture2D" uid="uid://dspc4w4ks4a4a" path="res://art/source/orc/equipment/shield_round.svg" id="10_ks8yn"]
+[ext_resource type="Texture2D" uid="uid://b35x554nrngje" path="res://art/source/orc/equipment/shield_reinforced.svg" id="11_ui31i"]
+[ext_resource type="Texture2D" uid="uid://brpapy1grndh3" path="res://art/source/orc/equipment/weapon_lv2.svg" id="16_aka40"]
+[ext_resource type="Texture2D" uid="uid://v8t8s6oxhla6" path="res://art/source/orc/equipment/weapon_lv3.svg" id="17_sahsb"]
+[ext_resource type="Texture2D" uid="uid://b0p1gt14hy3in" path="res://art/source/orc/equipment/weapon_lv4.svg" id="18_n2nu6"]
+[ext_resource type="Texture2D" uid="uid://dkjv0ero226q1" path="res://art/source/orc/equipment/weapon_lv5.svg" id="19_j3d5a"]
+[ext_resource type="Texture2D" uid="uid://6jg7b30yb7ck" path="res://art/source/orc/equipment/bracer_front.svg" id="20_n7ejj"]
+[ext_resource type="Texture2D" uid="uid://bs5s6h8xveysu" path="res://art/source/orc/equipment/open_helmet.svg" id="22_ldo2a"]
+[ext_resource type="Texture2D" uid="uid://0omtp7usuobs" path="res://art/source/orc/equipment/breastplate.svg" id="23_6i2bu"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_8wdp3"]
 resource_local_to_scene = true
@@ -608,6 +621,36 @@ position = Vector2(-75, -148)
 texture = ExtResource("3_27o6u")
 centered = false
 
+[node name="ShoulderArmor" type="Sprite2D" parent="Skeleton2D/Root/Body/BackArm" unique_id=2053149942]
+visible = false
+z_as_relative = false
+material = ExtResource("6_fbpni")
+position = Vector2(-75, -148)
+texture = ExtResource("7_4ohdq")
+centered = false
+script = ExtResource("8_ecb3v")
+tier_textures = [null, ExtResource("7_4ohdq"), ExtResource("7_4ohdq"), ExtResource("7_4ohdq"), ExtResource("7_4ohdq")]
+
+[node name="Bracer" type="Sprite2D" parent="Skeleton2D/Root/Body/BackArm" unique_id=184516697]
+visible = false
+z_as_relative = false
+material = ExtResource("6_fbpni")
+position = Vector2(-75, -148)
+texture = ExtResource("9_fptxb")
+centered = false
+script = ExtResource("8_ecb3v")
+tier_textures = [null, null, ExtResource("9_fptxb"), ExtResource("9_fptxb"), ExtResource("9_fptxb")]
+
+[node name="Shield" type="Sprite2D" parent="Skeleton2D/Root/Body/BackArm" unique_id=195313342]
+visible = false
+z_as_relative = false
+material = ExtResource("6_fbpni")
+position = Vector2(-75, -148)
+texture = ExtResource("10_ks8yn")
+centered = false
+script = ExtResource("8_ecb3v")
+tier_textures = [null, null, null, ExtResource("10_ks8yn"), ExtResource("11_ui31i")]
+
 [node name="LeftLeg" type="Bone2D" parent="Skeleton2D/Root/Body" unique_id=1146205586]
 position = Vector2(-24, 31)
 rest = Transform2D(1, 0, 0, 1, -24, 31)
@@ -663,9 +706,23 @@ bone_angle = 0.0
 [node name="Sprite" type="Sprite2D" parent="Skeleton2D/Root/Body/FrontArm/Axe" unique_id=993634497]
 z_index = 4
 z_as_relative = false
+material = ExtResource("6_fbpni")
 position = Vector2(-203, -184)
 texture = ExtResource("7_enbsl")
 centered = false
+script = ExtResource("8_ecb3v")
+tier_textures = [ExtResource("7_enbsl"), ExtResource("16_aka40"), ExtResource("17_sahsb"), ExtResource("18_n2nu6"), ExtResource("19_j3d5a")]
+
+[node name="Bracer" type="Sprite2D" parent="Skeleton2D/Root/Body/FrontArm" unique_id=1796766390]
+visible = false
+z_index = 5
+z_as_relative = false
+material = ExtResource("6_fbpni")
+position = Vector2(-171, -150)
+texture = ExtResource("20_n7ejj")
+centered = false
+script = ExtResource("8_ecb3v")
+tier_textures = [null, null, ExtResource("20_n7ejj"), ExtResource("20_n7ejj"), ExtResource("20_n7ejj")]
 
 [node name="Head" type="Bone2D" parent="Skeleton2D/Root/Body" unique_id=953541935]
 position = Vector2(2, -34)
@@ -680,6 +737,28 @@ z_as_relative = false
 position = Vector2(-128, -142)
 texture = ExtResource("8_le4iy")
 centered = false
+
+[node name="Helmet" type="Sprite2D" parent="Skeleton2D/Root/Body/Head" unique_id=488831038]
+visible = false
+z_index = 6
+z_as_relative = false
+material = ExtResource("6_fbpni")
+position = Vector2(-128, -142)
+texture = ExtResource("22_ldo2a")
+centered = false
+script = ExtResource("8_ecb3v")
+tier_textures = [null, null, null, null, ExtResource("22_ldo2a")]
+
+[node name="Breastplate" type="Sprite2D" parent="Skeleton2D/Root/Body" unique_id=1527251107]
+visible = false
+z_index = 3
+z_as_relative = false
+material = ExtResource("6_fbpni")
+position = Vector2(-126, -176)
+texture = ExtResource("23_6i2bu")
+centered = false
+script = ExtResource("8_ecb3v")
+tier_textures = [null, null, null, ExtResource("23_6i2bu"), ExtResource("23_6i2bu")]
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1148464995]
 callback_mode_process = 0

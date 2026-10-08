@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="256" height="256" viewBox="0 0 256 256"><title>orc · shield_round · rigid equipment part</title><g stroke="#29180f" stroke-width="7" stroke-linecap="round" stroke-linejoin="round" id="round_shield" data-parent-part="arm_back">
+          <ellipse cx="46" cy="188" rx="34" ry="37" fill="#738587" stroke-width="6" />
+          <ellipse cx="46" cy="188" rx="25" ry="28" fill="#895334" stroke-width="4" />
+          <path d="M25 188H67M46 164V212" stroke="#88b96b" stroke-width="7" />
+          <circle cx="46" cy="188" r="10" fill="#b9c9c3" stroke-width="5" /></g></svg>

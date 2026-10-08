@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="256" height="256" viewBox="0 0 256 256"><title>goblin · shield_rimmed · rigid equipment part</title><g stroke="#29180f" stroke-width="7" stroke-linecap="round" stroke-linejoin="round" id="shield" data-parent-part="arm_back">
+          <path d="M20 161Q46 153 74 163L73 190Q67 215 47 226 25 214 20 190Z" fill="#738587" stroke-width="6" />
+          <path d="M28 169Q46 163 66 169L65 189Q60 207 47 217 32 207 28 188Z" fill="#b77e42" stroke-width="4" />
+          <path d="m46 171 1 35" fill="none" stroke="#754229" stroke-width="4" />
+          <circle cx="47" cy="188" r="8" fill="#88b96b" stroke-width="4" /></g></svg>

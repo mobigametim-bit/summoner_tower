@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="256" height="256" viewBox="0 0 256 256"><title>orc · open_helmet · rigid equipment part</title><g stroke="#29180f" stroke-width="7" stroke-linecap="round" stroke-linejoin="round" id="open_helmet" data-parent-part="head">
+          <path d="M70 83 73 58 90 37 116 27 145 31 172 49 181 79 167 81 153 63 112 61 88 83Z" fill="#738587" stroke-width="6" />
+          <path d="m86 55 15-13 21-8 19 4 18 11-21-4-22-1-24 16Z" fill="#b9c9c3" stroke="none" />
+          <path d="m111 28 20 1 7 34-23-3Z" fill="#88b96b" stroke-width="5" />
+          <path d="m71 57-15-14 2 30 17 10 M174 57l15-14-2 30-9 9" fill="#b9c9c3" stroke-width="6" /></g></svg>

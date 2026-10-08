@@ -1,0 +1,8 @@
+[gd_resource type="ShaderMaterial" format=3 uid="uid://v8bt6cgpkga"]
+
+[ext_resource type="Shader" uid="uid://cf8dvue5yx6gj" path="res://art/source/equipment_accent.gdshader" id="1_3vity"]
+
+[resource]
+resource_local_to_scene = true
+shader = ExtResource("1_3vity")
+shader_parameter/accent_color = Color(0.533333, 0.72549, 0.419608, 1)

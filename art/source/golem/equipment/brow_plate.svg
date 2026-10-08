@@ -1,0 +1,4 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="256" height="256" viewBox="0 0 256 256"><title>golem · brow_plate · rigid equipment part</title><g stroke="#29180f" stroke-width="7" stroke-linecap="round" stroke-linejoin="round" id="brow_plate" data-parent-part="head">
+          <path d="m88 76 20-13 26 12 26-9 20 10-3 15-17-4-26 9-24-15-20 8Z" fill="#738587" stroke-width="6" />
+          <path d="m111 69 13 6-3 12-12-8Z M160 72l11 6-10 3-7 2Z" fill="#b9c9c3" stroke="none" />
+          <path d="m130 76 8 1-2 11" fill="none" stroke="#88b96b" stroke-width="5" /></g></svg>

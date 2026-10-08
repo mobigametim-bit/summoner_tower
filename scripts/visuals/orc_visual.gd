@@ -8,6 +8,7 @@ const ATTACK_IMPACT_TIME: float = 0.18
 
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 @onready var equipment_material: ShaderMaterial = $Skeleton2D/Root/Body/Sprite.material
+@onready var _equipment_sprites: Array[Node] = find_children("*", "Sprite2D", true, false)
 
 var _active_animation: StringName = &"walk_loop"
 var _impact_emitted: bool = false
@@ -17,6 +18,7 @@ var _tail: bool = false
 
 
 func _ready() -> void:
+	set_difficulty(1, EnemyStats.TIER_COLORS[0])
 	play_animation(&"walk_loop")
 
 
@@ -55,6 +57,9 @@ func enable_gameplay() -> void:
 func set_difficulty(tier: int, equipment_color: Color) -> void:
 	equipment_material.set_shader_parameter("recolor_enabled", tier >= 1)
 	equipment_material.set_shader_parameter("equipment_color", equipment_color)
+	for sprite: Node in _equipment_sprites:
+		if sprite is EnemyEquipmentPart:
+			(sprite as EnemyEquipmentPart).apply_tier(tier, equipment_color)
 
 
 func advance_gameplay(delta: float, time_to_contact: float, direction: Vector2) -> void:

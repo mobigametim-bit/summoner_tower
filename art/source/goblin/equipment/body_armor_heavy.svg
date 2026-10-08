@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="256" height="256" viewBox="0 0 256 256"><title>goblin · body_armor_heavy · rigid equipment part</title><g stroke="#29180f" stroke-width="7" stroke-linecap="round" stroke-linejoin="round" id="metal_pauldron" data-parent-part="body">
+      <path d="M78 136 103 136 115 152 104 169 78 160 71 147Z" fill="#738587" stroke-width="6" />
+      <path d="m81 141 19 1 6 9-20 5-8-9Z" fill="#b9c9c3" stroke="none" /></g><g stroke="#29180f" stroke-width="7" stroke-linecap="round" stroke-linejoin="round" id="breastplate" data-parent-part="body">
+          <path d="m103 152 40-3 17 20-9 19-41 3-15-17Z" fill="#738587" stroke-width="6" />
+          <path d="m105 158 34-2 10 13-27 8-19-10Z" fill="#b9c9c3" stroke="none" />
+          <path d="m113 181 26-3" stroke="#88b96b" stroke-width="6" /></g></svg>

@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="256" height="256" viewBox="0 0 256 256"><title>orc · weapon_lv3 · rigid equipment part</title><g id="axe" stroke="#29180f" stroke-width="7" stroke-linecap="round" stroke-linejoin="round" data-pivot-x="203" data-pivot-y="184">
+    <path d="m217 88 13 5-29 136Q198 240 184 232L182 225Z" fill="#895334" stroke-width="6" />
+    <path d="m221 96 4 2-28 127-6 4Z" fill="#a46b42" stroke="none" />
+    <path d="m212 118 13 4-4 19-14-4Z" fill="#f3e7ce" stroke-width="4" />
+    <path d="m210 127 13 4" fill="none" stroke="#d9c39e" stroke-width="4" />
+    <g stroke="#29180f" stroke-width="7" stroke-linecap="round" stroke-linejoin="round" id="tier_blade" data-parent-part="axe"><g stroke-width="6"><path d="M214 60 242 66 251 94 250 135 240 156 225 164 227 140Q238 118 214 104L204 88Z" fill="#738587" /><path d="m240 75 5 22-1 35-10 18 1-14 5-22-12-17Z" fill="#b9c9c3" stroke="none" /></g></g></g>
+  </svg>

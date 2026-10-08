@@ -10,7 +10,23 @@
 [ext_resource type="Texture2D" uid="uid://c6k3tmlx3vmv0" path="res://art/source/golem/parts/arm_back_forearm.svg" id="6_r3uca"]
 [ext_resource type="Texture2D" uid="uid://ki2icp1uh2j8" path="res://art/source/golem/parts/head.svg" id="7_vv7rt"]
 [ext_resource type="Texture2D" uid="uid://c7sco08aeyhow" path="res://art/source/golem/parts/arm_front_upper.svg" id="8_5qjdg"]
+[ext_resource type="Material" uid="uid://v8bt6cgpkga" path="res://art/source/golem/equipment/accent_material.tres" id="9_b1e45"]
 [ext_resource type="Texture2D" uid="uid://b4eh6iut2ikk7" path="res://art/source/golem/parts/arm_front_forearm.svg" id="9_q1g7f"]
+[ext_resource type="Texture2D" uid="uid://xy2tqy0v3wvg" path="res://art/source/golem/equipment/fist_back_lv2.svg" id="10_woubf"]
+[ext_resource type="Script" uid="uid://b2k7jwv17tpqj" path="res://scripts/visuals/enemy_equipment_part.gd" id="11_glvfq"]
+[ext_resource type="Texture2D" uid="uid://dht0ddcb6mn6v" path="res://art/source/golem/equipment/fist_back_lv3.svg" id="12_ncq0j"]
+[ext_resource type="Texture2D" uid="uid://oywua8nux85b" path="res://art/source/golem/equipment/fist_back_lv4.svg" id="13_5lqrr"]
+[ext_resource type="Texture2D" uid="uid://brfojf5xyuv8j" path="res://art/source/golem/equipment/fist_back_lv5.svg" id="14_2v1uf"]
+[ext_resource type="Texture2D" uid="uid://d38yginnu6wao" path="res://art/source/golem/equipment/shoulder_back_stone.svg" id="15_igkni"]
+[ext_resource type="Texture2D" uid="uid://ci8dya2lrxryy" path="res://art/source/golem/equipment/shoulder_back_reinforced.svg" id="16_21qgk"]
+[ext_resource type="Texture2D" uid="uid://bo84rgcuhp1nc" path="res://art/source/golem/equipment/brow_plate.svg" id="18_me3jo"]
+[ext_resource type="Texture2D" uid="uid://cvypnmbst3oso" path="res://art/source/golem/equipment/fist_front_lv2.svg" id="21_60lab"]
+[ext_resource type="Texture2D" uid="uid://cfuxq6c53onpw" path="res://art/source/golem/equipment/fist_front_lv3.svg" id="22_fxndl"]
+[ext_resource type="Texture2D" uid="uid://ddo3sh8v3uwk7" path="res://art/source/golem/equipment/fist_front_lv4.svg" id="23_ip40e"]
+[ext_resource type="Texture2D" uid="uid://cj0p3aan0erm" path="res://art/source/golem/equipment/fist_front_lv5.svg" id="24_x0apm"]
+[ext_resource type="Texture2D" uid="uid://c6kf0m38f4osf" path="res://art/source/golem/equipment/shoulder_front_stone.svg" id="25_yxvnv"]
+[ext_resource type="Texture2D" uid="uid://w2sjkytraq70" path="res://art/source/golem/equipment/shoulder_front_reinforced.svg" id="26_pd642"]
+[ext_resource type="Texture2D" uid="uid://bvumm2fqhrqs5" path="res://art/source/golem/equipment/breastplate.svg" id="27_1ivln"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_104mg"]
 resource_local_to_scene = true
@@ -627,7 +643,7 @@ tracks/5/keys = {
 "times": PackedFloat32Array(0, 0.1, 0.22, 0.35),
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 0,
-"values": [0.0, 0.12217304763960307, 0.24434609527920614, 0.2792526803190927]
+"values": [0.0, 0.12217304763960309, 0.24434609527920617, 0.2792526803190927]
 }
 tracks/6/type = "value"
 tracks/6/imported = false
@@ -639,7 +655,7 @@ tracks/6/keys = {
 "times": PackedFloat32Array(0, 0.1, 0.22, 0.35),
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 0,
-"values": [0.0, -0.10471975511965978, -0.20943951023931956, -0.24434609527920614]
+"values": [0.0, -0.10471975511965978, -0.20943951023931956, -0.24434609527920617]
 }
 
 [sub_resource type="Animation" id="Animation_u2x5c"]
@@ -718,7 +734,7 @@ tracks/1/keys = {
 "times": PackedFloat32Array(0, 0.3, 0.6, 0.9, 1.2),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1),
 "update": 0,
-"values": [0.0, 0.022689280275926284, 0.0, -0.022689280275926284, 0.0]
+"values": [0.0, 0.02268928027592628, 0.0, -0.02268928027592628, 0.0]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
@@ -766,7 +782,7 @@ tracks/5/keys = {
 "times": PackedFloat32Array(0, 0.3, 0.6, 0.9, 1.2),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1),
 "update": 0,
-"values": [0.0, 0.12217304763960307, 0.0, -0.12217304763960307, 0.0]
+"values": [0.0, 0.12217304763960309, 0.0, -0.12217304763960309, 0.0]
 }
 tracks/6/type = "value"
 tracks/6/imported = false
@@ -925,6 +941,27 @@ position = Vector2(-57, -147)
 texture = ExtResource("6_r3uca")
 centered = false
 
+[node name="FistArmor" type="Sprite2D" parent="Skeleton2D/Root/Body/BackUpperArm/BackForearm" unique_id=586448147]
+visible = false
+z_index = 1
+z_as_relative = false
+material = ExtResource("9_b1e45")
+position = Vector2(-57, -147)
+texture = ExtResource("10_woubf")
+centered = false
+script = ExtResource("11_glvfq")
+tier_textures = [null, ExtResource("10_woubf"), ExtResource("12_ncq0j"), ExtResource("13_5lqrr"), ExtResource("14_2v1uf")]
+
+[node name="ShoulderArmor" type="Sprite2D" parent="Skeleton2D/Root/Body/BackUpperArm" unique_id=91415241]
+visible = false
+z_as_relative = false
+material = ExtResource("9_b1e45")
+position = Vector2(-85, -126)
+texture = ExtResource("15_igkni")
+centered = false
+script = ExtResource("11_glvfq")
+tier_textures = [null, null, ExtResource("15_igkni"), ExtResource("15_igkni"), ExtResource("16_21qgk")]
+
 [node name="Head" type="Bone2D" parent="Skeleton2D/Root/Body" unique_id=1941058136]
 position = Vector2(5, -23)
 rest = Transform2D(1, 0, 0, 1, 5, -23)
@@ -939,6 +976,17 @@ material = SubResource("ShaderMaterial_104mg")
 position = Vector2(-133, -147)
 texture = ExtResource("7_vv7rt")
 centered = false
+
+[node name="BrowPlate" type="Sprite2D" parent="Skeleton2D/Root/Body/Head" unique_id=881874757]
+visible = false
+z_index = 7
+z_as_relative = false
+material = ExtResource("9_b1e45")
+position = Vector2(-133, -147)
+texture = ExtResource("18_me3jo")
+centered = false
+script = ExtResource("11_glvfq")
+tier_textures = [null, null, null, null, ExtResource("18_me3jo")]
 
 [node name="FrontUpperArm" type="Bone2D" parent="Skeleton2D/Root/Body" unique_id=976475694]
 position = Vector2(43, -40)
@@ -969,6 +1017,39 @@ material = SubResource("ShaderMaterial_104mg")
 position = Vector2(-210, -157)
 texture = ExtResource("9_q1g7f")
 centered = false
+
+[node name="FistArmor" type="Sprite2D" parent="Skeleton2D/Root/Body/FrontUpperArm/FrontForearm" unique_id=1601938251]
+visible = false
+z_index = 6
+z_as_relative = false
+material = ExtResource("9_b1e45")
+position = Vector2(-210, -157)
+texture = ExtResource("21_60lab")
+centered = false
+script = ExtResource("11_glvfq")
+tier_textures = [null, ExtResource("21_60lab"), ExtResource("22_fxndl"), ExtResource("23_ip40e"), ExtResource("24_x0apm")]
+
+[node name="ShoulderArmor" type="Sprite2D" parent="Skeleton2D/Root/Body/FrontUpperArm" unique_id=1715155520]
+visible = false
+z_index = 5
+z_as_relative = false
+material = ExtResource("9_b1e45")
+position = Vector2(-171, -130)
+texture = ExtResource("25_yxvnv")
+centered = false
+script = ExtResource("11_glvfq")
+tier_textures = [null, null, ExtResource("25_yxvnv"), ExtResource("25_yxvnv"), ExtResource("26_pd642")]
+
+[node name="Breastplate" type="Sprite2D" parent="Skeleton2D/Root/Body" unique_id=1150517568]
+visible = false
+z_index = 4
+z_as_relative = false
+material = ExtResource("9_b1e45")
+position = Vector2(-128, -170)
+texture = ExtResource("27_1ivln")
+centered = false
+script = ExtResource("11_glvfq")
+tier_textures = [null, null, null, ExtResource("27_1ivln"), ExtResource("27_1ivln")]
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=2119174815]
 callback_mode_process = 0

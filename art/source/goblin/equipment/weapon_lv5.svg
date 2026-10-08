@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="256" height="256" viewBox="0 0 256 256"><title>goblin · weapon_lv5 · rigid equipment part</title><g id="dagger" stroke="#29180f" stroke-width="7" stroke-linecap="round" stroke-linejoin="round" data-pivot-x="205" data-pivot-y="190">
+    <path d="m204 175 18 8-15 30Q201 221 188 211L185 206Z" fill="#754229" stroke-width="6" />
+    <path d="m202 188 9 6-10 17-9-4Z" fill="#aa7540" stroke="none" />
+    <g stroke="#29180f" stroke-width="7" stroke-linecap="round" stroke-linejoin="round" id="tier_blade" data-parent-part="dagger"><g transform="translate(205 190) rotate(12)" stroke-width="6"><path d="M-9-16-12-119 15-133 27-112 25-32 15-15Z" fill="#738587" /><path d="M-5-114 12-123 17-107 16-32 7-20-3-20Z" fill="#b9c9c3" stroke="none" /><path d="m-15-15 34 0-1 10-33 0Z" fill="#738587" stroke-width="5" /></g></g></g>
+</svg>

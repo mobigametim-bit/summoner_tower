@@ -1,0 +1,1355 @@
+<!doctype html>
+<html lang="ru"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Summoner Tower — экипировка врагов</title><link rel="icon" href="data:,">
+<style>
+*{box-sizing:border-box}body{margin:0;background:#101521;color:#cbd6ce;font:15px system-ui,sans-serif}
+main{max-width:1520px;margin:auto;padding:28px}h1{margin:0 0 10px;font-size:28px;color:#e2bf70}
+.intro{margin:0 0 18px;max-width:1050px;line-height:1.6;color:#9eb1ab}.intro b{color:#e2bf70}.intro a{color:#8abdee}
+.controls{display:flex;gap:14px;align-items:center;flex-wrap:wrap;margin:0 0 18px;padding:14px;background:#192431;border-radius:10px}
+button,select{font:inherit;background:#293a47;color:#dbe5da;border:1px solid #4d6268;padding:9px 14px;border-radius:7px;cursor:pointer}
+button[aria-pressed=true]{background:#e2bf70;color:#171b22;border-color:#e2bf70}label{display:flex;align-items:center;gap:8px}
+.note{color:#9eb1ab;font-size:13px;flex:1;min-width:220px}.grid{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:12px}
+article{border:1px solid #33433f;border-top:3px solid var(--tier);border-radius:10px;overflow:hidden;background:#192c25;min-width:0}
+header{display:flex;align-items:center;justify-content:space-between;padding:12px 14px;background:#19262c;font-size:18px}
+.tier{display:inline-flex;justify-content:center;align-items:center;width:28px;height:28px;border-radius:50%;background:var(--tier);color:#101521;font-weight:800}
+.stage{height:245px;position:relative;display:flex;align-items:flex-end;justify-content:center;background:radial-gradient(ellipse at 50% 84%,#304b36 0,transparent 60%);padding-bottom:0}
+.actor{width:calc(var(--canvas) / 140 * 238px);height:calc(var(--canvas) / 140 * 238px);flex:none;position:relative;transform:translateY(-12px)}
+.actor:before{content:"";position:absolute;background:#0c1719;opacity:.55;border-radius:50%;width:74%;height:8%;bottom:5%;left:13%}
+.actor svg{position:relative;display:block;width:100%;height:100%}.threshold{text-align:center;font-size:13px;color:var(--tier);margin-top:4px}
+article p{min-height:44px;text-align:center;font-size:13px;line-height:1.45;margin:8px 10px 14px;color:#c3cdc4}
+footer{margin-top:18px;font-size:13px;line-height:1.6;color:#8fa39f}
+body.game .actor{width:calc(var(--canvas) * var(--factor) * var(--screen) * 1px);height:calc(var(--canvas) * var(--factor) * var(--screen) * 1px)}
+body.game .stage{height:150px;background:repeating-linear-gradient(90deg,transparent 0,transparent calc(var(--cell) - 1px),#32453b var(--cell)),repeating-linear-gradient(0deg,transparent 0,transparent calc(var(--cell) - 1px),#32453b var(--cell)),#1b3028}
+@media(max-width:850px){main{padding:16px}.grid{min-width:1000px}.scroll{overflow-x:auto}h1{font-size:23px}.stage{height:220px}.actor{width:calc(var(--canvas) / 140 * 210px);height:calc(var(--canvas) / 140 * 210px)}}
+</style></head><body><main><h1>Экипировка врагов · 5 уровней</h1>
+<p class="intro">Сравнение уровней <b>гоблина, орка и голема</b>. Босса не меняем. Кожа и камень сохраняют исходные цвета; цвет уровня обозначают одежда, мох и акценты экипировки. Внешний вид принят, экипировка подключена к существующим ригам. <a href="http://127.0.0.1:4175/preview/enemy-equipment-animation/?asset=goblin&tier=5">Посмотреть анимации</a>.</p>
+<div class="controls"><button id="large" aria-pressed="true">Крупный просмотр</button><button id="game" aria-pressed="false">Игровой масштаб</button>
+<label>Сетка <select id="columns"><option value="6">6 столбцов</option><option value="7" selected>7 столбцов</option><option value="8">8 столбцов</option></select></label>
+<label>Ширина экрана <select id="screen"><option value="390" selected>390 px · телефон</option><option value="450">450 px</option><option value="720">720 px · логический</option></select></label>
+<span class="note" id="note"></span></div><div class="scroll"><div class="grid"><article style="--tier:#88b96b;--canvas:86.4">
+          <header><strong>Гоблин</strong><span class="tier">1</span></header>
+          <div class="stage"><div class="actor"><svg xmlns="http://www.w3.org/2000/svg" width="256" height="256" viewBox="0 0 256 256">
+  <title>Гоблин · уровень 1 · preview only</title>
+  <g id="goblin_lv1_arm_back" stroke="#29180f" stroke-width="7" stroke-linecap="round" stroke-linejoin="round" data-pivot-x="83" data-pivot-y="159">
+    <path d="M78 146Q94 145 93 161L76 184 69 207Q59 220 42 211 31 207 34 191L47 165Q58 149 78 146Z" fill="#98bf45" />
+    <path d="m58 165 15 3-14 24-7 18-11-5 7-22Z" fill="#728f32" stroke="none" />
+    <path d="m41 176 30 10-4 15-33-10Z" fill="#88b96b" stroke-width="5" />
+    <path d="m45 181 20 7" fill="none" stroke="#a0da7e" stroke-width="4" />
+    <path d="m58 201-4 8" fill="none" stroke-width="5" />
+  </g>
+  <g id="goblin_lv1_leg_left" stroke="#29180f" stroke-width="7" stroke-linecap="round" stroke-linejoin="round" data-pivot-x="101" data-pivot-y="203">
+    <path d="M99 188Q113 182 121 196L114 216 117 231Q111 241 80 237L77 229 87 213 90 199Z" fill="#98bf45" />
+    <path d="m91 205 15-8 5 5-12 20-15 7Z" fill="#728f32" stroke="none" />
+    <path d="m84 217 30-4 5 23Q101 241 78 237L77 229Z" fill="#88b96b" stroke-width="6" />
+    <path d="m86 218 24-3 2 8-29 6Z" fill="#a0da7e" stroke="none" />
+    <path d="m85 230 17-7 9 12-28 1Z" fill="#98bf45" stroke-width="4" />
+  </g>
+  <g id="goblin_lv1_leg_right" stroke="#29180f" stroke-width="7" stroke-linecap="round" stroke-linejoin="round" data-pivot-x="146" data-pivot-y="203">
+    <path d="M134 190Q147 180 156 192L163 211 170 229 166 237Q146 241 132 234L131 220 128 203Z" fill="#98bf45" />
+    <path d="m141 194 13-1 5 24-9 14-17-3 3-15Z" fill="#728f32" stroke="none" />
+    <path d="m131 217 31-4 9 22Q153 242 132 236L130 227Z" fill="#88b96b" stroke-width="6" />
+    <path d="m136 219 23-4 3 8-25 7Z" fill="#a0da7e" stroke="none" />
+    <path d="m143 226 14-4 9 12-27 2Z" fill="#98bf45" stroke-width="4" />
+  </g>
+  <g id="goblin_lv1_body" stroke="#29180f" stroke-width="7" stroke-linecap="round" stroke-linejoin="round" data-pivot-x="126" data-pivot-y="179">
+    <path d="M94 139Q127 130 155 144L171 169 165 198Q141 214 91 201L81 175Z" fill="#98bf45" />
+    <path d="m94 149 17 15 21 5 24-15 8 20-15 16-40-7-23-13Z" fill="#728f32" stroke="none" />
+    <path d="m98 142 57 35-10 13-55-35Z" fill="#754229" stroke-width="5" />
+    <path d="M89 187Q125 200 164 185L163 204 151 218 138 208 125 220 111 208 94 217 80 205Z" fill="#88b96b" />
+    <path d="M91 192Q124 203 157 191L147 202 131 208 106 200Z" fill="#a0da7e" stroke="none" />
+    <path d="m79 136 29 3 7 20-21 10-21-18Z" fill="#754229" stroke-width="6" />
+    <path d="m82 142 21 2 3 11-11 4Z" fill="#aa7540" stroke="none" />
+  </g>
+  <g id="goblin_lv1_arm_front" stroke="#29180f" stroke-width="7" stroke-linecap="round" stroke-linejoin="round" data-pivot-x="164" data-pivot-y="161">
+    <path d="M159 146Q173 139 184 153L188 170 209 179Q223 187 216 201 208 214 194 205L174 190 157 180Q149 165 159 146Z" fill="#98bf45" />
+    <path d="m165 158 8-8 8 16 5 16 17 11-3 10-18-13-21-17Z" fill="#728f32" stroke="none" />
+    <path d="m178 173 22 11-9 18-23-12Z" fill="#88b96b" stroke-width="5" />
+    <path d="m181 180 12 6-4 8" fill="none" stroke="#a0da7e" stroke-width="4" />
+    <path d="m204 193-6 10" fill="none" stroke-width="5" />
+  </g>
+  <g id="goblin_lv1_head" stroke="#29180f" stroke-width="7" stroke-linecap="round" stroke-linejoin="round" data-pivot-x="133" data-pivot-y="145">
+    <path d="M82 70Q60 48 23 51L35 82Q48 111 75 113L89 99Z" fill="#98bf45" />
+    <path d="M35 59Q57 60 73 78L70 98Q50 92 43 76Z" fill="#ce8e62" stroke-width="4" />
+    <path d="m48 67 22 14-2 15-11-8Z" fill="#a86342" stroke="none" />
+    <path d="M174 76Q194 58 213 62L197 88Q185 110 172 112L164 95Z" fill="#98bf45" />
+    <path d="m183 78 18-8-15 25-11 6Z" fill="#ce8e62" stroke-width="4" />
+    <path d="M92 46Q124 23 153 33 178 40 190 72L195 110Q192 137 175 150 149 169 119 158L91 147Q70 135 68 110 65 75 92 46Z" fill="#98bf45" />
+    <path d="M96 48Q124 28 151 40L166 60 145 52 127 47 108 58Z" fill="#afd15b" stroke="none" />
+    <path d="M84 68 92 79Q75 113 93 137L126 153 116 154 93 142Q72 132 74 105Z M181 84l10 25-4 23-21 22-16 5 20-23Z" fill="#728f32" stroke="none" />
+    <ellipse cx="109" cy="112" rx="8" ry="12" transform="rotate(17 109 112)" fill="#29180f" stroke="none" />
+    <ellipse cx="164" cy="112" rx="7" ry="11" transform="rotate(12 164 112)" fill="#29180f" stroke="none" />
+    <path d="m94 96 27 14 m34 0 24-14" fill="none" stroke-width="6" />
+    <path d="M123 110Q135 100 145 111L154 125Q150 136 140 131L123 120Z" fill="#728f32" stroke-width="6" />
+    <path d="m130 112 9-2 9 11-8-4Z" fill="#98bf45" stroke="none" />
+    <path d="m124 146 10-13 8 21Z" fill="#ead5a2" stroke-width="5" />
+  </g>
+  <g id="goblin_lv1_dagger" stroke="#29180f" stroke-width="7" stroke-linecap="round" stroke-linejoin="round" data-pivot-x="205" data-pivot-y="190">
+    <path d="m204 175 18 8-15 30Q201 221 188 211L185 206Z" fill="#754229" stroke-width="6" />
+    <path d="m202 188 9 6-10 17-9-4Z" fill="#aa7540" stroke="none" />
+    <path d="m207 173 33-58 4 28-22 38Z" fill="#ead5a2" stroke-width="6" />
+    <path d="m213 172 26-49-7 25-11 27Z" fill="#c6ab7f" stroke="none" />
+    <path d="m199 168 29 14-5 9-28-15Z" fill="#9c642d" stroke-width="5" />
+  </g>
+</svg></div></div>
+          <div class="threshold">30–59 HP · ×1</div>
+          <p>Кинжал · лёгкая одежда</p></article>
+<article style="--tier:#ec9b49;--canvas:86.4">
+          <header><strong>Гоблин</strong><span class="tier">2</span></header>
+          <div class="stage"><div class="actor"><svg xmlns="http://www.w3.org/2000/svg" width="256" height="256" viewBox="0 0 256 256">
+  <title>Гоблин · уровень 2 · preview only</title>
+  <g id="goblin_lv2_arm_back" stroke="#29180f" stroke-width="7" stroke-linecap="round" stroke-linejoin="round" data-pivot-x="83" data-pivot-y="159">
+    <path d="M78 146Q94 145 93 161L76 184 69 207Q59 220 42 211 31 207 34 191L47 165Q58 149 78 146Z" fill="#98bf45" />
+    <path d="m58 165 15 3-14 24-7 18-11-5 7-22Z" fill="#728f32" stroke="none" />
+    <path d="m41 176 30 10-4 15-33-10Z" fill="#ec9b49" stroke-width="5" />
+    <path d="m45 181 20 7" fill="none" stroke="#ffb756" stroke-width="4" />
+    <path d="m58 201-4 8" fill="none" stroke-width="5" />
+  </g>
+  <g id="goblin_lv2_leg_left" stroke="#29180f" stroke-width="7" stroke-linecap="round" stroke-linejoin="round" data-pivot-x="101" data-pivot-y="203">
+    <path d="M99 188Q113 182 121 196L114 216 117 231Q111 241 80 237L77 229 87 213 90 199Z" fill="#98bf45" />
+    <path d="m91 205 15-8 5 5-12 20-15 7Z" fill="#728f32" stroke="none" />
+    <path d="m84 217 30-4 5 23Q101 241 78 237L77 229Z" fill="#ec9b49" stroke-width="6" />
+    <path d="m86 218 24-3 2 8-29 6Z" fill="#ffb756" stroke="none" />
+    <path d="m85 230 17-7 9 12-28 1Z" fill="#98bf45" stroke-width="4" />
+  </g>
+  <g id="goblin_lv2_leg_right" stroke="#29180f" stroke-width="7" stroke-linecap="round" stroke-linejoin="round" data-pivot-x="146" data-pivot-y="203">
+    <path d="M134 190Q147 180 156 192L163 211 170 229 166 237Q146 241 132 234L131 220 128 203Z" fill="#98bf45" />
+    <path d="m141 194 13-1 5 24-9 14-17-3 3-15Z" fill="#728f32" stroke="none" />
+    <path d="m131 217 31-4 9 22Q153 242 132 236L130 227Z" fill="#ec9b49" stroke-width="6" />
+    <path d="m136 219 23-4 3 8-25 7Z" fill="#ffb756" stroke="none" />
+    <path d="m143 226 14-4 9 12-27 2Z" fill="#98bf45" stroke-width="4" />
+  </g>
+  <g id="goblin_lv2_body" stroke="#29180f" stroke-width="7" stroke-linecap="round" stroke-linejoin="round" data-pivot-x="126" data-pivot-y="179">
+    <path d="M94 139Q127 130 155 144L171 169 165 198Q141 214 91 201L81 175Z" fill="#98bf45" />
+    <path d="m94 149 17 15 21 5 24-15 8 20-15 16-40-7-23-13Z" fill="#728f32" stroke="none" />
+    <path d="m98 142 57 35-10 13-55-35Z" fill="#754229" stroke-width="5" />
+    <path d="M89 187Q125 200 164 185L163 204 151 218 138 208 125 220 111 208 94 217 80 205Z" fill="#ec9b49" />
+    <path d="M91 192Q124 203 157 191L147 202 131 208 106 200Z" fill="#ffb756" stroke="none" />
+    <path d="m79 136 29 3 7 20-21 10-21-18Z" fill="#754229" stroke-width="6" />
+    <path d="m82 142 21 2 3 11-11 4Z" fill="#aa7540" stroke="none" />
+  <g stroke="#29180f" stroke-width="7" stroke-linecap="round" stroke-linejoin="round" id="goblin_lv2_metal_pauldron" data-parent-part="body">
+      <path d="M78 136 103 136 115 152 104 169 78 160 71 147Z" fill="#738587" stroke-width="6" />
+      <path d="m81 141 19 1 6 9-20 5-8-9Z" fill="#b9c9c3" stroke="none" /></g></g>
+  <g id="goblin_lv2_arm_front" stroke="#29180f" stroke-width="7" stroke-linecap="round" stroke-linejoin="round" data-pivot-x="164" data-pivot-y="161">
+    <path d="M159 146Q173 139 184 153L188 170 209 179Q223 187 216 201 208 214 194 205L174 190 157 180Q149 165 159 146Z" fill="#98bf45" />
+    <path d="m165 158 8-8 8 16 5 16 17 11-3 10-18-13-21-17Z" fill="#728f32" stroke="none" />
+    <path d="m178 173 22 11-9 18-23-12Z" fill="#ec9b49" stroke-width="5" />
+    <path d="m181 180 12 6-4 8" fill="none" stroke="#ffb756" stroke-width="4" />
+    <path d="m204 193-6 10" fill="none" stroke-width="5" />
+  </g>
+  <g id="goblin_lv2_head" stroke="#29180f" stroke-width="7" stroke-linecap="round" stroke-linejoin="round" data-pivot-x="133" data-pivot-y="145">
+    <path d="M82 70Q60 48 23 51L35 82Q48 111 75 113L89 99Z" fill="#98bf45" />
+    <path d="M35 59Q57 60 73 78L70 98Q50 92 43 76Z" fill="#ce8e62" stroke-width="4" />
+    <path d="m48 67 22 14-2 15-11-8Z" fill="#a86342" stroke="none" />
+    <path d="M174 76Q194 58 213 62L197 88Q185 110 172 112L164 95Z" fill="#98bf45" />
+    <path d="m183 78 18-8-15 25-11 6Z" fill="#ce8e62" stroke-width="4" />
+    <path d="M92 46Q124 23 153 33 178 40 190 72L195 110Q192 137 175 150 149 169 119 158L91 147Q70 135 68 110 65 75 92 46Z" fill="#98bf45" />
+    <path d="M96 48Q124 28 151 40L166 60 145 52 127 47 108 58Z" fill="#afd15b" stroke="none" />
+    <path d="M84 68 92 79Q75 113 93 137L126 153 116 154 93 142Q72 132 74 105Z M181 84l10 25-4 23-21 22-16 5 20-23Z" fill="#728f32" stroke="none" />
+    <ellipse cx="109" cy="112" rx="8" ry="12" transform="rotate(17 109 112)" fill="#29180f" stroke="none" />
+    <ellipse cx="164" cy="112" rx="7" ry="11" transform="rotate(12 164 112)" fill="#29180f" stroke="none" />
+    <path d="m94 96 27 14 m34 0 24-14" fill="none" stroke-width="6" />
+    <path d="M123 110Q135 100 145 111L154 125Q150 136 140 131L123 120Z" fill="#728f32" stroke-width="6" />
+    <path d="m130 112 9-2 9 11-8-4Z" fill="#98bf45" stroke="none" />
+    <path d="m124 146 10-13 8 21Z" fill="#ead5a2" stroke-width="5" />
+  </g>
+  <g id="goblin_lv2_dagger" stroke="#29180f" stroke-width="7" stroke-linecap="round" stroke-linejoin="round" data-pivot-x="205" data-pivot-y="190">
+    <path d="m204 175 18 8-15 30Q201 221 188 211L185 206Z" fill="#754229" stroke-width="6" />
+    <path d="m202 188 9 6-10 17-9-4Z" fill="#aa7540" stroke="none" />
+    <g stroke="#29180f" stroke-width="7" stroke-linecap="round" stroke-linejoin="round" id="goblin_lv2_tier_blade" data-parent-part="dagger"><g transform="translate(205 190) rotate(12)" stroke-width="6"><path d="M-8-16-7-66 8-96 19-68 14-17Z" fill="#c5c0b6" /><path d="M8-87 10-22 16-24 16-65Z" fill="#738587" stroke="none" /><path d="m-15-15 34 0-1 10-33 0Z" fill="#738587" stroke-width="5" /></g></g></g>
+</svg></div></div>
+          <div class="threshold">60–119 HP · ×2</div>
+          <p>Широкий кинжал · металлический наплечник</p></article>
+<article style="--tier:#df5654;--canvas:86.4">
+          <header><strong>Гоблин</strong><span class="tier">3</span></header>
+          <div class="stage"><div class="actor"><svg xmlns="http://www.w3.org/2000/svg" width="256" height="256" viewBox="0 0 256 256">
+  <title>Гоблин · уровень 3 · preview only</title>
+  <g id="goblin_lv3_arm_back" stroke="#29180f" stroke-width="7" stroke-linecap="round" stroke-linejoin="round" data-pivot-x="83" data-pivot-y="159">
+    <path d="M78 146Q94 145 93 161L76 184 69 207Q59 220 42 211 31 207 34 191L47 165Q58 149 78 146Z" fill="#98bf45" />
+    <path d="m58 165 15 3-14 24-7 18-11-5 7-22Z" fill="#728f32" stroke="none" />
+    <path d="m41 176 30 10-4 15-33-10Z" fill="#df5654" stroke-width="5" />
+    <path d="m45 181 20 7" fill="none" stroke="#ff6563" stroke-width="4" />
+    <path d="m58 201-4 8" fill="none" stroke-width="5" />
+  <g stroke="#29180f" stroke-width="7" stroke-linecap="round" stroke-linejoin="round" id="goblin_lv3_shield" data-parent-part="arm_back">
+          <path d="M20 161Q46 153 74 163L73 190Q67 215 47 226 25 214 20 190Z" fill="#895334" stroke-width="6" />
+          <path d="M28 169Q46 163 66 169L65 189Q60 207 47 217 32 207 28 188Z" fill="#b77e42" stroke-width="4" />
+          <path d="m46 171 1 35" fill="none" stroke="#754229" stroke-width="4" />
+          <circle cx="47" cy="188" r="8" fill="#df5654" stroke-width="4" /></g></g>
+  <g id="goblin_lv3_leg_left" stroke="#29180f" stroke-width="7" stroke-linecap="round" stroke-linejoin="round" data-pivot-x="101" data-pivot-y="203">
+    <path d="M99 188Q113 182 121 196L114 216 117 231Q111 241 80 237L77 229 87 213 90 199Z" fill="#98bf45" />
+    <path d="m91 205 15-8 5 5-12 20-15 7Z" fill="#728f32" stroke="none" />
+    <path d="m84 217 30-4 5 23Q101 241 78 237L77 229Z" fill="#df5654" stroke-width="6" />
+    <path d="m86 218 24-3 2 8-29 6Z" fill="#ff6563" stroke="none" />
+    <path d="m85 230 17-7 9 12-28 1Z" fill="#98bf45" stroke-width="4" />
+  </g>
+  <g id="goblin_lv3_leg_right" stroke="#29180f" stroke-width="7" stroke-linecap="round" stroke-linejoin="round" data-pivot-x="146" data-pivot-y="203">
+    <path d="M134 190Q147 180 156 192L163 211 170 229 166 237Q146 241 132 234L131 220 128 203Z" fill="#98bf45" />
+    <path d="m141 194 13-1 5 24-9 14-17-3 3-15Z" fill="#728f32" stroke="none" />
+    <path d="m131 217 31-4 9 22Q153 242 132 236L130 227Z" fill="#df5654" stroke-width="6" />
+    <path d="m136 219 23-4 3 8-25 7Z" fill="#ff6563" stroke="none" />
+    <path d="m143 226 14-4 9 12-27 2Z" fill="#98bf45" stroke-width="4" />
+  </g>
+  <g id="goblin_lv3_body" stroke="#29180f" stroke-width="7" stroke-linecap="round" stroke-linejoin="round" data-pivot-x="126" data-pivot-y="179">
+    <path d="M94 139Q127 130 155 144L171 169 165 198Q141 214 91 201L81 175Z" fill="#98bf45" />
+    <path d="m94 149 17 15 21 5 24-15 8 20-15 16-40-7-23-13Z" fill="#728f32" stroke="none" />
+    <path d="m98 142 57 35-10 13-55-35Z" fill="#754229" stroke-width="5" />
+    <path d="M89 187Q125 200 164 185L163 204 151 218 138 208 125 220 111 208 94 217 80 205Z" fill="#df5654" />
+    <path d="M91 192Q124 203 157 191L147 202 131 208 106 200Z" fill="#ff6563" stroke="none" />
+    <path d="m79 136 29 3 7 20-21 10-21-18Z" fill="#754229" stroke-width="6" />
+    <path d="m82 142 21 2 3 11-11 4Z" fill="#aa7540" stroke="none" />
+  <g stroke="#29180f" stroke-width="7" stroke-linecap="round" stroke-linejoin="round" id="goblin_lv3_metal_pauldron" data-parent-part="body">
+      <path d="M78 136 103 136 115 152 104 169 78 160 71 147Z" fill="#738587" stroke-width="6" />
+      <path d="m81 141 19 1 6 9-20 5-8-9Z" fill="#b9c9c3" stroke="none" /></g></g>
+  <g id="goblin_lv3_arm_front" stroke="#29180f" stroke-width="7" stroke-linecap="round" stroke-linejoin="round" data-pivot-x="164" data-pivot-y="161">
+    <path d="M159 146Q173 139 184 153L188 170 209 179Q223 187 216 201 208 214 194 205L174 190 157 180Q149 165 159 146Z" fill="#98bf45" />
+    <path d="m165 158 8-8 8 16 5 16 17 11-3 10-18-13-21-17Z" fill="#728f32" stroke="none" />
+    <path d="m178 173 22 11-9 18-23-12Z" fill="#df5654" stroke-width="5" />
+    <path d="m181 180 12 6-4 8" fill="none" stroke="#ff6563" stroke-width="4" />
+    <path d="m204 193-6 10" fill="none" stroke-width="5" />
+  </g>
+  <g id="goblin_lv3_head" stroke="#29180f" stroke-width="7" stroke-linecap="round" stroke-linejoin="round" data-pivot-x="133" data-pivot-y="145">
+    <path d="M82 70Q60 48 23 51L35 82Q48 111 75 113L89 99Z" fill="#98bf45" />
+    <path d="M35 59Q57 60 73 78L70 98Q50 92 43 76Z" fill="#ce8e62" stroke-width="4" />
+    <path d="m48 67 22 14-2 15-11-8Z" fill="#a86342" stroke="none" />
+    <path d="M174 76Q194 58 213 62L197 88Q185 110 172 112L164 95Z" fill="#98bf45" />
+    <path d="m183 78 18-8-15 25-11 6Z" fill="#ce8e62" stroke-width="4" />
+    <path d="M92 46Q124 23 153 33 178 40 190 72L195 110Q192 137 175 150 149 169 119 158L91 147Q70 135 68 110 65 75 92 46Z" fill="#98bf45" />
+    <path d="M96 48Q124 28 151 40L166 60 145 52 127 47 108 58Z" fill="#afd15b" stroke="none" />
+    <path d="M84 68 92 79Q75 113 93 137L126 153 116 154 93 142Q72 132 74 105Z M181 84l10 25-4 23-21 22-16 5 20-23Z" fill="#728f32" stroke="none" />
+    <ellipse cx="109" cy="112" rx="8" ry="12" transform="rotate(17 109 112)" fill="#29180f" stroke="none" />
+    <ellipse cx="164" cy="112" rx="7" ry="11" transform="rotate(12 164 112)" fill="#29180f" stroke="none" />
+    <path d="m94 96 27 14 m34 0 24-14" fill="none" stroke-width="6" />
+    <path d="M123 110Q135 100 145 111L154 125Q150 136 140 131L123 120Z" fill="#728f32" stroke-width="6" />
+    <path d="m130 112 9-2 9 11-8-4Z" fill="#98bf45" stroke="none" />
+    <path d="m124 146 10-13 8 21Z" fill="#ead5a2" stroke-width="5" />
+  </g>
+  <g id="goblin_lv3_dagger" stroke="#29180f" stroke-width="7" stroke-linecap="round" stroke-linejoin="round" data-pivot-x="205" data-pivot-y="190">
+    <path d="m204 175 18 8-15 30Q201 221 188 211L185 206Z" fill="#754229" stroke-width="6" />
+    <path d="m202 188 9 6-10 17-9-4Z" fill="#aa7540" stroke="none" />
+    <g stroke="#29180f" stroke-width="7" stroke-linecap="round" stroke-linejoin="round" id="goblin_lv3_tier_blade" data-parent-part="dagger"><g transform="translate(205 190) rotate(12)" stroke-width="6"><path d="M-7-15-7-99 5-121 16-100 15-15Z" fill="#c5c0b6" /><path d="M5-113 5-19 13-19 13-98Z" fill="#738587" stroke="none" /><path d="m-15-15 34 0-1 10-33 0Z" fill="#738587" stroke-width="5" /></g></g></g>
+</svg></div></div>
+          <div class="threshold">120–239 HP · ×4</div>
+          <p>Короткий меч · деревянный щит</p></article>
+<article style="--tier:#5295ef;--canvas:86.4">
+          <header><strong>Гоблин</strong><span class="tier">4</span></header>
+          <div class="stage"><div class="actor"><svg xmlns="http://www.w3.org/2000/svg" width="256" height="256" viewBox="0 0 256 256">
+  <title>Гоблин · уровень 4 · preview only</title>
+  <g id="goblin_lv4_arm_back" stroke="#29180f" stroke-width="7" stroke-linecap="round" stroke-linejoin="round" data-pivot-x="83" data-pivot-y="159">
+    <path d="M78 146Q94 145 93 161L76 184 69 207Q59 220 42 211 31 207 34 191L47 165Q58 149 78 146Z" fill="#98bf45" />
+    <path d="m58 165 15 3-14 24-7 18-11-5 7-22Z" fill="#728f32" stroke="none" />
+    <path d="m41 176 30 10-4 15-33-10Z" fill="#5295ef" stroke-width="5" />
+    <path d="m45 181 20 7" fill="none" stroke="#61b0ff" stroke-width="4" />
+    <path d="m58 201-4 8" fill="none" stroke-width="5" />
+  <g stroke="#29180f" stroke-width="7" stroke-linecap="round" stroke-linejoin="round" id="goblin_lv4_shield" data-parent-part="arm_back">
+          <path d="M20 161Q46 153 74 163L73 190Q67 215 47 226 25 214 20 190Z" fill="#738587" stroke-width="6" />
+          <path d="M28 169Q46 163 66 169L65 189Q60 207 47 217 32 207 28 188Z" fill="#b77e42" stroke-width="4" />
+          <path d="m46 171 1 35" fill="none" stroke="#754229" stroke-width="4" />
+          <circle cx="47" cy="188" r="8" fill="#5295ef" stroke-width="4" /></g></g>
+  <g id="goblin_lv4_leg_left" stroke="#29180f" stroke-width="7" stroke-linecap="round" stroke-linejoin="round" data-pivot-x="101" data-pivot-y="203">
+    <path d="M99 188Q113 182 121 196L114 216 117 231Q111 241 80 237L77 229 87 213 90 199Z" fill="#98bf45" />
+    <path d="m91 205 15-8 5 5-12 20-15 7Z" fill="#728f32" stroke="none" />
+    <path d="m84 217 30-4 5 23Q101 241 78 237L77 229Z" fill="#5295ef" stroke-width="6" />
+    <path d="m86 218 24-3 2 8-29 6Z" fill="#61b0ff" stroke="none" />
+    <path d="m85 230 17-7 9 12-28 1Z" fill="#98bf45" stroke-width="4" />
+  </g>
+  <g id="goblin_lv4_leg_right" stroke="#29180f" stroke-width="7" stroke-linecap="round" stroke-linejoin="round" data-pivot-x="146" data-pivot-y="203">
+    <path d="M134 190Q147 180 156 192L163 211 170 229 166 237Q146 241 132 234L131 220 128 203Z" fill="#98bf45" />
+    <path d="m141 194 13-1 5 24-9 14-17-3 3-15Z" fill="#728f32" stroke="none" />
+    <path d="m131 217 31-4 9 22Q153 242 132 236L130 227Z" fill="#5295ef" stroke-width="6" />
+    <path d="m136 219 23-4 3 8-25 7Z" fill="#61b0ff" stroke="none" />
+    <path d="m143 226 14-4 9 12-27 2Z" fill="#98bf45" stroke-width="4" />
+  </g>
+  <g id="goblin_lv4_body" stroke="#29180f" stroke-width="7" stroke-linecap="round" stroke-linejoin="round" data-pivot-x="126" data-pivot-y="179">
+    <path d="M94 139Q127 130 155 144L171 169 165 198Q141 214 91 201L81 175Z" fill="#98bf45" />
+    <path d="m94 149 17 15 21 5 24-15 8 20-15 16-40-7-23-13Z" fill="#728f32" stroke="none" />
+    <path d="m98 142 57 35-10 13-55-35Z" fill="#754229" stroke-width="5" />
+    <path d="M89 187Q125 200 164 185L163 204 151 218 138 208 125 220 111 208 94 217 80 205Z" fill="#5295ef" />
+    <path d="M91 192Q124 203 157 191L147 202 131 208 106 200Z" fill="#61b0ff" stroke="none" />
+    <path d="m79 136 29 3 7 20-21 10-21-18Z" fill="#754229" stroke-width="6" />
+    <path d="m82 142 21 2 3 11-11 4Z" fill="#aa7540" stroke="none" />
+  <g stroke="#29180f" stroke-width="7" stroke-linecap="round" stroke-linejoin="round" id="goblin_lv4_metal_pauldron" data-parent-part="body">
+      <path d="M78 136 103 136 115 152 104 169 78 160 71 147Z" fill="#738587" stroke-width="6" />
+      <path d="m81 141 19 1 6 9-20 5-8-9Z" fill="#b9c9c3" stroke="none" /></g><g stroke="#29180f" stroke-width="7" stroke-linecap="round" stroke-linejoin="round" id="goblin_lv4_breastplate" data-parent-part="body">
+          <path d="m103 152 40-3 17 20-9 19-41 3-15-17Z" fill="#738587" stroke-width="6" />
+          <path d="m105 158 34-2 10 13-27 8-19-10Z" fill="#b9c9c3" stroke="none" />
+          <path d="m113 181 26-3" stroke="#5295ef" stroke-width="6" /></g></g>
+  <g id="goblin_lv4_arm_front" stroke="#29180f" stroke-width="7" stroke-linecap="round" stroke-linejoin="round" data-pivot-x="164" data-pivot-y="161">
+    <path d="M159 146Q173 139 184 153L188 170 209 179Q223 187 216 201 208 214 194 205L174 190 157 180Q149 165 159 146Z" fill="#98bf45" />
+    <path d="m165 158 8-8 8 16 5 16 17 11-3 10-18-13-21-17Z" fill="#728f32" stroke="none" />
+    <path d="m178 173 22 11-9 18-23-12Z" fill="#5295ef" stroke-width="5" />
+    <path d="m181 180 12 6-4 8" fill="none" stroke="#61b0ff" stroke-width="4" />
+    <path d="m204 193-6 10" fill="none" stroke-width="5" />
+  </g>
+  <g id="goblin_lv4_head" stroke="#29180f" stroke-width="7" stroke-linecap="round" stroke-linejoin="round" data-pivot-x="133" data-pivot-y="145">
+    <path d="M82 70Q60 48 23 51L35 82Q48 111 75 113L89 99Z" fill="#98bf45" />
+    <path d="M35 59Q57 60 73 78L70 98Q50 92 43 76Z" fill="#ce8e62" stroke-width="4" />
+    <path d="m48 67 22 14-2 15-11-8Z" fill="#a86342" stroke="none" />
+    <path d="M174 76Q194 58 213 62L197 88Q185 110 172 112L164 95Z" fill="#98bf45" />
+    <path d="m183 78 18-8-15 25-11 6Z" fill="#ce8e62" stroke-width="4" />
+    <path d="M92 46Q124 23 153 33 178 40 190 72L195 110Q192 137 175 150 149 169 119 158L91 147Q70 135 68 110 65 75 92 46Z" fill="#98bf45" />
+    <path d="M96 48Q124 28 151 40L166 60 145 52 127 47 108 58Z" fill="#afd15b" stroke="none" />
+    <path d="M84 68 92 79Q75 113 93 137L126 153 116 154 93 142Q72 132 74 105Z M181 84l10 25-4 23-21 22-16 5 20-23Z" fill="#728f32" stroke="none" />
+    <ellipse cx="109" cy="112" rx="8" ry="12" transform="rotate(17 109 112)" fill="#29180f" stroke="none" />
+    <ellipse cx="164" cy="112" rx="7" ry="11" transform="rotate(12 164 112)" fill="#29180f" stroke="none" />
+    <path d="m94 96 27 14 m34 0 24-14" fill="none" stroke-width="6" />
+    <path d="M123 110Q135 100 145 111L154 125Q150 136 140 131L123 120Z" fill="#728f32" stroke-width="6" />
+    <path d="m130 112 9-2 9 11-8-4Z" fill="#98bf45" stroke="none" />
+    <path d="m124 146 10-13 8 21Z" fill="#ead5a2" stroke-width="5" />
+  </g>
+  <g id="goblin_lv4_dagger" stroke="#29180f" stroke-width="7" stroke-linecap="round" stroke-linejoin="round" data-pivot-x="205" data-pivot-y="190">
+    <path d="m204 175 18 8-15 30Q201 221 188 211L185 206Z" fill="#754229" stroke-width="6" />
+    <path d="m202 188 9 6-10 17-9-4Z" fill="#aa7540" stroke="none" />
+    <g stroke="#29180f" stroke-width="7" stroke-linecap="round" stroke-linejoin="round" id="goblin_lv4_tier_blade" data-parent-part="dagger"><g transform="translate(205 190) rotate(12)" stroke-width="6"><path d="M-7-15-7-104 6-126 21-109 14-99 23-89 15-80 23-69 15-59 22-48 14-37 15-15Z" fill="#c5c0b6" /><path d="M6-116 6-21 13-22 12-100Z" fill="#738587" stroke="none" /><path d="m-15-15 34 0-1 10-33 0Z" fill="#738587" stroke-width="5" /></g></g></g>
+</svg></div></div>
+          <div class="threshold">240–479 HP · ×8</div>
+          <p>Зубчатый меч · окантованный щит · нагрудник</p></article>
+<article style="--tier:#b66dea;--canvas:86.4">
+          <header><strong>Гоблин</strong><span class="tier">5</span></header>
+          <div class="stage"><div class="actor"><svg xmlns="http://www.w3.org/2000/svg" width="256" height="256" viewBox="0 0 256 256">
+  <title>Гоблин · уровень 5 · preview only</title>
+  <g id="goblin_lv5_arm_back" stroke="#29180f" stroke-width="7" stroke-linecap="round" stroke-linejoin="round" data-pivot-x="83" data-pivot-y="159">
+    <path d="M78 146Q94 145 93 161L76 184 69 207Q59 220 42 211 31 207 34 191L47 165Q58 149 78 146Z" fill="#98bf45" />
+    <path d="m58 165 15 3-14 24-7 18-11-5 7-22Z" fill="#728f32" stroke="none" />
+    <path d="m41 176 30 10-4 15-33-10Z" fill="#b66dea" stroke-width="5" />
+    <path d="m45 181 20 7" fill="none" stroke="#d781ff" stroke-width="4" />
+    <path d="m58 201-4 8" fill="none" stroke-width="5" />
+  <g stroke="#29180f" stroke-width="7" stroke-linecap="round" stroke-linejoin="round" id="goblin_lv5_shield" data-parent-part="arm_back">
+          <path d="M20 161Q46 153 74 163L73 190Q67 215 47 226 25 214 20 190Z" fill="#738587" stroke-width="6" />
+          <path d="M28 169Q46 163 66 169L65 189Q60 207 47 217 32 207 28 188Z" fill="#4c5a5d" stroke-width="4" />
+          <path d="m46 171 1 35" fill="none" stroke="#738587" stroke-width="4" />
+          <circle cx="47" cy="188" r="8" fill="#b66dea" stroke-width="4" /></g></g>
+  <g id="goblin_lv5_leg_left" stroke="#29180f" stroke-width="7" stroke-linecap="round" stroke-linejoin="round" data-pivot-x="101" data-pivot-y="203">
+    <path d="M99 188Q113 182 121 196L114 216 117 231Q111 241 80 237L77 229 87 213 90 199Z" fill="#98bf45" />
+    <path d="m91 205 15-8 5 5-12 20-15 7Z" fill="#728f32" stroke="none" />
+    <path d="m84 217 30-4 5 23Q101 241 78 237L77 229Z" fill="#b66dea" stroke-width="6" />
+    <path d="m86 218 24-3 2 8-29 6Z" fill="#d781ff" stroke="none" />
+    <path d="m85 230 17-7 9 12-28 1Z" fill="#98bf45" stroke-width="4" />
+  </g>
+  <g id="goblin_lv5_leg_right" stroke="#29180f" stroke-width="7" stroke-linecap="round" stroke-linejoin="round" data-pivot-x="146" data-pivot-y="203">
+    <path d="M134 190Q147 180 156 192L163 211 170 229 166 237Q146 241 132 234L131 220 128 203Z" fill="#98bf45" />
+    <path d="m141 194 13-1 5 24-9 14-17-3 3-15Z" fill="#728f32" stroke="none" />
+    <path d="m131 217 31-4 9 22Q153 242 132 236L130 227Z" fill="#b66dea" stroke-width="6" />
+    <path d="m136 219 23-4 3 8-25 7Z" fill="#d781ff" stroke="none" />
+    <path d="m143 226 14-4 9 12-27 2Z" fill="#98bf45" stroke-width="4" />
+  </g>
+  <g id="goblin_lv5_body" stroke="#29180f" stroke-width="7" stroke-linecap="round" stroke-linejoin="round" data-pivot-x="126" data-pivot-y="179">
+    <path d="M94 139Q127 130 155 144L171 169 165 198Q141 214 91 201L81 175Z" fill="#98bf45" />
+    <path d="m94 149 17 15 21 5 24-15 8 20-15 16-40-7-23-13Z" fill="#728f32" stroke="none" />
+    <path d="m98 142 57 35-10 13-55-35Z" fill="#754229" stroke-width="5" />
+    <path d="M89 187Q125 200 164 185L163 204 151 218 138 208 125 220 111 208 94 217 80 205Z" fill="#b66dea" />
+    <path d="M91 192Q124 203 157 191L147 202 131 208 106 200Z" fill="#d781ff" stroke="none" />
+    <path d="m79 136 29 3 7 20-21 10-21-18Z" fill="#754229" stroke-width="6" />
+    <path d="m82 142 21 2 3 11-11 4Z" fill="#aa7540" stroke="none" />
+  <g stroke="#29180f" stroke-width="7" stroke-linecap="round" stroke-linejoin="round" id="goblin_lv5_metal_pauldron" data-parent-part="body">
+      <path d="M78 136 103 136 115 152 104 169 78 160 71 147Z" fill="#738587" stroke-width="6" />
+      <path d="m81 141 19 1 6 9-20 5-8-9Z" fill="#b9c9c3" stroke="none" /></g><g stroke="#29180f" stroke-width="7" stroke-linecap="round" stroke-linejoin="round" id="goblin_lv5_breastplate" data-parent-part="body">
+          <path d="m103 152 40-3 17 20-9 19-41 3-15-17Z" fill="#738587" stroke-width="6" />
+          <path d="m105 158 34-2 10 13-27 8-19-10Z" fill="#b9c9c3" stroke="none" />
+          <path d="m113 181 26-3" stroke="#b66dea" stroke-width="6" /></g></g>
+  <g id="goblin_lv5_arm_front" stroke="#29180f" stroke-width="7" stroke-linecap="round" stroke-linejoin="round" data-pivot-x="164" data-pivot-y="161">
+    <path d="M159 146Q173 139 184 153L188 170 209 179Q223 187 216 201 208 214 194 205L174 190 157 180Q149 165 159 146Z" fill="#98bf45" />
+    <path d="m165 158 8-8 8 16 5 16 17 11-3 10-18-13-21-17Z" fill="#728f32" stroke="none" />
+    <path d="m178 173 22 11-9 18-23-12Z" fill="#b66dea" stroke-width="5" />
+    <path d="m181 180 12 6-4 8" fill="none" stroke="#d781ff" stroke-width="4" />
+    <path d="m204 193-6 10" fill="none" stroke-width="5" />
+  </g>
+  <g id="goblin_lv5_head" stroke="#29180f" stroke-width="7" stroke-linecap="round" stroke-linejoin="round" data-pivot-x="133" data-pivot-y="145">
+    <path d="M82 70Q60 48 23 51L35 82Q48 111 75 113L89 99Z" fill="#98bf45" />
+    <path d="M35 59Q57 60 73 78L70 98Q50 92 43 76Z" fill="#ce8e62" stroke-width="4" />
+    <path d="m48 67 22 14-2 15-11-8Z" fill="#a86342" stroke="none" />
+    <path d="M174 76Q194 58 213 62L197 88Q185 110 172 112L164 95Z" fill="#98bf45" />
+    <path d="m183 78 18-8-15 25-11 6Z" fill="#ce8e62" stroke-width="4" />
+    <path d="M92 46Q124 23 153 33 178 40 190 72L195 110Q192 137 175 150 149 169 119 158L91 147Q70 135 68 110 65 75 92 46Z" fill="#98bf45" />
+    <path d="M96 48Q124 28 151 40L166 60 145 52 127 47 108 58Z" fill="#afd15b" stroke="none" />
+    <path d="M84 68 92 79Q75 113 93 137L126 153 116 154 93 142Q72 132 74 105Z M181 84l10 25-4 23-21 22-16 5 20-23Z" fill="#728f32" stroke="none" />
+    <ellipse cx="109" cy="112" rx="8" ry="12" transform="rotate(17 109 112)" fill="#29180f" stroke="none" />
+    <ellipse cx="164" cy="112" rx="7" ry="11" transform="rotate(12 164 112)" fill="#29180f" stroke="none" />
+    <path d="m94 96 27 14 m34 0 24-14" fill="none" stroke-width="6" />
+    <path d="M123 110Q135 100 145 111L154 125Q150 136 140 131L123 120Z" fill="#728f32" stroke-width="6" />
+    <path d="m130 112 9-2 9 11-8-4Z" fill="#98bf45" stroke="none" />
+    <path d="m124 146 10-13 8 21Z" fill="#ead5a2" stroke-width="5" />
+  <g stroke="#29180f" stroke-width="7" stroke-linecap="round" stroke-linejoin="round" id="goblin_lv5_open_helmet" data-parent-part="head">
+          <path d="M76 85 80 56 101 35 130 28 155 34 176 50 186 84 171 86 157 66 119 59 93 87Z" fill="#738587" stroke-width="6" />
+          <path d="m87 58 18-17 24-6 23 5 13 12-18-4-28-2-25 17Z" fill="#b9c9c3" stroke="none" />
+          <path d="m115 32 18-4 6 37-21-6Z" fill="#b66dea" stroke-width="5" /></g></g>
+  <g id="goblin_lv5_dagger" stroke="#29180f" stroke-width="7" stroke-linecap="round" stroke-linejoin="round" data-pivot-x="205" data-pivot-y="190">
+    <path d="m204 175 18 8-15 30Q201 221 188 211L185 206Z" fill="#754229" stroke-width="6" />
+    <path d="m202 188 9 6-10 17-9-4Z" fill="#aa7540" stroke="none" />
+    <g stroke="#29180f" stroke-width="7" stroke-linecap="round" stroke-linejoin="round" id="goblin_lv5_tier_blade" data-parent-part="dagger"><g transform="translate(205 190) rotate(12)" stroke-width="6"><path d="M-9-16-12-119 15-133 27-112 25-32 15-15Z" fill="#738587" /><path d="M-5-114 12-123 17-107 16-32 7-20-3-20Z" fill="#b9c9c3" stroke="none" /><path d="m-15-15 34 0-1 10-33 0Z" fill="#738587" stroke-width="5" /></g></g></g>
+</svg></div></div>
+          <div class="threshold">от 480 HP · ×16</div>
+          <p>Тесак · металлический щит · открытый шлем</p></article>
+<article style="--tier:#88b96b;--canvas:120">
+          <header><strong>Орк</strong><span class="tier">1</span></header>
+          <div class="stage"><div class="actor"><svg xmlns="http://www.w3.org/2000/svg" width="256" height="256" viewBox="0 0 256 256">
+  <title>Орк · уровень 1 · preview only</title>
+  <g id="orc_lv1_arm_back" stroke="#29180f" stroke-width="7" stroke-linecap="round" stroke-linejoin="round" data-pivot-x="75" data-pivot-y="148">
+    <path d="M70 128Q90 128 90 149L73 178 66 201Q58 217 42 212L28 206Q21 196 28 179L43 150Z" fill="#7fa443" />
+    <path d="m57 151 20-9-7 24-17 23-5 18-13-4 4-21Z" fill="#5f8134" stroke="none" />
+    <g data-equipment="bracer_back">
+      <path d="m33 174 39 11-8 19-39-12Z" fill="#88b96b" stroke-width="5" data-mask="true" />
+      <path d="m34 180 31 9-3 7-30-9Z" fill="#a0da7e" stroke="none" />
+    </g>
+    <path d="m50 198-5 10" fill="none" stroke-width="5" />
+    <path d="m41 110 31-3 24 26-16 28-26-6-27-22Z" fill="#895334" stroke-width="6" />
+    <path d="m49 117 22-2 16 20-13 15-31-13Z" fill="#8d8981" stroke-width="5" />
+    <path d="m53 119 15-2 10 12-7 7-21-8Z" fill="#c5c0b6" stroke="none" />
+    <path d="M35 124 33 91 59 112Q52 129 35 124Z" fill="#f3e7ce" stroke-width="6" />
+    <path d="m39 104 15 10-10 6Z" fill="#d9c39e" stroke="none" />
+    <path d="m58 112 10-29 13 30Q70 120 58 112Z" fill="#f3e7ce" stroke-width="6" />
+  </g>
+  <g id="orc_lv1_leg_left" stroke="#29180f" stroke-width="7" stroke-linecap="round" stroke-linejoin="round" data-pivot-x="102" data-pivot-y="207">
+    <path d="M91 191Q112 186 121 200L117 220 118 234Q107 243 83 237L82 230 87 207Z" fill="#7fa443" />
+    <path d="m101 198 13 3-9 27-15 7-1-14Z" fill="#5f8134" stroke="none" />
+    <g data-equipment="boot_left">
+      <path d="m86 216 31-2 4 23Q102 242 81 237L80 230Z" fill="#88b96b" stroke-width="6" data-mask="true" />
+      <path d="m88 221 25-3 2 7-30 4Z" fill="#a0da7e" stroke="none" />
+    </g>
+  </g>
+  <g id="orc_lv1_leg_right" stroke="#29180f" stroke-width="7" stroke-linecap="round" stroke-linejoin="round" data-pivot-x="147" data-pivot-y="207">
+    <path d="M135 193Q152 185 161 200L164 218 174 232 170 238Q150 241 133 234L131 213Z" fill="#7fa443" />
+    <path d="m148 197 10 5 2 24-15 9-10-6 8-13Z" fill="#5f8134" stroke="none" />
+    <g data-equipment="boot_right">
+      <path d="m134 217 30-2 12 21Q155 242 133 236L132 229Z" fill="#88b96b" stroke-width="6" data-mask="true" />
+      <path d="m140 221 20-3 5 8-26 4Z" fill="#a0da7e" stroke="none" />
+    </g>
+  </g>
+  <g id="orc_lv1_body" stroke="#29180f" stroke-width="7" stroke-linecap="round" stroke-linejoin="round" data-pivot-x="126" data-pivot-y="176">
+    <path d="M89 132Q129 120 164 134L180 163 174 191Q154 215 90 201L78 173Z" fill="#7fa443" />
+    <path d="m89 149 24 15 30 2 21-19 9 23-21 23-47-3-22-19Z" fill="#5f8134" stroke="none" />
+    <path d="m100 136 24-6 30 7-10 10-27-2Z" fill="#a0bf60" stroke="none" />
+    <g data-equipment="loincloth">
+      <path d="M88 188Q126 199 164 188L174 211 154 207 131 222 113 209 92 215 83 200Z" fill="#88b96b" stroke-width="6" data-mask="true" />
+      <path d="m108 199 21 4 26-6-24 19Z" fill="#a0da7e" stroke="none" />
+    </g>
+    <path d="m91 132 77 45-11 16-77-45Z" fill="#895334" stroke-width="5" />
+    <path d="m99 140 58 35-5 5-60-35Z" fill="#a46b42" stroke="none" />
+    <path d="m119 148 12-12 19 15-13 15Z" fill="#c5c0b6" stroke-width="5" />
+    <path d="m130 146 8 6-3 4-8-6Z" fill="#613821" stroke="none" />
+    <path d="M84 181Q126 192 174 181L175 197Q127 207 83 197Z" fill="#613821" stroke-width="5" />
+    <path d="M90 187Q104 191 118 190L117 196 89 191Z" fill="#895334" stroke="none" />
+    <rect x="121" y="184" width="24" height="20" rx="3" fill="#c5c0b6" stroke-width="5" />
+    <rect x="128" y="190" width="10" height="8" rx="1" fill="#613821" stroke="none" />
+  </g>
+  <g id="orc_lv1_axe" stroke="#29180f" stroke-width="7" stroke-linecap="round" stroke-linejoin="round" data-pivot-x="203" data-pivot-y="184">
+    <path d="m217 88 13 5-29 136Q198 240 184 232L182 225Z" fill="#895334" stroke-width="6" />
+    <path d="m221 96 4 2-28 127-6 4Z" fill="#a46b42" stroke="none" />
+    <path d="m212 118 13 4-4 19-14-4Z" fill="#f3e7ce" stroke-width="4" />
+    <path d="m210 127 13 4" fill="none" stroke="#d9c39e" stroke-width="4" />
+    <path d="M216 75 228 83Q244 95 248 120L249 143Q247 159 235 175L225 156Q235 135 219 118L205 102 208 89Z" fill="#8d8981" stroke-width="6" />
+    <path d="M226 90Q240 104 242 123L243 141Q240 154 235 163L230 156Q241 132 226 110L217 102Z" fill="#c5c0b6" stroke="none" />
+    <path d="m213 96 10 10 12 27-2 12-11-24-14-13Z" fill="#625e59" stroke="none" />
+    <path d="m215 73-18-7 4 29 16 11 11-20Z" fill="#895334" stroke-width="6" />
+    <path d="m203 76 15 5-6 11-8-4Z" fill="#a46b42" stroke="none" />
+  </g>
+  <g id="orc_lv1_arm_front" stroke="#29180f" stroke-width="7" stroke-linecap="round" stroke-linejoin="round" data-pivot-x="171" data-pivot-y="150">
+    <path d="M160 136Q174 130 185 143L193 165 207 177Q215 190 205 200 195 206 183 193L165 178Q153 160 160 136Z" fill="#7fa443" />
+    <path d="m172 145 9 3 3 22 15 10-4 17-16-13-17-28Z" fill="#5f8134" stroke="none" />
+    <g data-equipment="bracer_front">
+      <path d="m170 167 25-5 8 16-27 10Z" fill="#88b96b" stroke-width="5" data-mask="true" />
+      <path d="m176 171 17-4 4 7-19 6Z" fill="#a0da7e" stroke="none" />
+    </g>
+    <path d="m199 181-4 10" fill="none" stroke-width="5" />
+    <path d="m161 124 25-4 17 24-8 17-23 3-22-23Z" fill="#895334" stroke-width="6" />
+    <path d="m164 130 19-4 13 19-7 8-15 2-14-15Z" fill="#8d8981" stroke-width="5" />
+    <path d="m168 132 12-2 8 11-8 6-14-8Z" fill="#c5c0b6" stroke="none" />
+    <path d="m178 131 16-24 6 28Q190 140 178 131Z" fill="#f3e7ce" stroke-width="6" />
+  </g>
+  <g id="orc_lv1_head" stroke="#29180f" stroke-width="7" stroke-linecap="round" stroke-linejoin="round" data-pivot-x="128" data-pivot-y="142">
+    <path d="M81 75 56 58 59 86Q65 104 83 106L92 88Z" fill="#7fa443" />
+    <path d="m64 70 19 13-3 12-12-11Z" fill="#5f8134" stroke="none" />
+    <path d="m175 82 20-15-5 22Q185 104 174 107L167 93Z" fill="#7fa443" />
+    <path d="M83 47Q112 27 141 33 173 36 181 61L187 98Q187 129 168 143 147 159 111 153L85 142Q65 127 66 104L68 73Z" fill="#7fa443" />
+    <path d="M87 49Q112 33 139 40L159 53 137 50 115 42 98 60Z" fill="#a0bf60" stroke="none" />
+    <path d="m78 73 12 13-6 26 9 21 22 16-25-12-15-14-4-19Z M178 90l5 13-4 24-20 20-17 6 16-19Z" fill="#5f8134" stroke="none" />
+    <ellipse cx="105" cy="103" rx="9" ry="12" fill="#29180f" stroke="none" />
+    <ellipse cx="154" cy="103" rx="8" ry="12" fill="#29180f" stroke="none" />
+    <path d="m89 87 29 12 m26-1 24-12" fill="none" stroke-width="6" />
+    <path d="M124 91Q130 87 136 91L139 115 128 121 119 114Z" fill="#5f8134" stroke="none" />
+    <path d="m102 131Q128 142 160 130" fill="none" stroke-width="7" />
+    <path d="m102 138 9-17 10 21Z" fill="#f3e7ce" stroke-width="5" />
+    <path d="m146 142 12-21 7 19Z" fill="#f3e7ce" stroke-width="5" />
+    <path d="M102 143Q127 135 162 142L156 149Q133 158 111 149Z" fill="#7fa443" stroke="none" />
+  </g>
+</svg></div></div>
+          <div class="threshold">60–119 HP · ×1</div>
+          <p>Топор · исходные наплечники</p></article>
+<article style="--tier:#ec9b49;--canvas:120">
+          <header><strong>Орк</strong><span class="tier">2</span></header>
+          <div class="stage"><div class="actor"><svg xmlns="http://www.w3.org/2000/svg" width="256" height="256" viewBox="0 0 256 256">
+  <title>Орк · уровень 2 · preview only</title>
+  <g id="orc_lv2_arm_back" stroke="#29180f" stroke-width="7" stroke-linecap="round" stroke-linejoin="round" data-pivot-x="75" data-pivot-y="148">
+    <path d="M70 128Q90 128 90 149L73 178 66 201Q58 217 42 212L28 206Q21 196 28 179L43 150Z" fill="#7fa443" />
+    <path d="m57 151 20-9-7 24-17 23-5 18-13-4 4-21Z" fill="#5f8134" stroke="none" />
+    <g data-equipment="bracer_back">
+      <path d="m33 174 39 11-8 19-39-12Z" fill="#ec9b49" stroke-width="5" data-mask="true" />
+      <path d="m34 180 31 9-3 7-30-9Z" fill="#ffb756" stroke="none" />
+    </g>
+    <path d="m50 198-5 10" fill="none" stroke-width="5" />
+    <path d="m41 110 31-3 24 26-16 28-26-6-27-22Z" fill="#895334" stroke-width="6" />
+    <path d="m49 117 22-2 16 20-13 15-31-13Z" fill="#8d8981" stroke-width="5" />
+    <path d="m53 119 15-2 10 12-7 7-21-8Z" fill="#c5c0b6" stroke="none" />
+    <path d="M35 124 33 91 59 112Q52 129 35 124Z" fill="#f3e7ce" stroke-width="6" />
+    <path d="m39 104 15 10-10 6Z" fill="#d9c39e" stroke="none" />
+    <path d="m58 112 10-29 13 30Q70 120 58 112Z" fill="#f3e7ce" stroke-width="6" />
+  <g stroke="#29180f" stroke-width="7" stroke-linecap="round" stroke-linejoin="round" id="orc_lv2_reinforced_pauldron" data-parent-part="arm_back">
+      <path d="m36 115 37-8 24 28-20 27-37-12-14-17Z" fill="#738587" stroke-width="6" />
+      <path d="m42 122 28-7 15 20-14 16-28-10Z" fill="#b9c9c3" stroke="none" /></g></g>
+  <g id="orc_lv2_leg_left" stroke="#29180f" stroke-width="7" stroke-linecap="round" stroke-linejoin="round" data-pivot-x="102" data-pivot-y="207">
+    <path d="M91 191Q112 186 121 200L117 220 118 234Q107 243 83 237L82 230 87 207Z" fill="#7fa443" />
+    <path d="m101 198 13 3-9 27-15 7-1-14Z" fill="#5f8134" stroke="none" />
+    <g data-equipment="boot_left">
+      <path d="m86 216 31-2 4 23Q102 242 81 237L80 230Z" fill="#ec9b49" stroke-width="6" data-mask="true" />
+      <path d="m88 221 25-3 2 7-30 4Z" fill="#ffb756" stroke="none" />
+    </g>
+  </g>
+  <g id="orc_lv2_leg_right" stroke="#29180f" stroke-width="7" stroke-linecap="round" stroke-linejoin="round" data-pivot-x="147" data-pivot-y="207">
+    <path d="M135 193Q152 185 161 200L164 218 174 232 170 238Q150 241 133 234L131 213Z" fill="#7fa443" />
+    <path d="m148 197 10 5 2 24-15 9-10-6 8-13Z" fill="#5f8134" stroke="none" />
+    <g data-equipment="boot_right">
+      <path d="m134 217 30-2 12 21Q155 242 133 236L132 229Z" fill="#ec9b49" stroke-width="6" data-mask="true" />
+      <path d="m140 221 20-3 5 8-26 4Z" fill="#ffb756" stroke="none" />
+    </g>
+  </g>
+  <g id="orc_lv2_body" stroke="#29180f" stroke-width="7" stroke-linecap="round" stroke-linejoin="round" data-pivot-x="126" data-pivot-y="176">
+    <path d="M89 132Q129 120 164 134L180 163 174 191Q154 215 90 201L78 173Z" fill="#7fa443" />
+    <path d="m89 149 24 15 30 2 21-19 9 23-21 23-47-3-22-19Z" fill="#5f8134" stroke="none" />
+    <path d="m100 136 24-6 30 7-10 10-27-2Z" fill="#a0bf60" stroke="none" />
+    <g data-equipment="loincloth">
+      <path d="M88 188Q126 199 164 188L174 211 154 207 131 222 113 209 92 215 83 200Z" fill="#ec9b49" stroke-width="6" data-mask="true" />
+      <path d="m108 199 21 4 26-6-24 19Z" fill="#ffb756" stroke="none" />
+    </g>
+    <path d="m91 132 77 45-11 16-77-45Z" fill="#895334" stroke-width="5" />
+    <path d="m99 140 58 35-5 5-60-35Z" fill="#a46b42" stroke="none" />
+    <path d="m119 148 12-12 19 15-13 15Z" fill="#c5c0b6" stroke-width="5" />
+    <path d="m130 146 8 6-3 4-8-6Z" fill="#613821" stroke="none" />
+    <path d="M84 181Q126 192 174 181L175 197Q127 207 83 197Z" fill="#613821" stroke-width="5" />
+    <path d="M90 187Q104 191 118 190L117 196 89 191Z" fill="#895334" stroke="none" />
+    <rect x="121" y="184" width="24" height="20" rx="3" fill="#c5c0b6" stroke-width="5" />
+    <rect x="128" y="190" width="10" height="8" rx="1" fill="#613821" stroke="none" />
+  </g>
+  <g id="orc_lv2_axe" stroke="#29180f" stroke-width="7" stroke-linecap="round" stroke-linejoin="round" data-pivot-x="203" data-pivot-y="184">
+    <path d="m217 88 13 5-29 136Q198 240 184 232L182 225Z" fill="#895334" stroke-width="6" />
+    <path d="m221 96 4 2-28 127-6 4Z" fill="#a46b42" stroke="none" />
+    <path d="m212 118 13 4-4 19-14-4Z" fill="#f3e7ce" stroke-width="4" />
+    <path d="m210 127 13 4" fill="none" stroke="#d9c39e" stroke-width="4" />
+    <g stroke="#29180f" stroke-width="7" stroke-linecap="round" stroke-linejoin="round" id="orc_lv2_tier_blade" data-parent-part="axe"><g stroke-width="6"><path d="M214 71 230 78Q252 96 250 127L246 149 231 171 226 151Q238 127 213 109L204 97Z" fill="#8d8981" /><path d="M228 86Q246 99 242 127L239 148 233 155Q239 123 223 107Z" fill="#c5c0b6" stroke="none" /></g></g></g>
+  <g id="orc_lv2_arm_front" stroke="#29180f" stroke-width="7" stroke-linecap="round" stroke-linejoin="round" data-pivot-x="171" data-pivot-y="150">
+    <path d="M160 136Q174 130 185 143L193 165 207 177Q215 190 205 200 195 206 183 193L165 178Q153 160 160 136Z" fill="#7fa443" />
+    <path d="m172 145 9 3 3 22 15 10-4 17-16-13-17-28Z" fill="#5f8134" stroke="none" />
+    <g data-equipment="bracer_front">
+      <path d="m170 167 25-5 8 16-27 10Z" fill="#ec9b49" stroke-width="5" data-mask="true" />
+      <path d="m176 171 17-4 4 7-19 6Z" fill="#ffb756" stroke="none" />
+    </g>
+    <path d="m199 181-4 10" fill="none" stroke-width="5" />
+    <path d="m161 124 25-4 17 24-8 17-23 3-22-23Z" fill="#895334" stroke-width="6" />
+    <path d="m164 130 19-4 13 19-7 8-15 2-14-15Z" fill="#8d8981" stroke-width="5" />
+    <path d="m168 132 12-2 8 11-8 6-14-8Z" fill="#c5c0b6" stroke="none" />
+    <path d="m178 131 16-24 6 28Q190 140 178 131Z" fill="#f3e7ce" stroke-width="6" />
+  </g>
+  <g id="orc_lv2_head" stroke="#29180f" stroke-width="7" stroke-linecap="round" stroke-linejoin="round" data-pivot-x="128" data-pivot-y="142">
+    <path d="M81 75 56 58 59 86Q65 104 83 106L92 88Z" fill="#7fa443" />
+    <path d="m64 70 19 13-3 12-12-11Z" fill="#5f8134" stroke="none" />
+    <path d="m175 82 20-15-5 22Q185 104 174 107L167 93Z" fill="#7fa443" />
+    <path d="M83 47Q112 27 141 33 173 36 181 61L187 98Q187 129 168 143 147 159 111 153L85 142Q65 127 66 104L68 73Z" fill="#7fa443" />
+    <path d="M87 49Q112 33 139 40L159 53 137 50 115 42 98 60Z" fill="#a0bf60" stroke="none" />
+    <path d="m78 73 12 13-6 26 9 21 22 16-25-12-15-14-4-19Z M178 90l5 13-4 24-20 20-17 6 16-19Z" fill="#5f8134" stroke="none" />
+    <ellipse cx="105" cy="103" rx="9" ry="12" fill="#29180f" stroke="none" />
+    <ellipse cx="154" cy="103" rx="8" ry="12" fill="#29180f" stroke="none" />
+    <path d="m89 87 29 12 m26-1 24-12" fill="none" stroke-width="6" />
+    <path d="M124 91Q130 87 136 91L139 115 128 121 119 114Z" fill="#5f8134" stroke="none" />
+    <path d="m102 131Q128 142 160 130" fill="none" stroke-width="7" />
+    <path d="m102 138 9-17 10 21Z" fill="#f3e7ce" stroke-width="5" />
+    <path d="m146 142 12-21 7 19Z" fill="#f3e7ce" stroke-width="5" />
+    <path d="M102 143Q127 135 162 142L156 149Q133 158 111 149Z" fill="#7fa443" stroke="none" />
+  </g>
+</svg></div></div>
+          <div class="threshold">120–239 HP · ×2</div>
+          <p>Увеличенный топор · усиленный наплечник</p></article>
+<article style="--tier:#df5654;--canvas:120">
+          <header><strong>Орк</strong><span class="tier">3</span></header>
+          <div class="stage"><div class="actor"><svg xmlns="http://www.w3.org/2000/svg" width="256" height="256" viewBox="0 0 256 256">
+  <title>Орк · уровень 3 · preview only</title>
+  <g id="orc_lv3_arm_back" stroke="#29180f" stroke-width="7" stroke-linecap="round" stroke-linejoin="round" data-pivot-x="75" data-pivot-y="148">
+    <path d="M70 128Q90 128 90 149L73 178 66 201Q58 217 42 212L28 206Q21 196 28 179L43 150Z" fill="#7fa443" />
+    <path d="m57 151 20-9-7 24-17 23-5 18-13-4 4-21Z" fill="#5f8134" stroke="none" />
+    <g data-equipment="bracer_back">
+      <path d="m33 174 39 11-8 19-39-12Z" fill="#df5654" stroke-width="5" data-mask="true" />
+      <path d="m34 180 31 9-3 7-30-9Z" fill="#ff6563" stroke="none" />
+    </g>
+    <path d="m50 198-5 10" fill="none" stroke-width="5" />
+    <path d="m41 110 31-3 24 26-16 28-26-6-27-22Z" fill="#895334" stroke-width="6" />
+    <path d="m49 117 22-2 16 20-13 15-31-13Z" fill="#8d8981" stroke-width="5" />
+    <path d="m53 119 15-2 10 12-7 7-21-8Z" fill="#c5c0b6" stroke="none" />
+    <path d="M35 124 33 91 59 112Q52 129 35 124Z" fill="#f3e7ce" stroke-width="6" />
+    <path d="m39 104 15 10-10 6Z" fill="#d9c39e" stroke="none" />
+    <path d="m58 112 10-29 13 30Q70 120 58 112Z" fill="#f3e7ce" stroke-width="6" />
+  <g stroke="#29180f" stroke-width="7" stroke-linecap="round" stroke-linejoin="round" id="orc_lv3_reinforced_pauldron" data-parent-part="arm_back">
+      <path d="m36 115 37-8 24 28-20 27-37-12-14-17Z" fill="#738587" stroke-width="6" />
+      <path d="m42 122 28-7 15 20-14 16-28-10Z" fill="#b9c9c3" stroke="none" /></g><g stroke="#29180f" stroke-width="7" stroke-linecap="round" stroke-linejoin="round" id="orc_lv3_metal_bracer_back" data-parent-part="arm_back"><path d="m31 174 40 11-9 21-39-13Z" fill="#738587" stroke-width="5" /><path d="m32 180 26 8" stroke="#b9c9c3" stroke-width="5" /><path d="m29 190 28 8" stroke="#df5654" stroke-width="4" /></g></g>
+  <g id="orc_lv3_leg_left" stroke="#29180f" stroke-width="7" stroke-linecap="round" stroke-linejoin="round" data-pivot-x="102" data-pivot-y="207">
+    <path d="M91 191Q112 186 121 200L117 220 118 234Q107 243 83 237L82 230 87 207Z" fill="#7fa443" />
+    <path d="m101 198 13 3-9 27-15 7-1-14Z" fill="#5f8134" stroke="none" />
+    <g data-equipment="boot_left">
+      <path d="m86 216 31-2 4 23Q102 242 81 237L80 230Z" fill="#df5654" stroke-width="6" data-mask="true" />
+      <path d="m88 221 25-3 2 7-30 4Z" fill="#ff6563" stroke="none" />
+    </g>
+  </g>
+  <g id="orc_lv3_leg_right" stroke="#29180f" stroke-width="7" stroke-linecap="round" stroke-linejoin="round" data-pivot-x="147" data-pivot-y="207">
+    <path d="M135 193Q152 185 161 200L164 218 174 232 170 238Q150 241 133 234L131 213Z" fill="#7fa443" />
+    <path d="m148 197 10 5 2 24-15 9-10-6 8-13Z" fill="#5f8134" stroke="none" />
+    <g data-equipment="boot_right">
+      <path d="m134 217 30-2 12 21Q155 242 133 236L132 229Z" fill="#df5654" stroke-width="6" data-mask="true" />
+      <path d="m140 221 20-3 5 8-26 4Z" fill="#ff6563" stroke="none" />
+    </g>
+  </g>
+  <g id="orc_lv3_body" stroke="#29180f" stroke-width="7" stroke-linecap="round" stroke-linejoin="round" data-pivot-x="126" data-pivot-y="176">
+    <path d="M89 132Q129 120 164 134L180 163 174 191Q154 215 90 201L78 173Z" fill="#7fa443" />
+    <path d="m89 149 24 15 30 2 21-19 9 23-21 23-47-3-22-19Z" fill="#5f8134" stroke="none" />
+    <path d="m100 136 24-6 30 7-10 10-27-2Z" fill="#a0bf60" stroke="none" />
+    <g data-equipment="loincloth">
+      <path d="M88 188Q126 199 164 188L174 211 154 207 131 222 113 209 92 215 83 200Z" fill="#df5654" stroke-width="6" data-mask="true" />
+      <path d="m108 199 21 4 26-6-24 19Z" fill="#ff6563" stroke="none" />
+    </g>
+    <path d="m91 132 77 45-11 16-77-45Z" fill="#895334" stroke-width="5" />
+    <path d="m99 140 58 35-5 5-60-35Z" fill="#a46b42" stroke="none" />
+    <path d="m119 148 12-12 19 15-13 15Z" fill="#c5c0b6" stroke-width="5" />
+    <path d="m130 146 8 6-3 4-8-6Z" fill="#613821" stroke="none" />
+    <path d="M84 181Q126 192 174 181L175 197Q127 207 83 197Z" fill="#613821" stroke-width="5" />
+    <path d="M90 187Q104 191 118 190L117 196 89 191Z" fill="#895334" stroke="none" />
+    <rect x="121" y="184" width="24" height="20" rx="3" fill="#c5c0b6" stroke-width="5" />
+    <rect x="128" y="190" width="10" height="8" rx="1" fill="#613821" stroke="none" />
+  </g>
+  <g id="orc_lv3_axe" stroke="#29180f" stroke-width="7" stroke-linecap="round" stroke-linejoin="round" data-pivot-x="203" data-pivot-y="184">
+    <path d="m217 88 13 5-29 136Q198 240 184 232L182 225Z" fill="#895334" stroke-width="6" />
+    <path d="m221 96 4 2-28 127-6 4Z" fill="#a46b42" stroke="none" />
+    <path d="m212 118 13 4-4 19-14-4Z" fill="#f3e7ce" stroke-width="4" />
+    <path d="m210 127 13 4" fill="none" stroke="#d9c39e" stroke-width="4" />
+    <g stroke="#29180f" stroke-width="7" stroke-linecap="round" stroke-linejoin="round" id="orc_lv3_tier_blade" data-parent-part="axe"><g stroke-width="6"><path d="M214 60 242 66 251 94 250 135 240 156 225 164 227 140Q238 118 214 104L204 88Z" fill="#738587" /><path d="m240 75 5 22-1 35-10 18 1-14 5-22-12-17Z" fill="#b9c9c3" stroke="none" /></g></g></g>
+  <g id="orc_lv3_arm_front" stroke="#29180f" stroke-width="7" stroke-linecap="round" stroke-linejoin="round" data-pivot-x="171" data-pivot-y="150">
+    <path d="M160 136Q174 130 185 143L193 165 207 177Q215 190 205 200 195 206 183 193L165 178Q153 160 160 136Z" fill="#7fa443" />
+    <path d="m172 145 9 3 3 22 15 10-4 17-16-13-17-28Z" fill="#5f8134" stroke="none" />
+    <g data-equipment="bracer_front">
+      <path d="m170 167 25-5 8 16-27 10Z" fill="#df5654" stroke-width="5" data-mask="true" />
+      <path d="m176 171 17-4 4 7-19 6Z" fill="#ff6563" stroke="none" />
+    </g>
+    <path d="m199 181-4 10" fill="none" stroke-width="5" />
+    <path d="m161 124 25-4 17 24-8 17-23 3-22-23Z" fill="#895334" stroke-width="6" />
+    <path d="m164 130 19-4 13 19-7 8-15 2-14-15Z" fill="#8d8981" stroke-width="5" />
+    <path d="m168 132 12-2 8 11-8 6-14-8Z" fill="#c5c0b6" stroke="none" />
+    <path d="m178 131 16-24 6 28Q190 140 178 131Z" fill="#f3e7ce" stroke-width="6" />
+  <g stroke="#29180f" stroke-width="7" stroke-linecap="round" stroke-linejoin="round" id="orc_lv3_metal_bracer_front" data-parent-part="arm_front"><path d="m169 168 28-7 9 18-28 11Z" fill="#738587" stroke-width="5" /><path d="m178 172 17-5" stroke="#b9c9c3" stroke-width="5" /><path d="m180 183 15-5" stroke="#df5654" stroke-width="4" /></g></g>
+  <g id="orc_lv3_head" stroke="#29180f" stroke-width="7" stroke-linecap="round" stroke-linejoin="round" data-pivot-x="128" data-pivot-y="142">
+    <path d="M81 75 56 58 59 86Q65 104 83 106L92 88Z" fill="#7fa443" />
+    <path d="m64 70 19 13-3 12-12-11Z" fill="#5f8134" stroke="none" />
+    <path d="m175 82 20-15-5 22Q185 104 174 107L167 93Z" fill="#7fa443" />
+    <path d="M83 47Q112 27 141 33 173 36 181 61L187 98Q187 129 168 143 147 159 111 153L85 142Q65 127 66 104L68 73Z" fill="#7fa443" />
+    <path d="M87 49Q112 33 139 40L159 53 137 50 115 42 98 60Z" fill="#a0bf60" stroke="none" />
+    <path d="m78 73 12 13-6 26 9 21 22 16-25-12-15-14-4-19Z M178 90l5 13-4 24-20 20-17 6 16-19Z" fill="#5f8134" stroke="none" />
+    <ellipse cx="105" cy="103" rx="9" ry="12" fill="#29180f" stroke="none" />
+    <ellipse cx="154" cy="103" rx="8" ry="12" fill="#29180f" stroke="none" />
+    <path d="m89 87 29 12 m26-1 24-12" fill="none" stroke-width="6" />
+    <path d="M124 91Q130 87 136 91L139 115 128 121 119 114Z" fill="#5f8134" stroke="none" />
+    <path d="m102 131Q128 142 160 130" fill="none" stroke-width="7" />
+    <path d="m102 138 9-17 10 21Z" fill="#f3e7ce" stroke-width="5" />
+    <path d="m146 142 12-21 7 19Z" fill="#f3e7ce" stroke-width="5" />
+    <path d="M102 143Q127 135 162 142L156 149Q133 158 111 149Z" fill="#7fa443" stroke="none" />
+  </g>
+</svg></div></div>
+          <div class="threshold">240–479 HP · ×4</div>
+          <p>Большой топор · металлические наручи</p></article>
+<article style="--tier:#5295ef;--canvas:120">
+          <header><strong>Орк</strong><span class="tier">4</span></header>
+          <div class="stage"><div class="actor"><svg xmlns="http://www.w3.org/2000/svg" width="256" height="256" viewBox="0 0 256 256">
+  <title>Орк · уровень 4 · preview only</title>
+  <g id="orc_lv4_arm_back" stroke="#29180f" stroke-width="7" stroke-linecap="round" stroke-linejoin="round" data-pivot-x="75" data-pivot-y="148">
+    <path d="M70 128Q90 128 90 149L73 178 66 201Q58 217 42 212L28 206Q21 196 28 179L43 150Z" fill="#7fa443" />
+    <path d="m57 151 20-9-7 24-17 23-5 18-13-4 4-21Z" fill="#5f8134" stroke="none" />
+    <g data-equipment="bracer_back">
+      <path d="m33 174 39 11-8 19-39-12Z" fill="#5295ef" stroke-width="5" data-mask="true" />
+      <path d="m34 180 31 9-3 7-30-9Z" fill="#61b0ff" stroke="none" />
+    </g>
+    <path d="m50 198-5 10" fill="none" stroke-width="5" />
+    <path d="m41 110 31-3 24 26-16 28-26-6-27-22Z" fill="#895334" stroke-width="6" />
+    <path d="m49 117 22-2 16 20-13 15-31-13Z" fill="#8d8981" stroke-width="5" />
+    <path d="m53 119 15-2 10 12-7 7-21-8Z" fill="#c5c0b6" stroke="none" />
+    <path d="M35 124 33 91 59 112Q52 129 35 124Z" fill="#f3e7ce" stroke-width="6" />
+    <path d="m39 104 15 10-10 6Z" fill="#d9c39e" stroke="none" />
+    <path d="m58 112 10-29 13 30Q70 120 58 112Z" fill="#f3e7ce" stroke-width="6" />
+  <g stroke="#29180f" stroke-width="7" stroke-linecap="round" stroke-linejoin="round" id="orc_lv4_reinforced_pauldron" data-parent-part="arm_back">
+      <path d="m36 115 37-8 24 28-20 27-37-12-14-17Z" fill="#738587" stroke-width="6" />
+      <path d="m42 122 28-7 15 20-14 16-28-10Z" fill="#b9c9c3" stroke="none" /></g><g stroke="#29180f" stroke-width="7" stroke-linecap="round" stroke-linejoin="round" id="orc_lv4_metal_bracer_back" data-parent-part="arm_back"><path d="m31 174 40 11-9 21-39-13Z" fill="#738587" stroke-width="5" /><path d="m32 180 26 8" stroke="#b9c9c3" stroke-width="5" /><path d="m29 190 28 8" stroke="#5295ef" stroke-width="4" /></g><g stroke="#29180f" stroke-width="7" stroke-linecap="round" stroke-linejoin="round" id="orc_lv4_round_shield" data-parent-part="arm_back">
+          <ellipse cx="46" cy="188" rx="34" ry="37" fill="#738587" stroke-width="6" />
+          <ellipse cx="46" cy="188" rx="25" ry="28" fill="#895334" stroke-width="4" />
+          <path d="M25 188H67M46 164V212" stroke="#5295ef" stroke-width="7" />
+          <circle cx="46" cy="188" r="10" fill="#b9c9c3" stroke-width="5" /></g></g>
+  <g id="orc_lv4_leg_left" stroke="#29180f" stroke-width="7" stroke-linecap="round" stroke-linejoin="round" data-pivot-x="102" data-pivot-y="207">
+    <path d="M91 191Q112 186 121 200L117 220 118 234Q107 243 83 237L82 230 87 207Z" fill="#7fa443" />
+    <path d="m101 198 13 3-9 27-15 7-1-14Z" fill="#5f8134" stroke="none" />
+    <g data-equipment="boot_left">
+      <path d="m86 216 31-2 4 23Q102 242 81 237L80 230Z" fill="#5295ef" stroke-width="6" data-mask="true" />
+      <path d="m88 221 25-3 2 7-30 4Z" fill="#61b0ff" stroke="none" />
+    </g>
+  </g>
+  <g id="orc_lv4_leg_right" stroke="#29180f" stroke-width="7" stroke-linecap="round" stroke-linejoin="round" data-pivot-x="147" data-pivot-y="207">
+    <path d="M135 193Q152 185 161 200L164 218 174 232 170 238Q150 241 133 234L131 213Z" fill="#7fa443" />
+    <path d="m148 197 10 5 2 24-15 9-10-6 8-13Z" fill="#5f8134" stroke="none" />
+    <g data-equipment="boot_right">
+      <path d="m134 217 30-2 12 21Q155 242 133 236L132 229Z" fill="#5295ef" stroke-width="6" data-mask="true" />
+      <path d="m140 221 20-3 5 8-26 4Z" fill="#61b0ff" stroke="none" />
+    </g>
+  </g>
+  <g id="orc_lv4_body" stroke="#29180f" stroke-width="7" stroke-linecap="round" stroke-linejoin="round" data-pivot-x="126" data-pivot-y="176">
+    <path d="M89 132Q129 120 164 134L180 163 174 191Q154 215 90 201L78 173Z" fill="#7fa443" />
+    <path d="m89 149 24 15 30 2 21-19 9 23-21 23-47-3-22-19Z" fill="#5f8134" stroke="none" />
+    <path d="m100 136 24-6 30 7-10 10-27-2Z" fill="#a0bf60" stroke="none" />
+    <g data-equipment="loincloth">
+      <path d="M88 188Q126 199 164 188L174 211 154 207 131 222 113 209 92 215 83 200Z" fill="#5295ef" stroke-width="6" data-mask="true" />
+      <path d="m108 199 21 4 26-6-24 19Z" fill="#61b0ff" stroke="none" />
+    </g>
+    <path d="m91 132 77 45-11 16-77-45Z" fill="#895334" stroke-width="5" />
+    <path d="m99 140 58 35-5 5-60-35Z" fill="#a46b42" stroke="none" />
+    <path d="m119 148 12-12 19 15-13 15Z" fill="#c5c0b6" stroke-width="5" />
+    <path d="m130 146 8 6-3 4-8-6Z" fill="#613821" stroke="none" />
+    <path d="M84 181Q126 192 174 181L175 197Q127 207 83 197Z" fill="#613821" stroke-width="5" />
+    <path d="M90 187Q104 191 118 190L117 196 89 191Z" fill="#895334" stroke="none" />
+    <rect x="121" y="184" width="24" height="20" rx="3" fill="#c5c0b6" stroke-width="5" />
+    <rect x="128" y="190" width="10" height="8" rx="1" fill="#613821" stroke="none" />
+  <g stroke="#29180f" stroke-width="7" stroke-linecap="round" stroke-linejoin="round" id="orc_lv4_breastplate" data-parent-part="body">
+          <path d="m97 145 54-2 20 20-10 24-67-1-7-24Z" fill="#738587" stroke-width="6" />
+          <path d="m102 150 43-1 15 13-30 10-32-11Z" fill="#b9c9c3" stroke="none" />
+          <path d="m103 178 42 0" stroke="#5295ef" stroke-width="6" /></g></g>
+  <g id="orc_lv4_axe" stroke="#29180f" stroke-width="7" stroke-linecap="round" stroke-linejoin="round" data-pivot-x="203" data-pivot-y="184">
+    <path d="m217 88 13 5-29 136Q198 240 184 232L182 225Z" fill="#895334" stroke-width="6" />
+    <path d="m221 96 4 2-28 127-6 4Z" fill="#a46b42" stroke="none" />
+    <path d="m212 118 13 4-4 19-14-4Z" fill="#f3e7ce" stroke-width="4" />
+    <path d="m210 127 13 4" fill="none" stroke="#d9c39e" stroke-width="4" />
+    <g stroke="#29180f" stroke-width="7" stroke-linecap="round" stroke-linejoin="round" id="orc_lv4_tier_blade" data-parent-part="axe"><g stroke-width="6"><path d="m220 43 10 3-8 63-13-4Z" fill="#895334" stroke-width="6" />
+          <path d="M219 22 242 16 251 40 245 75 232 87 227 66 217 58 203 73 186 84 180 41 189 16 209 21Z" fill="#738587" />
+          <path d="m240 25 5 18-6 26-5 7-1-19-10-8 9-7Z M191 26l-5 17 3 23 8-6 6-14 10-8-11-8Z" fill="#b9c9c3" stroke="none" />
+          <path d="m214 22 13 0-5 35-13 4Z" fill="#5295ef" stroke-width="5" /></g></g></g>
+  <g id="orc_lv4_arm_front" stroke="#29180f" stroke-width="7" stroke-linecap="round" stroke-linejoin="round" data-pivot-x="171" data-pivot-y="150">
+    <path d="M160 136Q174 130 185 143L193 165 207 177Q215 190 205 200 195 206 183 193L165 178Q153 160 160 136Z" fill="#7fa443" />
+    <path d="m172 145 9 3 3 22 15 10-4 17-16-13-17-28Z" fill="#5f8134" stroke="none" />
+    <g data-equipment="bracer_front">
+      <path d="m170 167 25-5 8 16-27 10Z" fill="#5295ef" stroke-width="5" data-mask="true" />
+      <path d="m176 171 17-4 4 7-19 6Z" fill="#61b0ff" stroke="none" />
+    </g>
+    <path d="m199 181-4 10" fill="none" stroke-width="5" />
+    <path d="m161 124 25-4 17 24-8 17-23 3-22-23Z" fill="#895334" stroke-width="6" />
+    <path d="m164 130 19-4 13 19-7 8-15 2-14-15Z" fill="#8d8981" stroke-width="5" />
+    <path d="m168 132 12-2 8 11-8 6-14-8Z" fill="#c5c0b6" stroke="none" />
+    <path d="m178 131 16-24 6 28Q190 140 178 131Z" fill="#f3e7ce" stroke-width="6" />
+  <g stroke="#29180f" stroke-width="7" stroke-linecap="round" stroke-linejoin="round" id="orc_lv4_metal_bracer_front" data-parent-part="arm_front"><path d="m169 168 28-7 9 18-28 11Z" fill="#738587" stroke-width="5" /><path d="m178 172 17-5" stroke="#b9c9c3" stroke-width="5" /><path d="m180 183 15-5" stroke="#5295ef" stroke-width="4" /></g></g>
+  <g id="orc_lv4_head" stroke="#29180f" stroke-width="7" stroke-linecap="round" stroke-linejoin="round" data-pivot-x="128" data-pivot-y="142">
+    <path d="M81 75 56 58 59 86Q65 104 83 106L92 88Z" fill="#7fa443" />
+    <path d="m64 70 19 13-3 12-12-11Z" fill="#5f8134" stroke="none" />
+    <path d="m175 82 20-15-5 22Q185 104 174 107L167 93Z" fill="#7fa443" />
+    <path d="M83 47Q112 27 141 33 173 36 181 61L187 98Q187 129 168 143 147 159 111 153L85 142Q65 127 66 104L68 73Z" fill="#7fa443" />
+    <path d="M87 49Q112 33 139 40L159 53 137 50 115 42 98 60Z" fill="#a0bf60" stroke="none" />
+    <path d="m78 73 12 13-6 26 9 21 22 16-25-12-15-14-4-19Z M178 90l5 13-4 24-20 20-17 6 16-19Z" fill="#5f8134" stroke="none" />
+    <ellipse cx="105" cy="103" rx="9" ry="12" fill="#29180f" stroke="none" />
+    <ellipse cx="154" cy="103" rx="8" ry="12" fill="#29180f" stroke="none" />
+    <path d="m89 87 29 12 m26-1 24-12" fill="none" stroke-width="6" />
+    <path d="M124 91Q130 87 136 91L139 115 128 121 119 114Z" fill="#5f8134" stroke="none" />
+    <path d="m102 131Q128 142 160 130" fill="none" stroke-width="7" />
+    <path d="m102 138 9-17 10 21Z" fill="#f3e7ce" stroke-width="5" />
+    <path d="m146 142 12-21 7 19Z" fill="#f3e7ce" stroke-width="5" />
+    <path d="M102 143Q127 135 162 142L156 149Q133 158 111 149Z" fill="#7fa443" stroke="none" />
+  </g>
+</svg></div></div>
+          <div class="threshold">480–959 HP · ×8</div>
+          <p>Двулезвийный топор · круглый щит · нагрудник</p></article>
+<article style="--tier:#b66dea;--canvas:120">
+          <header><strong>Орк</strong><span class="tier">5</span></header>
+          <div class="stage"><div class="actor"><svg xmlns="http://www.w3.org/2000/svg" width="256" height="256" viewBox="0 0 256 256">
+  <title>Орк · уровень 5 · preview only</title>
+  <g id="orc_lv5_arm_back" stroke="#29180f" stroke-width="7" stroke-linecap="round" stroke-linejoin="round" data-pivot-x="75" data-pivot-y="148">
+    <path d="M70 128Q90 128 90 149L73 178 66 201Q58 217 42 212L28 206Q21 196 28 179L43 150Z" fill="#7fa443" />
+    <path d="m57 151 20-9-7 24-17 23-5 18-13-4 4-21Z" fill="#5f8134" stroke="none" />
+    <g data-equipment="bracer_back">
+      <path d="m33 174 39 11-8 19-39-12Z" fill="#b66dea" stroke-width="5" data-mask="true" />
+      <path d="m34 180 31 9-3 7-30-9Z" fill="#d781ff" stroke="none" />
+    </g>
+    <path d="m50 198-5 10" fill="none" stroke-width="5" />
+    <path d="m41 110 31-3 24 26-16 28-26-6-27-22Z" fill="#895334" stroke-width="6" />
+    <path d="m49 117 22-2 16 20-13 15-31-13Z" fill="#8d8981" stroke-width="5" />
+    <path d="m53 119 15-2 10 12-7 7-21-8Z" fill="#c5c0b6" stroke="none" />
+    <path d="M35 124 33 91 59 112Q52 129 35 124Z" fill="#f3e7ce" stroke-width="6" />
+    <path d="m39 104 15 10-10 6Z" fill="#d9c39e" stroke="none" />
+    <path d="m58 112 10-29 13 30Q70 120 58 112Z" fill="#f3e7ce" stroke-width="6" />
+  <g stroke="#29180f" stroke-width="7" stroke-linecap="round" stroke-linejoin="round" id="orc_lv5_reinforced_pauldron" data-parent-part="arm_back">
+      <path d="m36 115 37-8 24 28-20 27-37-12-14-17Z" fill="#738587" stroke-width="6" />
+      <path d="m42 122 28-7 15 20-14 16-28-10Z" fill="#b9c9c3" stroke="none" /></g><g stroke="#29180f" stroke-width="7" stroke-linecap="round" stroke-linejoin="round" id="orc_lv5_metal_bracer_back" data-parent-part="arm_back"><path d="m31 174 40 11-9 21-39-13Z" fill="#738587" stroke-width="5" /><path d="m32 180 26 8" stroke="#b9c9c3" stroke-width="5" /><path d="m29 190 28 8" stroke="#b66dea" stroke-width="4" /></g><g stroke="#29180f" stroke-width="7" stroke-linecap="round" stroke-linejoin="round" id="orc_lv5_round_shield" data-parent-part="arm_back">
+          <ellipse cx="46" cy="188" rx="34" ry="37" fill="#738587" stroke-width="6" />
+          <ellipse cx="46" cy="188" rx="25" ry="28" fill="#4c5a5d" stroke-width="4" />
+          <path d="M25 188H67M46 164V212" stroke="#b66dea" stroke-width="7" />
+          <circle cx="46" cy="188" r="10" fill="#b9c9c3" stroke-width="5" /><path d="M17 158 22 151 32 158 M61 158 72 151 77 164 M17 204 24 215 30 209 M63 210 72 215 79 200" fill="#b9c9c3" stroke-width="5" /></g></g>
+  <g id="orc_lv5_leg_left" stroke="#29180f" stroke-width="7" stroke-linecap="round" stroke-linejoin="round" data-pivot-x="102" data-pivot-y="207">
+    <path d="M91 191Q112 186 121 200L117 220 118 234Q107 243 83 237L82 230 87 207Z" fill="#7fa443" />
+    <path d="m101 198 13 3-9 27-15 7-1-14Z" fill="#5f8134" stroke="none" />
+    <g data-equipment="boot_left">
+      <path d="m86 216 31-2 4 23Q102 242 81 237L80 230Z" fill="#b66dea" stroke-width="6" data-mask="true" />
+      <path d="m88 221 25-3 2 7-30 4Z" fill="#d781ff" stroke="none" />
+    </g>
+  </g>
+  <g id="orc_lv5_leg_right" stroke="#29180f" stroke-width="7" stroke-linecap="round" stroke-linejoin="round" data-pivot-x="147" data-pivot-y="207">
+    <path d="M135 193Q152 185 161 200L164 218 174 232 170 238Q150 241 133 234L131 213Z" fill="#7fa443" />
+    <path d="m148 197 10 5 2 24-15 9-10-6 8-13Z" fill="#5f8134" stroke="none" />
+    <g data-equipment="boot_right">
+      <path d="m134 217 30-2 12 21Q155 242 133 236L132 229Z" fill="#b66dea" stroke-width="6" data-mask="true" />
+      <path d="m140 221 20-3 5 8-26 4Z" fill="#d781ff" stroke="none" />
+    </g>
+  </g>
+  <g id="orc_lv5_body" stroke="#29180f" stroke-width="7" stroke-linecap="round" stroke-linejoin="round" data-pivot-x="126" data-pivot-y="176">
+    <path d="M89 132Q129 120 164 134L180 163 174 191Q154 215 90 201L78 173Z" fill="#7fa443" />
+    <path d="m89 149 24 15 30 2 21-19 9 23-21 23-47-3-22-19Z" fill="#5f8134" stroke="none" />
+    <path d="m100 136 24-6 30 7-10 10-27-2Z" fill="#a0bf60" stroke="none" />
+    <g data-equipment="loincloth">
+      <path d="M88 188Q126 199 164 188L174 211 154 207 131 222 113 209 92 215 83 200Z" fill="#b66dea" stroke-width="6" data-mask="true" />
+      <path d="m108 199 21 4 26-6-24 19Z" fill="#d781ff" stroke="none" />
+    </g>
+    <path d="m91 132 77 45-11 16-77-45Z" fill="#895334" stroke-width="5" />
+    <path d="m99 140 58 35-5 5-60-35Z" fill="#a46b42" stroke="none" />
+    <path d="m119 148 12-12 19 15-13 15Z" fill="#c5c0b6" stroke-width="5" />
+    <path d="m130 146 8 6-3 4-8-6Z" fill="#613821" stroke="none" />
+    <path d="M84 181Q126 192 174 181L175 197Q127 207 83 197Z" fill="#613821" stroke-width="5" />
+    <path d="M90 187Q104 191 118 190L117 196 89 191Z" fill="#895334" stroke="none" />
+    <rect x="121" y="184" width="24" height="20" rx="3" fill="#c5c0b6" stroke-width="5" />
+    <rect x="128" y="190" width="10" height="8" rx="1" fill="#613821" stroke="none" />
+  <g stroke="#29180f" stroke-width="7" stroke-linecap="round" stroke-linejoin="round" id="orc_lv5_breastplate" data-parent-part="body">
+          <path d="m97 145 54-2 20 20-10 24-67-1-7-24Z" fill="#738587" stroke-width="6" />
+          <path d="m102 150 43-1 15 13-30 10-32-11Z" fill="#b9c9c3" stroke="none" />
+          <path d="m103 178 42 0" stroke="#b66dea" stroke-width="6" /></g></g>
+  <g id="orc_lv5_axe" stroke="#29180f" stroke-width="7" stroke-linecap="round" stroke-linejoin="round" data-pivot-x="203" data-pivot-y="184">
+    <path d="m217 88 13 5-29 136Q198 240 184 232L182 225Z" fill="#895334" stroke-width="6" />
+    <path d="m221 96 4 2-28 127-6 4Z" fill="#a46b42" stroke="none" />
+    <path d="m212 118 13 4-4 19-14-4Z" fill="#f3e7ce" stroke-width="4" />
+    <path d="m210 127 13 4" fill="none" stroke="#d9c39e" stroke-width="4" />
+    <g stroke="#29180f" stroke-width="7" stroke-linecap="round" stroke-linejoin="round" id="orc_lv5_tier_blade" data-parent-part="axe"><g stroke-width="6"><path d="m220 37 10 3-8 63-13-4Z" fill="#895334" stroke-width="6" />
+          <path d="M219 16 242 10 251 34 245 69 232 81 227 60 217 52 203 67 177 78 171 35 180 10 209 15Z" fill="#738587" />
+          <path d="m240 19 5 18-6 26-5 7-1-19-10-8 9-7Z M182 20l-5 17 3 23 8-6 6-14 10-8-11-8Z" fill="#b9c9c3" stroke="none" />
+          <path d="m214 16 13 0-5 35-13 4Z" fill="#b66dea" stroke-width="5" /><path d="m174 38-9-14 9-12 M249 41l3-12-6-10" fill="#b9c9c3" stroke-width="5" /></g></g></g>
+  <g id="orc_lv5_arm_front" stroke="#29180f" stroke-width="7" stroke-linecap="round" stroke-linejoin="round" data-pivot-x="171" data-pivot-y="150">
+    <path d="M160 136Q174 130 185 143L193 165 207 177Q215 190 205 200 195 206 183 193L165 178Q153 160 160 136Z" fill="#7fa443" />
+    <path d="m172 145 9 3 3 22 15 10-4 17-16-13-17-28Z" fill="#5f8134" stroke="none" />
+    <g data-equipment="bracer_front">
+      <path d="m170 167 25-5 8 16-27 10Z" fill="#b66dea" stroke-width="5" data-mask="true" />
+      <path d="m176 171 17-4 4 7-19 6Z" fill="#d781ff" stroke="none" />
+    </g>
+    <path d="m199 181-4 10" fill="none" stroke-width="5" />
+    <path d="m161 124 25-4 17 24-8 17-23 3-22-23Z" fill="#895334" stroke-width="6" />
+    <path d="m164 130 19-4 13 19-7 8-15 2-14-15Z" fill="#8d8981" stroke-width="5" />
+    <path d="m168 132 12-2 8 11-8 6-14-8Z" fill="#c5c0b6" stroke="none" />
+    <path d="m178 131 16-24 6 28Q190 140 178 131Z" fill="#f3e7ce" stroke-width="6" />
+  <g stroke="#29180f" stroke-width="7" stroke-linecap="round" stroke-linejoin="round" id="orc_lv5_metal_bracer_front" data-parent-part="arm_front"><path d="m169 168 28-7 9 18-28 11Z" fill="#738587" stroke-width="5" /><path d="m178 172 17-5" stroke="#b9c9c3" stroke-width="5" /><path d="m180 183 15-5" stroke="#b66dea" stroke-width="4" /></g></g>
+  <g id="orc_lv5_head" stroke="#29180f" stroke-width="7" stroke-linecap="round" stroke-linejoin="round" data-pivot-x="128" data-pivot-y="142">
+    <path d="M81 75 56 58 59 86Q65 104 83 106L92 88Z" fill="#7fa443" />
+    <path d="m64 70 19 13-3 12-12-11Z" fill="#5f8134" stroke="none" />
+    <path d="m175 82 20-15-5 22Q185 104 174 107L167 93Z" fill="#7fa443" />
+    <path d="M83 47Q112 27 141 33 173 36 181 61L187 98Q187 129 168 143 147 159 111 153L85 142Q65 127 66 104L68 73Z" fill="#7fa443" />
+    <path d="M87 49Q112 33 139 40L159 53 137 50 115 42 98 60Z" fill="#a0bf60" stroke="none" />
+    <path d="m78 73 12 13-6 26 9 21 22 16-25-12-15-14-4-19Z M178 90l5 13-4 24-20 20-17 6 16-19Z" fill="#5f8134" stroke="none" />
+    <ellipse cx="105" cy="103" rx="9" ry="12" fill="#29180f" stroke="none" />
+    <ellipse cx="154" cy="103" rx="8" ry="12" fill="#29180f" stroke="none" />
+    <path d="m89 87 29 12 m26-1 24-12" fill="none" stroke-width="6" />
+    <path d="M124 91Q130 87 136 91L139 115 128 121 119 114Z" fill="#5f8134" stroke="none" />
+    <path d="m102 131Q128 142 160 130" fill="none" stroke-width="7" />
+    <path d="m102 138 9-17 10 21Z" fill="#f3e7ce" stroke-width="5" />
+    <path d="m146 142 12-21 7 19Z" fill="#f3e7ce" stroke-width="5" />
+    <path d="M102 143Q127 135 162 142L156 149Q133 158 111 149Z" fill="#7fa443" stroke="none" />
+  <g stroke="#29180f" stroke-width="7" stroke-linecap="round" stroke-linejoin="round" id="orc_lv5_open_helmet" data-parent-part="head">
+          <path d="M70 83 73 58 90 37 116 27 145 31 172 49 181 79 167 81 153 63 112 61 88 83Z" fill="#738587" stroke-width="6" />
+          <path d="m86 55 15-13 21-8 19 4 18 11-21-4-22-1-24 16Z" fill="#b9c9c3" stroke="none" />
+          <path d="m111 28 20 1 7 34-23-3Z" fill="#b66dea" stroke-width="5" />
+          <path d="m71 57-15-14 2 30 17 10 M174 57l15-14-2 30-9 9" fill="#b9c9c3" stroke-width="6" /></g></g>
+</svg></div></div>
+          <div class="threshold">от 960 HP · ×16</div>
+          <p>Тяжёлый двулезвийный топор · усиленный щит · открытый шлем</p></article>
+<article style="--tier:#88b96b;--canvas:140">
+          <header><strong>Голем</strong><span class="tier">1</span></header>
+          <div class="stage"><div class="actor"><svg xmlns="http://www.w3.org/2000/svg" width="256" height="256" viewBox="0 0 256 256">
+  <title>Голем · уровень 1 · preview only</title>
+  <g id="golem_lv1_arm_back_upper" stroke="#29180f" stroke-width="7" stroke-linecap="round" stroke-linejoin="round" data-pivot-x="85" data-pivot-y="126">
+    <path d="M44 78 65 67Q71 66 77 70L94 85 102 105 88 144 65 158 38 141Q31 137 29 127L27 108Z" fill="#bba58b" />
+    <path d="m33 111 25 7 24 28-17 12-27-17-8-16Z" fill="#887562" stroke="none" />
+    <path d="m45 82 20-10 19 17-24 26-25-8Z" fill="#dfcbae" stroke="none" />
+    <g data-moss="shoulder_back" stroke="none">
+      <path d="m48 78 17-5 21 17-6 15-13-5-4 15-12-9-9 3-5-15Z" fill="#88b96b" data-mask="true" />
+      <path d="m51 91 15 4 11-1 3 11-13-5-4 15-12-9-9 3 6-11Z" fill="#668b50" />
+    </g>
+  </g>
+  <g id="golem_lv1_arm_back_forearm" stroke="#29180f" stroke-width="7" stroke-linecap="round" stroke-linejoin="round" data-pivot-x="57" data-pivot-y="147">
+    <path d="M26 142 46 134Q58 135 64 144L72 165 63 181 64 198 49 218Q45 223 38 221L19 217 10 202 8 180 14 157Z" fill="#bba58b" />
+    <path d="m14 158 22-14 18 7-11 24-28 5-6-1Z" fill="#dfcbae" stroke="none" />
+    <path d="m43 175 20-12 9 2-9 16 1 17-15 20-11 4-19-5-9-15 14 1Z" fill="#887562" stroke="none" />
+    <path d="m21 185 20-7 17 12-13 19-14-3Z" fill="#bba58b" stroke="none" />
+    <g data-moss="forearm_back" stroke="none">
+      <path d="m25 148 20-9 14 11-5 11-11-3-6 13-11-8-10 7 1-11Z" fill="#88b96b" data-mask="true" />
+      <path d="m29 154 11 5 14-6v8l-11-3-6 13-11-8-10 7 1-9Z" fill="#668b50" />
+    </g>
+  </g>
+  <g id="golem_lv1_leg_left" stroke="#29180f" stroke-width="7" stroke-linecap="round" stroke-linejoin="round" data-pivot-x="100" data-pivot-y="196">
+    <path d="M84 187 110 190 119 204 113 217 121 231Q126 238 116 239H74Q66 237 70 227L77 208Z" fill="#bba58b" />
+    <path d="m101 194 12 12-9 15 13 14-4 4H74l-3-5 18-13Z" fill="#887562" stroke="none" />
+    <path d="m80 218 17-8 13 20-6 4-29-1Z" fill="#dfcbae" stroke="none" />
+    <g data-moss="leg_left" stroke="none">
+      <path d="m81 207 19-8 13 11-7 8-13-2-5 9-10-7Z" fill="#88b96b" data-mask="true" />
+      <path d="m83 211 9 1 8-6 6 12-13-2-5 9-10-7Z" fill="#668b50" />
+    </g>
+  </g>
+  <g id="golem_lv1_leg_right" stroke="#29180f" stroke-width="7" stroke-linecap="round" stroke-linejoin="round" data-pivot-x="151" data-pivot-y="196">
+    <path d="M142 190 165 187 181 206 178 219 187 231Q192 238 181 239H141Q132 237 137 226L134 206Z" fill="#bba58b" />
+    <path d="m148 197 13-4 10 13-13 10-17 3-5-12Z" fill="#dfcbae" stroke="none" />
+    <path d="m160 215 18-4v8l9 12-3 8h-43l-4-5 16-3Z" fill="#887562" stroke="none" />
+    <g data-moss="leg_right" stroke="none">
+      <path d="m147 196 16-4 11 14-9 6-8-6-8 9-10-5Z" fill="#88b96b" data-mask="true" />
+      <path d="m149 201 8 1 8 10-8-6-8 9-10-5 4-6Z" fill="#668b50" />
+    </g>
+  </g>
+  <g id="golem_lv1_body" stroke="#29180f" stroke-width="7" stroke-linecap="round" stroke-linejoin="round" data-pivot-x="128" data-pivot-y="170">
+    <path d="M94 113 148 111 179 127 188 156 174 184 155 202 102 204 78 184 69 151 80 127Z" fill="#bba58b" />
+    <path d="m76 146 24 18 34 5 40-17 11 5-11 27-19 18-53 2-24-20Z" fill="#887562" stroke="none" />
+    <path d="m101 171 31 7 37-10-18 26-45 2-19-20Z" fill="#bba58b" stroke="none" />
+    <path d="m95 119 45-2 26 11-22 12-43-7-16 12Z" fill="#dfcbae" stroke="none" />
+    <g data-moss="chest" stroke="none">
+      <path d="m81 162 14 4 10 13-9 7-8-5-6 10-7-13Z" fill="#88b96b" data-mask="true" />
+      <path d="m82 173 6 8 8 5-8-5-6 10-7-13Z" fill="#668b50" />
+    </g>
+  </g>
+  <g id="golem_lv1_arm_front_upper" stroke="#29180f" stroke-width="7" stroke-linecap="round" stroke-linejoin="round" data-pivot-x="171" data-pivot-y="130">
+    <path d="M182 89 200 91 220 112 226 138 214 161 193 169 174 154 164 130 165 107Z" fill="#bba58b" />
+    <path d="m171 112 15-14 17 9 12 24-26 12-17-13Z" fill="#dfcbae" stroke="none" />
+    <path d="m191 139 30-14 5 13-12 23-21 8-19-15-6-16Z" fill="#887562" stroke="none" />
+    <g data-moss="shoulder_front" stroke="none">
+      <path d="m184 96 14 1 15 16-2 13-10-6-5 13-9-13-11 3-4-15Z" fill="#88b96b" data-mask="true" />
+      <path d="m185 110 6 4 10 6 10 6-10-6-5 13-9-13-11 3-4-8Z" fill="#668b50" />
+    </g>
+  </g>
+  <g id="golem_lv1_arm_front_forearm" stroke="#29180f" stroke-width="7" stroke-linecap="round" stroke-linejoin="round" data-pivot-x="210" data-pivot-y="157">
+    <path d="M205 143 224 146 241 164 246 184 242 211 228 225 207 222 188 207 185 180 192 159Z" fill="#bba58b" />
+    <path d="m204 150 17 2 13 16 5 17-18 7-24-12-6-9Z" fill="#dfcbae" stroke="none" />
+    <path d="m220 192 25-10 1 2-4 27-14 14-21-3-19-15 1-14Z" fill="#887562" stroke="none" />
+    <path d="m197 191 16-7 16 14-8 18-13-1-13-11Z" fill="#bba58b" stroke="none" />
+    <g data-moss="forearm_front" stroke="none">
+      <path d="m205 151 17 5 14 15-12 6-10-8-7 13-12-8-2-9Z" fill="#88b96b" data-mask="true" />
+      <path d="m207 161 7 8 10 8-10-8-7 13-12-8-2-9 8 4Z" fill="#668b50" />
+    </g>
+  </g>
+  <g id="golem_lv1_head" stroke="#29180f" stroke-width="7" stroke-linecap="round" stroke-linejoin="round" data-pivot-x="133" data-pivot-y="147">
+    <path d="M97 40 121 30Q131 27 141 32L170 43Q180 48 184 62L190 87 186 124Q183 139 170 148L148 163 112 158 88 143Q81 136 79 121L76 94 82 63Z" fill="#bba58b" />
+    <path d="m84 67 22 11-11 27 10 36 25 19-18-2-24-15-9-22-3-27Z" fill="#887562" stroke="none" />
+    <path d="m101 44 21-8 18 3 28 11 10 19-25-4-29-15-19 19-19-4Z" fill="#dfcbae" stroke="none" />
+    <path d="m160 66 23 7 7 14-4 37-17 19-16 10 16-39Z" fill="#887562" stroke="none" />
+    <g data-moss="head" stroke="none">
+      <path d="m101 44 21-8 19 3 27 12 9 17-17-6-12 7-17-11-12 16-10-11-9 7-6-15Z" fill="#88b96b" data-mask="true" />
+      <path d="m101 55 10 2 9-5 11 6 17 11-17-11-12 16-10-11-9 7-6-15Z" fill="#668b50" />
+    </g>
+    <path d="m91 89 19-8 26 15 27-9 20 7-2 27-21 14-32-4-32-14Z" fill="#49392c" stroke-width="5" />
+    <path d="M102 98 126 108Q124 121 113 119 104 117 102 108Z" fill="#ffd16c" stroke="none" />
+    <path d="m148 108 25-9-1 11Q170 122 157 119Z" fill="#ffd16c" stroke="none" />
+    <path d="m95 124 32 6 30-3 20-10 3 17-15 16-20 8-32-6-19-14Z" fill="#bba58b" stroke-width="5" />
+    <path d="m101 131 24 5 28-4 16-9 2 8-25 12-27-5Z" fill="#dfcbae" stroke="none" />
+    <path d="m127 143 21 1 28-18-5 13-26 19-22-4-14-8Z" fill="#887562" stroke="none" />
+  </g>
+</svg></div></div>
+          <div class="threshold">120–239 HP · ×1</div>
+          <p>Каменные кулаки · мох</p></article>
+<article style="--tier:#ec9b49;--canvas:140">
+          <header><strong>Голем</strong><span class="tier">2</span></header>
+          <div class="stage"><div class="actor"><svg xmlns="http://www.w3.org/2000/svg" width="256" height="256" viewBox="0 0 256 256">
+  <title>Голем · уровень 2 · preview only</title>
+  <g id="golem_lv2_arm_back_upper" stroke="#29180f" stroke-width="7" stroke-linecap="round" stroke-linejoin="round" data-pivot-x="85" data-pivot-y="126">
+    <path d="M44 78 65 67Q71 66 77 70L94 85 102 105 88 144 65 158 38 141Q31 137 29 127L27 108Z" fill="#bba58b" />
+    <path d="m33 111 25 7 24 28-17 12-27-17-8-16Z" fill="#887562" stroke="none" />
+    <path d="m45 82 20-10 19 17-24 26-25-8Z" fill="#dfcbae" stroke="none" />
+    <g data-moss="shoulder_back" stroke="none">
+      <path d="m48 78 17-5 21 17-6 15-13-5-4 15-12-9-9 3-5-15Z" fill="#ec9b49" data-mask="true" />
+      <path d="m51 91 15 4 11-1 3 11-13-5-4 15-12-9-9 3 6-11Z" fill="#b17437" />
+    </g>
+  </g>
+  <g id="golem_lv2_arm_back_forearm" stroke="#29180f" stroke-width="7" stroke-linecap="round" stroke-linejoin="round" data-pivot-x="57" data-pivot-y="147">
+    <path d="M26 142 46 134Q58 135 64 144L72 165 63 181 64 198 49 218Q45 223 38 221L19 217 10 202 8 180 14 157Z" fill="#bba58b" />
+    <path d="m14 158 22-14 18 7-11 24-28 5-6-1Z" fill="#dfcbae" stroke="none" />
+    <path d="m43 175 20-12 9 2-9 16 1 17-15 20-11 4-19-5-9-15 14 1Z" fill="#887562" stroke="none" />
+    <path d="m21 185 20-7 17 12-13 19-14-3Z" fill="#bba58b" stroke="none" />
+    <g data-moss="forearm_back" stroke="none">
+      <path d="m25 148 20-9 14 11-5 11-11-3-6 13-11-8-10 7 1-11Z" fill="#ec9b49" data-mask="true" />
+      <path d="m29 154 11 5 14-6v8l-11-3-6 13-11-8-10 7 1-9Z" fill="#b17437" />
+    </g>
+  <g stroke="#29180f" stroke-width="7" stroke-linecap="round" stroke-linejoin="round" id="golem_lv2_fist_armor_arm_back_forearm" data-parent-part="arm_back_forearm"><g transform=""><path d="M15 181 36 174 59 184 59 204 45 219 22 216 13 203Z" fill="#bba58b" stroke-width="6" />
+          <path d="m17 181 18-7 21 12-19 9-22-3Z" fill="#dfcbae" stroke="none" />
+          <path d="m37 197 20-10 3 15-16 17-20-4-9-11 16 4Z" fill="#887562" stroke="none" /></g></g></g>
+  <g id="golem_lv2_leg_left" stroke="#29180f" stroke-width="7" stroke-linecap="round" stroke-linejoin="round" data-pivot-x="100" data-pivot-y="196">
+    <path d="M84 187 110 190 119 204 113 217 121 231Q126 238 116 239H74Q66 237 70 227L77 208Z" fill="#bba58b" />
+    <path d="m101 194 12 12-9 15 13 14-4 4H74l-3-5 18-13Z" fill="#887562" stroke="none" />
+    <path d="m80 218 17-8 13 20-6 4-29-1Z" fill="#dfcbae" stroke="none" />
+    <g data-moss="leg_left" stroke="none">
+      <path d="m81 207 19-8 13 11-7 8-13-2-5 9-10-7Z" fill="#ec9b49" data-mask="true" />
+      <path d="m83 211 9 1 8-6 6 12-13-2-5 9-10-7Z" fill="#b17437" />
+    </g>
+  </g>
+  <g id="golem_lv2_leg_right" stroke="#29180f" stroke-width="7" stroke-linecap="round" stroke-linejoin="round" data-pivot-x="151" data-pivot-y="196">
+    <path d="M142 190 165 187 181 206 178 219 187 231Q192 238 181 239H141Q132 237 137 226L134 206Z" fill="#bba58b" />
+    <path d="m148 197 13-4 10 13-13 10-17 3-5-12Z" fill="#dfcbae" stroke="none" />
+    <path d="m160 215 18-4v8l9 12-3 8h-43l-4-5 16-3Z" fill="#887562" stroke="none" />
+    <g data-moss="leg_right" stroke="none">
+      <path d="m147 196 16-4 11 14-9 6-8-6-8 9-10-5Z" fill="#ec9b49" data-mask="true" />
+      <path d="m149 201 8 1 8 10-8-6-8 9-10-5 4-6Z" fill="#b17437" />
+    </g>
+  </g>
+  <g id="golem_lv2_body" stroke="#29180f" stroke-width="7" stroke-linecap="round" stroke-linejoin="round" data-pivot-x="128" data-pivot-y="170">
+    <path d="M94 113 148 111 179 127 188 156 174 184 155 202 102 204 78 184 69 151 80 127Z" fill="#bba58b" />
+    <path d="m76 146 24 18 34 5 40-17 11 5-11 27-19 18-53 2-24-20Z" fill="#887562" stroke="none" />
+    <path d="m101 171 31 7 37-10-18 26-45 2-19-20Z" fill="#bba58b" stroke="none" />
+    <path d="m95 119 45-2 26 11-22 12-43-7-16 12Z" fill="#dfcbae" stroke="none" />
+    <g data-moss="chest" stroke="none">
+      <path d="m81 162 14 4 10 13-9 7-8-5-6 10-7-13Z" fill="#ec9b49" data-mask="true" />
+      <path d="m82 173 6 8 8 5-8-5-6 10-7-13Z" fill="#b17437" />
+    </g>
+  </g>
+  <g id="golem_lv2_arm_front_upper" stroke="#29180f" stroke-width="7" stroke-linecap="round" stroke-linejoin="round" data-pivot-x="171" data-pivot-y="130">
+    <path d="M182 89 200 91 220 112 226 138 214 161 193 169 174 154 164 130 165 107Z" fill="#bba58b" />
+    <path d="m171 112 15-14 17 9 12 24-26 12-17-13Z" fill="#dfcbae" stroke="none" />
+    <path d="m191 139 30-14 5 13-12 23-21 8-19-15-6-16Z" fill="#887562" stroke="none" />
+    <g data-moss="shoulder_front" stroke="none">
+      <path d="m184 96 14 1 15 16-2 13-10-6-5 13-9-13-11 3-4-15Z" fill="#ec9b49" data-mask="true" />
+      <path d="m185 110 6 4 10 6 10 6-10-6-5 13-9-13-11 3-4-8Z" fill="#b17437" />
+    </g>
+  </g>
+  <g id="golem_lv2_arm_front_forearm" stroke="#29180f" stroke-width="7" stroke-linecap="round" stroke-linejoin="round" data-pivot-x="210" data-pivot-y="157">
+    <path d="M205 143 224 146 241 164 246 184 242 211 228 225 207 222 188 207 185 180 192 159Z" fill="#bba58b" />
+    <path d="m204 150 17 2 13 16 5 17-18 7-24-12-6-9Z" fill="#dfcbae" stroke="none" />
+    <path d="m220 192 25-10 1 2-4 27-14 14-21-3-19-15 1-14Z" fill="#887562" stroke="none" />
+    <path d="m197 191 16-7 16 14-8 18-13-1-13-11Z" fill="#bba58b" stroke="none" />
+    <g data-moss="forearm_front" stroke="none">
+      <path d="m205 151 17 5 14 15-12 6-10-8-7 13-12-8-2-9Z" fill="#ec9b49" data-mask="true" />
+      <path d="m207 161 7 8 10 8-10-8-7 13-12-8-2-9 8 4Z" fill="#b17437" />
+    </g>
+  <g stroke="#29180f" stroke-width="7" stroke-linecap="round" stroke-linejoin="round" id="golem_lv2_fist_armor_arm_front_forearm" data-parent-part="arm_front_forearm"><g transform="translate(256 0) scale(-1 1)"><path d="M15 181 36 174 59 184 59 204 45 219 22 216 13 203Z" fill="#bba58b" stroke-width="6" />
+          <path d="m17 181 18-7 21 12-19 9-22-3Z" fill="#dfcbae" stroke="none" />
+          <path d="m37 197 20-10 3 15-16 17-20-4-9-11 16 4Z" fill="#887562" stroke="none" /></g></g></g>
+  <g id="golem_lv2_head" stroke="#29180f" stroke-width="7" stroke-linecap="round" stroke-linejoin="round" data-pivot-x="133" data-pivot-y="147">
+    <path d="M97 40 121 30Q131 27 141 32L170 43Q180 48 184 62L190 87 186 124Q183 139 170 148L148 163 112 158 88 143Q81 136 79 121L76 94 82 63Z" fill="#bba58b" />
+    <path d="m84 67 22 11-11 27 10 36 25 19-18-2-24-15-9-22-3-27Z" fill="#887562" stroke="none" />
+    <path d="m101 44 21-8 18 3 28 11 10 19-25-4-29-15-19 19-19-4Z" fill="#dfcbae" stroke="none" />
+    <path d="m160 66 23 7 7 14-4 37-17 19-16 10 16-39Z" fill="#887562" stroke="none" />
+    <g data-moss="head" stroke="none">
+      <path d="m101 44 21-8 19 3 27 12 9 17-17-6-12 7-17-11-12 16-10-11-9 7-6-15Z" fill="#ec9b49" data-mask="true" />
+      <path d="m101 55 10 2 9-5 11 6 17 11-17-11-12 16-10-11-9 7-6-15Z" fill="#b17437" />
+    </g>
+    <path d="m91 89 19-8 26 15 27-9 20 7-2 27-21 14-32-4-32-14Z" fill="#49392c" stroke-width="5" />
+    <path d="M102 98 126 108Q124 121 113 119 104 117 102 108Z" fill="#ffd16c" stroke="none" />
+    <path d="m148 108 25-9-1 11Q170 122 157 119Z" fill="#ffd16c" stroke="none" />
+    <path d="m95 124 32 6 30-3 20-10 3 17-15 16-20 8-32-6-19-14Z" fill="#bba58b" stroke-width="5" />
+    <path d="m101 131 24 5 28-4 16-9 2 8-25 12-27-5Z" fill="#dfcbae" stroke="none" />
+    <path d="m127 143 21 1 28-18-5 13-26 19-22-4-14-8Z" fill="#887562" stroke="none" />
+  </g>
+</svg></div></div>
+          <div class="threshold">240–479 HP · ×2</div>
+          <p>Каменные накладки на оба кулака</p></article>
+<article style="--tier:#df5654;--canvas:140">
+          <header><strong>Голем</strong><span class="tier">3</span></header>
+          <div class="stage"><div class="actor"><svg xmlns="http://www.w3.org/2000/svg" width="256" height="256" viewBox="0 0 256 256">
+  <title>Голем · уровень 3 · preview only</title>
+  <g id="golem_lv3_arm_back_upper" stroke="#29180f" stroke-width="7" stroke-linecap="round" stroke-linejoin="round" data-pivot-x="85" data-pivot-y="126">
+    <path d="M44 78 65 67Q71 66 77 70L94 85 102 105 88 144 65 158 38 141Q31 137 29 127L27 108Z" fill="#bba58b" />
+    <path d="m33 111 25 7 24 28-17 12-27-17-8-16Z" fill="#887562" stroke="none" />
+    <path d="m45 82 20-10 19 17-24 26-25-8Z" fill="#dfcbae" stroke="none" />
+    <g data-moss="shoulder_back" stroke="none">
+      <path d="m48 78 17-5 21 17-6 15-13-5-4 15-12-9-9 3-5-15Z" fill="#df5654" data-mask="true" />
+      <path d="m51 91 15 4 11-1 3 11-13-5-4 15-12-9-9 3 6-11Z" fill="#a7403f" />
+    </g>
+  <g stroke="#29180f" stroke-width="7" stroke-linecap="round" stroke-linejoin="round" id="golem_lv3_shoulder_plate_back" data-parent-part="arm_back_upper"><path d="M33 85 64 65 89 83 94 109 78 124 41 115 26 100Z" fill="#bba58b" stroke-width="6" /><path d="m39 86 24-15 18 13-16 14-29-4Z" fill="#dfcbae" stroke="none" /></g></g>
+  <g id="golem_lv3_arm_back_forearm" stroke="#29180f" stroke-width="7" stroke-linecap="round" stroke-linejoin="round" data-pivot-x="57" data-pivot-y="147">
+    <path d="M26 142 46 134Q58 135 64 144L72 165 63 181 64 198 49 218Q45 223 38 221L19 217 10 202 8 180 14 157Z" fill="#bba58b" />
+    <path d="m14 158 22-14 18 7-11 24-28 5-6-1Z" fill="#dfcbae" stroke="none" />
+    <path d="m43 175 20-12 9 2-9 16 1 17-15 20-11 4-19-5-9-15 14 1Z" fill="#887562" stroke="none" />
+    <path d="m21 185 20-7 17 12-13 19-14-3Z" fill="#bba58b" stroke="none" />
+    <g data-moss="forearm_back" stroke="none">
+      <path d="m25 148 20-9 14 11-5 11-11-3-6 13-11-8-10 7 1-11Z" fill="#df5654" data-mask="true" />
+      <path d="m29 154 11 5 14-6v8l-11-3-6 13-11-8-10 7 1-9Z" fill="#a7403f" />
+    </g>
+  <g stroke="#29180f" stroke-width="7" stroke-linecap="round" stroke-linejoin="round" id="golem_lv3_fist_armor_arm_back_forearm" data-parent-part="arm_back_forearm"><g transform=""><path d="M7 174 35 166 66 181 68 207 49 229 18 226 5 207Z" fill="#bba58b" stroke-width="6" />
+          <path d="m17 181 18-7 21 12-19 9-22-3Z" fill="#dfcbae" stroke="none" />
+          <path d="m37 197 20-10 3 15-16 17-20-4-9-11 16 4Z" fill="#887562" stroke="none" /></g></g></g>
+  <g id="golem_lv3_leg_left" stroke="#29180f" stroke-width="7" stroke-linecap="round" stroke-linejoin="round" data-pivot-x="100" data-pivot-y="196">
+    <path d="M84 187 110 190 119 204 113 217 121 231Q126 238 116 239H74Q66 237 70 227L77 208Z" fill="#bba58b" />
+    <path d="m101 194 12 12-9 15 13 14-4 4H74l-3-5 18-13Z" fill="#887562" stroke="none" />
+    <path d="m80 218 17-8 13 20-6 4-29-1Z" fill="#dfcbae" stroke="none" />
+    <g data-moss="leg_left" stroke="none">
+      <path d="m81 207 19-8 13 11-7 8-13-2-5 9-10-7Z" fill="#df5654" data-mask="true" />
+      <path d="m83 211 9 1 8-6 6 12-13-2-5 9-10-7Z" fill="#a7403f" />
+    </g>
+  </g>
+  <g id="golem_lv3_leg_right" stroke="#29180f" stroke-width="7" stroke-linecap="round" stroke-linejoin="round" data-pivot-x="151" data-pivot-y="196">
+    <path d="M142 190 165 187 181 206 178 219 187 231Q192 238 181 239H141Q132 237 137 226L134 206Z" fill="#bba58b" />
+    <path d="m148 197 13-4 10 13-13 10-17 3-5-12Z" fill="#dfcbae" stroke="none" />
+    <path d="m160 215 18-4v8l9 12-3 8h-43l-4-5 16-3Z" fill="#887562" stroke="none" />
+    <g data-moss="leg_right" stroke="none">
+      <path d="m147 196 16-4 11 14-9 6-8-6-8 9-10-5Z" fill="#df5654" data-mask="true" />
+      <path d="m149 201 8 1 8 10-8-6-8 9-10-5 4-6Z" fill="#a7403f" />
+    </g>
+  </g>
+  <g id="golem_lv3_body" stroke="#29180f" stroke-width="7" stroke-linecap="round" stroke-linejoin="round" data-pivot-x="128" data-pivot-y="170">
+    <path d="M94 113 148 111 179 127 188 156 174 184 155 202 102 204 78 184 69 151 80 127Z" fill="#bba58b" />
+    <path d="m76 146 24 18 34 5 40-17 11 5-11 27-19 18-53 2-24-20Z" fill="#887562" stroke="none" />
+    <path d="m101 171 31 7 37-10-18 26-45 2-19-20Z" fill="#bba58b" stroke="none" />
+    <path d="m95 119 45-2 26 11-22 12-43-7-16 12Z" fill="#dfcbae" stroke="none" />
+    <g data-moss="chest" stroke="none">
+      <path d="m81 162 14 4 10 13-9 7-8-5-6 10-7-13Z" fill="#df5654" data-mask="true" />
+      <path d="m82 173 6 8 8 5-8-5-6 10-7-13Z" fill="#a7403f" />
+    </g>
+  </g>
+  <g id="golem_lv3_arm_front_upper" stroke="#29180f" stroke-width="7" stroke-linecap="round" stroke-linejoin="round" data-pivot-x="171" data-pivot-y="130">
+    <path d="M182 89 200 91 220 112 226 138 214 161 193 169 174 154 164 130 165 107Z" fill="#bba58b" />
+    <path d="m171 112 15-14 17 9 12 24-26 12-17-13Z" fill="#dfcbae" stroke="none" />
+    <path d="m191 139 30-14 5 13-12 23-21 8-19-15-6-16Z" fill="#887562" stroke="none" />
+    <g data-moss="shoulder_front" stroke="none">
+      <path d="m184 96 14 1 15 16-2 13-10-6-5 13-9-13-11 3-4-15Z" fill="#df5654" data-mask="true" />
+      <path d="m185 110 6 4 10 6 10 6-10-6-5 13-9-13-11 3-4-8Z" fill="#a7403f" />
+    </g>
+  <g stroke="#29180f" stroke-width="7" stroke-linecap="round" stroke-linejoin="round" id="golem_lv3_shoulder_plate_front" data-parent-part="arm_front_upper"><path d="m171 103 13-19 24 8 18 20 1 28-23 10-29-14Z" fill="#bba58b" stroke-width="6" /><path d="m181 104 10-13 13 7 15 19-22 7-17-10Z" fill="#dfcbae" stroke="none" /></g></g>
+  <g id="golem_lv3_arm_front_forearm" stroke="#29180f" stroke-width="7" stroke-linecap="round" stroke-linejoin="round" data-pivot-x="210" data-pivot-y="157">
+    <path d="M205 143 224 146 241 164 246 184 242 211 228 225 207 222 188 207 185 180 192 159Z" fill="#bba58b" />
+    <path d="m204 150 17 2 13 16 5 17-18 7-24-12-6-9Z" fill="#dfcbae" stroke="none" />
+    <path d="m220 192 25-10 1 2-4 27-14 14-21-3-19-15 1-14Z" fill="#887562" stroke="none" />
+    <path d="m197 191 16-7 16 14-8 18-13-1-13-11Z" fill="#bba58b" stroke="none" />
+    <g data-moss="forearm_front" stroke="none">
+      <path d="m205 151 17 5 14 15-12 6-10-8-7 13-12-8-2-9Z" fill="#df5654" data-mask="true" />
+      <path d="m207 161 7 8 10 8-10-8-7 13-12-8-2-9 8 4Z" fill="#a7403f" />
+    </g>
+  <g stroke="#29180f" stroke-width="7" stroke-linecap="round" stroke-linejoin="round" id="golem_lv3_fist_armor_arm_front_forearm" data-parent-part="arm_front_forearm"><g transform="translate(256 0) scale(-1 1)"><path d="M7 174 35 166 66 181 68 207 49 229 18 226 5 207Z" fill="#bba58b" stroke-width="6" />
+          <path d="m17 181 18-7 21 12-19 9-22-3Z" fill="#dfcbae" stroke="none" />
+          <path d="m37 197 20-10 3 15-16 17-20-4-9-11 16 4Z" fill="#887562" stroke="none" /></g></g></g>
+  <g id="golem_lv3_head" stroke="#29180f" stroke-width="7" stroke-linecap="round" stroke-linejoin="round" data-pivot-x="133" data-pivot-y="147">
+    <path d="M97 40 121 30Q131 27 141 32L170 43Q180 48 184 62L190 87 186 124Q183 139 170 148L148 163 112 158 88 143Q81 136 79 121L76 94 82 63Z" fill="#bba58b" />
+    <path d="m84 67 22 11-11 27 10 36 25 19-18-2-24-15-9-22-3-27Z" fill="#887562" stroke="none" />
+    <path d="m101 44 21-8 18 3 28 11 10 19-25-4-29-15-19 19-19-4Z" fill="#dfcbae" stroke="none" />
+    <path d="m160 66 23 7 7 14-4 37-17 19-16 10 16-39Z" fill="#887562" stroke="none" />
+    <g data-moss="head" stroke="none">
+      <path d="m101 44 21-8 19 3 27 12 9 17-17-6-12 7-17-11-12 16-10-11-9 7-6-15Z" fill="#df5654" data-mask="true" />
+      <path d="m101 55 10 2 9-5 11 6 17 11-17-11-12 16-10-11-9 7-6-15Z" fill="#a7403f" />
+    </g>
+    <path d="m91 89 19-8 26 15 27-9 20 7-2 27-21 14-32-4-32-14Z" fill="#49392c" stroke-width="5" />
+    <path d="M102 98 126 108Q124 121 113 119 104 117 102 108Z" fill="#ffd16c" stroke="none" />
+    <path d="m148 108 25-9-1 11Q170 122 157 119Z" fill="#ffd16c" stroke="none" />
+    <path d="m95 124 32 6 30-3 20-10 3 17-15 16-20 8-32-6-19-14Z" fill="#bba58b" stroke-width="5" />
+    <path d="m101 131 24 5 28-4 16-9 2 8-25 12-27-5Z" fill="#dfcbae" stroke="none" />
+    <path d="m127 143 21 1 28-18-5 13-26 19-22-4-14-8Z" fill="#887562" stroke="none" />
+  </g>
+</svg></div></div>
+          <div class="threshold">480–959 HP · ×4</div>
+          <p>Большие кулаки · плечевые плиты</p></article>
+<article style="--tier:#5295ef;--canvas:140">
+          <header><strong>Голем</strong><span class="tier">4</span></header>
+          <div class="stage"><div class="actor"><svg xmlns="http://www.w3.org/2000/svg" width="256" height="256" viewBox="0 0 256 256">
+  <title>Голем · уровень 4 · preview only</title>
+  <g id="golem_lv4_arm_back_upper" stroke="#29180f" stroke-width="7" stroke-linecap="round" stroke-linejoin="round" data-pivot-x="85" data-pivot-y="126">
+    <path d="M44 78 65 67Q71 66 77 70L94 85 102 105 88 144 65 158 38 141Q31 137 29 127L27 108Z" fill="#bba58b" />
+    <path d="m33 111 25 7 24 28-17 12-27-17-8-16Z" fill="#887562" stroke="none" />
+    <path d="m45 82 20-10 19 17-24 26-25-8Z" fill="#dfcbae" stroke="none" />
+    <g data-moss="shoulder_back" stroke="none">
+      <path d="m48 78 17-5 21 17-6 15-13-5-4 15-12-9-9 3-5-15Z" fill="#5295ef" data-mask="true" />
+      <path d="m51 91 15 4 11-1 3 11-13-5-4 15-12-9-9 3 6-11Z" fill="#3e70b3" />
+    </g>
+  <g stroke="#29180f" stroke-width="7" stroke-linecap="round" stroke-linejoin="round" id="golem_lv4_shoulder_plate_back" data-parent-part="arm_back_upper"><path d="M33 85 64 65 89 83 94 109 78 124 41 115 26 100Z" fill="#bba58b" stroke-width="6" /><path d="m39 86 24-15 18 13-16 14-29-4Z" fill="#dfcbae" stroke="none" /></g></g>
+  <g id="golem_lv4_arm_back_forearm" stroke="#29180f" stroke-width="7" stroke-linecap="round" stroke-linejoin="round" data-pivot-x="57" data-pivot-y="147">
+    <path d="M26 142 46 134Q58 135 64 144L72 165 63 181 64 198 49 218Q45 223 38 221L19 217 10 202 8 180 14 157Z" fill="#bba58b" />
+    <path d="m14 158 22-14 18 7-11 24-28 5-6-1Z" fill="#dfcbae" stroke="none" />
+    <path d="m43 175 20-12 9 2-9 16 1 17-15 20-11 4-19-5-9-15 14 1Z" fill="#887562" stroke="none" />
+    <path d="m21 185 20-7 17 12-13 19-14-3Z" fill="#bba58b" stroke="none" />
+    <g data-moss="forearm_back" stroke="none">
+      <path d="m25 148 20-9 14 11-5 11-11-3-6 13-11-8-10 7 1-11Z" fill="#5295ef" data-mask="true" />
+      <path d="m29 154 11 5 14-6v8l-11-3-6 13-11-8-10 7 1-9Z" fill="#3e70b3" />
+    </g>
+  <g stroke="#29180f" stroke-width="7" stroke-linecap="round" stroke-linejoin="round" id="golem_lv4_fist_armor_arm_back_forearm" data-parent-part="arm_back_forearm"><g transform=""><path d="M7 174 35 166 66 181 68 207 49 229 18 226 5 207Z" fill="#bba58b" stroke-width="6" />
+          <path d="m17 181 18-7 21 12-19 9-22-3Z" fill="#dfcbae" stroke="none" />
+          <path d="m37 197 20-10 3 15-16 17-20-4-9-11 16 4Z" fill="#887562" stroke="none" /><path d="m7 180 10-4 4 39-10-6Z M52 177l11 6 2 24-13 14-8-6 11-15Z" fill="#738587" stroke-width="5" />
+              <path d="m25 202 17 0" stroke="#5295ef" stroke-width="6" /></g></g></g>
+  <g id="golem_lv4_leg_left" stroke="#29180f" stroke-width="7" stroke-linecap="round" stroke-linejoin="round" data-pivot-x="100" data-pivot-y="196">
+    <path d="M84 187 110 190 119 204 113 217 121 231Q126 238 116 239H74Q66 237 70 227L77 208Z" fill="#bba58b" />
+    <path d="m101 194 12 12-9 15 13 14-4 4H74l-3-5 18-13Z" fill="#887562" stroke="none" />
+    <path d="m80 218 17-8 13 20-6 4-29-1Z" fill="#dfcbae" stroke="none" />
+    <g data-moss="leg_left" stroke="none">
+      <path d="m81 207 19-8 13 11-7 8-13-2-5 9-10-7Z" fill="#5295ef" data-mask="true" />
+      <path d="m83 211 9 1 8-6 6 12-13-2-5 9-10-7Z" fill="#3e70b3" />
+    </g>
+  </g>
+  <g id="golem_lv4_leg_right" stroke="#29180f" stroke-width="7" stroke-linecap="round" stroke-linejoin="round" data-pivot-x="151" data-pivot-y="196">
+    <path d="M142 190 165 187 181 206 178 219 187 231Q192 238 181 239H141Q132 237 137 226L134 206Z" fill="#bba58b" />
+    <path d="m148 197 13-4 10 13-13 10-17 3-5-12Z" fill="#dfcbae" stroke="none" />
+    <path d="m160 215 18-4v8l9 12-3 8h-43l-4-5 16-3Z" fill="#887562" stroke="none" />
+    <g data-moss="leg_right" stroke="none">
+      <path d="m147 196 16-4 11 14-9 6-8-6-8 9-10-5Z" fill="#5295ef" data-mask="true" />
+      <path d="m149 201 8 1 8 10-8-6-8 9-10-5 4-6Z" fill="#3e70b3" />
+    </g>
+  </g>
+  <g id="golem_lv4_body" stroke="#29180f" stroke-width="7" stroke-linecap="round" stroke-linejoin="round" data-pivot-x="128" data-pivot-y="170">
+    <path d="M94 113 148 111 179 127 188 156 174 184 155 202 102 204 78 184 69 151 80 127Z" fill="#bba58b" />
+    <path d="m76 146 24 18 34 5 40-17 11 5-11 27-19 18-53 2-24-20Z" fill="#887562" stroke="none" />
+    <path d="m101 171 31 7 37-10-18 26-45 2-19-20Z" fill="#bba58b" stroke="none" />
+    <path d="m95 119 45-2 26 11-22 12-43-7-16 12Z" fill="#dfcbae" stroke="none" />
+    <g data-moss="chest" stroke="none">
+      <path d="m81 162 14 4 10 13-9 7-8-5-6 10-7-13Z" fill="#5295ef" data-mask="true" />
+      <path d="m82 173 6 8 8 5-8-5-6 10-7-13Z" fill="#3e70b3" />
+    </g>
+  <g stroke="#29180f" stroke-width="7" stroke-linecap="round" stroke-linejoin="round" id="golem_lv4_stone_breastplate" data-parent-part="body">
+          <path d="m97 153 30-5 34 10 8 24-17 16-46 0-17-19Z" fill="#bba58b" stroke-width="6" />
+          <path d="m105 163 23-5 25 9-8 16-33-3Z" fill="#dfcbae" stroke="none" />
+          <path d="m91 173 10 22 14 0 M164 174l-9 23-14 0" fill="none" stroke="#738587" stroke-width="8" />
+          <path d="m119 186 22 0" stroke="#5295ef" stroke-width="6" /></g></g>
+  <g id="golem_lv4_arm_front_upper" stroke="#29180f" stroke-width="7" stroke-linecap="round" stroke-linejoin="round" data-pivot-x="171" data-pivot-y="130">
+    <path d="M182 89 200 91 220 112 226 138 214 161 193 169 174 154 164 130 165 107Z" fill="#bba58b" />
+    <path d="m171 112 15-14 17 9 12 24-26 12-17-13Z" fill="#dfcbae" stroke="none" />
+    <path d="m191 139 30-14 5 13-12 23-21 8-19-15-6-16Z" fill="#887562" stroke="none" />
+    <g data-moss="shoulder_front" stroke="none">
+      <path d="m184 96 14 1 15 16-2 13-10-6-5 13-9-13-11 3-4-15Z" fill="#5295ef" data-mask="true" />
+      <path d="m185 110 6 4 10 6 10 6-10-6-5 13-9-13-11 3-4-8Z" fill="#3e70b3" />
+    </g>
+  <g stroke="#29180f" stroke-width="7" stroke-linecap="round" stroke-linejoin="round" id="golem_lv4_shoulder_plate_front" data-parent-part="arm_front_upper"><path d="m171 103 13-19 24 8 18 20 1 28-23 10-29-14Z" fill="#bba58b" stroke-width="6" /><path d="m181 104 10-13 13 7 15 19-22 7-17-10Z" fill="#dfcbae" stroke="none" /></g></g>
+  <g id="golem_lv4_arm_front_forearm" stroke="#29180f" stroke-width="7" stroke-linecap="round" stroke-linejoin="round" data-pivot-x="210" data-pivot-y="157">
+    <path d="M205 143 224 146 241 164 246 184 242 211 228 225 207 222 188 207 185 180 192 159Z" fill="#bba58b" />
+    <path d="m204 150 17 2 13 16 5 17-18 7-24-12-6-9Z" fill="#dfcbae" stroke="none" />
+    <path d="m220 192 25-10 1 2-4 27-14 14-21-3-19-15 1-14Z" fill="#887562" stroke="none" />
+    <path d="m197 191 16-7 16 14-8 18-13-1-13-11Z" fill="#bba58b" stroke="none" />
+    <g data-moss="forearm_front" stroke="none">
+      <path d="m205 151 17 5 14 15-12 6-10-8-7 13-12-8-2-9Z" fill="#5295ef" data-mask="true" />
+      <path d="m207 161 7 8 10 8-10-8-7 13-12-8-2-9 8 4Z" fill="#3e70b3" />
+    </g>
+  <g stroke="#29180f" stroke-width="7" stroke-linecap="round" stroke-linejoin="round" id="golem_lv4_fist_armor_arm_front_forearm" data-parent-part="arm_front_forearm"><g transform="translate(256 0) scale(-1 1)"><path d="M7 174 35 166 66 181 68 207 49 229 18 226 5 207Z" fill="#bba58b" stroke-width="6" />
+          <path d="m17 181 18-7 21 12-19 9-22-3Z" fill="#dfcbae" stroke="none" />
+          <path d="m37 197 20-10 3 15-16 17-20-4-9-11 16 4Z" fill="#887562" stroke="none" /><path d="m7 180 10-4 4 39-10-6Z M52 177l11 6 2 24-13 14-8-6 11-15Z" fill="#738587" stroke-width="5" />
+              <path d="m25 202 17 0" stroke="#5295ef" stroke-width="6" /></g></g></g>
+  <g id="golem_lv4_head" stroke="#29180f" stroke-width="7" stroke-linecap="round" stroke-linejoin="round" data-pivot-x="133" data-pivot-y="147">
+    <path d="M97 40 121 30Q131 27 141 32L170 43Q180 48 184 62L190 87 186 124Q183 139 170 148L148 163 112 158 88 143Q81 136 79 121L76 94 82 63Z" fill="#bba58b" />
+    <path d="m84 67 22 11-11 27 10 36 25 19-18-2-24-15-9-22-3-27Z" fill="#887562" stroke="none" />
+    <path d="m101 44 21-8 18 3 28 11 10 19-25-4-29-15-19 19-19-4Z" fill="#dfcbae" stroke="none" />
+    <path d="m160 66 23 7 7 14-4 37-17 19-16 10 16-39Z" fill="#887562" stroke="none" />
+    <g data-moss="head" stroke="none">
+      <path d="m101 44 21-8 19 3 27 12 9 17-17-6-12 7-17-11-12 16-10-11-9 7-6-15Z" fill="#5295ef" data-mask="true" />
+      <path d="m101 55 10 2 9-5 11 6 17 11-17-11-12 16-10-11-9 7-6-15Z" fill="#3e70b3" />
+    </g>
+    <path d="m91 89 19-8 26 15 27-9 20 7-2 27-21 14-32-4-32-14Z" fill="#49392c" stroke-width="5" />
+    <path d="M102 98 126 108Q124 121 113 119 104 117 102 108Z" fill="#ffd16c" stroke="none" />
+    <path d="m148 108 25-9-1 11Q170 122 157 119Z" fill="#ffd16c" stroke="none" />
+    <path d="m95 124 32 6 30-3 20-10 3 17-15 16-20 8-32-6-19-14Z" fill="#bba58b" stroke-width="5" />
+    <path d="m101 131 24 5 28-4 16-9 2 8-25 12-27-5Z" fill="#dfcbae" stroke="none" />
+    <path d="m127 143 21 1 28-18-5 13-26 19-22-4-14-8Z" fill="#887562" stroke="none" />
+  </g>
+</svg></div></div>
+          <div class="threshold">960–1919 HP · ×8</div>
+          <p>Скобы на кулаках · каменный нагрудник</p></article>
+<article style="--tier:#b66dea;--canvas:140">
+          <header><strong>Голем</strong><span class="tier">5</span></header>
+          <div class="stage"><div class="actor"><svg xmlns="http://www.w3.org/2000/svg" width="256" height="256" viewBox="0 0 256 256">
+  <title>Голем · уровень 5 · preview only</title>
+  <g id="golem_lv5_arm_back_upper" stroke="#29180f" stroke-width="7" stroke-linecap="round" stroke-linejoin="round" data-pivot-x="85" data-pivot-y="126">
+    <path d="M44 78 65 67Q71 66 77 70L94 85 102 105 88 144 65 158 38 141Q31 137 29 127L27 108Z" fill="#bba58b" />
+    <path d="m33 111 25 7 24 28-17 12-27-17-8-16Z" fill="#887562" stroke="none" />
+    <path d="m45 82 20-10 19 17-24 26-25-8Z" fill="#dfcbae" stroke="none" />
+    <g data-moss="shoulder_back" stroke="none">
+      <path d="m48 78 17-5 21 17-6 15-13-5-4 15-12-9-9 3-5-15Z" fill="#b66dea" data-mask="true" />
+      <path d="m51 91 15 4 11-1 3 11-13-5-4 15-12-9-9 3 6-11Z" fill="#8852b0" />
+    </g>
+  <g stroke="#29180f" stroke-width="7" stroke-linecap="round" stroke-linejoin="round" id="golem_lv5_shoulder_plate_back" data-parent-part="arm_back_upper"><path d="M33 85 64 65 89 83 94 109 78 124 41 115 26 100Z" fill="#bba58b" stroke-width="6" /><path d="m39 86 24-15 18 13-16 14-29-4Z" fill="#dfcbae" stroke="none" /></g><g stroke="#29180f" stroke-width="7" stroke-linecap="round" stroke-linejoin="round" id="golem_lv5_shoulder_reinforcement_arm_back_upper" data-parent-part="arm_back_upper"><path d="M32 87 43 70 60 64 89 80 93 93 72 96 47 92Z" fill="#738587" stroke-width="6" /></g></g>
+  <g id="golem_lv5_arm_back_forearm" stroke="#29180f" stroke-width="7" stroke-linecap="round" stroke-linejoin="round" data-pivot-x="57" data-pivot-y="147">
+    <path d="M26 142 46 134Q58 135 64 144L72 165 63 181 64 198 49 218Q45 223 38 221L19 217 10 202 8 180 14 157Z" fill="#bba58b" />
+    <path d="m14 158 22-14 18 7-11 24-28 5-6-1Z" fill="#dfcbae" stroke="none" />
+    <path d="m43 175 20-12 9 2-9 16 1 17-15 20-11 4-19-5-9-15 14 1Z" fill="#887562" stroke="none" />
+    <path d="m21 185 20-7 17 12-13 19-14-3Z" fill="#bba58b" stroke="none" />
+    <g data-moss="forearm_back" stroke="none">
+      <path d="m25 148 20-9 14 11-5 11-11-3-6 13-11-8-10 7 1-11Z" fill="#b66dea" data-mask="true" />
+      <path d="m29 154 11 5 14-6v8l-11-3-6 13-11-8-10 7 1-9Z" fill="#8852b0" />
+    </g>
+  <g stroke="#29180f" stroke-width="7" stroke-linecap="round" stroke-linejoin="round" id="golem_lv5_fist_armor_arm_back_forearm" data-parent-part="arm_back_forearm"><g transform=""><path d="M7 174 35 166 66 181 68 207 49 229 18 226 5 207Z" fill="#bba58b" stroke-width="6" />
+          <path d="m17 181 18-7 21 12-19 9-22-3Z" fill="#dfcbae" stroke="none" />
+          <path d="m37 197 20-10 3 15-16 17-20-4-9-11 16 4Z" fill="#887562" stroke="none" /><path d="m7 180 10-4 4 39-10-6Z M52 177l11 6 2 24-13 14-8-6 11-15Z" fill="#738587" stroke-width="5" />
+              <path d="m25 202 17 0" stroke="#b66dea" stroke-width="6" /><path d="M17 181 16 163 28 176 M37 175l5-21 8 26 M56 188l18-5-10 19" fill="#b9c9c3" stroke-width="5" />
+              <path d="m20 212 23 7-8 10-16-4Z" fill="#738587" stroke-width="5" /></g></g></g>
+  <g id="golem_lv5_leg_left" stroke="#29180f" stroke-width="7" stroke-linecap="round" stroke-linejoin="round" data-pivot-x="100" data-pivot-y="196">
+    <path d="M84 187 110 190 119 204 113 217 121 231Q126 238 116 239H74Q66 237 70 227L77 208Z" fill="#bba58b" />
+    <path d="m101 194 12 12-9 15 13 14-4 4H74l-3-5 18-13Z" fill="#887562" stroke="none" />
+    <path d="m80 218 17-8 13 20-6 4-29-1Z" fill="#dfcbae" stroke="none" />
+    <g data-moss="leg_left" stroke="none">
+      <path d="m81 207 19-8 13 11-7 8-13-2-5 9-10-7Z" fill="#b66dea" data-mask="true" />
+      <path d="m83 211 9 1 8-6 6 12-13-2-5 9-10-7Z" fill="#8852b0" />
+    </g>
+  </g>
+  <g id="golem_lv5_leg_right" stroke="#29180f" stroke-width="7" stroke-linecap="round" stroke-linejoin="round" data-pivot-x="151" data-pivot-y="196">
+    <path d="M142 190 165 187 181 206 178 219 187 231Q192 238 181 239H141Q132 237 137 226L134 206Z" fill="#bba58b" />
+    <path d="m148 197 13-4 10 13-13 10-17 3-5-12Z" fill="#dfcbae" stroke="none" />
+    <path d="m160 215 18-4v8l9 12-3 8h-43l-4-5 16-3Z" fill="#887562" stroke="none" />
+    <g data-moss="leg_right" stroke="none">
+      <path d="m147 196 16-4 11 14-9 6-8-6-8 9-10-5Z" fill="#b66dea" data-mask="true" />
+      <path d="m149 201 8 1 8 10-8-6-8 9-10-5 4-6Z" fill="#8852b0" />
+    </g>
+  </g>
+  <g id="golem_lv5_body" stroke="#29180f" stroke-width="7" stroke-linecap="round" stroke-linejoin="round" data-pivot-x="128" data-pivot-y="170">
+    <path d="M94 113 148 111 179 127 188 156 174 184 155 202 102 204 78 184 69 151 80 127Z" fill="#bba58b" />
+    <path d="m76 146 24 18 34 5 40-17 11 5-11 27-19 18-53 2-24-20Z" fill="#887562" stroke="none" />
+    <path d="m101 171 31 7 37-10-18 26-45 2-19-20Z" fill="#bba58b" stroke="none" />
+    <path d="m95 119 45-2 26 11-22 12-43-7-16 12Z" fill="#dfcbae" stroke="none" />
+    <g data-moss="chest" stroke="none">
+      <path d="m81 162 14 4 10 13-9 7-8-5-6 10-7-13Z" fill="#b66dea" data-mask="true" />
+      <path d="m82 173 6 8 8 5-8-5-6 10-7-13Z" fill="#8852b0" />
+    </g>
+  <g stroke="#29180f" stroke-width="7" stroke-linecap="round" stroke-linejoin="round" id="golem_lv5_stone_breastplate" data-parent-part="body">
+          <path d="m97 153 30-5 34 10 8 24-17 16-46 0-17-19Z" fill="#bba58b" stroke-width="6" />
+          <path d="m105 163 23-5 25 9-8 16-33-3Z" fill="#dfcbae" stroke="none" />
+          <path d="m91 173 10 22 14 0 M164 174l-9 23-14 0" fill="none" stroke="#738587" stroke-width="8" />
+          <path d="m119 186 22 0" stroke="#b66dea" stroke-width="6" /></g></g>
+  <g id="golem_lv5_arm_front_upper" stroke="#29180f" stroke-width="7" stroke-linecap="round" stroke-linejoin="round" data-pivot-x="171" data-pivot-y="130">
+    <path d="M182 89 200 91 220 112 226 138 214 161 193 169 174 154 164 130 165 107Z" fill="#bba58b" />
+    <path d="m171 112 15-14 17 9 12 24-26 12-17-13Z" fill="#dfcbae" stroke="none" />
+    <path d="m191 139 30-14 5 13-12 23-21 8-19-15-6-16Z" fill="#887562" stroke="none" />
+    <g data-moss="shoulder_front" stroke="none">
+      <path d="m184 96 14 1 15 16-2 13-10-6-5 13-9-13-11 3-4-15Z" fill="#b66dea" data-mask="true" />
+      <path d="m185 110 6 4 10 6 10 6-10-6-5 13-9-13-11 3-4-8Z" fill="#8852b0" />
+    </g>
+  <g stroke="#29180f" stroke-width="7" stroke-linecap="round" stroke-linejoin="round" id="golem_lv5_shoulder_plate_front" data-parent-part="arm_front_upper"><path d="m171 103 13-19 24 8 18 20 1 28-23 10-29-14Z" fill="#bba58b" stroke-width="6" /><path d="m181 104 10-13 13 7 15 19-22 7-17-10Z" fill="#dfcbae" stroke="none" /></g><g stroke="#29180f" stroke-width="7" stroke-linecap="round" stroke-linejoin="round" id="golem_lv5_shoulder_reinforcement_arm_front_upper" data-parent-part="arm_front_upper"><path d="M177 101 185 82 206 87 226 108 223 121 202 115Z" fill="#738587" stroke-width="6" /></g></g>
+  <g id="golem_lv5_arm_front_forearm" stroke="#29180f" stroke-width="7" stroke-linecap="round" stroke-linejoin="round" data-pivot-x="210" data-pivot-y="157">
+    <path d="M205 143 224 146 241 164 246 184 242 211 228 225 207 222 188 207 185 180 192 159Z" fill="#bba58b" />
+    <path d="m204 150 17 2 13 16 5 17-18 7-24-12-6-9Z" fill="#dfcbae" stroke="none" />
+    <path d="m220 192 25-10 1 2-4 27-14 14-21-3-19-15 1-14Z" fill="#887562" stroke="none" />
+    <path d="m197 191 16-7 16 14-8 18-13-1-13-11Z" fill="#bba58b" stroke="none" />
+    <g data-moss="forearm_front" stroke="none">
+      <path d="m205 151 17 5 14 15-12 6-10-8-7 13-12-8-2-9Z" fill="#b66dea" data-mask="true" />
+      <path d="m207 161 7 8 10 8-10-8-7 13-12-8-2-9 8 4Z" fill="#8852b0" />
+    </g>
+  <g stroke="#29180f" stroke-width="7" stroke-linecap="round" stroke-linejoin="round" id="golem_lv5_fist_armor_arm_front_forearm" data-parent-part="arm_front_forearm"><g transform="translate(256 0) scale(-1 1)"><path d="M7 174 35 166 66 181 68 207 49 229 18 226 5 207Z" fill="#bba58b" stroke-width="6" />
+          <path d="m17 181 18-7 21 12-19 9-22-3Z" fill="#dfcbae" stroke="none" />
+          <path d="m37 197 20-10 3 15-16 17-20-4-9-11 16 4Z" fill="#887562" stroke="none" /><path d="m7 180 10-4 4 39-10-6Z M52 177l11 6 2 24-13 14-8-6 11-15Z" fill="#738587" stroke-width="5" />
+              <path d="m25 202 17 0" stroke="#b66dea" stroke-width="6" /><path d="M17 181 16 163 28 176 M37 175l5-21 8 26 M56 188l18-5-10 19" fill="#b9c9c3" stroke-width="5" />
+              <path d="m20 212 23 7-8 10-16-4Z" fill="#738587" stroke-width="5" /></g></g></g>
+  <g id="golem_lv5_head" stroke="#29180f" stroke-width="7" stroke-linecap="round" stroke-linejoin="round" data-pivot-x="133" data-pivot-y="147">
+    <path d="M97 40 121 30Q131 27 141 32L170 43Q180 48 184 62L190 87 186 124Q183 139 170 148L148 163 112 158 88 143Q81 136 79 121L76 94 82 63Z" fill="#bba58b" />
+    <path d="m84 67 22 11-11 27 10 36 25 19-18-2-24-15-9-22-3-27Z" fill="#887562" stroke="none" />
+    <path d="m101 44 21-8 18 3 28 11 10 19-25-4-29-15-19 19-19-4Z" fill="#dfcbae" stroke="none" />
+    <path d="m160 66 23 7 7 14-4 37-17 19-16 10 16-39Z" fill="#887562" stroke="none" />
+    <g data-moss="head" stroke="none">
+      <path d="m101 44 21-8 19 3 27 12 9 17-17-6-12 7-17-11-12 16-10-11-9 7-6-15Z" fill="#b66dea" data-mask="true" />
+      <path d="m101 55 10 2 9-5 11 6 17 11-17-11-12 16-10-11-9 7-6-15Z" fill="#8852b0" />
+    </g>
+    <path d="m91 89 19-8 26 15 27-9 20 7-2 27-21 14-32-4-32-14Z" fill="#49392c" stroke-width="5" />
+    <path d="M102 98 126 108Q124 121 113 119 104 117 102 108Z" fill="#ffd16c" stroke="none" />
+    <path d="m148 108 25-9-1 11Q170 122 157 119Z" fill="#ffd16c" stroke="none" />
+    <path d="m95 124 32 6 30-3 20-10 3 17-15 16-20 8-32-6-19-14Z" fill="#bba58b" stroke-width="5" />
+    <path d="m101 131 24 5 28-4 16-9 2 8-25 12-27-5Z" fill="#dfcbae" stroke="none" />
+    <path d="m127 143 21 1 28-18-5 13-26 19-22-4-14-8Z" fill="#887562" stroke="none" />
+  <g stroke="#29180f" stroke-width="7" stroke-linecap="round" stroke-linejoin="round" id="golem_lv5_brow_plate" data-parent-part="head">
+          <path d="m88 76 20-13 26 12 26-9 20 10-3 15-17-4-26 9-24-15-20 8Z" fill="#738587" stroke-width="6" />
+          <path d="m111 69 13 6-3 12-12-8Z M160 72l11 6-10 3-7 2Z" fill="#b9c9c3" stroke="none" />
+          <path d="m130 76 8 1-2 11" fill="none" stroke="#b66dea" stroke-width="5" /></g></g>
+</svg></div></div>
+          <div class="threshold">от 1920 HP · ×16</div>
+          <p>Бронированные кулаки · усиленные плечи · надбровная плита</p></article></div></div>
+<footer>Слева направо: зелёный → оранжевый → красный → синий → фиолетовый. Пороги — удвоение базового HP; это существующая логика, не новый баланс.<br>
+Броня накапливается, оружие заменяется. У голема усиление обеих рук сохраняет двуручный удар. Здесь показана неподвижная поза; анимации проверены при интеграции. Внешний вид и игровая интеграция приняты пользователем.</footer>
+</main><script>
+const large=document.querySelector('#large'),game=document.querySelector('#game'),columns=document.querySelector('#columns'),screen=document.querySelector('#screen');
+function update(){const cell=720/Number(columns.value),factor=Math.min((cell-12)/140,1),ratio=Number(screen.value)/720;
+ document.body.style.setProperty('--factor',factor);document.body.style.setProperty('--screen',ratio);document.body.style.setProperty('--cell',`${cell*ratio}px`);
+ document.querySelector('#note').textContent=`Игровые размеры canvas: гоблин ${(86.4*factor*ratio).toFixed(0)} px · орк ${(120*factor*ratio).toFixed(0)} px · голем ${(140*factor*ratio).toFixed(0)} px`;
+}function mode(on){document.body.classList.toggle('game',on);large.setAttribute('aria-pressed',!on);game.setAttribute('aria-pressed',on);update()}
+large.onclick=()=>mode(false);game.onclick=()=>mode(true);columns.onchange=screen.onchange=update;update();
+</script></body></html>
