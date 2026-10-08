@@ -197,3 +197,43 @@ func try_refund(source: SummonSlot, expected_unit: CombatUnit) -> bool:
 
 func _emit_state() -> void:
 	state_changed.emit(mana, current_cost(), occupied_count(), _slots.size(), can_summon())
+
+
+func sell_army_for_map_change() -> int:
+	if not _running or _busy:
+		return 0
+	_busy = true
+	var sold: Array[CombatUnit] = []
+	var amount: int = 0
+	for slot: SummonSlot in _slots:
+		if not slot.is_empty():
+			var unit: CombatUnit = slot.unit
+			amount += refund_amount(unit)
+			unit.paid_mana = 0
+			unit.stop()
+			sold.append(unit)
+			slot.assign_unit(null)
+	# Все слоты очищены до callbacks удаления; повторный вызов не вернёт ману повторно.
+	mana += amount
+	for unit: CombatUnit in sold:
+		for child: Node in _projectiles.get_children():
+			var projectile: CombatProjectile = child as CombatProjectile
+			if projectile != null:
+				projectile.cancel_from(unit)
+		unit.queue_free()
+		unit.get_parent().remove_child(unit)
+	_busy = false
+	if not sold.is_empty():
+		unit_refunded.emit(amount)
+	_emit_state()
+	return amount
+
+
+func rebind_slots(slots: Node2D, reset_price: bool) -> void:
+	assert(occupied_count() == 0)
+	_slots.clear()
+	for child: Node in slots.get_children():
+		_slots.append(child as SummonSlot)
+	if reset_price:
+		successful_summons = 0
+	_emit_state()

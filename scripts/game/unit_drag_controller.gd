@@ -48,8 +48,10 @@ func _on_web_touch_cancel(arguments: Array) -> void:
 
 
 func configure(manager: SummonManager, slots: Node2D, return_zone: UnitReturnZone) -> void:
+	cancel_drag()
 	_manager = manager
 	_return_zone = return_zone
+	_slots.clear()
 	for child: Node in slots.get_children():
 		_slots.append(child as SummonSlot)
 	_enabled = true

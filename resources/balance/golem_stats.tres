@@ -6,7 +6,7 @@
 script = ExtResource("1_stats")
 enemy_type = &"golem"
 base_health = 120
-move_speed = 80.0
-tower_damage = 20
+move_speed = 96.0
+tower_damage = 30
 kill_mana = 8
 is_boss = false

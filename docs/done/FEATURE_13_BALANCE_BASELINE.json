@@ -1,0 +1,86 @@
+{
+  "date": "2026-10-08",
+  "accepted_date": "2026-10-08",
+  "baseline_commit": "3951b2c687e9d9dd1de001eac91419d100503f42",
+  "description": "Исходное состояние до модели Мощи v1. Для отката брать перечисленные игровые файлы из baseline commit, сохраняя последующие независимые изменения.",
+  "enemy_tower_damage": {
+    "goblin": 20,
+    "orc": 20,
+    "golem": 20,
+    "boss": 50
+  },
+  "enemy_move_speed": {
+    "goblin": 160,
+    "orc": 120,
+    "golem": 80,
+    "boss": 70
+  },
+  "wave": {
+    "first_enemy_count": 4,
+    "enemy_count_growth": 2,
+    "enemy_health_growth": 5,
+    "spawn_interval": 1,
+    "intermission_duration": 3,
+    "boss_interval": 5,
+    "boss_health_growth": 250
+  },
+  "summon": {
+    "starting_mana": 100,
+    "initial_cost": 20,
+    "cost_increase": 5,
+    "refund_percent": 50
+  },
+  "map_change": false,
+  "files": [
+    "scripts/data/wave_config.gd",
+    "scripts/game/wave_manager.gd",
+    "scripts/game/game_manager.gd",
+    "scripts/game/summon_manager.gd",
+    "scripts/game/unit_drag_controller.gd",
+    "scenes/visuals/MageVisual.tscn",
+    "scenes/visuals/FrostMageVisual.tscn",
+    "resources/balance/wave_config.tres",
+    "resources/balance/goblin_stats.tres",
+    "resources/balance/orc_stats.tres",
+    "resources/balance/golem_stats.tres",
+    "resources/balance/boss_stats.tres",
+    "scripts/data/battlefield_config.gd",
+    "scripts/game/summon_slot.gd",
+    "resources/balance/battlefield_config.tres",
+    "resources/balance/archer_lv1.tres",
+    "resources/balance/archer_lv2.tres",
+    "resources/balance/archer_lv3.tres",
+    "resources/balance/archer_lv4.tres",
+    "resources/balance/archer_lv5.tres",
+    "resources/balance/mage_lv1.tres",
+    "resources/balance/mage_lv2.tres",
+    "resources/balance/mage_lv3.tres",
+    "resources/balance/mage_lv4.tres",
+    "resources/balance/mage_lv5.tres",
+    "resources/balance/frost_mage_lv1.tres",
+    "resources/balance/frost_mage_lv2.tres",
+    "resources/balance/frost_mage_lv3.tres",
+    "resources/balance/frost_mage_lv4.tres",
+    "resources/balance/frost_mage_lv5.tres"
+  ],
+  "added_game_files": [
+    "scripts/data/power_balance_config.gd",
+    "scripts/data/power_balance_config.gd.uid",
+    "scripts/game/wave_power_planner.gd",
+    "scripts/game/wave_power_planner.gd.uid",
+    "resources/balance/power_balance.tres",
+    "scripts/visuals/energy_shape.gd",
+    "scripts/visuals/energy_shape.gd.uid"
+  ],
+  "unit_attack_interval": {
+    "archer": 0.6,
+    "mage": 1.2,
+    "frost_mage": 0.8
+  },
+  "battlefield": {
+    "slot_count_range": [
+      6,
+      10
+    ]
+  }
+}

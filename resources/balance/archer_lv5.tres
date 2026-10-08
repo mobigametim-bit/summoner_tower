@@ -10,6 +10,6 @@ display_name = "ARCHER"
 level = 5
 visual_texture = ExtResource("2_visual")
 damage = 250
-attack_interval = 0.6
+attack_interval = 0.5
 attack_range = 300.0
 projectile_speed = 700.0

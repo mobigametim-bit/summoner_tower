@@ -1,0 +1,10 @@
+[gd_scene format=3 uid="uid://bvm4a0eix2j6o"]
+
+[ext_resource type="Script" uid="uid://b360pcw0q1vlq" path="res://tests/support/feature_13_balance_test_scene.gd" id="1_kg8px"]
+[ext_resource type="PackedScene" uid="uid://rkmlqc5qcsrs" path="res://scenes/game.tscn" id="2_fcoqa"]
+
+[node name="Feature13BalanceTest" type="Node" unique_id=1301805602]
+process_mode = 3
+script = ExtResource("1_kg8px")
+
+[node name="Game" parent="." unique_id=469266139 instance=ExtResource("2_fcoqa")]

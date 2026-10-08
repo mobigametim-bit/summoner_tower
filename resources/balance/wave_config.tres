@@ -5,14 +5,18 @@
 [ext_resource type="PackedScene" path="res://scenes/orc.tscn" id="3_orc"]
 [ext_resource type="PackedScene" path="res://scenes/golem.tscn" id="4_golem"]
 [ext_resource type="PackedScene" path="res://scenes/boss.tscn" id="5_boss"]
+[ext_resource type="Resource" path="res://resources/balance/power_balance.tres" id="6_power"]
 
 [resource]
 script = ExtResource("1_config")
-first_enemy_count = 4
+first_enemy_count = 5
 enemy_count_growth = 2
 enemy_health_growth = 5
-spawn_interval = 1.0
-intermission_duration = 3.0
+spawn_interval = 0.5
+spawn_batch_minimum = 1
+spawn_batch_maximum = 3
+spawn_stagger = 0.2
+intermission_duration = 1.0
 goblin_scene = ExtResource("2_goblin")
 orc_scene = ExtResource("3_orc")
 golem_scene = ExtResource("4_golem")
@@ -23,3 +27,4 @@ orc_share = 0.3
 golem_share = 0.15
 boss_interval = 5
 boss_health_growth = 250
+power_balance = ExtResource("6_power")

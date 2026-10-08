@@ -5,7 +5,7 @@ enum State { RUNNING, GAME_OVER, LEAVING, UPGRADE_CHOICE, SETTINGS }
 @export var config: EncounterConfig
 @export var procedural_battlefield_enabled: bool = true
 @export var battlefield_seed: int = -1
-@export_range(0, 10, 1) var battlefield_slot_count: int = 0
+@export_range(0, 15, 1) var battlefield_slot_count: int = 0
 @export_range(0, 8, 1) var battlefield_columns: int = 0
 @export_range(0, 3, 1) var battlefield_portal_count: int = 0
 @export_file("*.tscn") var menu_scene_path: String = "res://scenes/main_menu.tscn"
@@ -25,6 +25,7 @@ enum State { RUNNING, GAME_OVER, LEAVING, UPGRADE_CHOICE, SETTINGS }
 @onready var battlefield: Battlefield = $World/Battlefield
 
 var state: State = State.RUNNING
+var map_changes: int = 0
 var _offered_upgrades: Array[RunUpgrade] = []
 
 
@@ -32,15 +33,47 @@ func _ready() -> void:
 	run_statistics.reset()
 	run_bonuses.reset()
 	if procedural_battlefield_enabled:
-		battlefield.build($World/Slots, spawn_point, tower, battlefield_columns, battlefield_seed, battlefield_slot_count, battlefield_portal_count)
-		hud.set_field_bottom(battlefield.layout.origin.y + battlefield.layout.grid_size.y * battlefield.layout.cell_size)
+		_build_battlefield()
 	else:
 		battlefield.hide()
 	summon_manager.configure($World/Slots, enemies, projectiles, run_bonuses)
 	drag_controller.configure(summon_manager, $World/Slots, $World/Tower/ReturnZone)
 	tower.initialize(run_bonuses.tower_health_for(config.tower_max_health))
-	wave_manager.configure(enemies, spawn_point, contact_point, battlefield.route if procedural_battlefield_enabled else null, battlefield.routes)
+	wave_manager.configure(enemies, spawn_point, contact_point, battlefield.route if procedural_battlefield_enabled else null, battlefield.routes, _player_power)
 	wave_manager.start()
+
+
+func _build_battlefield() -> void:
+	var seed_value: int = battlefield_seed + 1000 * map_changes if battlefield_seed >= 0 else -1
+	battlefield.build($World/Slots, spawn_point, tower, battlefield_columns, seed_value, battlefield_slot_count, battlefield_portal_count)
+	hud.set_field_bottom(battlefield.layout.origin.y + battlefield.layout.grid_size.y * battlefield.layout.cell_size)
+
+
+func _renew_battlefield() -> void:
+	drag_controller.cancel_drag()
+	summon_manager.sell_army_for_map_change()
+	for projectile: Node in projectiles.get_children():
+		projectile.set_physics_process(false)
+		projectile.queue_free()
+	get_tree().call_group(&"enemy_visual_tails", &"queue_free")
+	if procedural_battlefield_enabled:
+		map_changes += 1
+		_build_battlefield()
+	summon_manager.rebind_slots($World/Slots, true)
+	drag_controller.configure(summon_manager, $World/Slots, $World/Tower/ReturnZone)
+	wave_manager.configure(enemies, spawn_point, contact_point, battlefield.route if procedural_battlefield_enabled else null, battlefield.routes, _player_power)
+
+
+func _player_power() -> float:
+	var balance: PowerBalanceConfig = wave_manager.config.power_balance
+	if balance == null:
+		return 0.0
+	var total: float = 0.0
+	for slot: SummonSlot in summon_manager._slots:
+		if not slot.is_empty():
+			var unit: CombatUnit = slot.unit
+			total += balance.unit_power(unit.stats, run_bonuses.damage_amount_for(unit.stats), unit.effective_attack_interval())
+	return balance.player_power(total, tower.max_health)
 
 
 func _on_enemy_resolved(enemy: ApproachingEnemy, outcome: ApproachingEnemy.Outcome, mana: int) -> void:
@@ -81,10 +114,12 @@ func _on_upgrade_chosen(index: int) -> void:
 	var upgrade: RunUpgrade = _offered_upgrades[index]
 	# Закрываем выбор до сигналов лечения и изменения цены: повторный клик не выдаст бонус.
 	_offered_upgrades.clear()
-	state = State.RUNNING
 	upgrade_choice.close_choice()
 	run_bonuses.apply(upgrade)
 	tower.increase_max_health(run_bonuses.tower_health_for(config.tower_max_health))
+	# Бой остаётся на паузе до очистки армии и перепривязки новой карты.
+	_renew_battlefield()
+	state = State.RUNNING
 	wave_manager.finish_upgrade_choice()
 	summon_manager.set_interaction_enabled(true)
 	get_tree().paused = false

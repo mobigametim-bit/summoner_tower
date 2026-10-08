@@ -1,0 +1,22 @@
+[gd_resource type="Resource" script_class="PowerBalanceConfig" format=3]
+
+[ext_resource type="Script" path="res://scripts/data/power_balance_config.gd" id="1"]
+[ext_resource type="Resource" path="res://resources/balance/archer_lv1.tres" id="2"]
+[ext_resource type="Resource" path="res://resources/balance/goblin_stats.tres" id="3"]
+[ext_resource type="Resource" path="res://resources/balance/orc_stats.tres" id="4"]
+[ext_resource type="Resource" path="res://resources/balance/golem_stats.tres" id="5"]
+[ext_resource type="Resource" path="res://resources/balance/boss_stats.tres" id="6"]
+
+[resource]
+script = ExtResource("1")
+reference_unit = ExtResource("2")
+reference_enemy = ExtResource("3")
+enemy_stats = [ExtResource("3"), ExtResource("4"), ExtResource("5"), ExtResource("6")]
+reference_tower_health = 100
+power_conversion = 6.0
+saw_coefficients = Array[float]([0.7, 0.85, 1.0, 1.15, 1.35])
+stage_growth = 1.18
+minimum_stage_power = 12.0
+minimum_growth = 1.35
+tier_unlock_interval = 5
+maximum_regular_enemies = 80

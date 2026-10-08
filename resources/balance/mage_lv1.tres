@@ -11,6 +11,6 @@ display_name = "MAGE"
 visual_texture = ExtResource("3_pcby2")
 next_level = ExtResource("1_xtt6d")
 damage = 24
-attack_interval = 1.2
+attack_interval = 1.0
 attack_range = 260.0
 projectile_speed = 700.0

@@ -27,7 +27,7 @@ func run_bonuses(game: Node2D) -> Dictionary:
 	for kind: RunUpgrade.Kind in [RunUpgrade.Kind.RAPID_FIRE, RunUpgrade.Kind.POWER]:
 		bonuses.apply(bonuses.pool.get_upgrade(kind))
 		bonuses.apply(bonuses.pool.get_upgrade(kind))
-	assert(is_equal_approx(first.effective_attack_interval(), 0.6 / pow(1.15, 2)))
+	assert(is_equal_approx(first.effective_attack_interval(), first.stats.attack_interval / pow(1.15, 2)))
 	assert(bonuses.damage_for(archer) == 14 and original._damage == 10)
 	first._fire()
 	var stronger: CombatProjectile = game.projectiles.get_child(1)
@@ -79,7 +79,7 @@ func run_bonuses(game: Node2D) -> Dictionary:
 	assert(is_equal_approx(target._slow_ratio, 0.7))
 	for upgrade: RunUpgrade in bonuses.roll_choices():
 		assert(upgrade.kind != RunUpgrade.Kind.FROST_POWER)
-	assert(archer.damage == 10 and is_equal_approx(archer.attack_interval, 0.6) and is_equal_approx(frost.slow_ratio, 0.3))
+	assert(archer.damage == 10 and is_equal_approx(archer.attack_interval, 0.5) and is_equal_approx(frost.slow_ratio, 0.3))
 	bonuses.reset()
 	bonuses.set_random_seed(23)
 	var choices: Array[RunUpgrade] = bonuses.roll_choices()

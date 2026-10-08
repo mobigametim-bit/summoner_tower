@@ -1,7 +1,7 @@
 class_name SummonSlot
 extends Node2D
 
-@export_range(1, 10, 1) var slot_index: int = 1
+@export_range(1, 15, 1) var slot_index: int = 1
 @export var faces_left: bool = false
 @export var hit_rect: Rect2 = Rect2(-70.0, -70.0, 140.0, 140.0)
 

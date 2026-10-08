@@ -56,7 +56,7 @@ func run(fixture: Node) -> Dictionary:
 					upward += 1
 					break
 			layouts += 1
-	assert(upward > 0 and counts.size() == 5)
+	assert(upward > 0 and counts.size() == settings.slot_count_range.y - settings.slot_count_range.x + 1)
 	assert(portal_counts.size() == 3)
 	assert(lengths.max() > 2000.0)
 	var forced_counts: int = _check_portal_counts(generator, combinations)
@@ -80,10 +80,10 @@ func run(fixture: Node) -> Dictionary:
 	assert(not generator.is_valid(original))
 	original.road_cells.pop_back()
 	_check_movement(fixture, original)
-	for count: int in [6, 8, 10]:
+	for count: int in [10, 12, 15]:
 		_check_capacity(fixture, count)
 	_check_wave_distribution(fixture)
-	return {"passed": true, "layouts": layouts, "fallbacks_checked": 60, "fallbacks_used": fallback_count, "forced_portal_counts": forced_counts, "portal_counts": portal_counts, "side_combinations": combinations.size(), "maximum_generation_ms": maximum_ms, "horizontal_first": true, "length_range": [lengths.min(), lengths.max()], "random_sizes": random_sizes, "upward": upward, "deterministic": true, "movement_and_slow": true, "capacities": [6, 8, 10], "refund_once": true, "wave_distribution": true, "boss_additional_same_frame": true}
+	return {"passed": true, "layouts": layouts, "fallbacks_checked": 60, "fallbacks_used": fallback_count, "forced_portal_counts": forced_counts, "portal_counts": portal_counts, "side_combinations": combinations.size(), "maximum_generation_ms": maximum_ms, "horizontal_first": true, "length_range": [lengths.min(), lengths.max()], "random_sizes": random_sizes, "upward": upward, "deterministic": true, "movement_and_slow": true, "capacities": [10, 12, 15], "refund_once": true, "wave_distribution": true, "boss_additional_same_frame": true}
 
 
 func _check_portal_counts(generator: BattlefieldGenerator, combinations: Dictionary) -> int:
@@ -145,7 +145,7 @@ func _check_route_movement(fixture: Node, layout: BattlefieldLayout, curve: Curv
 func _check_capacity(fixture: Node, count: int) -> void:
 	var game: Node2D = load("res://scenes/game.tscn").instantiate()
 	game.battlefield_slot_count = count
-	game.battlefield_columns = 6 + floori((count - 6) / 2.0)
+	game.battlefield_columns = 6 + floori((count - 10) / 2.0)
 	game.battlefield_seed = 7
 	game.battlefield_portal_count = 3
 	fixture.add_child(game)

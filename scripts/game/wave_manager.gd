@@ -26,12 +26,27 @@ var _spawn_remaining: int = 0
 var _countdown_seconds: int = -1
 var _sequence: Array[PackedScene] = []
 var _boss_killed: bool = false
+var _health_sequence: Array[int] = []
+var _power_source: Callable
+var _rng: RandomNumberGenerator = RandomNumberGenerator.new()
+var power_summary: Dictionary = {}
+var _batch_remaining: int = 0
+var _batch_spawned: int = 0
 
 
-func configure(enemies: Node2D, spawn_point: Marker2D, contact_point: Marker2D, route: Path2D = null, routes: Array[Path2D] = []) -> void:
+func _ready() -> void:
+	_rng.randomize()
+
+
+func set_random_seed(value: int) -> void:
+	_rng.seed = value
+
+
+func configure(enemies: Node2D, spawn_point: Marker2D, contact_point: Marker2D, route: Path2D = null, routes: Array[Path2D] = [], power_source: Callable = Callable()) -> void:
 	_enemies = enemies
 	_spawn_point = spawn_point
 	_contact_point = contact_point
+	_power_source = power_source
 	_route = route
 	_routes.assign(routes)
 	if _routes.is_empty() and route != null:
@@ -53,17 +68,47 @@ func active_count() -> int:
 
 func _begin_wave() -> void:
 	_boss_killed = false
-	_sequence = config.sequence_for(wave_number)
+	_batch_remaining = 0
+	_batch_spawned = 0
+	_health_sequence.clear()
+	if config.power_balance != null:
+		var power: float = float(_power_source.call()) if _power_source.is_valid() else 0.0
+		var plan: Dictionary = WavePowerPlanner.new(config).make_plan(wave_number, power, _rng)
+		_sequence.assign(plan.sequence)
+		_health_sequence.assign(plan.healths)
+		power_summary = plan.summary
+	else:
+		_sequence = config.sequence_for(wave_number)
+		power_summary.clear()
 	_spawn_remaining = _sequence.size()
 	_emit_state()
+	# Дополнительный босс не занимает место в первой пачке обычных врагов.
+	if config.is_boss_wave(wave_number):
+		_spawn_enemy()
+	_start_spawn_batch()
+
+
+func _start_spawn_batch() -> void:
+	if phase != Phase.FIGHTING or _spawn_remaining <= 0:
+		return
+	_batch_remaining = mini(_rng.randi_range(config.spawn_batch_minimum, config.spawn_batch_maximum), _spawn_remaining)
+	_batch_spawned = 0
 	_spawn_next()
-	# Boss дополнительный: обычный первый враг появляется в тот же кадр.
-	if config.is_boss_wave(wave_number) and phase == Phase.FIGHTING:
-		spawn_timer.stop()
-		_spawn_next()
 
 
 func _spawn_next() -> void:
+	if phase != Phase.FIGHTING or _spawn_remaining <= 0 or _batch_remaining <= 0:
+		return
+	_batch_remaining -= 1
+	_batch_spawned += 1
+	_spawn_enemy()
+	if phase != Phase.FIGHTING or _spawn_remaining <= 0:
+		return
+	var delay: float = config.spawn_stagger if _batch_remaining > 0 else config.spawn_batch_pause_after(_batch_spawned)
+	spawn_timer.start(delay)
+
+
+func _spawn_enemy() -> void:
 	if phase != Phase.FIGHTING or _spawn_remaining <= 0:
 		return
 	# Учитываем экземпляр до add_child: callbacks дерева не могут создать лишний спавн.
@@ -79,6 +124,8 @@ func _spawn_next() -> void:
 		return
 	var health: int = config.boss_health_for(wave_number, enemy.stats.base_health) if enemy.stats.is_boss else config.enemy_health_for(wave_number, enemy.stats.base_health)
 	var sequence_index: int = _sequence.size() - _spawn_remaining - 1
+	if not _health_sequence.is_empty():
+		health = _health_sequence[sequence_index]
 	var portal_index: int = (sequence_index + wave_number - 1) % _routes.size() if not _routes.is_empty() else 0
 	var selected_route: Path2D = _routes[portal_index] if not _routes.is_empty() else null
 	var position: Vector2 = _spawn_point.global_position
@@ -91,8 +138,6 @@ func _spawn_next() -> void:
 		enemy.follow_route(selected_route.curve, selected_route.global_transform, float(selected_route.get_meta("cell_size", 140.0)))
 	if phase != Phase.FIGHTING:
 		return
-	if _spawn_remaining > 0:
-		spawn_timer.start(config.spawn_interval)
 	_emit_state()
 	_try_finish_wave()
 
@@ -100,7 +145,10 @@ func _spawn_next() -> void:
 func _on_spawn_timeout() -> void:
 	# Повторный старый timeout не должен обходить уже начавшийся интервал.
 	if spawn_timer.is_stopped():
-		_spawn_next()
+		if _batch_remaining > 0:
+			_spawn_next()
+		else:
+			_start_spawn_batch()
 
 
 func _on_enemy_resolved(enemy: ApproachingEnemy, outcome: ApproachingEnemy.Outcome) -> void:
@@ -170,7 +218,10 @@ func stop() -> void:
 	spawn_timer.stop()
 	intermission_timer.stop()
 	_spawn_remaining = 0
+	_batch_remaining = 0
+	_batch_spawned = 0
 	_sequence.clear()
+	_health_sequence.clear()
 	var remaining: Array[ApproachingEnemy] = _active.duplicate()
 	_active.clear()
 	for enemy: ApproachingEnemy in remaining:

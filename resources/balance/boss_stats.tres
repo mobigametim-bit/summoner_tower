@@ -6,7 +6,7 @@
 script = ExtResource("1_stats")
 enemy_type = &"boss"
 base_health = 350
-move_speed = 70.0
+move_speed = 84.0
 tower_damage = 50
 kill_mana = 30
 is_boss = true

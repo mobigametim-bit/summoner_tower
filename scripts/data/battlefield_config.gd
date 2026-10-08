@@ -3,7 +3,7 @@ extends Resource
 
 @export var column_range: Vector2i = Vector2i(6, 8)
 @export var playable_rect: Rect2 = Rect2(0, 0, 720, 1184)
-@export var slot_count_range: Vector2i = Vector2i(6, 10)
+@export var slot_count_range: Vector2i = Vector2i(10, 15)
 @export var portal_count_range: Vector2i = Vector2i(1, 3)
 @export var portal_count_weights: Vector3 = Vector3(50, 30, 20)
 @export var portal_max_y: float = 640.0

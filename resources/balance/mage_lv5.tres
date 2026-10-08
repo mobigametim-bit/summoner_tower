@@ -10,6 +10,6 @@ display_name = "MAGE"
 level = 5
 visual_texture = ExtResource("2_visual")
 damage = 600
-attack_interval = 1.2
+attack_interval = 1.0
 attack_range = 260.0
 projectile_speed = 700.0

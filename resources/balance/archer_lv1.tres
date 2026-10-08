@@ -9,6 +9,6 @@ script = ExtResource("1_yb6kq")
 visual_texture = ExtResource("2_visual")
 next_level = ExtResource("3_next")
 damage = 10
-attack_interval = 0.6
+attack_interval = 0.5
 attack_range = 300.0
 projectile_speed = 700.0

@@ -12,6 +12,6 @@ level = 2
 visual_texture = ExtResource("3_b4rg1")
 next_level = ExtResource("1_2gk2q")
 damage = 53
-attack_interval = 1.2
+attack_interval = 1.0
 attack_range = 260.0
 projectile_speed = 700.0

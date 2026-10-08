@@ -6,7 +6,7 @@
 script = ExtResource("1_stats")
 enemy_type = &"goblin"
 base_health = 30
-move_speed = 160.0
-tower_damage = 20
+move_speed = 192.0
+tower_damage = 10
 kill_mana = 3
 is_boss = false
