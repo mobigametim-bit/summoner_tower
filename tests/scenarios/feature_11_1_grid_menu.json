@@ -45,6 +45,9 @@
       "eval": "tower.take_damage(tower.max_health)"
     },
     {
+      "call": {"path": ".", "method": "_on_revive_declined"}
+    },
+    {
       "wait": 0.15
     },
     {
@@ -62,6 +65,9 @@
     },
     {
       "eval": "tower.take_damage(tower.max_health)"
+    },
+    {
+      "call": {"path": ".", "method": "_on_revive_declined"}
     },
     {
       "wait": 0.15

@@ -5,6 +5,10 @@ signal restart_requested
 signal menu_requested
 signal settings_requested
 signal resume_requested
+signal revive_accepted
+signal revive_declined
+signal double_reward_requested
+signal rewarded_view_canceled
 
 @onready var health_label: Label = %HealthLabel
 @onready var game_over_overlay: Control = %GameOverOverlay
@@ -18,6 +22,9 @@ signal resume_requested
 @onready var settings_overlay: Control = %SettingsOverlay
 @onready var resume_button: Button = %ResumeButton
 @onready var boss_warning: BossWarning = $BossWarning
+@onready var revive_overlay: Control = $ReviveOverlay
+@onready var ad_overlay: Control = $RewardedOverlay
+@onready var double_reward_button: Button = $GameOverOverlay/Center/Panel/Stack/Actions/DoubleRewardButton
 @export var wave_config: WaveConfig
 
 var _displayed_mana: int = -1
@@ -96,6 +103,9 @@ func show_game_over(stats: RunStatistics) -> void:
 	UiNumbers.show_value(stack.get_node("Stats/Merges/Value"), stats.merges)
 	UiNumbers.show_value(stack.get_node("Reward/Amount"), stats.earned_crystals, "+")
 	game_over_overlay.show()
+	set_actions_enabled(true)
+	set_double_reward_available(stats.can_double_reward())
+	show_reward_error(false)
 	restart_button.grab_focus()
 
 
@@ -113,6 +123,61 @@ func update_summon(mana: int, _cost: int, _occupied: int, _capacity: int, _avail
 func set_actions_enabled(enabled: bool) -> void:
 	restart_button.disabled = not enabled
 	menu_button.disabled = not enabled
+	double_reward_button.disabled = not enabled or double_reward_button.has_meta("unavailable")
+
+
+func set_double_reward_available(available: bool) -> void:
+	if available:
+		double_reward_button.remove_meta("unavailable")
+	else:
+		double_reward_button.set_meta("unavailable", true)
+	double_reward_button.disabled = not available
+
+
+func show_revive_offer(health: int, failed: bool = false) -> void:
+	boss_warning.stop_warning()
+	UiNumbers.show_value(revive_overlay.get_node("Center/Panel/Stack/Reward/Amount"), health, "+")
+	revive_overlay.get_node("Center/Panel/Stack/Error").visible = failed
+	revive_overlay.show()
+	revive_overlay.get_node("Center/Panel/Stack/Actions/Accept").grab_focus()
+
+
+func close_revive_offer() -> void:
+	revive_overlay.hide()
+
+
+func show_rewarded_view() -> void:
+	update_ad_progress(0.0)
+	ad_overlay.show()
+	ad_overlay.get_node("Center/Panel/Stack/Cancel").grab_focus()
+
+
+func close_rewarded_view() -> void:
+	ad_overlay.hide()
+
+
+func update_ad_progress(value: float) -> void:
+	ad_overlay.get_node("Center/Panel/Stack/Progress").value = value
+
+
+func show_reward_error(failed: bool) -> void:
+	game_over_overlay.get_node("Center/Panel/Stack/RewardError").visible = failed
+
+
+func _on_revive_accepted() -> void:
+	revive_accepted.emit()
+
+
+func _on_revive_declined() -> void:
+	revive_declined.emit()
+
+
+func _on_double_reward_pressed() -> void:
+	double_reward_requested.emit()
+
+
+func _on_rewarded_cancel_pressed() -> void:
+	rewarded_view_canceled.emit()
 
 
 func _on_restart_button_pressed() -> void:

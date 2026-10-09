@@ -1,41 +1,40 @@
-[gd_scene format=3 uid="uid://rkmlqc5qcsrs"]
+[gd_scene format=3 uid="uid://d23hm67yj6seb"]
 
-[ext_resource type="Script" uid="uid://c67cxl6m0h3b5" path="res://scripts/game/game_manager.gd" id="1_lbhrr"]
-[ext_resource type="PackedScene" uid="uid://bkmm5tldq4x6c" path="res://scenes/tower.tscn" id="1_uwrxv"]
-[ext_resource type="Theme" uid="uid://bufjhwj3mejwx" path="res://resources/ui/game_theme.tres" id="2_lnu2h"]
-[ext_resource type="Resource" uid="uid://be2d7ahgtbjub" path="res://resources/balance/first_encounter.tres" id="2_p57ef"]
-[ext_resource type="Script" uid="uid://c8cpj6ixtxugj" path="res://scripts/ui/game_hud.gd" id="2_yqjtg"]
-[ext_resource type="Texture2D" uid="uid://m3obcl82lbrw" path="res://assets/arena.svg" id="4_u5sy4"]
-[ext_resource type="PackedScene" uid="uid://7utrx5k06gtp" path="res://scenes/summon_slot.tscn" id="6_kvpfn"]
-[ext_resource type="Script" uid="uid://bj8a3ymfdffgo" path="res://scripts/game/unit_drag_controller.gd" id="7_kvuet"]
-[ext_resource type="PackedScene" uid="uid://dmep054iccu1s" path="res://scenes/battlefield.tscn" id="8_pl11u"]
-[ext_resource type="Texture2D" uid="uid://cktgfcgc5nyox" path="res://assets/archer.svg" id="8_trtic"]
-[ext_resource type="Script" uid="uid://l6tfxq6xwsuh" path="res://scripts/game/summon_manager.gd" id="9_dinhu"]
-[ext_resource type="Resource" uid="uid://cuks6vm6g65ce" path="res://resources/balance/summon_config.tres" id="10_kvuet"]
-[ext_resource type="Resource" uid="uid://dpalsfkfhty6d" path="res://resources/balance/summon_pool.tres" id="12_ir15t"]
-[ext_resource type="Texture2D" uid="uid://k17uuaqhmgkm" path="res://assets/heart_full.svg" id="12_ssvqc"]
-[ext_resource type="PackedScene" uid="uid://mbs73l0rftqi" path="res://scenes/upgrade_choice.tscn" id="13_1kice"]
-[ext_resource type="Texture2D" uid="uid://b7v6r0i243ofk" path="res://assets/soul_crystal.svg" id="13_37s47"]
-[ext_resource type="Texture2D" uid="uid://c1i4x5u3ypwhb" path="res://assets/mana_flame.svg" id="13_264po"]
-[ext_resource type="Script" uid="uid://6g8kr8xeny10" path="res://scripts/game/wave_manager.gd" id="13_ir15t"]
-[ext_resource type="Script" uid="uid://cfvf5il45lqsh" path="res://scripts/ui/mana_feedback.gd" id="13_sgl2t"]
-[ext_resource type="Resource" uid="uid://ciuquwmxvll24" path="res://resources/balance/wave_config.tres" id="14_ca42v"]
-[ext_resource type="Texture2D" uid="uid://cgyt3kaapnire" path="res://assets/ui/restart.svg" id="14_e1j6l"]
-[ext_resource type="Script" uid="uid://b6hb1c3t0eppb" path="res://addons/game_feel_flow/core/gff_player.gd" id="14_suyxu"]
-[ext_resource type="Texture2D" uid="uid://ckpokawdmyc0b" path="res://assets/ui/home.svg" id="15_pl11u"]
-[ext_resource type="PackedScene" uid="uid://qrfmn7yt2v3" path="res://scenes/ui/button_feedback.tscn" id="15_sww3w"]
-[ext_resource type="Script" uid="uid://dpp2k5bpxesj7" path="res://scripts/game/run_bonuses.gd" id="18_5newe"]
-[ext_resource type="Texture2D" uid="uid://d0es5bcr1fdsu" path="res://assets/ui/settings.svg" id="18_bhx41"]
-[ext_resource type="Resource" path="res://resources/balance/run_upgrade_pool.tres" id="19_37s47"]
-[ext_resource type="Texture2D" uid="uid://cunh3mw6fkux0" path="res://assets/ui/play.svg" id="19_qnb83"]
-[ext_resource type="Script" uid="uid://dl57wkelh3atf" path="res://scripts/game/run_statistics.gd" id="20_5newe"]
-[ext_resource type="Resource" uid="uid://c2tgfag4qq81o" path="res://resources/balance/run_reward_config.tres" id="21_37s47"]
-[ext_resource type="Script" uid="uid://cj25vlb6fcy00" path="res://scripts/ui/button_feedback.gd" id="21_twgab"]
-[ext_resource type="PackedScene" uid="uid://icaty5irafa4" path="res://scenes/ui/BossWarning.tscn" id="23_qouja"]
-[ext_resource type="Texture2D" uid="uid://c57tyfidrkg5k" path="res://assets/ui/confirm.svg" id="25_twgab"]
-[ext_resource type="Texture2D" uid="uid://bamagwo85soov" path="res://assets/ui/close.svg" id="26_nepv3"]
-[ext_resource type="PackedScene" uid="uid://bs7ym0iyxvdag" path="res://scenes/vfx/ScreenShake.tscn" id="32_wljb1"]
-[ext_resource type="Script" uid="uid://rgvujtsibixj" path="res://scripts/game/ad_service.gd" id="36_7025r"]
+[ext_resource type="Script" uid="uid://1duey5i11k8g" path="res://scripts/debug/rewarded_review.gd" id="1_t5pk6"]
+[ext_resource type="Resource" uid="uid://be2d7ahgtbjub" path="res://resources/balance/first_encounter.tres" id="2_0stxj"]
+[ext_resource type="Texture2D" uid="uid://m3obcl82lbrw" path="res://assets/arena.svg" id="2_bwkq7"]
+[ext_resource type="PackedScene" uid="uid://dmep054iccu1s" path="res://scenes/battlefield.tscn" id="3_0stxj"]
+[ext_resource type="PackedScene" uid="uid://bkmm5tldq4x6c" path="res://scenes/tower.tscn" id="4_iagri"]
+[ext_resource type="PackedScene" uid="uid://7utrx5k06gtp" path="res://scenes/summon_slot.tscn" id="5_lf1uk"]
+[ext_resource type="Script" uid="uid://bj8a3ymfdffgo" path="res://scripts/game/unit_drag_controller.gd" id="6_3xods"]
+[ext_resource type="Texture2D" uid="uid://cktgfcgc5nyox" path="res://assets/archer.svg" id="7_4bwtt"]
+[ext_resource type="Theme" uid="uid://bufjhwj3mejwx" path="res://resources/ui/game_theme.tres" id="8_dk6v7"]
+[ext_resource type="Script" uid="uid://c8cpj6ixtxugj" path="res://scripts/ui/game_hud.gd" id="9_8i4mt"]
+[ext_resource type="Resource" uid="uid://ciuquwmxvll24" path="res://resources/balance/wave_config.tres" id="10_j636t"]
+[ext_resource type="Texture2D" uid="uid://k17uuaqhmgkm" path="res://assets/heart_full.svg" id="11_tl222"]
+[ext_resource type="Script" uid="uid://cfvf5il45lqsh" path="res://scripts/ui/mana_feedback.gd" id="12_jfwnn"]
+[ext_resource type="Texture2D" uid="uid://c1i4x5u3ypwhb" path="res://assets/mana_flame.svg" id="13_mq7gi"]
+[ext_resource type="Script" uid="uid://b6hb1c3t0eppb" path="res://addons/game_feel_flow/core/gff_player.gd" id="14_smmai"]
+[ext_resource type="PackedScene" uid="uid://qrfmn7yt2v3" path="res://scenes/ui/button_feedback.tscn" id="15_m2e4n"]
+[ext_resource type="Texture2D" uid="uid://d0es5bcr1fdsu" path="res://assets/ui/settings.svg" id="16_c8hbu"]
+[ext_resource type="Texture2D" uid="uid://b7v6r0i243ofk" path="res://assets/soul_crystal.svg" id="17_4yudl"]
+[ext_resource type="Texture2D" uid="uid://cgyt3kaapnire" path="res://assets/ui/restart.svg" id="18_4p2q1"]
+[ext_resource type="Texture2D" uid="uid://ckpokawdmyc0b" path="res://assets/ui/home.svg" id="19_xkumr"]
+[ext_resource type="PackedScene" uid="uid://mbs73l0rftqi" path="res://scenes/upgrade_choice.tscn" id="20_vaj4t"]
+[ext_resource type="Texture2D" uid="uid://cunh3mw6fkux0" path="res://assets/ui/play.svg" id="21_v0p01"]
+[ext_resource type="PackedScene" uid="uid://icaty5irafa4" path="res://scenes/ui/BossWarning.tscn" id="22_wl1ex"]
+[ext_resource type="Texture2D" uid="uid://cwb8nh5c13esr" path="res://assets/ui/check.svg" id="23_kx8o5"]
+[ext_resource type="Texture2D" uid="uid://bamagwo85soov" path="res://assets/ui/close.svg" id="24_ttj4m"]
+[ext_resource type="Script" uid="uid://l6tfxq6xwsuh" path="res://scripts/game/summon_manager.gd" id="25_opb5i"]
+[ext_resource type="Resource" uid="uid://cuks6vm6g65ce" path="res://resources/balance/summon_config.tres" id="26_mpunj"]
+[ext_resource type="Resource" uid="uid://dpalsfkfhty6d" path="res://resources/balance/summon_pool.tres" id="27_f4ors"]
+[ext_resource type="Script" uid="uid://6g8kr8xeny10" path="res://scripts/game/wave_manager.gd" id="28_qwygs"]
+[ext_resource type="Script" uid="uid://dpp2k5bpxesj7" path="res://scripts/game/run_bonuses.gd" id="29_ee460"]
+[ext_resource type="Resource" path="res://resources/balance/run_upgrade_pool.tres" id="30_gha7s"]
+[ext_resource type="Script" uid="uid://dl57wkelh3atf" path="res://scripts/game/run_statistics.gd" id="31_s2q70"]
+[ext_resource type="Resource" uid="uid://c2tgfag4qq81o" path="res://resources/balance/run_reward_config.tres" id="32_ryf1h"]
+[ext_resource type="PackedScene" uid="uid://bs7ym0iyxvdag" path="res://scenes/vfx/ScreenShake.tscn" id="33_0pqxp"]
+[ext_resource type="Script" uid="uid://rgvujtsibixj" path="res://scripts/game/ad_service.gd" id="34_f38rd"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qnb83"]
 bg_color = Color(0.09019608, 0.14117648, 0.19215687, 1)
@@ -185,59 +184,60 @@ corner_radius_top_right = 16
 corner_radius_bottom_right = 16
 corner_radius_bottom_left = 16
 
-[node name="Game" type="Node2D" unique_id=469266139]
+[node name="RewardedReview" type="Node2D" unique_id=469266139]
 process_mode = 1
-script = ExtResource("1_lbhrr")
-config = ExtResource("2_p57ef")
+script = ExtResource("1_t5pk6")
+config = ExtResource("2_0stxj")
+battlefield_seed = 101
 
 [node name="World" type="Node2D" parent="." unique_id=1754034890]
 
 [node name="Background" type="Sprite2D" parent="World" unique_id=1928593795]
-texture = ExtResource("4_u5sy4")
+texture = ExtResource("2_bwkq7")
 centered = false
 
-[node name="Battlefield" parent="World" unique_id=1060640720 instance=ExtResource("8_pl11u")]
+[node name="Battlefield" parent="World" unique_id=1060640720 instance=ExtResource("3_0stxj")]
 
 [node name="SpawnPoint" type="Marker2D" parent="World" unique_id=1693467739]
 position = Vector2(360, 190)
 
 [node name="Enemies" type="Node2D" parent="World" unique_id=421865247]
 
-[node name="Tower" parent="World" unique_id=873803062 instance=ExtResource("1_uwrxv")]
+[node name="Tower" parent="World" unique_id=873803062 instance=ExtResource("4_iagri")]
 position = Vector2(360, 1040)
 
 [node name="Projectiles" type="Node2D" parent="World" unique_id=1570384389]
 
 [node name="Slots" type="Node2D" parent="World" unique_id=987547701]
 
-[node name="Slot1" parent="World/Slots" unique_id=315674392 instance=ExtResource("6_kvpfn")]
+[node name="Slot1" parent="World/Slots" unique_id=315674392 instance=ExtResource("5_lf1uk")]
 position = Vector2(180, 360)
 
-[node name="Slot2" parent="World/Slots" unique_id=262702249 instance=ExtResource("6_kvpfn")]
+[node name="Slot2" parent="World/Slots" unique_id=262702249 instance=ExtResource("5_lf1uk")]
 position = Vector2(540, 360)
 slot_index = 2
 faces_left = true
 
-[node name="Slot3" parent="World/Slots" unique_id=1934411132 instance=ExtResource("6_kvpfn")]
+[node name="Slot3" parent="World/Slots" unique_id=1934411132 instance=ExtResource("5_lf1uk")]
 position = Vector2(180, 600)
 slot_index = 3
 
-[node name="Slot4" parent="World/Slots" unique_id=518396065 instance=ExtResource("6_kvpfn")]
+[node name="Slot4" parent="World/Slots" unique_id=518396065 instance=ExtResource("5_lf1uk")]
 position = Vector2(540, 600)
 slot_index = 4
 faces_left = true
 
-[node name="Slot5" parent="World/Slots" unique_id=1164201984 instance=ExtResource("6_kvpfn")]
+[node name="Slot5" parent="World/Slots" unique_id=1164201984 instance=ExtResource("5_lf1uk")]
 position = Vector2(180, 840)
 slot_index = 5
 
-[node name="Slot6" parent="World/Slots" unique_id=572343835 instance=ExtResource("6_kvpfn")]
+[node name="Slot6" parent="World/Slots" unique_id=572343835 instance=ExtResource("5_lf1uk")]
 position = Vector2(540, 840)
 slot_index = 6
 faces_left = true
 
 [node name="DragController" type="Node2D" parent="World" unique_id=1932309985]
-script = ExtResource("7_kvuet")
+script = ExtResource("6_3xods")
 
 [node name="Preview" type="Node2D" parent="World/DragController" unique_id=1539613388]
 visible = false
@@ -245,7 +245,7 @@ modulate = Color(1, 1, 1, 0.8)
 z_index = 100
 
 [node name="Visual" type="Sprite2D" parent="World/DragController/Preview" unique_id=1834101813]
-texture = ExtResource("8_trtic")
+texture = ExtResource("7_4bwtt")
 
 [node name="Interface" type="CanvasLayer" parent="." unique_id=242053494]
 
@@ -258,9 +258,9 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
-theme = ExtResource("2_lnu2h")
-script = ExtResource("2_yqjtg")
-wave_config = ExtResource("14_ca42v")
+theme = ExtResource("8_dk6v7")
+script = ExtResource("9_8i4mt")
+wave_config = ExtResource("10_j636t")
 
 [node name="BottomDock" type="PanelContainer" parent="Interface/Hud" unique_id=831478648]
 layout_mode = 1
@@ -308,7 +308,7 @@ custom_minimum_size = Vector2(40, 40)
 layout_mode = 2
 size_flags_vertical = 4
 mouse_filter = 2
-texture = ExtResource("12_ssvqc")
+texture = ExtResource("11_tl222")
 stretch_mode = 5
 
 [node name="HealthLabel" type="Label" parent="Interface/Hud/BottomDock/Margin/Row/Counters" unique_id=345376129]
@@ -331,7 +331,7 @@ process_mode = 3
 custom_minimum_size = Vector2(40, 48)
 layout_mode = 2
 mouse_filter = 2
-script = ExtResource("13_sgl2t")
+script = ExtResource("12_jfwnn")
 
 [node name="Visual" type="TextureRect" parent="Interface/Hud/BottomDock/Margin/Row/Counters/ManaIcon" unique_id=1484599167]
 layout_mode = 0
@@ -340,12 +340,12 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
-texture = ExtResource("13_264po")
+texture = ExtResource("13_mq7gi")
 expand_mode = 1
 stretch_mode = 5
 
 [node name="GFFPlayer" type="Node" parent="Interface/Hud/BottomDock/Margin/Row/Counters/ManaIcon/Visual" unique_id=1014371456]
-script = ExtResource("14_suyxu")
+script = ExtResource("14_smmai")
 
 [node name="ManaLabel" type="Label" parent="Interface/Hud/BottomDock/Margin/Row/Counters" unique_id=1792798406]
 unique_name_in_owner = true
@@ -375,7 +375,7 @@ theme_override_styles/focus = SubResource("StyleBoxEmpty_wljb1")
 flat = true
 expand_icon = true
 
-[node name="FeedbackVisual" parent="Interface/Hud/BottomDock/Margin/Row/SettingsButton" unique_id=831369690 instance=ExtResource("15_sww3w")]
+[node name="FeedbackVisual" parent="Interface/Hud/BottomDock/Margin/Row/SettingsButton" unique_id=831369690 instance=ExtResource("15_m2e4n")]
 layout_mode = 1
 pivot_offset = Vector2(52, 52)
 normal_style = SubResource("StyleBoxFlat_sww3w")
@@ -383,7 +383,7 @@ hover_style = SubResource("StyleBoxFlat_sgl2t")
 pressed_style = SubResource("StyleBoxFlat_suyxu")
 disabled_style = SubResource("StyleBoxFlat_rrhgg")
 focus_style = SubResource("StyleBoxFlat_q4uia")
-icon = ExtResource("18_bhx41")
+icon = ExtResource("16_c8hbu")
 icon_width = 56.0
 
 [node name="GameOverOverlay" type="Control" parent="Interface/Hud" unique_id=1342710346]
@@ -520,7 +520,7 @@ layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 mouse_filter = 2
-texture = ExtResource("13_37s47")
+texture = ExtResource("17_4yudl")
 expand_mode = 1
 stretch_mode = 5
 
@@ -550,7 +550,7 @@ theme_override_styles/disabled = SubResource("StyleBoxEmpty_twgab")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_02fa5")
 icon_alignment = 1
 
-[node name="FeedbackVisual" parent="Interface/Hud/GameOverOverlay/Center/Panel/Stack/Actions/RestartButton" unique_id=241356428 instance=ExtResource("15_sww3w")]
+[node name="FeedbackVisual" parent="Interface/Hud/GameOverOverlay/Center/Panel/Stack/Actions/RestartButton" unique_id=241356428 instance=ExtResource("15_m2e4n")]
 layout_mode = 1
 pivot_offset = Vector2(64, 64)
 normal_style = SubResource("StyleBoxFlat_1e81c")
@@ -558,7 +558,7 @@ hover_style = SubResource("StyleBoxFlat_wir6v")
 pressed_style = SubResource("StyleBoxFlat_bduea")
 disabled_style = SubResource("StyleBoxFlat_rrhgg")
 focus_style = SubResource("StyleBoxFlat_q4uia")
-icon = ExtResource("14_e1j6l")
+icon = ExtResource("18_4p2q1")
 icon_width = 64.0
 
 [node name="MenuButton" type="Button" parent="Interface/Hud/GameOverOverlay/Center/Panel/Stack/Actions" unique_id=1736271558]
@@ -576,7 +576,7 @@ theme_override_styles/disabled = SubResource("StyleBoxEmpty_8ool0")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_pr1ej")
 icon_alignment = 1
 
-[node name="FeedbackVisual" parent="Interface/Hud/GameOverOverlay/Center/Panel/Stack/Actions/MenuButton" unique_id=1747700076 instance=ExtResource("15_sww3w")]
+[node name="FeedbackVisual" parent="Interface/Hud/GameOverOverlay/Center/Panel/Stack/Actions/MenuButton" unique_id=1747700076 instance=ExtResource("15_m2e4n")]
 layout_mode = 1
 pivot_offset = Vector2(64, 64)
 normal_style = SubResource("StyleBoxFlat_1e81c")
@@ -584,7 +584,7 @@ hover_style = SubResource("StyleBoxFlat_wir6v")
 pressed_style = SubResource("StyleBoxFlat_bduea")
 disabled_style = SubResource("StyleBoxFlat_rrhgg")
 focus_style = SubResource("StyleBoxFlat_q4uia")
-icon = ExtResource("15_pl11u")
+icon = ExtResource("19_xkumr")
 icon_width = 64.0
 
 [node name="DoubleRewardButton" type="Button" parent="Interface/Hud/GameOverOverlay/Center/Panel/Stack/Actions" unique_id=108554418]
@@ -601,26 +601,18 @@ theme_override_styles/disabled = SubResource("StyleBoxEmpty_twgab")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_02fa5")
 icon_alignment = 1
 
-[node name="FeedbackVisual" type="Control" parent="Interface/Hud/GameOverOverlay/Center/Panel/Stack/Actions/DoubleRewardButton" unique_id=331547735 instance=ExtResource("15_sww3w")]
-process_mode = 3
+[node name="FeedbackVisual" parent="Interface/Hud/GameOverOverlay/Center/Panel/Stack/Actions/DoubleRewardButton" unique_id=331547735 instance=ExtResource("15_m2e4n")]
 layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
 pivot_offset = Vector2(64, 64)
-mouse_filter = 2
-script = ExtResource("21_twgab")
 normal_style = SubResource("StyleBoxFlat_1e81c")
 hover_style = SubResource("StyleBoxFlat_wir6v")
 pressed_style = SubResource("StyleBoxFlat_bduea")
 disabled_style = SubResource("StyleBoxFlat_rrhgg")
 focus_style = SubResource("StyleBoxFlat_q4uia")
-icon = ExtResource("13_37s47")
+icon = ExtResource("17_4yudl")
 
-[node name="GFFPlayer" type="Node" parent="Interface/Hud/GameOverOverlay/Center/Panel/Stack/Actions/DoubleRewardButton/FeedbackVisual" unique_id=1960228428]
-script = ExtResource("14_suyxu")
+[node name="GFFPlayer2" type="Node" parent="Interface/Hud/GameOverOverlay/Center/Panel/Stack/Actions/DoubleRewardButton/FeedbackVisual" unique_id=1960228428]
+script = ExtResource("14_smmai")
 
 [node name="Multiplier" type="Label" parent="Interface/Hud/GameOverOverlay/Center/Panel/Stack/Actions/DoubleRewardButton/FeedbackVisual" unique_id=1653712436]
 layout_mode = 0
@@ -642,7 +634,7 @@ theme_override_font_sizes/font_size = 32
 text = "TRY AGAIN"
 horizontal_alignment = 1
 
-[node name="UpgradeChoice" parent="Interface/Hud" unique_id=1166018989 instance=ExtResource("13_1kice")]
+[node name="UpgradeChoice" parent="Interface/Hud" unique_id=1166018989 instance=ExtResource("20_vaj4t")]
 layout_mode = 1
 
 [node name="SettingsOverlay" type="Control" parent="Interface/Hud" unique_id=215528813]
@@ -698,7 +690,7 @@ tooltip_text = "Leave this run"
 theme_override_constants/icon_max_width = 34
 theme_override_font_sizes/font_size = 42
 text = "MAIN MENU"
-icon = ExtResource("15_pl11u")
+icon = ExtResource("19_xkumr")
 
 [node name="ResumeButton" type="Button" parent="Interface/Hud/SettingsOverlay/Center/Panel/Stack" unique_id=1486956169]
 unique_name_in_owner = true
@@ -707,9 +699,9 @@ layout_mode = 2
 theme_override_constants/icon_max_width = 34
 theme_override_font_sizes/font_size = 42
 text = "CONTINUE"
-icon = ExtResource("19_qnb83")
+icon = ExtResource("21_v0p01")
 
-[node name="BossWarning" parent="Interface/Hud" unique_id=446194701 instance=ExtResource("23_qouja")]
+[node name="BossWarning" parent="Interface/Hud" unique_id=446194701 instance=ExtResource("22_wl1ex")]
 layout_mode = 1
 
 [node name="ReviveOverlay" type="Control" parent="Interface/Hud" unique_id=1680288707]
@@ -747,7 +739,7 @@ alignment = 1
 [node name="Icon" type="TextureRect" parent="Interface/Hud/ReviveOverlay/Center/Panel/Stack/Reward" unique_id=342083712]
 custom_minimum_size = Vector2(84, 84)
 layout_mode = 2
-texture = ExtResource("12_ssvqc")
+texture = ExtResource("11_tl222")
 expand_mode = 1
 stretch_mode = 5
 
@@ -785,27 +777,19 @@ theme_override_styles/disabled = SubResource("StyleBoxEmpty_twgab")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_02fa5")
 icon_alignment = 1
 
-[node name="FeedbackVisual" type="Control" parent="Interface/Hud/ReviveOverlay/Center/Panel/Stack/Actions/Accept" unique_id=97895687 instance=ExtResource("15_sww3w")]
-process_mode = 3
+[node name="FeedbackVisual" parent="Interface/Hud/ReviveOverlay/Center/Panel/Stack/Actions/Accept" unique_id=97895687 instance=ExtResource("15_m2e4n")]
 layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
 pivot_offset = Vector2(64, 64)
-mouse_filter = 2
-script = ExtResource("21_twgab")
 normal_style = SubResource("StyleBoxFlat_1e81c")
 hover_style = SubResource("StyleBoxFlat_wir6v")
 pressed_style = SubResource("StyleBoxFlat_bduea")
 disabled_style = SubResource("StyleBoxFlat_rrhgg")
 focus_style = SubResource("StyleBoxFlat_q4uia")
-icon = ExtResource("25_twgab")
+icon = ExtResource("23_kx8o5")
 icon_width = 64.0
 
-[node name="GFFPlayer" type="Node" parent="Interface/Hud/ReviveOverlay/Center/Panel/Stack/Actions/Accept/FeedbackVisual" unique_id=155933632]
-script = ExtResource("14_suyxu")
+[node name="GFFPlayer2" type="Node" parent="Interface/Hud/ReviveOverlay/Center/Panel/Stack/Actions/Accept/FeedbackVisual" unique_id=155933632]
+script = ExtResource("14_smmai")
 
 [node name="Decline" type="Button" parent="Interface/Hud/ReviveOverlay/Center/Panel/Stack/Actions" unique_id=1039880281]
 custom_minimum_size = Vector2(128, 128)
@@ -821,27 +805,19 @@ theme_override_styles/disabled = SubResource("StyleBoxEmpty_twgab")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_02fa5")
 icon_alignment = 1
 
-[node name="FeedbackVisual" type="Control" parent="Interface/Hud/ReviveOverlay/Center/Panel/Stack/Actions/Decline" unique_id=541867881 instance=ExtResource("15_sww3w")]
-process_mode = 3
+[node name="FeedbackVisual" parent="Interface/Hud/ReviveOverlay/Center/Panel/Stack/Actions/Decline" unique_id=541867881 instance=ExtResource("15_m2e4n")]
 layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
 pivot_offset = Vector2(64, 64)
-mouse_filter = 2
-script = ExtResource("21_twgab")
 normal_style = SubResource("StyleBoxFlat_1e81c")
 hover_style = SubResource("StyleBoxFlat_wir6v")
 pressed_style = SubResource("StyleBoxFlat_bduea")
 disabled_style = SubResource("StyleBoxFlat_rrhgg")
 focus_style = SubResource("StyleBoxFlat_q4uia")
-icon = ExtResource("26_nepv3")
+icon = ExtResource("24_ttj4m")
 icon_width = 64.0
 
-[node name="GFFPlayer" type="Node" parent="Interface/Hud/ReviveOverlay/Center/Panel/Stack/Actions/Decline/FeedbackVisual" unique_id=218764922]
-script = ExtResource("14_suyxu")
+[node name="GFFPlayer2" type="Node" parent="Interface/Hud/ReviveOverlay/Center/Panel/Stack/Actions/Decline/FeedbackVisual" unique_id=218764922]
+script = ExtResource("14_smmai")
 
 [node name="RewardedOverlay" type="Control" parent="Interface/Hud" unique_id=468536491]
 process_mode = 3
@@ -902,36 +878,28 @@ theme_override_styles/disabled = SubResource("StyleBoxEmpty_twgab")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_02fa5")
 icon_alignment = 1
 
-[node name="FeedbackVisual" type="Control" parent="Interface/Hud/RewardedOverlay/Center/Panel/Stack/Cancel" unique_id=1375373268 instance=ExtResource("15_sww3w")]
-process_mode = 3
+[node name="FeedbackVisual" parent="Interface/Hud/RewardedOverlay/Center/Panel/Stack/Cancel" unique_id=1375373268 instance=ExtResource("15_m2e4n")]
 layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
 pivot_offset = Vector2(64, 64)
-mouse_filter = 2
-script = ExtResource("21_twgab")
 normal_style = SubResource("StyleBoxFlat_1e81c")
 hover_style = SubResource("StyleBoxFlat_wir6v")
 pressed_style = SubResource("StyleBoxFlat_bduea")
 disabled_style = SubResource("StyleBoxFlat_rrhgg")
 focus_style = SubResource("StyleBoxFlat_q4uia")
-icon = ExtResource("26_nepv3")
+icon = ExtResource("24_ttj4m")
 icon_width = 64.0
 
-[node name="GFFPlayer" type="Node" parent="Interface/Hud/RewardedOverlay/Center/Panel/Stack/Cancel/FeedbackVisual" unique_id=1096697218]
-script = ExtResource("14_suyxu")
+[node name="GFFPlayer2" type="Node" parent="Interface/Hud/RewardedOverlay/Center/Panel/Stack/Cancel/FeedbackVisual" unique_id=1096697218]
+script = ExtResource("14_smmai")
 
 [node name="SummonManager" type="Node" parent="." unique_id=1068555550]
-script = ExtResource("9_dinhu")
-config = ExtResource("10_kvuet")
-pool = ExtResource("12_ir15t")
+script = ExtResource("25_opb5i")
+config = ExtResource("26_mpunj")
+pool = ExtResource("27_f4ors")
 
 [node name="WaveManager" type="Node" parent="." unique_id=2106110378]
-script = ExtResource("13_ir15t")
-config = ExtResource("14_ca42v")
+script = ExtResource("28_qwygs")
+config = ExtResource("10_j636t")
 
 [node name="SpawnTimer" type="Timer" parent="WaveManager" unique_id=1649485017]
 one_shot = true
@@ -940,20 +908,23 @@ one_shot = true
 one_shot = true
 
 [node name="RunBonuses" type="Node" parent="." unique_id=1640489827]
-script = ExtResource("18_5newe")
-pool = ExtResource("19_37s47")
+script = ExtResource("29_ee460")
+pool = ExtResource("30_gha7s")
 
 [node name="RunStatistics" type="Node" parent="." unique_id=909542063]
-script = ExtResource("20_5newe")
-config = ExtResource("21_37s47")
+script = ExtResource("31_s2q70")
+config = ExtResource("32_ryf1h")
 
-[node name="ScreenShake" parent="." unique_id=1939015124 instance=ExtResource("32_wljb1")]
+[node name="ScreenShake" parent="." unique_id=1939015124 instance=ExtResource("33_0pqxp")]
 
 [node name="AdService" type="Node" parent="." unique_id=143148872]
 process_mode = 3
-script = ExtResource("36_7025r")
+script = ExtResource("34_f38rd")
 
 [node name="WatchTimer" type="Timer" parent="AdService" unique_id=87287445]
+one_shot = true
+
+[node name="ReviewTimer" type="Timer" parent="." unique_id=504074475]
 one_shot = true
 
 [connection signal="destroyed" from="World/Tower" to="." method="_on_tower_destroyed"]
@@ -994,3 +965,4 @@ one_shot = true
 [connection signal="completed" from="AdService" to="." method="_on_ad_completed"]
 [connection signal="progress_changed" from="AdService" to="Interface/Hud" method="update_ad_progress"]
 [connection signal="timeout" from="AdService/WatchTimer" to="AdService" method="_on_watch_timer_timeout"]
+[connection signal="timeout" from="ReviewTimer" to="." method="_on_review_timer_timeout"]

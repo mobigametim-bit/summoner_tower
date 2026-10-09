@@ -97,6 +97,17 @@ func take_damage(amount: int) -> void:
 		destroyed.emit()
 
 
+func revive(health: int) -> bool:
+	if not _is_destroyed or health <= 0:
+		return false
+	_is_destroyed = false
+	current_health = mini(health, max_health)
+	modulate = Color.WHITE
+	set_animated_visual(animated_visual_enabled)
+	health_changed.emit(current_health, max_health)
+	return true
+
+
 func increase_max_health(health: int) -> void:
 	if _is_destroyed or health <= max_health:
 		return

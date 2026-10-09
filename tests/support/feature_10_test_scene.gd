@@ -6,6 +6,16 @@ var _preview_elapsed: float = 0.0
 
 func _ready() -> void:
 	super._ready()
+	# Этот сценарий проверяет результаты и кошелёк на фиксированных волнах,
+	# независимо от адаптивной балансировки обычного забега.
+	game.wave_manager.stop()
+	var fixed: WaveConfig = game.wave_manager.config.duplicate() as WaveConfig
+	fixed.power_balance = null
+	fixed.first_enemy_count = 4
+	game.wave_manager.config = fixed
+	game.wave_manager.wave_number = 0
+	game.run_statistics.reset()
+	game.wave_manager.start()
 	game.summon_manager.pool = load("res://tests/resources/archer_only_pool.tres")
 	if OS.has_feature("web") and SessionProgress.crystals == 0:
 		prepare_boss_preview.call_deferred()
@@ -59,7 +69,8 @@ func prepare_result(wave_count: int) -> void:
 			var ordinary: int = 4 + 2 * (wave - 1)
 			assert(waves.config.enemy_count_for(wave) == ordinary)
 			if waves.config.is_boss_wave(wave):
-				assert(waves.active_count() == 2 and waves._spawn_remaining == ordinary - 1)
+				# Первая пачка обычных врагов содержит 1–3 моба, плюс отдельный босс.
+				assert(waves.active_count() >= 2 and waves._spawn_remaining + waves.active_count() == ordinary + 1)
 				assert(waves._active[0].stats.is_boss and not waves._active[1].stats.is_boss)
 				assert(waves._active[0].global_position == waves._active[1].global_position)
 				var boss: ApproachingEnemy = waves._active[0]
@@ -89,6 +100,7 @@ func prepare_result(wave_count: int) -> void:
 		assert(stats.killed_enemies == wave_count * (wave_count + 3) + expected_bosses)
 		assert(stats.killed_bosses == expected_bosses and stats.reached_wave == wave_count + 1)
 	game.tower.take_damage(game.tower.max_health)
+	game._on_revive_declined()
 	var expected: int = stats.config.reward_for(wave_count, expected_bosses)
 	assert(game.state == 1 and stats.finished and stats.earned_crystals == expected)
 	assert(SessionProgress.crystals == before + expected and stats.total_crystals == SessionProgress.crystals)

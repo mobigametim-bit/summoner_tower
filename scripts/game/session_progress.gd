@@ -66,6 +66,19 @@ func add_crystals(amount: int) -> void:
 	crystals_changed.emit(crystals)
 
 
+func try_add_reward(amount: int) -> bool:
+	if amount <= 0 or not save_manager.writable:
+		return false
+	var previous: int = crystals
+	crystals += mini(amount, SaveManager.MAX_CRYSTALS - crystals)
+	if not _save_progress():
+		crystals = previous
+		save_failed.emit(save_manager.last_error)
+		return false
+	crystals_changed.emit(crystals)
+	return true
+
+
 func upgrade_level(kind: int) -> int:
 	return upgrade_levels[kind] if UPGRADE_CONFIG.is_valid_kind(kind) else 0
 

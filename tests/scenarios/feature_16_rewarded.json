@@ -1,0 +1,72 @@
+{
+  "name": "Feature 16: revive and double reward once",
+  "scene": "res://scenes/debug/RewardedReview.tscn",
+  "steps": [
+    {
+      "wait_for": "state == State.REVIVE_OFFER"
+    },
+    {
+      "assert": "get_tree().paused and tower.current_health == 0 and not run_statistics.finished"
+    },
+    {
+      "call": {
+        "path": ".",
+        "method": "_on_revive_accepted"
+      }
+    },
+    {
+      "assert": "state == State.REWARDED_VIEW and ad_service.busy"
+    },
+    {
+      "call": {
+        "path": ".",
+        "method": "_on_rewarded_view_canceled"
+      }
+    },
+    {
+      "assert": "state == State.REVIVE_OFFER and not revive_used and get_node('/root/SessionProgress').crystals == 0"
+    },
+    {
+      "call": {
+        "path": ".",
+        "method": "_on_revive_accepted"
+      }
+    },
+    {
+      "wait_for": "state == State.RUNNING"
+    },
+    {
+      "assert": "revive_used and tower.current_health == 50 and tower.max_health == 100 and wave_manager.wave_number == 4 and not get_tree().paused and not run_statistics.finished"
+    },
+    {
+      "call": {
+        "path": "World/Tower",
+        "method": "take_damage",
+        "args": [
+          999
+        ]
+      }
+    },
+    {
+      "assert": "state == State.GAME_OVER and not hud.revive_overlay.visible and run_statistics.earned_crystals > 0"
+    },
+    {
+      "call": {
+        "path": ".",
+        "method": "_on_double_reward_requested"
+      }
+    },
+    {
+      "wait_for": "state == State.GAME_OVER"
+    },
+    {
+      "assert": "run_statistics.reward_doubled and get_node('/root/SessionProgress').crystals == run_statistics.earned_crystals and hud.double_reward_button.disabled"
+    },
+    {
+      "assert": "not run_statistics.double_reward()"
+    },
+    {
+      "assert_no_errors": true
+    }
+  ]
+}

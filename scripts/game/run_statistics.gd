@@ -11,6 +11,7 @@ var merges: int = 0
 var earned_crystals: int = 0
 var total_crystals: int = 0
 var finished: bool = false
+var reward_doubled: bool = false
 var _last_completed_wave: int = 0
 
 
@@ -23,6 +24,7 @@ func reset() -> void:
 	earned_crystals = 0
 	total_crystals = 0
 	finished = false
+	reward_doubled = false
 	_last_completed_wave = 0
 
 
@@ -58,5 +60,22 @@ func finish() -> bool:
 	finished = true
 	earned_crystals = config.reward_for(completed_waves, killed_bosses)
 	SessionProgress.add_crystals(earned_crystals)
+	total_crystals = SessionProgress.crystals
+	return true
+
+
+func can_double_reward() -> bool:
+	return finished and not reward_doubled and earned_crystals > 0
+
+
+func double_reward() -> bool:
+	if not can_double_reward():
+		return false
+	# Защита от повторного вызова из сигналов кошелька.
+	reward_doubled = true
+	if not SessionProgress.try_add_reward(earned_crystals):
+		reward_doubled = false
+		return false
+	earned_crystals *= 2
 	total_crystals = SessionProgress.crystals
 	return true

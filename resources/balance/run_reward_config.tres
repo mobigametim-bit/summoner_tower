@@ -1,8 +1,10 @@
-[gd_resource type="Resource" script_class="RunRewardConfig" format=3]
+[gd_resource type="Resource" script_class="RunRewardConfig" format=3 uid="uid://c2tgfag4qq81o"]
 
-[ext_resource type="Script" path="res://scripts/data/run_reward_config.gd" id="1"]
+[ext_resource type="Script" uid="uid://du8lsgvfle0o1" path="res://scripts/data/run_reward_config.gd" id="1"]
 
 [resource]
 script = ExtResource("1")
 crystals_per_wave = 2
 crystals_per_boss = 10
+revive_health = 50
+fake_ad_duration = 3.0

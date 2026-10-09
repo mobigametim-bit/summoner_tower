@@ -33,6 +33,7 @@ var _rng: RandomNumberGenerator = RandomNumberGenerator.new()
 var power_summary: Dictionary = {}
 var _batch_remaining: int = 0
 var _batch_spawned: int = 0
+var _completion_suspended: bool = false
 
 
 func _ready() -> void:
@@ -168,7 +169,7 @@ func _on_enemy_resolved(enemy: ApproachingEnemy, outcome: ApproachingEnemy.Outco
 
 
 func _try_finish_wave() -> void:
-	if phase != Phase.FIGHTING or _spawn_remaining > 0 or not _active.is_empty():
+	if _completion_suspended or phase != Phase.FIGHTING or _spawn_remaining > 0 or not _active.is_empty():
 		return
 	spawn_timer.stop()
 	if config.is_boss_wave(wave_number) and _boss_killed:
@@ -180,6 +181,14 @@ func _try_finish_wave() -> void:
 		return
 	_begin_intermission()
 	wave_completed.emit(wave_number)
+
+
+func suspend_completion(suspended: bool) -> void:
+	# Последний враг может разрушить башню внутри resolved.emit().
+	# Не завершаем эту волну, пока игрок решает, возрождаться ли.
+	_completion_suspended = suspended
+	if not suspended:
+		_try_finish_wave()
 
 
 func finish_upgrade_choice() -> bool:
@@ -214,6 +223,7 @@ func _on_intermission_timeout() -> void:
 
 
 func stop() -> void:
+	_completion_suspended = false
 	if phase == Phase.STOPPED:
 		return
 	phase = Phase.STOPPED

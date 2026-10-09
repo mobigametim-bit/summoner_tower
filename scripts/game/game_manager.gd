@@ -1,6 +1,6 @@
 extends Node2D
 
-enum State { RUNNING, GAME_OVER, LEAVING, UPGRADE_CHOICE, SETTINGS }
+enum State { RUNNING, GAME_OVER, LEAVING, UPGRADE_CHOICE, SETTINGS, REVIVE_OFFER, REWARDED_VIEW }
 
 @export var config: EncounterConfig
 @export var procedural_battlefield_enabled: bool = true
@@ -23,10 +23,13 @@ enum State { RUNNING, GAME_OVER, LEAVING, UPGRADE_CHOICE, SETTINGS }
 @onready var upgrade_choice: UpgradeChoice = $Interface/Hud/UpgradeChoice
 @onready var run_statistics: RunStatistics = $RunStatistics
 @onready var battlefield: Battlefield = $World/Battlefield
+@onready var ad_service: AdService = $AdService
 
 var state: State = State.RUNNING
 var map_changes: int = 0
 var _offered_upgrades: Array[RunUpgrade] = []
+var revive_used: bool = false
+var _reward_placement: AdService.Placement = AdService.Placement.REVIVE
 
 
 func _ready() -> void:
@@ -154,13 +157,87 @@ func _on_tower_destroyed() -> void:
 	if state != State.RUNNING and state != State.UPGRADE_CHOICE:
 		return
 
+	if not revive_used:
+		state = State.REVIVE_OFFER
+		wave_manager.suspend_completion(true)
+		drag_controller.cancel_drag()
+		summon_manager.set_interaction_enabled(false)
+		hud.set_settings_available(false)
+		hud.show_revive_offer(run_statistics.config.revive_health)
+		get_tree().paused = true
+		return
+	_finish_run()
+
+
+func _finish_run() -> void:
 	state = State.GAME_OVER
 	run_statistics.finish()
 	_stop_encounter()
 	hud.show_game_over(run_statistics)
 
 
+func _on_revive_accepted() -> void:
+	if state == State.REVIVE_OFFER and not revive_used:
+		_request_reward(AdService.Placement.REVIVE)
+
+
+func _on_revive_declined() -> void:
+	if state == State.REVIVE_OFFER:
+		_finish_run()
+
+
+func _on_double_reward_requested() -> void:
+	if state == State.GAME_OVER and run_statistics.can_double_reward():
+		_request_reward(AdService.Placement.DOUBLE_REWARD)
+
+
+func _request_reward(placement: AdService.Placement) -> void:
+	if not ad_service.request(placement, run_statistics.config.fake_ad_duration):
+		return
+	_reward_placement = placement
+	state = State.REWARDED_VIEW
+	hud.set_actions_enabled(false)
+	hud.show_rewarded_view()
+
+
+func _on_rewarded_view_canceled() -> void:
+	if state == State.REWARDED_VIEW:
+		ad_service.cancel()
+
+
+func _on_ad_completed(placement: AdService.Placement, outcome: AdService.Outcome) -> void:
+	if state != State.REWARDED_VIEW or placement != _reward_placement:
+		return
+	hud.close_rewarded_view()
+	if placement == AdService.Placement.REVIVE:
+		if outcome == AdService.Outcome.SUCCESS and tower.revive(run_statistics.config.revive_health):
+			revive_used = true
+			hud.close_revive_offer()
+			state = State.RUNNING
+			summon_manager.set_interaction_enabled(true)
+			get_tree().paused = false
+			hud.set_settings_available(true)
+			wave_manager.suspend_completion(false)
+		else:
+			state = State.REVIVE_OFFER
+			hud.show_revive_offer(run_statistics.config.revive_health, outcome == AdService.Outcome.FAILED)
+	else:
+		state = State.GAME_OVER
+		var grant_failed: bool = false
+		if outcome == AdService.Outcome.SUCCESS:
+			grant_failed = not run_statistics.double_reward()
+			hud.show_game_over(run_statistics)
+			hud.show_reward_error(grant_failed)
+		else:
+			hud.show_reward_error(outcome == AdService.Outcome.FAILED)
+		hud.set_actions_enabled(true)
+		hud.set_double_reward_available(run_statistics.can_double_reward())
+
+
 func _stop_encounter() -> void:
+	ad_service.abort()
+	hud.close_rewarded_view()
+	hud.close_revive_offer()
 	get_tree().paused = false
 	_offered_upgrades.clear()
 	upgrade_choice.close_choice()
