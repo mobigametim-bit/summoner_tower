@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="GFFTween" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://addons/game_feel_flow/effects/animation/gff_tween.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+label = "ui_button_press"
+overlap_strategy = 3
+duration = 0.16
+restore_after_play = false
+property = "scale"
+target_value = Vector2(0.9, 0.9)
+tween_type = 1

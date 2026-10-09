@@ -1,0 +1,18 @@
+[gd_scene format=3 uid="uid://qrfmn7yt2v3"]
+
+[ext_resource type="Script" uid="uid://b6hb1c3t0eppb" path="res://addons/game_feel_flow/core/gff_player.gd" id="1_1yhq4"]
+[ext_resource type="Script" uid="uid://cj25vlb6fcy00" path="res://scripts/ui/button_feedback.gd" id="1_egb4k"]
+
+[node name="FeedbackVisual" type="Control" unique_id=831369690]
+process_mode = 3
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("1_egb4k")
+
+[node name="GFFPlayer" type="Node" parent="." unique_id=1960228428]
+script = ExtResource("1_1yhq4")

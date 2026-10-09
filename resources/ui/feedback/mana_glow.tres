@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="GFFTween" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://addons/game_feel_flow/effects/animation/gff_tween.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+label = "ui_mana_glow"
+overlap_strategy = 3
+duration = 0.24
+restore_after_play = false
+property = "self_modulate"
+target_value = Color(0.65, 1.35, 1.6, 1)
+tween_type = 1

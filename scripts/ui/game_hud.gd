@@ -11,12 +11,15 @@ signal resume_requested
 @onready var restart_button: Button = %RestartButton
 @onready var menu_button: Button = %MenuButton
 @onready var mana_label: Label = %ManaLabel
+@onready var mana_feedback: ManaFeedback = $BottomDock/Margin/Row/Counters/ManaIcon
 @onready var wave_label: Label = %WaveLabel
 @onready var bottom_dock: PanelContainer = $BottomDock
 @onready var settings_button: Button = %SettingsButton
 @onready var settings_overlay: Control = %SettingsOverlay
 @onready var resume_button: Button = %ResumeButton
 @export var wave_config: WaveConfig
+
+var _displayed_mana: int = -1
 
 
 func update_wave(wave: int, _phase: WaveManager.Phase, _seconds: int, _alive: int, _pending: int) -> void:
@@ -90,6 +93,12 @@ func show_game_over(stats: RunStatistics) -> void:
 func update_summon(mana: int, _cost: int, _occupied: int, _capacity: int, _available: bool) -> void:
 	mana_label.text = str(mana)
 	_fit_counter(mana_label)
+	if _displayed_mana >= 0:
+		if mana > _displayed_mana:
+			mana_feedback.play_gain()
+		elif mana < _displayed_mana:
+			mana_feedback.stop_feedback()
+	_displayed_mana = mana
 
 
 func set_actions_enabled(enabled: bool) -> void:

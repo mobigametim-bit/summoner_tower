@@ -209,11 +209,22 @@ func _publish_snapshot(_arguments: Array) -> void:
 		"projectiles": projectiles.get_child_count(), "drag_visible": drag_controller.preview.visible,
 		"columns": battlefield.layout.grid_size.x, "canvas_size": tower.tower_visual.scale.y * TowerVisual.CANVAS_SIZE,
 		"fps": Engine.get_frames_per_second(), "draw_calls": Performance.get_monitor(Performance.RENDER_TOTAL_DRAW_CALLS_IN_FRAME),
+		"mana_feedback": {"scale": [hud.mana_feedback.visual.scale.x, hud.mana_feedback.visual.scale.y],
+			"active": hud.mana_feedback.player.is_playing()},
+		"gear_feedback": _feedback(hud.settings_button),
+		"restart_feedback": _feedback(hud.restart_button), "menu_feedback": _feedback(hud.menu_button),
 		"controls": {"animated": _center(animated_button), "pause": _center(pause_button),
 			"settings": _center(hud.settings_button), "resume": _center(hud.resume_button),
+			"restart": _center(hud.restart_button), "result_menu": _center(hud.menu_button),
 			"menu": _center(hud.get_node("SettingsOverlay/Center/Panel/Stack/SettingsMenuButton"))}
 	}
 	JavaScriptBridge.eval("window.towerReview = %s;" % JSON.stringify(snapshot), true)
+
+
+func _feedback(button: Button) -> Dictionary:
+	var visual: ButtonFeedback = button.get_node("FeedbackVisual") as ButtonFeedback
+	return {"scale": [visual.scale.x, visual.scale.y], "hover": visual.hover_amount,
+		"bounds": _rect(button), "active": visual.player.is_playing()}
 
 
 func _center(control: Control) -> Array[float]:

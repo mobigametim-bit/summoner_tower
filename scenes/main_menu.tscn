@@ -7,6 +7,8 @@
 
 [ext_resource type="PackedScene" uid="uid://cs4k53circxos" path="res://scenes/ui/MainMenuBackdrop.tscn" id="2_rtw2f"]
 
+[ext_resource type="PackedScene" uid="uid://qrfmn7yt2v3" path="res://scenes/ui/button_feedback.tscn" id="4_rtw2f"]
+
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vue75"]
 content_margin_left = 24.0
 content_margin_top = 16.0
@@ -51,6 +53,38 @@ corner_radius_top_left = 12
 corner_radius_top_right = 12
 corner_radius_bottom_right = 12
 corner_radius_bottom_left = 12
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_1ajci"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_5dd4i"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_8ln24"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_flqon"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_jk1qb"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_lgwnu"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_oa1go"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_rcqid"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_rtw2f"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_tbmy8"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5dd4i"]
+content_margin_left = 4.0
+content_margin_top = 4.0
+content_margin_right = 4.0
+content_margin_bottom = 4.0
+bg_color = Color(0.1, 0.1, 0.1, 0.3)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+corner_detail = 5
 
 [node name="MainMenu" type="Control" unique_id=1345894397]
 layout_mode = 3
@@ -135,12 +169,22 @@ theme_override_colors/font_pressed_color = Color(0.0627451, 0.08235294, 0.133333
 theme_override_colors/font_hover_color = Color(0.0627451, 0.08235294, 0.13333334, 1)
 theme_override_constants/icon_max_width = 48
 theme_override_font_sizes/font_size = 48
-theme_override_styles/normal = SubResource("StyleBoxFlat_vue75")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_l6cm7")
-theme_override_styles/hover = SubResource("StyleBoxFlat_ekxnf")
-theme_override_styles/focus = SubResource("StyleBoxFlat_bqqt6")
-icon = ExtResource("3_wu84c")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_8ln24")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_rtw2f")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_oa1go")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_tbmy8")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_jk1qb")
 icon_alignment = 1
+
+[node name="FeedbackVisual" parent="Center/VBox/Actions/PlayButton" unique_id=831369690 instance=ExtResource("4_rtw2f")]
+layout_mode = 1
+pivot_offset = Vector2(64, 64)
+normal_style = SubResource("StyleBoxFlat_vue75")
+hover_style = SubResource("StyleBoxFlat_ekxnf")
+pressed_style = SubResource("StyleBoxFlat_l6cm7")
+disabled_style = SubResource("StyleBoxFlat_5dd4i")
+focus_style = SubResource("StyleBoxFlat_bqqt6")
+icon = ExtResource("3_wu84c")
 
 [node name="UpgradesButton" type="Button" parent="Center/VBox/Actions" unique_id=1824630505]
 unique_name_in_owner = true
@@ -155,12 +199,22 @@ theme_override_colors/font_pressed_color = Color(0.0627451, 0.08235294, 0.133333
 theme_override_colors/font_hover_color = Color(0.0627451, 0.08235294, 0.13333334, 1)
 theme_override_constants/icon_max_width = 48
 theme_override_font_sizes/font_size = 48
-theme_override_styles/normal = SubResource("StyleBoxFlat_vue75")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_l6cm7")
-theme_override_styles/hover = SubResource("StyleBoxFlat_ekxnf")
-theme_override_styles/focus = SubResource("StyleBoxFlat_bqqt6")
-icon = ExtResource("4_8ln24")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_5dd4i")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_lgwnu")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_flqon")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_rcqid")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_1ajci")
 icon_alignment = 1
+
+[node name="FeedbackVisual" parent="Center/VBox/Actions/UpgradesButton" unique_id=1244472860 instance=ExtResource("4_rtw2f")]
+layout_mode = 1
+pivot_offset = Vector2(64, 64)
+normal_style = SubResource("StyleBoxFlat_vue75")
+hover_style = SubResource("StyleBoxFlat_ekxnf")
+pressed_style = SubResource("StyleBoxFlat_l6cm7")
+disabled_style = SubResource("StyleBoxFlat_5dd4i")
+focus_style = SubResource("StyleBoxFlat_bqqt6")
+icon = ExtResource("4_8ln24")
 
 [connection signal="pressed" from="Center/VBox/Actions/PlayButton" to="." method="_on_play_button_pressed"]
 [connection signal="pressed" from="Center/VBox/Actions/UpgradesButton" to="." method="_on_upgrades_button_pressed"]

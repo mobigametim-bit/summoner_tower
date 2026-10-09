@@ -29,6 +29,9 @@
 [ext_resource type="Resource" path="res://resources/balance/run_reward_config.tres" id="21_37s47"]
 [ext_resource type="PackedScene" uid="uid://bs7ym0iyxvdag" path="res://scenes/vfx/ScreenShake.tscn" id="32_wljb1"]
 
+[ext_resource type="Script" uid="uid://cfvf5il45lqsh" path="res://scripts/ui/mana_feedback.gd" id="13_sgl2t"]
+[ext_resource type="Script" uid="uid://b6hb1c3t0eppb" path="res://addons/game_feel_flow/core/gff_player.gd" id="14_suyxu"]
+[ext_resource type="PackedScene" uid="uid://qrfmn7yt2v3" path="res://scenes/ui/button_feedback.tscn" id="15_sww3w"]
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qnb83"]
 bg_color = Color(0.09019608, 0.14117648, 0.19215687, 1)
 border_width_top = 2
@@ -86,6 +89,96 @@ corner_radius_top_left = 16
 corner_radius_top_right = 16
 corner_radius_bottom_right = 16
 corner_radius_bottom_left = 16
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_02fa5"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_7025r"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_8ool0"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_gxtfn"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_js0lu"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_m4url"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_nepv3"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_pr1ej"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_qouja"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_sgl2t"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_suyxu"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_sww3w"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_twgab"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_v2yb1"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_wljb1"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1e81c"]
+content_margin_left = 24.0
+content_margin_top = 16.0
+content_margin_right = 24.0
+content_margin_bottom = 16.0
+bg_color = Color(0.8509804, 0.6784314, 0.33333334, 1)
+corner_radius_top_left = 12
+corner_radius_top_right = 12
+corner_radius_bottom_right = 12
+corner_radius_bottom_left = 12
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bduea"]
+content_margin_left = 24.0
+content_margin_top = 16.0
+content_margin_right = 24.0
+content_margin_bottom = 16.0
+bg_color = Color(0.70980394, 0.54509807, 0.22352941, 1)
+corner_radius_top_left = 12
+corner_radius_top_right = 12
+corner_radius_bottom_right = 12
+corner_radius_bottom_left = 12
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_q4uia"]
+content_margin_left = 24.0
+content_margin_top = 16.0
+content_margin_right = 24.0
+content_margin_bottom = 16.0
+bg_color = Color(0, 0, 0, 0)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(1, 0.9411765, 0.7607843, 1)
+corner_radius_top_left = 12
+corner_radius_top_right = 12
+corner_radius_bottom_right = 12
+corner_radius_bottom_left = 12
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rrhgg"]
+content_margin_left = 24.0
+content_margin_top = 16.0
+content_margin_right = 24.0
+content_margin_bottom = 16.0
+bg_color = Color(0.15294118, 0.20392157, 0.2784314, 1)
+corner_radius_top_left = 12
+corner_radius_top_right = 12
+corner_radius_bottom_right = 12
+corner_radius_bottom_left = 12
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wir6v"]
+content_margin_left = 24.0
+content_margin_top = 16.0
+content_margin_right = 24.0
+content_margin_bottom = 16.0
+bg_color = Color(0.9254902, 0.78039217, 0.48235294, 1)
+corner_radius_top_left = 12
+corner_radius_top_right = 12
+corner_radius_bottom_right = 12
+corner_radius_bottom_left = 12
 
 [node name="Game" type="Node2D" unique_id=469266139]
 process_mode = 1
@@ -228,12 +321,26 @@ custom_minimum_size = Vector2(24, 0)
 layout_mode = 2
 mouse_filter = 2
 
-[node name="ManaIcon" type="TextureRect" parent="Interface/Hud/BottomDock/Margin/Row/Counters" unique_id=251272733]
+[node name="ManaIcon" type="Control" parent="Interface/Hud/BottomDock/Margin/Row/Counters" unique_id=1388567042]
+process_mode = 3
 custom_minimum_size = Vector2(40, 48)
 layout_mode = 2
 mouse_filter = 2
+script = ExtResource("13_sgl2t")
+
+[node name="Visual" type="TextureRect" parent="Interface/Hud/BottomDock/Margin/Row/Counters/ManaIcon" unique_id=1484599167]
+layout_mode = 0
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
 texture = ExtResource("13_264po")
+expand_mode = 1
 stretch_mode = 5
+
+[node name="GFFPlayer" type="Node" parent="Interface/Hud/BottomDock/Margin/Row/Counters/ManaIcon/Visual" unique_id=1014371456]
+script = ExtResource("14_suyxu")
 
 [node name="ManaLabel" type="Label" parent="Interface/Hud/BottomDock/Margin/Row/Counters" unique_id=1792798406]
 unique_name_in_owner = true
@@ -255,12 +362,23 @@ size_flags_vertical = 4
 tooltip_text = "Settings"
 focus_mode = 0
 theme_override_constants/icon_max_width = 48
-theme_override_styles/normal = SubResource("StyleBoxFlat_sww3w")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_suyxu")
-theme_override_styles/hover = SubResource("StyleBoxFlat_sgl2t")
-icon = ExtResource("18_bhx41")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_sww3w")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_suyxu")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_sgl2t")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_qouja")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_wljb1")
 flat = true
 expand_icon = true
+
+[node name="FeedbackVisual" parent="Interface/Hud/BottomDock/Margin/Row/SettingsButton" unique_id=831369690 instance=ExtResource("15_sww3w")]
+layout_mode = 1
+pivot_offset = Vector2(44, 44)
+normal_style = SubResource("StyleBoxFlat_sww3w")
+hover_style = SubResource("StyleBoxFlat_sgl2t")
+pressed_style = SubResource("StyleBoxFlat_suyxu")
+disabled_style = SubResource("StyleBoxFlat_rrhgg")
+focus_style = SubResource("StyleBoxFlat_q4uia")
+icon = ExtResource("18_bhx41")
 
 [node name="GameOverOverlay" type="Control" parent="Interface/Hud" unique_id=1342710346]
 unique_name_in_owner = true
@@ -419,8 +537,22 @@ size_flags_horizontal = 0
 size_flags_vertical = 0
 tooltip_text = "Restart"
 theme_override_constants/icon_max_width = 48
-icon = ExtResource("14_e1j6l")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_v2yb1")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_js0lu")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_gxtfn")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_twgab")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_02fa5")
 icon_alignment = 1
+
+[node name="FeedbackVisual" parent="Interface/Hud/GameOverOverlay/Center/Panel/Stack/Actions/RestartButton" unique_id=241356428 instance=ExtResource("15_sww3w")]
+layout_mode = 1
+pivot_offset = Vector2(64, 64)
+normal_style = SubResource("StyleBoxFlat_1e81c")
+hover_style = SubResource("StyleBoxFlat_wir6v")
+pressed_style = SubResource("StyleBoxFlat_bduea")
+disabled_style = SubResource("StyleBoxFlat_rrhgg")
+focus_style = SubResource("StyleBoxFlat_q4uia")
+icon = ExtResource("14_e1j6l")
 
 [node name="MenuButton" type="Button" parent="Interface/Hud/GameOverOverlay/Center/Panel/Stack/Actions" unique_id=1736271558]
 unique_name_in_owner = true
@@ -430,8 +562,22 @@ size_flags_horizontal = 0
 size_flags_vertical = 0
 tooltip_text = "Main menu"
 theme_override_constants/icon_max_width = 48
-icon = ExtResource("15_pl11u")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_nepv3")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_7025r")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_m4url")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_8ool0")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_pr1ej")
 icon_alignment = 1
+
+[node name="FeedbackVisual" parent="Interface/Hud/GameOverOverlay/Center/Panel/Stack/Actions/MenuButton" unique_id=1747700076 instance=ExtResource("15_sww3w")]
+layout_mode = 1
+pivot_offset = Vector2(64, 64)
+normal_style = SubResource("StyleBoxFlat_1e81c")
+hover_style = SubResource("StyleBoxFlat_wir6v")
+pressed_style = SubResource("StyleBoxFlat_bduea")
+disabled_style = SubResource("StyleBoxFlat_rrhgg")
+focus_style = SubResource("StyleBoxFlat_q4uia")
+icon = ExtResource("15_pl11u")
 
 [node name="UpgradeChoice" parent="Interface/Hud" unique_id=1166018989 instance=ExtResource("13_1kice")]
 layout_mode = 1
