@@ -2,9 +2,11 @@
 
 [ext_resource type="Script" uid="uid://3h64ym8kw81x" path="res://scripts/combat/combat_projectile.gd" id="1_umosx"]
 [ext_resource type="Texture2D" uid="uid://c0g3daseewrxn" path="res://assets/arrow.svg" id="2_23jat"]
+[ext_resource type="PackedScene" uid="uid://bx5bklbvm7t85" path="res://scenes/vfx/EmbeddedArrow.tscn" id="2_q8ifc"]
 
 [node name="Arrow" type="Node2D" unique_id=1007299876]
 script = ExtResource("1_umosx")
+embedded_arrow_scene = ExtResource("2_q8ifc")
 
 [node name="Visual" type="Sprite2D" parent="." unique_id=1681083627]
 texture = ExtResource("2_23jat")

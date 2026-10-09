@@ -37,6 +37,25 @@ func _ready() -> void:
 			_setup_contact_test()
 		if bool(JavaScriptBridge.eval("new URL(window.location.href).searchParams.get('merge_test') === '1'", true)):
 			_setup_merge_particle_test()
+		if bool(JavaScriptBridge.eval("new URL(window.location.href).searchParams.get('arrow_test') === '1'", true)):
+			_setup_embedded_arrow_test()
+
+
+func _setup_embedded_arrow_test() -> void:
+	# Development fixture: настоящие атаки Archer по четырём существующим типам врагов.
+	wave_manager.stop()
+	for enemy: Node in enemies.get_children():
+		enemy.queue_free()
+	var paths: Array[String] = ["res://scenes/enemy.tscn", "res://scenes/orc.tscn", "res://scenes/golem.tscn", "res://scenes/boss.tscn"]
+	for index: int in paths.size():
+		var slot: SummonSlot = summon_manager._slots[index]
+		var enemy: ApproachingEnemy = (load(paths[index]) as PackedScene).instantiate() as ApproachingEnemy
+		enemies.add_child(enemy)
+		enemy.configure(slot.global_position + Vector2(70.0, -35.0), 1400.0, 500)
+		enemy.move_speed = 0.0
+		var unit: CombatUnit = (load("res://scenes/archer.tscn") as PackedScene).instantiate() as CombatUnit
+		slot.place_unit(unit)
+		unit.configure(enemies, projectiles, run_bonuses)
 
 
 func _setup_merge_particle_test() -> void:
@@ -134,6 +153,7 @@ func _publish_snapshot(_arguments: Array) -> void:
 		"enemy_distances": enemies.get_children().map(func(enemy: ApproachingEnemy) -> float: return enemy._distance),
 		"enemy_portals": enemies.get_children().map(func(enemy: ApproachingEnemy) -> int: return int(enemy.get_meta("portal_index", 0))),
 		"enemy_positions": enemies.get_children().map(func(enemy: ApproachingEnemy) -> Array: return [enemy.global_position.x, enemy.global_position.y]),
+		"embedded_arrows": enemies.get_children().filter(func(enemy: ApproachingEnemy) -> bool: return not enemy.is_queued_for_deletion()).map(func(enemy: ApproachingEnemy) -> Dictionary: return {"type": enemy.stats.enemy_type, "count": enemy._embedded_arrow_count, "health": enemy.current_health}),
 		"spawn_remaining": wave_manager.get_node("SpawnTimer").time_left,
 		"slots": slots, "mana": summon_manager.mana, "cost": summon_manager.current_cost(),
 		"summons": summon_manager.successful_summons, "state": state, "wave": wave_manager.wave_number,

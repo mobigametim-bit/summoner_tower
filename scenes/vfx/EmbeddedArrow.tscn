@@ -1,0 +1,14 @@
+[gd_scene format=3 uid="uid://bx5bklbvm7t85"]
+
+[ext_resource type="Texture2D" uid="uid://c0g3daseewrxn" path="res://assets/arrow.svg" id="1_shsd8"]
+
+[node name="EmbeddedArrow" type="Node2D" unique_id=1349411083]
+z_index = 9
+z_as_relative = false
+
+[node name="Shaft" type="Sprite2D" parent="." unique_id=2109229804]
+texture = ExtResource("1_shsd8")
+centered = false
+offset = Vector2(-32, -7)
+region_enabled = true
+region_rect = Rect2(0, 0, 32, 14)

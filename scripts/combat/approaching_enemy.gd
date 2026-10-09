@@ -32,6 +32,7 @@ var _distance: float = 0.0
 var _resolved: bool = false
 var _slow_ratio: float = 0.0
 var _slow_remaining: float = 0.0
+var _embedded_arrow_count: int = 0
 
 
 func _ready() -> void:
@@ -127,6 +128,30 @@ func take_damage(amount: int) -> void:
 		_finish(Outcome.KILLED)
 	elif animated_visual_enabled:
 		_animated_visual.show_hit()
+
+
+func embed_arrow(arrow_scene: PackedScene, incoming_direction: Vector2) -> void:
+	if not is_targetable():
+		return
+	var host: Node2D = self
+	var center: Vector2 = Vector2.ZERO
+	var radius: Vector2 = visual.get_rect().size * Vector2(0.28, 0.18)
+	if animated_visual_enabled:
+		host = _animated_visual.get_node("Skeleton2D/Root/Body") as Node2D
+		var body_sprite: Sprite2D = host.get_node("Sprite") as Sprite2D
+		var rect: Rect2 = body_sprite.get_rect()
+		center = host.to_local(body_sprite.to_global(rect.position + rect.size * Vector2(0.5, 0.66)))
+		radius = rect.size * Vector2(0.13, 0.085)
+	var direction: Vector2 = host.global_transform.basis_xform_inv(incoming_direction).normalized()
+	# Разнообразие попаданий не расходует gameplay RNG и не влияет на генерацию волн.
+	var spread: float = fposmod(float(_embedded_arrow_count) * 0.618034, 1.0) - 0.5
+	var arrow: Node2D = arrow_scene.instantiate() as Node2D
+	host.add_child(arrow)
+	arrow.position = center - direction * radius * 0.72 + direction.orthogonal() * spread * radius.y
+	arrow.rotation = direction.angle() + spread * 0.18
+	# Размер стрелы сохраняется у разных rig; масштаб клетки применяется вместе с врагом.
+	arrow.scale = Vector2.ONE * 0.7 * global_transform.x.length() / host.global_transform.x.length()
+	_embedded_arrow_count += 1
 
 
 func is_targetable() -> bool:

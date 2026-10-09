@@ -3,6 +3,7 @@ extends Node2D
 
 @export var impact_scene: PackedScene
 @export var impact_scale: float = 0.4
+@export var embedded_arrow_scene: PackedScene
 
 var _target: ApproachingEnemy
 var _attacker: Node2D
@@ -84,6 +85,8 @@ func _hit_target() -> void:
 
 
 func _show_impact() -> void:
+	if embedded_arrow_scene != null:
+		_target.embed_arrow(embedded_arrow_scene, Vector2.RIGHT.rotated(global_rotation))
 	if impact_scene == null:
 		return
 	# Соседний узел переживёт снаряд и цель; смена сцены удалит незавершённый эффект.
