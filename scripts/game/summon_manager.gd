@@ -141,6 +141,7 @@ func try_transfer(source: SummonSlot, destination: SummonSlot, expected_unit: Co
 		other.paid_mana += expected_unit.paid_mana
 		expected_unit.paid_mana = 0
 		other.promote()
+		destination.play_merge_effect()
 		expected_unit.retire_into(other)
 		expected_unit.queue_free()
 		unit_merged.emit()

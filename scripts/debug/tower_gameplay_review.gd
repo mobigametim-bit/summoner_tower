@@ -35,6 +35,23 @@ func _ready() -> void:
 		JavaScriptBridge.get_interface("window").getTowerReview = _web_snapshot_callback
 		if bool(JavaScriptBridge.eval("new URL(window.location.href).searchParams.get('contact_test') === '1'", true)):
 			_setup_contact_test()
+		if bool(JavaScriptBridge.eval("new URL(window.location.href).searchParams.get('merge_test') === '1'", true)):
+			_setup_merge_particle_test()
+
+
+func _setup_merge_particle_test() -> void:
+	# Четыре пары Lv1–Lv4 для проверки настоящего drag/merge в Web.
+	wave_manager.stop()
+	for enemy: Node in enemies.get_children():
+		enemy.queue_free()
+	var archer_scene: PackedScene = load("res://scenes/archer.tscn")
+	for index: int in 8:
+		var unit: CombatUnit = archer_scene.instantiate() as CombatUnit
+		unit.stats = load("res://resources/balance/archer_lv%d.tres" % [1 + (index >> 1)])
+		unit.attack_enabled = false
+		unit.paid_mana = 20
+		summon_manager._slots[index].place_unit(unit)
+		unit.configure(enemies, projectiles, run_bonuses)
 
 
 func _setup_contact_test() -> void:
@@ -93,6 +110,10 @@ func _publish_snapshot(_arguments: Array) -> void:
 	for slot: SummonSlot in summon_manager._slots:
 		slots.append({"position": [slot.global_position.x, slot.global_position.y],
 			"type": "" if slot.is_empty() else str(slot.unit.stats.unit_type),
+			"level": 0 if slot.is_empty() else slot.unit.stats.level,
+			"alpha": 1.0 if slot.is_empty() else slot.unit.modulate.a,
+			"rays": slot.summon_rays.emitting,
+			"rays_color": [slot.summon_rays.modulate.r, slot.summon_rays.modulate.g, slot.summon_rays.modulate.b],
 			"paid_mana": 0 if slot.is_empty() else slot.unit.paid_mana})
 	var player: AnimationPlayer = tower.tower_visual.animation_player
 	var label: Label = tower.cost_label

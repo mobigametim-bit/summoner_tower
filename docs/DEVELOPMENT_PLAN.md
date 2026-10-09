@@ -979,6 +979,8 @@ Core loop удерживает сам по себе до добавления в
 
 # Фича 14 — Game Feel
 
+Этап 14.3: по уточнению пользователя вместо отдельного scale/punch используется существующий эффект призыва, окрашенный в цвет полученного уровня. Внедрение без отдельного превью согласовано, Godot и Web проверены; интеграция принята пользователем: [FEATURE_14_3_MERGE_PARTICLES.md](done/FEATURE_14_3_MERGE_PARTICLES.md).
+
 Дополнительный визуальный этап 09.10.2026: принято [превью декоративного главного меню](done/MENU_BACKGROUND_PREVIEW.md). Первый вариант внедрён вместе со шрифтом Tsap-Tsarap; Godot и Web проверены, интеграция принята пользователем: [MENU_BACKGROUND_INTEGRATION.md](done/MENU_BACKGROUND_INTEGRATION.md).
 
 Статус: технический пилот Game Feel Flow (14.0) реализован, проверен в Godot и Web и принят пользователем 09.10.2026: [FEATURE_14_0_GAME_FEEL_PILOT.md](done/FEATURE_14_0_GAME_FEEL_PILOT.md). По отдельному решению пользователя принято превью частиц башни и разрешено их внедрение: [TOWER_CRYSTAL_VFX_INTEGRATION.md](done/TOWER_CRYSTAL_VFX_INTEGRATION.md); интеграция принята. Превью магов [MAGE_PARTICLES_PREVIEW.md](done/MAGE_PARTICLES_PREVIEW.md) принято; частицы посохов и попаданий внедрены и проверены, по уточнению пользователя уменьшены на 30%: [MAGE_PARTICLES_INTEGRATION.md](done/MAGE_PARTICLES_INTEGRATION.md). Принято превью призыва и порталов [SUMMON_PORTAL_PREVIEW.md](done/SUMMON_PORTAL_PREVIEW.md); белые лучи, круговорот и дым внедрены, проверены в Godot и Web и приняты пользователем: [SUMMON_PORTAL_INTEGRATION.md](done/SUMMON_PORTAL_INTEGRATION.md). Остальные этапы ниже ещё не выполнены.

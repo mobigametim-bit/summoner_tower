@@ -1,6 +1,10 @@
 class_name SummonSlot
 extends Node2D
 
+const MERGE_COLORS: Array[Color] = [
+	Color("71913e"), Color("ef9639"), Color("de595b"), Color("529be5"), Color("a46be0")
+]
+
 @export_range(1, 15, 1) var slot_index: int = 1
 @export var faces_left: bool = false
 @export var hit_rect: Rect2 = Rect2(-70.0, -70.0, 140.0, 140.0)
@@ -10,6 +14,7 @@ extends Node2D
 @onready var summon_rays: CPUParticles2D = $SummonRays
 
 var unit: CombatUnit
+var _reveal: Tween
 
 
 func fit_to_cell(size: float) -> void:
@@ -44,20 +49,37 @@ func assign_unit(creature: CombatUnit) -> void:
 
 
 func play_summon_effect() -> void:
+	_play_appearance_effect(Color.WHITE)
+
+
+func play_merge_effect() -> void:
+	if not is_empty():
+		_play_appearance_effect(MERGE_COLORS[clampi(unit.stats.level - 1, 0, MERGE_COLORS.size() - 1)])
+
+
+func _play_appearance_effect(color: Color) -> void:
 	if is_empty():
 		return
+	clear_summon_effect()
+	summon_rays.modulate = color
 	summon_rays.visible = true
 	summon_rays.restart()
 	unit.modulate.a = 0.0
 	# Tween принадлежит бойцу и прекращается при продаже или удалении карты.
-	var reveal: Tween = unit.create_tween()
-	reveal.tween_interval(0.1)
-	reveal.tween_property(unit, "modulate:a", 1.0, 0.3)
+	_reveal = unit.create_tween()
+	_reveal.tween_interval(0.1)
+	_reveal.tween_property(unit, "modulate:a", 1.0, 0.3)
 
 
 func clear_summon_effect() -> void:
+	if is_instance_valid(_reveal):
+		_reveal.kill()
+	_reveal = null
+	if not is_empty():
+		unit.modulate.a = 1.0
 	summon_rays.emitting = false
 	summon_rays.visible = false
+	summon_rays.modulate = Color.WHITE
 
 
 func align_unit() -> void:

@@ -130,6 +130,10 @@ func _update_drag(viewport_position: Vector2) -> void:
 	var world_position: Vector2 = _world_position(viewport_position)
 	if not _dragging and world_position.distance_squared_to(_press_position) < drag_threshold ** 2:
 		return
+	if not _dragging:
+		# Завершаем проявление до drag: отмена не вернёт старую прозрачность.
+		_source.clear_summon_effect()
+		_original_modulate = _unit.modulate
 	_dragging = true
 	preview.show()
 	preview.global_position = world_position + _grab_offset
@@ -158,7 +162,7 @@ func _finish(viewport_position: Vector2) -> void:
 
 
 func cancel_drag() -> void:
-	if is_instance_valid(_unit):
+	if _dragging and is_instance_valid(_unit):
 		_unit.modulate = _original_modulate
 	if is_instance_valid(preview):
 		preview.hide()
