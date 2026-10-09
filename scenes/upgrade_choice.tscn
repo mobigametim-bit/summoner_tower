@@ -2,203 +2,204 @@
 
 [ext_resource type="Theme" uid="uid://bufjhwj3mejwx" path="res://resources/ui/game_theme.tres" id="1_0bakg"]
 [ext_resource type="Script" uid="uid://duard1ewnomso" path="res://scripts/ui/upgrade_choice.gd" id="2_d3dag"]
+[ext_resource type="Texture2D" uid="uid://cwb8nh5c13esr" path="res://assets/ui/check.svg" id="3_4i4xc"]
 [ext_resource type="Texture2D" uid="uid://dpswmoaksimx3" path="res://assets/upgrades/rapid_fire.svg" id="3_d3dag"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0bakg"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_d3dag"]
 content_margin_left = 28.0
 content_margin_top = 28.0
 content_margin_right = 28.0
 content_margin_bottom = 28.0
-bg_color = Color(0.06666667, 0.101960786, 0.16078432, 1)
+bg_color = Color(0.0627451, 0.101960786, 0.15686275, 1)
 border_width_left = 2
 border_width_top = 2
 border_width_right = 2
 border_width_bottom = 2
-border_color = Color(0.25882354, 0.3647059, 0.47058824, 1)
+border_color = Color(0.23137255, 0.34901962, 0.4392157, 1)
 corner_radius_top_left = 16
 corner_radius_top_right = 16
 corner_radius_bottom_right = 16
 corner_radius_bottom_left = 16
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_d3dag"]
-bg_color = Color(0.105882354, 0.16470589, 0.23137255, 1)
-border_width_left = 2
-border_width_top = 2
-border_width_right = 2
-border_width_bottom = 2
-border_color = Color(0.25882354, 0.3647059, 0.47058824, 1)
-corner_radius_top_left = 12
-corner_radius_top_right = 12
-corner_radius_bottom_right = 12
-corner_radius_bottom_left = 12
-
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4i4xc"]
-bg_color = Color(0.27450982, 0.39607844, 0.4745098, 1)
+bg_color = Color(0.10980392, 0.16470589, 0.23137255, 1)
 border_width_left = 2
 border_width_top = 2
 border_width_right = 2
 border_width_bottom = 2
-border_color = Color(0.50980395, 0.9137255, 0.92941177, 1)
-corner_radius_top_left = 12
-corner_radius_top_right = 12
-corner_radius_bottom_right = 12
-corner_radius_bottom_left = 12
+border_color = Color(0.23137255, 0.34901962, 0.4392157, 1)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5sr3c"]
-bg_color = Color(0.1882353, 0.28235295, 0.36862746, 1)
+bg_color = Color(0.19215687, 0.27450982, 0.34901962, 1)
 border_width_left = 2
 border_width_top = 2
 border_width_right = 2
 border_width_bottom = 2
-border_color = Color(0.50980395, 0.9137255, 0.92941177, 1)
-corner_radius_top_left = 12
-corner_radius_top_right = 12
-corner_radius_bottom_right = 12
-corner_radius_bottom_left = 12
+border_color = Color(0.52156866, 0.9098039, 0.9372549, 1)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dohbr"]
-bg_color = Color(0.105882354, 0.16470589, 0.23137255, 1)
+bg_color = Color(0.15686275, 0.22745098, 0.3019608, 1)
 border_width_left = 2
 border_width_top = 2
 border_width_right = 2
 border_width_bottom = 2
-border_color = Color(0.25882354, 0.3647059, 0.47058824, 1)
-corner_radius_top_left = 12
-corner_radius_top_right = 12
-corner_radius_bottom_right = 12
-corner_radius_bottom_left = 12
+border_color = Color(0.52156866, 0.9098039, 0.9372549, 1)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_b8g85"]
-bg_color = Color(0, 0, 0, 0)
+bg_color = Color(0.09019608, 0.13333334, 0.19215687, 1)
 border_width_left = 2
 border_width_top = 2
 border_width_right = 2
 border_width_bottom = 2
-border_color = Color(0.50980395, 0.9137255, 0.92941177, 1)
-corner_radius_top_left = 12
-corner_radius_top_right = 12
-corner_radius_bottom_right = 12
-corner_radius_bottom_left = 12
+border_color = Color(0.23137255, 0.34901962, 0.4392157, 1)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_kvip4"]
-bg_color = Color(0.105882354, 0.16470589, 0.23137255, 1)
+bg_color = Color(0, 0, 0, 0)
 border_width_left = 2
 border_width_top = 2
 border_width_right = 2
 border_width_bottom = 2
-border_color = Color(0.25882354, 0.3647059, 0.47058824, 1)
-corner_radius_top_left = 12
-corner_radius_top_right = 12
-corner_radius_bottom_right = 12
-corner_radius_bottom_left = 12
+border_color = Color(0.52156866, 0.9098039, 0.9372549, 1)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_frft2"]
-bg_color = Color(0.27450982, 0.39607844, 0.4745098, 1)
+bg_color = Color(0.10980392, 0.16470589, 0.23137255, 1)
 border_width_left = 2
 border_width_top = 2
 border_width_right = 2
 border_width_bottom = 2
-border_color = Color(0.50980395, 0.9137255, 0.92941177, 1)
-corner_radius_top_left = 12
-corner_radius_top_right = 12
-corner_radius_bottom_right = 12
-corner_radius_bottom_left = 12
+border_color = Color(0.23137255, 0.34901962, 0.4392157, 1)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hbsmc"]
-bg_color = Color(0.1882353, 0.28235295, 0.36862746, 1)
+bg_color = Color(0.19215687, 0.27450982, 0.34901962, 1)
 border_width_left = 2
 border_width_top = 2
 border_width_right = 2
 border_width_bottom = 2
-border_color = Color(0.50980395, 0.9137255, 0.92941177, 1)
-corner_radius_top_left = 12
-corner_radius_top_right = 12
-corner_radius_bottom_right = 12
-corner_radius_bottom_left = 12
+border_color = Color(0.52156866, 0.9098039, 0.9372549, 1)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vh3pj"]
-bg_color = Color(0.105882354, 0.16470589, 0.23137255, 1)
+bg_color = Color(0.15686275, 0.22745098, 0.3019608, 1)
 border_width_left = 2
 border_width_top = 2
 border_width_right = 2
 border_width_bottom = 2
-border_color = Color(0.25882354, 0.3647059, 0.47058824, 1)
-corner_radius_top_left = 12
-corner_radius_top_right = 12
-corner_radius_bottom_right = 12
-corner_radius_bottom_left = 12
+border_color = Color(0.52156866, 0.9098039, 0.9372549, 1)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1so5o"]
-bg_color = Color(0, 0, 0, 0)
+bg_color = Color(0.09019608, 0.13333334, 0.19215687, 1)
 border_width_left = 2
 border_width_top = 2
 border_width_right = 2
 border_width_bottom = 2
-border_color = Color(0.50980395, 0.9137255, 0.92941177, 1)
-corner_radius_top_left = 12
-corner_radius_top_right = 12
-corner_radius_bottom_right = 12
-corner_radius_bottom_left = 12
+border_color = Color(0.23137255, 0.34901962, 0.4392157, 1)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gdnmk"]
-bg_color = Color(0.105882354, 0.16470589, 0.23137255, 1)
-border_width_left = 2
-border_width_top = 2
-border_width_right = 2
-border_width_bottom = 2
-border_color = Color(0.25882354, 0.3647059, 0.47058824, 1)
-corner_radius_top_left = 12
-corner_radius_top_right = 12
-corner_radius_bottom_right = 12
-corner_radius_bottom_left = 12
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1382x"]
-bg_color = Color(0.27450982, 0.39607844, 0.4745098, 1)
-border_width_left = 2
-border_width_top = 2
-border_width_right = 2
-border_width_bottom = 2
-border_color = Color(0.50980395, 0.9137255, 0.92941177, 1)
-corner_radius_top_left = 12
-corner_radius_top_right = 12
-corner_radius_bottom_right = 12
-corner_radius_bottom_left = 12
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_adi06"]
-bg_color = Color(0.1882353, 0.28235295, 0.36862746, 1)
-border_width_left = 2
-border_width_top = 2
-border_width_right = 2
-border_width_bottom = 2
-border_color = Color(0.50980395, 0.9137255, 0.92941177, 1)
-corner_radius_top_left = 12
-corner_radius_top_right = 12
-corner_radius_bottom_right = 12
-corner_radius_bottom_left = 12
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3cblg"]
-bg_color = Color(0.105882354, 0.16470589, 0.23137255, 1)
-border_width_left = 2
-border_width_top = 2
-border_width_right = 2
-border_width_bottom = 2
-border_color = Color(0.25882354, 0.3647059, 0.47058824, 1)
-corner_radius_top_left = 12
-corner_radius_top_right = 12
-corner_radius_bottom_right = 12
-corner_radius_bottom_left = 12
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_pc20p"]
 bg_color = Color(0, 0, 0, 0)
 border_width_left = 2
 border_width_top = 2
 border_width_right = 2
 border_width_bottom = 2
-border_color = Color(0.50980395, 0.9137255, 0.92941177, 1)
-corner_radius_top_left = 12
-corner_radius_top_right = 12
-corner_radius_bottom_right = 12
-corner_radius_bottom_left = 12
+border_color = Color(0.52156866, 0.9098039, 0.9372549, 1)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1382x"]
+bg_color = Color(0.10980392, 0.16470589, 0.23137255, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.23137255, 0.34901962, 0.4392157, 1)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_adi06"]
+bg_color = Color(0.19215687, 0.27450982, 0.34901962, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.52156866, 0.9098039, 0.9372549, 1)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3cblg"]
+bg_color = Color(0.15686275, 0.22745098, 0.3019608, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.52156866, 0.9098039, 0.9372549, 1)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_pc20p"]
+bg_color = Color(0.09019608, 0.13333334, 0.19215687, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.23137255, 0.34901962, 0.4392157, 1)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ghiu8"]
+bg_color = Color(0, 0, 0, 0)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.52156866, 0.9098039, 0.9372549, 1)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
 
 [node name="UpgradeChoice" type="Control" unique_id=1166018989]
 process_mode = 3
@@ -230,7 +231,7 @@ grow_vertical = 2
 [node name="Panel" type="PanelContainer" parent="Center" unique_id=433970]
 custom_minimum_size = Vector2(600, 0)
 layout_mode = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_0bakg")
+theme_override_styles/panel = SubResource("StyleBoxFlat_d3dag")
 
 [node name="Stack" type="VBoxContainer" parent="Center/Panel" unique_id=2050268858]
 layout_mode = 2
@@ -238,8 +239,8 @@ theme_override_constants/separation = 18
 
 [node name="Title" type="Label" parent="Center/Panel/Stack" unique_id=1159774623]
 layout_mode = 2
-theme_override_colors/font_color = Color(1, 0.8745098, 0.5568628, 1)
-theme_override_font_sizes/font_size = 54
+theme_override_colors/font_color = Color(0.96862745, 0.8352941, 0.5411765, 1)
+theme_override_font_sizes/font_size = 66
 text = "BOSS DEFEATED"
 horizontal_alignment = 1
 
@@ -254,11 +255,11 @@ horizontal_alignment = 1
 custom_minimum_size = Vector2(0, 166)
 layout_mode = 2
 mouse_default_cursor_shape = 2
-theme_override_styles/normal = SubResource("StyleBoxFlat_d3dag")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_4i4xc")
-theme_override_styles/hover = SubResource("StyleBoxFlat_5sr3c")
-theme_override_styles/disabled = SubResource("StyleBoxFlat_dohbr")
-theme_override_styles/focus = SubResource("StyleBoxFlat_b8g85")
+theme_override_styles/normal = SubResource("StyleBoxFlat_4i4xc")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_5sr3c")
+theme_override_styles/hover = SubResource("StyleBoxFlat_dohbr")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_b8g85")
+theme_override_styles/focus = SubResource("StyleBoxFlat_kvip4")
 disabled = true
 
 [node name="Margin" type="MarginContainer" parent="Center/Panel/Stack/Card0" unique_id=1829029777]
@@ -286,7 +287,7 @@ theme_override_constants/separation = 6
 
 [node name="Title" type="Label" parent="Center/Panel/Stack/Card0/Margin/Row/Content" unique_id=1116912106]
 layout_mode = 2
-theme_override_colors/font_color = Color(1, 0.8745098, 0.5568628, 1)
+theme_override_colors/font_color = Color(0.96862745, 0.8352941, 0.5411765, 1)
 theme_override_font_sizes/font_size = 48
 text = "UPGRADE"
 
@@ -298,8 +299,22 @@ theme_override_font_sizes/font_size = 36
 text = "Bonus for this run"
 autowrap_mode = 2
 
-[node name="Rank" type="Label" parent="Center/Panel/Stack/Card0/Margin/Row/Content" unique_id=1847002998]
+[node name="RankRow" type="HBoxContainer" parent="Center/Panel/Stack/Card0/Margin/Row/Content" unique_id=107690705]
 visible = false
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/separation = 8
+
+[node name="Icon" type="TextureRect" parent="Center/Panel/Stack/Card0/Margin/Row/Content/RankRow" unique_id=136498522]
+custom_minimum_size = Vector2(28, 28)
+layout_mode = 2
+size_flags_vertical = 4
+mouse_filter = 2
+texture = ExtResource("3_4i4xc")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Count" type="Label" parent="Center/Panel/Stack/Card0/Margin/Row/Content/RankRow" unique_id=1847002998]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.5882353, 0.7058824, 0.7882353, 1)
 theme_override_font_sizes/font_size = 27
@@ -317,11 +332,11 @@ stretch_mode = 5
 custom_minimum_size = Vector2(0, 166)
 layout_mode = 2
 mouse_default_cursor_shape = 2
-theme_override_styles/normal = SubResource("StyleBoxFlat_kvip4")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_frft2")
-theme_override_styles/hover = SubResource("StyleBoxFlat_hbsmc")
-theme_override_styles/disabled = SubResource("StyleBoxFlat_vh3pj")
-theme_override_styles/focus = SubResource("StyleBoxFlat_1so5o")
+theme_override_styles/normal = SubResource("StyleBoxFlat_frft2")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_hbsmc")
+theme_override_styles/hover = SubResource("StyleBoxFlat_vh3pj")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_1so5o")
+theme_override_styles/focus = SubResource("StyleBoxFlat_gdnmk")
 disabled = true
 
 [node name="Margin" type="MarginContainer" parent="Center/Panel/Stack/Card1" unique_id=1617225414]
@@ -349,7 +364,7 @@ theme_override_constants/separation = 6
 
 [node name="Title" type="Label" parent="Center/Panel/Stack/Card1/Margin/Row/Content" unique_id=1725860465]
 layout_mode = 2
-theme_override_colors/font_color = Color(1, 0.8745098, 0.5568628, 1)
+theme_override_colors/font_color = Color(0.96862745, 0.8352941, 0.5411765, 1)
 theme_override_font_sizes/font_size = 48
 text = "UPGRADE"
 
@@ -361,8 +376,22 @@ theme_override_font_sizes/font_size = 36
 text = "Bonus for this run"
 autowrap_mode = 2
 
-[node name="Rank" type="Label" parent="Center/Panel/Stack/Card1/Margin/Row/Content" unique_id=1922329962]
+[node name="RankRow" type="HBoxContainer" parent="Center/Panel/Stack/Card1/Margin/Row/Content" unique_id=2132534603]
 visible = false
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/separation = 8
+
+[node name="Icon" type="TextureRect" parent="Center/Panel/Stack/Card1/Margin/Row/Content/RankRow" unique_id=1082761157]
+custom_minimum_size = Vector2(28, 28)
+layout_mode = 2
+size_flags_vertical = 4
+mouse_filter = 2
+texture = ExtResource("3_4i4xc")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Count" type="Label" parent="Center/Panel/Stack/Card1/Margin/Row/Content/RankRow" unique_id=1922329962]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.5882353, 0.7058824, 0.7882353, 1)
 theme_override_font_sizes/font_size = 27
@@ -380,11 +409,11 @@ stretch_mode = 5
 custom_minimum_size = Vector2(0, 166)
 layout_mode = 2
 mouse_default_cursor_shape = 2
-theme_override_styles/normal = SubResource("StyleBoxFlat_gdnmk")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_1382x")
-theme_override_styles/hover = SubResource("StyleBoxFlat_adi06")
-theme_override_styles/disabled = SubResource("StyleBoxFlat_3cblg")
-theme_override_styles/focus = SubResource("StyleBoxFlat_pc20p")
+theme_override_styles/normal = SubResource("StyleBoxFlat_1382x")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_adi06")
+theme_override_styles/hover = SubResource("StyleBoxFlat_3cblg")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_pc20p")
+theme_override_styles/focus = SubResource("StyleBoxFlat_ghiu8")
 disabled = true
 
 [node name="Margin" type="MarginContainer" parent="Center/Panel/Stack/Card2" unique_id=2138370658]
@@ -412,7 +441,7 @@ theme_override_constants/separation = 6
 
 [node name="Title" type="Label" parent="Center/Panel/Stack/Card2/Margin/Row/Content" unique_id=1211044518]
 layout_mode = 2
-theme_override_colors/font_color = Color(1, 0.8745098, 0.5568628, 1)
+theme_override_colors/font_color = Color(0.96862745, 0.8352941, 0.5411765, 1)
 theme_override_font_sizes/font_size = 48
 text = "UPGRADE"
 
@@ -424,8 +453,22 @@ theme_override_font_sizes/font_size = 36
 text = "Bonus for this run"
 autowrap_mode = 2
 
-[node name="Rank" type="Label" parent="Center/Panel/Stack/Card2/Margin/Row/Content" unique_id=129889407]
+[node name="RankRow" type="HBoxContainer" parent="Center/Panel/Stack/Card2/Margin/Row/Content" unique_id=4666782]
 visible = false
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/separation = 8
+
+[node name="Icon" type="TextureRect" parent="Center/Panel/Stack/Card2/Margin/Row/Content/RankRow" unique_id=2060398902]
+custom_minimum_size = Vector2(28, 28)
+layout_mode = 2
+size_flags_vertical = 4
+mouse_filter = 2
+texture = ExtResource("3_4i4xc")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Count" type="Label" parent="Center/Panel/Stack/Card2/Margin/Row/Content/RankRow" unique_id=129889407]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.5882353, 0.7058824, 0.7882353, 1)
 theme_override_font_sizes/font_size = 27

@@ -18,35 +18,38 @@
 [ext_resource type="Texture2D" uid="uid://b7v6r0i243ofk" path="res://assets/soul_crystal.svg" id="13_37s47"]
 [ext_resource type="Texture2D" uid="uid://c1i4x5u3ypwhb" path="res://assets/mana_flame.svg" id="13_264po"]
 [ext_resource type="Script" uid="uid://6g8kr8xeny10" path="res://scripts/game/wave_manager.gd" id="13_ir15t"]
+[ext_resource type="Script" uid="uid://cfvf5il45lqsh" path="res://scripts/ui/mana_feedback.gd" id="13_sgl2t"]
 [ext_resource type="Resource" uid="uid://ciuquwmxvll24" path="res://resources/balance/wave_config.tres" id="14_ca42v"]
 [ext_resource type="Texture2D" uid="uid://cgyt3kaapnire" path="res://assets/ui/restart.svg" id="14_e1j6l"]
+[ext_resource type="Script" uid="uid://b6hb1c3t0eppb" path="res://addons/game_feel_flow/core/gff_player.gd" id="14_suyxu"]
 [ext_resource type="Texture2D" uid="uid://ckpokawdmyc0b" path="res://assets/ui/home.svg" id="15_pl11u"]
+[ext_resource type="PackedScene" uid="uid://qrfmn7yt2v3" path="res://scenes/ui/button_feedback.tscn" id="15_sww3w"]
 [ext_resource type="Script" uid="uid://dpp2k5bpxesj7" path="res://scripts/game/run_bonuses.gd" id="18_5newe"]
 [ext_resource type="Texture2D" uid="uid://d0es5bcr1fdsu" path="res://assets/ui/settings.svg" id="18_bhx41"]
 [ext_resource type="Resource" path="res://resources/balance/run_upgrade_pool.tres" id="19_37s47"]
 [ext_resource type="Texture2D" uid="uid://cunh3mw6fkux0" path="res://assets/ui/play.svg" id="19_qnb83"]
 [ext_resource type="Script" uid="uid://dl57wkelh3atf" path="res://scripts/game/run_statistics.gd" id="20_5newe"]
 [ext_resource type="Resource" path="res://resources/balance/run_reward_config.tres" id="21_37s47"]
+[ext_resource type="PackedScene" uid="uid://icaty5irafa4" path="res://scenes/ui/BossWarning.tscn" id="23_qouja"]
 [ext_resource type="PackedScene" uid="uid://bs7ym0iyxvdag" path="res://scenes/vfx/ScreenShake.tscn" id="32_wljb1"]
 
-[ext_resource type="Script" uid="uid://cfvf5il45lqsh" path="res://scripts/ui/mana_feedback.gd" id="13_sgl2t"]
-[ext_resource type="Script" uid="uid://b6hb1c3t0eppb" path="res://addons/game_feel_flow/core/gff_player.gd" id="14_suyxu"]
-[ext_resource type="PackedScene" uid="uid://qrfmn7yt2v3" path="res://scenes/ui/button_feedback.tscn" id="15_sww3w"]
-[ext_resource type="PackedScene" uid="uid://icaty5irafa4" path="res://scenes/ui/BossWarning.tscn" id="23_qouja"]
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qnb83"]
 bg_color = Color(0.09019608, 0.14117648, 0.19215687, 1)
 border_width_top = 2
 border_color = Color(0.19215687, 0.25490198, 0.29803923, 1)
 
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_sww3w"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_suyxu"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_sgl2t"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_qouja"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_wljb1"]
+
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_sww3w"]
 bg_color = Color(0.09019608, 0.14117648, 0.19215687, 1)
-corner_radius_top_left = 10
-corner_radius_top_right = 10
-corner_radius_bottom_right = 10
-corner_radius_bottom_left = 10
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_suyxu"]
-bg_color = Color(0.19215687, 0.29803923, 0.35686275, 1)
 corner_radius_top_left = 10
 corner_radius_top_right = 10
 corner_radius_bottom_right = 10
@@ -59,85 +62,19 @@ corner_radius_top_right = 10
 corner_radius_bottom_right = 10
 corner_radius_bottom_left = 10
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lnu2h"]
-content_margin_left = 36.0
-content_margin_top = 40.0
-content_margin_right = 36.0
-content_margin_bottom = 40.0
-bg_color = Color(0.105882354, 0.14117648, 0.2, 1)
-border_width_left = 2
-border_width_top = 2
-border_width_right = 2
-border_width_bottom = 2
-border_color = Color(0.32156864, 0.3764706, 0.4392157, 1)
-corner_radius_top_left = 16
-corner_radius_top_right = 16
-corner_radius_bottom_right = 16
-corner_radius_bottom_left = 16
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_suyxu"]
+bg_color = Color(0.19215687, 0.29803923, 0.35686275, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qouja"]
-content_margin_left = 28.0
-content_margin_top = 28.0
-content_margin_right = 28.0
-content_margin_bottom = 28.0
-bg_color = Color(0.105882354, 0.15294118, 0.21176471, 1)
-border_width_left = 2
-border_width_top = 2
-border_width_right = 2
-border_width_bottom = 2
-border_color = Color(0.3764706, 0.44313726, 0.5137255, 1)
-corner_radius_top_left = 16
-corner_radius_top_right = 16
-corner_radius_bottom_right = 16
-corner_radius_bottom_left = 16
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_02fa5"]
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_7025r"]
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_8ool0"]
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_gxtfn"]
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_js0lu"]
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_m4url"]
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_nepv3"]
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_pr1ej"]
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_qouja"]
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_sgl2t"]
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_suyxu"]
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_sww3w"]
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_twgab"]
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_v2yb1"]
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_wljb1"]
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1e81c"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rrhgg"]
 content_margin_left = 24.0
 content_margin_top = 16.0
 content_margin_right = 24.0
 content_margin_bottom = 16.0
-bg_color = Color(0.8509804, 0.6784314, 0.33333334, 1)
-corner_radius_top_left = 12
-corner_radius_top_right = 12
-corner_radius_bottom_right = 12
-corner_radius_bottom_left = 12
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bduea"]
-content_margin_left = 24.0
-content_margin_top = 16.0
-content_margin_right = 24.0
-content_margin_bottom = 16.0
-bg_color = Color(0.70980394, 0.54509807, 0.22352941, 1)
+bg_color = Color(0.15294118, 0.20392157, 0.2784314, 1)
 corner_radius_top_left = 12
 corner_radius_top_right = 12
 corner_radius_bottom_right = 12
@@ -159,12 +96,38 @@ corner_radius_top_right = 12
 corner_radius_bottom_right = 12
 corner_radius_bottom_left = 12
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rrhgg"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wljb1"]
+content_margin_left = 36.0
+content_margin_top = 40.0
+content_margin_right = 36.0
+content_margin_bottom = 40.0
+bg_color = Color(0.0627451, 0.101960786, 0.15686275, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.23137255, 0.34901962, 0.4392157, 1)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_v2yb1"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_js0lu"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_gxtfn"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_twgab"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_02fa5"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1e81c"]
 content_margin_left = 24.0
 content_margin_top = 16.0
 content_margin_right = 24.0
 content_margin_bottom = 16.0
-bg_color = Color(0.15294118, 0.20392157, 0.2784314, 1)
+bg_color = Color(0.8509804, 0.6784314, 0.33333334, 1)
 corner_radius_top_left = 12
 corner_radius_top_right = 12
 corner_radius_bottom_right = 12
@@ -180,6 +143,43 @@ corner_radius_top_left = 12
 corner_radius_top_right = 12
 corner_radius_bottom_right = 12
 corner_radius_bottom_left = 12
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bduea"]
+content_margin_left = 24.0
+content_margin_top = 16.0
+content_margin_right = 24.0
+content_margin_bottom = 16.0
+bg_color = Color(0.70980394, 0.54509807, 0.22352941, 1)
+corner_radius_top_left = 12
+corner_radius_top_right = 12
+corner_radius_bottom_right = 12
+corner_radius_bottom_left = 12
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_nepv3"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_7025r"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_m4url"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_8ool0"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_pr1ej"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qouja"]
+content_margin_left = 28.0
+content_margin_top = 28.0
+content_margin_right = 28.0
+content_margin_bottom = 28.0
+bg_color = Color(0.105882354, 0.15294118, 0.21176471, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.3764706, 0.44313726, 0.5137255, 1)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
 
 [node name="Game" type="Node2D" unique_id=469266139]
 process_mode = 1
@@ -272,9 +272,9 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_qnb83")
 [node name="Margin" type="MarginContainer" parent="Interface/Hud/BottomDock" unique_id=1897061150]
 layout_mode = 2
 theme_override_constants/margin_left = 20
-theme_override_constants/margin_top = 8
+theme_override_constants/margin_top = 0
 theme_override_constants/margin_right = 20
-theme_override_constants/margin_bottom = 8
+theme_override_constants/margin_bottom = 0
 
 [node name="Row" type="HBoxContainer" parent="Interface/Hud/BottomDock/Margin" unique_id=1918551115]
 layout_mode = 2
@@ -356,7 +356,7 @@ clip_text = true
 
 [node name="SettingsButton" type="Button" parent="Interface/Hud/BottomDock/Margin/Row" unique_id=248297785]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(88, 88)
+custom_minimum_size = Vector2(104, 104)
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
@@ -373,13 +373,14 @@ expand_icon = true
 
 [node name="FeedbackVisual" parent="Interface/Hud/BottomDock/Margin/Row/SettingsButton" unique_id=831369690 instance=ExtResource("15_sww3w")]
 layout_mode = 1
-pivot_offset = Vector2(44, 44)
+pivot_offset = Vector2(52, 52)
 normal_style = SubResource("StyleBoxFlat_sww3w")
 hover_style = SubResource("StyleBoxFlat_sgl2t")
 pressed_style = SubResource("StyleBoxFlat_suyxu")
 disabled_style = SubResource("StyleBoxFlat_rrhgg")
 focus_style = SubResource("StyleBoxFlat_q4uia")
 icon = ExtResource("18_bhx41")
+icon_width = 56.0
 
 [node name="GameOverOverlay" type="Control" parent="Interface/Hud" unique_id=1342710346]
 unique_name_in_owner = true
@@ -411,7 +412,7 @@ grow_vertical = 2
 [node name="Panel" type="PanelContainer" parent="Interface/Hud/GameOverOverlay/Center" unique_id=734330472]
 custom_minimum_size = Vector2(600, 0)
 layout_mode = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_lnu2h")
+theme_override_styles/panel = SubResource("StyleBoxFlat_wljb1")
 
 [node name="Stack" type="VBoxContainer" parent="Interface/Hud/GameOverOverlay/Center/Panel" unique_id=1514523921]
 layout_mode = 2
@@ -554,6 +555,7 @@ pressed_style = SubResource("StyleBoxFlat_bduea")
 disabled_style = SubResource("StyleBoxFlat_rrhgg")
 focus_style = SubResource("StyleBoxFlat_q4uia")
 icon = ExtResource("14_e1j6l")
+icon_width = 64.0
 
 [node name="MenuButton" type="Button" parent="Interface/Hud/GameOverOverlay/Center/Panel/Stack/Actions" unique_id=1736271558]
 unique_name_in_owner = true
@@ -579,6 +581,7 @@ pressed_style = SubResource("StyleBoxFlat_bduea")
 disabled_style = SubResource("StyleBoxFlat_rrhgg")
 focus_style = SubResource("StyleBoxFlat_q4uia")
 icon = ExtResource("15_pl11u")
+icon_width = 64.0
 
 [node name="UpgradeChoice" parent="Interface/Hud" unique_id=1166018989 instance=ExtResource("13_1kice")]
 layout_mode = 1
@@ -623,8 +626,8 @@ theme_override_constants/separation = 22
 
 [node name="Title" type="Label" parent="Interface/Hud/SettingsOverlay/Center/Panel/Stack" unique_id=75628761]
 layout_mode = 2
-theme_override_colors/font_color = Color(0.8901961, 0.7294118, 0.34509805, 1)
-theme_override_font_sizes/font_size = 54
+theme_override_colors/font_color = Color(0.96862745, 0.8352941, 0.5411765, 1)
+theme_override_font_sizes/font_size = 66
 text = "SETTINGS"
 horizontal_alignment = 1
 
@@ -677,6 +680,7 @@ config = ExtResource("21_37s47")
 
 [connection signal="destroyed" from="World/Tower" to="." method="_on_tower_destroyed"]
 [connection signal="health_changed" from="World/Tower" to="." method="_on_tower_health_changed"]
+[connection signal="health_changed" from="World/Tower" to="ScreenShake" method="_on_tower_health_changed"]
 [connection signal="summon_requested" from="World/Tower" to="." method="_on_summon_requested"]
 [connection signal="menu_requested" from="Interface/Hud" to="." method="_on_menu_requested"]
 [connection signal="restart_requested" from="Interface/Hud" to="." method="_on_restart_requested"]
@@ -696,9 +700,8 @@ config = ExtResource("21_37s47")
 [connection signal="enemy_spawned" from="WaveManager" to="." method="_on_enemy_spawned"]
 [connection signal="state_changed" from="WaveManager" to="Interface/Hud" method="update_wave"]
 [connection signal="state_changed" from="WaveManager" to="RunStatistics" method="record_wave_state"]
+[connection signal="state_changed" from="WaveManager" to="ScreenShake" method="_on_wave_state_changed"]
 [connection signal="upgrade_requested" from="WaveManager" to="." method="_on_wave_upgrade_requested"]
 [connection signal="wave_completed" from="WaveManager" to="RunStatistics" method="record_completed_wave"]
 [connection signal="timeout" from="WaveManager/SpawnTimer" to="WaveManager" method="_on_spawn_timeout"]
 [connection signal="timeout" from="WaveManager/IntermissionTimer" to="WaveManager" method="_on_intermission_timeout"]
-[connection signal="health_changed" from="World/Tower" to="ScreenShake" method="_on_tower_health_changed"]
-[connection signal="state_changed" from="WaveManager" to="ScreenShake" method="_on_wave_state_changed"]

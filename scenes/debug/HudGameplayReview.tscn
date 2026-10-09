@@ -41,6 +41,11 @@ expand_icon = true
 [node name="ShakeTestTimer" type="Timer" parent="." index="7" unique_id=87027055]
 wait_time = 2.0
 
+[node name="UiReviewTimer" type="Timer" parent="." index="8" unique_id=1312767480]
+wait_time = 4.0
+one_shot = true
+
 [connection signal="toggled" from="Interface/TowerReview/Animated" to="." method="_on_animated_toggled"]
 [connection signal="pressed" from="Interface/TowerReview/Pause" to="." method="_on_review_pause"]
 [connection signal="timeout" from="ShakeTestTimer" to="." method="_on_shake_test_tick"]
+[connection signal="timeout" from="UiReviewTimer" to="." method="_on_ui_review_timeout"]

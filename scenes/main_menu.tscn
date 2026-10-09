@@ -1,13 +1,22 @@
 [gd_scene format=3 uid="uid://d13bwhs04t8ux"]
 
 [ext_resource type="Script" uid="uid://liittspmfd6j" path="res://scripts/ui/main_menu.gd" id="1_l6cm7"]
+[ext_resource type="Theme" uid="uid://bufjhwj3mejwx" path="res://resources/ui/game_theme.tres" id="1_oa1go"]
 [ext_resource type="Texture2D" uid="uid://b7v6r0i243ofk" path="res://assets/soul_crystal.svg" id="2_ekxnf"]
+[ext_resource type="PackedScene" uid="uid://cs4k53circxos" path="res://scenes/ui/MainMenuBackdrop.tscn" id="2_rtw2f"]
 [ext_resource type="Texture2D" uid="uid://cunh3mw6fkux0" path="res://assets/ui/play.svg" id="3_wu84c"]
 [ext_resource type="Texture2D" uid="uid://ksfn8cx058cs" path="res://assets/ui/upgrade.svg" id="4_8ln24"]
-
-[ext_resource type="PackedScene" uid="uid://cs4k53circxos" path="res://scenes/ui/MainMenuBackdrop.tscn" id="2_rtw2f"]
-
 [ext_resource type="PackedScene" uid="uid://qrfmn7yt2v3" path="res://scenes/ui/button_feedback.tscn" id="4_rtw2f"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_8ln24"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_rtw2f"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_oa1go"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_tbmy8"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_jk1qb"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vue75"]
 content_margin_left = 24.0
@@ -15,17 +24,6 @@ content_margin_top = 16.0
 content_margin_right = 24.0
 content_margin_bottom = 16.0
 bg_color = Color(0.8509804, 0.6784314, 0.33333334, 1)
-corner_radius_top_left = 12
-corner_radius_top_right = 12
-corner_radius_bottom_right = 12
-corner_radius_bottom_left = 12
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_l6cm7"]
-content_margin_left = 24.0
-content_margin_top = 16.0
-content_margin_right = 24.0
-content_margin_bottom = 16.0
-bg_color = Color(0.70980394, 0.54509807, 0.22352941, 1)
 corner_radius_top_left = 12
 corner_radius_top_right = 12
 corner_radius_bottom_right = 12
@@ -42,37 +40,16 @@ corner_radius_top_right = 12
 corner_radius_bottom_right = 12
 corner_radius_bottom_left = 12
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bqqt6"]
-bg_color = Color(0, 0, 0, 0)
-border_width_left = 3
-border_width_top = 3
-border_width_right = 3
-border_width_bottom = 3
-border_color = Color(1, 0.9411765, 0.7607843, 1)
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_l6cm7"]
+content_margin_left = 24.0
+content_margin_top = 16.0
+content_margin_right = 24.0
+content_margin_bottom = 16.0
+bg_color = Color(0.70980394, 0.54509807, 0.22352941, 1)
 corner_radius_top_left = 12
 corner_radius_top_right = 12
 corner_radius_bottom_right = 12
 corner_radius_bottom_left = 12
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_1ajci"]
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_5dd4i"]
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_8ln24"]
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_flqon"]
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_jk1qb"]
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_lgwnu"]
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_oa1go"]
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_rcqid"]
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_rtw2f"]
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_tbmy8"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5dd4i"]
 content_margin_left = 4.0
@@ -86,6 +63,28 @@ corner_radius_bottom_right = 3
 corner_radius_bottom_left = 3
 corner_detail = 5
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bqqt6"]
+bg_color = Color(0, 0, 0, 0)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(1, 0.9411765, 0.7607843, 1)
+corner_radius_top_left = 12
+corner_radius_top_right = 12
+corner_radius_bottom_right = 12
+corner_radius_bottom_left = 12
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_5dd4i"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_lgwnu"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_flqon"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_rcqid"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_1ajci"]
+
 [node name="MainMenu" type="Control" unique_id=1345894397]
 layout_mode = 3
 anchors_preset = 15
@@ -93,6 +92,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = ExtResource("1_oa1go")
 script = ExtResource("1_l6cm7")
 
 [node name="Background" type="ColorRect" parent="." unique_id=1672288483]
@@ -185,6 +185,7 @@ pressed_style = SubResource("StyleBoxFlat_l6cm7")
 disabled_style = SubResource("StyleBoxFlat_5dd4i")
 focus_style = SubResource("StyleBoxFlat_bqqt6")
 icon = ExtResource("3_wu84c")
+icon_width = 64.0
 
 [node name="UpgradesButton" type="Button" parent="Center/VBox/Actions" unique_id=1824630505]
 unique_name_in_owner = true
@@ -215,6 +216,7 @@ pressed_style = SubResource("StyleBoxFlat_l6cm7")
 disabled_style = SubResource("StyleBoxFlat_5dd4i")
 focus_style = SubResource("StyleBoxFlat_bqqt6")
 icon = ExtResource("4_8ln24")
+icon_width = 64.0
 
 [connection signal="pressed" from="Center/VBox/Actions/PlayButton" to="." method="_on_play_button_pressed"]
 [connection signal="pressed" from="Center/VBox/Actions/UpgradesButton" to="." method="_on_upgrades_button_pressed"]

@@ -15,9 +15,10 @@ func show_choices(choices: Array[RunUpgrade], bonuses: RunBonuses) -> void:
 		cards[index].get_node("Margin/Row/Content/Description").text = upgrade.description
 		cards[index].get_node("Margin/Row/Icon").texture = upgrade.icon
 		var picked: int = bonuses.count(upgrade.kind)
-		var rank: Label = cards[index].get_node("Margin/Row/Content/Rank")
+		var rank: HBoxContainer = cards[index].get_node("Margin/Row/Content/RankRow")
 		rank.visible = picked > 0
-		rank.text = "PREVIOUSLY PICKED: %d" % picked
+		UiNumbers.show_value(rank.get_node("Count"), picked, "×")
+		rank.tooltip_text = "Previously picked: %d" % picked
 		cards[index].disabled = false
 	show()
 	cards[0].grab_focus()

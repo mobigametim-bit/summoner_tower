@@ -5,7 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://b7v6r0i243ofk" path="res://assets/soul_crystal.svg" id="2_jeie4"]
 [ext_resource type="Texture2D" uid="uid://bmmfn4y712kkr" path="res://assets/ui/next_bonus.svg" id="3_85eg1"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_pkl7g"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_85eg1"]
 bg_color = Color(0.10980392, 0.16470589, 0.23137255, 1)
 border_width_left = 2
 border_width_top = 2
@@ -17,49 +17,49 @@ corner_radius_top_right = 16
 corner_radius_bottom_right = 16
 corner_radius_bottom_left = 16
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_y4woh"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_crk30"]
 bg_color = Color(0.19215687, 0.27450982, 0.34901962, 1)
 border_width_left = 2
 border_width_top = 2
 border_width_right = 2
 border_width_bottom = 2
-border_color = Color(1, 0.8352941, 0.5411765, 1)
+border_color = Color(0.52156866, 0.9098039, 0.9372549, 1)
 corner_radius_top_left = 16
 corner_radius_top_right = 16
 corner_radius_bottom_right = 16
 corner_radius_bottom_left = 16
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ri8mg"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dsuyw"]
 bg_color = Color(0.15686275, 0.22745098, 0.3019608, 1)
 border_width_left = 2
 border_width_top = 2
 border_width_right = 2
 border_width_bottom = 2
-border_color = Color(0.5254902, 0.9098039, 0.9372549, 1)
+border_color = Color(0.52156866, 0.9098039, 0.9372549, 1)
 corner_radius_top_left = 16
 corner_radius_top_right = 16
 corner_radius_bottom_right = 16
 corner_radius_bottom_left = 16
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jeie4"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8qgw6"]
 bg_color = Color(0.09019608, 0.13333334, 0.19215687, 1)
 border_width_left = 2
 border_width_top = 2
 border_width_right = 2
 border_width_bottom = 2
-border_color = Color(0.1882353, 0.27450982, 0.35686275, 1)
+border_color = Color(0.23137255, 0.34901962, 0.4392157, 1)
 corner_radius_top_left = 16
 corner_radius_top_right = 16
 corner_radius_bottom_right = 16
 corner_radius_bottom_left = 16
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_85eg1"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jnvhi"]
 bg_color = Color(0, 0, 0, 0)
 border_width_left = 3
 border_width_top = 3
 border_width_right = 3
 border_width_bottom = 3
-border_color = Color(1, 0.8352941, 0.5411765, 1)
+border_color = Color(0.52156866, 0.9098039, 0.9372549, 1)
 corner_radius_top_left = 16
 corner_radius_top_right = 16
 corner_radius_bottom_right = 16
@@ -68,11 +68,11 @@ corner_radius_bottom_left = 16
 [node name="MetaUpgradeCard" type="Button" unique_id=2135619170]
 custom_minimum_size = Vector2(624, 172)
 mouse_default_cursor_shape = 2
-theme_override_styles/normal = SubResource("StyleBoxFlat_pkl7g")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_y4woh")
-theme_override_styles/hover = SubResource("StyleBoxFlat_ri8mg")
-theme_override_styles/disabled = SubResource("StyleBoxFlat_jeie4")
-theme_override_styles/focus = SubResource("StyleBoxFlat_85eg1")
+theme_override_styles/normal = SubResource("StyleBoxFlat_85eg1")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_crk30")
+theme_override_styles/hover = SubResource("StyleBoxFlat_dsuyw")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_8qgw6")
+theme_override_styles/focus = SubResource("StyleBoxFlat_jnvhi")
 script = ExtResource("1_jeie4")
 
 [node name="Margin" type="MarginContainer" parent="." unique_id=1968692038]

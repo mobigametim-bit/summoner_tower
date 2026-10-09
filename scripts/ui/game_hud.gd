@@ -28,7 +28,7 @@ func update_wave(wave: int, phase: WaveManager.Phase, _seconds: int, _alive: int
 	var boss_wave: bool = wave_config != null and wave_config.is_boss_wave(wave)
 	var title: String = "BOSS" if boss_wave else "WAVE"
 	wave_label.modulate = Color("ffb968") if boss_wave else Color.WHITE
-	wave_label.text = "%s %d" % [title, wave]
+	UiNumbers.show_value(wave_label, wave, title + " ")
 	if phase != WaveManager.Phase.FIGHTING:
 		boss_warning.stop_warning()
 	elif boss_wave and phase == WaveManager.Phase.FIGHTING and wave != _last_announced_boss_wave:
@@ -38,7 +38,7 @@ func update_wave(wave: int, phase: WaveManager.Phase, _seconds: int, _alive: int
 
 
 func update_health(current: int, _maximum: int) -> void:
-	health_label.text = str(current)
+	UiNumbers.show_value(health_label, current)
 	_fit_counter(health_label)
 
 
@@ -52,7 +52,7 @@ func _fit_counter(label: Label) -> void:
 	var font_size: int = 48
 	var width: float = label.custom_minimum_size.x
 	# Реальная ширина цифр зависит от шрифта, а не только от их количества.
-	while font_size > 20 and font.get_string_size(label.text, HORIZONTAL_ALIGNMENT_LEFT, -1.0, font_size).x > width:
+	while font_size > 36 and font.get_string_size(label.text, HORIZONTAL_ALIGNMENT_LEFT, -1.0, font_size).x > width:
 		font_size -= 1
 	label.add_theme_font_size_override("font_size", font_size)
 
@@ -90,17 +90,17 @@ func show_game_over(stats: RunStatistics) -> void:
 	close_settings()
 	set_settings_available(false)
 	var stack: VBoxContainer = game_over_overlay.get_node("Center/Panel/Stack")
-	stack.get_node("Stats/Wave/Value").text = str(stats.reached_wave)
-	stack.get_node("Stats/Enemies/Value").text = str(stats.killed_enemies)
-	stack.get_node("Stats/Bosses/Value").text = str(stats.killed_bosses)
-	stack.get_node("Stats/Merges/Value").text = str(stats.merges)
-	stack.get_node("Reward/Amount").text = "+%d" % stats.earned_crystals
+	UiNumbers.show_value(stack.get_node("Stats/Wave/Value"), stats.reached_wave)
+	UiNumbers.show_value(stack.get_node("Stats/Enemies/Value"), stats.killed_enemies)
+	UiNumbers.show_value(stack.get_node("Stats/Bosses/Value"), stats.killed_bosses)
+	UiNumbers.show_value(stack.get_node("Stats/Merges/Value"), stats.merges)
+	UiNumbers.show_value(stack.get_node("Reward/Amount"), stats.earned_crystals, "+")
 	game_over_overlay.show()
 	restart_button.grab_focus()
 
 
 func update_summon(mana: int, _cost: int, _occupied: int, _capacity: int, _available: bool) -> void:
-	mana_label.text = str(mana)
+	UiNumbers.show_value(mana_label, mana)
 	_fit_counter(mana_label)
 	if _displayed_mana >= 0:
 		if mana > _displayed_mana:

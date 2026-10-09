@@ -9,6 +9,7 @@ var _web_snapshot_callback: JavaScriptObject
 var _events: Array[Dictionary] = []
 var _last_health: int = 0
 var _shake_started_count: int = 0
+var _ui_review_stage: int = 0
 
 
 func _ready() -> void:
@@ -45,6 +46,42 @@ func _ready() -> void:
 			_setup_boss_warning_test()
 		if bool(JavaScriptBridge.eval("new URL(window.location.href).searchParams.get('shake_test') === '1'", true)):
 			_setup_shake_test()
+		if bool(JavaScriptBridge.eval("new URL(window.location.href).searchParams.get('ui_test') === '1'", true)):
+			_setup_ui_review()
+
+
+func _setup_ui_review() -> void:
+	if get_tree().has_meta("ui_review_started"):
+		return
+	get_tree().set_meta("ui_review_started", true)
+	SessionProgress.add_crystals(1234567)
+	upgrade_choice.upgrade_chosen.connect(_on_ui_review_choice)
+	get_node("UiReviewTimer").start(4.0)
+
+
+func _on_ui_review_timeout() -> void:
+	if _ui_review_stage == 0:
+		# Только UI fixture: завершаем настоящую пятую волну, чтобы открыть реальный выбор.
+		wave_manager.stop()
+		wave_manager.wave_number = 5
+		wave_manager.phase = WaveManager.Phase.FIGHTING
+		wave_manager._begin_wave()
+		while wave_manager._spawn_remaining > 0:
+			wave_manager.spawn_timer.stop()
+			wave_manager._on_spawn_timeout()
+		wave_manager.spawn_timer.stop()
+		for enemy: ApproachingEnemy in wave_manager._active.duplicate():
+			enemy.take_damage(enemy.current_health)
+		_offered_upgrades.assign([load("res://resources/balance/cheap_summons.tres"), load("res://resources/balance/rapid_fire.tres"), load("res://resources/balance/frost_power.tres")])
+		upgrade_choice.show_choices(_offered_upgrades, run_bonuses)
+		_ui_review_stage = 1
+	else:
+		wave_manager.stop()
+		_setup_contact_test()
+
+
+func _on_ui_review_choice(_index: int) -> void:
+	get_node("UiReviewTimer").start(4.0)
 
 
 func _setup_shake_test() -> void:
@@ -171,6 +208,9 @@ func _publish_snapshot(_arguments: Array) -> void:
 			"rays": slot.summon_rays.emitting,
 			"rays_color": [slot.summon_rays.modulate.r, slot.summon_rays.modulate.g, slot.summon_rays.modulate.b],
 			"paid_mana": 0 if slot.is_empty() else slot.unit.paid_mana})
+	var portal_visuals: Array[EnemyPortal] = [battlefield.portal]
+	for child: Node in battlefield.portals.get_children():
+		portal_visuals.append(child as EnemyPortal)
 	var player: AnimationPlayer = tower.tower_visual.animation_player
 	var label: Label = tower.cost_label
 	var base_bottom: Vector2 = tower.tower_visual.to_global(Vector2(0.0, TowerVisual.BASE_BOTTOM_Y - TowerVisual.CANVAS_SIZE * 0.5))
@@ -181,12 +221,19 @@ func _publish_snapshot(_arguments: Array) -> void:
 		"portal_positions": battlefield.layout.portal_cells.map(func(cell: Vector2i) -> Array: var p: Vector2 = battlefield.layout.cell_center(cell); return [p.x, p.y]),
 		"route_lengths": battlefield.layout.curves.map(func(curve: Curve2D) -> float: return curve.get_baked_length()),
 		"routes": battlefield.routes.size(), "portal_nodes": battlefield.portals.get_child_count() + 1,
+		"portal_particles": portal_visuals.map(func(p: EnemyPortal) -> Dictionary: return {"swirl": p.swirl.emitting, "smoke": p.smoke.emitting, "smoke_visible": p.smoke.visible}),
 		"route_length": battlefield.layout.curve.get_baked_length(), "seed": battlefield.layout.seed_value,
 		"used_fallback": battlefield.layout.used_fallback,
 		"field_origin": [battlefield.layout.origin.x, battlefield.layout.origin.y], "rows": battlefield.layout.grid_size.y,
 		"field_bottom": battlefield.layout.origin.y + battlefield.layout.grid_size.y * battlefield.layout.cell_size,
 		"dock": _rect(hud.bottom_dock), "settings_visible": hud.settings_overlay.visible,
 		"gear_disabled": hud.settings_button.disabled, "upgrade_visible": upgrade_choice.visible,
+		"map_changes": map_changes, "phase": wave_manager.phase,
+		"ui_labels": {"health": hud.health_label.text, "mana": hud.mana_label.text,
+			"wave": hud.wave_label.text, "reward": hud.game_over_overlay.get_node("Center/Panel/Stack/Reward/Amount").text},
+		"upgrade_cards": upgrade_choice.cards.map(func(card: Button) -> Array: return _center(card)),
+		"ui_bounds": {"results": _rect(hud.game_over_overlay.get_node("Center/Panel")),
+			"choice": _rect(upgrade_choice.get_node("Center/Panel")), "gear": _rect(hud.settings_button)},
 		"enemy_distances": enemies.get_children().map(func(enemy: ApproachingEnemy) -> float: return enemy._distance),
 		"enemy_portals": enemies.get_children().map(func(enemy: ApproachingEnemy) -> int: return int(enemy.get_meta("portal_index", 0))),
 		"enemy_positions": enemies.get_children().map(func(enemy: ApproachingEnemy) -> Array: return [enemy.global_position.x, enemy.global_position.y]),

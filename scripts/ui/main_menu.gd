@@ -16,7 +16,7 @@ func _ready() -> void:
 
 
 func _update_crystals(total: int) -> void:
-	crystal_balance.text = str(total)
+	UiNumbers.show_value(crystal_balance, total)
 
 
 func _on_play_button_pressed() -> void:

@@ -30,7 +30,11 @@ func refresh() -> void:
 	next_effect.visible = not maximum
 	effect_arrow.visible = not maximum
 	price_icon.texture = CHECK if maximum else CRYSTAL
-	price_label.text = "" if maximum else str(config.price_for(level))
+	if maximum:
+		price_label.text = ""
+		price_label.tooltip_text = "Maximum level"
+	else:
+		UiNumbers.show_value(price_label, config.price_for(level))
 	disabled = not SessionProgress.can_buy(kind)
 	price_label.modulate = Color("ed939b") if disabled and not maximum else Color("d4b9ff")
 	tooltip_text = "Maximum level" if maximum else "Upgrade for %d Soul Crystals" % config.price_for(level)
