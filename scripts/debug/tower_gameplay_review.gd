@@ -8,6 +8,7 @@ extends "res://scripts/game/game_manager.gd"
 var _web_snapshot_callback: JavaScriptObject
 var _events: Array[Dictionary] = []
 var _last_health: int = 0
+var _shake_started_count: int = 0
 
 
 func _ready() -> void:
@@ -33,12 +34,46 @@ func _ready() -> void:
 		# Только чтение состояния из development preview; команд в обычной игре нет.
 		_web_snapshot_callback = JavaScriptBridge.create_callback(_publish_snapshot)
 		JavaScriptBridge.get_interface("window").getTowerReview = _web_snapshot_callback
+		get_node("ScreenShake/GFFPlayer").effect_started.connect(_record_shake)
 		if bool(JavaScriptBridge.eval("new URL(window.location.href).searchParams.get('contact_test') === '1'", true)):
 			_setup_contact_test()
 		if bool(JavaScriptBridge.eval("new URL(window.location.href).searchParams.get('merge_test') === '1'", true)):
 			_setup_merge_particle_test()
 		if bool(JavaScriptBridge.eval("new URL(window.location.href).searchParams.get('arrow_test') === '1'", true)):
 			_setup_embedded_arrow_test()
+		if bool(JavaScriptBridge.eval("new URL(window.location.href).searchParams.get('shake_test') === '1'", true)):
+			_setup_shake_test()
+
+
+func _setup_shake_test() -> void:
+	_setup_boss_warning_test()
+	wave_manager.spawn_timer.stop()
+	tower.initialize(500)
+	var archer_scene: PackedScene = load("res://scenes/archer.tscn")
+	for index: int in 2:
+		var unit: CombatUnit = archer_scene.instantiate() as CombatUnit
+		unit.attack_enabled = false
+		unit.paid_mana = 20
+		summon_manager._slots[index].place_unit(unit)
+		unit.configure(enemies, projectiles, run_bonuses)
+	get_node("ShakeTestTimer").start()
+
+
+func _on_shake_test_tick() -> void:
+	if state == State.RUNNING:
+		tower.take_damage(20)
+
+
+func _record_shake(_effect_name: String) -> void:
+	_shake_started_count += 1
+
+
+func _setup_boss_warning_test() -> void:
+	# Запускаем настоящую пятую волну, без циклического таймера декоративного превью.
+	wave_manager.stop()
+	wave_manager.wave_number = 5
+	wave_manager.phase = WaveManager.Phase.FIGHTING
+	wave_manager._begin_wave()
 
 
 func _setup_embedded_arrow_test() -> void:
@@ -159,6 +194,11 @@ func _publish_snapshot(_arguments: Array) -> void:
 		"summons": summon_manager.successful_summons, "state": state, "wave": wave_manager.wave_number,
 		"health": tower.current_health, "max_health": tower.max_health, "kills": run_statistics.killed_enemies,
 		"tower": [tower.global_position.x, tower.global_position.y], "base_bottom_y": base_bottom.y,
+		"tower_screen": [tower.get_global_transform_with_canvas().origin.x, tower.get_global_transform_with_canvas().origin.y],
+		"slot_screen_positions": summon_manager._slots.map(func(slot: SummonSlot) -> Array: var p: Vector2 = slot.get_global_transform_with_canvas().origin; return [p.x,p.y]),
+		"shake": {"offset":[get_node("ScreenShake").offset.x,get_node("ScreenShake").offset.y],
+			"playing":get_node("ScreenShake/GFFPlayer").is_playing(),"started":_shake_started_count},
+		"world_position": [$World.position.x,$World.position.y],
 		"cost_label": [label.global_position.x, label.global_position.y, label.size.x, label.size.y],
 		"cost_color": str(label.modulate * tower.modulate), "cost_z": label.z_index, "disabled": tower.summon_button.disabled,
 		"animated": tower.animated_visual_enabled, "static_visible": tower.static_visual.visible,

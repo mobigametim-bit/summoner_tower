@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="GFFCameraShake" format=3]
+
+[ext_resource type="Script" path="res://addons/game_feel_flow/effects/camera/gff_camera_shake.gd" id="1_shake"]
+
+[resource]
+script = ExtResource("1_shake")
+label = "battle_camera_shake"
+duration = 0.18
+amplitude = 2.0
+axes = Vector3(1, 1, 0)

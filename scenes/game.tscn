@@ -27,6 +27,7 @@
 [ext_resource type="Texture2D" uid="uid://cunh3mw6fkux0" path="res://assets/ui/play.svg" id="19_qnb83"]
 [ext_resource type="Script" uid="uid://dl57wkelh3atf" path="res://scripts/game/run_statistics.gd" id="20_5newe"]
 [ext_resource type="Resource" path="res://resources/balance/run_reward_config.tres" id="21_37s47"]
+[ext_resource type="PackedScene" uid="uid://bs7ym0iyxvdag" path="res://scenes/vfx/ScreenShake.tscn" id="32_wljb1"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qnb83"]
 bg_color = Color(0.09019608, 0.14117648, 0.19215687, 1)
@@ -522,6 +523,8 @@ pool = ExtResource("19_37s47")
 script = ExtResource("20_5newe")
 config = ExtResource("21_37s47")
 
+[node name="ScreenShake" parent="." unique_id=1939015124 instance=ExtResource("32_wljb1")]
+
 [connection signal="destroyed" from="World/Tower" to="." method="_on_tower_destroyed"]
 [connection signal="health_changed" from="World/Tower" to="." method="_on_tower_health_changed"]
 [connection signal="summon_requested" from="World/Tower" to="." method="_on_summon_requested"]
@@ -547,3 +550,5 @@ config = ExtResource("21_37s47")
 [connection signal="wave_completed" from="WaveManager" to="RunStatistics" method="record_completed_wave"]
 [connection signal="timeout" from="WaveManager/SpawnTimer" to="WaveManager" method="_on_spawn_timeout"]
 [connection signal="timeout" from="WaveManager/IntermissionTimer" to="WaveManager" method="_on_intermission_timeout"]
+[connection signal="health_changed" from="World/Tower" to="ScreenShake" method="_on_tower_health_changed"]
+[connection signal="state_changed" from="WaveManager" to="ScreenShake" method="_on_wave_state_changed"]

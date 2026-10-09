@@ -1,0 +1,18 @@
+[gd_scene format=3 uid="uid://bs7ym0iyxvdag"]
+
+[ext_resource type="Script" uid="uid://ggh7wmd3tgu1" path="res://scripts/visuals/screen_shake.gd" id="1_aglme"]
+[ext_resource type="Resource" uid="uid://ciuquwmxvll24" path="res://resources/balance/wave_config.tres" id="2_gbowt"]
+[ext_resource type="Resource" path="res://resources/visuals/feedback/tower_hit_shake.tres" id="3_ouxnn"]
+[ext_resource type="Resource" path="res://resources/visuals/feedback/boss_intro_shake.tres" id="4_ohovp"]
+[ext_resource type="Script" uid="uid://b6hb1c3t0eppb" path="res://addons/game_feel_flow/core/gff_player.gd" id="5_ouxnn"]
+
+[node name="ScreenShake" type="Camera2D" unique_id=1939015124]
+process_mode = 1
+anchor_mode = 0
+script = ExtResource("1_aglme")
+wave_config = ExtResource("2_gbowt")
+tower_hit_effect = ExtResource("3_ouxnn")
+boss_intro_effect = ExtResource("4_ohovp")
+
+[node name="GFFPlayer" type="Node" parent="." unique_id=757287327]
+script = ExtResource("5_ouxnn")
