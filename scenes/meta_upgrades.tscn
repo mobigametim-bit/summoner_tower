@@ -93,7 +93,7 @@ icon_alignment = 1
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_colors/font_color = Color(0.96862745, 0.8352941, 0.5411765, 1)
-theme_override_font_sizes/font_size = 44
+theme_override_font_sizes/font_size = 66
 text = "UPGRADES"
 horizontal_alignment = 1
 
@@ -118,7 +118,7 @@ stretch_mode = 5
 [node name="Amount" type="Label" parent="Center/Stack/Wallet" unique_id=421740318]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.83137256, 0.7254902, 1, 1)
-theme_override_font_sizes/font_size = 36
+theme_override_font_sizes/font_size = 54
 text = "0"
 
 [node name="Cards" type="VBoxContainer" parent="Center/Stack" unique_id=1760869794]

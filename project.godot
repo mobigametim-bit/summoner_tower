@@ -33,6 +33,10 @@ window/stretch/mode="canvas_items"
 
 enabled=PackedStringArray("res://addons/game_feel_flow/plugin.cfg", "res://addons/godot_forge/plugin.cfg")
 
+[gui]
+
+theme/custom_font="res://assets/fonts/tsap-tsarap/Tsap-Tsarap.ttf"
+
 [input]
 
 cancel_drag={

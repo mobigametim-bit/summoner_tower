@@ -37,8 +37,13 @@ func set_field_bottom(bottom: float) -> void:
 
 
 func _fit_counter(label: Label) -> void:
-	var digits: int = label.text.length()
-	label.add_theme_font_size_override("font_size", clampi(floori(160.0 / float(maxi(digits, 5))), 20, 32))
+	var font: Font = label.get_theme_font("font")
+	var font_size: int = 48
+	var width: float = label.custom_minimum_size.x
+	# Реальная ширина цифр зависит от шрифта, а не только от их количества.
+	while font_size > 20 and font.get_string_size(label.text, HORIZONTAL_ALIGNMENT_LEFT, -1.0, font_size).x > width:
+		font_size -= 1
+	label.add_theme_font_size_override("font_size", font_size)
 
 
 func set_settings_available(available: bool) -> void:

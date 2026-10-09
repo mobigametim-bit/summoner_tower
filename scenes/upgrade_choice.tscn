@@ -239,14 +239,14 @@ theme_override_constants/separation = 18
 [node name="Title" type="Label" parent="Center/Panel/Stack" unique_id=1159774623]
 layout_mode = 2
 theme_override_colors/font_color = Color(1, 0.8745098, 0.5568628, 1)
-theme_override_font_sizes/font_size = 36
+theme_override_font_sizes/font_size = 54
 text = "BOSS DEFEATED"
 horizontal_alignment = 1
 
 [node name="Subtitle" type="Label" parent="Center/Panel/Stack" unique_id=1828558797]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.50980395, 0.9137255, 0.92941177, 1)
-theme_override_font_sizes/font_size = 24
+theme_override_font_sizes/font_size = 36
 text = "CHOOSE ONE UPGRADE"
 horizontal_alignment = 1
 
@@ -287,14 +287,14 @@ theme_override_constants/separation = 6
 [node name="Title" type="Label" parent="Center/Panel/Stack/Card0/Margin/Row/Content" unique_id=1116912106]
 layout_mode = 2
 theme_override_colors/font_color = Color(1, 0.8745098, 0.5568628, 1)
-theme_override_font_sizes/font_size = 32
+theme_override_font_sizes/font_size = 48
 text = "UPGRADE"
 
 [node name="Description" type="Label" parent="Center/Panel/Stack/Card0/Margin/Row/Content" unique_id=315185165]
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_colors/font_color = Color(0.8627451, 0.9019608, 0.93333334, 1)
-theme_override_font_sizes/font_size = 24
+theme_override_font_sizes/font_size = 36
 text = "Bonus for this run"
 autowrap_mode = 2
 
@@ -302,7 +302,7 @@ autowrap_mode = 2
 visible = false
 layout_mode = 2
 theme_override_colors/font_color = Color(0.5882353, 0.7058824, 0.7882353, 1)
-theme_override_font_sizes/font_size = 18
+theme_override_font_sizes/font_size = 27
 
 [node name="Icon" type="TextureRect" parent="Center/Panel/Stack/Card0/Margin/Row" unique_id=1560817746]
 custom_minimum_size = Vector2(96, 96)
@@ -350,14 +350,14 @@ theme_override_constants/separation = 6
 [node name="Title" type="Label" parent="Center/Panel/Stack/Card1/Margin/Row/Content" unique_id=1725860465]
 layout_mode = 2
 theme_override_colors/font_color = Color(1, 0.8745098, 0.5568628, 1)
-theme_override_font_sizes/font_size = 32
+theme_override_font_sizes/font_size = 48
 text = "UPGRADE"
 
 [node name="Description" type="Label" parent="Center/Panel/Stack/Card1/Margin/Row/Content" unique_id=559332704]
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_colors/font_color = Color(0.8627451, 0.9019608, 0.93333334, 1)
-theme_override_font_sizes/font_size = 24
+theme_override_font_sizes/font_size = 36
 text = "Bonus for this run"
 autowrap_mode = 2
 
@@ -365,7 +365,7 @@ autowrap_mode = 2
 visible = false
 layout_mode = 2
 theme_override_colors/font_color = Color(0.5882353, 0.7058824, 0.7882353, 1)
-theme_override_font_sizes/font_size = 18
+theme_override_font_sizes/font_size = 27
 
 [node name="Icon" type="TextureRect" parent="Center/Panel/Stack/Card1/Margin/Row" unique_id=1340006659]
 custom_minimum_size = Vector2(96, 96)
@@ -413,14 +413,14 @@ theme_override_constants/separation = 6
 [node name="Title" type="Label" parent="Center/Panel/Stack/Card2/Margin/Row/Content" unique_id=1211044518]
 layout_mode = 2
 theme_override_colors/font_color = Color(1, 0.8745098, 0.5568628, 1)
-theme_override_font_sizes/font_size = 32
+theme_override_font_sizes/font_size = 48
 text = "UPGRADE"
 
 [node name="Description" type="Label" parent="Center/Panel/Stack/Card2/Margin/Row/Content" unique_id=432383107]
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_colors/font_color = Color(0.8627451, 0.9019608, 0.93333334, 1)
-theme_override_font_sizes/font_size = 24
+theme_override_font_sizes/font_size = 36
 text = "Bonus for this run"
 autowrap_mode = 2
 
@@ -428,7 +428,7 @@ autowrap_mode = 2
 visible = false
 layout_mode = 2
 theme_override_colors/font_color = Color(0.5882353, 0.7058824, 0.7882353, 1)
-theme_override_font_sizes/font_size = 18
+theme_override_font_sizes/font_size = 27
 
 [node name="Icon" type="TextureRect" parent="Center/Panel/Stack/Card2/Margin/Row" unique_id=1982377452]
 custom_minimum_size = Vector2(96, 96)

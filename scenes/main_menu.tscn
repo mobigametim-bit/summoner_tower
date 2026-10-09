@@ -5,6 +5,8 @@
 [ext_resource type="Texture2D" uid="uid://cunh3mw6fkux0" path="res://assets/ui/play.svg" id="3_wu84c"]
 [ext_resource type="Texture2D" uid="uid://ksfn8cx058cs" path="res://assets/ui/upgrade.svg" id="4_8ln24"]
 
+[ext_resource type="PackedScene" uid="uid://cs4k53circxos" path="res://scenes/ui/MainMenuBackdrop.tscn" id="2_rtw2f"]
+
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vue75"]
 content_margin_left = 24.0
 content_margin_top = 16.0
@@ -69,6 +71,8 @@ grow_vertical = 2
 mouse_filter = 2
 color = Color(0.0627451, 0.08235294, 0.13333334, 1)
 
+[node name="Backdrop" parent="." unique_id=1734931141 instance=ExtResource("2_rtw2f")]
+
 [node name="Center" type="CenterContainer" parent="." unique_id=1535144353]
 layout_mode = 1
 anchors_preset = 15
@@ -84,7 +88,7 @@ theme_override_constants/separation = 16
 [node name="Title" type="Label" parent="Center/VBox" unique_id=1343097107]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.96862745, 0.8352941, 0.5411765, 1)
-theme_override_font_sizes/font_size = 48
+theme_override_font_sizes/font_size = 72
 text = "SUMMONER TOWER"
 horizontal_alignment = 1
 
@@ -105,7 +109,7 @@ stretch_mode = 5
 [node name="CrystalBalance" type="Label" parent="Center/VBox/CrystalWallet" unique_id=441376114]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.83137256, 0.7254902, 1, 1)
-theme_override_font_sizes/font_size = 32
+theme_override_font_sizes/font_size = 48
 text = "0"
 horizontal_alignment = 1
 
@@ -130,7 +134,7 @@ theme_override_colors/font_focus_color = Color(0.0627451, 0.08235294, 0.13333334
 theme_override_colors/font_pressed_color = Color(0.0627451, 0.08235294, 0.13333334, 1)
 theme_override_colors/font_hover_color = Color(0.0627451, 0.08235294, 0.13333334, 1)
 theme_override_constants/icon_max_width = 48
-theme_override_font_sizes/font_size = 32
+theme_override_font_sizes/font_size = 48
 theme_override_styles/normal = SubResource("StyleBoxFlat_vue75")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_l6cm7")
 theme_override_styles/hover = SubResource("StyleBoxFlat_ekxnf")
@@ -150,7 +154,7 @@ theme_override_colors/font_focus_color = Color(0.0627451, 0.08235294, 0.13333334
 theme_override_colors/font_pressed_color = Color(0.0627451, 0.08235294, 0.13333334, 1)
 theme_override_colors/font_hover_color = Color(0.0627451, 0.08235294, 0.13333334, 1)
 theme_override_constants/icon_max_width = 48
-theme_override_font_sizes/font_size = 32
+theme_override_font_sizes/font_size = 48
 theme_override_styles/normal = SubResource("StyleBoxFlat_vue75")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_l6cm7")
 theme_override_styles/hover = SubResource("StyleBoxFlat_ekxnf")

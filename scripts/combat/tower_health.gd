@@ -60,8 +60,8 @@ func fit_to_cell(size: float, field_center_x: float) -> void:
 	summon_button.position = -Vector2.ONE * size * 0.5
 	summon_button.size = Vector2.ONE * size
 	cost_label.position.x = -size * 0.5
-	cost_label.size = Vector2(size, 34.0)
-	cost_label.add_theme_font_size_override("font_size", 28)
+	cost_label.size = Vector2(size, 42.0)
+	cost_label.add_theme_font_size_override("font_size", 42)
 	_align_cost_label()
 	var zone: UnitReturnZone = $ReturnZone
 	zone.hit_rect = Rect2(-Vector2.ONE * size * 0.5, Vector2.ONE * size)
