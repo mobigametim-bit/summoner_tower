@@ -10,7 +10,6 @@
 [ext_resource type="Texture2D" uid="uid://c2458dv2abtbl" path="res://assets/environment/sheep.svg" id="7_sheep"]
 [ext_resource type="Texture2D" uid="uid://cn7smevrpli4q" path="res://assets/environment/mushrooms.svg" id="8_6rlxt"]
 [ext_resource type="Texture2D" uid="uid://dar22sich7o4j" path="res://assets/environment/flowers.svg" id="9_nwcug"]
-[ext_resource type="Texture2D" uid="uid://foy4vtufwijm" path="res://assets/environment/wall_fragment.svg" id="10_0c1k1"]
 [ext_resource type="Texture2D" uid="uid://k78qwsfvfurc" path="res://assets/environment/skull_bones.svg" id="11_erk2m"]
 [ext_resource type="Texture2D" uid="uid://bm7ushvl0d7c2" path="res://assets/environment/abandoned_shield.svg" id="12_u22em"]
 
@@ -18,4 +17,4 @@
 script = ExtResource("1_config")
 slot_count_range = Vector2i(10, 15)
 portal_count_weights = Vector3(50, 30, 20)
-decoration_textures = [ExtResource("2_rock"), ExtResource("3_shrub"), ExtResource("4_grass"), ExtResource("5_tree"), ExtResource("6_gravestone"), ExtResource("7_sheep"), ExtResource("7_rmt2g"), ExtResource("8_6rlxt"), ExtResource("9_nwcug"), ExtResource("10_0c1k1"), ExtResource("11_erk2m"), ExtResource("12_u22em")]
+decoration_textures = [ExtResource("2_rock"), ExtResource("3_shrub"), ExtResource("4_grass"), ExtResource("5_tree"), ExtResource("6_gravestone"), ExtResource("7_sheep"), ExtResource("7_rmt2g"), ExtResource("8_6rlxt"), ExtResource("9_nwcug"), ExtResource("11_erk2m"), ExtResource("12_u22em")]
