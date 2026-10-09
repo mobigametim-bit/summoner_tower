@@ -41,6 +41,8 @@ func _ready() -> void:
 			_setup_merge_particle_test()
 		if bool(JavaScriptBridge.eval("new URL(window.location.href).searchParams.get('arrow_test') === '1'", true)):
 			_setup_embedded_arrow_test()
+		if bool(JavaScriptBridge.eval("new URL(window.location.href).searchParams.get('boss_warning_test') === '1'", true)):
+			_setup_boss_warning_test()
 		if bool(JavaScriptBridge.eval("new URL(window.location.href).searchParams.get('shake_test') === '1'", true)):
 			_setup_shake_test()
 
@@ -206,6 +208,8 @@ func _publish_snapshot(_arguments: Array) -> void:
 		"visual_frame": player.current_animation_position, "pending": str(tower.tower_visual.get("_pending_reaction")),
 		"body_color": str(tower.tower_visual.get_node("BodyPivot/Body").self_modulate),
 		"paused": get_tree().paused, "events": _events, "active": wave_manager.active_count(),
+		"boss_warning": {"visible":hud.boss_warning.visible,
+			"frame":hud.boss_warning.animation_player.current_animation_position if hud.boss_warning.animation_player.is_playing() else 0.0},
 		"projectiles": projectiles.get_child_count(), "drag_visible": drag_controller.preview.visible,
 		"columns": battlefield.layout.grid_size.x, "canvas_size": tower.tower_visual.scale.y * TowerVisual.CANVAS_SIZE,
 		"fps": Engine.get_frames_per_second(), "draw_calls": Performance.get_monitor(Performance.RENDER_TOTAL_DRAW_CALLS_IN_FRAME),

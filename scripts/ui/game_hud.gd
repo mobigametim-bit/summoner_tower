@@ -17,16 +17,24 @@ signal resume_requested
 @onready var settings_button: Button = %SettingsButton
 @onready var settings_overlay: Control = %SettingsOverlay
 @onready var resume_button: Button = %ResumeButton
+@onready var boss_warning: BossWarning = $BossWarning
 @export var wave_config: WaveConfig
 
 var _displayed_mana: int = -1
+var _last_announced_boss_wave: int = 0
 
 
-func update_wave(wave: int, _phase: WaveManager.Phase, _seconds: int, _alive: int, _pending: int) -> void:
+func update_wave(wave: int, phase: WaveManager.Phase, _seconds: int, _alive: int, _pending: int) -> void:
 	var boss_wave: bool = wave_config != null and wave_config.is_boss_wave(wave)
 	var title: String = "BOSS" if boss_wave else "WAVE"
 	wave_label.modulate = Color("ffb968") if boss_wave else Color.WHITE
 	wave_label.text = "%s %d" % [title, wave]
+	if phase != WaveManager.Phase.FIGHTING:
+		boss_warning.stop_warning()
+	elif boss_wave and phase == WaveManager.Phase.FIGHTING and wave != _last_announced_boss_wave:
+		# state_changed приходит также при каждом спавне и убийстве; показываем один раз за волну.
+		_last_announced_boss_wave = wave
+		boss_warning.play_warning()
 
 
 func update_health(current: int, _maximum: int) -> void:
@@ -54,6 +62,7 @@ func set_settings_available(available: bool) -> void:
 
 
 func show_settings() -> void:
+	boss_warning.stop_warning()
 	settings_overlay.show()
 	resume_button.grab_focus()
 

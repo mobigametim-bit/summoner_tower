@@ -32,6 +32,7 @@
 [ext_resource type="Script" uid="uid://cfvf5il45lqsh" path="res://scripts/ui/mana_feedback.gd" id="13_sgl2t"]
 [ext_resource type="Script" uid="uid://b6hb1c3t0eppb" path="res://addons/game_feel_flow/core/gff_player.gd" id="14_suyxu"]
 [ext_resource type="PackedScene" uid="uid://qrfmn7yt2v3" path="res://scenes/ui/button_feedback.tscn" id="15_sww3w"]
+[ext_resource type="PackedScene" uid="uid://icaty5irafa4" path="res://scenes/ui/BossWarning.tscn" id="23_qouja"]
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qnb83"]
 bg_color = Color(0.09019608, 0.14117648, 0.19215687, 1)
 border_width_top = 2
@@ -645,6 +646,9 @@ theme_override_constants/icon_max_width = 34
 theme_override_font_sizes/font_size = 42
 text = "CONTINUE"
 icon = ExtResource("19_qnb83")
+
+[node name="BossWarning" parent="Interface/Hud" unique_id=446194701 instance=ExtResource("23_qouja")]
+layout_mode = 1
 
 [node name="SummonManager" type="Node" parent="." unique_id=1068555550]
 script = ExtResource("9_dinhu")
