@@ -16,7 +16,7 @@ extends Resource
 @export var generation_attempts: int = 24
 @export var search_steps_per_attempt: int = 1200
 @export var cell_gap: float = 4.0
-@export var decoration_probability: float = 0.55
+@export var decoration_probability: float = 0.40
 @export var decoration_textures: Array[Texture2D] = []
 
 

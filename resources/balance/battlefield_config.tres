@@ -17,4 +17,5 @@
 script = ExtResource("1_config")
 slot_count_range = Vector2i(10, 15)
 portal_count_weights = Vector3(50, 30, 20)
+decoration_probability = 0.4
 decoration_textures = [ExtResource("2_rock"), ExtResource("3_shrub"), ExtResource("4_grass"), ExtResource("5_tree"), ExtResource("6_gravestone"), ExtResource("7_sheep"), ExtResource("7_rmt2g"), ExtResource("8_6rlxt"), ExtResource("9_nwcug"), ExtResource("11_erk2m"), ExtResource("12_u22em")]
