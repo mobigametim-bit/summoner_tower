@@ -24,6 +24,12 @@ func difficulty_tier(health: int) -> int:
 	return tier
 
 
+func kill_mana_for(health: int) -> int:
+	if is_boss:
+		return kill_mana
+	return kill_mana * (1 << (difficulty_tier(health) - 1))
+
+
 func color_for(health: int) -> Color:
 	var tier: int = difficulty_tier(health)
 	return Color.WHITE if tier == 0 else TIER_COLORS[tier - 1]
