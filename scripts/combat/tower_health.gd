@@ -18,6 +18,7 @@ var _is_destroyed: bool = false
 
 
 func _ready() -> void:
+	summon_button.set_meta(&"skip_ui_sound", true)
 	set_animated_visual(animated_visual_enabled)
 
 
@@ -85,6 +86,7 @@ func take_damage(amount: int) -> void:
 
 	current_health = maxi(current_health - amount, 0)
 	_is_destroyed = current_health == 0
+	AudioService.play_sfx(&"tower_destroyed" if _is_destroyed else &"tower_hit")
 	if animated_visual_enabled:
 		if _is_destroyed:
 			tower_visual.show_destroyed()
@@ -102,6 +104,7 @@ func revive(health: int) -> bool:
 		return false
 	_is_destroyed = false
 	current_health = mini(health, max_health)
+	AudioService.play_sfx(&"revive")
 	modulate = Color.WHITE
 	set_animated_visual(animated_visual_enabled)
 	health_changed.emit(current_health, max_health)

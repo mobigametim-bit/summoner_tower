@@ -1,0 +1,54 @@
+[gd_scene format=3 uid="uid://bwjorh3keq26j"]
+
+[ext_resource type="Script" uid="uid://co2k5lawnkahv" path="res://scripts/audio/audio_service.gd" id="1_1yuw5"]
+[ext_resource type="Resource" uid="uid://x7dk4e2m8dwi" path="res://resources/audio/audio_config.tres" id="2_2cmdt"]
+
+[node name="AudioService" type="Node" unique_id=1311302917]
+process_mode = 3
+script = ExtResource("1_1yuw5")
+config = ExtResource("2_2cmdt")
+
+[node name="MusicA" type="AudioStreamPlayer" parent="." unique_id=258063527]
+bus = &"Music"
+
+[node name="MusicB" type="AudioStreamPlayer" parent="." unique_id=2025605132]
+bus = &"Music"
+
+[node name="SFX" type="Node" parent="." unique_id=393149034]
+
+[node name="UI" type="AudioStreamPlayer" parent="SFX" unique_id=99290897]
+bus = &"SFX"
+
+[node name="Action0" type="AudioStreamPlayer" parent="SFX" unique_id=2063573080]
+bus = &"SFX"
+
+[node name="Action1" type="AudioStreamPlayer" parent="SFX" unique_id=954070726]
+bus = &"SFX"
+
+[node name="Action2" type="AudioStreamPlayer" parent="SFX" unique_id=53496657]
+bus = &"SFX"
+
+[node name="Action3" type="AudioStreamPlayer" parent="SFX" unique_id=24667105]
+bus = &"SFX"
+
+[node name="Combat0" type="AudioStreamPlayer" parent="SFX" unique_id=1223571484]
+bus = &"SFX"
+
+[node name="Combat1" type="AudioStreamPlayer" parent="SFX" unique_id=163395635]
+bus = &"SFX"
+
+[node name="Combat2" type="AudioStreamPlayer" parent="SFX" unique_id=130007203]
+bus = &"SFX"
+
+[node name="TowerHit" type="AudioStreamPlayer" parent="SFX" unique_id=453929716]
+bus = &"SFX"
+
+[node name="TowerState" type="AudioStreamPlayer" parent="SFX" unique_id=1096876212]
+bus = &"SFX"
+
+[node name="Boss" type="AudioStreamPlayer" parent="SFX" unique_id=125576357]
+bus = &"SFX"
+
+[node name="SaveTimer" type="Timer" parent="." unique_id=1669372915]
+wait_time = 0.25
+one_shot = true

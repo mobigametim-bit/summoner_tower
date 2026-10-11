@@ -1,0 +1,120 @@
+SUMMONER TOWER — лицензии музыки и звуков
+
+Все 15 используемых аудиофайлов распространяются по CC0 1.0 Universal.
+Разрешены коммерческое использование, изменение и распространение.
+Указание авторства не обязательно; сведения об авторах сохранены ниже.
+Лицензия: https://creativecommons.org/publicdomain/zero/1.0/
+Полный юридический текст: licenses/CC0-1.0.txt.
+Оригинальные лицензии пакетов Kenney сохранены в licenses/.
+Для Battle Sound Effects выбрана указанная автором альтернатива CC0,
+а не параллельно предложенные CC BY / CC BY-SA / GPL.
+SOURCES.json содержит исходные адреса загрузок и SHA-256 файлов.
+
+Музыкальные MP3 сохранены без перекодирования. Остальные файлы
+конвертированы из OGG/WAV в MP3 (128 kbps, 44,1 kHz), с нормализацией
+peak до −3 dBFS; темп и высота тона не изменены.
+
+assets/audio/sfx/ui_click.mp3
+01 · Кнопки UI
+Автор: Kenney
+Оригинал: Audio/click_001.ogg
+Источник: https://kenney.nl/assets/interface-sounds
+Лицензия: CC0-1.0
+
+assets/audio/sfx/summon.mp3
+02 · Призыв
+Автор: JaggedStone
+Оригинал: magical_1_0.ogg
+Источник: https://opengameart.org/content/magic-spell-sfx
+Лицензия: CC0-1.0
+
+assets/audio/sfx/merge.mp3
+03 · Слияние
+Автор: JaggedStone
+Оригинал: magical_4.ogg
+Источник: https://opengameart.org/content/magic-spell-sfx
+Лицензия: CC0-1.0
+
+assets/audio/sfx/sell.mp3
+04 · Продажа бойца
+Автор: JaggedStone
+Оригинал: magical_3.ogg
+Источник: https://opengameart.org/content/magic-spell-sfx
+Лицензия: CC0-1.0
+
+assets/audio/sfx/archer.mp3
+05 · Выстрел лучника
+Автор: artisticdude (публикация Ogrebane)
+Оригинал: battle_sound_effects/Bow.wav
+Источник: https://opengameart.org/content/battle-sound-effects
+Лицензия: CC0-1.0
+
+assets/audio/sfx/fire_cast.mp3
+06 · Огненный маг
+Автор: rubberduck
+Оригинал: spell_fire_01.ogg
+Источник: https://opengameart.org/content/80-cc0-rpg-sfx
+Лицензия: CC0-1.0
+
+assets/audio/sfx/frost_cast.mp3
+07 · Ледяной маг
+Автор: bart (источник: Stephan / pdsounds)
+Оригинал: ice.wav
+Источник: https://opengameart.org/content/ice-spells
+Лицензия: CC0-1.0
+
+assets/audio/sfx/tower_hit.mp3
+10 · Урон башне
+Автор: Kenney
+Оригинал: Audio/impactMining_000.ogg
+Источник: https://kenney.nl/assets/impact-sounds
+Лицензия: CC0-1.0
+
+assets/audio/sfx/tower_destroyed.mp3
+11 · Падение башни
+Автор: rubberduck
+Оригинал: stones_03.ogg
+Источник: https://opengameart.org/content/80-cc0-rpg-sfx
+Лицензия: CC0-1.0
+
+assets/audio/sfx/revive.mp3
+12 · Возрождение
+Автор: JaggedStone
+Оригинал: magical_7_0.ogg
+Источник: https://opengameart.org/content/magic-spell-sfx
+Лицензия: CC0-1.0
+
+assets/audio/sfx/boss.mp3
+13 · BOSS
+Автор: Kenney
+Оригинал: Audio/impactBell_heavy_000.ogg
+Источник: https://kenney.nl/assets/impact-sounds
+Лицензия: CC0-1.0
+
+assets/audio/sfx/upgrade.mp3
+14 · Карточка улучшения
+Автор: Kenney
+Оригинал: Audio/confirmation_002.ogg
+Источник: https://kenney.nl/assets/interface-sounds
+Лицензия: CC0-1.0
+
+assets/audio/sfx/meta_upgrade.mp3
+15 · Постоянное улучшение
+Автор: JaggedStone
+Оригинал: magical_2.ogg
+Источник: https://opengameart.org/content/magic-spell-sfx
+Лицензия: CC0-1.0
+
+assets/audio/music/menu.mp3
+Музыка · Главное меню
+Автор: cynicmusic
+Оригинал: TownTheme.mp3
+Источник: https://opengameart.org/content/town-theme-rpg
+Лицензия: CC0-1.0
+
+assets/audio/music/battle.mp3
+Музыка · Бой
+Автор: cynicmusic
+Оригинал: battleThemeA.mp3
+Источник: https://opengameart.org/content/battle-theme-a
+Лицензия: CC0-1.0

@@ -9,6 +9,7 @@ var _leaving: bool = false
 
 
 func _ready() -> void:
+	AudioService.play_music(&"menu")
 	_update_crystals(SessionProgress.crystals)
 	SessionProgress.crystals_changed.connect(_update_crystals)
 	back_button.grab_focus()

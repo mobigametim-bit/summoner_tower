@@ -1,0 +1,77 @@
+[gd_scene format=3 uid="uid://d2g3lda0xildr"]
+
+[ext_resource type="Script" uid="uid://bnrsrjrih4wsj" path="res://scripts/ui/audio_controls.gd" id="1_2hh52"]
+[ext_resource type="Theme" uid="uid://dq4sjc5bl4q0p" path="res://resources/ui/audio_slider_theme.tres" id="1_deckj"]
+[ext_resource type="Texture2D" uid="uid://c7uv2ivcfxxcx" path="res://assets/ui/music.svg" id="2_deckj"]
+[ext_resource type="Texture2D" uid="uid://brer2fknijdv0" path="res://assets/ui/sound.svg" id="3_evtyg"]
+
+[node name="AudioControls" type="VBoxContainer" unique_id=1442604506]
+process_mode = 3
+custom_minimum_size = Vector2(480, 0)
+theme = ExtResource("1_deckj")
+theme_override_constants/separation = 18
+script = ExtResource("1_2hh52")
+
+[node name="Music" type="HBoxContainer" parent="." unique_id=1621551023]
+layout_mode = 2
+theme_override_constants/separation = 18
+
+[node name="Icon" type="TextureRect" parent="Music" unique_id=1284294196]
+custom_minimum_size = Vector2(48, 48)
+layout_mode = 2
+size_flags_vertical = 4
+mouse_filter = 2
+texture = ExtResource("2_deckj")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Slider" type="HSlider" parent="Music" unique_id=422039360]
+custom_minimum_size = Vector2(240, 72)
+layout_mode = 2
+size_flags_horizontal = 3
+tooltip_text = "Music volume"
+value = 10.0
+
+[node name="Value" type="Label" parent="Music" unique_id=1355984108]
+custom_minimum_size = Vector2(105, 72)
+layout_mode = 2
+theme_override_font_sizes/font_size = 34
+text = "10%"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="Effects" type="HBoxContainer" parent="." unique_id=2047207237]
+layout_mode = 2
+theme_override_constants/separation = 18
+
+[node name="Icon" type="TextureRect" parent="Effects" unique_id=659244767]
+custom_minimum_size = Vector2(48, 48)
+layout_mode = 2
+size_flags_vertical = 4
+mouse_filter = 2
+texture = ExtResource("3_evtyg")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Slider" type="HSlider" parent="Effects" unique_id=1918227262]
+custom_minimum_size = Vector2(240, 72)
+layout_mode = 2
+size_flags_horizontal = 3
+tooltip_text = "Sound effects volume"
+value = 60.0
+
+[node name="Value" type="Label" parent="Effects" unique_id=227114439]
+custom_minimum_size = Vector2(105, 72)
+layout_mode = 2
+theme_override_font_sizes/font_size = 34
+text = "60%"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="SaveError" type="Label" parent="." unique_id=629574111]
+visible = false
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.5686275, 0.6039216, 1)
+theme_override_font_sizes/font_size = 24
+text = "Settings could not be saved"
+horizontal_alignment = 1

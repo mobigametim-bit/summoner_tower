@@ -99,6 +99,7 @@ func try_summon() -> bool:
 	mana -= unit.paid_mana
 	successful_summons += 1
 	destination.play_summon_effect()
+	AudioService.play_sfx(&"summon")
 	_busy = false
 	_emit_state()
 	return true
@@ -142,6 +143,7 @@ func try_transfer(source: SummonSlot, destination: SummonSlot, expected_unit: Co
 		expected_unit.paid_mana = 0
 		other.promote()
 		destination.play_merge_effect()
+		AudioService.play_sfx(&"merge")
 		expected_unit.retire_into(other)
 		expected_unit.queue_free()
 		unit_merged.emit()
@@ -193,6 +195,7 @@ func try_refund(source: SummonSlot, expected_unit: CombatUnit) -> bool:
 	source.unit_host.remove_child(expected_unit)
 	_busy = false
 	unit_refunded.emit(amount)
+	AudioService.play_sfx(&"sell")
 	_emit_state()
 	return true
 
@@ -227,6 +230,7 @@ func sell_army_for_map_change() -> int:
 	_busy = false
 	if not sold.is_empty():
 		unit_refunded.emit(amount)
+		AudioService.play_sfx(&"sell")
 	_emit_state()
 	return amount
 

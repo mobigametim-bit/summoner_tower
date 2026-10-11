@@ -27,6 +27,7 @@ var _spawn_remaining: int = 0
 var _countdown_seconds: int = -1
 var _sequence: Array[PackedScene] = []
 var _boss_killed: bool = false
+var _boss_wave_revived: bool = false
 var _health_sequence: Array[int] = []
 var _power_source: Callable
 var _rng: RandomNumberGenerator = RandomNumberGenerator.new()
@@ -70,6 +71,7 @@ func active_count() -> int:
 
 func _begin_wave() -> void:
 	_boss_killed = false
+	_boss_wave_revived = false
 	_batch_remaining = 0
 	_batch_spawned = 0
 	_health_sequence.clear()
@@ -172,7 +174,7 @@ func _try_finish_wave() -> void:
 	if _completion_suspended or phase != Phase.FIGHTING or _spawn_remaining > 0 or not _active.is_empty():
 		return
 	spawn_timer.stop()
-	if config.is_boss_wave(wave_number) and _boss_killed:
+	if config.is_boss_wave(wave_number) and (_boss_killed or _boss_wave_revived):
 		phase = Phase.UPGRADE_CHOICE
 		_emit_state()
 		wave_completed.emit(wave_number)
@@ -189,6 +191,13 @@ func suspend_completion(suspended: bool) -> void:
 	_completion_suspended = suspended
 	if not suspended:
 		_try_finish_wave()
+
+
+func resume_after_revive() -> void:
+	# Дошедший до башни босс не считается убитым, но возрождение сохраняет
+	# переход через карточку и новую карту после завершения его волны.
+	_boss_wave_revived = config.is_boss_wave(wave_number)
+	suspend_completion(false)
 
 
 func finish_upgrade_choice() -> bool:

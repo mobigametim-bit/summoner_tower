@@ -15,6 +15,7 @@ const CHECK: Texture2D = preload("res://assets/ui/check.svg")
 
 
 func _ready() -> void:
+	set_meta(&"skip_ui_sound", true)
 	SessionProgress.crystals_changed.connect(_on_crystals_changed)
 	SessionProgress.upgrades_changed.connect(refresh)
 	refresh()
@@ -52,4 +53,5 @@ func _on_crystals_changed(_total: int) -> void:
 
 
 func _on_pressed() -> void:
-	SessionProgress.try_buy(kind)
+	if SessionProgress.try_buy(kind):
+		AudioService.play_sfx(&"meta_upgrade")

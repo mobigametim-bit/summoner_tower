@@ -30,7 +30,8 @@
 [ext_resource type="Texture2D" uid="uid://cunh3mw6fkux0" path="res://assets/ui/play.svg" id="19_qnb83"]
 [ext_resource type="Script" uid="uid://dl57wkelh3atf" path="res://scripts/game/run_statistics.gd" id="20_5newe"]
 [ext_resource type="Resource" uid="uid://c2tgfag4qq81o" path="res://resources/balance/run_reward_config.tres" id="21_37s47"]
-[ext_resource type="Script" uid="uid://cj25vlb6fcy00" path="res://scripts/ui/button_feedback.gd" id="21_twgab"]
+[ext_resource type="Theme" uid="uid://dq4sjc5bl4q0p" path="res://resources/ui/audio_slider_theme.tres" id="23_02fa5"]
+[ext_resource type="PackedScene" uid="uid://d2g3lda0xildr" path="res://scenes/ui/AudioControls.tscn" id="23_nepv3"]
 [ext_resource type="PackedScene" uid="uid://icaty5irafa4" path="res://scenes/ui/BossWarning.tscn" id="23_qouja"]
 [ext_resource type="Texture2D" uid="uid://c57tyfidrkg5k" path="res://assets/ui/confirm.svg" id="25_twgab"]
 [ext_resource type="Texture2D" uid="uid://bamagwo85soov" path="res://assets/ui/close.svg" id="26_nepv3"]
@@ -601,17 +602,9 @@ theme_override_styles/disabled = SubResource("StyleBoxEmpty_twgab")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_02fa5")
 icon_alignment = 1
 
-[node name="FeedbackVisual" type="Control" parent="Interface/Hud/GameOverOverlay/Center/Panel/Stack/Actions/DoubleRewardButton" unique_id=331547735 instance=ExtResource("15_sww3w")]
-process_mode = 3
+[node name="FeedbackVisual" parent="Interface/Hud/GameOverOverlay/Center/Panel/Stack/Actions/DoubleRewardButton" unique_id=331547735 instance=ExtResource("15_sww3w")]
 layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
 pivot_offset = Vector2(64, 64)
-mouse_filter = 2
-script = ExtResource("21_twgab")
 normal_style = SubResource("StyleBoxFlat_1e81c")
 hover_style = SubResource("StyleBoxFlat_wir6v")
 pressed_style = SubResource("StyleBoxFlat_bduea")
@@ -619,7 +612,7 @@ disabled_style = SubResource("StyleBoxFlat_rrhgg")
 focus_style = SubResource("StyleBoxFlat_q4uia")
 icon = ExtResource("13_37s47")
 
-[node name="GFFPlayer" type="Node" parent="Interface/Hud/GameOverOverlay/Center/Panel/Stack/Actions/DoubleRewardButton/FeedbackVisual" unique_id=1960228428]
+[node name="GFFPlayer2" type="Node" parent="Interface/Hud/GameOverOverlay/Center/Panel/Stack/Actions/DoubleRewardButton/FeedbackVisual" unique_id=1960228428]
 script = ExtResource("14_suyxu")
 
 [node name="Multiplier" type="Label" parent="Interface/Hud/GameOverOverlay/Center/Panel/Stack/Actions/DoubleRewardButton/FeedbackVisual" unique_id=1653712436]
@@ -689,6 +682,10 @@ theme_override_colors/font_color = Color(0.96862745, 0.8352941, 0.5411765, 1)
 theme_override_font_sizes/font_size = 66
 text = "SETTINGS"
 horizontal_alignment = 1
+
+[node name="AudioControls" parent="Interface/Hud/SettingsOverlay/Center/Panel/Stack" unique_id=1442604506 instance=ExtResource("23_nepv3")]
+layout_mode = 2
+theme = ExtResource("23_02fa5")
 
 [node name="SettingsMenuButton" type="Button" parent="Interface/Hud/SettingsOverlay/Center/Panel/Stack" unique_id=594077224]
 unique_name_in_owner = true
@@ -785,17 +782,9 @@ theme_override_styles/disabled = SubResource("StyleBoxEmpty_twgab")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_02fa5")
 icon_alignment = 1
 
-[node name="FeedbackVisual" type="Control" parent="Interface/Hud/ReviveOverlay/Center/Panel/Stack/Actions/Accept" unique_id=97895687 instance=ExtResource("15_sww3w")]
-process_mode = 3
+[node name="FeedbackVisual" parent="Interface/Hud/ReviveOverlay/Center/Panel/Stack/Actions/Accept" unique_id=97895687 instance=ExtResource("15_sww3w")]
 layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
 pivot_offset = Vector2(64, 64)
-mouse_filter = 2
-script = ExtResource("21_twgab")
 normal_style = SubResource("StyleBoxFlat_1e81c")
 hover_style = SubResource("StyleBoxFlat_wir6v")
 pressed_style = SubResource("StyleBoxFlat_bduea")
@@ -804,7 +793,7 @@ focus_style = SubResource("StyleBoxFlat_q4uia")
 icon = ExtResource("25_twgab")
 icon_width = 64.0
 
-[node name="GFFPlayer" type="Node" parent="Interface/Hud/ReviveOverlay/Center/Panel/Stack/Actions/Accept/FeedbackVisual" unique_id=155933632]
+[node name="GFFPlayer2" type="Node" parent="Interface/Hud/ReviveOverlay/Center/Panel/Stack/Actions/Accept/FeedbackVisual" unique_id=155933632]
 script = ExtResource("14_suyxu")
 
 [node name="Decline" type="Button" parent="Interface/Hud/ReviveOverlay/Center/Panel/Stack/Actions" unique_id=1039880281]
@@ -821,17 +810,9 @@ theme_override_styles/disabled = SubResource("StyleBoxEmpty_twgab")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_02fa5")
 icon_alignment = 1
 
-[node name="FeedbackVisual" type="Control" parent="Interface/Hud/ReviveOverlay/Center/Panel/Stack/Actions/Decline" unique_id=541867881 instance=ExtResource("15_sww3w")]
-process_mode = 3
+[node name="FeedbackVisual" parent="Interface/Hud/ReviveOverlay/Center/Panel/Stack/Actions/Decline" unique_id=541867881 instance=ExtResource("15_sww3w")]
 layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
 pivot_offset = Vector2(64, 64)
-mouse_filter = 2
-script = ExtResource("21_twgab")
 normal_style = SubResource("StyleBoxFlat_1e81c")
 hover_style = SubResource("StyleBoxFlat_wir6v")
 pressed_style = SubResource("StyleBoxFlat_bduea")
@@ -840,7 +821,7 @@ focus_style = SubResource("StyleBoxFlat_q4uia")
 icon = ExtResource("26_nepv3")
 icon_width = 64.0
 
-[node name="GFFPlayer" type="Node" parent="Interface/Hud/ReviveOverlay/Center/Panel/Stack/Actions/Decline/FeedbackVisual" unique_id=218764922]
+[node name="GFFPlayer2" type="Node" parent="Interface/Hud/ReviveOverlay/Center/Panel/Stack/Actions/Decline/FeedbackVisual" unique_id=218764922]
 script = ExtResource("14_suyxu")
 
 [node name="RewardedOverlay" type="Control" parent="Interface/Hud" unique_id=468536491]
@@ -902,17 +883,9 @@ theme_override_styles/disabled = SubResource("StyleBoxEmpty_twgab")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_02fa5")
 icon_alignment = 1
 
-[node name="FeedbackVisual" type="Control" parent="Interface/Hud/RewardedOverlay/Center/Panel/Stack/Cancel" unique_id=1375373268 instance=ExtResource("15_sww3w")]
-process_mode = 3
+[node name="FeedbackVisual" parent="Interface/Hud/RewardedOverlay/Center/Panel/Stack/Cancel" unique_id=1375373268 instance=ExtResource("15_sww3w")]
 layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
 pivot_offset = Vector2(64, 64)
-mouse_filter = 2
-script = ExtResource("21_twgab")
 normal_style = SubResource("StyleBoxFlat_1e81c")
 hover_style = SubResource("StyleBoxFlat_wir6v")
 pressed_style = SubResource("StyleBoxFlat_bduea")
@@ -921,7 +894,7 @@ focus_style = SubResource("StyleBoxFlat_q4uia")
 icon = ExtResource("26_nepv3")
 icon_width = 64.0
 
-[node name="GFFPlayer" type="Node" parent="Interface/Hud/RewardedOverlay/Center/Panel/Stack/Cancel/FeedbackVisual" unique_id=1096697218]
+[node name="GFFPlayer2" type="Node" parent="Interface/Hud/RewardedOverlay/Center/Panel/Stack/Cancel/FeedbackVisual" unique_id=1096697218]
 script = ExtResource("14_suyxu")
 
 [node name="SummonManager" type="Node" parent="." unique_id=1068555550]

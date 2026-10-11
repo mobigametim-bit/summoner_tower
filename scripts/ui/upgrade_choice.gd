@@ -8,6 +8,11 @@ signal upgrade_chosen(index: int)
 ]
 
 
+func _ready() -> void:
+	for card: Button in cards:
+		card.set_meta(&"skip_ui_sound", true)
+
+
 func show_choices(choices: Array[RunUpgrade], bonuses: RunBonuses) -> void:
 	for index: int in cards.size():
 		var upgrade: RunUpgrade = choices[index]

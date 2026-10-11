@@ -2,11 +2,13 @@ extends "res://scripts/game/game_manager.gd"
 
 var _snapshot_callback: JavaScriptObject
 var _reload_only: bool = false
+var _boss_review: bool = false
 
 
 func _ready() -> void:
 	if OS.has_feature("web"):
 		_reload_only = bool(JavaScriptBridge.eval("new URL(location.href).searchParams.get('reload') === '1'", true))
+		_boss_review = bool(JavaScriptBridge.eval("new URL(location.href).searchParams.get('boss') === '1'", true))
 		SessionProgress.use_test_save("user://rewarded_review.json")
 		if not _reload_only and not get_tree().has_meta("rewarded_review_started"):
 			get_tree().set_meta("rewarded_review_started", true)
@@ -21,7 +23,7 @@ func _ready() -> void:
 		wave_manager.stop()
 		return
 	wave_manager.stop()
-	wave_manager.wave_number = 4
+	wave_manager.wave_number = 5 if _boss_review else 4
 	wave_manager.phase = WaveManager.Phase.FIGHTING
 	wave_manager._begin_wave()
 	run_statistics.completed_waves = 3
@@ -31,17 +33,33 @@ func _ready() -> void:
 		summon_manager._slots[index].place_unit(unit)
 		unit.configure(enemies, projectiles, run_bonuses)
 		unit.paid_mana = 20
+		unit.attack_enabled = not _boss_review
 	get_node("ReviewTimer").start(1.5)
 
 
 func _on_review_timer_timeout() -> void:
 	if state == State.RUNNING:
+		if _boss_review:
+			wave_manager.spawn_timer.stop()
+			wave_manager._spawn_remaining = 0
+			wave_manager._batch_remaining = 0
+			var boss: ApproachingEnemy
+			var active: Array[ApproachingEnemy] = wave_manager._active.duplicate()
+			for enemy: ApproachingEnemy in active:
+				if enemy.stats.is_boss:
+					boss = enemy
+				else:
+					enemy.take_damage(enemy.max_health)
+			if boss != null:
+				tower.take_damage(tower.current_health - boss.tower_damage)
+				boss._resolve_at_tower()
+			return
 		tower.take_damage(tower.current_health)
 
 
 func _on_ad_completed(placement: AdService.Placement, outcome: AdService.Outcome) -> void:
 	super._on_ad_completed(placement, outcome)
-	if state == State.RUNNING:
+	if state == State.RUNNING and not _boss_review:
 		get_node("ReviewTimer").start(8.0)
 
 
@@ -62,7 +80,8 @@ func _publish_snapshot(_arguments: Array) -> void:
 		"cancel": _center(hud.ad_overlay.get_node("Center/Panel/Stack/Cancel")),
 		"double": _center(hud.double_reward_button),
 		"restart": _center(hud.restart_button), "menu": _center(hud.menu_button),
-		"settings": _center(hud.settings_button), "resume": _center(hud.resume_button)
+		"settings": _center(hud.settings_button), "resume": _center(hud.resume_button),
+		"card": _center(upgrade_choice.cards[0])
 	}
 	var snapshot: Dictionary = {
 		"state": state, "paused": get_tree().paused, "wave": wave_manager.wave_number,
@@ -77,6 +96,7 @@ func _publish_snapshot(_arguments: Array) -> void:
 		"enemy_positions": wave_manager._active.map(func(enemy: ApproachingEnemy) -> Array: return [enemy.global_position.x, enemy.global_position.y]),
 		"pending": wave_manager._spawn_remaining, "spawn_time": wave_manager.spawn_timer.time_left,
 		"map_changes": map_changes, "controls": controls,
+		"choice": upgrade_choice.visible, "killed_bosses": run_statistics.killed_bosses,
 		"bounds": {"offer": _bounds(hud.revive_overlay.get_node("Center/Panel")),
 			"ad": _bounds(hud.ad_overlay.get_node("Center/Panel")),
 			"result": _bounds(hud.game_over_overlay.get_node("Center/Panel"))},

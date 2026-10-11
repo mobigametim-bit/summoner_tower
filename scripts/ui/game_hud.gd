@@ -41,6 +41,7 @@ func update_wave(wave: int, phase: WaveManager.Phase, _seconds: int, _alive: int
 	elif boss_wave and phase == WaveManager.Phase.FIGHTING and wave != _last_announced_boss_wave:
 		# state_changed приходит также при каждом спавне и убийстве; показываем один раз за волну.
 		_last_announced_boss_wave = wave
+		AudioService.play_sfx(&"boss")
 		boss_warning.play_warning()
 
 

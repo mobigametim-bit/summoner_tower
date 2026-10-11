@@ -33,6 +33,7 @@ var _reward_placement: AdService.Placement = AdService.Placement.REVIVE
 
 
 func _ready() -> void:
+	AudioService.play_music(&"battle")
 	run_statistics.reset()
 	run_bonuses.reset()
 	if procedural_battlefield_enabled:
@@ -112,6 +113,7 @@ func _on_wave_upgrade_requested(_wave: int) -> void:
 	summon_manager.set_interaction_enabled(false)
 	_offered_upgrades = run_bonuses.roll_choices()
 	get_tree().paused = true
+	AudioService.stop_combat()
 	hud.set_settings_available(false)
 	upgrade_choice.show_choices(_offered_upgrades, run_bonuses)
 
@@ -120,6 +122,7 @@ func _on_upgrade_chosen(index: int) -> void:
 	if state != State.UPGRADE_CHOICE or index < 0 or index >= _offered_upgrades.size():
 		return
 	var upgrade: RunUpgrade = _offered_upgrades[index]
+	AudioService.play_sfx(&"upgrade")
 	# Закрываем выбор до сигналов лечения и изменения цены: повторный клик не выдаст бонус.
 	_offered_upgrades.clear()
 	upgrade_choice.close_choice()
@@ -141,6 +144,7 @@ func _on_settings_requested() -> void:
 	drag_controller.cancel_drag()
 	summon_manager.set_interaction_enabled(false)
 	hud.show_settings()
+	AudioService.stop_combat()
 	get_tree().paused = true
 
 
@@ -158,6 +162,7 @@ func _on_tower_destroyed() -> void:
 		return
 
 	if not revive_used:
+		AudioService.stop_combat()
 		state = State.REVIVE_OFFER
 		wave_manager.suspend_completion(true)
 		drag_controller.cancel_drag()
@@ -217,7 +222,7 @@ func _on_ad_completed(placement: AdService.Placement, outcome: AdService.Outcome
 			summon_manager.set_interaction_enabled(true)
 			get_tree().paused = false
 			hud.set_settings_available(true)
-			wave_manager.suspend_completion(false)
+			wave_manager.resume_after_revive()
 		else:
 			state = State.REVIVE_OFFER
 			hud.show_revive_offer(run_statistics.config.revive_health, outcome == AdService.Outcome.FAILED)
@@ -235,6 +240,7 @@ func _on_ad_completed(placement: AdService.Placement, outcome: AdService.Outcome
 
 
 func _stop_encounter() -> void:
+	AudioService.stop_combat()
 	ad_service.abort()
 	hud.close_rewarded_view()
 	hud.close_revive_offer()
@@ -283,4 +289,5 @@ func _handle_scene_change_error(error: Error) -> void:
 
 
 func _exit_tree() -> void:
+	AudioService.stop_effects()
 	get_tree().paused = false

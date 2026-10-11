@@ -180,6 +180,12 @@ func _fire() -> void:
 	var arrow: CombatProjectile = projectile_scene.instantiate() as CombatProjectile
 	_projectiles.add_child(arrow)
 	arrow.launch(muzzle.global_position, _target, stats, self, _run_bonuses, _next_damage())
+	var sound: StringName = &"archer"
+	if stats.unit_type == &"mage":
+		sound = &"fire_cast"
+	elif stats.unit_type == &"frost_mage":
+		sound = &"frost_cast"
+	AudioService.play_sfx(sound)
 
 
 func _next_damage() -> int:
