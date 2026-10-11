@@ -3,6 +3,21 @@ extends Control
 signal closed
 
 
+func _ready() -> void:
+	$Center/Panel/Stack/Language/Picker.item_selected.connect(_on_language_selected)
+	LocaleService.language_changed.connect(_refresh_language)
+	_refresh_language()
+
+
+func _refresh_language() -> void:
+	$Center/Panel/Stack/Language/Picker.select(LocaleService.LANGUAGES.find(LocaleService.language))
+	$Center/Panel/Stack/LanguageSaveError.visible = LocaleService.last_save_error != OK
+
+
+func _on_language_selected(index: int) -> void:
+	LocaleService.set_language(LocaleService.LANGUAGES[index])
+
+
 func open() -> void:
 	show()
 	$Center/Panel/Stack/AudioControls/Music/Slider.grab_focus()

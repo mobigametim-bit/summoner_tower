@@ -33,7 +33,7 @@ var _last_announced_boss_wave: int = 0
 
 func update_wave(wave: int, phase: WaveManager.Phase, _seconds: int, _alive: int, _pending: int) -> void:
 	var boss_wave: bool = wave_config != null and wave_config.is_boss_wave(wave)
-	var title: String = "BOSS" if boss_wave else "WAVE"
+	var title: String = tr("BOSS") if boss_wave else tr("WAVE")
 	wave_label.modulate = Color("ffb968") if boss_wave else Color.WHITE
 	UiNumbers.show_value(wave_label, wave, title + " ")
 	if phase != WaveManager.Phase.FIGHTING:

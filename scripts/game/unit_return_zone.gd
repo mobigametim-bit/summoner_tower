@@ -16,4 +16,4 @@ func set_preview(enabled: bool, hovered: bool = false, refund: int = 0) -> void:
 	refund_label.visible = enabled
 	highlight.modulate = Color("82e9ed") if hovered else Color(0.85, 0.68, 0.33, 0.55)
 	refund_label.modulate = Color("82e9ed") if hovered else Color("ffe0a0")
-	refund_label.text = "RETURN · +%d MANA" % refund
+	refund_label.text = tr("RETURN · +%d MANA") % refund

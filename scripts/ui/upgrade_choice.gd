@@ -16,14 +16,14 @@ func _ready() -> void:
 func show_choices(choices: Array[RunUpgrade], bonuses: RunBonuses) -> void:
 	for index: int in cards.size():
 		var upgrade: RunUpgrade = choices[index]
-		cards[index].get_node("Margin/Row/Content/Title").text = upgrade.title
-		cards[index].get_node("Margin/Row/Content/Description").text = upgrade.description
+		cards[index].get_node("Margin/Row/Content/Title").text = tr(upgrade.title)
+		cards[index].get_node("Margin/Row/Content/Description").text = tr(upgrade.description)
 		cards[index].get_node("Margin/Row/Icon").texture = upgrade.icon
 		var picked: int = bonuses.count(upgrade.kind)
 		var rank: HBoxContainer = cards[index].get_node("Margin/Row/Content/RankRow")
 		rank.visible = picked > 0
 		UiNumbers.show_value(rank.get_node("Count"), picked, "×")
-		rank.tooltip_text = "Previously picked: %d" % picked
+		rank.tooltip_text = tr("Previously picked: %d") % picked
 		cards[index].disabled = false
 	show()
 	cards[0].grab_focus()

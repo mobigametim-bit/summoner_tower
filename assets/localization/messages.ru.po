@@ -1,0 +1,173 @@
+msgid ""
+msgstr ""
+"Language: ru\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+
+msgid "SETTINGS"
+msgstr "НАСТРОЙКИ"
+
+msgid "Language"
+msgstr "Язык"
+
+msgid "Play"
+msgstr "Играть"
+
+msgid "Upgrades"
+msgstr "Улучшения"
+
+msgid "Settings"
+msgstr "Настройки"
+
+msgid "Close settings"
+msgstr "Закрыть настройки"
+
+msgid "Music volume"
+msgstr "Громкость музыки"
+
+msgid "Sound effects volume"
+msgstr "Громкость звуков"
+
+msgid "Settings could not be saved"
+msgstr "Не удалось сохранить настройки"
+
+msgid "WAVE"
+msgstr "ВОЛНА"
+
+msgid "WAVE 1"
+msgstr "ВОЛНА 1"
+
+msgid "BOSS"
+msgstr "БОСС"
+
+msgid "RUN RESULT"
+msgstr "ИТОГИ ЗАБЕГА"
+
+msgid "WAVE REACHED"
+msgstr "ДОСТИГНУТА ВОЛНА"
+
+msgid "ENEMIES KILLED"
+msgstr "ВРАГОВ УБИТО"
+
+msgid "BOSSES KILLED"
+msgstr "БОССОВ УБИТО"
+
+msgid "MERGES"
+msgstr "СЛИЯНИЙ"
+
+msgid "SOUL CRYSTALS EARNED"
+msgstr "ПОЛУЧЕНО КРИСТАЛЛОВ ДУШ"
+
+msgid "Restart"
+msgstr "Заново"
+
+msgid "Main menu"
+msgstr "Главное меню"
+
+msgid "Watch to double this run's crystals"
+msgstr "Посмотреть рекламу и удвоить награду"
+
+msgid "TRY AGAIN"
+msgstr "ПОПРОБУЙ ЕЩЁ РАЗ"
+
+msgid "Leave this run"
+msgstr "Завершить забег"
+
+msgid "MAIN MENU"
+msgstr "ГЛАВНОЕ МЕНЮ"
+
+msgid "CONTINUE"
+msgstr "ПРОДОЛЖИТЬ"
+
+msgid "Watch to revive the tower"
+msgstr "Посмотреть рекламу и восстановить башню"
+
+msgid "Finish this run"
+msgstr "Завершить забег"
+
+msgid "TEST AD"
+msgstr "ТЕСТОВАЯ РЕКЛАМА"
+
+msgid "REWARD AFTER VIEWING"
+msgstr "НАГРАДА ПОСЛЕ ПРОСМОТРА"
+
+msgid "TOWER HP"
+msgstr "ЗДОРОВЬЕ БАШНИ"
+
+msgid "UNIT DAMAGE"
+msgstr "УРОН БОЙЦОВ"
+
+msgid "MANA INCOME"
+msgstr "ПРИТОК МАНЫ"
+
+msgid "STARTING MANA"
+msgstr "СТАРТОВАЯ МАНА"
+
+msgid "UPGRADES"
+msgstr "УЛУЧШЕНИЯ"
+
+msgid "Back"
+msgstr "Назад"
+
+msgid "Maximum level"
+msgstr "Максимальный уровень"
+
+msgid "Upgrade for %d Soul Crystals"
+msgstr "Улучшить за %d кристаллов душ"
+
+msgid "BOSS DEFEATED"
+msgstr "БОСС ПОВЕРЖЕН"
+
+msgid "CHOOSE ONE UPGRADE"
+msgstr "ВЫБЕРИ УЛУЧШЕНИЕ"
+
+msgid "UPGRADE"
+msgstr "УЛУЧШЕНИЕ"
+
+msgid "Bonus for this run"
+msgstr "Бонус на этот забег"
+
+msgid "Previously picked: %d"
+msgstr "Уже выбрано: %d"
+
+msgid "RAPID FIRE"
+msgstr "БЫСТРАЯ АТАКА"
+
+msgid "+15% attack speed\nAll units attack faster."
+msgstr "+15% к скорости атаки\nВсе бойцы атакуют быстрее."
+
+msgid "POWER"
+msgstr "СИЛА"
+
+msgid "+20% damage\nAll units hit harder."
+msgstr "+20% к урону\nВсе бойцы бьют сильнее."
+
+msgid "MANA FLOW"
+msgstr "ПОТОК МАНЫ"
+
+msgid "+20% mana from kills\nBuild your army faster."
+msgstr "+20% маны за убийства\nСобирай армию быстрее."
+
+msgid "TOWER ARMOR"
+msgstr "БРОНЯ БАШНИ"
+
+msgid "+25% max tower HP\nHeal by the HP gained."
+msgstr "+25% к макс. здоровью башни\nВосстанавливает прибавку здоровья."
+
+msgid "FROST POWER"
+msgstr "СИЛА МОРОЗА"
+
+msgid "+10 percentage points of slow\nFrost Mages slow up to 70%."
+msgstr "+10 п. п. к замедлению\nЛедяные маги замедляют до 70%."
+
+msgid "CHEAP SUMMONS"
+msgstr "ДЕШЁВЫЙ ПРИЗЫВ"
+
+msgid "-15% summon cost\nSpend less on future units."
+msgstr "-15% к стоимости призыва\nНовые бойцы стоят дешевле."
+
+msgid "RETURN · +%d MANA"
+msgstr "ВОЗВРАТ · +%d МАНЫ"
+
+msgid "RETURN · +0 MANA"
+msgstr "ВОЗВРАТ · +0 МАНЫ"
