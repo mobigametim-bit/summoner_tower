@@ -106,7 +106,7 @@ func _choose_upgrade(choice: int) -> void:
 	var expected: int = 0
 	for slot: SummonSlot in game.summon_manager._slots:
 		if not slot.is_empty():
-			expected += game.summon_manager.refund_amount(slot.unit)
+			expected += game.summon_manager.refund_amount(slot.unit, true)
 	var mana_before: int = game.summon_manager.mana
 	var previous_map: int = game.map_changes
 	var previous_wave: int = game.wave_manager.wave_number

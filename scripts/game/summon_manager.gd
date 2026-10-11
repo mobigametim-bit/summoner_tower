@@ -168,8 +168,8 @@ func try_transfer(source: SummonSlot, destination: SummonSlot, expected_unit: Co
 	return true
 
 
-func refund_amount(unit: CombatUnit) -> int:
-	return config.refund_for(unit.paid_mana) if is_instance_valid(unit) else 0
+func refund_amount(unit: CombatUnit, map_change: bool = false) -> int:
+	return config.refund_for(unit.paid_mana, map_change) if is_instance_valid(unit) else 0
 
 
 func try_refund(source: SummonSlot, expected_unit: CombatUnit) -> bool:
@@ -213,7 +213,7 @@ func sell_army_for_map_change() -> int:
 	for slot: SummonSlot in _slots:
 		if not slot.is_empty():
 			var unit: CombatUnit = slot.unit
-			amount += refund_amount(unit)
+			amount += refund_amount(unit, true)
 			unit.paid_mana = 0
 			unit.stop()
 			sold.append(unit)

@@ -35,7 +35,7 @@ func prepare(game: Node2D, wave: int = 5, remaining_creep: bool = false) -> Dict
 	var refund: int = 0
 	for slot: SummonSlot in game.summon_manager._slots:
 		if not slot.is_empty():
-			refund += game.summon_manager.refund_amount(slot.unit)
+			refund += game.summon_manager.refund_amount(slot.unit, true)
 	game.set_meta("revive_check_refund", refund)
 	boss._resolve_at_tower()
 	assert(game.state == game.State.REVIVE_OFFER)

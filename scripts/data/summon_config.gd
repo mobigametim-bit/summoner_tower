@@ -5,13 +5,15 @@ extends Resource
 @export_range(1, 10000, 1) var initial_cost: int = 1
 @export_range(0, 10000, 1) var cost_increase: int = 0
 @export_range(0, 100, 1) var refund_percent: int = 50
+@export_range(0, 100, 1) var map_change_refund_percent: int = 80
 
 
 func cost_after(successful_summons: int) -> int:
 	return initial_cost + cost_increase * maxi(successful_summons, 0)
 
 
-func refund_for(paid_mana: int) -> int:
+func refund_for(paid_mana: int, map_change: bool = false) -> int:
 	# Целочисленное деление округляет вниз всю стоимость объединённого бойца.
+	var percent: int = map_change_refund_percent if map_change else refund_percent
 	@warning_ignore("integer_division")
-	return maxi(paid_mana, 0) * refund_percent / 100
+	return maxi(paid_mana, 0) * percent / 100
