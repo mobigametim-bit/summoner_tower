@@ -7,6 +7,7 @@ enum Pointer { NONE, MOUSE, TOUCH }
 
 @onready var preview: Node2D = $Preview
 @onready var preview_visual: Sprite2D = $Preview/Visual
+@onready var attack_range_preview: AttackRangePreview = $AttackRangePreview
 
 var _manager: SummonManager
 var _return_zone: UnitReturnZone
@@ -22,6 +23,8 @@ var _original_modulate: Color
 var _dragging: bool = false
 var _web_canvas: JavaScriptObject
 var _web_touch_cancel: JavaScriptObject
+var _web_window: JavaScriptObject
+var _web_resize: JavaScriptObject
 
 
 func _ready() -> void:
@@ -30,11 +33,21 @@ func _ready() -> void:
 		_web_touch_cancel = JavaScriptBridge.create_callback(_on_web_touch_cancel)
 		# Web-шаблон 4.7.2 превращает touchcancel в release: отменяем жест до обработчика движка.
 		_web_canvas.addEventListener("touchcancel", _web_touch_cancel, true)
+		_web_window = JavaScriptBridge.get_interface("window")
+		_web_resize = JavaScriptBridge.create_callback(_on_web_resize)
+		# При CSS-масштабировании Web-холста логический размер Window может не меняться.
+		_web_window.addEventListener("resize", _web_resize)
 
 
 func _exit_tree() -> void:
 	if _web_canvas != null:
 		_web_canvas.removeEventListener("touchcancel", _web_touch_cancel, true)
+	if _web_window != null:
+		_web_window.removeEventListener("resize", _web_resize)
+
+
+func _on_web_resize(_arguments: Array) -> void:
+	cancel_drag()
 
 
 func _on_web_touch_cancel(arguments: Array) -> void:
@@ -123,6 +136,8 @@ func _begin(viewport_position: Vector2, pointer: Pointer, touch_index: int = -1)
 	preview_visual.material = _unit.drag_material()
 	preview_visual.flip_h = slot.faces_left
 	preview.scale = _unit.drag_scale()
+	# Радиус задан в мировых координатах и не зависит от масштаба SVG-превью.
+	attack_range_preview.configure(_unit.stats.attack_range, ArcherVisual.CLOTH_COLORS[_unit.stats.level - 1])
 	get_viewport().set_input_as_handled()
 
 
@@ -136,7 +151,9 @@ func _update_drag(viewport_position: Vector2) -> void:
 		_original_modulate = _unit.modulate
 	_dragging = true
 	preview.show()
+	attack_range_preview.show()
 	preview.global_position = world_position + _grab_offset
+	attack_range_preview.global_position = preview.global_position
 	_unit.modulate = Color(_original_modulate, 0.45)
 	var destination: SummonSlot = _slot_at(world_position)
 	if destination != null:
@@ -166,6 +183,8 @@ func cancel_drag() -> void:
 		_unit.modulate = _original_modulate
 	if is_instance_valid(preview):
 		preview.hide()
+	if is_instance_valid(attack_range_preview):
+		attack_range_preview.hide()
 	for slot: SummonSlot in _slots:
 		slot.set_drop_highlight(false)
 	if is_instance_valid(_return_zone):

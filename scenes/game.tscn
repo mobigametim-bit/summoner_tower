@@ -11,6 +11,7 @@
 [ext_resource type="PackedScene" uid="uid://dmep054iccu1s" path="res://scenes/battlefield.tscn" id="8_pl11u"]
 [ext_resource type="Texture2D" uid="uid://cktgfcgc5nyox" path="res://assets/archer.svg" id="8_trtic"]
 [ext_resource type="Script" uid="uid://l6tfxq6xwsuh" path="res://scripts/game/summon_manager.gd" id="9_dinhu"]
+[ext_resource type="Script" uid="uid://bumogopfsvwa2" path="res://scripts/ui/attack_range_preview.gd" id="9_nepv3"]
 [ext_resource type="Resource" uid="uid://cuks6vm6g65ce" path="res://resources/balance/summon_config.tres" id="10_kvuet"]
 [ext_resource type="Resource" uid="uid://dpalsfkfhty6d" path="res://resources/balance/summon_pool.tres" id="12_ir15t"]
 [ext_resource type="Texture2D" uid="uid://k17uuaqhmgkm" path="res://assets/heart_full.svg" id="12_ssvqc"]
@@ -247,6 +248,11 @@ z_index = 100
 
 [node name="Visual" type="Sprite2D" parent="World/DragController/Preview" unique_id=1834101813]
 texture = ExtResource("8_trtic")
+
+[node name="AttackRangePreview" type="Node2D" parent="World/DragController" unique_id=1622675490]
+visible = false
+z_index = 99
+script = ExtResource("9_nepv3")
 
 [node name="Interface" type="CanvasLayer" parent="." unique_id=242053494]
 
