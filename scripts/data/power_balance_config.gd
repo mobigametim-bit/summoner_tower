@@ -10,7 +10,7 @@ extends Resource
 @export_range(1.0, 3.0, 0.01) var stage_growth: float = 1.18
 @export_range(1.0, 1000.0, 1.0) var minimum_stage_power: float = 12.0
 @export_range(1.0, 3.0, 0.01) var minimum_growth: float = 1.35
-@export_range(1, 100, 1) var tier_unlock_interval: int = 5
+@export var tier_unlock_waves: Array[int] = [1, 3, 6, 8, 11]
 @export_range(5, 200, 1) var maximum_regular_enemies: int = 80
 
 
@@ -36,7 +36,11 @@ func coefficient_for(wave: int) -> float:
 
 
 func maximum_tier_for(wave: int) -> int:
-	return mini(1 + floori(float(maxi(wave - 1, 0)) / tier_unlock_interval), EnemyStats.TIER_COLORS.size())
+	var highest: int = 1
+	for index: int in mini(tier_unlock_waves.size(), EnemyStats.TIER_COLORS.size()):
+		if wave >= tier_unlock_waves[index]:
+			highest = index + 1
+	return highest
 
 
 func budget_for(wave: int, power: float) -> float:
