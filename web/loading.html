@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="ru">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0">
+		<title>$GODOT_PROJECT_NAME</title>
+		<style>
+html, body, #canvas {
+	margin: 0;
+	padding: 0;
+	border: 0;
+}
+
+body {
+	color: white;
+	background-color: black;
+	overflow: hidden;
+	touch-action: none;
+}
+
+#canvas {
+	display: block;
+}
+
+#canvas:focus {
+	outline: none;
+}
+
+@font-face {
+    font-family: Tsap;
+    src: url("branding/Tsap-Tsarap.ttf") format("truetype");
+    font-display: swap;
+}
+
+#status {
+    position: fixed;
+    inset: 0;
+    z-index: 10;
+    box-sizing: border-box;
+    padding: max(24px, env(safe-area-inset-top)) 24px max(24px, env(safe-area-inset-bottom));
+    background: $GODOT_SPLASH_COLOR;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: clamp(16px, 3.5vmin, 28px);
+}
+
+#loading-title {
+    margin: 0;
+    color: #e3b552;
+    font: 400 clamp(24px, 7vmin, 56px)/1.15 Tsap, sans-serif;
+    letter-spacing: .03em;
+    text-align: center;
+}
+
+.loading-art {
+    /* The previous splash filled the viewport's shorter side; this is half. */
+    width: 50vmin;
+    height: 50vmin;
+    flex: 0 0 auto;
+}
+
+#loading-tower {
+    display: block;
+    width: 100%;
+    height: 100%;
+    overflow: visible;
+}
+
+#loading-crystal {
+    transform-box: fill-box;
+    transform-origin: center;
+    animation: crystal-pulse 1.8s ease-in-out infinite;
+}
+
+#loading-glow {
+    transform-box: fill-box;
+    transform-origin: center;
+    animation: energy-pulse 1.8s ease-in-out infinite;
+}
+
+@keyframes crystal-pulse {
+    0%, 100% { transform: scale(.97); filter: brightness(1) drop-shadow(0 0 3px #23a8c8); }
+    50% { transform: scale(1.08); filter: brightness(1.25) drop-shadow(0 0 13px #38dafa); }
+}
+
+@keyframes energy-pulse {
+    0%, 100% { transform: scale(.85); opacity: .35; }
+    50% { transform: scale(1.15); opacity: .8; }
+}
+
+#status-progress {
+    width: min(50vmin, 360px);
+    height: 6px;
+    flex: 0 0 auto;
+    border: 0;
+    border-radius: 6px;
+    overflow: hidden;
+    accent-color: #43d6ed;
+    background: #28344a;
+}
+
+#status-progress::-webkit-progress-bar { background: #28344a; border-radius: 6px; }
+#status-progress::-webkit-progress-value { background: #43d6ed; border-radius: 6px; }
+#status-progress::-moz-progress-bar { background: #43d6ed; border-radius: 6px; }
+#status-notice { display: none; }
+#status[data-mode="notice"] #status-progress { display: none; }
+#status[data-mode="notice"] #loading-crystal,
+#status[data-mode="notice"] #loading-glow { animation-play-state: paused; }
+
+@media (prefers-reduced-motion: reduce) {
+    #loading-crystal, #loading-glow { animation: none; }
+}
+
+#status-notice {
+	background-color: #5b3943;
+	border-radius: 0.5rem;
+	border: 1px solid #9b3943;
+	color: #e0e0e0;
+	font-family: 'Noto Sans', 'Droid Sans', Arial, sans-serif;
+	line-height: 1.3;
+	margin: 0 2rem;
+	overflow: hidden;
+	padding: 1rem;
+	text-align: center;
+	z-index: 1;
+}
+		</style>
+		$GODOT_HEAD_INCLUDE
+	</head>
+	<body>
+		<canvas id="canvas">
+			Your browser does not support the canvas tag.
+		</canvas>
+
+		<noscript>
+			Your browser does not support JavaScript.
+		</noscript>
+
+		<div id="status" aria-label="Загрузка Summoner Tower">
+            <h1 id="loading-title">$GODOT_PROJECT_NAME</h1>
+            <div class="loading-art"><svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 512 512" id="loading-tower" aria-hidden="true">
+  <title>Summoner Tower</title>
+  <defs><radialGradient id="loading-energy-gradient"><stop offset="0" stop-color="#37d8f1" stop-opacity=".7" /><stop offset=".5" stop-color="#37d8f1" stop-opacity=".3" /><stop offset="1" stop-color="#37d8f1" stop-opacity="0" /></radialGradient></defs><rect width="512" height="512" rx="96" fill="#101521" />
+  <ellipse cx="256" cy="210" rx="145" ry="145" fill="url(#loading-energy-gradient)" id="loading-glow" />
+  <g transform="translate(46 44) scale(1.64)">
+<g id="base" transform="translate(-19.2 -12.8) scale(1.15 1.1)" stroke="#29180f" stroke-width="7" stroke-linecap="round" stroke-linejoin="round" data-pivot-x="128" data-pivot-y="128">
+    <path d="M63 114Q128 103 193 114L210 202 225 227Q229 234 220 237L173 239H83L36 237Q27 234 31 227L46 202Z" fill="#b8a99a" />
+    <path d="m166 116 27-2 17 88 15 25-5 10-47 2h-22l16-51Z" fill="#81756f" stroke="none" />
+    <path d="m63 118 26-5-18 83-25 6Z" fill="#d8c8b3" stroke="none" />
+    <path d="m43 207 28-10-7 35-28-1Z" fill="#d8c8b3" stroke="none" />
+    <path d="m187 203 20 7 12 20-30 2Z" fill="#b8a99a" stroke="none" />
+    <path d="M77 234v-36Q77 161 128 146 179 161 179 198v36Z" fill="#d8c8b3" />
+    <path d="M128 146Q179 161 179 198v36h-16v-32Q163 175 128 161Z" fill="#b8a99a" stroke="none" />
+    <path d="M91 235v-36Q91 172 128 161 165 172 165 199v36Z" fill="#805035" />
+    <path d="M128 165Q162 175 162 199v33h-34Z" fill="#633b2a" stroke="none" />
+    <path d="M98 232v-32Q98 181 115 175v57Z" fill="#965f3d" stroke="none" />
+    <path d="M67 220h22v19H62Z" fill="#b8a99a" />
+    <path d="M167 220h22l5 19h-27Z" fill="#b8a99a" />
+    <path d="M35 235h186" fill="none" />
+  </g>
+  <g id="loading-crystal"><g id="crystal" transform="translate(-19.2 -12.8) scale(1.15 1.1)" stroke="#29180f" stroke-width="7" stroke-linecap="round" stroke-linejoin="round" data-pivot-x="128" data-pivot-y="95">
+    <path d="M128 20 159 61v33l-31 33-31-33V61Z" fill="#28cce6" />
+    <path d="m128 26 26 36-26 21Z" fill="#b5f7fb" stroke="none" />
+    <path d="m128 26-26 36 26 21Z" fill="#28cce6" stroke="none" />
+    <path d="m128 83 26-21v30l-26 29-26-29Z" fill="#159bc9" stroke="none" />
+    <path d="m128 83 26 9-26 29Z" fill="#28cce6" stroke="none" />
+  </g>
+  </g><g id="body" transform="translate(-19.2 -12.8) scale(1.15 1.1)" stroke="#29180f" stroke-width="7" stroke-linecap="round" stroke-linejoin="round" data-pivot-x="128" data-pivot-y="159.9">
+    <path d="M73 104Q128 91 183 104l9 48Q128 172 64 152Z" fill="#b8a99a" />
+    <path d="m143 101 40 3 9 48-49 13Z" fill="#81756f" stroke="none" />
+    <path d="m77 109 25-7-4 47-28-2Z" fill="#d8c8b3" stroke="none" />
+    <path d="M105 113 86 108 77 91 72 77 84 58 92 64 92 78 102 94 114 101Z" fill="#e3b552" />
+    <path d="m84 65-7 13 8 17 14 8-12-21Z" fill="#f5d581" stroke="none" />
+    <path d="M151 113 170 108 179 91 184 77 172 58 164 64 164 78 154 94 142 101Z" fill="#e3b552" />
+    <path d="m172 65 7 13-8 17-14 8 12-21Z" fill="#f5d581" stroke="none" />
+    <path d="M52 134 91 139l-2 61-19 14-18-16Z" fill="#e3b552" />
+    <path d="m60 145 23 3-2 48-11 8-10-11Z" fill="#355fa1" stroke="none" />
+    <path d="m71 147 12 1-2 48-11 8Z" fill="#28497d" stroke="none" />
+    <path d="M165 139 204 134v64l-18 16-19-14Z" fill="#e3b552" />
+    <path d="m173 148 23-3v48l-10 11-11-8Z" fill="#355fa1" stroke="none" />
+    <path d="m185 147 11-2v48l-10 11Z" fill="#28497d" stroke="none" />
+    <path d="M46 103 68 98l1 12 24 4v28l-26-3-19-9Z" fill="#b8a99a" />
+    <path d="m49 105 16-4 1 13 24 4-17 6-21-8Z" fill="#d8c8b3" stroke="none" />
+    <path d="m73 124 17-6v20l-23-3-16-7v-12Z" fill="#81756f" stroke="none" />
+    <path d="M163 114 187 110l1-12 22 5-2 27-19 9-26 3Z" fill="#b8a99a" />
+    <path d="m166 118 24-4 1-13 16 4-3 11-21 8Z" fill="#d8c8b3" stroke="none" />
+    <path d="m183 124 21-8-1 12-15 7-22 3v-20Z" fill="#81756f" stroke="none" />
+    <path d="M92 132 128 137l36-5v17l-36 9-36-9Z" fill="#e3b552" />
+    <path d="m96 136 32 5 32-5v7l-32 8-32-8Z" fill="#f5d581" stroke="none" />
+    <path d="m128 94 19 23-19 21-19-21Z" fill="#e3b552" />
+    <path d="m128 101 12 16-12 13-12-13Z" fill="#f5d581" stroke="none" />
+  </g>
+  </g>
+</svg></div>
+            <progress id="status-progress" aria-label="Загрузка игры"></progress>
+			<div id="status-notice"></div>
+		</div>
+
+		<script src="$GODOT_URL"></script>
+		<script>
+const GODOT_CONFIG = $GODOT_CONFIG;
+const GODOT_THREADS_ENABLED = $GODOT_THREADS_ENABLED;
+
+const engine = new Engine(GODOT_CONFIG);
+
+(function () {
+	const statusOverlay = document.getElementById('status');
+	const statusProgress = document.getElementById('status-progress');
+	const statusNotice = document.getElementById('status-notice');
+
+	let initializing = true;
+	let statusMode = '';
+
+	function setStatusMode(mode) {
+		if (statusMode === mode || !initializing) {
+			return;
+		}
+		if (mode === 'hidden') {
+			statusOverlay.remove();
+			initializing = false;
+			return;
+		}
+		statusOverlay.dataset.mode = mode;
+		statusProgress.style.display = mode === 'progress' ? 'block' : 'none';
+		statusNotice.style.display = mode === 'notice' ? 'block' : 'none';
+		statusMode = mode;
+	}
+
+	function setStatusNotice(text) {
+		while (statusNotice.lastChild) {
+			statusNotice.removeChild(statusNotice.lastChild);
+		}
+		const lines = text.split('\n');
+		lines.forEach((line) => {
+			statusNotice.appendChild(document.createTextNode(line));
+			statusNotice.appendChild(document.createElement('br'));
+		});
+	}
+
+	function displayFailureNotice(err) {
+		console.error(err);
+		if (err instanceof Error) {
+			setStatusNotice(err.message);
+		} else if (typeof err === 'string') {
+			setStatusNotice(err);
+		} else {
+			setStatusNotice('An unknown error occurred.');
+		}
+		setStatusMode('notice');
+		initializing = false;
+	}
+
+	const missing = Engine.getMissingFeatures({
+		threads: GODOT_THREADS_ENABLED,
+	});
+
+	if (missing.length !== 0) {
+		if (GODOT_CONFIG['serviceWorker'] && GODOT_CONFIG['ensureCrossOriginIsolationHeaders'] && 'serviceWorker' in navigator) {
+			let serviceWorkerRegistrationPromise;
+			try {
+				serviceWorkerRegistrationPromise = navigator.serviceWorker.getRegistration();
+			} catch (err) {
+				serviceWorkerRegistrationPromise = Promise.reject(new Error('Service worker registration failed.'));
+			}
+			// There's a chance that installing the service worker would fix the issue
+			Promise.race([
+				serviceWorkerRegistrationPromise.then((registration) => {
+					if (registration != null) {
+						return Promise.reject(new Error('Service worker already exists.'));
+					}
+					return registration;
+				}).then(() => engine.installServiceWorker()),
+				// For some reason, `getRegistration()` can stall
+				new Promise((resolve) => {
+					setTimeout(() => resolve(), 2000);
+				}),
+			]).then(() => {
+				// Reload if there was no error.
+				window.location.reload();
+			}).catch((err) => {
+				console.error('Error while registering service worker:', err);
+			});
+		} else {
+			// Display the message as usual
+			const missingMsg = 'Error\nThe following features required to run Godot projects on the Web are missing:\n';
+			displayFailureNotice(missingMsg + missing.join('\n'));
+		}
+	} else {
+		setStatusMode('progress');
+		engine.startGame({
+			'onProgress': function (current, total) {
+				if (current > 0 && total > 0) {
+					statusProgress.value = current;
+					statusProgress.max = total;
+				} else {
+					statusProgress.removeAttribute('value');
+					statusProgress.removeAttribute('max');
+				}
+			},
+		}).then(() => {
+			setStatusMode('hidden');
+		}, displayFailureNotice);
+	}
+}());
+		</script>
+	</body>
+</html>

@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="ru">
+<meta charset="utf-8">
+<title>Summoner Tower — карточка ссылки</title>
+<style>
+@font-face{font-family:Tsap;src:url('../../assets/fonts/tsap-tsarap/Tsap-Tsarap.ttf')}
+*{box-sizing:border-box}
+html,body{margin:0;width:1200px;height:630px;overflow:hidden;background:#101521}
+body{position:relative;color:#e3b552;font-family:'Segoe UI',sans-serif}
+.copy{position:absolute;left:64px;top:123px;z-index:3}
+h1{margin:0;font:100px/1.12 Tsap,sans-serif;letter-spacing:2px}
+p{margin:35px 0 0;font-size:25px;line-height:1.6;color:#b9d5df;font-weight:500}
+.scene{position:absolute;left:580px;top:20px;width:620px;height:590px}
+.scene img{position:absolute;object-fit:contain}
+.ground{position:absolute;left:0;top:292px;width:620px;height:212px;border-radius:50%;background:#1b3029;box-shadow:0 20px 0 #132723}
+.road{position:absolute;left:54px;top:366px;width:500px;height:52px;background:url('../../assets/environment/paved_road.svg');background-size:52px;border-radius:22px;transform:rotate(2deg)}
+.tree-left{left:15px;top:180px;width:112px;height:135px}
+.tree-right{right:6px;top:165px;width:135px;height:162px}
+.tower{left:170px;top:140px;width:280px;height:280px}
+.archer{left:48px;top:280px;width:174px;height:174px}
+.frost{left:400px;top:273px;width:180px;height:180px}
+.flowers{left:48px;top:420px;width:70px;height:60px}
+.sheep{left:503px;top:431px;width:68px;height:50px}
+.portal{left:255px;top:430px;width:112px;height:112px}
+.energy{position:absolute;left:270px;top:85px;width:64px;height:98px;background:#29d3f0;filter:blur(45px);opacity:.45}
+.sparks{position:absolute;left:0;top:0;width:620px;height:590px}
+</style>
+<div class="copy">
+  <h1>SUMMONER<br>TOWER</h1>
+  <p>Призывай. Объединяй. Защищай.<br>Играй прямо в браузере.</p>
+</div>
+<div class="scene">
+  <div class="ground"></div><div class="road"></div>
+  <img class="tree-left" src="../../assets/environment/tree.svg" alt="">
+  <img class="tree-right" src="../../assets/environment/tree.svg" alt="">
+  <div class="energy"></div>
+  <img class="tower" src="../../art/source/tower/master.svg" alt="Башня призывателя">
+  <img class="archer" src="../../art/source/archer/master.svg" alt="Лучник">
+  <img class="frost" src="../../art/source/frost_mage/master.svg" alt="Ледяной маг">
+  <img class="flowers" src="../../assets/environment/flowers.svg" alt="">
+  <img class="sheep" src="../../assets/environment/sheep.svg" alt="">
+  <img class="portal" src="../../assets/environment/portal.svg" alt="Портал">
+  <svg class="sparks" viewBox="0 0 620 590" xmlns="http://www.w3.org/2000/svg">
+    <g fill="#38d6ed" stroke="#20556e" stroke-width="4" stroke-linejoin="round">
+      <path d="m304 58 10 20-10 20-10-20z"/>
+      <path d="m264 105 8 16-8 16-8-16z"/>
+      <path d="m346 115 10 20-10 20-10-20z"/>
+      <path d="m244 158 7 14-7 14-7-14z"/>
+      <path d="m379 170 7 14-7 14-7-14z"/>
+    </g>
+    <g fill="#bcf9ff">
+      <path d="m304 62 5 16-5 12-3-12z"/>
+      <path d="m346 119 5 16-5 12-3-12z"/>
+    </g>
+  </svg>
+</div>
+</html>
