@@ -91,6 +91,7 @@ custom_minimum_size = Vector2(624, 880)
 layout_mode = 2
 size_flags_vertical = 3
 horizontal_scroll_mode = 0
+scroll_deadzone = 12
 
 [node name="Cards" type="VBoxContainer" parent="Center/Stack/Scroll" unique_id=1760869794]
 layout_mode = 2
