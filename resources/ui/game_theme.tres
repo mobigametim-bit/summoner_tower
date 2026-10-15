@@ -91,3 +91,4 @@ Button/styles/normal = SubResource("StyleBoxFlat_1e81c")
 Button/styles/pressed = SubResource("StyleBoxFlat_bduea")
 ProgressBar/styles/background = SubResource("StyleBoxFlat_d2y13")
 ProgressBar/styles/fill = SubResource("StyleBoxFlat_ki6ws")
+TooltipLabel/font_sizes/font_size = 28

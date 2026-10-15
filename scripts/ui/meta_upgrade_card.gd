@@ -41,7 +41,9 @@ func refresh() -> void:
 	price_label.tooltip_text = ""
 	disabled = not SessionProgress.can_buy(kind)
 	price_label.modulate = Color("ed939b") if disabled and not maximum else Color("d4b9ff")
-	tooltip_text = tr("Maximum level") if maximum else tr("Upgrade for %d Soul Crystals") % config.price_for(level, kind)
+	tooltip_text = tr(config.descriptions[kind])
+	if kind not in [MetaUpgradeConfig.Kind.LUCKY_CHOICE, MetaUpgradeConfig.Kind.EXPANDED_CHOICE]:
+		tooltip_text = tooltip_text % config.description_amount(kind)
 
 
 func _effect_at(level: int) -> String:

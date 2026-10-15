@@ -30,6 +30,9 @@ var map_changes: int = 0
 var _offered_upgrades: Array[RunUpgrade] = []
 var revive_used: bool = false
 var _last_healed_wave: int = 0
+var _upgrade_wave: int = 0
+var _rewarded_reroll_used_wave: int = -1
+var _rewarded_reroll_pending_wave: int = -1
 var _reward_placement: AdService.Placement = AdService.Placement.REVIVE
 
 
@@ -111,6 +114,7 @@ func _on_wave_upgrade_requested(wave: int) -> void:
 	if state != State.RUNNING:
 		return
 	state = State.UPGRADE_CHOICE
+	_upgrade_wave = wave
 	drag_controller.cancel_drag()
 	summon_manager.set_interaction_enabled(false)
 	_offered_upgrades = run_bonuses.roll_choices(tower.current_health, tower.max_health)
@@ -121,7 +125,7 @@ func _on_wave_upgrade_requested(wave: int) -> void:
 
 
 func _show_upgrade_choices() -> void:
-	upgrade_choice.show_choices(_offered_upgrades, run_bonuses, run_bonuses.rerolls_remaining)
+	upgrade_choice.show_choices(_offered_upgrades, run_bonuses, run_bonuses.rerolls_remaining, _rewarded_reroll_used_wave != _upgrade_wave)
 
 
 func _on_wave_completed(wave: int) -> void:
@@ -136,6 +140,16 @@ func _on_upgrade_reroll_requested() -> void:
 		return
 	_offered_upgrades = run_bonuses.roll_choices(tower.current_health, tower.max_health)
 	_show_upgrade_choices()
+
+
+func _on_upgrade_rewarded_reroll_requested() -> void:
+	if state != State.UPGRADE_CHOICE or _rewarded_reroll_used_wave == _upgrade_wave:
+		return
+	_rewarded_reroll_pending_wave = _upgrade_wave
+	_request_reward(AdService.Placement.UPGRADE_REROLL)
+	if state == State.UPGRADE_CHOICE:
+		_rewarded_reroll_pending_wave = -1
+		_show_upgrade_choices()
 
 
 func _on_upgrade_chosen(index: int) -> void:
@@ -228,6 +242,8 @@ func _request_reward(placement: AdService.Placement) -> void:
 		return
 	_reward_placement = placement
 	state = State.REWARDED_VIEW
+	if placement == AdService.Placement.UPGRADE_REROLL:
+		upgrade_choice.set_interaction_enabled(false)
 	hud.set_actions_enabled(false)
 	hud.show_rewarded_view()
 
@@ -241,7 +257,16 @@ func _on_ad_completed(placement: AdService.Placement, outcome: AdService.Outcome
 	if state != State.REWARDED_VIEW or placement != _reward_placement:
 		return
 	hud.close_rewarded_view()
-	if placement == AdService.Placement.REVIVE:
+	if placement == AdService.Placement.UPGRADE_REROLL:
+		# Право расходуется до обновления UI; повторный completed уже не пройдёт state guard.
+		if outcome == AdService.Outcome.SUCCESS and _rewarded_reroll_pending_wave == _upgrade_wave and _rewarded_reroll_used_wave != _upgrade_wave:
+			_rewarded_reroll_used_wave = _upgrade_wave
+			_offered_upgrades = run_bonuses.roll_choices(tower.current_health, tower.max_health)
+		_rewarded_reroll_pending_wave = -1
+		state = State.UPGRADE_CHOICE
+		hud.set_actions_enabled(true)
+		_show_upgrade_choices()
+	elif placement == AdService.Placement.REVIVE:
 		if outcome == AdService.Outcome.SUCCESS and tower.revive(run_statistics.config.revive_health):
 			revive_used = true
 			hud.close_revive_offer()
@@ -269,6 +294,7 @@ func _on_ad_completed(placement: AdService.Placement, outcome: AdService.Outcome
 func _stop_encounter() -> void:
 	AudioService.stop_combat()
 	ad_service.abort()
+	_rewarded_reroll_pending_wave = -1
 	hud.close_rewarded_view()
 	hud.close_revive_offer()
 	get_tree().paused = false

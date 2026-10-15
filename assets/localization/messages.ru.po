@@ -312,3 +312,6 @@ msgstr "Бесплатный переброс\n1 раз за забег"
 
 msgid "Boss upgrade choices\nFour instead of three"
 msgstr "Выбор после босса\n4 карточки вместо 3"
+
+msgid "Watch to reroll upgrades"
+msgstr "Переброс за просмотр"

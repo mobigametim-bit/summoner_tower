@@ -955,6 +955,7 @@ one_shot = true
 [connection signal="pressed" from="Interface/Hud/GameOverOverlay/Center/Panel/Stack/Actions/MenuButton" to="Interface/Hud" method="_on_menu_button_pressed"]
 [connection signal="pressed" from="Interface/Hud/GameOverOverlay/Center/Panel/Stack/Actions/DoubleRewardButton" to="Interface/Hud" method="_on_double_reward_pressed"]
 [connection signal="reroll_requested" from="Interface/Hud/UpgradeChoice" to="." method="_on_upgrade_reroll_requested"]
+[connection signal="rewarded_reroll_requested" from="Interface/Hud/UpgradeChoice" to="." method="_on_upgrade_rewarded_reroll_requested"]
 [connection signal="upgrade_chosen" from="Interface/Hud/UpgradeChoice" to="." method="_on_upgrade_chosen"]
 [connection signal="pressed" from="Interface/Hud/SettingsOverlay/Center/Panel/Stack/SettingsMenuButton" to="Interface/Hud" method="_on_menu_button_pressed"]
 [connection signal="pressed" from="Interface/Hud/SettingsOverlay/Center/Panel/Stack/ResumeButton" to="Interface/Hud" method="_on_resume_button_pressed"]

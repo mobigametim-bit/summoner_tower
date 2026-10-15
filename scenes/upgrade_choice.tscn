@@ -5,6 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://cwb8nh5c13esr" path="res://assets/ui/check.svg" id="3_4i4xc"]
 [ext_resource type="Texture2D" uid="uid://dpswmoaksimx3" path="res://assets/upgrades/rapid_fire.svg" id="3_d3dag"]
 [ext_resource type="Texture2D" uid="uid://bd64u8utst5a2" path="res://assets/upgrades/lucky_choice.svg" id="5_5sr3c"]
+[ext_resource type="Texture2D" uid="uid://buux0qljc4pti" path="res://assets/upgrades/rewarded_reroll.svg" id="6_dohbr"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_d3dag"]
 content_margin_left = 28.0
@@ -579,8 +580,18 @@ theme_override_constants/icon_max_width = 50
 icon = ExtResource("5_5sr3c")
 expand_icon = true
 
+[node name="RewardedReroll" type="Button" parent="Center/Panel/Stack/Rerolls" unique_id=389182049]
+custom_minimum_size = Vector2(112, 80)
+layout_mode = 2
+tooltip_text = "Watch to reroll upgrades"
+theme_override_constants/icon_max_width = 56
+text = "1"
+icon = ExtResource("6_dohbr")
+expand_icon = true
+
 [connection signal="pressed" from="Center/Panel/Stack/Card0" to="." method="_on_card_0_pressed"]
 [connection signal="pressed" from="Center/Panel/Stack/Card1" to="." method="_on_card_1_pressed"]
 [connection signal="pressed" from="Center/Panel/Stack/Card2" to="." method="_on_card_2_pressed"]
 [connection signal="pressed" from="Center/Panel/Stack/Card3" to="." method="_on_card_3_pressed"]
 [connection signal="pressed" from="Center/Panel/Stack/Rerolls/Reroll" to="." method="_on_reroll_pressed"]
+[connection signal="pressed" from="Center/Panel/Stack/Rerolls/RewardedReroll" to="." method="_on_rewarded_reroll_pressed"]

@@ -3,12 +3,14 @@ extends Control
 
 signal upgrade_chosen(index: int)
 signal reroll_requested
+signal rewarded_reroll_requested
 
 @onready var cards: Array[Button] = [
 	$Center/Panel/Stack/Card0, $Center/Panel/Stack/Card1, $Center/Panel/Stack/Card2,
 	$Center/Panel/Stack/Card3
 ]
 @onready var reroll_button: Button = $Center/Panel/Stack/Rerolls/Reroll
+@onready var rewarded_reroll_button: Button = $Center/Panel/Stack/Rerolls/RewardedReroll
 var _layout_revision: int = 0
 var _minimum_card_height: float = 166.0
 
@@ -19,7 +21,7 @@ func _ready() -> void:
 		card.set_meta(&"skip_ui_sound", true)
 
 
-func show_choices(choices: Array[RunUpgrade], bonuses: RunBonuses, rerolls: int = 0) -> void:
+func show_choices(choices: Array[RunUpgrade], bonuses: RunBonuses, rerolls: int = 0, rewarded_available: bool = true) -> void:
 	for index: int in cards.size():
 		cards[index].visible = index < choices.size()
 		if index >= choices.size():
@@ -38,6 +40,8 @@ func show_choices(choices: Array[RunUpgrade], bonuses: RunBonuses, rerolls: int 
 	reroll_button.visible = rerolls > 0
 	reroll_button.disabled = rerolls <= 0
 	reroll_button.text = str(rerolls)
+	rewarded_reroll_button.disabled = not rewarded_available
+	rewarded_reroll_button.text = "1" if rewarded_available else "0"
 	show()
 	cards[0].grab_focus()
 	_layout_revision += 1
@@ -63,12 +67,14 @@ func close_choice() -> void:
 	for card: Button in cards:
 		card.disabled = true
 	reroll_button.disabled = true
+	rewarded_reroll_button.disabled = true
 
 
 func set_interaction_enabled(enabled: bool) -> void:
 	for card: Button in cards:
 		card.disabled = not enabled or not card.visible
 	reroll_button.disabled = not enabled or not reroll_button.visible
+	rewarded_reroll_button.disabled = not enabled
 
 
 func _choose(index: int) -> void:
@@ -88,6 +94,13 @@ func _on_reroll_pressed() -> void:
 		return
 	reroll_button.disabled = true
 	reroll_requested.emit()
+
+
+func _on_rewarded_reroll_pressed() -> void:
+	if not visible or rewarded_reroll_button.disabled:
+		return
+	rewarded_reroll_button.disabled = true
+	rewarded_reroll_requested.emit()
 
 
 func _on_card_0_pressed() -> void:

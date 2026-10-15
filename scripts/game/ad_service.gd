@@ -1,7 +1,7 @@
 class_name AdService
 extends Node
 
-enum Placement { REVIVE, DOUBLE_REWARD }
+enum Placement { REVIVE, DOUBLE_REWARD, UPGRADE_REROLL }
 enum Outcome { SUCCESS, CANCELED, FAILED }
 
 signal completed(placement: Placement, outcome: Outcome)
