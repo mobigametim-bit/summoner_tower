@@ -35,7 +35,7 @@
     },
     "index.html": {
       "bytes": 13218,
-      "sha256": "0e49170f70dbab6a7310351e9b9fb4cba65d540482f399c665bbc69f7c5784a8"
+      "sha256": "d24eab7bc77cb839f70b8115173a5f9d9225c3a0238a71cf54e859947910e021"
     },
     "index.icon.png": {
       "bytes": 53481,
@@ -46,8 +46,8 @@
       "sha256": "33c94cb3175f3333b82e2a3be5e8e86f77986f0aa2042b1631f6367a4e5bb6ba"
     },
     "index.pck": {
-      "bytes": 7976408,
-      "sha256": "c6e7caee873f5f21c560e4b9bde4f5e8aa6c4e0fd4dfb5d37bf6ec3b41f36f83"
+      "bytes": 7976440,
+      "sha256": "2ebca36da44c3ac72e604a460a0105596635019c987842d040e9498e94de02ed"
     },
     "index.png": {
       "bytes": 38531,
@@ -60,5 +60,7 @@
   },
   "source_has_branding_changes": true,
   "branding_revision": "2026-10-16-v1",
-  "loading_revision": "2026-10-16-v1"
+  "loading_revision": "2026-10-16-v1",
+  "meta_scroll_revision": "2026-10-16-v1",
+  "source_has_meta_ui_changes": true
 }
