@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="RunUpgrade" format=3]
+
+[ext_resource type="Script" path="res://scripts/data/run_upgrade.gd" id="1"]
+[ext_resource type="Texture2D" path="res://assets/upgrades/archer_lv5.svg" id="2"]
+[ext_resource type="PackedScene" path="res://scenes/archer.tscn" id="3"]
+[ext_resource type="Resource" path="res://resources/balance/archer_lv5.tres" id="4"]
+
+[resource]
+script = ExtResource("1")
+kind = 17
+icon = ExtResource("2")
+title = "ARCHER LV5"
+description = "Receive one free Lv5 Archer\nOn the next map."
+strength = 0
+unit_scene = ExtResource("3")
+unit_stats = ExtResource("4")

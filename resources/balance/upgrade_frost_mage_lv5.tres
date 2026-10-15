@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="RunUpgrade" format=3]
+
+[ext_resource type="Script" path="res://scripts/data/run_upgrade.gd" id="1"]
+[ext_resource type="Texture2D" path="res://assets/upgrades/frost_mage_lv5.svg" id="2"]
+[ext_resource type="PackedScene" path="res://scenes/frost_mage.tscn" id="3"]
+[ext_resource type="Resource" path="res://resources/balance/frost_mage_lv5.tres" id="4"]
+
+[resource]
+script = ExtResource("1")
+kind = 19
+icon = ExtResource("2")
+title = "FROST MAGE LV5"
+description = "Receive one free Lv5 Frost Mage\nOn the next map."
+strength = 0
+unit_scene = ExtResource("3")
+unit_stats = ExtResource("4")

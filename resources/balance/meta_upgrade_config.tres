@@ -1,12 +1,18 @@
-[gd_resource type="Resource" script_class="MetaUpgradeConfig" format=3]
+[gd_resource type="Resource" script_class="MetaUpgradeConfig" format=3 uid="uid://1ju4o0ub8riu"]
 
-[ext_resource type="Script" path="res://scripts/data/meta_upgrade_config.gd" id="1_config"]
+[ext_resource type="Script" uid="uid://dtnsj7girfwvl" path="res://scripts/data/meta_upgrade_config.gd" id="1_config"]
+[ext_resource type="Texture2D" uid="uid://k17uuaqhmgkm" path="res://assets/heart_full.svg" id="2"]
+[ext_resource type="Texture2D" uid="uid://b42xmdjvv32vv" path="res://assets/upgrades/power.svg" id="3"]
+[ext_resource type="Texture2D" uid="uid://dxno5kasfncq2" path="res://assets/upgrades/mana_income.svg" id="4"]
+[ext_resource type="Texture2D" uid="uid://bji12or1tb4ma" path="res://assets/upgrades/starting_mana.svg" id="5"]
+[ext_resource type="Texture2D" uid="uid://cpec0ewyegy6o" path="res://assets/upgrades/battle_training.svg" id="6"]
+[ext_resource type="Texture2D" uid="uid://dyfr16nuyt3eb" path="res://assets/upgrades/keen_sight.svg" id="7"]
+[ext_resource type="Texture2D" uid="uid://ybetfnbt3pmo" path="res://assets/upgrades/economical_summons.svg" id="8"]
+[ext_resource type="Texture2D" uid="uid://ckng1pn7ky566" path="res://assets/upgrades/restoration.svg" id="9"]
+[ext_resource type="Texture2D" uid="uid://bpmyuawl58rib" path="res://assets/upgrades/ability_mastery.svg" id="10"]
+[ext_resource type="Texture2D" uid="uid://bd64u8utst5a2" path="res://assets/upgrades/lucky_choice.svg" id="11"]
+[ext_resource type="Texture2D" uid="uid://2keym11ffr6l" path="res://assets/upgrades/expanded_choice.svg" id="12"]
 
 [resource]
 script = ExtResource("1_config")
-maximum_level = 10
-price_step = 25
-health_per_level = 0.1
-damage_per_level = 0.05
-income_per_level = 0.05
-starting_mana_per_level = 10
+icons = Array[Texture2D]([ExtResource("2"), ExtResource("3"), ExtResource("4"), ExtResource("5"), ExtResource("6"), ExtResource("7"), ExtResource("8"), ExtResource("9"), ExtResource("10"), ExtResource("11"), ExtResource("12")])

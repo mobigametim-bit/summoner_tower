@@ -29,6 +29,7 @@ var state: State = State.RUNNING
 var map_changes: int = 0
 var _offered_upgrades: Array[RunUpgrade] = []
 var revive_used: bool = false
+var _last_healed_wave: int = 0
 var _reward_placement: AdService.Placement = AdService.Placement.REVIVE
 
 
@@ -106,17 +107,35 @@ func _on_summon_requested() -> void:
 		summon_manager.try_summon()
 
 
-func _on_wave_upgrade_requested(_wave: int) -> void:
+func _on_wave_upgrade_requested(wave: int) -> void:
 	if state != State.RUNNING:
 		return
 	state = State.UPGRADE_CHOICE
 	drag_controller.cancel_drag()
 	summon_manager.set_interaction_enabled(false)
-	_offered_upgrades = run_bonuses.roll_choices()
+	_offered_upgrades = run_bonuses.roll_choices(tower.current_health, tower.max_health)
 	get_tree().paused = true
 	AudioService.stop_combat()
 	hud.set_settings_available(false)
-	upgrade_choice.show_choices(_offered_upgrades, run_bonuses)
+	_show_upgrade_choices()
+
+
+func _show_upgrade_choices() -> void:
+	upgrade_choice.show_choices(_offered_upgrades, run_bonuses, run_bonuses.rerolls_remaining)
+
+
+func _on_wave_completed(wave: int) -> void:
+	if state != State.RUNNING or wave <= _last_healed_wave:
+		return
+	_last_healed_wave = wave
+	tower.heal(run_bonuses.regeneration_amount())
+
+
+func _on_upgrade_reroll_requested() -> void:
+	if state != State.UPGRADE_CHOICE or not run_bonuses.try_use_reroll():
+		return
+	_offered_upgrades = run_bonuses.roll_choices(tower.current_health, tower.max_health)
+	_show_upgrade_choices()
 
 
 func _on_upgrade_chosen(index: int) -> void:
@@ -129,8 +148,15 @@ func _on_upgrade_chosen(index: int) -> void:
 	upgrade_choice.close_choice()
 	run_bonuses.apply(upgrade)
 	tower.increase_max_health(run_bonuses.tower_health_for(config.tower_max_health))
+	if upgrade.kind == RunUpgrade.Kind.MEDKIT:
+		tower.heal(upgrade.strength)
 	# Бой остаётся на паузе до очистки армии и перепривязки новой карты.
 	_renew_battlefield()
+	# Награда карточки относится к новой карте, а не к сгорающему остатку старой.
+	if upgrade.kind == RunUpgrade.Kind.MANA_RESERVE:
+		summon_manager.add_mana(roundi(upgrade.strength))
+	if upgrade.unit_scene != null and not summon_manager.grant_unit(upgrade.unit_scene, upgrade.unit_stats):
+		push_error("Не удалось выдать бойца из карточки на новой карте.")
 	state = State.RUNNING
 	wave_manager.finish_upgrade_choice()
 	summon_manager.set_interaction_enabled(true)

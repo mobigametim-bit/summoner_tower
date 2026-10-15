@@ -24,8 +24,11 @@ func _ready() -> void:
 func refresh() -> void:
 	var config: MetaUpgradeConfig = SessionProgress.UPGRADE_CONFIG
 	var level: int = SessionProgress.upgrade_level(kind)
-	var maximum: bool = level >= config.maximum_level
-	level_label.text = "%d / %d" % [level, config.maximum_level]
+	var limit: int = config.maximum_for(kind)
+	var maximum: bool = level >= limit
+	get_node("Margin/Row/Info/Title").text = tr(config.titles[kind])
+	get_node("Margin/Row/Icon").texture = config.icons[kind]
+	level_label.text = "%d / %d" % [level, limit]
 	current_effect.text = _effect_at(level)
 	next_effect.text = _effect_at(level + 1)
 	next_effect.visible = not maximum
@@ -33,18 +36,28 @@ func refresh() -> void:
 	price_icon.texture = CHECK if maximum else CRYSTAL
 	if maximum:
 		price_label.text = ""
-		price_label.tooltip_text = tr("Maximum level")
 	else:
-		UiNumbers.show_value(price_label, config.price_for(level))
+		UiNumbers.show_value(price_label, config.price_for(level, kind))
+	price_label.tooltip_text = ""
 	disabled = not SessionProgress.can_buy(kind)
 	price_label.modulate = Color("ed939b") if disabled and not maximum else Color("d4b9ff")
-	tooltip_text = tr("Maximum level") if maximum else tr("Upgrade for %d Soul Crystals") % config.price_for(level)
+	tooltip_text = tr("Maximum level") if maximum else tr("Upgrade for %d Soul Crystals") % config.price_for(level, kind)
 
 
 func _effect_at(level: int) -> String:
 	var config: MetaUpgradeConfig = SessionProgress.UPGRADE_CONFIG
 	if kind == MetaUpgradeConfig.Kind.STARTING_MANA:
 		return "+%d" % config.starting_mana_bonus(level)
+	if kind == MetaUpgradeConfig.Kind.SUMMON_ECONOMY:
+		return "−%d%%" % roundi(config.summon_discount_per_level * level * 100.0)
+	if kind == MetaUpgradeConfig.Kind.ABILITY_MASTERY:
+		return "−%d%%" % roundi(config.ability_reduction_per_level * level * 100.0)
+	if kind == MetaUpgradeConfig.Kind.RESTORATION:
+		return "+%d" % (config.restoration_per_level * level)
+	if kind == MetaUpgradeConfig.Kind.LUCKY_CHOICE:
+		return str(level)
+	if kind == MetaUpgradeConfig.Kind.EXPANDED_CHOICE:
+		return str(3 + level)
 	return "+%d%%" % roundi((config.multiplier_for(kind, level) - 1.0) * 100.0)
 
 

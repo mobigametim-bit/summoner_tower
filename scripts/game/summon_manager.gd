@@ -169,7 +169,38 @@ func try_transfer(source: SummonSlot, destination: SummonSlot, expected_unit: Co
 
 
 func refund_amount(unit: CombatUnit, map_change: bool = false) -> int:
-	return config.refund_for(unit.paid_mana, map_change) if is_instance_valid(unit) else 0
+	if not is_instance_valid(unit):
+		return 0
+	if map_change or _run_bonuses == null:
+		return config.refund_for(unit.paid_mana, map_change)
+	return floori(maxi(unit.paid_mana, 0) * _run_bonuses.manual_refund_percent(config.refund_percent) / 100.0 + RunBonuses.ROUNDING_EPSILON)
+
+
+func grant_unit(scene: PackedScene, stats: UnitStats) -> bool:
+	# Награда после генерации карты, без расхода маны и роста цены призыва.
+	if not _running or _busy or scene == null or stats == null:
+		return false
+	var destination: SummonSlot
+	for slot: SummonSlot in _slots:
+		if slot.is_empty():
+			destination = slot
+			break
+	if destination == null:
+		return false
+	_busy = true
+	var unit: CombatUnit = scene.instantiate() as CombatUnit
+	unit.stats = stats
+	unit.paid_mana = 0
+	if not destination.place_unit(unit):
+		unit.free()
+		_busy = false
+		return false
+	unit.configure(_enemies, _projectiles, _run_bonuses)
+	destination.play_summon_effect()
+	AudioService.play_sfx(&"summon")
+	_busy = false
+	_emit_state()
+	return true
 
 
 func try_refund(source: SummonSlot, expected_unit: CombatUnit) -> bool:
@@ -177,7 +208,7 @@ func try_refund(source: SummonSlot, expected_unit: CombatUnit) -> bool:
 		return false
 	if not _slots.has(source) or source.unit != expected_unit or expected_unit.get_parent() != source.unit_host:
 		return false
-	if expected_unit.paid_mana <= 0:
+	if expected_unit.paid_mana < 0:
 		return false
 
 	_busy = true

@@ -7,7 +7,7 @@ signal save_failed(error: int)
 const UPGRADE_CONFIG: MetaUpgradeConfig = preload("res://resources/balance/meta_upgrade_config.tres")
 
 var crystals: int = 0
-var upgrade_levels: Array[int] = [0, 0, 0, 0]
+var upgrade_levels: Array[int] = []
 var save_manager: SaveManager = SaveManager.new(SaveManager.SAVE_PATH, UPGRADE_CONFIG.maximum_level)
 var _buying: bool = false
 var _test_session: bool = false
@@ -80,13 +80,13 @@ func try_add_reward(amount: int) -> bool:
 
 
 func upgrade_level(kind: int) -> int:
-	return upgrade_levels[kind] if UPGRADE_CONFIG.is_valid_kind(kind) else 0
+	return upgrade_levels[kind] if UPGRADE_CONFIG.is_valid_kind(kind) and kind < upgrade_levels.size() else 0
 
 
 func can_buy(kind: int) -> bool:
 	if not save_manager.writable or not UPGRADE_CONFIG.is_valid_kind(kind):
 		return false
-	var price: int = UPGRADE_CONFIG.price_for(upgrade_level(kind))
+	var price: int = UPGRADE_CONFIG.price_for(upgrade_level(kind), kind)
 	return price > 0 and crystals >= price
 
 
@@ -96,7 +96,7 @@ func try_buy(kind: int) -> bool:
 	_buying = true
 	var previous_crystals: int = crystals
 	# Оба значения фиксируются до сигналов; callback не может повторить покупку.
-	crystals -= UPGRADE_CONFIG.price_for(upgrade_level(kind))
+	crystals -= UPGRADE_CONFIG.price_for(upgrade_level(kind), kind)
 	upgrade_levels[kind] += 1
 	if not _save_progress():
 		# Не подтверждаем покупку, которую не смогли сохранить.

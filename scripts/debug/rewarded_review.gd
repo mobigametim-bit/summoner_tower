@@ -13,7 +13,7 @@ func _ready() -> void:
 		if not _reload_only and not get_tree().has_meta("rewarded_review_started"):
 			get_tree().set_meta("rewarded_review_started", true)
 			SessionProgress.crystals = 0
-			SessionProgress.upgrade_levels.assign([0, 0, 0, 0])
+			SessionProgress.upgrade_levels.fill(0)
 			SessionProgress._save_progress()
 	super._ready()
 	if OS.has_feature("web"):

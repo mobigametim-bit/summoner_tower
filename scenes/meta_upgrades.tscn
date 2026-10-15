@@ -38,7 +38,7 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="Stack" type="VBoxContainer" parent="Center" unique_id=964060317]
-custom_minimum_size = Vector2(624, 0)
+custom_minimum_size = Vector2(624, 1160)
 layout_mode = 2
 theme_override_constants/separation = 22
 
@@ -86,46 +86,81 @@ theme_override_colors/font_color = Color(0.83137256, 0.7254902, 1, 1)
 theme_override_font_sizes/font_size = 54
 text = "0"
 
-[node name="Cards" type="VBoxContainer" parent="Center/Stack" unique_id=1760869794]
+[node name="Scroll" type="ScrollContainer" parent="Center/Stack" unique_id=1701227563]
+custom_minimum_size = Vector2(624, 880)
 layout_mode = 2
+size_flags_vertical = 3
+horizontal_scroll_mode = 0
+
+[node name="Cards" type="VBoxContainer" parent="Center/Stack/Scroll" unique_id=1760869794]
+layout_mode = 2
+size_flags_horizontal = 3
 theme_override_constants/separation = 16
 
-[node name="TowerHealth" parent="Center/Stack/Cards" unique_id=2135619170 instance=ExtResource("4_m0i5v")]
+[node name="TowerHealth" parent="Center/Stack/Scroll/Cards" unique_id=2135619170 instance=ExtResource("4_m0i5v")]
 layout_mode = 2
 
-[node name="UnitDamage" parent="Center/Stack/Cards" unique_id=78372351 instance=ExtResource("4_m0i5v")]
+[node name="UnitDamage" parent="Center/Stack/Scroll/Cards" unique_id=78372351 instance=ExtResource("4_m0i5v")]
 layout_mode = 2
 kind = 1
 
-[node name="Icon" parent="Center/Stack/Cards/UnitDamage/Margin/Row" parent_id_path=PackedInt32Array(78372351, 936242740) index="0" unique_id=1207761789]
+[node name="Icon" parent="Center/Stack/Scroll/Cards/UnitDamage/Margin/Row" parent_id_path=PackedInt32Array(78372351, 936242740) index="0" unique_id=1207761789]
 texture = ExtResource("5_02tnn")
 
-[node name="Title" parent="Center/Stack/Cards/UnitDamage/Margin/Row/Info" parent_id_path=PackedInt32Array(78372351, 803336639) index="0" unique_id=1649898687]
+[node name="Title" parent="Center/Stack/Scroll/Cards/UnitDamage/Margin/Row/Info" parent_id_path=PackedInt32Array(78372351, 803336639) index="0" unique_id=1649898687]
 text = "UNIT DAMAGE"
 
-[node name="ManaIncome" parent="Center/Stack/Cards" unique_id=1511232248 instance=ExtResource("4_m0i5v")]
+[node name="ManaIncome" parent="Center/Stack/Scroll/Cards" unique_id=1511232248 instance=ExtResource("4_m0i5v")]
 layout_mode = 2
 kind = 2
 
-[node name="Icon" parent="Center/Stack/Cards/ManaIncome/Margin/Row" parent_id_path=PackedInt32Array(1511232248, 936242740) index="0" unique_id=1207761789]
+[node name="Icon" parent="Center/Stack/Scroll/Cards/ManaIncome/Margin/Row" parent_id_path=PackedInt32Array(1511232248, 936242740) index="0" unique_id=1207761789]
 texture = ExtResource("6_708r6")
 
-[node name="Title" parent="Center/Stack/Cards/ManaIncome/Margin/Row/Info" parent_id_path=PackedInt32Array(1511232248, 803336639) index="0" unique_id=1649898687]
+[node name="Title" parent="Center/Stack/Scroll/Cards/ManaIncome/Margin/Row/Info" parent_id_path=PackedInt32Array(1511232248, 803336639) index="0" unique_id=1649898687]
 text = "MANA INCOME"
 
-[node name="StartingMana" parent="Center/Stack/Cards" unique_id=1344456356 instance=ExtResource("4_m0i5v")]
+[node name="StartingMana" parent="Center/Stack/Scroll/Cards" unique_id=1344456356 instance=ExtResource("4_m0i5v")]
 layout_mode = 2
 kind = 3
 
-[node name="Icon" parent="Center/Stack/Cards/StartingMana/Margin/Row" parent_id_path=PackedInt32Array(1344456356, 936242740) index="0" unique_id=1207761789]
+[node name="Icon" parent="Center/Stack/Scroll/Cards/StartingMana/Margin/Row" parent_id_path=PackedInt32Array(1344456356, 936242740) index="0" unique_id=1207761789]
 texture = ExtResource("7_vuhjh")
 
-[node name="Title" parent="Center/Stack/Cards/StartingMana/Margin/Row/Info" parent_id_path=PackedInt32Array(1344456356, 803336639) index="0" unique_id=1649898687]
+[node name="Title" parent="Center/Stack/Scroll/Cards/StartingMana/Margin/Row/Info" parent_id_path=PackedInt32Array(1344456356, 803336639) index="0" unique_id=1649898687]
 text = "STARTING MANA"
+
+[node name="BattleTraining" parent="Center/Stack/Scroll/Cards" unique_id=661115537 instance=ExtResource("4_m0i5v")]
+layout_mode = 2
+kind = 4
+
+[node name="KeenSight" parent="Center/Stack/Scroll/Cards" unique_id=1201045801 instance=ExtResource("4_m0i5v")]
+layout_mode = 2
+kind = 5
+
+[node name="EconomicalSummons" parent="Center/Stack/Scroll/Cards" unique_id=317162282 instance=ExtResource("4_m0i5v")]
+layout_mode = 2
+kind = 6
+
+[node name="Restoration" parent="Center/Stack/Scroll/Cards" unique_id=1097982214 instance=ExtResource("4_m0i5v")]
+layout_mode = 2
+kind = 7
+
+[node name="AbilityMastery" parent="Center/Stack/Scroll/Cards" unique_id=1379495701 instance=ExtResource("4_m0i5v")]
+layout_mode = 2
+kind = 8
+
+[node name="LuckyChoice" parent="Center/Stack/Scroll/Cards" unique_id=1021953464 instance=ExtResource("4_m0i5v")]
+layout_mode = 2
+kind = 9
+
+[node name="ExpandedChoice" parent="Center/Stack/Scroll/Cards" unique_id=381566175 instance=ExtResource("4_m0i5v")]
+layout_mode = 2
+kind = 10
 
 [connection signal="pressed" from="Center/Stack/Header/BackButton" to="." method="_on_back_pressed"]
 
-[editable path="Center/Stack/Cards/TowerHealth"]
-[editable path="Center/Stack/Cards/UnitDamage"]
-[editable path="Center/Stack/Cards/ManaIncome"]
-[editable path="Center/Stack/Cards/StartingMana"]
+[editable path="Center/Stack/Scroll/Cards/TowerHealth"]
+[editable path="Center/Stack/Scroll/Cards/UnitDamage"]
+[editable path="Center/Stack/Scroll/Cards/ManaIncome"]
+[editable path="Center/Stack/Scroll/Cards/StartingMana"]

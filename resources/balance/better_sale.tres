@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="RunUpgrade" format=3]
+
+[ext_resource type="Script" path="res://scripts/data/run_upgrade.gd" id="1"]
+[ext_resource type="Texture2D" path="res://assets/upgrades/better_sale.svg" id="2"]
+
+[resource]
+script = ExtResource("1")
+kind = 16
+icon = ExtResource("2")
+title = "BETTER SALE"
+description = "+10 points to manual resale\nMap sale stays at 80%; cap 100%."
+strength = 0.1

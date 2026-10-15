@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="RunUpgrade" format=3]
+
+[ext_resource type="Script" path="res://scripts/data/run_upgrade.gd" id="1"]
+[ext_resource type="Texture2D" path="res://assets/upgrades/deep_freeze.svg" id="2"]
+
+[resource]
+script = ExtResource("1")
+kind = 14
+icon = ExtResource("2")
+title = "DEEP FREEZE"
+description = "+0.2 s freeze duration\nBosses remain immune to freezing."
+strength = 0.2

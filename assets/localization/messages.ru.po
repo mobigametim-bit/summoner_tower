@@ -171,3 +171,144 @@ msgstr "ВОЗВРАТ · +%d МАНЫ"
 
 msgid "RETURN · +0 MANA"
 msgstr "ВОЗВРАТ · +0 МАНЫ"
+
+msgid "MEDKIT"
+msgstr "АПТЕЧКА"
+
+msgid "+50 tower HP\nRestore health up to the maximum."
+msgstr "+50 здоровья башни\nВосстановление до максимума."
+
+msgid "MANA RESERVE"
+msgstr "ЗАПАС МАНЫ"
+
+msgid "+100 mana\nA one-time supply for your army."
+msgstr "+100 маны\nРазовая помощь армии."
+
+msgid "LONG SIGHT"
+msgstr "ДАЛЬНОЗОРКОСТЬ"
+
+msgid "+10% attack range\nAll current and future units."
+msgstr "+10% к радиусу атаки\nДля всех текущих и новых бойцов."
+
+msgid "ARCHER TRAINING"
+msgstr "СТРЕЛКОВАЯ ПОДГОТОВКА"
+
+msgid "+30% Archer damage\nAll current and future Archers."
+msgstr "+30% урона лучников\nДля текущих и новых лучников."
+
+msgid "PYROMANCY"
+msgstr "ПИРОМАНТИЯ"
+
+msgid "+30% Fire Mage damage\nAll current and future Fire Mages."
+msgstr "+30% урона огненных магов\nДля текущих и новых магов."
+
+msgid "ICE POWER"
+msgstr "ЛЕДЯНАЯ МОЩЬ"
+
+msgid "+30% Frost Mage damage\nAll current and future Frost Mages."
+msgstr "+30% урона ледяных магов\nДля текущих и новых магов."
+
+msgid "HOT FLAMES"
+msgstr "ЖАРКОЕ ПЛАМЯ"
+
+msgid "+40% burn damage\nDirect hit damage is unchanged."
+msgstr "+40% урона горения\nПрямой урон не меняется."
+
+msgid "WIDE BLAST"
+msgstr "ШИРОКИЙ ВЗРЫВ"
+
+msgid "+15% area radius\nSplash and area abilities."
+msgstr "+15% радиуса области\nВзрывы и способности по области."
+
+msgid "DEEP FREEZE"
+msgstr "ГЛУБОКАЯ ЗАМОРОЗКА"
+
+msgid "+0.2 s freeze duration\nBosses remain immune to freezing."
+msgstr "+0,2 сек. полной заморозки\nБоссы сохраняют иммунитет."
+
+msgid "REGENERATION"
+msgstr "РЕГЕНЕРАЦИЯ"
+
+msgid "+5 HP after each wave\nHeal up to the maximum."
+msgstr "+5 здоровья после каждой волны\nВосстановление до максимума."
+
+msgid "BETTER SALE"
+msgstr "ВЫГОДНАЯ ПРОДАЖА"
+
+msgid "+10 points to manual resale\nMap sale stays at 80%; cap 100%."
+msgstr "+10 п. п. к ручному возврату\nНа новой карте 80%; предел 100%."
+
+msgid "ARCHER LV5"
+msgstr "ЛУЧНИК LV5"
+
+msgid "Receive one free Lv5 Archer\nOn the next map."
+msgstr "Бесплатный лучник Lv5\nНа следующей карте."
+
+msgid "FIRE MAGE LV5"
+msgstr "ОГНЕННЫЙ МАГ LV5"
+
+msgid "Receive one free Lv5 Fire Mage\nOn the next map."
+msgstr "Бесплатный огненный маг Lv5\nНа следующей карте."
+
+msgid "FROST MAGE LV5"
+msgstr "ЛЕДЯНОЙ МАГ LV5"
+
+msgid "Receive one free Lv5 Frost Mage\nOn the next map."
+msgstr "Бесплатный ледяной маг Lv5\nНа следующей карте."
+
+msgid "BATTLE TRAINING"
+msgstr "БОЕВАЯ ПОДГОТОВКА"
+
+msgid "KEEN SIGHT"
+msgstr "ЗОРКОСТЬ"
+
+msgid "ECONOMICAL SUMMONS"
+msgstr "ЭКОНОМНЫЙ ПРИЗЫВ"
+
+msgid "RESTORATION"
+msgstr "ВОССТАНОВЛЕНИЕ"
+
+msgid "ABILITY MASTERY"
+msgstr "ЗНАНИЕ СПОСОБНОСТЕЙ"
+
+msgid "LUCKY CHOICE"
+msgstr "УДАЧНЫЙ ВЫБОР"
+
+msgid "EXPANDED CHOICE"
+msgstr "РАСШИРЕННЫЙ ВЫБОР"
+
+msgid "Reroll upgrades"
+msgstr "Перебросить улучшения"
+
+msgid "Max tower HP\n+%d%% per level"
+msgstr "Здоровье башни\n+%d%% за уровень"
+
+msgid "Damage of all units\n+%d%% per level"
+msgstr "Урон всех бойцов\n+%d%% за уровень"
+
+msgid "Mana from kills\n+%d%% per level"
+msgstr "Мана за убийства\n+%d%% за уровень"
+
+msgid "Starting mana\n+%d per level"
+msgstr "Мана в начале забега\n+%d за уровень"
+
+msgid "Normal attack speed\n+%d%% per level"
+msgstr "Скорость обычных атак\n+%d%% за уровень"
+
+msgid "Attack range\n+%d%% per level"
+msgstr "Радиус атаки\n+%d%% за уровень"
+
+msgid "Summon cost\n-%d%% per level"
+msgstr "Стоимость призыва\n−%d%% за уровень"
+
+msgid "HP restored after a wave\n+%d per level"
+msgstr "Лечение после волны\n+%d за уровень"
+
+msgid "Lv5 abilities\n-%d%% cooldown per level"
+msgstr "Способности Lv5\n−%d%% к кулдауну за уровень"
+
+msgid "Free card reroll\nOnce per run"
+msgstr "Бесплатный переброс\n1 раз за забег"
+
+msgid "Boss upgrade choices\nFour instead of three"
+msgstr "Выбор после босса\n4 карточки вместо 3"

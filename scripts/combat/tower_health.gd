@@ -15,6 +15,7 @@ signal summon_requested
 var current_health: int = 0
 var max_health: int = 0
 var _is_destroyed: bool = false
+var _heal_remainder: float = 0.0
 
 
 func _ready() -> void:
@@ -75,6 +76,7 @@ func initialize(health: int) -> void:
 	max_health = maxi(health, 1)
 	current_health = max_health
 	_is_destroyed = false
+	_heal_remainder = 0.0
 	modulate = Color.WHITE
 	set_animated_visual(animated_visual_enabled)
 	health_changed.emit(current_health, max_health)
@@ -134,3 +136,18 @@ func _on_summon_button_pressed() -> void:
 func _on_unit_refunded(_amount: int) -> void:
 	if animated_visual_enabled and not _is_destroyed:
 		tower_visual.show_refund()
+
+
+func heal(amount: float) -> void:
+	if _is_destroyed or amount <= 0:
+		return
+	if current_health >= max_health:
+		_heal_remainder = 0.0
+		return
+	var total: float = amount + _heal_remainder
+	var whole: int = floori(total + RunBonuses.ROUNDING_EPSILON)
+	_heal_remainder = maxf(total - whole, 0.0)
+	current_health = mini(current_health + whole, max_health)
+	if current_health == max_health:
+		_heal_remainder = 0.0
+	health_changed.emit(current_health, max_health)

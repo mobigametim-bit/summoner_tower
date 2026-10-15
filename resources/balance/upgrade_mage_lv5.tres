@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="RunUpgrade" format=3]
+
+[ext_resource type="Script" path="res://scripts/data/run_upgrade.gd" id="1"]
+[ext_resource type="Texture2D" path="res://assets/upgrades/mage_lv5.svg" id="2"]
+[ext_resource type="PackedScene" path="res://scenes/mage.tscn" id="3"]
+[ext_resource type="Resource" path="res://resources/balance/mage_lv5.tres" id="4"]
+
+[resource]
+script = ExtResource("1")
+kind = 18
+icon = ExtResource("2")
+title = "FIRE MAGE LV5"
+description = "Receive one free Lv5 Fire Mage\nOn the next map."
+strength = 0
+unit_scene = ExtResource("3")
+unit_stats = ExtResource("4")

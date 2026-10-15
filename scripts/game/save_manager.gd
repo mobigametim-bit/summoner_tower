@@ -2,7 +2,7 @@ class_name SaveManager
 extends RefCounted
 
 const SAVE_PATH: String = "user://progress.json"
-const FORMAT_VERSION: int = 1
+const FORMAT_VERSION: int = 2
 # JSON хранит числа как double; ограничение оставляет целые значения точными.
 const MAX_CRYSTALS: int = 9007199254740991
 const MAX_FILE_BYTES: int = 65536
@@ -53,6 +53,9 @@ func load_progress() -> Dictionary:
 	var levels: Array[int] = []
 	for level: Variant in data.upgrade_levels:
 		levels.append(int(level))
+	# V1 содержал ровно четыре вида улучшений; их индексы сохраняются.
+	while levels.size() < MetaUpgradeConfig.Kind.COUNT:
+		levels.append(0)
 	return {"crystals": int(data.crystals), "upgrade_levels": levels}
 
 
@@ -86,15 +89,17 @@ func save_progress(crystals: int, levels: Array[int]) -> Error:
 
 
 func _valid(data: Dictionary) -> bool:
-	if not _integer_in_range(data.get("version"), FORMAT_VERSION, FORMAT_VERSION):
+	if not _integer_in_range(data.get("version"), 1, FORMAT_VERSION):
 		return false
 	if not _integer_in_range(data.get("crystals"), 0, MAX_CRYSTALS):
 		return false
 	var levels: Variant = data.get("upgrade_levels")
-	if not levels is Array or levels.size() != 4:
+	var expected_count: int = 4 if int(data.version) == 1 else MetaUpgradeConfig.Kind.COUNT
+	if not levels is Array or levels.size() != expected_count:
 		return false
-	for level: Variant in levels:
-		if not _integer_in_range(level, 0, maximum_level):
+	var limits: MetaUpgradeConfig = MetaUpgradeConfig.new()
+	for index: int in levels.size():
+		if not _integer_in_range(levels[index], 0, mini(maximum_level, limits.maximum_for(index))):
 			return false
 	return true
 
@@ -106,5 +111,7 @@ func _integer_in_range(value: Variant, minimum: int, maximum: int) -> bool:
 
 
 func _defaults() -> Dictionary:
-	var levels: Array[int] = [0, 0, 0, 0]
+	var levels: Array[int] = []
+	levels.resize(MetaUpgradeConfig.Kind.COUNT)
+	levels.fill(0)
 	return {"crystals": 0, "upgrade_levels": levels}

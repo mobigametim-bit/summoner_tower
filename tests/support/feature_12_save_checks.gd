@@ -9,11 +9,16 @@ func run_checks() -> Dictionary:
 	DirAccess.remove_absolute(PATH + ".tmp")
 	var store: SaveManager = SaveManager.new(PATH, SessionProgress.UPGRADE_CONFIG.maximum_level)
 	assert(store.load_progress().crystals == 0 and store.load_status == "missing")
-	var levels: Array[int] = [1, 2, 3, 4]
+	var levels: Array[int] = [1, 2, 3, 4, 0, 0, 0, 0, 0, 0, 0]
+	var zeros: Array[int] = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+	var purchased: Array[int] = [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+	_write('{"version":1,"crystals":321,"upgrade_levels":[1,2,3,4]}')
+	assert(store.load_progress().upgrade_levels == levels)
 	assert(store.save_progress(321, levels) == OK)
 	var restored: Dictionary = SaveManager.new(PATH).load_progress()
 	assert(restored.crystals == 321 and restored.upgrade_levels == levels)
-	assert(store.save_progress(221, [2, 2, 3, 4]) == OK)
+	levels[0] = 2
+	assert(store.save_progress(221, levels) == OK)
 	assert(store.load_progress().crystals == 221)
 	assert(not FileAccess.file_exists(PATH + ".tmp"))
 	var invalid_cases: Array[String] = [
@@ -31,21 +36,21 @@ func run_checks() -> Dictionary:
 	for source: String in invalid_cases:
 		_write(source)
 		var reset: Dictionary = store.load_progress()
-		assert(reset.crystals == 0 and reset.upgrade_levels == [0, 0, 0, 0] and store.load_status == "invalid")
-	_write('{"version":2,"crystals":321,"upgrade_levels":[1,2,3,4]}')
+		assert(reset.crystals == 0 and reset.upgrade_levels == zeros and store.load_status == "invalid")
+	_write('{"version":3,"crystals":321,"upgrade_levels":[1,2,3,4]}')
 	store.load_progress()
 	assert(not store.writable and store.load_status == "future_version")
 	var future_source: String = FileAccess.get_file_as_string(PATH)
-	assert(store.save_progress(0, [0, 0, 0, 0]) == ERR_UNAVAILABLE)
+	assert(store.save_progress(0, zeros) == ERR_UNAVAILABLE)
 	assert(FileAccess.get_file_as_string(PATH) == future_source)
 	_write("x".repeat(SaveManager.MAX_FILE_BYTES + 1))
 	assert(store.load_progress().crystals == 0 and store.load_status == "invalid")
-	assert(store.save_progress(0, [0, 0, 0, 0]) == OK)
+	assert(store.save_progress(0, zeros) == OK)
 	SessionProgress.use_test_save(PATH)
 	SessionProgress.add_crystals(200)
 	assert(SessionProgress.try_buy(0))
 	assert(SaveManager.new(PATH).load_progress().crystals == 175)
-	assert(SaveManager.new(PATH).load_progress().upgrade_levels == [1, 0, 0, 0])
+	assert(SaveManager.new(PATH).load_progress().upgrade_levels == purchased)
 	# Существующая выдача результата остаётся однократной и сохраняет весь баланс.
 	var statistics: RunStatistics = RunStatistics.new()
 	statistics.config = load("res://resources/balance/run_reward_config.tres")
@@ -62,8 +67,8 @@ func run_checks() -> Dictionary:
 	SessionProgress.save_failed.connect(on_failure)
 	assert(not SessionProgress.try_buy(1))
 	SessionProgress.save_failed.disconnect(on_failure)
-	assert(SessionProgress.crystals == 195 and SessionProgress.upgrade_levels == [1, 0, 0, 0])
-	assert(failure_state.crystals == 195 and failure_state.levels == [1, 0, 0, 0] and not failure_state.reentrant_purchase)
+	assert(SessionProgress.crystals == 195 and SessionProgress.upgrade_levels == purchased)
+	assert(failure_state.crystals == 195 and failure_state.levels == purchased and not failure_state.reentrant_purchase)
 	SessionProgress.use_test_save()
 	DirAccess.remove_absolute(PATH)
 	return {"passed": true, "invalid_cases": invalid_cases.size(), "atomic_overwrite": true,
