@@ -13,6 +13,14 @@
       "bytes": 127200,
       "sha256": "25a223e49b83d79b4285f2dd4345d53f88d18351c306d3429b18d3563444a5a7"
     },
+    "branding/readme_216.txt": {
+      "bytes": 185,
+      "sha256": "64f395796511130f0b3f73fd8a7480847e51f8e0c30ad75dfd67b9fa6c16c013"
+    },
+    "branding/Tsap-Tsarap.ttf": {
+      "bytes": 152680,
+      "sha256": "70767e9663c036fc022e07fabcb6b06a8726dd501572aef9fb99d7b45cfc44a8"
+    },
     "index.apple-touch-icon.png": {
       "bytes": 14192,
       "sha256": "f18f204d3088fdc484604372506382076c5fba609cc1beb1b9c1580068074c5e"
@@ -26,8 +34,8 @@
       "sha256": "5b476a9c9ce642c0ee4256436d1bc31d9c38f868aca0f9a8e2a57c18d2dec2a3"
     },
     "index.html": {
-      "bytes": 7233,
-      "sha256": "ce9525412041f18f7f9767363d1ccb2a1071ecb9758f220b7826242402437bf4"
+      "bytes": 13218,
+      "sha256": "0e49170f70dbab6a7310351e9b9fb4cba65d540482f399c665bbc69f7c5784a8"
     },
     "index.icon.png": {
       "bytes": 53481,
@@ -51,5 +59,6 @@
     }
   },
   "source_has_branding_changes": true,
-  "branding_revision": "2026-10-16-v1"
+  "branding_revision": "2026-10-16-v1",
+  "loading_revision": "2026-10-16-v1"
 }
