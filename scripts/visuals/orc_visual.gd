@@ -88,9 +88,14 @@ func impact_now() -> void:
 
 func show_hit() -> void:
 	# Повторные попадания не откладывают удар башне и не прерывают его подготовку.
-	if _preparing or _active_animation == &"hit":
+	if _preparing or _active_animation == &"hit" or str(_active_animation).begins_with("ability_"):
 		return
 	play_animation(&"hit")
+
+
+func play_ability(ability: StringName) -> void:
+	if not _preparing and not _tail:
+		play_animation(StringName("ability_" + str(ability)))
 
 
 func finish_as_tail(killed: bool) -> void:

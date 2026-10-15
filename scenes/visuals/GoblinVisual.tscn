@@ -30,7 +30,7 @@ shader_parameter/recolor_enabled = false
 shader_parameter/equipment_color = Color(0.53333336, 0.7254902, 0.41960785, 1)
 shader_parameter/equipment_mask = ExtResource("3_g61qc")
 
-[sub_resource type="Animation" id="Animation_802lr"]
+[sub_resource type="Animation" id="Animation_6c0tc"]
 length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -187,6 +187,94 @@ tracks/12/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [Vector2(-128, -128)]
+}
+tracks/13/type = "value"
+tracks/13/imported = false
+tracks/13/enabled = true
+tracks/13/path = NodePath("Skeleton2D/Root/Body:rotation")
+tracks/13/interp = 1
+tracks/13/loop_wrap = true
+tracks/13/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/14/type = "value"
+tracks/14/imported = false
+tracks/14/enabled = true
+tracks/14/path = NodePath("Skeleton2D/Root/Body/Head:rotation")
+tracks/14/interp = 1
+tracks/14/loop_wrap = true
+tracks/14/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/15/type = "value"
+tracks/15/imported = false
+tracks/15/enabled = true
+tracks/15/path = NodePath("Skeleton2D/Root/Body/FrontArm:rotation")
+tracks/15/interp = 1
+tracks/15/loop_wrap = true
+tracks/15/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="Animation" id="Animation_01qy7"]
+resource_name = "ability_dash"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Skeleton2D/Root/Body:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.15, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(126, 179), Vector2(126, 192), Vector2(126, 186)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Skeleton2D/Root/Body:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.15, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [0.0, -0.2, -0.16]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Skeleton2D/Root/Body/Head:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.15, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [0.0, 0.12, 0.08]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Skeleton2D/Root/Body/FrontArm:rotation")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.15, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [0.0, 0.45, 0.35]
 }
 
 [sub_resource type="Animation" id="Animation_g61qc"]
@@ -570,7 +658,8 @@ tracks/9/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_g61qc"]
 _data = {
-&"RESET": SubResource("Animation_802lr"),
+&"RESET": SubResource("Animation_6c0tc"),
+&"ability_dash": SubResource("Animation_01qy7"),
 &"attack": SubResource("Animation_g61qc"),
 &"death": SubResource("Animation_x2lql"),
 &"hit": SubResource("Animation_essvn"),
@@ -627,7 +716,7 @@ position = Vector2(-83, -159)
 texture = ExtResource("7_6c0tc")
 centered = false
 script = ExtResource("13_flig7")
-tier_textures = [null, null, ExtResource("7_6c0tc"), ExtResource("9_01qy7"), ExtResource("10_x7ls7")]
+tier_textures = Array[Texture2D]([null, null, ExtResource("7_6c0tc"), ExtResource("9_01qy7"), ExtResource("10_x7ls7")])
 
 [node name="LeftLeg" type="Bone2D" parent="Skeleton2D/Root/Body" unique_id=1986548086]
 position = Vector2(-25, 24)
@@ -689,7 +778,7 @@ position = Vector2(-205, -190)
 texture = ExtResource("7_2sc5m")
 centered = false
 script = ExtResource("13_flig7")
-tier_textures = [ExtResource("7_2sc5m"), ExtResource("15_f44oq"), ExtResource("16_noehh"), ExtResource("17_0tlgo"), ExtResource("18_j65gc")]
+tier_textures = Array[Texture2D]([ExtResource("7_2sc5m"), ExtResource("15_f44oq"), ExtResource("16_noehh"), ExtResource("17_0tlgo"), ExtResource("18_j65gc")])
 
 [node name="Head" type="Bone2D" parent="Skeleton2D/Root/Body" unique_id=19833739]
 position = Vector2(7, -34)
@@ -714,7 +803,7 @@ position = Vector2(-133, -145)
 texture = ExtResource("20_amf52")
 centered = false
 script = ExtResource("13_flig7")
-tier_textures = [null, null, null, null, ExtResource("20_amf52")]
+tier_textures = Array[Texture2D]([null, null, null, null, ExtResource("20_amf52")])
 
 [node name="BodyArmor" type="Sprite2D" parent="Skeleton2D/Root/Body" unique_id=736200537]
 visible = false
@@ -725,7 +814,7 @@ position = Vector2(-126, -179)
 texture = ExtResource("12_l3ieg")
 centered = false
 script = ExtResource("13_flig7")
-tier_textures = [null, ExtResource("12_l3ieg"), ExtResource("12_l3ieg"), ExtResource("14_adnum"), ExtResource("14_adnum")]
+tier_textures = Array[Texture2D]([null, ExtResource("12_l3ieg"), ExtResource("12_l3ieg"), ExtResource("14_adnum"), ExtResource("14_adnum")])
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=901267714]
 callback_mode_process = 0

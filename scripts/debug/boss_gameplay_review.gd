@@ -47,6 +47,7 @@ func _setup_load_test(count: int) -> void:
 		var enemy: ApproachingEnemy = wave_manager.config.boss_scene.instantiate() as ApproachingEnemy
 		wave_manager._active.append(enemy)
 		enemy.resolved.connect(wave_manager._on_enemy_resolved)
+		enemy.retinue_requested.connect(wave_manager._on_retinue_requested)
 		enemies.add_child(enemy)
 		enemy.configure(spawn_point.global_position, contact_point.global_position.y, wave_manager.config.boss_health_for(review_wave, enemy.stats.base_health), wave_manager.config.boss_level_for(review_wave))
 		if route != null and enemy.has_method("follow_route"):

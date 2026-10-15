@@ -1,0 +1,144 @@
+[gd_scene format=3 uid="uid://blev2rqm3d2hr"]
+
+[ext_resource type="Script" uid="uid://ugdvanlnftev" path="res://scripts/vfx/enemy_ability_visual.gd" id="1_kmbls"]
+[ext_resource type="Texture2D" uid="uid://b24ppqs1we00c" path="res://assets/vfx/summon_portal/portal_spark.svg" id="2_p1tgj"]
+[ext_resource type="Gradient" path="res://resources/vfx/magic_particles/fade.tres" id="3_1r0xc"]
+[ext_resource type="Texture2D" uid="uid://bi40tcn3t0vbi" path="res://assets/vfx/enemy_abilities/particles/lightning.svg" id="4_xb0lk"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_erc05"]
+blend_mode = 1
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_7151p"]
+blend_mode = 1
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_fa3fs"]
+blend_mode = 1
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_y1ys8"]
+blend_mode = 1
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_b6ovi"]
+blend_mode = 1
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_kbu3t"]
+blend_mode = 1
+
+[node name="EnemyAbilityVisual" type="Node2D" unique_id=1550891466]
+z_index = 9
+script = ExtResource("1_kmbls")
+
+[node name="Sparks" type="CPUParticles2D" parent="." unique_id=213349047]
+material = SubResource("CanvasItemMaterial_erc05")
+position = Vector2(0, -10)
+emitting = false
+amount = 16
+texture = ExtResource("2_p1tgj")
+lifetime = 0.45
+one_shot = true
+explosiveness = 1.0
+local_coords = true
+direction = Vector2(0, -1)
+spread = 180.0
+gravity = Vector2(0, 45)
+initial_velocity_min = 55.0
+initial_velocity_max = 105.0
+scale_amount_min = 0.4
+scale_amount_max = 0.7
+color_ramp = ExtResource("3_1r0xc")
+
+[node name="AuraParticles" type="CPUParticles2D" parent="." unique_id=1618048387]
+z_index = 1
+material = SubResource("CanvasItemMaterial_7151p")
+emitting = false
+amount = 14
+texture = ExtResource("2_p1tgj")
+lifetime = 0.7
+local_coords = true
+emission_shape = 3
+emission_rect_extents = Vector2(37, 6)
+direction = Vector2(0, -1)
+spread = 15.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 50.0
+initial_velocity_max = 80.0
+scale_amount_min = 0.6
+color_ramp = ExtResource("3_1r0xc")
+
+[node name="Windup" type="CPUParticles2D" parent="." unique_id=1954624874]
+z_index = -10
+material = SubResource("CanvasItemMaterial_fa3fs")
+position = Vector2(0, 14)
+emitting = false
+amount = 14
+texture = ExtResource("2_p1tgj")
+lifetime = 0.32
+one_shot = true
+explosiveness = 0.85
+local_coords = true
+emission_shape = 6
+emission_ring_inner_radius = 25.0
+emission_ring_radius = 37.0
+gravity = Vector2(0, 0)
+orbit_velocity_min = 0.5
+orbit_velocity_max = 1.0
+radial_accel_min = -240.0
+radial_accel_max = -160.0
+scale_amount_min = 0.4
+scale_amount_max = 0.7
+color_ramp = ExtResource("3_1r0xc")
+
+[node name="ShieldSparks" type="CPUParticles2D" parent="." unique_id=1423656450]
+material = SubResource("CanvasItemMaterial_y1ys8")
+emitting = false
+amount = 28
+texture = ExtResource("2_p1tgj")
+lifetime = 1.1
+local_coords = true
+emission_shape = 6
+emission_ring_inner_radius = 58.0
+emission_ring_radius = 62.0
+gravity = Vector2(0, 0)
+orbit_velocity_min = 0.5
+orbit_velocity_max = 0.85
+scale_amount_min = 0.3
+scale_amount_max = 0.55
+color_ramp = ExtResource("3_1r0xc")
+
+[node name="ShieldBolts" type="CPUParticles2D" parent="." unique_id=581347054]
+self_modulate = Color(0.8235294, 0.6509804, 1, 1)
+material = SubResource("CanvasItemMaterial_b6ovi")
+emitting = false
+amount = 7
+texture = ExtResource("4_xb0lk")
+lifetime = 0.23
+local_coords = true
+emission_shape = 6
+emission_ring_inner_radius = 56.0
+emission_ring_radius = 62.0
+gravity = Vector2(0, 0)
+orbit_velocity_min = 0.25
+orbit_velocity_max = 0.4
+angle_max = 360.0
+scale_amount_min = 0.55
+scale_amount_max = 0.9
+color_ramp = ExtResource("3_1r0xc")
+
+[node name="RushSparks" type="CPUParticles2D" parent="." unique_id=334714098]
+self_modulate = Color(1, 0.7372549, 0.33333334, 1)
+z_index = 1
+material = SubResource("CanvasItemMaterial_kbu3t")
+position = Vector2(-22, 0)
+emitting = false
+amount = 12
+texture = ExtResource("2_p1tgj")
+lifetime = 0.45
+emission_shape = 3
+emission_rect_extents = Vector2(18, 32)
+direction = Vector2(-1, -0.15)
+spread = 30.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 70.0
+initial_velocity_max = 120.0
+scale_amount_min = 0.3
+scale_amount_max = 0.6
+color_ramp = ExtResource("3_1r0xc")

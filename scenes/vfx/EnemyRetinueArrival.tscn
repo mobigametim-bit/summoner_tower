@@ -1,0 +1,116 @@
+[gd_scene format=3 uid="uid://b0ssitxgh3xtq"]
+
+[ext_resource type="Script" uid="uid://drl5jjmard7n0" path="res://scripts/vfx/enemy_retinue_arrival.gd" id="1_88asr"]
+[ext_resource type="Texture2D" uid="uid://32m5f0gudhyl" path="res://assets/vfx/enemy_abilities/particles/flash.svg" id="2_p2rnr"]
+[ext_resource type="PackedScene" uid="uid://ck8uqcc3nrmvm" path="res://scenes/vfx/SummonRays.tscn" id="3_146qv"]
+[ext_resource type="Texture2D" uid="uid://b24ppqs1we00c" path="res://assets/vfx/summon_portal/portal_spark.svg" id="4_qhxbl"]
+[ext_resource type="Gradient" path="res://resources/vfx/magic_particles/fade.tres" id="5_lp8hy"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_crbq1"]
+blend_mode = 1
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_cnpvu"]
+blend_mode = 1
+
+[sub_resource type="Animation" id="Animation_p2rnr"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Flash:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Flash:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_146qv"]
+resource_name = "arrival"
+length = 0.8
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Flash:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.12, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(0.25, 0.25), Vector2(1.45, 1.45), Vector2(1.8, 1.8)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Flash:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.13, 0.42),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_qhxbl"]
+_data = {
+&"RESET": SubResource("Animation_p2rnr"),
+&"arrival": SubResource("Animation_146qv")
+}
+
+[node name="EnemyRetinueArrival" type="Node2D" unique_id=611807964]
+script = ExtResource("1_88asr")
+
+[node name="Flash" type="Sprite2D" parent="." unique_id=1244652491]
+z_index = 22
+material = SubResource("CanvasItemMaterial_crbq1")
+position = Vector2(0, -10)
+texture = ExtResource("2_p2rnr")
+
+[node name="Rays" parent="." unique_id=216706316 instance=ExtResource("3_146qv")]
+self_modulate = Color(0.94509804, 0.89411765, 1, 1)
+position = Vector2(0, 24)
+
+[node name="Sparks" type="CPUParticles2D" parent="." unique_id=1955733827]
+self_modulate = Color(0.9019608, 0.77254903, 1, 1)
+z_index = 21
+material = SubResource("CanvasItemMaterial_cnpvu")
+emitting = false
+amount = 14
+texture = ExtResource("4_qhxbl")
+lifetime = 0.6
+one_shot = true
+explosiveness = 1.0
+local_coords = true
+emission_shape = 6
+emission_ring_inner_radius = 15.0
+emission_ring_radius = 30.0
+direction = Vector2(0, -1)
+spread = 180.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 30.0
+initial_velocity_max = 65.0
+scale_amount_min = 0.5
+scale_amount_max = 0.8
+color_ramp = ExtResource("5_lp8hy")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1294690523]
+libraries/ = SubResource("AnimationLibrary_qhxbl")
+autoplay = &"arrival"
+
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_finished"]

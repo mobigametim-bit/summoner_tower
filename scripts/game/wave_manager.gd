@@ -121,6 +121,7 @@ func _spawn_enemy() -> void:
 	var enemy: ApproachingEnemy = next_scene.instantiate() as ApproachingEnemy
 	_active.append(enemy)
 	enemy.resolved.connect(_on_enemy_resolved)
+	enemy.retinue_requested.connect(_on_retinue_requested)
 	_enemies.add_child(enemy)
 	if phase != Phase.FIGHTING:
 		enemy.stop()
@@ -145,6 +146,29 @@ func _spawn_enemy() -> void:
 	enemy_spawned.emit(portal_index)
 	_emit_state()
 	_try_finish_wave()
+
+
+func _on_retinue_requested(caster: ApproachingEnemy) -> void:
+	if phase != Phase.FIGHTING or not _active.has(caster) or not caster.is_targetable():
+		return
+	var ability_config: EnemyAbilityConfig = caster.abilities.config
+	for index: int in ability_config.retinue_count:
+		if phase != Phase.FIGHTING or not is_instance_valid(caster) or not caster.is_targetable():
+			break
+		var enemy: ApproachingEnemy = config.orc_scene.instantiate() as ApproachingEnemy
+		_active.append(enemy)
+		enemy.resolved.connect(_on_enemy_resolved)
+		_enemies.add_child(enemy)
+		if phase != Phase.FIGHTING:
+			enemy.stop()
+			enemy.queue_free()
+			break
+		enemy.set_meta("retinue", true)
+		enemy.set_meta("portal_index", caster.get_meta("portal_index", 0))
+		enemy.configure(caster.global_position, _contact_point.global_position.y, enemy.stats.base_health * (1 << (ability_config.retinue_level - 1)))
+		enemy.follow_caster_route(caster, ability_config.retinue_spacing * float(index + 1))
+		enemy.show_retinue_arrival()
+	_emit_state()
 
 
 func _on_spawn_timeout() -> void:

@@ -1,0 +1,12 @@
+[gd_scene format=3 uid="uid://dcrh8yub7r31i"]
+
+[ext_resource type="Script" uid="uid://cyy23cwgub8en" path="res://scripts/combat/enemy_abilities.gd" id="1_v7adn"]
+[ext_resource type="Resource" path="res://resources/balance/enemy_abilities.tres" id="2_1rut8"]
+[ext_resource type="PackedScene" uid="uid://blev2rqm3d2hr" path="res://scenes/vfx/EnemyAbilityVisual.tscn" id="3_geqob"]
+
+[node name="EnemyAbilities" type="Node2D" unique_id=1145417080]
+editor_description = "Состояния способностей врага. Баланс — EnemyAbilityConfig; визуал — Effects."
+script = ExtResource("1_v7adn")
+config = ExtResource("2_1rut8")
+
+[node name="Effects" parent="." unique_id=1550891466 instance=ExtResource("3_geqob")]

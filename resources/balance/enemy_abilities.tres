@@ -1,0 +1,27 @@
+[gd_resource type="Resource" script_class="EnemyAbilityConfig" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/data/enemy_ability_config.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+dash_interval = 5.0
+dash_windup = 0.3
+dash_duration = 0.8
+dash_speed_bonus = 0.6
+rage_health_ratio = 0.5
+rage_speed_bonus = 0.3
+armor_hits = 3
+armor_damage_ratio = 0.5
+shield_minimum_level = 3
+shield_health_trigger = 0.5
+shield_health_ratio = 0.15
+retinue_minimum_level = 4
+retinue_count = 2
+retinue_level = 2
+retinue_spacing = 42.0
+summon_windup = 0.6
+ability_spacing = 1.0
+rush_minimum_level = 5
+rush_health_trigger = 0.25
+rush_windup = 0.35
+rush_speed_bonus = 0.4

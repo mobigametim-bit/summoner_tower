@@ -1,0 +1,230 @@
+[gd_scene format=3 uid="uid://cucjsqas17pxm"]
+
+[ext_resource type="Script" uid="uid://d1d31vn07hanr" path="res://scripts/debug/enemy_ability_vfx_preview.gd" id="1_cotwn"]
+[ext_resource type="Texture2D" uid="uid://vxilfcvid4jy" path="res://assets/debug/animation_controls/replay.svg" id="2_0rwe1"]
+[ext_resource type="Texture2D" uid="uid://c5ba2p5wccy1h" path="res://assets/debug/animation_controls/pause.svg" id="3_s5267"]
+
+[node name="EnemyAbilityVfxPreview" type="Node2D" unique_id=1190608583]
+script = ExtResource("1_cotwn")
+
+[node name="Background" type="ColorRect" parent="." unique_id=699268593]
+z_index = -10
+offset_right = 720.0
+offset_bottom = 1280.0
+mouse_filter = 2
+color = Color(0.07058824, 0.105882354, 0.16078432, 1)
+
+[node name="LargePanel" type="ColorRect" parent="." unique_id=650768068]
+z_index = -9
+offset_left = 20.0
+offset_top = 240.0
+offset_right = 490.0
+offset_bottom = 900.0
+mouse_filter = 2
+color = Color(0.10980392, 0.16078432, 0.22352941, 1)
+
+[node name="SmallPanel" type="ColorRect" parent="." unique_id=724892050]
+z_index = -9
+offset_left = 506.0
+offset_top = 240.0
+offset_right = 700.0
+offset_bottom = 900.0
+mouse_filter = 2
+color = Color(0.10980392, 0.16078432, 0.22352941, 1)
+
+[node name="Stage" type="Node2D" parent="." unique_id=1960297101]
+
+[node name="Large" type="Node2D" parent="Stage" unique_id=78752523]
+position = Vector2(255, 570)
+scale = Vector2(2.6, 2.6)
+
+[node name="Small" type="Node2D" parent="Stage" unique_id=259446704]
+position = Vector2(605, 600)
+scale = Vector2(0.55714285, 0.55714285)
+
+[node name="Interface" type="CanvasLayer" parent="." unique_id=386469645]
+process_mode = 3
+layer = 3
+
+[node name="Content" type="Control" parent="Interface" unique_id=5748360]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="Title" type="Label" parent="Interface/Content" unique_id=855713557]
+layout_mode = 0
+offset_left = 24.0
+offset_top = 32.0
+offset_right = 696.0
+offset_bottom = 84.0
+theme_override_colors/font_color = Color(0.9490196, 0.80784315, 0.5019608, 1)
+theme_override_font_sizes/font_size = 48
+text = "Способности врагов"
+
+[node name="Description" type="Label" parent="Interface/Content" unique_id=1043547580]
+layout_mode = 0
+offset_left = 24.0
+offset_top = 98.0
+offset_right = 696.0
+offset_bottom = 174.0
+theme_override_font_sizes/font_size = 34
+text = "Текущие эффекты"
+autowrap_mode = 3
+
+[node name="Phase" type="Label" parent="Interface/Content" unique_id=159856330]
+layout_mode = 0
+offset_left = 24.0
+offset_top = 184.0
+offset_right = 696.0
+offset_bottom = 228.0
+theme_override_colors/font_color = Color(0.5921569, 0.8980392, 0.9254902, 1)
+theme_override_font_sizes/font_size = 30
+text = "До срабатывания"
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="LargeLabel" type="Label" parent="Interface/Content" unique_id=1571317569]
+layout_mode = 0
+offset_left = 20.0
+offset_top = 846.0
+offset_right = 490.0
+offset_bottom = 890.0
+theme_override_font_sizes/font_size = 36
+text = "Крупно"
+horizontal_alignment = 1
+
+[node name="SmallLabel" type="Label" parent="Interface/Content" unique_id=816827663]
+layout_mode = 0
+offset_left = 506.0
+offset_top = 836.0
+offset_right = 700.0
+offset_bottom = 896.0
+theme_override_font_sizes/font_size = 28
+text = "В игре
+8 столбцов"
+horizontal_alignment = 1
+
+[node name="Note" type="Label" parent="Interface/Content" unique_id=756461953]
+layout_mode = 0
+offset_left = 24.0
+offset_top = 918.0
+offset_right = 696.0
+offset_bottom = 964.0
+theme_override_font_sizes/font_size = 26
+text = "Текущие эффекты · автоматический повтор каждые 6,5 с"
+horizontal_alignment = 1
+
+[node name="Selection" type="GridContainer" parent="Interface/Content" unique_id=1531323126]
+layout_mode = 0
+offset_left = 20.0
+offset_top = 980.0
+offset_right = 700.0
+offset_bottom = 1122.0
+theme_override_constants/h_separation = 10
+theme_override_constants/v_separation = 10
+columns = 3
+
+[node name="Effect1" type="Button" parent="Interface/Content/Selection" unique_id=2112913506]
+custom_minimum_size = Vector2(220, 66)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 34
+text = "1 · Рывок"
+
+[node name="Effect2" type="Button" parent="Interface/Content/Selection" unique_id=327443806]
+custom_minimum_size = Vector2(220, 66)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 34
+text = "2 · Ярость"
+
+[node name="Effect3" type="Button" parent="Interface/Content/Selection" unique_id=434020126]
+custom_minimum_size = Vector2(220, 66)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 34
+text = "3 · Панцирь"
+
+[node name="Effect4" type="Button" parent="Interface/Content/Selection" unique_id=471426932]
+custom_minimum_size = Vector2(220, 66)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 34
+text = "4 · Щит"
+
+[node name="Effect5" type="Button" parent="Interface/Content/Selection" unique_id=63470221]
+custom_minimum_size = Vector2(220, 66)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 34
+text = "5 · Свита"
+
+[node name="Effect6" type="Button" parent="Interface/Content/Selection" unique_id=2111395201]
+custom_minimum_size = Vector2(220, 66)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 34
+text = "6 · Натиск"
+
+[node name="Playback" type="HBoxContainer" parent="Interface/Content" unique_id=918002887]
+layout_mode = 0
+offset_left = 20.0
+offset_top = 1160.0
+offset_right = 700.0
+offset_bottom = 1236.0
+theme_override_constants/separation = 10
+
+[node name="Replay" type="Button" parent="Interface/Content/Playback" unique_id=561099668]
+custom_minimum_size = Vector2(128, 76)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/icon_max_width = 36
+theme_override_font_sizes/font_size = 26
+icon = ExtResource("2_0rwe1")
+expand_icon = true
+
+[node name="Pause" type="Button" parent="Interface/Content/Playback" unique_id=1238565154]
+custom_minimum_size = Vector2(128, 76)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/icon_max_width = 36
+theme_override_font_sizes/font_size = 26
+icon = ExtResource("3_s5267")
+expand_icon = true
+
+[node name="Half" type="Button" parent="Interface/Content/Playback" unique_id=18049464]
+custom_minimum_size = Vector2(128, 76)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 38
+text = "0.5×"
+
+[node name="Normal" type="Button" parent="Interface/Content/Playback" unique_id=1134177154]
+custom_minimum_size = Vector2(128, 76)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 38
+text = "1×"
+
+[node name="Double" type="Button" parent="Interface/Content/Playback" unique_id=175431957]
+custom_minimum_size = Vector2(128, 76)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 38
+text = "2×"
+
+[connection signal="pressed" from="Interface/Content/Selection/Effect1" to="." method="_on_select" binds= [0]]
+[connection signal="pressed" from="Interface/Content/Selection/Effect2" to="." method="_on_select" binds= [1]]
+[connection signal="pressed" from="Interface/Content/Selection/Effect3" to="." method="_on_select" binds= [2]]
+[connection signal="pressed" from="Interface/Content/Selection/Effect4" to="." method="_on_select" binds= [3]]
+[connection signal="pressed" from="Interface/Content/Selection/Effect5" to="." method="_on_select" binds= [4]]
+[connection signal="pressed" from="Interface/Content/Selection/Effect6" to="." method="_on_select" binds= [5]]
+[connection signal="pressed" from="Interface/Content/Playback/Replay" to="." method="_restart"]
+[connection signal="pressed" from="Interface/Content/Playback/Pause" to="." method="_on_pause"]
+[connection signal="pressed" from="Interface/Content/Playback/Half" to="." method="_on_speed" binds= [0.5]]
+[connection signal="pressed" from="Interface/Content/Playback/Normal" to="." method="_on_speed" binds= [1]]
+[connection signal="pressed" from="Interface/Content/Playback/Double" to="." method="_on_speed" binds= [2]]

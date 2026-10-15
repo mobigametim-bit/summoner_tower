@@ -5,6 +5,7 @@
 [ext_resource type="Resource" path="res://resources/balance/boss_stats.tres" id="2_r3bxh"]
 [ext_resource type="Texture2D" uid="uid://bdd1kj4bdk3ee" path="res://assets/boss.svg" id="4_wqpjq"]
 [ext_resource type="PackedScene" uid="uid://c8sbg73c7vlfh" path="res://scenes/visuals/BossVisual.tscn" id="5_r3bxh"]
+[ext_resource type="PackedScene" uid="uid://dcrh8yub7r31i" path="res://scenes/combat/EnemyAbilities.tscn" id="6_wqpjq"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_md0e3"]
 bg_color = Color(0.14901961, 0.19215687, 0.25882354, 1)
@@ -47,3 +48,5 @@ show_percentage = false
 
 [node name="BossVisual" parent="." unique_id=2027784703 instance=ExtResource("5_r3bxh")]
 visible = false
+
+[node name="EnemyAbilities" parent="." unique_id=1145417080 instance=ExtResource("6_wqpjq")]

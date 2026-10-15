@@ -31,7 +31,7 @@ shader_parameter/recolor_enabled = false
 shader_parameter/equipment_color = Color(0.53333336, 0.7254902, 0.41960785, 1)
 shader_parameter/equipment_mask = ExtResource("3_mydau")
 
-[sub_resource type="Animation" id="Animation_uqrum"]
+[sub_resource type="Animation" id="Animation_fbpni"]
 resource_name = "RESET"
 length = 0.001
 tracks/0/type = "value"
@@ -201,6 +201,94 @@ tracks/13/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [0.0]
+}
+tracks/14/type = "value"
+tracks/14/imported = false
+tracks/14/enabled = true
+tracks/14/path = NodePath("Skeleton2D/Root/Body/Head:rotation")
+tracks/14/interp = 1
+tracks/14/loop_wrap = true
+tracks/14/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/15/type = "value"
+tracks/15/imported = false
+tracks/15/enabled = true
+tracks/15/path = NodePath("Skeleton2D/Root/Body/FrontArm:rotation")
+tracks/15/interp = 1
+tracks/15/loop_wrap = true
+tracks/15/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/16/type = "value"
+tracks/16/imported = false
+tracks/16/enabled = true
+tracks/16/path = NodePath("Skeleton2D/Root/Body/BackArm:rotation")
+tracks/16/interp = 1
+tracks/16/loop_wrap = true
+tracks/16/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="Animation" id="Animation_4ohdq"]
+resource_name = "ability_rage"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Skeleton2D/Root/Body:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.16666667, 0.33333334, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(126, 176), Vector2(126, 185), Vector2(126, 165), Vector2(126, 176)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Skeleton2D/Root/Body/Head:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.16666667, 0.33333334, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [0.0, -0.2, 0.12, 0.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Skeleton2D/Root/Body/FrontArm:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.16666667, 0.33333334, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [0.0, -0.85, -1.0, 0.0]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Skeleton2D/Root/Body/BackArm:rotation")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.16666667, 0.33333334, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [0.0, 0.65, 0.8, 0.0]
 }
 
 [sub_resource type="Animation" id="Animation_xxsig"]
@@ -572,7 +660,8 @@ tracks/9/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_1uhio"]
 _data = {
-&"RESET": SubResource("Animation_uqrum"),
+&"RESET": SubResource("Animation_fbpni"),
+&"ability_rage": SubResource("Animation_4ohdq"),
 &"attack": SubResource("Animation_xxsig"),
 &"death": SubResource("Animation_27o6u"),
 &"hit": SubResource("Animation_mydau"),
@@ -629,7 +718,7 @@ position = Vector2(-75, -148)
 texture = ExtResource("7_4ohdq")
 centered = false
 script = ExtResource("8_ecb3v")
-tier_textures = [null, ExtResource("7_4ohdq"), ExtResource("7_4ohdq"), ExtResource("7_4ohdq"), ExtResource("7_4ohdq")]
+tier_textures = Array[Texture2D]([null, ExtResource("7_4ohdq"), ExtResource("7_4ohdq"), ExtResource("7_4ohdq"), ExtResource("7_4ohdq")])
 
 [node name="Bracer" type="Sprite2D" parent="Skeleton2D/Root/Body/BackArm" unique_id=184516697]
 visible = false
@@ -639,7 +728,7 @@ position = Vector2(-75, -148)
 texture = ExtResource("9_fptxb")
 centered = false
 script = ExtResource("8_ecb3v")
-tier_textures = [null, null, ExtResource("9_fptxb"), ExtResource("9_fptxb"), ExtResource("9_fptxb")]
+tier_textures = Array[Texture2D]([null, null, ExtResource("9_fptxb"), ExtResource("9_fptxb"), ExtResource("9_fptxb")])
 
 [node name="Shield" type="Sprite2D" parent="Skeleton2D/Root/Body/BackArm" unique_id=195313342]
 visible = false
@@ -649,7 +738,7 @@ position = Vector2(-75, -148)
 texture = ExtResource("10_ks8yn")
 centered = false
 script = ExtResource("8_ecb3v")
-tier_textures = [null, null, null, ExtResource("10_ks8yn"), ExtResource("11_ui31i")]
+tier_textures = Array[Texture2D]([null, null, null, ExtResource("10_ks8yn"), ExtResource("11_ui31i")])
 
 [node name="LeftLeg" type="Bone2D" parent="Skeleton2D/Root/Body" unique_id=1146205586]
 position = Vector2(-24, 31)
@@ -711,7 +800,7 @@ position = Vector2(-203, -184)
 texture = ExtResource("7_enbsl")
 centered = false
 script = ExtResource("8_ecb3v")
-tier_textures = [ExtResource("7_enbsl"), ExtResource("16_aka40"), ExtResource("17_sahsb"), ExtResource("18_n2nu6"), ExtResource("19_j3d5a")]
+tier_textures = Array[Texture2D]([ExtResource("7_enbsl"), ExtResource("16_aka40"), ExtResource("17_sahsb"), ExtResource("18_n2nu6"), ExtResource("19_j3d5a")])
 
 [node name="Bracer" type="Sprite2D" parent="Skeleton2D/Root/Body/FrontArm" unique_id=1796766390]
 visible = false
@@ -722,7 +811,7 @@ position = Vector2(-171, -150)
 texture = ExtResource("20_n7ejj")
 centered = false
 script = ExtResource("8_ecb3v")
-tier_textures = [null, null, ExtResource("20_n7ejj"), ExtResource("20_n7ejj"), ExtResource("20_n7ejj")]
+tier_textures = Array[Texture2D]([null, null, ExtResource("20_n7ejj"), ExtResource("20_n7ejj"), ExtResource("20_n7ejj")])
 
 [node name="Head" type="Bone2D" parent="Skeleton2D/Root/Body" unique_id=953541935]
 position = Vector2(2, -34)
@@ -747,7 +836,7 @@ position = Vector2(-128, -142)
 texture = ExtResource("22_ldo2a")
 centered = false
 script = ExtResource("8_ecb3v")
-tier_textures = [null, null, null, null, ExtResource("22_ldo2a")]
+tier_textures = Array[Texture2D]([null, null, null, null, ExtResource("22_ldo2a")])
 
 [node name="Breastplate" type="Sprite2D" parent="Skeleton2D/Root/Body" unique_id=1527251107]
 visible = false
@@ -758,7 +847,7 @@ position = Vector2(-126, -176)
 texture = ExtResource("23_6i2bu")
 centered = false
 script = ExtResource("8_ecb3v")
-tier_textures = [null, null, null, ExtResource("23_6i2bu"), ExtResource("23_6i2bu")]
+tier_textures = Array[Texture2D]([null, null, null, ExtResource("23_6i2bu"), ExtResource("23_6i2bu")])
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1148464995]
 callback_mode_process = 0

@@ -470,6 +470,34 @@ tracks/35/keys = {
 "values": [Color(1, 1, 1, 1)]
 }
 
+[sub_resource type="Animation" id="Animation_b1e45"]
+resource_name = "ability_carapace_hit"
+length = 0.22
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Skeleton2D/Root/Body:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.07333333, 0.14666666, 0.22),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [0.0, -0.07, 0.04, 0.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Skeleton2D/Root/Body/Head:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.07333333, 0.14666666, 0.22),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [0.0, 0.12, -0.06, 0.0]
+}
+
 [sub_resource type="Animation" id="Animation_hwsfu"]
 length = 0.5
 tracks/0/type = "value"
@@ -848,6 +876,7 @@ tracks/10/keys = {
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_ek0jc"]
 _data = {
 &"RESET": SubResource("Animation_xmkpy"),
+&"ability_carapace_hit": SubResource("Animation_b1e45"),
 &"attack": SubResource("Animation_hwsfu"),
 &"death": SubResource("Animation_kv3fq"),
 &"hit": SubResource("Animation_u2x5c"),
@@ -950,7 +979,7 @@ position = Vector2(-57, -147)
 texture = ExtResource("10_woubf")
 centered = false
 script = ExtResource("11_glvfq")
-tier_textures = [null, ExtResource("10_woubf"), ExtResource("12_ncq0j"), ExtResource("13_5lqrr"), ExtResource("14_2v1uf")]
+tier_textures = Array[Texture2D]([null, ExtResource("10_woubf"), ExtResource("12_ncq0j"), ExtResource("13_5lqrr"), ExtResource("14_2v1uf")])
 
 [node name="ShoulderArmor" type="Sprite2D" parent="Skeleton2D/Root/Body/BackUpperArm" unique_id=91415241]
 visible = false
@@ -960,7 +989,7 @@ position = Vector2(-85, -126)
 texture = ExtResource("15_igkni")
 centered = false
 script = ExtResource("11_glvfq")
-tier_textures = [null, null, ExtResource("15_igkni"), ExtResource("15_igkni"), ExtResource("16_21qgk")]
+tier_textures = Array[Texture2D]([null, null, ExtResource("15_igkni"), ExtResource("15_igkni"), ExtResource("16_21qgk")])
 
 [node name="Head" type="Bone2D" parent="Skeleton2D/Root/Body" unique_id=1941058136]
 position = Vector2(5, -23)
@@ -986,7 +1015,7 @@ position = Vector2(-133, -147)
 texture = ExtResource("18_me3jo")
 centered = false
 script = ExtResource("11_glvfq")
-tier_textures = [null, null, null, null, ExtResource("18_me3jo")]
+tier_textures = Array[Texture2D]([null, null, null, null, ExtResource("18_me3jo")])
 
 [node name="FrontUpperArm" type="Bone2D" parent="Skeleton2D/Root/Body" unique_id=976475694]
 position = Vector2(43, -40)
@@ -1027,7 +1056,7 @@ position = Vector2(-210, -157)
 texture = ExtResource("21_60lab")
 centered = false
 script = ExtResource("11_glvfq")
-tier_textures = [null, ExtResource("21_60lab"), ExtResource("22_fxndl"), ExtResource("23_ip40e"), ExtResource("24_x0apm")]
+tier_textures = Array[Texture2D]([null, ExtResource("21_60lab"), ExtResource("22_fxndl"), ExtResource("23_ip40e"), ExtResource("24_x0apm")])
 
 [node name="ShoulderArmor" type="Sprite2D" parent="Skeleton2D/Root/Body/FrontUpperArm" unique_id=1715155520]
 visible = false
@@ -1038,7 +1067,7 @@ position = Vector2(-171, -130)
 texture = ExtResource("25_yxvnv")
 centered = false
 script = ExtResource("11_glvfq")
-tier_textures = [null, null, ExtResource("25_yxvnv"), ExtResource("25_yxvnv"), ExtResource("26_pd642")]
+tier_textures = Array[Texture2D]([null, null, ExtResource("25_yxvnv"), ExtResource("25_yxvnv"), ExtResource("26_pd642")])
 
 [node name="Breastplate" type="Sprite2D" parent="Skeleton2D/Root/Body" unique_id=1150517568]
 visible = false
@@ -1049,7 +1078,7 @@ position = Vector2(-128, -170)
 texture = ExtResource("27_1ivln")
 centered = false
 script = ExtResource("11_glvfq")
-tier_textures = [null, null, null, ExtResource("27_1ivln"), ExtResource("27_1ivln")]
+tier_textures = Array[Texture2D]([null, null, null, ExtResource("27_1ivln"), ExtResource("27_1ivln")])
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=2119174815]
 callback_mode_process = 0

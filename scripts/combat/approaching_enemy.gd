@@ -4,6 +4,7 @@ extends Node2D
 enum Outcome { KILLED, REACHED_TOWER }
 
 signal resolved(enemy: ApproachingEnemy, outcome: Outcome)
+signal retinue_requested(enemy: ApproachingEnemy)
 
 @export var stats: EnemyStats
 @export var animated_visual_enabled: bool = false
@@ -17,6 +18,7 @@ var difficulty_tier: int = 1
 @onready var visual: Sprite2D = $Visual
 @onready var health_bar: ProgressBar = $HealthBar
 @onready var slow_indicator: Sprite2D = $SlowIndicator
+@onready var abilities: EnemyAbilities = $EnemyAbilities
 @onready var goblin_visual: GoblinVisual = get_node_or_null("GoblinVisual") as GoblinVisual
 @onready var orc_visual: OrcVisual = get_node_or_null("OrcVisual") as OrcVisual
 @onready var golem_visual: GolemVisual = get_node_or_null("GolemVisual") as GolemVisual
@@ -38,15 +40,20 @@ var _burn_remaining: float = 0.0
 var _burn_dps: float = 0.0
 var _freeze_remaining: float = 0.0
 var _status_visual: Node2D
+var _arrival_tween: Tween
 const STATUS_SCENE: PackedScene = preload("res://scenes/vfx/EnemyStatusVisual.tscn")
+const RETINUE_ARRIVAL_SCENE: PackedScene = preload("res://scenes/vfx/EnemyRetinueArrival.tscn")
 
 
 func _ready() -> void:
 	set_physics_process(false)
+	abilities.started.connect(_on_ability_started)
+	abilities.retinue_requested.connect(_on_retinue_requested)
 	set_animated_visual(animated_visual_enabled)
 
 
 func configure(spawn_position: Vector2, target_y: float, health: int = 0, boss_level: int = 1) -> void:
+	_clear_arrival()
 	global_position = spawn_position
 	tower_damage = stats.tower_damage
 	move_speed = stats.move_speed
@@ -56,6 +63,8 @@ func configure(spawn_position: Vector2, target_y: float, health: int = 0, boss_l
 	_clear_status()
 	# У обычных врагов уровень задаёт HP, у босса — номер его появления.
 	difficulty_tier = clampi(boss_level, 1, EnemyStats.TIER_COLORS.size()) if stats.is_boss else stats.difficulty_tier(max_health)
+	_resolved = false
+	abilities.configure(stats.enemy_type, difficulty_tier, max_health)
 	visual.modulate = stats.color_for(max_health)
 	set_animated_visual(animated_visual_enabled)
 	_update_health_bar()
@@ -75,6 +84,48 @@ func follow_route(curve: Curve2D, route_transform: Transform2D, cell_size: float
 	global_position = _route_transform * curve.sample_baked(0.0)
 
 
+func follow_caster_route(caster: ApproachingEnemy, behind: float) -> void:
+	scale = caster.scale
+	_route = caster._route
+	_route_transform = caster._route_transform
+	_route_length = caster._route_length
+	_target_y = caster._target_y
+	_distance = maxf(caster._distance - behind, 0.0)
+	global_position = _route_transform * _route.sample_baked(_distance) if _route != null else caster.global_position - Vector2(0.0, behind)
+
+
+func _on_ability_started(ability: StringName) -> void:
+	if animated_visual_enabled and not _resolved and ability not in [&"dash", &"rage", &"rush"]:
+		_animated_visual.play_ability(ability)
+
+
+func _on_retinue_requested() -> void:
+	if is_targetable():
+		retinue_requested.emit(self)
+
+
+func show_retinue_arrival() -> void:
+	if not is_targetable():
+		return
+	var arrival: Node2D = RETINUE_ARRIVAL_SCENE.instantiate() as Node2D
+	add_child(arrival)
+	var renderer: Node2D = _animated_visual if animated_visual_enabled else visual
+	_clear_arrival()
+	renderer.modulate.a = 0.0
+	_arrival_tween = create_tween()
+	_arrival_tween.tween_property(renderer, "modulate:a", 1.0, 0.22).set_delay(0.1)
+
+
+func _clear_arrival() -> void:
+	if _arrival_tween != null and _arrival_tween.is_valid():
+		_arrival_tween.kill()
+	_arrival_tween = null
+	if is_instance_valid(visual):
+		visual.modulate.a = 1.0
+	if is_instance_valid(_animated_visual):
+		_animated_visual.modulate.a = 1.0
+
+
 func _physics_process(delta: float) -> void:
 	if _resolved:
 		return
@@ -83,14 +134,14 @@ func _physics_process(delta: float) -> void:
 	if _burn_remaining > 0.0:
 		var burning_delta: float = minf(delta, _burn_remaining)
 		_burn_remaining = maxf(_burn_remaining - delta, 0.0)
-		take_damage(_burn_dps * burning_delta, false)
+		take_damage(_burn_dps * burning_delta, false, false)
 		if _resolved:
 			return
 	var frozen_delta: float = minf(delta, _freeze_remaining)
 	_freeze_remaining = maxf(_freeze_remaining - delta, 0.0)
 	var moving_delta: float = delta - frozen_delta
 	var slowed_delta: float = minf(moving_delta, maxf(_slow_remaining - frozen_delta, 0.0))
-	var distance: float = move_speed * (moving_delta - slowed_delta * _slow_ratio)
+	var distance: float = move_speed * (abilities.advance(slowed_delta) * (1.0 - _slow_ratio) + abilities.advance(moving_delta - slowed_delta))
 	_update_status_visual()
 	var previous_position: Vector2 = global_position
 	if _route != null:
@@ -99,6 +150,7 @@ func _physics_process(delta: float) -> void:
 	else:
 		global_position.y = move_toward(global_position.y, _target_y, distance)
 	_slow_remaining = maxf(_slow_remaining - delta, 0.0)
+	abilities.effects.set_motion(global_position - previous_position)
 	if _slow_remaining <= 0.0 and _slow_ratio > 0.0:
 		_clear_slow()
 	if animated_visual_enabled:
@@ -119,6 +171,7 @@ func set_animated_visual(enabled: bool) -> void:
 	animated_visual_enabled = enabled and _animated_visual != null
 	visual.visible = not animated_visual_enabled
 	if _animated_visual == null:
+		abilities.effects.fit_to_enemy(self)
 		return
 	_animated_visual.visible = animated_visual_enabled
 	if animated_visual_enabled:
@@ -126,20 +179,25 @@ func set_animated_visual(enabled: bool) -> void:
 		_animated_visual.set_difficulty(difficulty_tier, EnemyStats.TIER_COLORS[difficulty_tier - 1])
 	else:
 		_animated_visual.stop_gameplay()
+	abilities.effects.fit_to_enemy(self)
 
 
 func _time_to_contact() -> float:
 	var remaining: float = maxf(_route_length - _distance, 0.0) if _route != null else maxf(_target_y - global_position.y, 0.0)
 	var speed: float = current_move_speed()
+	if speed <= 0.0:
+		return INF
+	var effective_base_speed: float = move_speed * abilities.speed_multiplier()
 	var slow_distance: float = speed * _slow_remaining
 	if remaining <= slow_distance:
 		return remaining / maxf(speed, 0.001)
-	return _slow_remaining + (remaining - slow_distance) / maxf(move_speed, 0.001)
+	return _slow_remaining + (remaining - slow_distance) / maxf(effective_base_speed, 0.001)
 
 
-func take_damage(amount: float, show_hit: bool = true) -> void:
+func take_damage(amount: float, show_hit: bool = true, direct: bool = true) -> void:
 	if not is_targetable() or amount <= 0:
 		return
+	amount = abilities.filter_damage(amount, direct)
 
 	# Остаток общий для прямого урона и DOT: дроби не теряются при каждом кадре.
 	var total: float = amount + _damage_remainder
@@ -151,8 +209,10 @@ func take_damage(amount: float, show_hit: bool = true) -> void:
 	_update_health_bar()
 	if current_health == 0:
 		_finish(Outcome.KILLED)
-	elif animated_visual_enabled and show_hit:
-		_animated_visual.show_hit()
+	else:
+		abilities.health_changed(current_health)
+		if animated_visual_enabled and show_hit:
+			_animated_visual.show_hit()
 
 
 func embed_arrow(arrow_scene: PackedScene, incoming_direction: Vector2) -> void:
@@ -251,7 +311,7 @@ func _clear_status() -> void:
 func current_move_speed() -> float:
 	if _freeze_remaining > 0.0:
 		return 0.0
-	return move_speed * (1.0 - _slow_ratio)
+	return move_speed * (1.0 - _slow_ratio) * abilities.speed_multiplier()
 
 
 func _clear_slow() -> void:
@@ -274,6 +334,8 @@ func _finish(outcome: Outcome) -> void:
 	# Обработчик сигнала может вызвать этот метод повторно: сначала фиксируем результат.
 	_resolved = true
 	set_physics_process(false)
+	abilities.stop()
+	_clear_arrival()
 	_clear_slow()
 	_clear_status()
 	if animated_visual_enabled:
@@ -289,5 +351,8 @@ func stop() -> void:
 	_resolved = true
 	set_physics_process(false)
 	_clear_slow()
+	_clear_arrival()
+	if is_instance_valid(abilities):
+		abilities.stop()
 	if _animated_visual != null and is_instance_valid(_animated_visual):
 		_animated_visual.stop_gameplay()
