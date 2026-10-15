@@ -1,12 +1,15 @@
-[gd_resource type="Resource" script_class="RunUpgrade" format=3]
+[gd_resource type="Resource" script_class="RunUpgrade" format=3 uid="uid://d3msea1oya505"]
 
-[ext_resource type="Script" path="res://scripts/data/run_upgrade.gd" id="1"]
-[ext_resource type="Texture2D" path="res://assets/upgrades/cheap_summons.svg" id="2"]
+[ext_resource type="Script" uid="uid://4n2lsomwxchb" path="res://scripts/data/run_upgrade.gd" id="1"]
+[ext_resource type="Texture2D" uid="uid://bc6agjvfvsp5l" path="res://assets/upgrades/cheap_summons.svg" id="2"]
+[ext_resource type="Script" uid="uid://t5wl1e4nf5h1" path="res://scripts/data/unit_stats.gd" id="3_2c3xs"]
 
 [resource]
 script = ExtResource("1")
 kind = 5
-icon = ExtResource("2")
 title = "CHEAP SUMMONS"
-description = "-15% summon cost\nSpend less on future units."
-strength = 0.15
+description = "-{value}% summon cost
+Spend less on future units."
+icon = ExtResource("2")
+strength = 0.07
+tier_strengths = Array[float]([0.03, 0.07, 0.11, 0.15, 0.22])

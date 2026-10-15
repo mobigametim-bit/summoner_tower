@@ -130,6 +130,75 @@ msgstr "Бонус на этот забег"
 msgid "Previously picked: %d"
 msgstr "Уже выбрано: %d"
 
+msgid "+{value}% attack speed\nAll units attack faster."
+msgstr "+{value}% к скорости атаки\nВсе бойцы атакуют быстрее."
+
+msgid "+{value}% damage\nAll units hit harder."
+msgstr "+{value}% к урону\nВсе бойцы бьют сильнее."
+
+msgid "+{value}% mana from kills\nBuild your army faster."
+msgstr "+{value}% маны за убийства\nСобирай армию быстрее."
+
+msgid "+{value}% max tower HP\nHeal by the HP gained."
+msgstr "+{value}% к макс. здоровью башни\nВосстанавливает прибавку здоровья."
+
+msgid "+{value} percentage points of slow\nFrost Mages slow up to 70%."
+msgstr "+{value} п. п. к замедлению\nЛедяные маги замедляют до 70%."
+
+msgid "-{value}% summon cost\nSpend less on future units."
+msgstr "-{value}% к стоимости призыва\nНовые бойцы стоят дешевле."
+
+msgid "+{value} tower HP\nRestore health up to the maximum."
+msgstr "+{value} здоровья башни\nВосстановление до максимума."
+
+msgid "+{value} mana\nA one-time supply for your army."
+msgstr "+{value} маны\nРазовая помощь армии."
+
+msgid "+{value}% attack range\nAll current and future units."
+msgstr "+{value}% к радиусу атаки\nДля всех текущих и новых бойцов."
+
+msgid "+{value}% Archer damage\nAll current and future Archers."
+msgstr "+{value}% урона лучников\nДля текущих и новых лучников."
+
+msgid "+{value}% Fire Mage damage\nAll current and future Fire Mages."
+msgstr "+{value}% урона огненных магов\nДля текущих и новых магов."
+
+msgid "+{value}% Frost Mage damage\nAll current and future Frost Mages."
+msgstr "+{value}% урона ледяных магов\nДля текущих и новых магов."
+
+msgid "+{value}% burn damage\nDirect hit damage is unchanged."
+msgstr "+{value}% урона горения\nПрямой урон не меняется."
+
+msgid "+{value}% area radius\nSplash and area abilities."
+msgstr "+{value}% радиуса области\nВзрывы и способности по области."
+
+msgid "+{value} ms freeze duration\nBosses remain immune to freezing."
+msgstr "+{value} мс полной заморозки\nБоссы сохраняют иммунитет."
+
+msgid "+{value} HP after each wave\nHeal up to the maximum."
+msgstr "+{value} здоровья после каждой волны\nВосстановление до максимума."
+
+msgid "+{value} points to manual resale\nUp to 100%; map sale is separate."
+msgstr "+{value} п. п. к ручному возврату\nДо 100%; автопродажа отдельно."
+
+msgid "SUMMON ARCHER"
+msgstr "ПРИЗЫВ ЛУЧНИКА"
+
+msgid "SUMMON FIRE MAGE"
+msgstr "ПРИЗЫВ ОГНЕННОГО МАГА"
+
+msgid "SUMMON FROST MAGE"
+msgstr "ПРИЗЫВ ЛЕДЯНОГО МАГА"
+
+msgid "Receive one free Lv{value} Archer\nOn the new map."
+msgstr "Бесплатный лучник Lv{value}\nНа новой карте."
+
+msgid "Receive one free Lv{value} Fire Mage\nOn the new map."
+msgstr "Бесплатный огненный маг Lv{value}\nНа новой карте."
+
+msgid "Receive one free Lv{value} Frost Mage\nOn the new map."
+msgstr "Бесплатный ледяной маг Lv{value}\nНа новой карте."
+
 msgid "RAPID FIRE"
 msgstr "БЫСТРАЯ АТАКА"
 

@@ -1,12 +1,15 @@
-[gd_resource type="Resource" script_class="RunUpgrade" format=3]
+[gd_resource type="Resource" script_class="RunUpgrade" format=3 uid="uid://db4161fg4iok6"]
 
-[ext_resource type="Script" path="res://scripts/data/run_upgrade.gd" id="1"]
-[ext_resource type="Texture2D" path="res://assets/upgrades/deep_freeze.svg" id="2"]
+[ext_resource type="Script" uid="uid://4n2lsomwxchb" path="res://scripts/data/run_upgrade.gd" id="1"]
+[ext_resource type="Texture2D" uid="uid://db7xvmd8hcl18" path="res://assets/upgrades/deep_freeze.svg" id="2"]
+[ext_resource type="Script" uid="uid://t5wl1e4nf5h1" path="res://scripts/data/unit_stats.gd" id="3_m4uqo"]
 
 [resource]
 script = ExtResource("1")
 kind = 14
-icon = ExtResource("2")
 title = "DEEP FREEZE"
-description = "+0.2 s freeze duration\nBosses remain immune to freezing."
-strength = 0.2
+description = "+{value} ms freeze duration
+Bosses remain immune to freezing."
+icon = ExtResource("2")
+strength = 0.1
+tier_strengths = Array[float]([0.05, 0.1, 0.15, 0.2, 0.3])

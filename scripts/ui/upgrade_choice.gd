@@ -29,8 +29,9 @@ func show_choices(choices: Array[RunUpgrade], bonuses: RunBonuses, rerolls: int 
 			continue
 		var upgrade: RunUpgrade = choices[index]
 		cards[index].get_node("Margin/Row/Content/Title").text = tr(upgrade.title)
-		cards[index].get_node("Margin/Row/Content/Description").text = tr(upgrade.description)
+		cards[index].get_node("Margin/Row/Content/Description").text = upgrade.description_text()
 		cards[index].get_node("Margin/Row/Icon").texture = upgrade.icon
+		_apply_tier_style(cards[index], upgrade.tier)
 		var picked: int = bonuses.count(upgrade.kind)
 		var rank: HBoxContainer = cards[index].get_node("Margin/Row/Content/RankRow")
 		rank.visible = picked > 0
@@ -46,6 +47,17 @@ func show_choices(choices: Array[RunUpgrade], bonuses: RunBonuses, rerolls: int 
 	cards[0].grab_focus()
 	_layout_revision += 1
 	_fit_card_heights(_layout_revision)
+
+
+func _apply_tier_style(card: Button, tier: int) -> void:
+	var color: Color = SummonSlot.MERGE_COLORS[clampi(tier - 1, 0, 4)]
+	for state_name: StringName in [&"normal", &"hover", &"pressed", &"focus", &"disabled"]:
+		var style: StyleBoxFlat = card.get_theme_stylebox(state_name).duplicate() as StyleBoxFlat
+		style.border_color = color
+		style.set_border_width_all(3 if state_name != &"focus" else 5)
+		card.add_theme_stylebox_override(state_name, style)
+	card.get_node("Margin/Row/Content/Title").add_theme_color_override("font_color", color.lightened(0.18))
+	card.get_node("Margin/Row/Icon/TierAccent").color = color
 
 
 func _fit_card_heights(revision: int) -> void:

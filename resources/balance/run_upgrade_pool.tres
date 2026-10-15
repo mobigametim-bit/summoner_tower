@@ -1,15 +1,14 @@
-[gd_resource type="Resource" script_class="RunUpgradePool" format=3]
+[gd_resource type="Resource" script_class="RunUpgradePool" format=3 uid="uid://b6k1ho7jp755j"]
 
-[ext_resource type="Script" path="res://scripts/data/run_upgrade_pool.gd" id="1"]
-[ext_resource type="Script" path="res://scripts/data/run_upgrade.gd" id="2"]
-[ext_resource type="Resource" path="res://resources/balance/rapid_fire.tres" id="3"]
-[ext_resource type="Resource" path="res://resources/balance/power.tres" id="4"]
-[ext_resource type="Resource" path="res://resources/balance/mana_flow.tres" id="5"]
-[ext_resource type="Resource" path="res://resources/balance/tower_armor.tres" id="6"]
-[ext_resource type="Resource" path="res://resources/balance/frost_power.tres" id="7"]
-[ext_resource type="Resource" path="res://resources/balance/cheap_summons.tres" id="8"]
-[ext_resource type="Resource" path="res://resources/balance/frost_mage_lv1.tres" id="9"]
-
+[ext_resource type="Script" uid="uid://btxb5aqb4dh71" path="res://scripts/data/run_upgrade_pool.gd" id="1"]
+[ext_resource type="Script" uid="uid://4n2lsomwxchb" path="res://scripts/data/run_upgrade.gd" id="2"]
+[ext_resource type="Resource" uid="uid://r2vhli7fjdfa" path="res://resources/balance/rapid_fire.tres" id="3"]
+[ext_resource type="Resource" uid="uid://csm7xowetxgt" path="res://resources/balance/power.tres" id="4"]
+[ext_resource type="Resource" uid="uid://bu7u22pw0n735" path="res://resources/balance/mana_flow.tres" id="5"]
+[ext_resource type="Resource" uid="uid://c588jgvnvxj5v" path="res://resources/balance/tower_armor.tres" id="6"]
+[ext_resource type="Resource" uid="uid://uemm4lvn8y63" path="res://resources/balance/frost_power.tres" id="7"]
+[ext_resource type="Resource" uid="uid://d3msea1oya505" path="res://resources/balance/cheap_summons.tres" id="8"]
+[ext_resource type="Resource" uid="uid://cjsapsphtiutl" path="res://resources/balance/frost_mage_lv1.tres" id="9"]
 [ext_resource type="Resource" path="res://resources/balance/medkit.tres" id="10"]
 [ext_resource type="Resource" path="res://resources/balance/mana_reserve.tres" id="11"]
 [ext_resource type="Resource" path="res://resources/balance/long_sight.tres" id="12"]
@@ -29,5 +28,3 @@
 script = ExtResource("1")
 upgrades = Array[ExtResource("2")]([ExtResource("3"), ExtResource("4"), ExtResource("5"), ExtResource("6"), ExtResource("7"), ExtResource("8"), ExtResource("10"), ExtResource("11"), ExtResource("12"), ExtResource("13"), ExtResource("14"), ExtResource("15"), ExtResource("16"), ExtResource("17"), ExtResource("18"), ExtResource("19"), ExtResource("20"), ExtResource("21"), ExtResource("22"), ExtResource("23")])
 frost_base_stats = ExtResource("9")
-frost_max_ratio = 0.7
-minimum_summon_cost = 1

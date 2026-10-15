@@ -6,6 +6,8 @@ const ROUNDING_EPSILON: float = 0.000001
 @export var pool: RunUpgradePool
 
 var _counts: Dictionary = {}
+var _multipliers: Dictionary = {}
+var _additions: Dictionary = {}
 var _mana_remainder: float = 0.0
 var _rng: RandomNumberGenerator = RandomNumberGenerator.new()
 var _meta_levels: Array[int] = []
@@ -14,6 +16,8 @@ var rerolls_remaining: int = 0
 
 func reset() -> void:
 	_counts.clear()
+	_multipliers.clear()
+	_additions.clear()
 	# Снимок исключает повторное применение и изменение бонусов посреди забега.
 	_meta_levels = SessionProgress.upgrade_levels.duplicate()
 	while _meta_levels.size() < MetaUpgradeConfig.Kind.COUNT:
@@ -33,10 +37,20 @@ func count(kind: RunUpgrade.Kind) -> int:
 
 func apply(upgrade: RunUpgrade) -> void:
 	_counts[upgrade.kind] = count(upgrade.kind) + 1
+	if upgrade.kind in [RunUpgrade.Kind.FROST_POWER, RunUpgrade.Kind.DEEP_FREEZE, RunUpgrade.Kind.REGENERATION, RunUpgrade.Kind.BETTER_SALE]:
+		_additions[upgrade.kind] = added_strength(upgrade.kind) + upgrade.strength
+	elif upgrade.kind == RunUpgrade.Kind.CHEAP_SUMMONS:
+		_multipliers[upgrade.kind] = multiplier(upgrade.kind) * (1.0 - upgrade.strength)
+	elif upgrade.kind not in [RunUpgrade.Kind.MEDKIT, RunUpgrade.Kind.MANA_RESERVE, RunUpgrade.Kind.ARCHER_LV5, RunUpgrade.Kind.MAGE_LV5, RunUpgrade.Kind.FROST_MAGE_LV5]:
+		_multipliers[upgrade.kind] = multiplier(upgrade.kind) * (1.0 + upgrade.strength)
 
 
 func multiplier(kind: RunUpgrade.Kind) -> float:
-	return pow(1.0 + pool.get_upgrade(kind).strength, count(kind))
+	return float(_multipliers.get(kind, 1.0))
+
+
+func added_strength(kind: RunUpgrade.Kind) -> float:
+	return float(_additions.get(kind, 0.0))
 
 
 func roll_choices(current_health: int = -1, maximum_health: int = -1) -> Array[RunUpgrade]:
@@ -54,7 +68,7 @@ func roll_choices(current_health: int = -1, maximum_health: int = -1) -> Array[R
 	var offered_count: int = 3 + _meta_levels[MetaUpgradeConfig.Kind.EXPANDED_CHOICE]
 	while result.size() < offered_count and not candidates.is_empty():
 		var index: int = _rng.randi_range(0, candidates.size() - 1)
-		result.append(candidates[index])
+		result.append(candidates[index].variant_for(pool.roll_tier(_rng)))
 		candidates.remove_at(index)
 	return result
 
@@ -104,23 +118,23 @@ func combat_stats_for(stats: UnitStats) -> UnitStats:
 	if stats.splash_radius > 0.0 or stats.ability != UnitStats.Ability.NONE:
 		effective.area_power_multiplier = stats.area_power_multiplier * area_gain
 	if stats.freeze_duration > 0.0:
-		effective.freeze_duration = stats.freeze_duration + pool.get_upgrade(RunUpgrade.Kind.DEEP_FREEZE).strength * count(RunUpgrade.Kind.DEEP_FREEZE)
+		effective.freeze_duration = stats.freeze_duration + added_strength(RunUpgrade.Kind.DEEP_FREEZE)
 	return effective
 
 
 func regeneration_amount() -> float:
 	var config: MetaUpgradeConfig = SessionProgress.UPGRADE_CONFIG
-	return pool.get_upgrade(RunUpgrade.Kind.REGENERATION).strength * count(RunUpgrade.Kind.REGENERATION) + config.restoration_per_level * _meta_levels[MetaUpgradeConfig.Kind.RESTORATION]
+	return added_strength(RunUpgrade.Kind.REGENERATION) + config.restoration_per_level * _meta_levels[MetaUpgradeConfig.Kind.RESTORATION]
 
 
 func manual_refund_percent(base_percent: int) -> float:
-	return minf(base_percent + pool.get_upgrade(RunUpgrade.Kind.BETTER_SALE).strength * count(RunUpgrade.Kind.BETTER_SALE) * 100.0, 100.0)
+	return minf(base_percent + added_strength(RunUpgrade.Kind.BETTER_SALE) * 100.0, 100.0)
 
 
 func slow_ratio_for(stats: UnitStats) -> float:
 	if stats.slow_ratio <= 0.0:
 		return 0.0
-	var extra: float = pool.get_upgrade(RunUpgrade.Kind.FROST_POWER).strength * count(RunUpgrade.Kind.FROST_POWER)
+	var extra: float = added_strength(RunUpgrade.Kind.FROST_POWER)
 	return minf(stats.slow_ratio + extra, pool.frost_max_ratio)
 
 
@@ -137,7 +151,7 @@ func _meta_multiplier(kind: MetaUpgradeConfig.Kind) -> float:
 
 
 func summon_cost_for(base_cost: int) -> int:
-	var discount: float = pow(1.0 - pool.get_upgrade(RunUpgrade.Kind.CHEAP_SUMMONS).strength, count(RunUpgrade.Kind.CHEAP_SUMMONS))
+	var discount: float = multiplier(RunUpgrade.Kind.CHEAP_SUMMONS)
 	discount *= 1.0 - SessionProgress.UPGRADE_CONFIG.summon_discount_per_level * _meta_levels[MetaUpgradeConfig.Kind.SUMMON_ECONOMY]
 	return maxi(ceili(base_cost * discount - ROUNDING_EPSILON), pool.minimum_summon_cost)
 

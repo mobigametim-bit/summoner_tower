@@ -1,12 +1,15 @@
-[gd_resource type="Resource" script_class="RunUpgrade" format=3]
+[gd_resource type="Resource" script_class="RunUpgrade" format=3 uid="uid://uemm4lvn8y63"]
 
-[ext_resource type="Script" path="res://scripts/data/run_upgrade.gd" id="1"]
-[ext_resource type="Texture2D" path="res://assets/upgrades/frost_power.svg" id="2"]
+[ext_resource type="Script" uid="uid://4n2lsomwxchb" path="res://scripts/data/run_upgrade.gd" id="1"]
+[ext_resource type="Texture2D" uid="uid://bq830sbkwev6w" path="res://assets/upgrades/frost_power.svg" id="2"]
+[ext_resource type="Script" uid="uid://t5wl1e4nf5h1" path="res://scripts/data/unit_stats.gd" id="3_s3a8b"]
 
 [resource]
 script = ExtResource("1")
 kind = 4
-icon = ExtResource("2")
 title = "FROST POWER"
-description = "+10 percentage points of slow\nFrost Mages slow up to 70%."
-strength = 0.1
+description = "+{value} percentage points of slow
+Frost Mages slow up to 70%."
+icon = ExtResource("2")
+strength = 0.05
+tier_strengths = Array[float]([0.02, 0.05, 0.07, 0.1, 0.15])

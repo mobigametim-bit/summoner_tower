@@ -165,4 +165,3 @@ def build_equipment():
 
 if __name__ == '__main__':
     build_equipment()
-

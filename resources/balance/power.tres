@@ -1,12 +1,14 @@
-[gd_resource type="Resource" script_class="RunUpgrade" format=3]
+[gd_resource type="Resource" script_class="RunUpgrade" format=3 uid="uid://csm7xowetxgt"]
 
-[ext_resource type="Script" path="res://scripts/data/run_upgrade.gd" id="1"]
-[ext_resource type="Texture2D" path="res://assets/upgrades/power.svg" id="2"]
+[ext_resource type="Script" uid="uid://4n2lsomwxchb" path="res://scripts/data/run_upgrade.gd" id="1"]
+[ext_resource type="Texture2D" uid="uid://b42xmdjvv32vv" path="res://assets/upgrades/power.svg" id="2"]
+[ext_resource type="Script" uid="uid://t5wl1e4nf5h1" path="res://scripts/data/unit_stats.gd" id="3_d3ml7"]
 
 [resource]
 script = ExtResource("1")
-kind = 1
-icon = ExtResource("2")
 title = "POWER"
-description = "+20% damage\nAll units hit harder."
-strength = 0.2
+description = "+{value}% damage
+All units hit harder."
+icon = ExtResource("2")
+strength = 0.1
+tier_strengths = Array[float]([0.05, 0.1, 0.15, 0.2, 0.3])

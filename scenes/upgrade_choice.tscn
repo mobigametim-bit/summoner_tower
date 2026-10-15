@@ -331,6 +331,17 @@ texture = ExtResource("3_d3dag")
 expand_mode = 1
 stretch_mode = 5
 
+[node name="TierAccent" type="ColorRect" parent="Center/Panel/Stack/Card0/Margin/Row/Icon" unique_id=1438186139]
+layout_mode = 0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 12.0
+offset_top = -8.0
+offset_right = -12.0
+mouse_filter = 2
+color = Color(0.44313726, 0.5686275, 0.24313726, 1)
+
 [node name="Card1" type="Button" parent="Center/Panel/Stack" unique_id=162587822]
 custom_minimum_size = Vector2(0, 166)
 layout_mode = 2
@@ -408,6 +419,17 @@ mouse_filter = 2
 texture = ExtResource("3_d3dag")
 expand_mode = 1
 stretch_mode = 5
+
+[node name="TierAccent" type="ColorRect" parent="Center/Panel/Stack/Card1/Margin/Row/Icon" unique_id=1434777437]
+layout_mode = 0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 12.0
+offset_top = -8.0
+offset_right = -12.0
+mouse_filter = 2
+color = Color(0.44313726, 0.5686275, 0.24313726, 1)
 
 [node name="Card2" type="Button" parent="Center/Panel/Stack" unique_id=1076553694]
 custom_minimum_size = Vector2(0, 166)
@@ -487,6 +509,17 @@ texture = ExtResource("3_d3dag")
 expand_mode = 1
 stretch_mode = 5
 
+[node name="TierAccent" type="ColorRect" parent="Center/Panel/Stack/Card2/Margin/Row/Icon" unique_id=1266469037]
+layout_mode = 0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 12.0
+offset_top = -8.0
+offset_right = -12.0
+mouse_filter = 2
+color = Color(0.44313726, 0.5686275, 0.24313726, 1)
+
 [node name="Card3" type="Button" parent="Center/Panel/Stack" unique_id=1159042467]
 custom_minimum_size = Vector2(0, 166)
 layout_mode = 2
@@ -564,6 +597,17 @@ mouse_filter = 2
 texture = ExtResource("3_d3dag")
 expand_mode = 1
 stretch_mode = 5
+
+[node name="TierAccent" type="ColorRect" parent="Center/Panel/Stack/Card3/Margin/Row/Icon" unique_id=701283235]
+layout_mode = 0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 12.0
+offset_top = -8.0
+offset_right = -12.0
+mouse_filter = 2
+color = Color(0.44313726, 0.5686275, 0.24313726, 1)
 
 [node name="Rerolls" type="HBoxContainer" parent="Center/Panel/Stack" unique_id=393808180]
 layout_mode = 2

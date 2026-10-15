@@ -1,12 +1,15 @@
-[gd_resource type="Resource" script_class="RunUpgrade" format=3]
+[gd_resource type="Resource" script_class="RunUpgrade" format=3 uid="uid://bm8k7hghgx1be"]
 
-[ext_resource type="Script" path="res://scripts/data/run_upgrade.gd" id="1"]
-[ext_resource type="Texture2D" path="res://assets/upgrades/better_sale.svg" id="2"]
+[ext_resource type="Script" uid="uid://4n2lsomwxchb" path="res://scripts/data/run_upgrade.gd" id="1"]
+[ext_resource type="Texture2D" uid="uid://ce53y06codhpf" path="res://assets/upgrades/better_sale.svg" id="2"]
+[ext_resource type="Script" uid="uid://t5wl1e4nf5h1" path="res://scripts/data/unit_stats.gd" id="3_mvfuw"]
 
 [resource]
 script = ExtResource("1")
 kind = 16
-icon = ExtResource("2")
 title = "BETTER SALE"
-description = "+10 points to manual resale\nMap sale stays at 80%; cap 100%."
-strength = 0.1
+description = "+{value} points to manual resale
+Up to 100%; map sale is separate."
+icon = ExtResource("2")
+strength = 0.05
+tier_strengths = Array[float]([0.02, 0.05, 0.07, 0.1, 0.15])

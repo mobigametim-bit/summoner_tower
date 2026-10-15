@@ -5,12 +5,18 @@
 [ext_resource type="PackedScene" path="res://scenes/archer.tscn" id="3"]
 [ext_resource type="Resource" path="res://resources/balance/archer_lv5.tres" id="4"]
 
+[ext_resource type="Resource" path="res://resources/balance/archer_lv1.tres" id="5"]
+[ext_resource type="Resource" path="res://resources/balance/archer_lv2.tres" id="6"]
+[ext_resource type="Resource" path="res://resources/balance/archer_lv3.tres" id="7"]
+[ext_resource type="Resource" path="res://resources/balance/archer_lv4.tres" id="8"]
+
 [resource]
 script = ExtResource("1")
 kind = 17
 icon = ExtResource("2")
-title = "ARCHER LV5"
-description = "Receive one free Lv5 Archer\nOn the next map."
+title = "SUMMON ARCHER"
+description = "Receive one free Lv{value} Archer\nOn the new map."
 strength = 0
 unit_scene = ExtResource("3")
-unit_stats = ExtResource("4")
+unit_stats = ExtResource("6")
+unit_levels = [ExtResource("5"), ExtResource("6"), ExtResource("7"), ExtResource("8"), ExtResource("4")]

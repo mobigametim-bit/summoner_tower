@@ -5,12 +5,18 @@
 [ext_resource type="PackedScene" path="res://scenes/mage.tscn" id="3"]
 [ext_resource type="Resource" path="res://resources/balance/mage_lv5.tres" id="4"]
 
+[ext_resource type="Resource" path="res://resources/balance/mage_lv1.tres" id="5"]
+[ext_resource type="Resource" path="res://resources/balance/mage_lv2.tres" id="6"]
+[ext_resource type="Resource" path="res://resources/balance/mage_lv3.tres" id="7"]
+[ext_resource type="Resource" path="res://resources/balance/mage_lv4.tres" id="8"]
+
 [resource]
 script = ExtResource("1")
 kind = 18
 icon = ExtResource("2")
-title = "FIRE MAGE LV5"
-description = "Receive one free Lv5 Fire Mage\nOn the next map."
+title = "SUMMON FIRE MAGE"
+description = "Receive one free Lv{value} Fire Mage\nOn the new map."
 strength = 0
 unit_scene = ExtResource("3")
-unit_stats = ExtResource("4")
+unit_stats = ExtResource("6")
+unit_levels = [ExtResource("5"), ExtResource("6"), ExtResource("7"), ExtResource("8"), ExtResource("4")]

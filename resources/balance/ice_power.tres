@@ -1,12 +1,15 @@
-[gd_resource type="Resource" script_class="RunUpgrade" format=3]
+[gd_resource type="Resource" script_class="RunUpgrade" format=3 uid="uid://ddagls27d6of5"]
 
-[ext_resource type="Script" path="res://scripts/data/run_upgrade.gd" id="1"]
-[ext_resource type="Texture2D" path="res://assets/upgrades/ice_power.svg" id="2"]
+[ext_resource type="Script" uid="uid://4n2lsomwxchb" path="res://scripts/data/run_upgrade.gd" id="1"]
+[ext_resource type="Texture2D" uid="uid://2dp3a0sdn64h" path="res://assets/upgrades/ice_power.svg" id="2"]
+[ext_resource type="Script" uid="uid://t5wl1e4nf5h1" path="res://scripts/data/unit_stats.gd" id="3_x618b"]
 
 [resource]
 script = ExtResource("1")
 kind = 11
-icon = ExtResource("2")
 title = "ICE POWER"
-description = "+30% Frost Mage damage\nAll current and future Frost Mages."
-strength = 0.3
+description = "+{value}% Frost Mage damage
+All current and future Frost Mages."
+icon = ExtResource("2")
+strength = 0.15
+tier_strengths = Array[float]([0.07, 0.15, 0.22, 0.3, 0.45])

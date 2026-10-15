@@ -1,12 +1,14 @@
-[gd_resource type="Resource" script_class="RunUpgrade" format=3]
+[gd_resource type="Resource" script_class="RunUpgrade" format=3 uid="uid://du5ror8igyhbp"]
 
-[ext_resource type="Script" path="res://scripts/data/run_upgrade.gd" id="1"]
-[ext_resource type="Texture2D" path="res://assets/upgrades/regeneration.svg" id="2"]
+[ext_resource type="Script" uid="uid://4n2lsomwxchb" path="res://scripts/data/run_upgrade.gd" id="1"]
+[ext_resource type="Texture2D" uid="uid://ddcr66b8pxwav" path="res://assets/upgrades/regeneration.svg" id="2"]
+[ext_resource type="Script" uid="uid://t5wl1e4nf5h1" path="res://scripts/data/unit_stats.gd" id="3_7casd"]
 
 [resource]
 script = ExtResource("1")
 kind = 15
-icon = ExtResource("2")
 title = "REGENERATION"
-description = "+5 HP after each wave\nHeal up to the maximum."
-strength = 5
+description = "+{value} HP after each wave
+Heal up to the maximum."
+icon = ExtResource("2")
+tier_strengths = Array[float]([1.0, 2.0, 4.0, 5.0, 7.0])

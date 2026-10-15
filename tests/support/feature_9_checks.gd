@@ -1,6 +1,79 @@
 extends RefCounted
 
 
+func run_tiers(game: Node2D) -> Dictionary:
+	var bonuses: RunBonuses = game.run_bonuses
+	bonuses.reset()
+	bonuses._meta_levels.fill(0)
+	var expected: Array = [
+		[0.03, 0.07, 0.11, 0.15, 0.22],
+		[0.05, 0.1, 0.15, 0.2, 0.3],
+		[0.05, 0.1, 0.15, 0.2, 0.3],
+		[0.06, 0.12, 0.18, 0.25, 0.37],
+		[0.02, 0.05, 0.07, 0.1, 0.15],
+		[0.03, 0.07, 0.11, 0.15, 0.22],
+		[12.0, 25.0, 37.0, 50.0, 75.0],
+		[25.0, 50.0, 75.0, 100.0, 150.0],
+		[0.02, 0.05, 0.07, 0.1, 0.15],
+		[0.07, 0.15, 0.22, 0.3, 0.45],
+		[0.07, 0.15, 0.22, 0.3, 0.45],
+		[0.07, 0.15, 0.22, 0.3, 0.45],
+		[0.1, 0.2, 0.3, 0.4, 0.6],
+		[0.03, 0.07, 0.11, 0.15, 0.22],
+		[0.05, 0.1, 0.15, 0.2, 0.3],
+		[1.0, 2.0, 4.0, 5.0, 7.0],
+		[0.02, 0.05, 0.07, 0.1, 0.15]
+	]
+	for kind: int in 20:
+		var original: RunUpgrade = bonuses.pool.get_upgrade(kind as RunUpgrade.Kind)
+		var original_strength: float = original.strength
+		for tier: int in range(1, 6):
+			var card: RunUpgrade = original.variant_for(tier)
+			assert(card != original and card.tier == tier)
+			if kind < 17:
+				assert(is_equal_approx(card.strength, expected[kind][tier - 1]))
+			else:
+				assert(card.unit_stats.level == tier)
+			assert(not card.description_text().contains("{value}"))
+		assert(original.tier == 2 and original.strength == original_strength)
+	bonuses.apply(bonuses.pool.get_upgrade(RunUpgrade.Kind.POWER).variant_for(1))
+	bonuses.apply(bonuses.pool.get_upgrade(RunUpgrade.Kind.POWER).variant_for(5))
+	assert(is_equal_approx(bonuses.multiplier(RunUpgrade.Kind.POWER), 1.365))
+	bonuses.apply(bonuses.pool.get_upgrade(RunUpgrade.Kind.CHEAP_SUMMONS).variant_for(2))
+	bonuses.apply(bonuses.pool.get_upgrade(RunUpgrade.Kind.CHEAP_SUMMONS).variant_for(2))
+	assert(bonuses.summon_cost_for(100) == 87)
+	bonuses.apply(bonuses.pool.get_upgrade(RunUpgrade.Kind.BETTER_SALE).variant_for(1))
+	assert(is_equal_approx(bonuses.manual_refund_percent(50), 52.0))
+	bonuses.apply(bonuses.pool.get_upgrade(RunUpgrade.Kind.REGENERATION).variant_for(1))
+	game.tower.initialize(100)
+	game.tower.current_health = 50
+	var healing: Array[int] = []
+	for step: int in 4:
+		game.tower.heal(bonuses.regeneration_amount())
+		healing.append(game.tower.current_health)
+	assert(healing == [51, 52, 53, 54])
+	game.tower.current_health = 99
+	game.tower.heal(12.5)
+	assert(game.tower.current_health == 100 and game.tower._heal_remainder == 0.0)
+	bonuses.reset()
+	bonuses._meta_levels.fill(0)
+	assert(bonuses.multiplier(RunUpgrade.Kind.POWER) == 1.0 and bonuses.regeneration_amount() == 0.0)
+	bonuses.set_random_seed(141014)
+	var counts: Array[int] = [0, 0, 0, 0, 0]
+	for sample: int in 5000:
+		var kinds: Array[int] = []
+		var offer: Array[RunUpgrade] = bonuses.roll_choices(50, 100)
+		assert(offer.size() == 3)
+		for card: RunUpgrade in offer:
+			assert(not kinds.has(card.kind))
+			kinds.append(card.kind)
+			counts[card.tier - 1] += 1
+	var chances: Array[float] = [0.5, 0.25, 0.15, 0.08, 0.02]
+	for tier_index: int in 5:
+		assert(absf(float(counts[tier_index]) / 15000.0 - chances[tier_index]) < 0.015)
+	return {"passed": true, "variants": 100, "mixed_power": 1.365, "card_heal": healing, "color_counts": counts}
+
+
 func run_bonuses(game: Node2D) -> Dictionary:
 	var bonuses: RunBonuses = game.run_bonuses
 	var manager: SummonManager = game.summon_manager
@@ -25,8 +98,8 @@ func run_bonuses(game: Node2D) -> Dictionary:
 	var original: CombatProjectile = game.projectiles.get_child(0)
 	assert(original._damage == 10 and manager.current_cost() == 30)
 	for kind: RunUpgrade.Kind in [RunUpgrade.Kind.RAPID_FIRE, RunUpgrade.Kind.POWER]:
-		bonuses.apply(bonuses.pool.get_upgrade(kind))
-		bonuses.apply(bonuses.pool.get_upgrade(kind))
+		bonuses.apply(bonuses.pool.get_upgrade(kind).variant_for(4))
+		bonuses.apply(bonuses.pool.get_upgrade(kind).variant_for(4))
 	assert(is_equal_approx(first.effective_attack_interval(), first.stats.attack_interval / pow(1.15, 2)))
 	assert(bonuses.damage_for(archer) == 14 and original._damage == 10)
 	first._fire()
@@ -39,12 +112,12 @@ func run_bonuses(game: Node2D) -> Dictionary:
 	assert(merged.stats.level == 2 and merged.paid_mana == 45)
 	assert(bonuses.damage_for(merged.stats) == 31)
 	assert(is_equal_approx(merged.effective_attack_interval(), merged.stats.attack_interval / pow(1.15, 2)))
-	bonuses.apply(bonuses.pool.get_upgrade(RunUpgrade.Kind.MANA_FLOW))
+	bonuses.apply(bonuses.pool.get_upgrade(RunUpgrade.Kind.MANA_FLOW).variant_for(4))
 	var income: Array[int] = []
 	for index: int in 5:
 		income.append(bonuses.kill_mana_for(3))
 	assert(income == [3, 4, 3, 4, 4])
-	bonuses.apply(bonuses.pool.get_upgrade(RunUpgrade.Kind.MANA_FLOW))
+	bonuses.apply(bonuses.pool.get_upgrade(RunUpgrade.Kind.MANA_FLOW).variant_for(4))
 	assert(bonuses.kill_mana_for(5) == 7 and bonuses.kill_mana_for(3) == 4)
 	prepare_wave(game, 1, RunUpgrade.Kind.RAPID_FIRE)
 	var mana_before_kill: int = manager.mana
@@ -52,24 +125,24 @@ func run_bonuses(game: Node2D) -> Dictionary:
 	rewarded_enemy.take_damage(rewarded_enemy.max_health)
 	assert(manager.mana == mana_before_kill + 4)
 	game.wave_manager.stop()
-	bonuses.apply(bonuses.pool.get_upgrade(RunUpgrade.Kind.CHEAP_SUMMONS))
+	bonuses.apply(bonuses.pool.get_upgrade(RunUpgrade.Kind.CHEAP_SUMMONS).variant_for(4))
 	assert(manager.current_cost() == 26)
 	var before: int = manager.mana
 	assert(manager.try_summon() and manager.mana == before - 26 and slots[0].unit.paid_mana == 26)
 	assert(slots[0].unit._run_bonuses == bonuses and bonuses.damage_for(slots[0].unit.stats) == 14)
 	assert(manager.try_refund(slots[0], slots[0].unit) and manager.mana == before - 13)
 	assert(manager.refund_amount(merged) == 22)
-	bonuses.apply(bonuses.pool.get_upgrade(RunUpgrade.Kind.CHEAP_SUMMONS))
+	bonuses.apply(bonuses.pool.get_upgrade(RunUpgrade.Kind.CHEAP_SUMMONS).variant_for(4))
 	assert(bonuses.summon_cost_for(30) == 22 and bonuses.summon_cost_for(1) == 1)
 	game.tower.take_damage(20)
-	bonuses.apply(bonuses.pool.get_upgrade(RunUpgrade.Kind.TOWER_ARMOR))
+	bonuses.apply(bonuses.pool.get_upgrade(RunUpgrade.Kind.TOWER_ARMOR).variant_for(4))
 	game.tower.increase_max_health(bonuses.tower_health_for(100))
 	assert(game.tower.max_health == 125 and game.tower.current_health == 105)
-	bonuses.apply(bonuses.pool.get_upgrade(RunUpgrade.Kind.TOWER_ARMOR))
+	bonuses.apply(bonuses.pool.get_upgrade(RunUpgrade.Kind.TOWER_ARMOR).variant_for(4))
 	game.tower.increase_max_health(bonuses.tower_health_for(100))
 	assert(game.tower.max_health == 156 and game.tower.current_health == 136 and game.hud.health_label.text == "136")
 	for index: int in 4:
-		bonuses.apply(bonuses.pool.get_upgrade(RunUpgrade.Kind.FROST_POWER))
+		bonuses.apply(bonuses.pool.get_upgrade(RunUpgrade.Kind.FROST_POWER).variant_for(4))
 	assert(is_equal_approx(bonuses.slow_ratio_for(frost), 0.7))
 	assert(is_equal_approx(bonuses.slow_ratio_for(frost3), 0.7) and bonuses.slow_ratio_for(archer) == 0.0)
 	var frost_shot: CombatProjectile = load("res://scenes/frost_bolt.tscn").instantiate()
@@ -84,7 +157,10 @@ func run_bonuses(game: Node2D) -> Dictionary:
 	bonuses.set_random_seed(23)
 	var choices: Array[RunUpgrade] = bonuses.roll_choices()
 	bonuses.set_random_seed(23)
-	assert(choices == bonuses.roll_choices() and choices.size() == 3)
+	var repeated: Array[RunUpgrade] = bonuses.roll_choices()
+	assert(choices.size() == repeated.size() and choices.size() == 3)
+	for index: int in choices.size():
+		assert(choices[index].kind == repeated[index].kind and choices[index].tier == repeated[index].tier)
 	assert(choices[0] != choices[1] and choices[0] != choices[2] and choices[1] != choices[2])
 	assert(bonuses.damage_for(archer) == 10 and bonuses.summon_cost_for(30) == 30 and bonuses.kill_mana_for(3) == 3)
 	return {"passed": true, "effects": 6, "income": income, "snapshot_projectiles": true,

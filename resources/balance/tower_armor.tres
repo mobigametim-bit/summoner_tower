@@ -1,12 +1,15 @@
-[gd_resource type="Resource" script_class="RunUpgrade" format=3]
+[gd_resource type="Resource" script_class="RunUpgrade" format=3 uid="uid://c588jgvnvxj5v"]
 
-[ext_resource type="Script" path="res://scripts/data/run_upgrade.gd" id="1"]
-[ext_resource type="Texture2D" path="res://assets/upgrades/tower_armor.svg" id="2"]
+[ext_resource type="Script" uid="uid://4n2lsomwxchb" path="res://scripts/data/run_upgrade.gd" id="1"]
+[ext_resource type="Texture2D" uid="uid://c2u0vms2chqli" path="res://assets/upgrades/tower_armor.svg" id="2"]
+[ext_resource type="Script" uid="uid://t5wl1e4nf5h1" path="res://scripts/data/unit_stats.gd" id="3_svu7i"]
 
 [resource]
 script = ExtResource("1")
 kind = 3
-icon = ExtResource("2")
 title = "TOWER ARMOR"
-description = "+25% max tower HP\nHeal by the HP gained."
-strength = 0.25
+description = "+{value}% max tower HP
+Heal by the HP gained."
+icon = ExtResource("2")
+strength = 0.12
+tier_strengths = Array[float]([0.06, 0.12, 0.18, 0.25, 0.37])
