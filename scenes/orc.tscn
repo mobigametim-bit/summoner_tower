@@ -34,6 +34,8 @@ texture = ExtResource("2_s5mlm")
 texture = ExtResource("4_xme4o")
 
 [node name="HealthBar" type="ProgressBar" parent="." unique_id=193745244]
+z_index = 10
+z_as_relative = false
 offset_left = -44.0
 offset_top = -82.0
 offset_right = 44.0

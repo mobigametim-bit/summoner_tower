@@ -37,6 +37,8 @@ scale = Vector2(0.8, 0.8)
 texture = ExtResource("2_md0e3")
 
 [node name="HealthBar" type="ProgressBar" parent="." unique_id=193745244]
+z_index = 10
+z_as_relative = false
 offset_left = -35.2
 offset_top = -42.4
 offset_right = 35.2
