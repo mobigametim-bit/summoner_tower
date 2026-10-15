@@ -20,6 +20,10 @@ var _music_index: int = 0
 var _music_tween: Tween
 var _unlocked: bool = false
 var _last_combat_time: Dictionary[StringName, int] = {}
+var _backgrounded: bool = false
+var _visibility_callback: JavaScriptObject
+var _web_window: JavaScriptObject
+var _web_document: JavaScriptObject
 
 
 func _ready() -> void:
@@ -37,6 +41,61 @@ func _ready() -> void:
 	get_tree().scene_changed.connect(_bind_scene_buttons)
 	_bind_scene_buttons.call_deferred()
 	_save_timer.timeout.connect(save_settings)
+	if OS.has_feature("web"):
+		_bind_web_visibility()
+
+
+func _bind_web_visibility() -> void:
+	_web_window = JavaScriptBridge.get_interface("window")
+	_web_document = JavaScriptBridge.get_interface("document")
+	_visibility_callback = JavaScriptBridge.create_callback(_on_web_presence_changed)
+	for event_name: String in ["blur", "focus", "pagehide", "pageshow"]:
+		_web_window.addEventListener(event_name, _visibility_callback)
+	for event_name: String in ["visibilitychange", "freeze", "resume"]:
+		_web_document.addEventListener(event_name, _visibility_callback)
+	_refresh_web_presence()
+
+
+func _on_web_presence_changed(arguments: Array) -> void:
+	var event_type: String = str(arguments[0].type) if not arguments.is_empty() else ""
+	if event_type in ["pagehide", "freeze"]:
+		_set_backgrounded(true)
+	else:
+		_refresh_web_presence()
+
+
+func _refresh_web_presence() -> void:
+	_set_backgrounded(bool(_web_document.hidden) or not bool(_web_document.hasFocus()))
+
+
+func _set_backgrounded(backgrounded: bool) -> void:
+	if _backgrounded == backgrounded:
+		return
+	_backgrounded = backgrounded
+	# Это временная блокировка звука: пользовательские уровни громкости не меняются.
+	_apply_volumes()
+	for player: AudioStreamPlayer in _music_players:
+		player.stream_paused = backgrounded
+	if _music_tween != null and _music_tween.is_valid():
+		if backgrounded:
+			_music_tween.pause()
+		else:
+			_music_tween.play()
+	if backgrounded:
+		stop_effects()
+		$SFX/UI.stop()
+	elif _unlocked:
+		_start_music()
+
+
+func _exit_tree() -> void:
+	if _visibility_callback == null:
+		return
+	for event_name: String in ["blur", "focus", "pagehide", "pageshow"]:
+		_web_window.removeEventListener(event_name, _visibility_callback)
+	for event_name: String in ["visibilitychange", "freeze", "resume"]:
+		_web_document.removeEventListener(event_name, _visibility_callback)
+	_visibility_callback = null
 
 
 func _input(event: InputEvent) -> void:
@@ -72,7 +131,7 @@ func _apply_volumes() -> void:
 	for pair: Array in [[&"Music", music_volume], [&"SFX", effects_volume]]:
 		var index: int = AudioServer.get_bus_index(pair[0])
 		AudioServer.set_bus_volume_linear(index, pair[1])
-		AudioServer.set_bus_mute(index, pair[1] <= 0.0)
+		AudioServer.set_bus_mute(index, _backgrounded or pair[1] <= 0.0)
 
 
 func save_settings() -> void:
@@ -97,7 +156,7 @@ func play_music(kind: StringName) -> void:
 
 
 func _start_music() -> void:
-	if _music_name.is_empty():
+	if _backgrounded or _music_name.is_empty():
 		return
 	var stream: AudioStream = config.menu if _music_name == &"menu" else config.battle
 	var outgoing: AudioStreamPlayer = _music_players[_music_index]
@@ -118,7 +177,7 @@ func _start_music() -> void:
 
 
 func play_sfx(event: StringName) -> void:
-	if not _unlocked or effects_volume <= 0.0 or not config.effects.has(event):
+	if _backgrounded or not _unlocked or effects_volume <= 0.0 or not config.effects.has(event):
 		return
 	var player: AudioStreamPlayer
 	if event in [&"archer", &"fire_cast", &"frost_cast"]:
