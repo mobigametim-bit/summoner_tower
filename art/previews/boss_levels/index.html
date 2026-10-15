@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Summoner Tower — пять уровней босса</title>
+<style>
+*{box-sizing:border-box}body{margin:0;background:#101521;color:#e7eef2;font:16px/1.5 Arial,sans-serif}main{max-width:1440px;margin:auto;padding:30px}h1{color:#f0ce7b;margin:0 0 10px;font-size:28px}p{color:#b6c8cf;margin:8px 0 22px}.controls{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:24px}button,select{font:inherit;padding:9px 14px;border:1px solid #42576a;border-radius:8px;background:#1b2939;color:#e7eef2}button[aria-pressed=true]{border-color:#91e8eb;color:#91e8eb}.scroll{overflow-x:auto}.grid{display:grid;grid-template-columns:repeat(5,1fr);gap:14px;min-width:1020px}.card{border:1px solid #334859;border-radius:14px;overflow:hidden;background:#16212e}header{display:flex;justify-content:space-between;align-items:center;padding:14px 16px}header strong{color:var(--tier)}.wave{font-size:14px;color:#b6c8cf}.stage{height:280px;display:flex;align-items:center;justify-content:center;background:radial-gradient(ellipse at 50% 75%,#2d443b 0%,#20352c 40%,#1a2b27 65%);position:relative}.stage::after{content:'';position:absolute;width:74%;height:20px;bottom:24px;border-radius:50%;background:#111c1b66}.actor{position:relative;z-index:1;width:256px;height:256px;max-width:100%;flex-shrink:0}.caption{min-height:91px;padding:12px 15px;color:#d0dce2;font-size:14px}.detail{margin-top:26px;border:1px solid #334859;border-radius:14px;padding:20px;background:#16212e}.detail h2{font-size:19px;margin:0 0 14px;color:#f0ce7b}.compare{display:flex;gap:24px;align-items:center;flex-wrap:wrap}.compare figure{margin:0;text-align:center}.compare img{width:166px;height:166px}.compare figcaption{font-size:14px;color:#b6c8cf}#scale-note{font-size:14px;color:#91d5d8}.game .stage{height:170px}.game .actor{width:var(--actor-size);height:var(--actor-size)}.game .stage::after{width:var(--actor-size);height:8px;bottom:48px}.game .stage{background:linear-gradient(90deg,transparent 30%,#666e5c 30%,#666e5c 70%,transparent 70%),#20352c}.note{font-size:14px;margin-bottom:0}@media(max-width:700px){main{padding:18px}h1{font-size:23px}.grid{min-width:1040px}.detail{padding:16px}}
+</style>
+</head>
+<body><main>
+<h1>Босс · пять уровней</h1>
+<p>Уровни для волн <b>5 → 10 → 15 → 20 → 25</b>. Фиолетовая кожа сохраняется; цвет уровня — на броне. Оба кулака свободны для двухручной атаки.</p>
+<div class="controls">
+<button id="large" aria-pressed="true">Крупный просмотр</button><button id="game" aria-pressed="false">Игровой масштаб</button>
+<label>Сетка <select id="columns"><option value="6">6 столбцов</option><option value="7" selected>7 столбцов</option><option value="8">8 столбцов</option></select></label>
+<label>Экран <select id="screen"><option value="390">390 px</option><option value="450" selected>450 px</option><option value="720">720 px</option></select></label><span id="scale-note">Крупное сравнение</span>
+</div>
+<div class="scroll"><div class="grid" id="grid">
+<article class="card" style="--tier:#88b96b"><header><strong>Lv1 · зелёный</strong><span class="wave">Волна 5</span></header><div class="stage"><img class="actor" src="boss_lv1.svg" alt="Босс уровня 1"></div><div class="caption">Корона, цветные наплечники, лёгкие наручи и ботинки.</div></article>
+<article class="card" style="--tier:#ec9b49"><header><strong>Lv2 · оранжевый</strong><span class="wave">Волна 10</span></header><div class="stage"><img class="actor" src="boss_lv2.svg" alt="Босс уровня 2"></div><div class="caption">Усиленные наручи и отдельные наголенники.</div></article>
+<article class="card" style="--tier:#df5654"><header><strong>Lv3 · красный</strong><span class="wave">Волна 15</span></header><div class="stage"><img class="actor" src="boss_lv3.svg" alt="Босс уровня 3"></div><div class="caption">Нагрудная пластина и массивные наплечники.</div></article>
+<article class="card" style="--tier:#5295ef"><header><strong>Lv4 · синий</strong><span class="wave">Волна 20</span></header><div class="stage"><img class="actor" src="boss_lv4.svg" alt="Босс уровня 4"></div><div class="caption">Открытый шлем-корона и бронированные боевые перчатки.</div></article>
+<article class="card" style="--tier:#b66dea"><header><strong>Lv5 · фиолетовый</strong><span class="wave">Волна 25</span></header><div class="stage"><img class="actor" src="boss_lv5.svg" alt="Босс уровня 5"></div><div class="caption">Золотые накладки, поясная броня, защищённые костяшки и кристалл в короне.</div></article>
+</div></div>
+<section class="detail"><h2>Исходный босс и максимальный уровень</h2><div class="compare"><figure><img src="boss_current.svg" alt="Текущий босс"><figcaption>Сейчас в игре</figcaption></figure><figure><img src="boss_lv1.svg" alt="Первый уровень"><figcaption>Предлагаемый Lv1</figcaption></figure><figure><img src="boss_lv5.svg" alt="Пятый уровень"><figcaption>Предлагаемый Lv5</figcaption></figure></div><p class="note">Проверьте лицо, читаемость цветов и нарастание брони. На телефоне таблицу можно прокрутить вбок. Это только статическое превью; игра и анимации пока не изменены.</p></section>
+</main><script>
+const grid=document.getElementById('grid'),large=document.getElementById('large'),game=document.getElementById('game'),columns=document.getElementById('columns'),screen=document.getElementById('screen'),note=document.getElementById('scale-note');let small=false;
+function update(){const scale=Math.min((672/Number(columns.value)-12)/140,1),size=166*scale*Number(screen.value)/720;grid.style.setProperty('--actor-size',size+'px');grid.classList.toggle('game',small);large.setAttribute('aria-pressed',String(!small));game.setAttribute('aria-pressed',String(small));note.textContent=small?'Размер босса ≈ '+Math.round(size)+' px на экране '+screen.value+' px':'Крупное сравнение'}
+large.addEventListener('click',()=>{small=false;update()});game.addEventListener('click',()=>{small=true;update()});columns.addEventListener('change',update);screen.addEventListener('change',update);update();
+</script></body></html>

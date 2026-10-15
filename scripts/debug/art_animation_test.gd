@@ -41,7 +41,7 @@ func _ready() -> void:
 	if OS.has_feature("web"):
 		var parameters: Variant = JSON.parse_string(str(JavaScriptBridge.eval("JSON.stringify(Object.fromEntries(new URL(window.location.href).searchParams))", true)))
 		if parameters is Dictionary:
-			var indices: Dictionary = {"goblin": 1, "orc": 4, "golem": 5}
+			var indices: Dictionary = {"goblin": 1, "orc": 4, "golem": 5, "boss": 6}
 			initial_asset_index = int(indices.get(parameters.get("asset", ""), initial_asset_index))
 			_difficulty_tier = clampi(int(parameters.get("tier", initial_difficulty_tier)), 1, 5)
 		_web_snapshot_callback = JavaScriptBridge.create_callback(_publish_equipment_snapshot)
@@ -117,7 +117,7 @@ func _select_asset(index: int) -> void:
 
 
 func _apply_difficulty() -> void:
-	var supported: bool = _asset_index in [1, 4, 5]
+	var supported: bool = _asset_index in [1, 4, 5, 6]
 	difficulty_row.visible = supported
 	if not supported:
 		return

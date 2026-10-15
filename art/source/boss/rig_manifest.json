@@ -167,13 +167,13 @@
       "z_index": 7
     }
   ],
-  "fixed_palette": true,
+  "fixed_palette": false,
   "static_fallback": "res://assets/boss.svg",
   "gameplay_entity": "res://scenes/boss.tscn",
   "visual_scene": "res://scenes/visuals/BossVisual.tscn",
   "review_scene": "res://scenes/debug/BossAnimationTest.tscn",
   "gameplay_review_scene": "res://scenes/debug/BossGameplayReview.tscn",
-  "compositing": "CanvasGroup root; fade and flash use self_modulate so hidden joint overlaps do not show through. No custom shader or mipmaps.",
+  "compositing": "CanvasGroup root; self_modulate fade/flash; shared local-to-scene equipment accent shader colors only green clothes/armor. Skin, face, gold and outline stay fixed.",
   "animations": {
     "walk_loop": 1.2,
     "attack": 0.55,
@@ -181,5 +181,9 @@
     "death": 0.45,
     "spawn_or_intro": 0.35
   },
-  "attack_impact_time": 0.22
+  "attack_impact_time": 0.22,
+  "equipment_manifest": "equipment/manifest.json",
+  "level_source": "WaveConfig.boss_level_for(wave)",
+  "level_variants_stage": "gameplay_review",
+  "legacy_parts_preserved": true
 }

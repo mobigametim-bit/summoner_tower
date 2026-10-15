@@ -1,0 +1,169 @@
+{
+  "canvas": [
+    256,
+    256
+  ],
+  "bones": 9,
+  "parts": [
+    {
+      "part": "arm_back_upper",
+      "node": "Skeleton2D/Root/Body/BackUpperArm/Sprite",
+      "pivot": [
+        75,
+        124
+      ],
+      "sprite_offset": [
+        -75,
+        -124
+      ],
+      "z_index": 0,
+      "tier_textures": [
+        "res://art/source/boss/equipment/arm_back_upper_lv1.svg",
+        "res://art/source/boss/equipment/arm_back_upper_lv1.svg",
+        "res://art/source/boss/equipment/arm_back_upper_lv3.svg",
+        "res://art/source/boss/equipment/arm_back_upper_lv3.svg",
+        "res://art/source/boss/equipment/arm_back_upper_lv5.svg"
+      ]
+    },
+    {
+      "part": "arm_back_forearm",
+      "node": "Skeleton2D/Root/Body/BackUpperArm/BackForearm/Sprite",
+      "pivot": [
+        45,
+        158
+      ],
+      "sprite_offset": [
+        -45,
+        -158
+      ],
+      "z_index": 1,
+      "tier_textures": [
+        "res://art/source/boss/equipment/arm_back_forearm_lv1.svg",
+        "res://art/source/boss/equipment/arm_back_forearm_lv2.svg",
+        "res://art/source/boss/equipment/arm_back_forearm_lv2.svg",
+        "res://art/source/boss/equipment/arm_back_forearm_lv4.svg",
+        "res://art/source/boss/equipment/arm_back_forearm_lv5.svg"
+      ]
+    },
+    {
+      "part": "leg_left",
+      "node": "Skeleton2D/Root/Body/LeftLeg/Sprite",
+      "pivot": [
+        101,
+        201
+      ],
+      "sprite_offset": [
+        -101,
+        -201
+      ],
+      "z_index": 2,
+      "tier_textures": [
+        "res://art/source/boss/equipment/leg_left_lv1.svg",
+        "res://art/source/boss/equipment/leg_left_lv2.svg",
+        "res://art/source/boss/equipment/leg_left_lv2.svg",
+        "res://art/source/boss/equipment/leg_left_lv2.svg",
+        "res://art/source/boss/equipment/leg_left_lv2.svg"
+      ]
+    },
+    {
+      "part": "leg_right",
+      "node": "Skeleton2D/Root/Body/RightLeg/Sprite",
+      "pivot": [
+        151,
+        201
+      ],
+      "sprite_offset": [
+        -151,
+        -201
+      ],
+      "z_index": 3,
+      "tier_textures": [
+        "res://art/source/boss/equipment/leg_right_lv1.svg",
+        "res://art/source/boss/equipment/leg_right_lv2.svg",
+        "res://art/source/boss/equipment/leg_right_lv2.svg",
+        "res://art/source/boss/equipment/leg_right_lv2.svg",
+        "res://art/source/boss/equipment/leg_right_lv2.svg"
+      ]
+    },
+    {
+      "part": "body",
+      "node": "Skeleton2D/Root/Body/Sprite",
+      "pivot": [
+        128,
+        171
+      ],
+      "sprite_offset": [
+        -128,
+        -171
+      ],
+      "z_index": 4,
+      "tier_textures": [
+        "res://art/source/boss/equipment/body_lv1.svg",
+        "res://art/source/boss/equipment/body_lv1.svg",
+        "res://art/source/boss/equipment/body_lv3.svg",
+        "res://art/source/boss/equipment/body_lv3.svg",
+        "res://art/source/boss/equipment/body_lv5.svg"
+      ]
+    },
+    {
+      "part": "arm_front_upper",
+      "node": "Skeleton2D/Root/Body/FrontUpperArm/Sprite",
+      "pivot": [
+        181,
+        125
+      ],
+      "sprite_offset": [
+        -181,
+        -125
+      ],
+      "z_index": 5,
+      "tier_textures": [
+        "res://art/source/boss/equipment/arm_front_upper_lv1.svg",
+        "res://art/source/boss/equipment/arm_front_upper_lv1.svg",
+        "res://art/source/boss/equipment/arm_front_upper_lv3.svg",
+        "res://art/source/boss/equipment/arm_front_upper_lv3.svg",
+        "res://art/source/boss/equipment/arm_front_upper_lv5.svg"
+      ]
+    },
+    {
+      "part": "arm_front_forearm",
+      "node": "Skeleton2D/Root/Body/FrontUpperArm/FrontForearm/Sprite",
+      "pivot": [
+        211,
+        158
+      ],
+      "sprite_offset": [
+        -211,
+        -158
+      ],
+      "z_index": 6,
+      "tier_textures": [
+        "res://art/source/boss/equipment/arm_front_forearm_lv1.svg",
+        "res://art/source/boss/equipment/arm_front_forearm_lv2.svg",
+        "res://art/source/boss/equipment/arm_front_forearm_lv2.svg",
+        "res://art/source/boss/equipment/arm_front_forearm_lv4.svg",
+        "res://art/source/boss/equipment/arm_front_forearm_lv5.svg"
+      ]
+    },
+    {
+      "part": "head",
+      "node": "Skeleton2D/Root/Body/Head/Sprite",
+      "pivot": [
+        132,
+        143
+      ],
+      "sprite_offset": [
+        -132,
+        -143
+      ],
+      "z_index": 7,
+      "tier_textures": [
+        "res://art/source/boss/equipment/head_lv1.svg",
+        "res://art/source/boss/equipment/head_lv1.svg",
+        "res://art/source/boss/equipment/head_lv1.svg",
+        "res://art/source/boss/equipment/head_lv4.svg",
+        "res://art/source/boss/equipment/head_lv5.svg"
+      ]
+    }
+  ]
+}

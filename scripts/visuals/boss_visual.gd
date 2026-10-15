@@ -8,6 +8,7 @@ const ATTACK_IMPACT_TIME: float = 0.22
 const GAMEPLAY_CANVAS_SIZE: float = 166.0
 
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
+@onready var _equipment_sprites: Array[Node] = find_children("*", "Sprite2D", true, false)
 
 var _active_animation: StringName = &"walk_loop"
 var _impact_emitted: bool = false
@@ -19,6 +20,7 @@ var _tail: bool = false
 
 
 func _ready() -> void:
+	set_difficulty(1, EnemyStats.TIER_COLORS[0])
 	play_animation(&"walk_loop")
 
 
@@ -69,9 +71,10 @@ func enable_gameplay() -> void:
 		play_animation(&"walk_loop")
 
 
-func set_difficulty(_tier: int, _color: Color) -> void:
-	# Boss сохраняет принятую палитру при любом HP, общий enemy contract остаётся прежним.
-	pass
+func set_difficulty(tier: int, accent_color: Color) -> void:
+	for sprite: Node in _equipment_sprites:
+		if sprite is EnemyEquipmentPart:
+			(sprite as EnemyEquipmentPart).apply_tier(tier, accent_color)
 
 
 func advance_gameplay(delta: float, time_to_contact: float, direction: Vector2) -> void:

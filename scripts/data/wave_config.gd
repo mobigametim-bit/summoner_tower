@@ -18,7 +18,6 @@ extends Resource
 @export_range(0.0, 1.0, 0.05) var orc_share: float = 0.30
 @export_range(0.0, 1.0, 0.05) var golem_share: float = 0.15
 @export_range(1, 100, 1) var boss_interval: int = 5
-@export_range(0, 100000, 1) var boss_health_growth: int = 250
 @export var power_balance: PowerBalanceConfig
 
 
@@ -44,7 +43,12 @@ func is_boss_wave(wave: int) -> bool:
 
 
 func boss_health_for(wave: int, base_health: int) -> int:
-	return base_health + maxi(floori(float(wave) / boss_interval) - 1, 0) * boss_health_growth
+	return base_health * (1 << (boss_level_for(wave) - 1))
+
+
+func boss_level_for(wave: int) -> int:
+	# Пока биомы не внедрены, после пятого появления сохраняется Lv5.
+	return clampi(floori(float(wave) / boss_interval), 1, EnemyStats.TIER_COLORS.size())
 
 
 func sequence_for(wave: int) -> Array[PackedScene]:

@@ -35,7 +35,7 @@ func run(game: Node2D) -> Dictionary:
 	assert(config.enemy_health_for(43, 30) == 240 and config.enemy_health_for(91, 30) == 480)
 	assert(config.enemy_health_for(13, 60) == 120 and config.enemy_health_for(37, 60) == 240)
 	assert(config.enemy_health_for(25, 120) == 240 and config.enemy_health_for(73, 120) == 480)
-	assert(config.boss_health_for(5, 350) == 350 and config.boss_health_for(10, 350) == 600)
+	assert(config.boss_health_for(5, 350) == 350 and config.boss_health_for(10, 350) == 700)
 	var compositions: Array[Dictionary] = []
 	for number: int in range(1, 11):
 		assert(waves.wave_number == number and waves.phase == WaveManager.Phase.FIGHTING)

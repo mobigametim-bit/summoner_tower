@@ -26,5 +26,4 @@ golem_first_wave = 6
 orc_share = 0.3
 golem_share = 0.15
 boss_interval = 5
-boss_health_growth = 250
 power_balance = ExtResource("6_power")

@@ -1,6 +1,7 @@
 extends "res://scripts/game/game_manager.gd"
 
 @export var review_summon_seed: int = 23
+@export_range(5, 100, 5) var review_wave: int = 5
 
 @onready var animated_button: CheckButton = $Interface/GoblinReview/Animated
 @onready var pause_button: Button = $Interface/GoblinReview/Pause
@@ -14,6 +15,9 @@ var _outcomes: Array[Dictionary] = []
 func _ready() -> void:
 	wave_manager.state_changed.connect(_on_review_wave_changed)
 	super._ready()
+	if OS.has_feature("web"):
+		var requested_wave: int = int(JavaScriptBridge.eval("Number(new URL(window.location.href).searchParams.get('wave')) || 5", true))
+		review_wave = clampi(floori(float(requested_wave) / 5.0), 1, 20) * 5
 	_start_review_wave()
 	summon_manager.set_random_seed(review_summon_seed)
 	animated_button.set_pressed_no_signal(_animated)
@@ -26,9 +30,9 @@ func _ready() -> void:
 
 
 func _start_review_wave() -> void:
-	# Только review: начинаем с существующей пятой волны, где появляется Boss.
+	# Только review: стартуем с выбранной боссовой волны без изменения обычного забега.
 	wave_manager.stop()
-	wave_manager.wave_number = 5
+	wave_manager.wave_number = review_wave
 	wave_manager.phase = WaveManager.Phase.FIGHTING
 	wave_manager._begin_wave()
 
@@ -44,7 +48,7 @@ func _setup_load_test(count: int) -> void:
 		wave_manager._active.append(enemy)
 		enemy.resolved.connect(wave_manager._on_enemy_resolved)
 		enemies.add_child(enemy)
-		enemy.configure(spawn_point.global_position, contact_point.global_position.y)
+		enemy.configure(spawn_point.global_position, contact_point.global_position.y, wave_manager.config.boss_health_for(review_wave, enemy.stats.base_health), wave_manager.config.boss_level_for(review_wave))
 		if route != null and enemy.has_method("follow_route"):
 			enemy.call("follow_route", route.curve, route.global_transform, float(route.get_meta("cell_size", 140.0)))
 			var offset: float = route.curve.get_baked_length() * 0.25 * float(index) / float(count)

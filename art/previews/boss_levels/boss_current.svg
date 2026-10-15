@@ -1,0 +1,70 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="256" height="256" viewBox="0 0 256 256">
+  <title>Boss — crowned brute, rigid cutout art preview</title>
+  <g id="arm_back_upper" stroke="#29180f" stroke-width="7" stroke-linecap="round" stroke-linejoin="round" data-pivot-x="75" data-pivot-y="124">
+    <path d="M57 106Q80 99 93 117L87 145 66 172Q47 180 35 165L33 143Z" fill="#9876af"/>
+    <path d="m44 137 17 6 15-11-6 29-15 11-16-14Z" fill="#6b4b7e" stroke="none"/>
+    <path d="M42 93Q64 84 85 98L98 116 86 140 61 146 29 130 30 108Z" fill="#e3b552"/>
+    <path d="m41 101 21-9 21 12 6 12-22 6-28-9Z" fill="#f5d581" stroke="none"/>
+    <path d="m35 124 24 10 23-3 4 9-25 6-32-16Z" fill="#af7f37" stroke="none"/>
+  </g>
+  <g id="arm_back_forearm" stroke="#29180f" stroke-width="7" stroke-linecap="round" stroke-linejoin="round" data-pivot-x="45" data-pivot-y="158">
+    <path d="M32 142Q53 136 65 153L72 177 67 205Q64 220 49 222L26 218Q11 210 13 193L15 166Z" fill="#9876af"/>
+    <path d="M19 175 34 181 36 205 51 216 27 211 18 199Z" fill="#6b4b7e" stroke="none"/>
+    <path d="m30 151 19-7 12 15-8 18-22-4Z" fill="#ad8dc0" stroke="none"/>
+    <path d="m20 171 43 7 5 17-47-6Z" fill="#503456" stroke-width="5"/>
+    <path d="m27 177 29 5" fill="none" stroke="#e3b552" stroke-width="5"/>
+    <path d="m47 201 8 9" fill="none" stroke-width="5"/>
+  </g>
+  <g id="leg_left" stroke="#29180f" stroke-width="7" stroke-linecap="round" stroke-linejoin="round" data-pivot-x="101" data-pivot-y="201">
+    <path d="M85 184Q105 179 117 194L116 218 119 237Q98 242 79 236L79 224Z" fill="#9876af"/>
+    <path d="m91 192 19-1-11 32-14 8Z" fill="#6b4b7e" stroke="none"/>
+    <path d="m82 214 34-2 4 24Q99 242 77 236L77 227Z" fill="#503456" stroke-width="6"/>
+    <path d="m84 220 26-2" fill="none" stroke="#e3b552" stroke-width="5"/>
+  </g>
+  <g id="leg_right" stroke="#29180f" stroke-width="7" stroke-linecap="round" stroke-linejoin="round" data-pivot-x="151" data-pivot-y="201">
+    <path d="M135 184Q154 178 167 194L171 219 181 234Q164 244 137 236L132 216Z" fill="#9876af"/>
+    <path d="m151 190 13 8 1 23-14 14-13-7Z" fill="#6b4b7e" stroke="none"/>
+    <path d="m135 216 35-3 13 22Q164 243 135 237L133 228Z" fill="#503456" stroke-width="6"/>
+    <path d="m142 221 23-2" fill="none" stroke="#e3b552" stroke-width="5"/>
+  </g>
+  <g id="body" stroke="#29180f" stroke-width="7" stroke-linecap="round" stroke-linejoin="round" data-pivot-x="128" data-pivot-y="171">
+    <path d="M78 109Q128 94 178 112L194 147 188 182Q180 215 132 218L95 211Q66 198 66 175L68 142Z" fill="#503456"/>
+    <path d="M79 137 104 155 150 158 176 137 186 160Q181 190 156 200L114 201 83 185 74 164Z" fill="#6b4b7e" stroke="none"/>
+    <path d="M75 182Q129 210 186 180L183 196Q135 224 93 207L78 198Z" fill="#39263e" stroke="none"/>
+    <path d="m89 173 41 22 37-22" fill="none" stroke="#e3b552" stroke-width="8"/>
+    <path d="m87 203 29 12 25 2 27-9" fill="none" stroke="#e3b552" stroke-width="5"/>
+  </g>
+  <g id="arm_front_upper" stroke="#29180f" stroke-width="7" stroke-linecap="round" stroke-linejoin="round" data-pivot-x="181" data-pivot-y="125">
+    <path d="M164 109Q184 96 203 114L222 141 226 159Q217 178 198 175L175 156 163 134Z" fill="#9876af"/>
+    <path d="m182 139 21-8 15 15 2 13-16 11-21-14Z" fill="#6b4b7e" stroke="none"/>
+    <path d="M170 96Q192 85 215 101L230 119 221 143 199 150 168 136 160 116Z" fill="#e3b552"/>
+    <path d="m173 104 18-11 19 11 10 15-23 5-27-10Z" fill="#f5d581" stroke="none"/>
+    <path d="m172 130 24 10 23-8 2 11-22 7-31-14Z" fill="#af7f37" stroke="none"/>
+  </g>
+  <g id="arm_front_forearm" stroke="#29180f" stroke-width="7" stroke-linecap="round" stroke-linejoin="round" data-pivot-x="211" data-pivot-y="158">
+    <path d="M200 144Q218 136 233 154L244 176 244 199Q243 216 225 222L202 220Q187 215 185 199L184 178Z" fill="#9876af"/>
+    <path d="m204 153 15-8 14 14 5 18-15 5-26-10Z" fill="#ad8dc0" stroke="none"/>
+    <path d="m224 185 16-8 4 22-6 13-14 10-22-2-14-12 25 3Z" fill="#6b4b7e" stroke="none"/>
+    <path d="m192 167 43-7 7 18-47 8Z" fill="#503456" stroke-width="5"/>
+    <path d="m199 174 28-5" fill="none" stroke="#e3b552" stroke-width="5"/>
+    <path d="m208 199-6 10" fill="none" stroke-width="5"/>
+  </g>
+  <g id="head" stroke="#29180f" stroke-width="7" stroke-linecap="round" stroke-linejoin="round" data-pivot-x="132" data-pivot-y="143">
+    <path d="M80 73 59 64 64 92Q71 105 88 103Z" fill="#9876af"/>
+    <path d="m177 75 25-9-8 28Q187 106 175 102Z" fill="#9876af"/>
+    <path d="M85 51Q111 35 143 43 177 46 187 71L191 107Q190 134 169 147 142 165 111 155L88 145Q71 130 70 106L74 78Z" fill="#9876af"/>
+    <path d="M83 81 97 86 90 107 100 130 122 153 102 147 86 137 77 120 75 102Z" fill="#6b4b7e" stroke="none"/>
+    <path d="m172 76 12 12 2 22-9 22-18 18-15 7 14-20 10-23Z" fill="#6b4b7e" stroke="none"/>
+    <path d="M99 61Q119 50 140 55L161 65 145 72 120 64 97 75Z" fill="#ad8dc0" stroke="none"/>
+    <path d="M82 61 79 26 106 42 130 11 151 40 181 24 178 63Q135 76 82 61Z" fill="#e3b552"/>
+    <path d="m87 36 19 15 24-30 20 28 23-15-2 14-24 9-17-18-17 20-25-10Z" fill="#f5d581" stroke="none"/>
+    <path d="M87 58Q130 69 173 58" fill="none" stroke="#af7f37" stroke-width="5"/>
+    <path d="m90 91 31 12-4 16Q98 118 93 107Z" fill="#29180f" stroke-width="5"/>
+    <path d="m145 102 30-12-3 17Q167 119 148 117Z" fill="#29180f" stroke-width="5"/>
+    <path d="m99 102 16 6-1 5-12-3Z m52 6 15-6-3 8-11 3Z" fill="#ffd16c" stroke="none"/>
+    <path d="M127 101Q132 97 138 101L142 119 131 124 122 118Z" fill="#6b4b7e" stroke="none"/>
+    <path d="M99 133Q130 144 165 131" fill="none" stroke-width="6"/>
+    <path d="m99 140 9-21 11 24Z m48 3 12-24 8 20Z" fill="#efe2c9" stroke-width="5"/>
+    <path d="M99 142Q130 137 167 142L158 150Q132 159 110 150Z" fill="#9876af" stroke="none"/>
+  </g>
+</svg>

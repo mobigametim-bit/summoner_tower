@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="256" height="256" viewBox="0 0 256 256"><g id="head" stroke="#29180f" stroke-width="7" stroke-linecap="round" stroke-linejoin="round" data-pivot-x="132" data-pivot-y="143">
+    <path d="M80 73 59 64 64 92Q71 105 88 103Z" fill="#9876af" />
+    <path d="m177 75 25-9-8 28Q187 106 175 102Z" fill="#9876af" />
+    <path d="M85 51Q111 35 143 43 177 46 187 71L191 107Q190 134 169 147 142 165 111 155L88 145Q71 130 70 106L74 78Z" fill="#9876af" />
+    <path d="M83 81 97 86 90 107 100 130 122 153 102 147 86 137 77 120 75 102Z" fill="#6b4b7e" stroke="none" />
+    <path d="m172 76 12 12 2 22-9 22-18 18-15 7 14-20 10-23Z" fill="#6b4b7e" stroke="none" />
+    <path d="M99 61Q119 50 140 55L161 65 145 72 120 64 97 75Z" fill="#ad8dc0" stroke="none" />
+    <path d="M82 61 79 26 106 42 130 11 151 40 181 24 178 63Q135 76 82 61Z" fill="#e3b552" />
+    <path d="m87 36 19 15 24-30 20 28 23-15-2 14-24 9-17-18-17 20-25-10Z" fill="#f5d581" stroke="none" />
+    <path d="M87 58Q130 69 173 58" fill="none" stroke="#af7f37" stroke-width="5" />
+    <path d="m90 91 31 12-4 16Q98 118 93 107Z" fill="#29180f" stroke-width="5" />
+    <path d="m145 102 30-12-3 17Q167 119 148 117Z" fill="#29180f" stroke-width="5" />
+    <path d="m99 102 16 6-1 5-12-3Z m52 6 15-6-3 8-11 3Z" fill="#ffd16c" stroke="none" />
+    <path d="M127 101Q132 97 138 101L142 119 131 124 122 118Z" fill="#6b4b7e" stroke="none" />
+    <path d="M99 133Q130 144 165 131" fill="none" stroke-width="6" />
+    <path d="m99 140 9-21 11 24Z m48 3 12-24 8 20Z" fill="#efe2c9" stroke-width="5" />
+    <path d="M99 142Q130 137 167 142L158 150Q132 159 110 150Z" fill="#9876af" stroke="none" />
+  </g>
+</svg>

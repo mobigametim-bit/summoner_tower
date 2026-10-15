@@ -24,9 +24,9 @@ func difficulty_tier(health: int) -> int:
 	return tier
 
 
-func kill_mana_for(health: int) -> int:
+func kill_mana_for(health: int, boss_level: int = 1) -> int:
 	if is_boss:
-		return kill_mana
+		return kill_mana * (1 << (clampi(boss_level, 1, TIER_COLORS.size()) - 1))
 	return kill_mana * (1 << (difficulty_tier(health) - 1))
 
 

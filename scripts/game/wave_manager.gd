@@ -137,7 +137,7 @@ func _spawn_enemy() -> void:
 		position = selected_route.to_global(selected_route.curve.get_point_position(0))
 	enemy.set_meta("portal_index", portal_index)
 	enemy.set_meta("spawn_frame", Engine.get_process_frames())
-	enemy.configure(position, _contact_point.global_position.y, health)
+	enemy.configure(position, _contact_point.global_position.y, health, config.boss_level_for(wave_number))
 	if selected_route != null:
 		enemy.follow_route(selected_route.curve, selected_route.global_transform, float(selected_route.get_meta("cell_size", 140.0)))
 	if phase != Phase.FIGHTING:
@@ -162,8 +162,8 @@ func _on_enemy_resolved(enemy: ApproachingEnemy, outcome: ApproachingEnemy.Outco
 	_active.erase(enemy)
 	if enemy.stats.is_boss and outcome == ApproachingEnemy.Outcome.KILLED:
 		_boss_killed = true
-	# После смертельного попадания current_health уже равен нулю; уровень берём из исходного HP.
-	var mana: int = enemy.stats.kill_mana_for(enemy.max_health) if outcome == ApproachingEnemy.Outcome.KILLED else 0
+	# После смерти HP уже нулевой: обычным врагам нужен max_health, боссу — уровень появления.
+	var mana: int = enemy.stats.kill_mana_for(enemy.max_health, enemy.difficulty_tier) if outcome == ApproachingEnemy.Outcome.KILLED else 0
 	# Сначала закрываем событие; урон башне может остановить WaveManager из сигнала.
 	enemy_resolved.emit(enemy, outcome, mana)
 	if phase == Phase.FIGHTING:
