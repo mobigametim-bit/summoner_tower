@@ -6,15 +6,21 @@ signal destroyed
 signal summon_requested
 
 @export var animated_visual_enabled: bool = true
+@export_range(1.01, 1.2, 0.01) var summon_pulse_scale: float = 1.08
+@export_range(0.4, 3.0, 0.1) var summon_pulse_duration: float = 1.2
 
 @onready var summon_button: Button = $SummonButton
 @onready var cost_label: Label = $CostLabel
-@onready var static_visual: Sprite2D = $Visual
-@onready var tower_visual: TowerVisual = $TowerVisual
+@onready var summon_pulse: Node2D = $SummonPulse
+@onready var static_visual: Sprite2D = $SummonPulse/Visual
+@onready var tower_visual: TowerVisual = $SummonPulse/TowerVisual
 
 var current_health: int = 0
 var max_health: int = 0
 var _is_destroyed: bool = false
+var _summon_available: bool = false
+var _pulse_base_bottom: float = 0.0
+var _pulse_tween: Tween
 var _heal_remainder: float = 0.0
 
 
@@ -42,9 +48,10 @@ func set_animated_visual(enabled: bool) -> void:
 func _align_cost_label() -> void:
 	var bottom: Vector2
 	if animated_visual_enabled:
-		bottom = to_local(tower_visual.to_global(Vector2(0.0, TowerVisual.BASE_BOTTOM_Y - TowerVisual.CANVAS_SIZE * 0.5)))
+		bottom = summon_pulse.to_local(tower_visual.to_global(Vector2(0.0, TowerVisual.BASE_BOTTOM_Y - TowerVisual.CANVAS_SIZE * 0.5)))
 	else:
-		bottom = to_local(static_visual.to_global(Vector2(0.0, static_visual.get_rect().end.y)))
+		bottom = summon_pulse.to_local(static_visual.to_global(Vector2(0.0, static_visual.get_rect().end.y)))
+	_pulse_base_bottom = bottom.y
 	var font: Font = cost_label.get_theme_font("font")
 	var font_size: int = cost_label.get_theme_font_size("font_size")
 	var outline: int = cost_label.get_theme_constant("outline_size")
@@ -54,8 +61,8 @@ func _align_cost_label() -> void:
 
 
 func fit_to_cell(size: float, field_center_x: float) -> void:
-	$Visual.scale = Vector2.ONE * size / 182.0
-	$Visual.position = Vector2.ZERO
+	static_visual.scale = Vector2.ONE * size / 182.0
+	static_visual.position = Vector2.ZERO
 	tower_visual.scale = Vector2.ONE * size / TowerVisual.CANVAS_SIZE
 	tower_visual.position = Vector2.ZERO
 	$ContactPoint.position = Vector2.ZERO
@@ -80,6 +87,7 @@ func initialize(health: int) -> void:
 	modulate = Color.WHITE
 	set_animated_visual(animated_visual_enabled)
 	health_changed.emit(current_health, max_health)
+	_set_summon_pulse(_summon_available)
 
 
 func take_damage(amount: int) -> void:
@@ -88,6 +96,8 @@ func take_damage(amount: int) -> void:
 
 	current_health = maxi(current_health - amount, 0)
 	_is_destroyed = current_health == 0
+	if _is_destroyed:
+		_set_summon_pulse(false)
 	AudioService.play_sfx(&"tower_destroyed" if _is_destroyed else &"tower_hit")
 	if animated_visual_enabled:
 		if _is_destroyed:
@@ -110,6 +120,7 @@ func revive(health: int) -> bool:
 	modulate = Color.WHITE
 	set_animated_visual(animated_visual_enabled)
 	health_changed.emit(current_health, max_health)
+	_set_summon_pulse(_summon_available)
 	return true
 
 
@@ -119,23 +130,6 @@ func increase_max_health(health: int) -> void:
 	current_health += health - max_health
 	max_health = health
 	health_changed.emit(current_health, max_health)
-
-
-func update_summon(_mana: int, cost: int, _occupied: int, _capacity: int, available: bool) -> void:
-	cost_label.text = str(cost)
-	summon_button.disabled = not available
-	cost_label.modulate = Color.WHITE if available else Color("7c8999")
-
-
-func _on_summon_button_pressed() -> void:
-	if animated_visual_enabled and not _is_destroyed and not summon_button.disabled:
-		tower_visual.show_tap()
-	summon_requested.emit()
-
-
-func _on_unit_refunded(_amount: int) -> void:
-	if animated_visual_enabled and not _is_destroyed:
-		tower_visual.show_refund()
 
 
 func heal(amount: float) -> void:
@@ -151,3 +145,43 @@ func heal(amount: float) -> void:
 	if current_health == max_health:
 		_heal_remainder = 0.0
 	health_changed.emit(current_health, max_health)
+
+
+func update_summon(_mana: int, cost: int, _occupied: int, _capacity: int, available: bool) -> void:
+	cost_label.text = str(cost)
+	summon_button.disabled = not available
+	cost_label.modulate = Color.WHITE if available else Color("7c8999")
+	_summon_available = available
+	_set_summon_pulse(available)
+
+
+func _set_summon_pulse(active: bool) -> void:
+	if active and not _is_destroyed:
+		if _pulse_tween != null and _pulse_tween.is_valid():
+			return
+		_pulse_tween = create_tween().set_loops()
+		_pulse_tween.set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN_OUT)
+		_pulse_tween.tween_method(_apply_summon_scale, 1.0, summon_pulse_scale, summon_pulse_duration * 0.5)
+		_pulse_tween.tween_method(_apply_summon_scale, summon_pulse_scale, 1.0, summon_pulse_duration * 0.5)
+	else:
+		if _pulse_tween != null and _pulse_tween.is_valid():
+			_pulse_tween.kill()
+		_pulse_tween = null
+		_apply_summon_scale(1.0)
+
+
+func _apply_summon_scale(factor: float) -> void:
+	summon_pulse.scale = Vector2.ONE * factor
+	# Основание остаётся на месте; цена, ContactPoint и hit rect не масштабируются.
+	summon_pulse.position.y = _pulse_base_bottom * (1.0 - factor)
+
+
+func _on_summon_button_pressed() -> void:
+	if animated_visual_enabled and not _is_destroyed and not summon_button.disabled:
+		tower_visual.show_tap()
+	summon_requested.emit()
+
+
+func _on_unit_refunded(_amount: int) -> void:
+	if animated_visual_enabled and not _is_destroyed:
+		tower_visual.show_refund()

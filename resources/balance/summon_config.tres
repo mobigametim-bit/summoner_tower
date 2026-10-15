@@ -7,5 +7,3 @@ script = ExtResource("1_d8ikx")
 starting_mana = 100
 initial_cost = 20
 cost_increase = 5
-refund_percent = 50
-map_change_refund_percent = 80

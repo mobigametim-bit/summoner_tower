@@ -59,7 +59,8 @@ func _build_battlefield() -> void:
 
 func _renew_battlefield() -> void:
 	drag_controller.cancel_drag()
-	summon_manager.sell_army_for_map_change()
+	var boss_number: int = maxi(floori(float(wave_manager.wave_number) / wave_manager.config.boss_interval), 1)
+	summon_manager.sell_army_for_map_change(boss_number)
 	for projectile: Node in projectiles.get_children():
 		projectile.set_physics_process(false)
 		projectile.queue_free()

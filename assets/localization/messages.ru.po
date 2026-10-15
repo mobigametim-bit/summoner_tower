@@ -266,7 +266,7 @@ msgid "ECONOMICAL SUMMONS"
 msgstr "ЭКОНОМНЫЙ ПРИЗЫВ"
 
 msgid "RESTORATION"
-msgstr "ВОССТАНОВЛЕНИЕ"
+msgstr "РЕГЕНЕРАЦИЯ"
 
 msgid "ABILITY MASTERY"
 msgstr "ЗНАНИЕ СПОСОБНОСТЕЙ"

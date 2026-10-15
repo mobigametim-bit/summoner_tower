@@ -9,7 +9,7 @@ enum Kind {
 
 @export_range(1, 100, 1) var maximum_level: int = 10
 @export_range(1, 10000, 1) var price_step: int = 25
-@export_range(1, 20, 1) var choice_price_multiplier: int = 1
+@export_range(1, 20, 1) var choice_price_multiplier: int = 5
 @export var health_per_level: float = 0.1
 @export var damage_per_level: float = 0.05
 @export var income_per_level: float = 0.05

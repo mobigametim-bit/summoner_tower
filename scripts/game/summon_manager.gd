@@ -168,11 +168,11 @@ func try_transfer(source: SummonSlot, destination: SummonSlot, expected_unit: Co
 	return true
 
 
-func refund_amount(unit: CombatUnit, map_change: bool = false) -> int:
+func refund_amount(unit: CombatUnit, map_change: bool = false, boss_number: int = 1) -> int:
 	if not is_instance_valid(unit):
 		return 0
 	if map_change or _run_bonuses == null:
-		return config.refund_for(unit.paid_mana, map_change)
+		return config.refund_for(unit.paid_mana, map_change, boss_number)
 	return floori(maxi(unit.paid_mana, 0) * _run_bonuses.manual_refund_percent(config.refund_percent) / 100.0 + RunBonuses.ROUNDING_EPSILON)
 
 
@@ -235,7 +235,7 @@ func _emit_state() -> void:
 	state_changed.emit(mana, current_cost(), occupied_count(), _slots.size(), can_summon())
 
 
-func sell_army_for_map_change() -> int:
+func sell_army_for_map_change(boss_number: int = 1) -> int:
 	if not _running or _busy:
 		return 0
 	_busy = true
@@ -244,13 +244,14 @@ func sell_army_for_map_change() -> int:
 	for slot: SummonSlot in _slots:
 		if not slot.is_empty():
 			var unit: CombatUnit = slot.unit
-			amount += refund_amount(unit, true)
+			amount += refund_amount(unit, true, boss_number)
 			unit.paid_mana = 0
 			unit.stop()
 			sold.append(unit)
 			slot.assign_unit(null)
 	# Все слоты очищены до callbacks удаления; повторный вызов не вернёт ману повторно.
-	mana += amount
+	# На новой карте бюджет состоит только из возврата; накопленный остаток сгорает.
+	mana = amount
 	for unit: CombatUnit in sold:
 		for child: Node in _projectiles.get_children():
 			var projectile: CombatProjectile = child as CombatProjectile
