@@ -1,0 +1,36 @@
+[gd_scene format=3 uid="uid://bsjdkpxyw8bvg"]
+
+[ext_resource type="Script" path="res://scripts/ui/mana_reward_popup.gd" id="1_yavt8"]
+[ext_resource type="FontFile" uid="uid://byntg4pjfdm6f" path="res://assets/fonts/tsap-tsarap/Tsap-Tsarap.ttf" id="2_h148q"]
+[ext_resource type="Texture2D" uid="uid://c1i4x5u3ypwhb" path="res://assets/mana_flame.svg" id="3_7j7e8"]
+
+[node name="ManaRewardPopup" type="Node2D" unique_id=365233366]
+script = ExtResource("1_yavt8")
+
+[node name="Row" type="HBoxContainer" parent="." unique_id=1952704482]
+offset_left = -96.0
+offset_top = -24.0
+offset_right = 96.0
+offset_bottom = 24.0
+mouse_filter = 2
+theme_override_constants/separation = 6
+alignment = 1
+
+[node name="Amount" type="Label" parent="Row" unique_id=1662353295]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.6509804, 0.91764706, 1, 1)
+theme_override_colors/font_outline_color = Color(0.02745098, 0.08235294, 0.13333334, 1)
+theme_override_constants/outline_size = 7
+theme_override_fonts/font = ExtResource("2_h148q")
+theme_override_font_sizes/font_size = 44
+text = "+5"
+vertical_alignment = 1
+
+[node name="Icon" type="TextureRect" parent="Row" unique_id=1658348814]
+custom_minimum_size = Vector2(36, 40)
+layout_mode = 2
+size_flags_vertical = 4
+mouse_filter = 2
+texture = ExtResource("3_7j7e8")
+expand_mode = 1
+stretch_mode = 5

@@ -26,6 +26,10 @@ signal rewarded_view_canceled
 @onready var ad_overlay: Control = $RewardedOverlay
 @onready var double_reward_button: Button = $GameOverOverlay/Center/Panel/Stack/Actions/DoubleRewardButton
 @export var wave_config: WaveConfig
+@export var mana_reward_scene: PackedScene
+@export_range(1, 64) var maximum_mana_popups: int = 32
+
+@onready var mana_rewards: Node2D = $ManaRewards
 
 var _displayed_mana: int = -1
 var _last_announced_boss_wave: int = 0
@@ -113,12 +117,24 @@ func show_game_over(stats: RunStatistics) -> void:
 func update_summon(mana: int, _cost: int, _occupied: int, _capacity: int, _available: bool) -> void:
 	UiNumbers.show_value(mana_label, mana)
 	_fit_counter(mana_label)
-	if _displayed_mana >= 0:
-		if mana > _displayed_mana:
-			mana_feedback.play_gain()
-		elif mana < _displayed_mana:
-			mana_feedback.stop_feedback()
+	if _displayed_mana >= 0 and mana != _displayed_mana:
+		mana_feedback.play_change(mana > _displayed_mana)
 	_displayed_mana = mana
+
+
+func show_mana_reward(canvas_position: Vector2, amount: int) -> void:
+	if amount <= 0 or mana_reward_scene == null:
+		return
+	# Ограничиваем одновременно видимые подписи при массовом убийстве области.
+	while mana_rewards.get_child_count() >= maximum_mana_popups:
+		var oldest: Node = mana_rewards.get_child(0)
+		mana_rewards.remove_child(oldest)
+		oldest.queue_free()
+	var popup: ManaRewardPopup = mana_reward_scene.instantiate() as ManaRewardPopup
+	mana_rewards.add_child(popup)
+	var local_position: Vector2 = get_global_transform_with_canvas().affine_inverse() * canvas_position
+	popup.position = Vector2(clampf(local_position.x, 80.0, size.x - 80.0), clampf(local_position.y - 32.0, 40.0, maxf(40.0, bottom_dock.position.y - 24.0)))
+	popup.play_reward(amount)
 
 
 func set_actions_enabled(enabled: bool) -> void:

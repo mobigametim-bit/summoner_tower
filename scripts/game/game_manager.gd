@@ -99,7 +99,9 @@ func _on_enemy_resolved(enemy: ApproachingEnemy, outcome: ApproachingEnemy.Outco
 	if outcome == ApproachingEnemy.Outcome.REACHED_TOWER:
 		tower.take_damage(enemy.tower_damage)
 	else:
-		summon_manager.add_mana(run_bonuses.kill_mana_for(mana))
+		var reward: int = run_bonuses.kill_mana_for(mana)
+		summon_manager.add_mana(reward)
+		hud.show_mana_reward(enemy.get_global_transform_with_canvas().origin, reward)
 
 
 func _on_tower_health_changed(current: int, maximum: int) -> void:
