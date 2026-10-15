@@ -9,6 +9,7 @@
 [ext_resource type="Script" uid="uid://bj8a3ymfdffgo" path="res://scripts/game/unit_drag_controller.gd" id="6_3xods"]
 [ext_resource type="Texture2D" uid="uid://cktgfcgc5nyox" path="res://assets/archer.svg" id="7_4bwtt"]
 [ext_resource type="Theme" uid="uid://bufjhwj3mejwx" path="res://resources/ui/game_theme.tres" id="8_dk6v7"]
+[ext_resource type="Script" uid="uid://bumogopfsvwa2" path="res://scripts/ui/attack_range_preview.gd" id="9_0stxj"]
 [ext_resource type="Script" uid="uid://c8cpj6ixtxugj" path="res://scripts/ui/game_hud.gd" id="9_8i4mt"]
 [ext_resource type="Resource" uid="uid://ciuquwmxvll24" path="res://resources/balance/wave_config.tres" id="10_j636t"]
 [ext_resource type="Texture2D" uid="uid://k17uuaqhmgkm" path="res://assets/heart_full.svg" id="11_tl222"]
@@ -246,6 +247,16 @@ z_index = 100
 
 [node name="Visual" type="Sprite2D" parent="World/DragController/Preview" unique_id=1834101813]
 texture = ExtResource("7_4bwtt")
+
+[node name="MergeRangePreview" type="Node2D" parent="World/DragController" unique_id=1855433670]
+visible = false
+z_index = 98
+script = ExtResource("9_0stxj")
+
+[node name="AttackRangePreview" type="Node2D" parent="World/DragController" unique_id=894177595]
+visible = false
+z_index = 99
+script = ExtResource("9_0stxj")
 
 [node name="Interface" type="CanvasLayer" parent="." unique_id=242053494]
 

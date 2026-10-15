@@ -3,6 +3,8 @@
 [ext_resource type="Script" uid="uid://3h64ym8kw81x" path="res://scripts/combat/combat_projectile.gd" id="1_umosx"]
 [ext_resource type="Texture2D" uid="uid://c0g3daseewrxn" path="res://assets/arrow.svg" id="2_23jat"]
 [ext_resource type="PackedScene" uid="uid://bx5bklbvm7t85" path="res://scenes/vfx/EmbeddedArrow.tscn" id="2_q8ifc"]
+[ext_resource type="Texture2D" uid="uid://cdb4jvrm1gl0b" path="res://assets/vfx/energy_spark.svg" id="4_hmv1p"]
+[ext_resource type="Gradient" path="res://resources/vfx/magic_particles/fade.tres" id="5_uvnur"]
 
 [node name="Arrow" type="Node2D" unique_id=1007299876]
 script = ExtResource("1_umosx")
@@ -10,3 +12,15 @@ embedded_arrow_scene = ExtResource("2_q8ifc")
 
 [node name="Visual" type="Sprite2D" parent="." unique_id=1681083627]
 texture = ExtResource("2_23jat")
+
+[node name="Trail" type="CPUParticles2D" parent="." unique_id=1579462714]
+visible = false
+emitting = false
+texture = ExtResource("4_hmv1p")
+lifetime = 0.16
+gravity = Vector2(0, 0)
+initial_velocity_max = 10.0
+scale_amount_min = 0.1
+scale_amount_max = 0.16
+color = Color(1, 0.85882354, 0.5176471, 1)
+color_ramp = ExtResource("5_uvnur")

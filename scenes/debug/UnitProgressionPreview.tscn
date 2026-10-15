@@ -1,0 +1,416 @@
+[gd_scene format=3 uid="uid://bsywk313b3f45"]
+
+[ext_resource type="Script" uid="uid://dhh4dfpwhed5x" path="res://scripts/debug/unit_progression_preview.gd" id="1_w8u5a"]
+[ext_resource type="Texture2D" uid="uid://c0g3daseewrxn" path="res://assets/arrow.svg" id="2_281wt"]
+[ext_resource type="Texture2D" uid="uid://df4fl7gr5yawn" path="res://assets/vfx/flame.svg" id="3_mr3qm"]
+[ext_resource type="Texture2D" uid="uid://dxpibtjuq0tik" path="res://assets/vfx/snowflake.svg" id="4_1tr2q"]
+[ext_resource type="Texture2D" uid="uid://d03birb54d1he" path="res://assets/environment/pedestal.svg" id="5_hh74u"]
+[ext_resource type="PackedScene" uid="uid://dppy0wu685mq7" path="res://scenes/visuals/ArcherVisual.tscn" id="6_efm4g"]
+[ext_resource type="PackedScene" uid="uid://4j2yvn8jcf21" path="res://scenes/visuals/MageVisual.tscn" id="7_j144v"]
+[ext_resource type="PackedScene" uid="uid://kwx0o48hixmp" path="res://scenes/visuals/FrostMageVisual.tscn" id="8_vfqqp"]
+[ext_resource type="PackedScene" uid="uid://oc8xhrjf4wpc" path="res://scenes/visuals/GoblinVisual.tscn" id="9_thrn0"]
+[ext_resource type="Gradient" path="res://resources/vfx/magic_particles/fade.tres" id="10_gjics"]
+[ext_resource type="Script" uid="uid://bumogopfsvwa2" path="res://scripts/ui/attack_range_preview.gd" id="11_5a4kk"]
+[ext_resource type="Texture2D" uid="uid://bf5tg5j6igm0y" path="res://assets/debug/progression/ice_block.svg" id="12_mr3qm"]
+
+[node name="UnitProgressionPreview" type="Control" unique_id=1525690982]
+auto_translate_mode = 2
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_w8u5a")
+
+[node name="Background" type="ColorRect" parent="." unique_id=1976140565]
+layout_mode = 0
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0.0627451, 0.08235294, 0.12941177, 1)
+
+[node name="Margin" type="MarginContainer" parent="." unique_id=1577032306]
+layout_mode = 0
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 0
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="Content" type="VBoxContainer" parent="Margin" unique_id=661576544]
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="Title" type="Label" parent="Margin/Content" unique_id=2074215468]
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+text = "Лучник · 1"
+horizontal_alignment = 1
+
+[node name="Types" type="HBoxContainer" parent="Margin/Content" unique_id=1131221395]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="Archer" type="Button" parent="Margin/Content/Types" unique_id=30138674]
+custom_minimum_size = Vector2(0, 68)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/icon_max_width = 38
+theme_override_font_sizes/font_size = 27
+text = "Лучник"
+icon = ExtResource("2_281wt")
+expand_icon = true
+
+[node name="Mage" type="Button" parent="Margin/Content/Types" unique_id=751243580]
+custom_minimum_size = Vector2(0, 68)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/icon_max_width = 30
+theme_override_font_sizes/font_size = 27
+text = "Огонь"
+icon = ExtResource("3_mr3qm")
+expand_icon = true
+
+[node name="Frost" type="Button" parent="Margin/Content/Types" unique_id=1728033228]
+custom_minimum_size = Vector2(0, 68)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/icon_max_width = 30
+theme_override_font_sizes/font_size = 27
+text = "Лёд"
+icon = ExtResource("4_1tr2q")
+expand_icon = true
+
+[node name="Levels" type="HBoxContainer" parent="Margin/Content" unique_id=811837569]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="Level1" type="Button" parent="Margin/Content/Levels" unique_id=534766212]
+custom_minimum_size = Vector2(0, 62)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 27
+text = "1"
+
+[node name="Level2" type="Button" parent="Margin/Content/Levels" unique_id=748687324]
+custom_minimum_size = Vector2(0, 62)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 27
+text = "2"
+
+[node name="Level3" type="Button" parent="Margin/Content/Levels" unique_id=2086796622]
+custom_minimum_size = Vector2(0, 62)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 27
+text = "3"
+
+[node name="Level4" type="Button" parent="Margin/Content/Levels" unique_id=1745810787]
+custom_minimum_size = Vector2(0, 62)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 27
+text = "4"
+
+[node name="Level5" type="Button" parent="Margin/Content/Levels" unique_id=278670657]
+custom_minimum_size = Vector2(0, 62)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 27
+text = "5"
+
+[node name="Stats" type="Label" parent="Margin/Content" unique_id=430100871]
+layout_mode = 2
+theme_override_font_sizes/font_size = 26
+text = "Радиус 150 · 2 атак/с"
+horizontal_alignment = 1
+
+[node name="Stage" type="Control" parent="Margin/Content" unique_id=2038843927]
+custom_minimum_size = Vector2(0, 450)
+clip_contents = true
+layout_mode = 2
+size_flags_vertical = 3
+mouse_filter = 2
+
+[node name="Ground" type="ColorRect" parent="Margin/Content/Stage" unique_id=1179349417]
+layout_mode = 0
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0.09803922, 0.18039216, 0.14901961, 1)
+
+[node name="World" type="Node2D" parent="Margin/Content/Stage" unique_id=1048927459]
+
+[node name="Range" type="Node2D" parent="Margin/Content/Stage/World" unique_id=294647403]
+position = Vector2(205, 335)
+script = ExtResource("11_5a4kk")
+
+[node name="Burn1" type="CPUParticles2D" parent="Margin/Content/Stage/World" unique_id=998797864]
+visible = false
+modulate = Color(1, 1, 1, 0.4)
+position = Vector2(335, 357)
+emitting = false
+amount = 6
+texture = ExtResource("3_mr3qm")
+lifetime = 0.75
+preprocess = 0.35
+emission_shape = 3
+emission_rect_extents = Vector2(22, 6)
+direction = Vector2(0, -1)
+spread = 12.0
+gravity = Vector2(0, -18)
+initial_velocity_min = 38.0
+initial_velocity_max = 65.0
+scale_amount_min = 1.1
+scale_amount_max = 1.6
+color_ramp = ExtResource("10_gjics")
+
+[node name="Burn2" type="CPUParticles2D" parent="Margin/Content/Stage/World" unique_id=896633060]
+visible = false
+modulate = Color(1, 1, 1, 0.4)
+position = Vector2(345, 317)
+emitting = false
+amount = 6
+texture = ExtResource("3_mr3qm")
+lifetime = 0.75
+preprocess = 0.35
+emission_shape = 3
+emission_rect_extents = Vector2(22, 6)
+direction = Vector2(0, -1)
+spread = 12.0
+gravity = Vector2(0, -18)
+initial_velocity_min = 38.0
+initial_velocity_max = 65.0
+scale_amount_min = 1.1
+scale_amount_max = 1.6
+color_ramp = ExtResource("10_gjics")
+
+[node name="Burn3" type="CPUParticles2D" parent="Margin/Content/Stage/World" unique_id=1438650335]
+visible = false
+modulate = Color(1, 1, 1, 0.4)
+position = Vector2(345, 397)
+emitting = false
+amount = 6
+texture = ExtResource("3_mr3qm")
+lifetime = 0.75
+preprocess = 0.35
+emission_shape = 3
+emission_rect_extents = Vector2(22, 6)
+direction = Vector2(0, -1)
+spread = 12.0
+gravity = Vector2(0, -18)
+initial_velocity_min = 38.0
+initial_velocity_max = 65.0
+scale_amount_min = 1.1
+scale_amount_max = 1.6
+color_ramp = ExtResource("10_gjics")
+
+[node name="Pedestal" type="Sprite2D" parent="Margin/Content/Stage/World" unique_id=846405942]
+position = Vector2(205, 366)
+scale = Vector2(0.9, 0.9)
+texture = ExtResource("5_hh74u")
+
+[node name="Archer" parent="Margin/Content/Stage/World" unique_id=655393526 instance=ExtResource("6_efm4g")]
+position = Vector2(205, 335)
+
+[node name="Mage" parent="Margin/Content/Stage/World" unique_id=916861954 instance=ExtResource("7_j144v")]
+visible = false
+position = Vector2(205, 335)
+
+[node name="Frost" parent="Margin/Content/Stage/World" unique_id=2090942253 instance=ExtResource("8_vfqqp")]
+visible = false
+position = Vector2(205, 335)
+
+[node name="Enemy1" parent="Margin/Content/Stage/World" unique_id=756032484 instance=ExtResource("9_thrn0")]
+position = Vector2(335, 335)
+
+[node name="Enemy2" parent="Margin/Content/Stage/World" unique_id=266836002 instance=ExtResource("9_thrn0")]
+position = Vector2(345, 295)
+
+[node name="Enemy3" parent="Margin/Content/Stage/World" unique_id=102501742 instance=ExtResource("9_thrn0")]
+position = Vector2(345, 375)
+
+[node name="Shots" type="Node2D" parent="Margin/Content/Stage/World" unique_id=204831464]
+z_index = 5
+
+[node name="Effects" type="Node2D" parent="Margin/Content/Stage/World" unique_id=1032763885]
+z_index = 6
+
+[node name="Ice1" type="Node2D" parent="Margin/Content/Stage/World" unique_id=1434779961]
+visible = false
+modulate = Color(1, 1, 1, 0.5)
+z_index = 10
+z_as_relative = false
+position = Vector2(335, 335)
+
+[node name="Block" type="Sprite2D" parent="Margin/Content/Stage/World/Ice1" unique_id=1663314821]
+position = Vector2(0, -6)
+texture = ExtResource("12_mr3qm")
+
+[node name="Ice2" type="Node2D" parent="Margin/Content/Stage/World" unique_id=2109979242]
+visible = false
+modulate = Color(1, 1, 1, 0.5)
+z_index = 10
+z_as_relative = false
+position = Vector2(345, 295)
+
+[node name="Block" type="Sprite2D" parent="Margin/Content/Stage/World/Ice2" unique_id=2068921925]
+position = Vector2(0, -6)
+texture = ExtResource("12_mr3qm")
+
+[node name="Ice3" type="Node2D" parent="Margin/Content/Stage/World" unique_id=1895456518]
+visible = false
+modulate = Color(1, 1, 1, 0.5)
+z_index = 10
+z_as_relative = false
+position = Vector2(345, 375)
+
+[node name="Block" type="Sprite2D" parent="Margin/Content/Stage/World/Ice3" unique_id=1985512400]
+position = Vector2(0, -6)
+texture = ExtResource("12_mr3qm")
+
+[node name="BurnFront1" type="CPUParticles2D" parent="Margin/Content/Stage/World" unique_id=1229427276]
+visible = false
+modulate = Color(1, 1, 1, 0.4)
+z_index = 8
+position = Vector2(335, 345)
+emitting = false
+amount = 4
+texture = ExtResource("3_mr3qm")
+lifetime = 0.6
+preprocess = 0.3
+emission_shape = 3
+emission_rect_extents = Vector2(19, 8)
+direction = Vector2(0, -1)
+spread = 18.0
+gravity = Vector2(0, -12)
+initial_velocity_min = 40.0
+initial_velocity_max = 70.0
+scale_amount_min = 0.9
+scale_amount_max = 1.35
+color_ramp = ExtResource("10_gjics")
+
+[node name="BurnFront2" type="CPUParticles2D" parent="Margin/Content/Stage/World" unique_id=1458897213]
+visible = false
+modulate = Color(1, 1, 1, 0.4)
+z_index = 8
+position = Vector2(345, 305)
+emitting = false
+amount = 4
+texture = ExtResource("3_mr3qm")
+lifetime = 0.6
+preprocess = 0.3
+emission_shape = 3
+emission_rect_extents = Vector2(19, 8)
+direction = Vector2(0, -1)
+spread = 18.0
+gravity = Vector2(0, -12)
+initial_velocity_min = 40.0
+initial_velocity_max = 70.0
+scale_amount_min = 0.9
+scale_amount_max = 1.35
+color_ramp = ExtResource("10_gjics")
+
+[node name="BurnFront3" type="CPUParticles2D" parent="Margin/Content/Stage/World" unique_id=1838347936]
+visible = false
+modulate = Color(1, 1, 1, 0.4)
+z_index = 8
+position = Vector2(345, 385)
+emitting = false
+amount = 4
+texture = ExtResource("3_mr3qm")
+lifetime = 0.6
+preprocess = 0.3
+emission_shape = 3
+emission_rect_extents = Vector2(19, 8)
+direction = Vector2(0, -1)
+spread = 18.0
+gravity = Vector2(0, -12)
+initial_velocity_min = 40.0
+initial_velocity_max = 70.0
+scale_amount_min = 0.9
+scale_amount_max = 1.35
+color_ramp = ExtResource("10_gjics")
+
+[node name="Details" type="Label" parent="Margin/Content" unique_id=682620294]
+custom_minimum_size = Vector2(0, 74)
+layout_mode = 2
+theme_override_font_sizes/font_size = 28
+text = "Одна стрела"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="Actions" type="HBoxContainer" parent="Margin/Content" unique_id=1023935528]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="Replay" type="Button" parent="Margin/Content/Actions" unique_id=869398572]
+custom_minimum_size = Vector2(0, 68)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 27
+text = "Атака"
+
+[node name="Skill" type="Button" parent="Margin/Content/Actions" unique_id=1218778115]
+custom_minimum_size = Vector2(0, 68)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 27
+disabled = true
+text = "Способность"
+
+[node name="Auto" type="Button" parent="Margin/Content/Actions" unique_id=120491106]
+custom_minimum_size = Vector2(0, 68)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 25
+text = "Авто: вкл."
+
+[node name="View" type="HBoxContainer" parent="Margin/Content" unique_id=636512821]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="Zoom" type="Button" parent="Margin/Content/View" unique_id=379911346]
+custom_minimum_size = Vector2(0, 60)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 27
+text = "Масштаб ×1"
+
+[node name="Speed" type="Button" parent="Margin/Content/View" unique_id=718574955]
+custom_minimum_size = Vector2(0, 60)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 27
+text = "Скорость ×1"
+
+[node name="Hint" type="Label" parent="Margin/Content" unique_id=1148334642]
+layout_mode = 2
+theme_override_font_sizes/font_size = 21
+text = "Способность Lv5 — автоматически каждые 3 с"
+horizontal_alignment = 1
+
+[connection signal="pressed" from="Margin/Content/Types/Archer" to="." method="select_unit" binds= [0]]
+[connection signal="pressed" from="Margin/Content/Types/Mage" to="." method="select_unit" binds= [1]]
+[connection signal="pressed" from="Margin/Content/Types/Frost" to="." method="select_unit" binds= [2]]
+[connection signal="pressed" from="Margin/Content/Levels/Level1" to="." method="select_level" binds= [1]]
+[connection signal="pressed" from="Margin/Content/Levels/Level2" to="." method="select_level" binds= [2]]
+[connection signal="pressed" from="Margin/Content/Levels/Level3" to="." method="select_level" binds= [3]]
+[connection signal="pressed" from="Margin/Content/Levels/Level4" to="." method="select_level" binds= [4]]
+[connection signal="pressed" from="Margin/Content/Levels/Level5" to="." method="select_level" binds= [5]]
+[connection signal="pressed" from="Margin/Content/Actions/Replay" to="." method="replay"]
+[connection signal="pressed" from="Margin/Content/Actions/Skill" to="." method="_on_skill"]
+[connection signal="pressed" from="Margin/Content/Actions/Auto" to="." method="_on_auto"]
+[connection signal="pressed" from="Margin/Content/View/Zoom" to="." method="_on_zoom"]
+[connection signal="pressed" from="Margin/Content/View/Speed" to="." method="_on_speed"]

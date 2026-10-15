@@ -1,0 +1,27 @@
+[gd_scene format=3 uid="uid://d2ix1n0l3fho5"]
+
+[ext_resource type="Script" path="res://scripts/debug/unit_progression_shot.gd" id="1_cncfl"]
+[ext_resource type="Texture2D" uid="uid://c0g3daseewrxn" path="res://assets/arrow.svg" id="2_38p5q"]
+[ext_resource type="Texture2D" uid="uid://df4fl7gr5yawn" path="res://assets/vfx/flame.svg" id="3_we38v"]
+[ext_resource type="Gradient" path="res://resources/vfx/magic_particles/fade.tres" id="4_d6qu5"]
+
+[node name="PreviewShot" type="Node2D" unique_id=673925616]
+script = ExtResource("1_cncfl")
+
+[node name="Sprite" type="Sprite2D" parent="." unique_id=1483139463]
+texture = ExtResource("2_38p5q")
+
+[node name="Trail" type="CPUParticles2D" parent="." unique_id=2088562682]
+visible = false
+emitting = false
+amount = 12
+texture = ExtResource("3_we38v")
+lifetime = 0.3
+direction = Vector2(-1, 0)
+spread = 30.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 20.0
+initial_velocity_max = 50.0
+scale_amount_min = 0.4
+scale_amount_max = 0.6
+color_ramp = ExtResource("4_d6qu5")

@@ -2,17 +2,21 @@
 
 [ext_resource type="Script" uid="uid://t5wl1e4nf5h1" path="res://scripts/data/unit_stats.gd" id="1_b5p7d"]
 [ext_resource type="Texture2D" uid="uid://ctc7jfmgdeb07" path="res://assets/mage_lv3.svg" id="2_x6y0b"]
-
-[ext_resource type="Resource" path="res://resources/balance/mage_lv4.tres" id="3_next"]
+[ext_resource type="Resource" uid="uid://dimncmb0jn1ga" path="res://resources/balance/mage_lv4.tres" id="3_next"]
 
 [resource]
 script = ExtResource("1_b5p7d")
 unit_type = &"mage"
 display_name = "MAGE"
 level = 3
-next_level = ExtResource("3_next")
 visual_texture = ExtResource("2_x6y0b")
+next_level = ExtResource("3_next")
 damage = 120
-attack_interval = 1.0
-attack_range = 260.0
+attack_interval = 0.8333333333333334
+attack_range = 182.0
 projectile_speed = 700.0
+splash_radius = 48
+splash_damage_ratio = 0.5
+burn_damage_ratio = 0.2
+burn_duration = 1.5
+area_power_multiplier = 1.25

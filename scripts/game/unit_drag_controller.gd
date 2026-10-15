@@ -8,6 +8,7 @@ enum Pointer { NONE, MOUSE, TOUCH }
 @onready var preview: Node2D = $Preview
 @onready var preview_visual: Sprite2D = $Preview/Visual
 @onready var attack_range_preview: AttackRangePreview = $AttackRangePreview
+@onready var merge_range_preview: AttackRangePreview = $MergeRangePreview
 
 var _manager: SummonManager
 var _return_zone: UnitReturnZone
@@ -137,7 +138,7 @@ func _begin(viewport_position: Vector2, pointer: Pointer, touch_index: int = -1)
 	preview_visual.flip_h = slot.faces_left
 	preview.scale = _unit.drag_scale()
 	# Радиус задан в мировых координатах и не зависит от масштаба SVG-превью.
-	attack_range_preview.configure(_unit.stats.attack_range, ArcherVisual.CLOTH_COLORS[_unit.stats.level - 1])
+	attack_range_preview.configure(_unit.effective_attack_range(), ArcherVisual.CLOTH_COLORS[_unit.stats.level - 1])
 	get_viewport().set_input_as_handled()
 
 
@@ -156,6 +157,13 @@ func _update_drag(viewport_position: Vector2) -> void:
 	attack_range_preview.global_position = preview.global_position
 	_unit.modulate = Color(_original_modulate, 0.45)
 	var destination: SummonSlot = _slot_at(world_position)
+	merge_range_preview.hide()
+	# Будущий радиус центрируем там, где останется объединённый боец.
+	if destination != null and not destination.is_empty() and _unit.can_merge_with(destination.unit) and not _return_zone.contains_point(world_position):
+		var next_stats: UnitStats = destination.unit.stats.next_level
+		merge_range_preview.configure(_unit.effective_attack_range(next_stats), ArcherVisual.CLOTH_COLORS[next_stats.level - 1])
+		merge_range_preview.global_position = destination.unit.global_position
+		merge_range_preview.show()
 	if destination != null:
 		preview_visual.flip_h = destination.faces_left
 	for slot: SummonSlot in _slots:
@@ -185,6 +193,8 @@ func cancel_drag() -> void:
 		preview.hide()
 	if is_instance_valid(attack_range_preview):
 		attack_range_preview.hide()
+	if is_instance_valid(merge_range_preview):
+		merge_range_preview.hide()
 	for slot: SummonSlot in _slots:
 		slot.set_drop_highlight(false)
 	if is_instance_valid(_return_zone):

@@ -76,7 +76,8 @@ func _player_power() -> float:
 	for slot: SummonSlot in summon_manager._slots:
 		if not slot.is_empty():
 			var unit: CombatUnit = slot.unit
-			total += balance.unit_power(unit.stats, run_bonuses.damage_amount_for(unit.stats), unit.effective_attack_interval())
+			var effective: UnitStats = run_bonuses.combat_stats_for(unit.stats)
+			total += balance.unit_power(effective, run_bonuses.damage_amount_for(unit.stats), unit.effective_attack_interval(), run_bonuses.slow_ratio_for(unit.stats))
 	return balance.player_power(total, tower.max_health)
 
 

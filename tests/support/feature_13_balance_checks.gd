@@ -12,8 +12,8 @@ func run() -> Dictionary:
 		failures.append("Goblin Lv1 must have Power 1")
 	if not is_equal_approx(balance.enemy_power(balance.enemy_stats[1], 60), 3.0):
 		failures.append("Orc Lv1 must have Power 3")
-	if not is_equal_approx(balance.enemy_power(balance.enemy_stats[2], 120), 6.0):
-		failures.append("Golem Lv1 must have Power 6")
+	if not is_equal_approx(balance.enemy_power(balance.enemy_stats[2], 120), 20.0 / 3.0):
+		failures.append("Golem Lv1 must have Power 6.666667 after the Goblin speed reduction")
 	if not is_equal_approx(balance.player_power(4.0, 150), 6.0):
 		failures.append("Tower maximum HP multiplier")
 	var planner: WavePowerPlanner = WavePowerPlanner.new(config)

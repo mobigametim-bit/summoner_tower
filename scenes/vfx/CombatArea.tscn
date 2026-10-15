@@ -1,0 +1,67 @@
+[gd_scene format=3 uid="uid://bfd6ax8nvi11j"]
+
+[ext_resource type="Script" uid="uid://c5buokqmc46dy" path="res://scripts/vfx/combat_area.gd" id="1_ycaij"]
+[ext_resource type="Texture2D" uid="uid://df4fl7gr5yawn" path="res://assets/vfx/flame.svg" id="2_4or40"]
+[ext_resource type="Gradient" path="res://resources/vfx/magic_particles/fade.tres" id="3_bh8gb"]
+[ext_resource type="Texture2D" uid="uid://dxpibtjuq0tik" path="res://assets/vfx/snowflake.svg" id="4_a0msg"]
+[ext_resource type="Texture2D" uid="uid://cdb4jvrm1gl0b" path="res://assets/vfx/energy_spark.svg" id="5_jdbk1"]
+
+[node name="CombatArea" type="Node2D" unique_id=1621356294]
+script = ExtResource("1_ycaij")
+
+[node name="Fire" type="CPUParticles2D" parent="." unique_id=870693243]
+emitting = false
+amount = 40
+texture = ExtResource("2_4or40")
+lifetime = 0.6
+one_shot = true
+explosiveness = 1.0
+emission_shape = 1
+emission_sphere_radius = 25.0
+direction = Vector2(0, -1)
+spread = 180.0
+gravity = Vector2(0, -24)
+initial_velocity_min = 55.0
+initial_velocity_max = 130.0
+scale_amount_min = 0.4
+scale_amount_max = 0.9
+color_ramp = ExtResource("3_bh8gb")
+
+[node name="Frost" type="CPUParticles2D" parent="." unique_id=868173136]
+emitting = false
+amount = 32
+texture = ExtResource("4_a0msg")
+lifetime = 0.6
+one_shot = true
+explosiveness = 1.0
+emission_shape = 1
+emission_sphere_radius = 25.0
+direction = Vector2(0, -1)
+spread = 180.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 55.0
+initial_velocity_max = 110.0
+angular_velocity_min = -70.0
+angular_velocity_max = 70.0
+scale_amount_min = 0.4
+scale_amount_max = 0.7
+color_ramp = ExtResource("3_bh8gb")
+
+[node name="Streaks" type="CPUParticles2D" parent="." unique_id=550885734]
+emitting = false
+amount = 12
+texture = ExtResource("5_jdbk1")
+lifetime = 0.5
+one_shot = true
+explosiveness = 1.0
+emission_shape = 1
+emission_sphere_radius = 35.0
+direction = Vector2(0, -1)
+spread = 180.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 40.0
+initial_velocity_max = 80.0
+scale_amount_min = 0.18
+scale_amount_max = 0.3
+color = Color(1, 0.85882354, 0.5176471, 1)
+color_ramp = ExtResource("3_bh8gb")

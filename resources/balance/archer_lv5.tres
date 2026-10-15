@@ -1,15 +1,31 @@
-[gd_resource type="Resource" script_class="UnitStats" format=3]
+[gd_resource type="Resource" script_class="UnitStats" format=3 uid="uid://b8i5wewbk0o5m"]
 
 [ext_resource type="Script" path="res://scripts/data/unit_stats.gd" id="1_stats"]
 [ext_resource type="Texture2D" path="res://assets/archer_lv5.svg" id="2_visual"]
 
 [resource]
 script = ExtResource("1_stats")
-unit_type = &"archer"
-display_name = "ARCHER"
-level = 5
-visual_texture = ExtResource("2_visual")
+ability = 1
+ability_cooldown = 3
+ability_damage_ratio = 1.5
+ability_projectiles = 6
+ability_radius = 85
+area_power_multiplier = 1
+attack_interval = 0.357142857142857
+attack_range = 270
+burn_damage_ratio = 0
+burn_duration = 0
+burst_count = 2
+burst_delay = 0.1
 damage = 250
-attack_interval = 0.5
-attack_range = 300.0
-projectile_speed = 700.0
+display_name = "ARCHER"
+freeze_duration = 0
+level = 5
+projectile_lifetime = 3
+projectile_speed = 700
+slow_duration = 0
+slow_ratio = 0
+splash_damage_ratio = 0
+splash_radius = 0
+unit_type = &"archer"
+visual_texture = ExtResource("2_visual")

@@ -31,7 +31,6 @@
 [ext_resource type="Texture2D" uid="uid://cunh3mw6fkux0" path="res://assets/ui/play.svg" id="19_qnb83"]
 [ext_resource type="Script" uid="uid://dl57wkelh3atf" path="res://scripts/game/run_statistics.gd" id="20_5newe"]
 [ext_resource type="Resource" uid="uid://c2tgfag4qq81o" path="res://resources/balance/run_reward_config.tres" id="21_37s47"]
-[ext_resource type="Theme" uid="uid://dq4sjc5bl4q0p" path="res://resources/ui/audio_slider_theme.tres" id="23_02fa5"]
 [ext_resource type="PackedScene" uid="uid://d2g3lda0xildr" path="res://scenes/ui/AudioControls.tscn" id="23_nepv3"]
 [ext_resource type="PackedScene" uid="uid://icaty5irafa4" path="res://scenes/ui/BossWarning.tscn" id="23_qouja"]
 [ext_resource type="Texture2D" uid="uid://c57tyfidrkg5k" path="res://assets/ui/confirm.svg" id="25_twgab"]
@@ -252,6 +251,11 @@ texture = ExtResource("8_trtic")
 [node name="AttackRangePreview" type="Node2D" parent="World/DragController" unique_id=1622675490]
 visible = false
 z_index = 99
+script = ExtResource("9_nepv3")
+
+[node name="MergeRangePreview" type="Node2D" parent="World/DragController" unique_id=1058644357]
+visible = false
+z_index = 98
 script = ExtResource("9_nepv3")
 
 [node name="Interface" type="CanvasLayer" parent="." unique_id=242053494]
@@ -691,7 +695,6 @@ horizontal_alignment = 1
 
 [node name="AudioControls" parent="Interface/Hud/SettingsOverlay/Center/Panel/Stack" unique_id=1442604506 instance=ExtResource("23_nepv3")]
 layout_mode = 2
-theme = ExtResource("23_02fa5")
 
 [node name="SettingsMenuButton" type="Button" parent="Interface/Hud/SettingsOverlay/Center/Panel/Stack" unique_id=594077224]
 unique_name_in_owner = true

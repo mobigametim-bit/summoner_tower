@@ -92,3 +92,15 @@ func kill_mana_for(base_mana: int) -> int:
 	var amount: int = floori(total + ROUNDING_EPSILON)
 	_mana_remainder = maxf(total - amount, 0.0)
 	return amount
+
+
+func attack_range_for(stats: UnitStats) -> float:
+	return stats.attack_range
+
+
+func ability_cooldown_for(stats: UnitStats) -> float:
+	return stats.ability_cooldown
+
+
+func combat_stats_for(stats: UnitStats) -> UnitStats:
+	return stats.duplicate() as UnitStats

@@ -6,17 +6,30 @@ extends Resource
 @export var enemy_stats: Array[EnemyStats] = []
 @export_range(1, 10000, 1) var reference_tower_health: int = 100
 @export_range(0.1, 100.0, 0.1) var power_conversion: float = 6.0
+@export_range(0.1, 2.0, 0.05) var wave_budget_multiplier: float = 1.0
 @export var saw_coefficients: Array[float] = [0.70, 0.85, 1.0, 1.15, 1.35]
 @export_range(1.0, 3.0, 0.01) var stage_growth: float = 1.18
 @export_range(1.0, 1000.0, 1.0) var minimum_stage_power: float = 12.0
 @export_range(1.0, 3.0, 0.01) var minimum_growth: float = 1.35
 @export var tier_unlock_waves: Array[int] = [1, 3, 6, 8, 11]
 @export_range(5, 200, 1) var maximum_regular_enemies: int = 80
+@export_range(0.0, 2.0, 0.05) var control_power_weight: float = 0.5
 
 
-func unit_power(stats: UnitStats, damage: float, interval: float) -> float:
+func unit_power(stats: UnitStats, damage: float, interval: float, slow_ratio: float = -1.0) -> float:
 	var reference_dps: float = float(reference_unit.damage) / reference_unit.attack_interval
-	return damage / interval / reference_dps * stats.attack_range / reference_unit.attack_range
+	var dps: float = damage / interval
+	if stats.burn_duration > 0.0:
+		dps += damage * stats.burn_damage_ratio / stats.burn_duration
+	if stats.ability != UnitStats.Ability.NONE:
+		dps += damage * stats.ability_damage_ratio / stats.ability_cooldown
+	var control: float = 1.0
+	var slow: float = stats.slow_ratio if slow_ratio < 0.0 else slow_ratio
+	if slow > 0.0:
+		control += control_power_weight * slow
+	if stats.ability == UnitStats.Ability.FROST_WAVE:
+		control += control_power_weight * stats.freeze_duration / stats.ability_cooldown
+	return dps / reference_dps * stats.attack_range / reference_unit.attack_range * stats.area_power_multiplier * control
 
 
 func player_power(units_power: float, maximum_health: int) -> float:
@@ -47,4 +60,4 @@ func budget_for(wave: int, power: float) -> float:
 	var stage: int = stage_for(wave)
 	var adaptive: float = power * power_conversion * pow(stage_growth, stage)
 	var minimum: float = minimum_stage_power * pow(minimum_growth, stage)
-	return maxf(adaptive, minimum) * coefficient_for(wave)
+	return maxf(adaptive, minimum) * coefficient_for(wave) * wave_budget_multiplier

@@ -1,8 +1,8 @@
-[gd_resource type="Resource" script_class="UnitStats" format=3]
+[gd_resource type="Resource" script_class="UnitStats" format=3 uid="uid://cy7638nx4lvj0"]
 
-[ext_resource type="Script" path="res://scripts/data/unit_stats.gd" id="1_stats"]
-[ext_resource type="Texture2D" path="res://assets/frost_mage_lv4.svg" id="2_visual"]
-[ext_resource type="Resource" path="res://resources/balance/frost_mage_lv5.tres" id="3_next"]
+[ext_resource type="Script" uid="uid://t5wl1e4nf5h1" path="res://scripts/data/unit_stats.gd" id="1_stats"]
+[ext_resource type="Texture2D" uid="uid://br4srmh4so6sb" path="res://assets/frost_mage_lv4.svg" id="2_visual"]
+[ext_resource type="Resource" uid="uid://4um4tvdjeijf" path="res://resources/balance/frost_mage_lv5.tres" id="3_next"]
 
 [resource]
 script = ExtResource("1_stats")
@@ -12,8 +12,11 @@ level = 4
 visual_texture = ExtResource("2_visual")
 next_level = ExtResource("3_next")
 damage = 66
-attack_interval = 0.6666666667
-attack_range = 280.0
+attack_interval = 0.5128205128461538
+attack_range = 224.0
 projectile_speed = 700.0
 slow_ratio = 0.6
 slow_duration = 1.5
+splash_radius = 60
+splash_damage_ratio = 0.5
+area_power_multiplier = 1.25

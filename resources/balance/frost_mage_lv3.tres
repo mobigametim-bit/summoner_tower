@@ -2,19 +2,21 @@
 
 [ext_resource type="Script" uid="uid://t5wl1e4nf5h1" path="res://scripts/data/unit_stats.gd" id="1_pvqpw"]
 [ext_resource type="Texture2D" uid="uid://cs511qclmahbt" path="res://assets/frost_mage_lv3.svg" id="2_asp2x"]
-
-[ext_resource type="Resource" path="res://resources/balance/frost_mage_lv4.tres" id="3_next"]
+[ext_resource type="Resource" uid="uid://cy7638nx4lvj0" path="res://resources/balance/frost_mage_lv4.tres" id="3_next"]
 
 [resource]
 script = ExtResource("1_pvqpw")
 unit_type = &"frost_mage"
 display_name = "FROST MAGE"
 level = 3
-next_level = ExtResource("3_next")
 visual_texture = ExtResource("2_asp2x")
+next_level = ExtResource("3_next")
 damage = 30
-attack_interval = 0.6666666667
-attack_range = 280.0
+attack_interval = 0.5555555555833334
+attack_range = 196.0
 projectile_speed = 700.0
 slow_ratio = 0.5
 slow_duration = 1.5
+splash_radius = 48
+splash_damage_ratio = 0.5
+area_power_multiplier = 1.25

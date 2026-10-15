@@ -33,6 +33,12 @@ var _resolved: bool = false
 var _slow_ratio: float = 0.0
 var _slow_remaining: float = 0.0
 var _embedded_arrow_count: int = 0
+var _damage_remainder: float = 0.0
+var _burn_remaining: float = 0.0
+var _burn_dps: float = 0.0
+var _freeze_remaining: float = 0.0
+var _status_visual: Node2D
+const STATUS_SCENE: PackedScene = preload("res://scenes/vfx/EnemyStatusVisual.tscn")
 
 
 func _ready() -> void:
@@ -40,13 +46,16 @@ func _ready() -> void:
 	set_animated_visual(animated_visual_enabled)
 
 
-func configure(spawn_position: Vector2, target_y: float, health: int = 0) -> void:
+func configure(spawn_position: Vector2, target_y: float, health: int = 0, boss_level: int = 1) -> void:
 	global_position = spawn_position
 	tower_damage = stats.tower_damage
 	move_speed = stats.move_speed
 	max_health = health if health > 0 else stats.base_health
 	current_health = max_health
-	difficulty_tier = stats.difficulty_tier(max_health)
+	_damage_remainder = 0.0
+	_clear_status()
+	# У обычных врагов уровень задаёт HP, у босса — номер его появления.
+	difficulty_tier = clampi(boss_level, 1, EnemyStats.TIER_COLORS.size()) if stats.is_boss else stats.difficulty_tier(max_health)
 	visual.modulate = stats.color_for(max_health)
 	set_animated_visual(animated_visual_enabled)
 	_update_health_bar()
@@ -71,8 +80,18 @@ func _physics_process(delta: float) -> void:
 		return
 
 	# Последний неполный кадр эффекта учитывается отдельно, чтобы срок не зависел от FPS.
-	var slowed_delta: float = minf(delta, _slow_remaining)
-	var distance: float = move_speed * (delta - slowed_delta * _slow_ratio)
+	if _burn_remaining > 0.0:
+		var burning_delta: float = minf(delta, _burn_remaining)
+		_burn_remaining = maxf(_burn_remaining - delta, 0.0)
+		take_damage(_burn_dps * burning_delta, false)
+		if _resolved:
+			return
+	var frozen_delta: float = minf(delta, _freeze_remaining)
+	_freeze_remaining = maxf(_freeze_remaining - delta, 0.0)
+	var moving_delta: float = delta - frozen_delta
+	var slowed_delta: float = minf(moving_delta, maxf(_slow_remaining - frozen_delta, 0.0))
+	var distance: float = move_speed * (moving_delta - slowed_delta * _slow_ratio)
+	_update_status_visual()
 	var previous_position: Vector2 = global_position
 	if _route != null:
 		_distance = minf(_distance + distance, _route_length)
@@ -83,7 +102,7 @@ func _physics_process(delta: float) -> void:
 	if _slow_remaining <= 0.0 and _slow_ratio > 0.0:
 		_clear_slow()
 	if animated_visual_enabled:
-		_animated_visual.advance_gameplay(delta, _time_to_contact(), global_position - previous_position)
+		_animated_visual.advance_gameplay(moving_delta, _time_to_contact(), global_position - previous_position)
 	if (_route != null and _distance >= _route_length) or (_route == null and global_position.y >= _target_y):
 		_resolve_at_tower()
 
@@ -104,7 +123,7 @@ func set_animated_visual(enabled: bool) -> void:
 	_animated_visual.visible = animated_visual_enabled
 	if animated_visual_enabled:
 		_animated_visual.enable_gameplay()
-		_animated_visual.set_difficulty(difficulty_tier, stats.color_for(max_health))
+		_animated_visual.set_difficulty(difficulty_tier, EnemyStats.TIER_COLORS[difficulty_tier - 1])
 	else:
 		_animated_visual.stop_gameplay()
 
@@ -118,15 +137,21 @@ func _time_to_contact() -> float:
 	return _slow_remaining + (remaining - slow_distance) / maxf(move_speed, 0.001)
 
 
-func take_damage(amount: int) -> void:
+func take_damage(amount: float, show_hit: bool = true) -> void:
 	if not is_targetable() or amount <= 0:
 		return
 
-	current_health = maxi(current_health - amount, 0)
+	# Остаток общий для прямого урона и DOT: дроби не теряются при каждом кадре.
+	var total: float = amount + _damage_remainder
+	var whole: int = floori(total + RunBonuses.ROUNDING_EPSILON)
+	_damage_remainder = maxf(total - whole, 0.0)
+	if whole <= 0:
+		return
+	current_health = maxi(current_health - whole, 0)
 	_update_health_bar()
 	if current_health == 0:
 		_finish(Outcome.KILLED)
-	elif animated_visual_enabled:
+	elif animated_visual_enabled and show_hit:
 		_animated_visual.show_hit()
 
 
@@ -170,7 +195,62 @@ func apply_slow(ratio: float, duration: float) -> void:
 	slow_indicator.show()
 
 
+func apply_burn(total_damage: float, duration: float) -> void:
+	if not is_targetable() or total_damage <= 0.0 or duration <= 0.0:
+		return
+	var dps: float = total_damage / duration
+	if _burn_remaining > 0.0 and dps < _burn_dps - RunBonuses.ROUNDING_EPSILON:
+		return
+	_burn_dps = dps
+	_burn_remaining = duration
+	_update_status_visual()
+
+
+func apply_freeze(duration: float) -> void:
+	if not is_targetable() or duration <= 0.0 or stats.is_boss:
+		return
+	_freeze_remaining = maxf(_freeze_remaining, duration)
+	_update_status_visual()
+
+
+func _update_status_visual() -> void:
+	var burning: bool = _burn_remaining > 0.0
+	var frozen: bool = _freeze_remaining > 0.0
+	if not burning and not frozen:
+		if is_instance_valid(_status_visual):
+			_status_visual.queue_free()
+		_status_visual = null
+		return
+	if not is_instance_valid(_status_visual):
+		_status_visual = STATUS_SCENE.instantiate()
+		add_child(_status_visual)
+		# Глыба охватывает реальный rig, включая более крупных Orc/Golem/Boss.
+		var body_size: Vector2 = visual.get_rect().size * visual.scale.abs()
+		if animated_visual_enabled:
+			var bounds: Rect2 = Rect2()
+			for part: Sprite2D in _animated_visual.find_children("*", "Sprite2D", true, false):
+				if part.visible:
+					var rect: Rect2 = part.get_rect()
+					for point: Vector2 in [rect.position, rect.end, Vector2(rect.end.x, rect.position.y), Vector2(rect.position.x, rect.end.y)]:
+						var local: Vector2 = to_local(part.to_global(point))
+						bounds = bounds.expand(local)
+			body_size = bounds.size
+		_status_visual.scale = Vector2(maxf(body_size.x / 76.0, 0.75), maxf(body_size.y / 88.0, 0.75))
+	_status_visual.show_status(burning, frozen)
+
+
+func _clear_status() -> void:
+	_burn_remaining = 0.0
+	_burn_dps = 0.0
+	_freeze_remaining = 0.0
+	if is_instance_valid(_status_visual):
+		_status_visual.queue_free()
+	_status_visual = null
+
+
 func current_move_speed() -> float:
+	if _freeze_remaining > 0.0:
+		return 0.0
 	return move_speed * (1.0 - _slow_ratio)
 
 
@@ -195,6 +275,7 @@ func _finish(outcome: Outcome) -> void:
 	_resolved = true
 	set_physics_process(false)
 	_clear_slow()
+	_clear_status()
 	if animated_visual_enabled:
 		# Only the visual survives; it is neither a target nor an active wave enemy.
 		_animated_visual.reparent(get_parent().get_parent(), true)
