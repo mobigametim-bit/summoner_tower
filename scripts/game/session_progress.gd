@@ -3,17 +3,22 @@ extends Node
 signal crystals_changed(total: int)
 signal upgrades_changed
 signal save_failed(error: int)
+signal biomes_changed
 
 const UPGRADE_CONFIG: MetaUpgradeConfig = preload("res://resources/balance/meta_upgrade_config.tres")
 
 var crystals: int = 0
 var upgrade_levels: Array[int] = []
+var unlocked_biomes: Array[String] = ["forest"]
+var selected_biome_id: StringName = &"forest"
+var biome_catalog: BiomeCatalog
 var save_manager: SaveManager = SaveManager.new(SaveManager.SAVE_PATH, UPGRADE_CONFIG.maximum_level)
 var _buying: bool = false
 var _test_session: bool = false
 
 
 func _ready() -> void:
+	biome_catalog = load("res://resources/biomes/catalog.tres") as BiomeCatalog
 	var review_launch: bool = _is_review_path(str(ProjectSettings.get_setting("application/run/main_scene", "")))
 	for argument: String in OS.get_cmdline_args():
 		review_launch = review_launch or _is_review_path(argument)
@@ -46,15 +51,68 @@ func _restore_progress() -> void:
 	var data: Dictionary = save_manager.load_progress()
 	crystals = data.crystals
 	upgrade_levels.assign(data.upgrade_levels)
+	unlocked_biomes.assign(data.unlocked_biomes)
+	selected_biome_id = StringName(data.selected_biome)
+	if biome_catalog.find(selected_biome_id) == null or not is_biome_unlocked(selected_biome_id):
+		selected_biome_id = &"forest"
 	if save_manager.load_status in ["invalid", "unreadable", "future_version"]:
 		push_warning("Прогресс не загружен (%s); использованы начальные значения." % save_manager.load_status)
+	elif save_manager.needs_migration:
+		_save_progress()
 
 
 func _save_progress() -> bool:
-	var error: Error = save_manager.save_progress(crystals, upgrade_levels)
+	var error: Error = save_manager.save_progress(crystals, upgrade_levels, unlocked_biomes, String(selected_biome_id))
 	if error != OK:
 		push_warning("Не удалось сохранить прогресс: %s" % error_string(error))
 	return error == OK
+
+
+func is_biome_unlocked(biome_id: StringName) -> bool:
+	return unlocked_biomes.has(String(biome_id))
+
+
+func selected_biome() -> BiomeDefinition:
+	return biome_catalog.find(selected_biome_id)
+
+
+func select_biome(biome_id: StringName) -> bool:
+	if _buying or not is_biome_unlocked(biome_id) or biome_catalog.find(biome_id) == null:
+		return false
+	if selected_biome_id == biome_id:
+		return true
+	_buying = true
+	var previous: StringName = selected_biome_id
+	selected_biome_id = biome_id
+	if not _save_progress():
+		selected_biome_id = previous
+		save_failed.emit(save_manager.last_error)
+		_buying = false
+		return false
+	biomes_changed.emit()
+	_buying = false
+	return true
+
+
+func unlock_biome(biome_id: StringName) -> bool:
+	if _buying or biome_catalog.find(biome_id) == null:
+		return false
+	if is_biome_unlocked(biome_id):
+		return true
+	_buying = true
+	unlocked_biomes.append(String(biome_id))
+	if not _save_progress():
+		unlocked_biomes.erase(String(biome_id))
+		save_failed.emit(save_manager.last_error)
+		_buying = false
+		return false
+	biomes_changed.emit()
+	_buying = false
+	return true
+
+
+func summon_pool_for(base: SummonPool) -> SummonPool:
+	return biome_catalog.summon_pool_for(base, unlocked_biomes)
 
 
 func add_crystals(amount: int) -> void:

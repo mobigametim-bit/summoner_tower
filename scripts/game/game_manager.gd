@@ -26,6 +26,7 @@ enum State { RUNNING, GAME_OVER, LEAVING, UPGRADE_CHOICE, SETTINGS, REVIVE_OFFER
 @onready var ad_service: AdService = $AdService
 
 var state: State = State.RUNNING
+var biome: BiomeDefinition
 var map_changes: int = 0
 var _offered_upgrades: Array[RunUpgrade] = []
 var revive_used: bool = false
@@ -37,6 +38,14 @@ var _reward_placement: AdService.Placement = AdService.Placement.REVIVE
 
 
 func _ready() -> void:
+	biome = SessionProgress.selected_biome()
+	if not biome.is_playable():
+		biome = SessionProgress.biome_catalog.find(&"forest")
+	# Первый биом сохраняет настройки сцен-проверок; будущие готовые биомы задают свои.
+	if biome.biome_id != &"forest":
+		wave_manager.config = biome.wave_config
+		battlefield.config = biome.battlefield_config
+	summon_manager.pool = SessionProgress.summon_pool_for(summon_manager.pool)
 	AudioService.play_music(&"battle")
 	run_statistics.reset()
 	run_bonuses.reset()

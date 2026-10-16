@@ -1,0 +1,8 @@
+[gd_scene format=3 uid="uid://ct77bu8yod1mv"]
+
+[ext_resource type="PackedScene" uid="uid://rkmlqc5qcsrs" path="res://scenes/game.tscn" id="1_2623y"]
+
+[node name="BiomeGameReview" type="Node" unique_id=1347756101]
+
+[node name="Game" parent="." unique_id=469266139 instance=ExtResource("1_2623y")]
+menu_scene_path = "res://scenes/debug/BiomeFrameworkReview.tscn"

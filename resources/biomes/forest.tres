@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="BiomeDefinition" format=3]
+
+[ext_resource type="Script" path="res://scripts/data/biome_definition.gd" id="1"]
+[ext_resource type="Resource" path="res://resources/balance/wave_config.tres" id="2"]
+[ext_resource type="Resource" path="res://resources/balance/battlefield_config.tres" id="3"]
+[ext_resource type="PackedScene" path="res://scenes/ui/MainMenuBackdrop.tscn" id="4"]
+
+[resource]
+script = ExtResource("1")
+biome_id = &"forest"
+title = "FOREST"
+biome_number = 1
+regular_enemy_types = Array[StringName]([&"goblin", &"orc", &"golem"])
+boss_type = &"boss"
+wave_config = ExtResource("2")
+battlefield_config = ExtResource("3")
+menu_backdrop = ExtResource("4")

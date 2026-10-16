@@ -13,6 +13,21 @@ msgstr "Язык"
 msgid "Play"
 msgstr "Играть"
 
+msgid "FOREST"
+msgstr "ЛЕС"
+
+msgid "GRAVEYARD"
+msgstr "КЛАДБИЩЕ"
+
+msgid "Previous biome"
+msgstr "Предыдущий биом"
+
+msgid "Next biome"
+msgstr "Следующий биом"
+
+msgid "Coming soon"
+msgstr "Скоро"
+
 msgid "Upgrades"
 msgstr "Улучшения"
 

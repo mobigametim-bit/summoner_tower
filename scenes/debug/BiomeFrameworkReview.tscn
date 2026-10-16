@@ -1,0 +1,40 @@
+[gd_scene format=3 uid="uid://bgljmnl37reg0"]
+
+[ext_resource type="Theme" uid="uid://bufjhwj3mejwx" path="res://resources/ui/game_theme.tres" id="1_0t4c6"]
+[ext_resource type="PackedScene" uid="uid://d13bwhs04t8ux" path="res://scenes/main_menu.tscn" id="2_ce2rk"]
+[ext_resource type="Script" uid="uid://gccedwtsv78j" path="res://scripts/debug/biome_framework_review.gd" id="2_oqidw"]
+
+[node name="BiomeFrameworkReview" type="Control" unique_id=144176212]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+theme = ExtResource("1_0t4c6")
+script = ExtResource("2_oqidw")
+
+[node name="Menu" parent="." unique_id=1345894397 instance=ExtResource("2_ce2rk")]
+layout_mode = 1
+game_scene_path = "res://scenes/debug/BiomeGameReview.tscn"
+
+[node name="ReviewControls" type="HBoxContainer" parent="." unique_id=208414411]
+layout_mode = 0
+offset_left = 16.0
+offset_top = 12.0
+offset_right = 704.0
+offset_bottom = 92.0
+theme_override_constants/separation = 16
+
+[node name="Unlock" type="Button" parent="ReviewControls" unique_id=554702548]
+custom_minimum_size = Vector2(320, 80)
+layout_mode = 2
+theme_override_font_sizes/font_size = 26
+text = "Open graveyard · TEST"
+
+[node name="Reset" type="Button" parent="ReviewControls" unique_id=1373308436]
+custom_minimum_size = Vector2(320, 80)
+layout_mode = 2
+theme_override_font_sizes/font_size = 26
+text = "Load v2 save · TEST"
+
+[connection signal="pressed" from="ReviewControls/Unlock" to="." method="_on_test_unlock_pressed"]
+[connection signal="pressed" from="ReviewControls/Reset" to="." method="_on_test_reset_pressed"]

@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="BiomeCatalog" format=3]
+
+[ext_resource type="Script" path="res://scripts/data/biome_catalog.gd" id="1"]
+[ext_resource type="Resource" path="res://resources/biomes/forest.tres" id="2"]
+[ext_resource type="Resource" path="res://resources/biomes/graveyard.tres" id="3"]
+
+[resource]
+script = ExtResource("1")
+biomes = [ExtResource("2"), ExtResource("3")]

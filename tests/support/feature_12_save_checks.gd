@@ -37,7 +37,7 @@ func run_checks() -> Dictionary:
 		_write(source)
 		var reset: Dictionary = store.load_progress()
 		assert(reset.crystals == 0 and reset.upgrade_levels == zeros and store.load_status == "invalid")
-	_write('{"version":3,"crystals":321,"upgrade_levels":[1,2,3,4]}')
+	_write('{"version":4,"crystals":321,"upgrade_levels":[1,2,3,4]}')
 	store.load_progress()
 	assert(not store.writable and store.load_status == "future_version")
 	var future_source: String = FileAccess.get_file_as_string(PATH)
