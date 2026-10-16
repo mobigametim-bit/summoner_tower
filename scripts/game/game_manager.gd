@@ -96,12 +96,12 @@ func _on_enemy_resolved(enemy: ApproachingEnemy, outcome: ApproachingEnemy.Outco
 		return
 	run_statistics.record_enemy(enemy, outcome)
 
+	# Начисляем до урона: смертельный удар может остановить экономику и открыть возрождение.
+	var reward: int = run_bonuses.kill_mana_for(mana)
+	summon_manager.add_mana(reward)
+	hud.show_mana_reward(enemy.get_global_transform_with_canvas().origin, reward)
 	if outcome == ApproachingEnemy.Outcome.REACHED_TOWER:
 		tower.take_damage(enemy.tower_damage)
-	else:
-		var reward: int = run_bonuses.kill_mana_for(mana)
-		summon_manager.add_mana(reward)
-		hud.show_mana_reward(enemy.get_global_transform_with_canvas().origin, reward)
 
 
 func _on_tower_health_changed(current: int, maximum: int) -> void:

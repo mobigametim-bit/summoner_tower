@@ -187,7 +187,7 @@ func _on_enemy_resolved(enemy: ApproachingEnemy, outcome: ApproachingEnemy.Outco
 	if enemy.stats.is_boss and outcome == ApproachingEnemy.Outcome.KILLED:
 		_boss_killed = true
 	# После смерти HP уже нулевой: обычным врагам нужен max_health, боссу — уровень появления.
-	var mana: int = enemy.stats.kill_mana_for(enemy.max_health, enemy.difficulty_tier) if outcome == ApproachingEnemy.Outcome.KILLED else 0
+	var mana: int = enemy.stats.kill_mana_for(enemy.max_health, enemy.difficulty_tier)
 	# Сначала закрываем событие; урон башне может остановить WaveManager из сигнала.
 	enemy_resolved.emit(enemy, outcome, mana)
 	if phase == Phase.FIGHTING:
