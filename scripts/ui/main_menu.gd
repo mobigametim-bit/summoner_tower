@@ -11,9 +11,10 @@ const LOCK_ICON: Texture2D = preload("res://assets/ui/locked.svg")
 @onready var upgrades_button: Button = %UpgradesButton
 @onready var settings_button: Button = %SettingsButton
 @onready var settings_overlay: Control = $AudioSettingsOverlay
-@onready var biome_name: Label = $Center/VBox/BiomeNavigation/BiomeName
-@onready var previous_biome: Button = $Center/VBox/BiomeNavigation/PreviousBiome
-@onready var next_biome: Button = $Center/VBox/BiomeNavigation/NextBiome
+@onready var crystal_wallet: HBoxContainer = $Center/VBox/CrystalWallet
+@onready var biome_navigation: Control = $BiomeNavigation
+@onready var previous_biome: Button = $BiomeNavigation/PreviousBiome
+@onready var next_biome: Button = $BiomeNavigation/NextBiome
 @onready var backdrop: Node2D = $Backdrop
 @onready var biome_placeholder: Control = $BiomePlaceholder
 
@@ -31,15 +32,16 @@ func _ready() -> void:
 func _notification(what: int) -> void:
 	if what == NOTIFICATION_TRANSLATION_CHANGED and is_node_ready():
 		_update_biome()
+	elif what == NOTIFICATION_RESIZED and is_node_ready():
+		_align_biome_navigation.call_deferred()
 
 
 func _update_biome() -> void:
 	var biome: BiomeDefinition = SessionProgress.selected_biome()
-	biome_name.text = tr(biome.title)
 	previous_biome.visible = SessionProgress.biome_catalog.neighbor(biome.biome_id, -1, SessionProgress.unlocked_biomes) != null
 	next_biome.visible = SessionProgress.biome_catalog.neighbor(biome.biome_id, 1, SessionProgress.unlocked_biomes) != null
-	$Center/VBox/BiomeNavigation.visible = previous_biome.visible or next_biome.visible
-	$Center/VBox/WalletBottomSpacer.visible = not $Center/VBox/BiomeNavigation.visible
+	biome_navigation.visible = previous_biome.visible or next_biome.visible
+	_align_biome_navigation.call_deferred()
 	previous_biome.disabled = _is_starting or settings_overlay.visible
 	next_biome.disabled = previous_biome.disabled
 	play_button.disabled = _is_starting or settings_overlay.visible or not biome.is_playable()
@@ -58,6 +60,12 @@ func _update_biome() -> void:
 	backdrop.visible = biome.menu_backdrop != null
 	biome_placeholder.visible = biome.menu_backdrop == null
 	$BiomePlaceholder/Name.text = tr("Coming soon")
+
+
+func _align_biome_navigation() -> void:
+	# Контейнер сначала размещает кошелёк; стрелки привязаны к его фактическому центру.
+	var wallet_center: Vector2 = get_global_transform().affine_inverse() * crystal_wallet.get_global_rect().get_center()
+	biome_navigation.position.y = wallet_center.y - biome_navigation.size.y * 0.5
 
 
 func _on_previous_biome_pressed() -> void:

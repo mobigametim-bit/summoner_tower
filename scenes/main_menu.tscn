@@ -192,39 +192,6 @@ horizontal_alignment = 1
 custom_minimum_size = Vector2(0, 28)
 layout_mode = 2
 
-[node name="BiomeNavigation" type="HBoxContainer" parent="Center/VBox" unique_id=402108130]
-visible = false
-custom_minimum_size = Vector2(0, 80)
-layout_mode = 2
-size_flags_horizontal = 4
-theme_override_constants/separation = 20
-
-[node name="PreviousBiome" type="Button" parent="Center/VBox/BiomeNavigation" unique_id=1329204484]
-custom_minimum_size = Vector2(96, 88)
-layout_mode = 2
-tooltip_text = "Previous biome"
-theme_override_constants/icon_max_width = 48
-theme_override_font_sizes/font_size = 54
-icon = ExtResource("6_lgwnu")
-expand_icon = true
-
-[node name="BiomeName" type="Label" parent="Center/VBox/BiomeNavigation" unique_id=1864785417]
-custom_minimum_size = Vector2(260, 0)
-layout_mode = 2
-theme_override_font_sizes/font_size = 36
-text = "FOREST"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="NextBiome" type="Button" parent="Center/VBox/BiomeNavigation" unique_id=449434534]
-custom_minimum_size = Vector2(96, 88)
-layout_mode = 2
-tooltip_text = "Next biome"
-theme_override_constants/icon_max_width = 48
-theme_override_font_sizes/font_size = 54
-icon = ExtResource("7_flqon")
-expand_icon = true
-
 [node name="Actions" type="HBoxContainer" parent="Center/VBox" unique_id=129563169]
 layout_mode = 2
 size_flags_horizontal = 4
@@ -323,12 +290,46 @@ focus_style = SubResource("StyleBoxFlat_bqqt6")
 icon = ExtResource("9_lgwnu")
 icon_width = 64.0
 
+[node name="BiomeNavigation" type="Control" parent="." unique_id=793416454]
+visible = false
+anchors_preset = 0
+anchor_right = 1.0
+offset_top = 580.0
+offset_bottom = 668.0
+mouse_filter = 2
+
+[node name="PreviousBiome" type="Button" parent="BiomeNavigation" unique_id=1329204484]
+custom_minimum_size = Vector2(96, 88)
+layout_mode = 0
+anchor_bottom = 1.0
+offset_left = 24.0
+offset_right = 120.0
+tooltip_text = "Previous biome"
+theme_override_constants/icon_max_width = 48
+theme_override_font_sizes/font_size = 54
+icon = ExtResource("6_lgwnu")
+expand_icon = true
+
+[node name="NextBiome" type="Button" parent="BiomeNavigation" unique_id=449434534]
+custom_minimum_size = Vector2(96, 88)
+layout_mode = 0
+anchor_left = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -120.0
+offset_right = -24.0
+tooltip_text = "Next biome"
+theme_override_constants/icon_max_width = 48
+theme_override_font_sizes/font_size = 54
+icon = ExtResource("7_flqon")
+expand_icon = true
+
 [node name="AudioSettingsOverlay" parent="." unique_id=1421584197 instance=ExtResource("8_jk1qb")]
 layout_mode = 1
 
-[connection signal="pressed" from="Center/VBox/BiomeNavigation/PreviousBiome" to="." method="_on_previous_biome_pressed"]
-[connection signal="pressed" from="Center/VBox/BiomeNavigation/NextBiome" to="." method="_on_next_biome_pressed"]
 [connection signal="pressed" from="Center/VBox/Actions/PlayButton" to="." method="_on_play_button_pressed"]
 [connection signal="pressed" from="Center/VBox/Actions/UpgradesButton" to="." method="_on_upgrades_button_pressed"]
 [connection signal="pressed" from="Center/VBox/Actions/SettingsButton" to="." method="_on_settings_button_pressed"]
+[connection signal="pressed" from="BiomeNavigation/PreviousBiome" to="." method="_on_previous_biome_pressed"]
+[connection signal="pressed" from="BiomeNavigation/NextBiome" to="." method="_on_next_biome_pressed"]
 [connection signal="closed" from="AudioSettingsOverlay" to="." method="_on_settings_closed"]
