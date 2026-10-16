@@ -1,0 +1,50 @@
+[gd_scene format=3 uid="uid://hc8me43adxfo"]
+
+[ext_resource type="Script" uid="uid://ds8wkpujn70k8" path="res://scripts/debug/biome_victory_review.gd" id="1_1x4q0"]
+[ext_resource type="PackedScene" uid="uid://rkmlqc5qcsrs" path="res://scenes/game.tscn" id="2_304m3"]
+[ext_resource type="Theme" uid="uid://bufjhwj3mejwx" path="res://resources/ui/game_theme.tres" id="3_1hlcr"]
+
+[node name="BiomeVictoryReview" type="Node" unique_id=703528453]
+script = ExtResource("1_1x4q0")
+
+[node name="Game" parent="." unique_id=469266139 instance=ExtResource("2_304m3")]
+
+[node name="ReviewInterface" type="CanvasLayer" parent="." unique_id=1563672574]
+layer = 20
+
+[node name="Controls" type="HBoxContainer" parent="ReviewInterface" unique_id=209207928]
+offset_left = 8.0
+offset_top = 50.0
+offset_right = 712.0
+offset_bottom = 110.0
+theme = ExtResource("3_1hlcr")
+theme_override_constants/separation = 8
+
+[node name="Prepare" type="Button" parent="ReviewInterface/Controls" unique_id=79665837]
+custom_minimum_size = Vector2(164, 64)
+layout_mode = 2
+theme_override_font_sizes/font_size = 26
+text = "25 · TEST"
+
+[node name="Boss" type="Button" parent="ReviewInterface/Controls" unique_id=997095387]
+custom_minimum_size = Vector2(164, 64)
+layout_mode = 2
+theme_override_font_sizes/font_size = 26
+text = "BOSS · TEST"
+
+[node name="Clear" type="Button" parent="ReviewInterface/Controls" unique_id=1929484524]
+custom_minimum_size = Vector2(164, 64)
+layout_mode = 2
+theme_override_font_sizes/font_size = 26
+text = "CLEAR · TEST"
+
+[node name="Lethal" type="Button" parent="ReviewInterface/Controls" unique_id=1865522032]
+custom_minimum_size = Vector2(164, 64)
+layout_mode = 2
+theme_override_font_sizes/font_size = 26
+text = "REVIVE · TEST"
+
+[connection signal="pressed" from="ReviewInterface/Controls/Prepare" to="." method="_on_prepare_pressed"]
+[connection signal="pressed" from="ReviewInterface/Controls/Boss" to="." method="_on_boss_pressed"]
+[connection signal="pressed" from="ReviewInterface/Controls/Clear" to="." method="_on_clear_pressed"]
+[connection signal="pressed" from="ReviewInterface/Controls/Lethal" to="." method="_on_lethal_pressed"]

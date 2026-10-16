@@ -7,6 +7,8 @@ extends Resource
 @export var enemy_growth_per_biome: float = 0.2
 @export var regular_enemy_types: Array[StringName] = []
 @export var boss_type: StringName
+@export_range(1, 1000, 1) var final_wave: int = 25
+@export var next_biome_id: StringName
 @export var wave_config: WaveConfig
 @export var battlefield_config: BattlefieldConfig
 @export var menu_backdrop: PackedScene

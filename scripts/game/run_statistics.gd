@@ -11,8 +11,13 @@ var merges: int = 0
 var earned_crystals: int = 0
 var total_crystals: int = 0
 var finished: bool = false
+var victory: bool = false
+var result_saved: bool = false
+var newly_unlocked_biome: StringName
 var reward_doubled: bool = false
 var _last_completed_wave: int = 0
+var _unlock_biome_id: StringName
+var _saving_result: bool = false
 
 
 func reset() -> void:
@@ -24,6 +29,11 @@ func reset() -> void:
 	earned_crystals = 0
 	total_crystals = 0
 	finished = false
+	victory = false
+	result_saved = false
+	newly_unlocked_biome = &""
+	_unlock_biome_id = &""
+	_saving_result = false
 	reward_doubled = false
 	_last_completed_wave = 0
 
@@ -53,19 +63,35 @@ func record_merge() -> void:
 		merges += 1
 
 
-func finish() -> bool:
+func finish(won: bool = false, unlock_biome_id: StringName = &"") -> bool:
 	if finished:
 		return false
 	# Фиксируем результат до сигнала кошелька: повторный callback не выдаст награду.
 	finished = true
+	victory = won
+	_unlock_biome_id = unlock_biome_id if won else &""
 	earned_crystals = config.reward_for(completed_waves, killed_bosses)
-	SessionProgress.add_crystals(earned_crystals)
-	total_crystals = SessionProgress.crystals
+	save_result()
 	return true
 
 
+func save_result() -> bool:
+	if not finished or _saving_result:
+		return false
+	if result_saved:
+		return true
+	_saving_result = true
+	var was_locked: bool = not _unlock_biome_id.is_empty() and not SessionProgress.is_biome_unlocked(_unlock_biome_id)
+	result_saved = (earned_crystals == 0 and _unlock_biome_id.is_empty()) or SessionProgress.try_add_reward(earned_crystals, _unlock_biome_id)
+	if result_saved and was_locked:
+		newly_unlocked_biome = _unlock_biome_id
+	total_crystals = SessionProgress.crystals
+	_saving_result = false
+	return result_saved
+
+
 func can_double_reward() -> bool:
-	return finished and not reward_doubled and earned_crystals > 0
+	return finished and result_saved and not reward_doubled and earned_crystals > 0
 
 
 func double_reward() -> bool:

@@ -1,13 +1,14 @@
 class_name WaveManager
 extends Node
 
-enum Phase { STOPPED, FIGHTING, INTERMISSION, UPGRADE_CHOICE }
+enum Phase { STOPPED, FIGHTING, INTERMISSION, UPGRADE_CHOICE, COMPLETED }
 
 signal state_changed(wave: int, phase: Phase, seconds: int, alive: int, pending: int)
 signal enemy_resolved(enemy: ApproachingEnemy, outcome: ApproachingEnemy.Outcome, mana: int)
 signal enemy_spawned(portal_index: int)
 signal wave_completed(wave: int)
 signal upgrade_requested(wave: int)
+signal encounter_completed
 
 @export var config: WaveConfig
 
@@ -15,6 +16,7 @@ signal upgrade_requested(wave: int)
 @onready var intermission_timer: Timer = $IntermissionTimer
 
 var wave_number: int = 0
+var final_wave: int = 0
 var phase: Phase = Phase.STOPPED
 
 var _enemies: Node2D
@@ -199,6 +201,14 @@ func _try_finish_wave() -> void:
 	if _completion_suspended or phase != Phase.FIGHTING or _spawn_remaining > 0 or not _active.is_empty():
 		return
 	spawn_timer.stop()
+	if final_wave > 0 and wave_number >= final_wave:
+		# Закрываем волну до сигналов: повторный resolved не завершит забег дважды.
+		phase = Phase.COMPLETED
+		_emit_state()
+		wave_completed.emit(wave_number)
+		if phase == Phase.COMPLETED:
+			encounter_completed.emit()
+		return
 	if config.is_boss_wave(wave_number) and (_boss_killed or _boss_wave_revived):
 		phase = Phase.UPGRADE_CHOICE
 		_emit_state()

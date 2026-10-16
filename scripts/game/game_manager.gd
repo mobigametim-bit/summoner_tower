@@ -45,6 +45,7 @@ func _ready() -> void:
 	if biome.biome_id != &"forest":
 		wave_manager.config = biome.wave_config
 		battlefield.config = biome.battlefield_config
+	wave_manager.final_wave = biome.final_wave
 	summon_manager.pool = SessionProgress.summon_pool_for(summon_manager.pool)
 	AudioService.play_music(&"battle")
 	run_statistics.reset()
@@ -147,6 +148,11 @@ func _on_wave_completed(wave: int) -> void:
 	tower.heal(run_bonuses.regeneration_amount())
 
 
+func _on_encounter_completed() -> void:
+	if state == State.RUNNING and tower.current_health > 0:
+		_finish_run(true)
+
+
 func _on_upgrade_reroll_requested() -> void:
 	if state != State.UPGRADE_CHOICE or not run_bonuses.try_use_reroll():
 		return
@@ -227,11 +233,19 @@ func _on_tower_destroyed() -> void:
 	_finish_run()
 
 
-func _finish_run() -> void:
+func _finish_run(won: bool = false) -> void:
+	if state == State.GAME_OVER or state == State.LEAVING:
+		return
 	state = State.GAME_OVER
-	run_statistics.finish()
+	run_statistics.finish(won, biome.next_biome_id if won else &"")
 	_stop_encounter()
 	hud.show_game_over(run_statistics)
+
+
+func _on_save_result_requested() -> void:
+	if state == State.GAME_OVER:
+		run_statistics.save_result()
+		hud.show_game_over(run_statistics)
 
 
 func _on_revive_accepted() -> void:

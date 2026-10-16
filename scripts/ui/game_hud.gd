@@ -9,6 +9,7 @@ signal revive_accepted
 signal revive_declined
 signal double_reward_requested
 signal rewarded_view_canceled
+signal save_result_requested
 
 @onready var health_label: Label = %HealthLabel
 @onready var game_over_overlay: Control = %GameOverOverlay
@@ -102,6 +103,13 @@ func show_game_over(stats: RunStatistics) -> void:
 	close_settings()
 	set_settings_available(false)
 	var stack: VBoxContainer = game_over_overlay.get_node("Center/Panel/Stack")
+	stack.get_node("Title").text = tr("VICTORY") if stats.victory else tr("RUN RESULT")
+	var unlock_notice: Label = stack.get_node("BiomeUnlocked")
+	unlock_notice.visible = not stats.newly_unlocked_biome.is_empty()
+	if unlock_notice.visible:
+		var unlocked: BiomeDefinition = SessionProgress.biome_catalog.find(stats.newly_unlocked_biome)
+		unlock_notice.text = tr("BIOME UNLOCKED: %s") % tr(unlocked.title)
+	stack.get_node("SaveResult").visible = not stats.result_saved
 	UiNumbers.show_value(stack.get_node("Stats/Wave/Value"), stats.reached_wave)
 	UiNumbers.show_value(stack.get_node("Stats/Enemies/Value"), stats.killed_enemies)
 	UiNumbers.show_value(stack.get_node("Stats/Bosses/Value"), stats.killed_bosses)
@@ -191,6 +199,10 @@ func _on_revive_declined() -> void:
 
 func _on_double_reward_pressed() -> void:
 	double_reward_requested.emit()
+
+
+func _on_save_result_pressed() -> void:
+	save_result_requested.emit()
 
 
 func _on_rewarded_cancel_pressed() -> void:

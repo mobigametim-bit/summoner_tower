@@ -124,16 +124,29 @@ func add_crystals(amount: int) -> void:
 	crystals_changed.emit(crystals)
 
 
-func try_add_reward(amount: int) -> bool:
-	if amount <= 0 or not save_manager.writable:
+func try_add_reward(amount: int, unlock_id: StringName = &"") -> bool:
+	if _buying or amount < 0 or (amount == 0 and unlock_id.is_empty()) or not save_manager.writable:
 		return false
+	if not unlock_id.is_empty() and biome_catalog.find(unlock_id) == null:
+		return false
+	_buying = true
 	var previous: int = crystals
+	var newly_unlocked: bool = not unlock_id.is_empty() and not is_biome_unlocked(unlock_id)
 	crystals += mini(amount, SaveManager.MAX_CRYSTALS - crystals)
+	if newly_unlocked:
+		unlocked_biomes.append(String(unlock_id))
+	# Награда и открытие биома попадают в одну атомарную запись.
 	if not _save_progress():
 		crystals = previous
+		if newly_unlocked:
+			unlocked_biomes.erase(String(unlock_id))
 		save_failed.emit(save_manager.last_error)
+		_buying = false
 		return false
 	crystals_changed.emit(crystals)
+	if newly_unlocked:
+		biomes_changed.emit()
+	_buying = false
 	return true
 
 

@@ -19,6 +19,15 @@ msgstr "ЛЕС"
 msgid "GRAVEYARD"
 msgstr "КЛАДБИЩЕ"
 
+msgid "VICTORY"
+msgstr "ПОБЕДА"
+
+msgid "BIOME UNLOCKED: %s"
+msgstr "ОТКРЫТ БИОМ: %s"
+
+msgid "Save result again"
+msgstr "Повторить сохранение результата"
+
 msgid "Previous biome"
 msgstr "Предыдущий биом"
 

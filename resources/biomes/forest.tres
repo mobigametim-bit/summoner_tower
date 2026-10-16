@@ -12,6 +12,7 @@ title = "FOREST"
 biome_number = 1
 regular_enemy_types = Array[StringName]([&"goblin", &"orc", &"golem"])
 boss_type = &"boss"
+next_biome_id = &"graveyard"
 wave_config = ExtResource("2")
 battlefield_config = ExtResource("3")
 menu_backdrop = ExtResource("4")
