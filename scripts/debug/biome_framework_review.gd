@@ -38,6 +38,7 @@ func _publish_snapshot(_args: Array) -> void:
 		"previous_visible":menu.previous_biome.is_visible_in_tree(),"next_visible":menu.next_biome.is_visible_in_tree(),
 		"play_disabled":menu.play_button.disabled,"placeholder_visible":menu.biome_placeholder.visible,
 		"settings_open":menu.settings_overlay.visible,
+		"title":menu.biome_title.text,
 		"wallet_position":_center(menu.crystal_wallet), "menu_size":[menu.size.x, menu.size.y],
 		"next_position":_center(menu.next_biome),"previous_position":_center(menu.previous_biome),
 		"play_position":_center(menu.play_button),"settings_position":_center(menu.settings_button),

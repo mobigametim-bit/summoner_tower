@@ -1295,6 +1295,10 @@ Gameplay-интеграция и производство rig/анимаций �
 кошелька кристаллов душ, название биома убрано. Проверены Godot и Web;
 раскладка принята: [BIOME_NAVIGATION_LAYOUT_REVIEW.md](done/BIOME_NAVIGATION_LAYOUT_REVIEW.md).
 
+По следующему уточнению основной заголовок меню заменён с SUMMONER TOWER на
+локализованное название выбранного биома. Проверены Godot и Web, изменение принято:
+[BIOME_MENU_TITLE_REVIEW.md](done/BIOME_MENU_TITLE_REVIEW.md).
+
 ---
 
 # Фича 18 — Первый коммерческий MVP

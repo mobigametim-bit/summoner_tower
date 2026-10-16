@@ -7,6 +7,7 @@ const LOCK_ICON: Texture2D = preload("res://assets/ui/locked.svg")
 @export_file("*.tscn") var upgrades_scene_path: String = "res://scenes/meta_upgrades.tscn"
 
 @onready var play_button: Button = %PlayButton
+@onready var biome_title: Label = $Center/VBox/Title
 @onready var crystal_balance: Label = $Center/VBox/CrystalWallet/CrystalBalance
 @onready var upgrades_button: Button = %UpgradesButton
 @onready var settings_button: Button = %SettingsButton
@@ -38,6 +39,7 @@ func _notification(what: int) -> void:
 
 func _update_biome() -> void:
 	var biome: BiomeDefinition = SessionProgress.selected_biome()
+	biome_title.text = tr(biome.title)
 	previous_biome.visible = SessionProgress.biome_catalog.neighbor(biome.biome_id, -1, SessionProgress.unlocked_biomes) != null
 	next_biome.visible = SessionProgress.biome_catalog.neighbor(biome.biome_id, 1, SessionProgress.unlocked_biomes) != null
 	biome_navigation.visible = previous_biome.visible or next_biome.visible
