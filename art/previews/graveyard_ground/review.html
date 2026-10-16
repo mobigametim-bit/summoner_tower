@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="ru">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="icon" href="data:,">
+<title>Кладбище — земля</title>
+<style>
+*{box-sizing:border-box}body{margin:0;background:#101521;color:#d5dfe3;font:16px/1.5 system-ui,sans-serif}main{max-width:1160px;margin:auto;padding:24px}h1{margin:0;color:#f0d18a;font-size:28px}p{margin:8px 0 20px;color:#acbec6}nav{display:flex;gap:8px;flex-wrap:wrap;margin:20px 0}button{font:inherit;border:1px solid #49626d;border-radius:9px;background:#1b2b39;color:#d5dfe3;padding:12px 16px;cursor:pointer;min-height:48px}button[aria-pressed=true]{border-color:#a5c8b6;background:#30423f;color:#fff}.layout{display:grid;grid-template-columns:minmax(0,480px) minmax(0,1fr);gap:28px;align-items:start}.arena{width:100%;display:block;aspect-ratio:2/3}figure{margin:0}figcaption{font-size:14px;color:#a7bdc5;margin-top:8px}.tiles{display:flex;gap:20px;flex-wrap:wrap}.tiles figure{flex:1;min-width:128px}.tiles img{display:block;width:100%;max-width:256px;aspect-ratio:1}.panel{background:#1b2b39;border:1px solid #344a58;border-radius:12px;padding:20px;margin-bottom:20px}h2{font-size:20px;margin:0 0 14px}a{color:#99d8e1}.palette{display:flex;gap:8px;margin-top:18px}.swatch{width:42px;height:32px;border:1px solid #748078;border-radius:5px}small{color:#a7bdc5}input{accent-color:#91bca8}label{display:block;margin:12px 0}@media(max-width:700px){main{padding:16px}.layout{grid-template-columns:1fr}.details{order:2}h1{font-size:24px}button{flex:1;padding:10px}.arena{max-width:480px;margin:auto}}
+</style>
+<style>.arena{height:auto}</style>
+<main>
+<h1>Кладбище · земля</h1>
+<p>Один новый тайл. Поле 6×9, без границ клеток. Только просмотр.</p>
+<nav aria-label="Вид поля">
+<button type="button" data-src="field.svg" aria-pressed="true">С персонажами</button>
+<button type="button" data-src="repeat.svg" aria-pressed="false">Чистое поле</button>
+</nav>
+<div class="layout">
+<figure><img class="arena" id="arena" src="field.svg" width="720" height="1080" alt="Земля кладбища на поле 6 на 9 клеток с существующими персонажами"><figcaption>54 повтора одного тайла. Без случайных поворотов или смешивания вариантов.</figcaption></figure>
+<div class="details">
+<section class="panel"><h2>Концепт и новый тайл</h2><div class="tiles">
+<figure><img src="reference.svg" width="256" height="256" alt="Принятый концепт земли"><figcaption>Принятый концепт</figcaption></figure>
+<figure><a href="tile.svg" target="_blank"><img src="tile.svg" width="256" height="256" alt="Новый тайл земли"><figcaption>Новый SVG · открыть</figcaption></a></figure>
+</div><div class="palette" aria-label="Палитра"><span class="swatch" style="background:#303838" title="Почва #303838"></span><span class="swatch" style="background:#343e3b" title="Пятна #343e3b"></span><span class="swatch" style="background:#454d43" title="Мох #454d43"></span><span class="swatch" style="background:#505755" title="Камешки #505755"></span></div></section>
+<section class="panel"><h2>Проверить</h2><p>Края клеток не должны читаться как рамка. Мох и камни — спокойный фон, бойцы и дорога выделяются.</p><p>Дорога, постаменты, портал и персонажи взяты из текущей игры. Новый здесь только грунт.</p><small>Статичная композиция, без анимаций и VFX. Пропорции арены и размеры персонажей приближены к игровой сетке.</small></section>
+</div></div>
+</main>
+<script>
+const arena=document.querySelector('#arena');
+document.querySelectorAll('button[data-src]').forEach(button=>button.addEventListener('click',()=>{
+ document.querySelectorAll('button[data-src]').forEach(b=>b.setAttribute('aria-pressed',String(b===button)));
+ arena.src=button.dataset.src;
+ arena.alt=button.dataset.src==='repeat.svg'?'Чистое поле из 54 одинаковых тайлов земли':'Поле 6 на 9 клеток с существующими персонажами';
+}));
+</script>
+</html>

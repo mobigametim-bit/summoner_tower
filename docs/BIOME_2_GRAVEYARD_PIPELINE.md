@@ -208,6 +208,10 @@ commit и push по актуальным правилам AGENTS.md; отчёт 
 Общий concept-pass всех персонажей сейчас отдельно заказан пользователем и не означает
 автоматического разрешения на создание всех production rigs.
 
+Этап 3 начат с бесшовной земли. SVG и статичное превью поля 6×9 проверены и приняты
+пользователем 17.10.2026, импорт и интеграция ещё не выполнялись:
+[GRAVEYARD_GROUND_ART_REVIEW.md](done/GRAVEYARD_GROUND_ART_REVIEW.md).
+
 ## 8. Art/animation pipeline каждого объекта
 
 Основной стандарт: [ART_PIPELINE.md](ART_PIPELINE.md). Собственные SVG paths,
