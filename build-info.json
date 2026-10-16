@@ -1,5 +1,5 @@
 {
-  "source_commit": "cd7c9d8685bfccc90012e786b1d591efa6c3bbdc",
+  "source_commit": "6ea447f9c89f41b67308c6bd16116fd45c9eb451",
   "godot": "4.7.2.stable",
   "preset": "Web",
   "release": true,
@@ -35,7 +35,7 @@
     },
     "index.html": {
       "bytes": 14166,
-      "sha256": "b73483c7c90a3359a87cc22cbd569ab23e56467ca31fae23be32fb8e4fcdb995"
+      "sha256": "4c41335a551ee6ef02d417064a19b1b0fffeb3c40eefde982060cbabd5453fe0"
     },
     "index.icon.png": {
       "bytes": 53481,
@@ -46,8 +46,8 @@
       "sha256": "33c94cb3175f3333b82e2a3be5e8e86f77986f0aa2042b1631f6367a4e5bb6ba"
     },
     "index.pck": {
-      "bytes": 7983660,
-      "sha256": "d2166ec08fd97182254c0913cd83b87b56898254635f7cc1c4263b92c32a129d"
+      "bytes": 7998208,
+      "sha256": "9a1a6fbd3ec63acf3f523ffd73c929853c42264b131dd01f9f80f9b86c29a124"
     },
     "index.png": {
       "bytes": 38531,
@@ -75,5 +75,7 @@
   "fixed_grid": [
     6,
     9
-  ]
+  ],
+  "biome_framework_revision": "2026-10-16-v1",
+  "save_format_version": 3
 }
