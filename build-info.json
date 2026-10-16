@@ -1,5 +1,5 @@
 {
-  "source_commit": "6ea447f9c89f41b67308c6bd16116fd45c9eb451",
+  "source_commit": "c03b01be16b5eec3e3da3284d75d1b26978b4ecc",
   "godot": "4.7.2.stable",
   "preset": "Web",
   "release": true,
@@ -35,7 +35,7 @@
     },
     "index.html": {
       "bytes": 14166,
-      "sha256": "4c41335a551ee6ef02d417064a19b1b0fffeb3c40eefde982060cbabd5453fe0"
+      "sha256": "3823501627ab3506ae4661c19ce4f3012d3f7828b339d9b8d80e1f5e031898e4"
     },
     "index.icon.png": {
       "bytes": 53481,
@@ -46,8 +46,8 @@
       "sha256": "33c94cb3175f3333b82e2a3be5e8e86f77986f0aa2042b1631f6367a4e5bb6ba"
     },
     "index.pck": {
-      "bytes": 7998208,
-      "sha256": "9a1a6fbd3ec63acf3f523ffd73c929853c42264b131dd01f9f80f9b86c29a124"
+      "bytes": 8001056,
+      "sha256": "c0d9bb8019afb939af06941c748ab8f195ee068288754e5059aa6cbd46faeed6"
     },
     "index.png": {
       "bytes": 38531,
@@ -77,5 +77,6 @@
     9
   ],
   "biome_framework_revision": "2026-10-16-v1",
-  "save_format_version": 3
+  "save_format_version": 3,
+  "biome_victory_revision": "2026-10-16-v1"
 }
