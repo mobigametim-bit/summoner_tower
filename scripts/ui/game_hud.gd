@@ -29,6 +29,8 @@ signal save_result_requested
 @export var wave_config: WaveConfig
 @export var mana_reward_scene: PackedScene
 @export_range(1, 64) var maximum_mana_popups: int = 32
+@export_range(16, 96, 1) var counter_font_size: int = 64
+@export_range(16, 96, 1) var counter_minimum_font_size: int = 40
 
 @onready var mana_rewards: Node2D = $ManaRewards
 
@@ -62,10 +64,10 @@ func set_field_bottom(bottom: float) -> void:
 
 func _fit_counter(label: Label) -> void:
 	var font: Font = label.get_theme_font("font")
-	var font_size: int = 48
+	var font_size: int = counter_font_size
 	var width: float = label.custom_minimum_size.x
 	# Реальная ширина цифр зависит от шрифта, а не только от их количества.
-	while font_size > 36 and font.get_string_size(label.text, HORIZONTAL_ALIGNMENT_LEFT, -1.0, font_size).x > width:
+	while font_size > mini(counter_minimum_font_size, counter_font_size) and font.get_string_size(label.text, HORIZONTAL_ALIGNMENT_LEFT, -1.0, font_size).x > width:
 		font_size -= 1
 	label.add_theme_font_size_override("font_size", font_size)
 

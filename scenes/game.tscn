@@ -298,11 +298,11 @@ theme_override_constants/margin_bottom = 0
 
 [node name="Row" type="HBoxContainer" parent="Interface/Hud/BottomDock/Margin" unique_id=1918551115]
 layout_mode = 2
-theme_override_constants/separation = 18
+theme_override_constants/separation = 6
 
 [node name="WaveLabel" type="Label" parent="Interface/Hud/BottomDock/Margin/Row" unique_id=33230576]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(140, 48)
+custom_minimum_size = Vector2(192, 48)
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_colors/font_color = Color(0.7058824, 0.83137256, 0.8509804, 1)
@@ -316,11 +316,11 @@ layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 4
 mouse_filter = 2
-theme_override_constants/separation = 12
+theme_override_constants/separation = 6
 alignment = 1
 
 [node name="HealthIcon" type="TextureRect" parent="Interface/Hud/BottomDock/Margin/Row/Counters" unique_id=970988168]
-custom_minimum_size = Vector2(40, 40)
+custom_minimum_size = Vector2(54, 54)
 layout_mode = 2
 size_flags_vertical = 4
 mouse_filter = 2
@@ -329,22 +329,22 @@ stretch_mode = 5
 
 [node name="HealthLabel" type="Label" parent="Interface/Hud/BottomDock/Margin/Row/Counters" unique_id=345376129]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(84, 48)
+custom_minimum_size = Vector2(112, 80)
 layout_mode = 2
 theme_override_colors/font_color = Color(1, 0.5764706, 0.58431375, 1)
-theme_override_font_sizes/font_size = 48
+theme_override_font_sizes/font_size = 64
 text = "100"
 vertical_alignment = 1
 clip_text = true
 
 [node name="Gap" type="Control" parent="Interface/Hud/BottomDock/Margin/Row/Counters" unique_id=1733236923]
-custom_minimum_size = Vector2(24, 0)
+custom_minimum_size = Vector2(8, 0)
 layout_mode = 2
 mouse_filter = 2
 
 [node name="ManaIcon" type="Control" parent="Interface/Hud/BottomDock/Margin/Row/Counters" unique_id=1388567042 node_paths=PackedStringArray("counter_label")]
 process_mode = 3
-custom_minimum_size = Vector2(40, 48)
+custom_minimum_size = Vector2(54, 65)
 layout_mode = 2
 mouse_filter = 2
 script = ExtResource("13_sgl2t")
@@ -366,10 +366,10 @@ script = ExtResource("14_suyxu")
 
 [node name="ManaLabel" type="Label" parent="Interface/Hud/BottomDock/Margin/Row/Counters" unique_id=1792798406]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(84, 48)
+custom_minimum_size = Vector2(112, 80)
 layout_mode = 2
 theme_override_colors/font_color = Color(0.50980395, 0.7921569, 1, 1)
-theme_override_font_sizes/font_size = 48
+theme_override_font_sizes/font_size = 64
 text = "100"
 horizontal_alignment = 1
 vertical_alignment = 1
