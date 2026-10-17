@@ -11,7 +11,8 @@ rig, idle/cast/spawn и отдельное VFX-превью подготовле
 [PRIEST_ANIMATION_REVIEW.md](done/PRIEST_ANIMATION_REVIEW.md). Анимации и VFX приняты.
 Игровая интеграция принята пользователем 18.10.2026:
 [PRIEST_GAMEPLAY_REVIEW.md](done/PRIEST_GAMEPLAY_REVIEW.md).
-Карточки — следующий отдельный этап.
+Карточки согласованы и внедрены отдельным этапом, приняты пользователем:
+[PRIEST_CARDS_REVIEW.md](done/PRIEST_CARDS_REVIEW.md).
 
 ## Роль и исходный образ
 

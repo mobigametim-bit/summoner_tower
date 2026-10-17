@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="RunUpgrade" format=3]
+
+[ext_resource type="Script" path="res://scripts/data/run_upgrade.gd" id="1"]
+[ext_resource type="Texture2D" path="res://assets/upgrades/long_prayer.svg" id="2"]
+
+[resource]
+script = ExtResource("1")
+kind = 22
+title = "LONG PRAYER"
+description = "+{value} s Light Mark duration\nFor Priests Lv3 and above."
+icon = ExtResource("2")
+strength = 0.5
+tier_strengths = Array[float]([0.25, 0.5, 0.75, 1.0, 1.5])

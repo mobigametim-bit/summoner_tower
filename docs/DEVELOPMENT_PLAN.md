@@ -1327,7 +1327,8 @@ Gameplay-интеграция и производство rig/анимаций �
 Отчёт: [GRAVEYARD_ARMY_GAMEPLAY_REVIEW.md](done/GRAVEYARD_ARMY_GAMEPLAY_REVIEW.md).
 Жрец света (parts/rig, анимации, gameplay и постоянный призыв) принят пользователем
 18.10.2026: [PRIEST_GAMEPLAY_REVIEW.md](done/PRIEST_GAMEPLAY_REVIEW.md).
-Следующий этап биома — согласование точных параметров его послебоссовых карточек.
+Послебоссовые карточки Жреца согласованы и внедрены, Godot и Web проверены;
+приняты пользователем: [PRIEST_CARDS_REVIEW.md](done/PRIEST_CARDS_REVIEW.md).
 Это продолжение pipeline биома; реальные SDK/аналитика фичи 18 ещё не согласованы.
 
 ---

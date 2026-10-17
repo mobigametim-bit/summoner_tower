@@ -408,3 +408,27 @@ msgstr "Выбор после босса\n4 карточки вместо 3"
 
 msgid "Watch to reroll upgrades"
 msgstr "Переброс за просмотр"
+
+msgid "SUMMON PRIEST"
+msgstr "ПРИЗЫВ ЖРЕЦА"
+
+msgid "Receive one free Lv{value} Priest\nOn the new map."
+msgstr "Жрец {value} уровня бесплатно\nНа новой карте."
+
+msgid "LIGHT POWER"
+msgstr "СИЛА СВЕТА"
+
+msgid "+{value}% Priest damage\nNormal shots and Consecration."
+msgstr "+{value}% урона Жреца\nВыстрелы и «Освящение»."
+
+msgid "LONG PRAYER"
+msgstr "ДОЛГАЯ МОЛИТВА"
+
+msgid "+{value} s Light Mark duration\nFor Priests Lv3 and above."
+msgstr "+{value} с действия метки\nДля Жреца от 3 уровня."
+
+msgid "SACRED RADIANCE"
+msgstr "СВЯЩЕННОЕ СИЯНИЕ"
+
+msgid "+{value}% Consecration damage\nPriest Lv5 ability only."
+msgstr "+{value}% урона «Освящения»\nСпособность Жреца 5 уровня."

@@ -267,7 +267,7 @@ func _spawn_projectile(victim: ApproachingEnemy, shot_stats: UnitStats, damage: 
 func _fire_skill() -> void:
 	var effective: UnitStats = _run_bonuses.combat_stats_for(stats) if _run_bonuses != null else stats
 	var damage: float = _run_bonuses.damage_amount_for(stats) if _run_bonuses != null else float(stats.damage)
-	damage *= stats.ability_damage_ratio
+	damage *= effective.ability_damage_ratio
 	var center: Vector2 = _target.global_position
 	match stats.ability:
 		UnitStats.Ability.HAIL:

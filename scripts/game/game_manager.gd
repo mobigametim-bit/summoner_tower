@@ -47,6 +47,7 @@ func _ready() -> void:
 		battlefield.config = biome.battlefield_config
 	wave_manager.final_wave = biome.final_wave
 	summon_manager.pool = SessionProgress.summon_pool_for(summon_manager.pool)
+	run_bonuses.pool = SessionProgress.biome_catalog.upgrade_pool_for(run_bonuses.pool, SessionProgress.unlocked_biomes)
 	AudioService.play_music(&"battle")
 	run_statistics.reset()
 	run_bonuses.reset()

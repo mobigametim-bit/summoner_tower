@@ -33,6 +33,19 @@ func summon_pool_for(base: SummonPool, unlocked: Array[String]) -> SummonPool:
 	return result
 
 
+func upgrade_pool_for(base: RunUpgradePool, unlocked: Array[String]) -> RunUpgradePool:
+	# Состав текущего забега не изменяет общий ресурс и не зависит от выбранного биома.
+	var result: RunUpgradePool = base.duplicate() as RunUpgradePool
+	result.upgrades = base.upgrades.duplicate()
+	for biome: BiomeDefinition in biomes:
+		if not unlocked.has(String(biome.biome_id)):
+			continue
+		for upgrade: RunUpgrade in biome.additional_upgrades:
+			if result.get_upgrade(upgrade.kind) == null:
+				result.upgrades.append(upgrade)
+	return result
+
+
 func _append_pool(destination: SummonPool, source: SummonPool) -> void:
 	if not source.is_valid():
 		return

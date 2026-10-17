@@ -1,0 +1,1068 @@
+[gd_scene format=3 uid="uid://kas4yhooeddc"]
+
+[ext_resource type="Script" uid="uid://c81bgddspyiqt" path="res://scripts/debug/priest_cards_review.gd" id="1_apbrk"]
+[ext_resource type="Resource" uid="uid://be2d7ahgtbjub" path="res://resources/balance/first_encounter.tres" id="2_03xn2"]
+[ext_resource type="Texture2D" uid="uid://m3obcl82lbrw" path="res://assets/arena.svg" id="3_q7na5"]
+[ext_resource type="PackedScene" uid="uid://dmep054iccu1s" path="res://scenes/battlefield.tscn" id="4_jvy7x"]
+[ext_resource type="PackedScene" uid="uid://bkmm5tldq4x6c" path="res://scenes/tower.tscn" id="5_yoaud"]
+[ext_resource type="PackedScene" uid="uid://7utrx5k06gtp" path="res://scenes/summon_slot.tscn" id="6_da6w2"]
+[ext_resource type="Script" uid="uid://bj8a3ymfdffgo" path="res://scripts/game/unit_drag_controller.gd" id="7_suk4a"]
+[ext_resource type="Texture2D" uid="uid://cktgfcgc5nyox" path="res://assets/archer.svg" id="8_vsmyu"]
+[ext_resource type="Script" uid="uid://bumogopfsvwa2" path="res://scripts/ui/attack_range_preview.gd" id="9_6j8ga"]
+[ext_resource type="Theme" uid="uid://bufjhwj3mejwx" path="res://resources/ui/game_theme.tres" id="10_6qfut"]
+[ext_resource type="Script" uid="uid://c8cpj6ixtxugj" path="res://scripts/ui/game_hud.gd" id="11_10rmd"]
+[ext_resource type="Resource" uid="uid://ciuquwmxvll24" path="res://resources/balance/wave_config.tres" id="12_i2dqu"]
+[ext_resource type="PackedScene" uid="uid://bsjdkpxyw8bvg" path="res://scenes/ui/ManaRewardPopup.tscn" id="13_b7l1l"]
+[ext_resource type="Texture2D" uid="uid://k17uuaqhmgkm" path="res://assets/heart_full.svg" id="14_dclbc"]
+[ext_resource type="Script" uid="uid://cfvf5il45lqsh" path="res://scripts/ui/mana_feedback.gd" id="15_egmfm"]
+[ext_resource type="Texture2D" uid="uid://c1i4x5u3ypwhb" path="res://assets/mana_flame.svg" id="16_c2dry"]
+[ext_resource type="Script" uid="uid://b6hb1c3t0eppb" path="res://addons/game_feel_flow/core/gff_player.gd" id="17_wcomq"]
+[ext_resource type="PackedScene" uid="uid://qrfmn7yt2v3" path="res://scenes/ui/button_feedback.tscn" id="18_ua4gp"]
+[ext_resource type="Texture2D" uid="uid://d0es5bcr1fdsu" path="res://assets/ui/settings.svg" id="19_2x6k6"]
+[ext_resource type="Texture2D" uid="uid://b7v6r0i243ofk" path="res://assets/soul_crystal.svg" id="20_x50i5"]
+[ext_resource type="Texture2D" uid="uid://cgyt3kaapnire" path="res://assets/ui/restart.svg" id="21_oo3ub"]
+[ext_resource type="Texture2D" uid="uid://ckpokawdmyc0b" path="res://assets/ui/home.svg" id="22_hdrss"]
+[ext_resource type="PackedScene" uid="uid://mbs73l0rftqi" path="res://scenes/upgrade_choice.tscn" id="23_idx13"]
+[ext_resource type="PackedScene" uid="uid://d2g3lda0xildr" path="res://scenes/ui/AudioControls.tscn" id="24_d237c"]
+[ext_resource type="Texture2D" uid="uid://cunh3mw6fkux0" path="res://assets/ui/play.svg" id="25_qb2mo"]
+[ext_resource type="PackedScene" uid="uid://icaty5irafa4" path="res://scenes/ui/BossWarning.tscn" id="26_twd6r"]
+[ext_resource type="Texture2D" uid="uid://c57tyfidrkg5k" path="res://assets/ui/confirm.svg" id="27_340k3"]
+[ext_resource type="Texture2D" uid="uid://bamagwo85soov" path="res://assets/ui/close.svg" id="28_g1ld6"]
+[ext_resource type="Script" uid="uid://l6tfxq6xwsuh" path="res://scripts/game/summon_manager.gd" id="29_ws7bj"]
+[ext_resource type="Resource" uid="uid://cuks6vm6g65ce" path="res://resources/balance/summon_config.tres" id="30_4s1qx"]
+[ext_resource type="Resource" uid="uid://dpalsfkfhty6d" path="res://resources/balance/summon_pool.tres" id="31_jkoih"]
+[ext_resource type="Script" uid="uid://6g8kr8xeny10" path="res://scripts/game/wave_manager.gd" id="32_yr8sy"]
+[ext_resource type="PackedScene" uid="uid://bisiphve27otn" path="res://scenes/combat/GraveyardArmy.tscn" id="33_m6ph8"]
+[ext_resource type="Script" uid="uid://dpp2k5bpxesj7" path="res://scripts/game/run_bonuses.gd" id="34_btvkr"]
+[ext_resource type="Resource" uid="uid://b6k1ho7jp755j" path="res://resources/balance/run_upgrade_pool.tres" id="35_a2ana"]
+[ext_resource type="Script" uid="uid://dl57wkelh3atf" path="res://scripts/game/run_statistics.gd" id="36_dfiin"]
+[ext_resource type="Resource" uid="uid://c2tgfag4qq81o" path="res://resources/balance/run_reward_config.tres" id="37_6uc05"]
+[ext_resource type="PackedScene" uid="uid://bs7ym0iyxvdag" path="res://scenes/vfx/ScreenShake.tscn" id="38_w15dc"]
+[ext_resource type="Script" uid="uid://rgvujtsibixj" path="res://scripts/game/ad_service.gd" id="39_0da5m"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qnb83"]
+bg_color = Color(0.09019608, 0.14117648, 0.19215687, 1)
+border_width_top = 2
+border_color = Color(0.19215687, 0.25490198, 0.29803923, 1)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_sww3w"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_suyxu"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_sgl2t"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_qouja"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_wljb1"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_sww3w"]
+bg_color = Color(0.09019608, 0.14117648, 0.19215687, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_sgl2t"]
+bg_color = Color(0.14117648, 0.21960784, 0.2784314, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_suyxu"]
+bg_color = Color(0.19215687, 0.29803923, 0.35686275, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rrhgg"]
+content_margin_left = 24.0
+content_margin_top = 16.0
+content_margin_right = 24.0
+content_margin_bottom = 16.0
+bg_color = Color(0.15294118, 0.20392157, 0.2784314, 1)
+corner_radius_top_left = 12
+corner_radius_top_right = 12
+corner_radius_bottom_right = 12
+corner_radius_bottom_left = 12
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_q4uia"]
+content_margin_left = 24.0
+content_margin_top = 16.0
+content_margin_right = 24.0
+content_margin_bottom = 16.0
+bg_color = Color(0, 0, 0, 0)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(1, 0.9411765, 0.7607843, 1)
+corner_radius_top_left = 12
+corner_radius_top_right = 12
+corner_radius_bottom_right = 12
+corner_radius_bottom_left = 12
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wljb1"]
+content_margin_left = 36.0
+content_margin_top = 40.0
+content_margin_right = 36.0
+content_margin_bottom = 40.0
+bg_color = Color(0.0627451, 0.101960786, 0.15686275, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.23137255, 0.34901962, 0.4392157, 1)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_v2yb1"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_js0lu"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_gxtfn"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_twgab"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_02fa5"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1e81c"]
+content_margin_left = 24.0
+content_margin_top = 16.0
+content_margin_right = 24.0
+content_margin_bottom = 16.0
+bg_color = Color(0.8509804, 0.6784314, 0.33333334, 1)
+corner_radius_top_left = 12
+corner_radius_top_right = 12
+corner_radius_bottom_right = 12
+corner_radius_bottom_left = 12
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wir6v"]
+content_margin_left = 24.0
+content_margin_top = 16.0
+content_margin_right = 24.0
+content_margin_bottom = 16.0
+bg_color = Color(0.9254902, 0.78039217, 0.48235294, 1)
+corner_radius_top_left = 12
+corner_radius_top_right = 12
+corner_radius_bottom_right = 12
+corner_radius_bottom_left = 12
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bduea"]
+content_margin_left = 24.0
+content_margin_top = 16.0
+content_margin_right = 24.0
+content_margin_bottom = 16.0
+bg_color = Color(0.70980394, 0.54509807, 0.22352941, 1)
+corner_radius_top_left = 12
+corner_radius_top_right = 12
+corner_radius_bottom_right = 12
+corner_radius_bottom_left = 12
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_nepv3"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_7025r"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_m4url"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_8ool0"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_pr1ej"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qouja"]
+content_margin_left = 28.0
+content_margin_top = 28.0
+content_margin_right = 28.0
+content_margin_bottom = 28.0
+bg_color = Color(0.105882354, 0.15294118, 0.21176471, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.3764706, 0.44313726, 0.5137255, 1)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+
+[node name="PriestCardsReview" type="Node2D" unique_id=469266139]
+process_mode = 1
+script = ExtResource("1_apbrk")
+config = ExtResource("2_03xn2")
+battlefield_seed = 106
+
+[node name="World" type="Node2D" parent="." unique_id=1754034890]
+
+[node name="Background" type="Sprite2D" parent="World" unique_id=1928593795]
+texture = ExtResource("3_q7na5")
+centered = false
+
+[node name="Battlefield" parent="World" unique_id=1060640720 instance=ExtResource("4_jvy7x")]
+
+[node name="SpawnPoint" type="Marker2D" parent="World" unique_id=1693467739]
+position = Vector2(360, 190)
+
+[node name="Enemies" type="Node2D" parent="World" unique_id=421865247]
+
+[node name="Tower" parent="World" unique_id=873803062 instance=ExtResource("5_yoaud")]
+position = Vector2(360, 1040)
+
+[node name="Projectiles" type="Node2D" parent="World" unique_id=1570384389]
+
+[node name="Slots" type="Node2D" parent="World" unique_id=987547701]
+
+[node name="Slot1" parent="World/Slots" unique_id=315674392 instance=ExtResource("6_da6w2")]
+position = Vector2(180, 360)
+
+[node name="Slot2" parent="World/Slots" unique_id=262702249 instance=ExtResource("6_da6w2")]
+position = Vector2(540, 360)
+slot_index = 2
+faces_left = true
+
+[node name="Slot3" parent="World/Slots" unique_id=1934411132 instance=ExtResource("6_da6w2")]
+position = Vector2(180, 600)
+slot_index = 3
+
+[node name="Slot4" parent="World/Slots" unique_id=518396065 instance=ExtResource("6_da6w2")]
+position = Vector2(540, 600)
+slot_index = 4
+faces_left = true
+
+[node name="Slot5" parent="World/Slots" unique_id=1164201984 instance=ExtResource("6_da6w2")]
+position = Vector2(180, 840)
+slot_index = 5
+
+[node name="Slot6" parent="World/Slots" unique_id=572343835 instance=ExtResource("6_da6w2")]
+position = Vector2(540, 840)
+slot_index = 6
+faces_left = true
+
+[node name="DragController" type="Node2D" parent="World" unique_id=1932309985]
+script = ExtResource("7_suk4a")
+
+[node name="Preview" type="Node2D" parent="World/DragController" unique_id=1539613388]
+visible = false
+modulate = Color(1, 1, 1, 0.8)
+z_index = 100
+
+[node name="Visual" type="Sprite2D" parent="World/DragController/Preview" unique_id=1834101813]
+texture = ExtResource("8_vsmyu")
+
+[node name="AttackRangePreview" type="Node2D" parent="World/DragController" unique_id=1622675490]
+visible = false
+z_index = 99
+script = ExtResource("9_6j8ga")
+
+[node name="MergeRangePreview" type="Node2D" parent="World/DragController" unique_id=1058644357]
+visible = false
+z_index = 98
+script = ExtResource("9_6j8ga")
+
+[node name="Interface" type="CanvasLayer" parent="." unique_id=242053494]
+
+[node name="Hud" type="Control" parent="Interface" unique_id=1417951609]
+process_mode = 3
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme = ExtResource("10_6qfut")
+script = ExtResource("11_10rmd")
+wave_config = ExtResource("12_i2dqu")
+mana_reward_scene = ExtResource("13_b7l1l")
+
+[node name="ManaRewards" type="Node2D" parent="Interface/Hud" unique_id=244896185]
+
+[node name="BottomDock" type="PanelContainer" parent="Interface/Hud" unique_id=831478648]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -106.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_styles/panel = SubResource("StyleBoxFlat_qnb83")
+
+[node name="Margin" type="MarginContainer" parent="Interface/Hud/BottomDock" unique_id=1897061150]
+layout_mode = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 0
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 0
+
+[node name="Row" type="HBoxContainer" parent="Interface/Hud/BottomDock/Margin" unique_id=1918551115]
+layout_mode = 2
+theme_override_constants/separation = 6
+
+[node name="WaveLabel" type="Label" parent="Interface/Hud/BottomDock/Margin/Row" unique_id=33230576]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(192, 48)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0.7058824, 0.83137256, 0.8509804, 1)
+theme_override_font_sizes/font_size = 42
+text = "WAVE 1"
+vertical_alignment = 1
+clip_text = true
+
+[node name="Counters" type="HBoxContainer" parent="Interface/Hud/BottomDock/Margin/Row" unique_id=1214201480]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
+mouse_filter = 2
+theme_override_constants/separation = 6
+alignment = 1
+
+[node name="HealthIcon" type="TextureRect" parent="Interface/Hud/BottomDock/Margin/Row/Counters" unique_id=970988168]
+custom_minimum_size = Vector2(54, 54)
+layout_mode = 2
+size_flags_vertical = 4
+mouse_filter = 2
+texture = ExtResource("14_dclbc")
+stretch_mode = 5
+
+[node name="HealthLabel" type="Label" parent="Interface/Hud/BottomDock/Margin/Row/Counters" unique_id=345376129]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(112, 80)
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.5764706, 0.58431375, 1)
+theme_override_font_sizes/font_size = 64
+text = "100"
+vertical_alignment = 1
+clip_text = true
+
+[node name="Gap" type="Control" parent="Interface/Hud/BottomDock/Margin/Row/Counters" unique_id=1733236923]
+custom_minimum_size = Vector2(8, 0)
+layout_mode = 2
+mouse_filter = 2
+
+[node name="ManaIcon" type="Control" parent="Interface/Hud/BottomDock/Margin/Row/Counters" unique_id=1388567042 node_paths=PackedStringArray("counter_label")]
+process_mode = 3
+custom_minimum_size = Vector2(54, 65)
+layout_mode = 2
+mouse_filter = 2
+script = ExtResource("15_egmfm")
+counter_label = NodePath("../ManaLabel")
+
+[node name="Visual" type="TextureRect" parent="Interface/Hud/BottomDock/Margin/Row/Counters/ManaIcon" unique_id=1484599167]
+layout_mode = 0
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = ExtResource("16_c2dry")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="GFFPlayer" type="Node" parent="Interface/Hud/BottomDock/Margin/Row/Counters/ManaIcon/Visual" unique_id=1014371456]
+script = ExtResource("17_wcomq")
+
+[node name="ManaLabel" type="Label" parent="Interface/Hud/BottomDock/Margin/Row/Counters" unique_id=1792798406]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(112, 80)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.50980395, 0.7921569, 1, 1)
+theme_override_font_sizes/font_size = 64
+text = "100"
+horizontal_alignment = 1
+vertical_alignment = 1
+clip_text = true
+
+[node name="SettingsButton" type="Button" parent="Interface/Hud/BottomDock/Margin/Row" unique_id=248297785]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(104, 104)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+tooltip_text = "Settings"
+focus_mode = 0
+theme_override_constants/icon_max_width = 48
+theme_override_styles/normal = SubResource("StyleBoxEmpty_sww3w")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_suyxu")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_sgl2t")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_qouja")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_wljb1")
+flat = true
+expand_icon = true
+
+[node name="FeedbackVisual" parent="Interface/Hud/BottomDock/Margin/Row/SettingsButton" unique_id=831369690 instance=ExtResource("18_ua4gp")]
+layout_mode = 1
+pivot_offset = Vector2(52, 52)
+normal_style = SubResource("StyleBoxFlat_sww3w")
+hover_style = SubResource("StyleBoxFlat_sgl2t")
+pressed_style = SubResource("StyleBoxFlat_suyxu")
+disabled_style = SubResource("StyleBoxFlat_rrhgg")
+focus_style = SubResource("StyleBoxFlat_q4uia")
+icon = ExtResource("19_2x6k6")
+icon_width = 56.0
+
+[node name="GameOverOverlay" type="Control" parent="Interface/Hud" unique_id=1342710346]
+unique_name_in_owner = true
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Shade" type="ColorRect" parent="Interface/Hud/GameOverOverlay" unique_id=1769126759]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.02745098, 0.043137256, 0.07058824, 0.8745098)
+
+[node name="Center" type="CenterContainer" parent="Interface/Hud/GameOverOverlay" unique_id=509327819]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Panel" type="PanelContainer" parent="Interface/Hud/GameOverOverlay/Center" unique_id=734330472]
+custom_minimum_size = Vector2(600, 0)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_wljb1")
+
+[node name="Stack" type="VBoxContainer" parent="Interface/Hud/GameOverOverlay/Center/Panel" unique_id=1514523921]
+layout_mode = 2
+theme_override_constants/separation = 18
+
+[node name="Title" type="Label" parent="Interface/Hud/GameOverOverlay/Center/Panel/Stack" unique_id=330956670]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.96862745, 0.8352941, 0.5411765, 1)
+theme_override_font_sizes/font_size = 66
+text = "RUN RESULT"
+horizontal_alignment = 1
+
+[node name="BiomeUnlocked" type="Label" parent="Interface/Hud/GameOverOverlay/Center/Panel/Stack" unique_id=1883400054]
+visible = false
+layout_mode = 2
+theme_override_colors/font_color = Color(0.5647059, 0.8392157, 0.5921569, 1)
+theme_override_font_sizes/font_size = 30
+text = "BIOME UNLOCKED: %s"
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="Stats" type="VBoxContainer" parent="Interface/Hud/GameOverOverlay/Center/Panel/Stack" unique_id=1832680257]
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="Wave" type="HBoxContainer" parent="Interface/Hud/GameOverOverlay/Center/Panel/Stack/Stats" unique_id=1839072251]
+layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="Label" type="Label" parent="Interface/Hud/GameOverOverlay/Center/Panel/Stack/Stats/Wave" unique_id=2060656955]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0.74509805, 0.80784315, 0.8627451, 1)
+theme_override_font_sizes/font_size = 39
+text = "WAVE REACHED"
+
+[node name="Value" type="Label" parent="Interface/Hud/GameOverOverlay/Center/Panel/Stack/Stats/Wave" unique_id=1800969400]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.8745098, 0.5568628, 1)
+theme_override_font_sizes/font_size = 51
+text = "0"
+
+[node name="Enemies" type="HBoxContainer" parent="Interface/Hud/GameOverOverlay/Center/Panel/Stack/Stats" unique_id=1925441060]
+layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="Label" type="Label" parent="Interface/Hud/GameOverOverlay/Center/Panel/Stack/Stats/Enemies" unique_id=188135671]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0.74509805, 0.80784315, 0.8627451, 1)
+theme_override_font_sizes/font_size = 39
+text = "ENEMIES KILLED"
+
+[node name="Value" type="Label" parent="Interface/Hud/GameOverOverlay/Center/Panel/Stack/Stats/Enemies" unique_id=171822587]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.8745098, 0.5568628, 1)
+theme_override_font_sizes/font_size = 51
+text = "0"
+
+[node name="Bosses" type="HBoxContainer" parent="Interface/Hud/GameOverOverlay/Center/Panel/Stack/Stats" unique_id=610830112]
+layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="Label" type="Label" parent="Interface/Hud/GameOverOverlay/Center/Panel/Stack/Stats/Bosses" unique_id=364863108]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0.74509805, 0.80784315, 0.8627451, 1)
+theme_override_font_sizes/font_size = 39
+text = "BOSSES KILLED"
+
+[node name="Value" type="Label" parent="Interface/Hud/GameOverOverlay/Center/Panel/Stack/Stats/Bosses" unique_id=1449113795]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.8745098, 0.5568628, 1)
+theme_override_font_sizes/font_size = 51
+text = "0"
+
+[node name="Merges" type="HBoxContainer" parent="Interface/Hud/GameOverOverlay/Center/Panel/Stack/Stats" unique_id=1903380252]
+layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="Label" type="Label" parent="Interface/Hud/GameOverOverlay/Center/Panel/Stack/Stats/Merges" unique_id=2094753427]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0.74509805, 0.80784315, 0.8627451, 1)
+theme_override_font_sizes/font_size = 39
+text = "MERGES"
+
+[node name="Value" type="Label" parent="Interface/Hud/GameOverOverlay/Center/Panel/Stack/Stats/Merges" unique_id=842248072]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.8745098, 0.5568628, 1)
+theme_override_font_sizes/font_size = 51
+text = "0"
+
+[node name="RewardTitle" type="Label" parent="Interface/Hud/GameOverOverlay/Center/Panel/Stack" unique_id=425120063]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.654902, 0.84705883, 0.9098039, 1)
+theme_override_font_sizes/font_size = 36
+text = "SOUL CRYSTALS EARNED"
+horizontal_alignment = 1
+
+[node name="Reward" type="HBoxContainer" parent="Interface/Hud/GameOverOverlay/Center/Panel/Stack" unique_id=1755644360]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_constants/separation = 16
+
+[node name="Icon" type="TextureRect" parent="Interface/Hud/GameOverOverlay/Center/Panel/Stack/Reward" unique_id=720569767]
+custom_minimum_size = Vector2(56, 64)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+mouse_filter = 2
+texture = ExtResource("20_x50i5")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Amount" type="Label" parent="Interface/Hud/GameOverOverlay/Center/Panel/Stack/Reward" unique_id=30964022]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.83137256, 0.7254902, 1, 1)
+theme_override_font_sizes/font_size = 78
+text = "+0"
+
+[node name="Actions" type="HBoxContainer" parent="Interface/Hud/GameOverOverlay/Center/Panel/Stack" unique_id=274981029]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_constants/separation = 24
+
+[node name="RestartButton" type="Button" parent="Interface/Hud/GameOverOverlay/Center/Panel/Stack/Actions" unique_id=1234443234]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(128, 128)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+tooltip_text = "Restart"
+theme_override_constants/icon_max_width = 48
+theme_override_styles/normal = SubResource("StyleBoxEmpty_v2yb1")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_js0lu")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_gxtfn")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_twgab")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_02fa5")
+icon_alignment = 1
+
+[node name="FeedbackVisual" parent="Interface/Hud/GameOverOverlay/Center/Panel/Stack/Actions/RestartButton" unique_id=241356428 instance=ExtResource("18_ua4gp")]
+layout_mode = 1
+pivot_offset = Vector2(64, 64)
+normal_style = SubResource("StyleBoxFlat_1e81c")
+hover_style = SubResource("StyleBoxFlat_wir6v")
+pressed_style = SubResource("StyleBoxFlat_bduea")
+disabled_style = SubResource("StyleBoxFlat_rrhgg")
+focus_style = SubResource("StyleBoxFlat_q4uia")
+icon = ExtResource("21_oo3ub")
+icon_width = 64.0
+
+[node name="MenuButton" type="Button" parent="Interface/Hud/GameOverOverlay/Center/Panel/Stack/Actions" unique_id=1736271558]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(128, 128)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+tooltip_text = "Main menu"
+theme_override_constants/icon_max_width = 48
+theme_override_styles/normal = SubResource("StyleBoxEmpty_nepv3")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_7025r")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_m4url")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_8ool0")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_pr1ej")
+icon_alignment = 1
+
+[node name="FeedbackVisual" parent="Interface/Hud/GameOverOverlay/Center/Panel/Stack/Actions/MenuButton" unique_id=1747700076 instance=ExtResource("18_ua4gp")]
+layout_mode = 1
+pivot_offset = Vector2(64, 64)
+normal_style = SubResource("StyleBoxFlat_1e81c")
+hover_style = SubResource("StyleBoxFlat_wir6v")
+pressed_style = SubResource("StyleBoxFlat_bduea")
+disabled_style = SubResource("StyleBoxFlat_rrhgg")
+focus_style = SubResource("StyleBoxFlat_q4uia")
+icon = ExtResource("22_hdrss")
+icon_width = 64.0
+
+[node name="DoubleRewardButton" type="Button" parent="Interface/Hud/GameOverOverlay/Center/Panel/Stack/Actions" unique_id=108554418]
+custom_minimum_size = Vector2(128, 128)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+tooltip_text = "Watch to double this run's crystals"
+theme_override_constants/icon_max_width = 48
+theme_override_styles/normal = SubResource("StyleBoxEmpty_v2yb1")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_js0lu")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_gxtfn")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_twgab")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_02fa5")
+icon_alignment = 1
+
+[node name="FeedbackVisual" parent="Interface/Hud/GameOverOverlay/Center/Panel/Stack/Actions/DoubleRewardButton" unique_id=331547735 instance=ExtResource("18_ua4gp")]
+layout_mode = 1
+pivot_offset = Vector2(64, 64)
+normal_style = SubResource("StyleBoxFlat_1e81c")
+hover_style = SubResource("StyleBoxFlat_wir6v")
+pressed_style = SubResource("StyleBoxFlat_bduea")
+disabled_style = SubResource("StyleBoxFlat_rrhgg")
+focus_style = SubResource("StyleBoxFlat_q4uia")
+icon = ExtResource("20_x50i5")
+
+[node name="GFFPlayer2" type="Node" parent="Interface/Hud/GameOverOverlay/Center/Panel/Stack/Actions/DoubleRewardButton/FeedbackVisual" unique_id=1960228428]
+script = ExtResource("17_wcomq")
+
+[node name="Multiplier" type="Label" parent="Interface/Hud/GameOverOverlay/Center/Panel/Stack/Actions/DoubleRewardButton/FeedbackVisual" unique_id=1653712436]
+layout_mode = 0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -38.0
+offset_bottom = -4.0
+theme_override_colors/font_color = Color(1, 0.9411765, 0.7372549, 1)
+theme_override_font_sizes/font_size = 34
+text = "×2"
+horizontal_alignment = 1
+
+[node name="RewardError" type="Label" parent="Interface/Hud/GameOverOverlay/Center/Panel/Stack" unique_id=1347885939]
+visible = false
+modulate = Color(1, 0.50980395, 0.50980395, 1)
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "TRY AGAIN"
+horizontal_alignment = 1
+
+[node name="SaveResult" type="Button" parent="Interface/Hud/GameOverOverlay/Center/Panel/Stack" unique_id=1596476729]
+visible = false
+custom_minimum_size = Vector2(0, 64)
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+text = "Save result again"
+
+[node name="UpgradeChoice" parent="Interface/Hud" unique_id=1166018989 instance=ExtResource("23_idx13")]
+layout_mode = 1
+
+[node name="SettingsOverlay" type="Control" parent="Interface/Hud" unique_id=215528813]
+unique_name_in_owner = true
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Dim" type="ColorRect" parent="Interface/Hud/SettingsOverlay" unique_id=85132607]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0.019607844, 0.03529412, 0.0627451, 0.7372549)
+
+[node name="Center" type="CenterContainer" parent="Interface/Hud/SettingsOverlay" unique_id=1791646195]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="Panel" type="PanelContainer" parent="Interface/Hud/SettingsOverlay/Center" unique_id=1200864453]
+custom_minimum_size = Vector2(560, 0)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_qouja")
+
+[node name="Stack" type="VBoxContainer" parent="Interface/Hud/SettingsOverlay/Center/Panel" unique_id=1743664172]
+layout_mode = 2
+theme_override_constants/separation = 22
+
+[node name="Title" type="Label" parent="Interface/Hud/SettingsOverlay/Center/Panel/Stack" unique_id=75628761]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.96862745, 0.8352941, 0.5411765, 1)
+theme_override_font_sizes/font_size = 66
+text = "SETTINGS"
+horizontal_alignment = 1
+
+[node name="AudioControls" parent="Interface/Hud/SettingsOverlay/Center/Panel/Stack" unique_id=1442604506 instance=ExtResource("24_d237c")]
+layout_mode = 2
+
+[node name="SettingsMenuButton" type="Button" parent="Interface/Hud/SettingsOverlay/Center/Panel/Stack" unique_id=594077224]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(480, 88)
+layout_mode = 2
+tooltip_text = "Leave this run"
+theme_override_constants/icon_max_width = 34
+theme_override_font_sizes/font_size = 42
+text = "MAIN MENU"
+icon = ExtResource("22_hdrss")
+
+[node name="ResumeButton" type="Button" parent="Interface/Hud/SettingsOverlay/Center/Panel/Stack" unique_id=1486956169]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(480, 88)
+layout_mode = 2
+theme_override_constants/icon_max_width = 34
+theme_override_font_sizes/font_size = 42
+text = "CONTINUE"
+icon = ExtResource("25_qb2mo")
+
+[node name="BossWarning" parent="Interface/Hud" unique_id=446194701 instance=ExtResource("26_twd6r")]
+layout_mode = 1
+
+[node name="ReviveOverlay" type="Control" parent="Interface/Hud" unique_id=1680288707]
+process_mode = 3
+visible = false
+anchors_preset = 0
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="Shade" type="ColorRect" parent="Interface/Hud/ReviveOverlay" unique_id=141045605]
+layout_mode = 0
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color(0.01, 0.025, 0.045, 0.85)
+
+[node name="Center" type="CenterContainer" parent="Interface/Hud/ReviveOverlay" unique_id=349409395]
+layout_mode = 0
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="Panel" type="PanelContainer" parent="Interface/Hud/ReviveOverlay/Center" unique_id=2021645960]
+custom_minimum_size = Vector2(520, 0)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_wljb1")
+
+[node name="Stack" type="VBoxContainer" parent="Interface/Hud/ReviveOverlay/Center/Panel" unique_id=1734743785]
+layout_mode = 2
+theme_override_constants/separation = 32
+
+[node name="Reward" type="HBoxContainer" parent="Interface/Hud/ReviveOverlay/Center/Panel/Stack" unique_id=341365357]
+layout_mode = 2
+theme_override_constants/separation = 24
+alignment = 1
+
+[node name="Icon" type="TextureRect" parent="Interface/Hud/ReviveOverlay/Center/Panel/Stack/Reward" unique_id=342083712]
+custom_minimum_size = Vector2(84, 84)
+layout_mode = 2
+texture = ExtResource("14_dclbc")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Amount" type="Label" parent="Interface/Hud/ReviveOverlay/Center/Panel/Stack/Reward" unique_id=1487841283]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.50980395, 0.50980395, 1)
+theme_override_font_sizes/font_size = 100
+text = "+50"
+horizontal_alignment = 1
+
+[node name="Error" type="Label" parent="Interface/Hud/ReviveOverlay/Center/Panel/Stack" unique_id=1927527170]
+visible = false
+modulate = Color(1, 0.50980395, 0.50980395, 1)
+layout_mode = 2
+theme_override_font_sizes/font_size = 36
+text = "TRY AGAIN"
+horizontal_alignment = 1
+
+[node name="Actions" type="HBoxContainer" parent="Interface/Hud/ReviveOverlay/Center/Panel/Stack" unique_id=1865944938]
+layout_mode = 2
+theme_override_constants/separation = 32
+alignment = 1
+
+[node name="Accept" type="Button" parent="Interface/Hud/ReviveOverlay/Center/Panel/Stack/Actions" unique_id=105402661]
+custom_minimum_size = Vector2(128, 128)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+tooltip_text = "Watch to revive the tower"
+theme_override_constants/icon_max_width = 48
+theme_override_styles/normal = SubResource("StyleBoxEmpty_v2yb1")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_js0lu")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_gxtfn")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_twgab")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_02fa5")
+icon_alignment = 1
+
+[node name="FeedbackVisual" parent="Interface/Hud/ReviveOverlay/Center/Panel/Stack/Actions/Accept" unique_id=97895687 instance=ExtResource("18_ua4gp")]
+layout_mode = 1
+pivot_offset = Vector2(64, 64)
+normal_style = SubResource("StyleBoxFlat_1e81c")
+hover_style = SubResource("StyleBoxFlat_wir6v")
+pressed_style = SubResource("StyleBoxFlat_bduea")
+disabled_style = SubResource("StyleBoxFlat_rrhgg")
+focus_style = SubResource("StyleBoxFlat_q4uia")
+icon = ExtResource("27_340k3")
+icon_width = 64.0
+
+[node name="GFFPlayer2" type="Node" parent="Interface/Hud/ReviveOverlay/Center/Panel/Stack/Actions/Accept/FeedbackVisual" unique_id=155933632]
+script = ExtResource("17_wcomq")
+
+[node name="Decline" type="Button" parent="Interface/Hud/ReviveOverlay/Center/Panel/Stack/Actions" unique_id=1039880281]
+custom_minimum_size = Vector2(128, 128)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+tooltip_text = "Finish this run"
+theme_override_constants/icon_max_width = 48
+theme_override_styles/normal = SubResource("StyleBoxEmpty_v2yb1")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_js0lu")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_gxtfn")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_twgab")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_02fa5")
+icon_alignment = 1
+
+[node name="FeedbackVisual" parent="Interface/Hud/ReviveOverlay/Center/Panel/Stack/Actions/Decline" unique_id=541867881 instance=ExtResource("18_ua4gp")]
+layout_mode = 1
+pivot_offset = Vector2(64, 64)
+normal_style = SubResource("StyleBoxFlat_1e81c")
+hover_style = SubResource("StyleBoxFlat_wir6v")
+pressed_style = SubResource("StyleBoxFlat_bduea")
+disabled_style = SubResource("StyleBoxFlat_rrhgg")
+focus_style = SubResource("StyleBoxFlat_q4uia")
+icon = ExtResource("28_g1ld6")
+icon_width = 64.0
+
+[node name="GFFPlayer2" type="Node" parent="Interface/Hud/ReviveOverlay/Center/Panel/Stack/Actions/Decline/FeedbackVisual" unique_id=218764922]
+script = ExtResource("17_wcomq")
+
+[node name="RewardedOverlay" type="Control" parent="Interface/Hud" unique_id=468536491]
+process_mode = 3
+visible = false
+anchors_preset = 0
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="Shade" type="ColorRect" parent="Interface/Hud/RewardedOverlay" unique_id=1671993104]
+layout_mode = 0
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color(0.01, 0.025, 0.045, 0.85)
+
+[node name="Center" type="CenterContainer" parent="Interface/Hud/RewardedOverlay" unique_id=114118748]
+layout_mode = 0
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="Panel" type="PanelContainer" parent="Interface/Hud/RewardedOverlay/Center" unique_id=419741113]
+custom_minimum_size = Vector2(520, 0)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_wljb1")
+
+[node name="Stack" type="VBoxContainer" parent="Interface/Hud/RewardedOverlay/Center/Panel" unique_id=1851425653]
+layout_mode = 2
+theme_override_constants/separation = 32
+
+[node name="Title" type="Label" parent="Interface/Hud/RewardedOverlay/Center/Panel/Stack" unique_id=523470859]
+layout_mode = 2
+theme_override_font_sizes/font_size = 64
+text = "TEST AD"
+horizontal_alignment = 1
+
+[node name="Subtitle" type="Label" parent="Interface/Hud/RewardedOverlay/Center/Panel/Stack" unique_id=897818900]
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+text = "REWARD AFTER VIEWING"
+horizontal_alignment = 1
+
+[node name="Progress" type="ProgressBar" parent="Interface/Hud/RewardedOverlay/Center/Panel/Stack" unique_id=976328084]
+custom_minimum_size = Vector2(0, 32)
+layout_mode = 2
+max_value = 1.0
+show_percentage = false
+
+[node name="Cancel" type="Button" parent="Interface/Hud/RewardedOverlay/Center/Panel/Stack" unique_id=237348170]
+custom_minimum_size = Vector2(128, 128)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+tooltip_text = "Restart"
+theme_override_constants/icon_max_width = 48
+theme_override_styles/normal = SubResource("StyleBoxEmpty_v2yb1")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_js0lu")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_gxtfn")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_twgab")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_02fa5")
+icon_alignment = 1
+
+[node name="FeedbackVisual" parent="Interface/Hud/RewardedOverlay/Center/Panel/Stack/Cancel" unique_id=1375373268 instance=ExtResource("18_ua4gp")]
+layout_mode = 1
+pivot_offset = Vector2(64, 64)
+normal_style = SubResource("StyleBoxFlat_1e81c")
+hover_style = SubResource("StyleBoxFlat_wir6v")
+pressed_style = SubResource("StyleBoxFlat_bduea")
+disabled_style = SubResource("StyleBoxFlat_rrhgg")
+focus_style = SubResource("StyleBoxFlat_q4uia")
+icon = ExtResource("28_g1ld6")
+icon_width = 64.0
+
+[node name="GFFPlayer2" type="Node" parent="Interface/Hud/RewardedOverlay/Center/Panel/Stack/Cancel/FeedbackVisual" unique_id=1096697218]
+script = ExtResource("17_wcomq")
+
+[node name="SummonManager" type="Node" parent="." unique_id=1068555550]
+script = ExtResource("29_ws7bj")
+config = ExtResource("30_4s1qx")
+pool = ExtResource("31_jkoih")
+
+[node name="WaveManager" type="Node" parent="." unique_id=2106110378]
+script = ExtResource("32_yr8sy")
+config = ExtResource("12_i2dqu")
+
+[node name="SpawnTimer" type="Timer" parent="WaveManager" unique_id=1649485017]
+one_shot = true
+
+[node name="IntermissionTimer" type="Timer" parent="WaveManager" unique_id=1737258099]
+one_shot = true
+
+[node name="GraveyardArmy" parent="WaveManager" unique_id=1853895572 instance=ExtResource("33_m6ph8")]
+
+[node name="RunBonuses" type="Node" parent="." unique_id=1640489827]
+script = ExtResource("34_btvkr")
+pool = ExtResource("35_a2ana")
+
+[node name="RunStatistics" type="Node" parent="." unique_id=909542063]
+script = ExtResource("36_dfiin")
+config = ExtResource("37_6uc05")
+
+[node name="ScreenShake" parent="." unique_id=1939015124 instance=ExtResource("38_w15dc")]
+
+[node name="AdService" type="Node" parent="." unique_id=143148872]
+process_mode = 3
+script = ExtResource("39_0da5m")
+
+[node name="WatchTimer" type="Timer" parent="AdService" unique_id=87287445]
+one_shot = true
+
+[node name="CardReview" type="CanvasLayer" parent="." unique_id=2097913681]
+process_mode = 3
+layer = 3
+
+[node name="Tier1" type="Button" parent="CardReview" unique_id=1551944611]
+offset_left = 12.0
+offset_top = 10.0
+offset_right = 144.0
+offset_bottom = 70.0
+theme_override_colors/font_color = Color(0.58235294, 0.67647064, 0.43235296, 1)
+theme_override_font_sizes/font_size = 20
+toggle_mode = true
+text = "Зелёные"
+
+[node name="Tier2" type="Button" parent="CardReview" unique_id=1997557741]
+offset_left = 154.0
+offset_top = 10.0
+offset_right = 286.0
+offset_bottom = 70.0
+theme_override_colors/font_color = Color(0.9529412, 0.6911765, 0.41764706, 1)
+theme_override_font_sizes/font_size = 20
+toggle_mode = true
+text = "Оранжевые"
+
+[node name="Tier3" type="Button" parent="CardReview" unique_id=823358635]
+offset_left = 296.0
+offset_top = 10.0
+offset_right = 428.0
+offset_bottom = 70.0
+theme_override_colors/font_color = Color(0.90294117, 0.5117647, 0.517647, 1)
+theme_override_font_sizes/font_size = 20
+toggle_mode = true
+text = "Красные"
+
+[node name="Tier4" type="Button" parent="CardReview" unique_id=773684383]
+offset_left = 438.0
+offset_top = 10.0
+offset_right = 570.0
+offset_bottom = 70.0
+theme_override_colors/font_color = Color(0.4911765, 0.7058824, 0.9235294, 1)
+theme_override_font_sizes/font_size = 20
+toggle_mode = true
+text = "Синие"
+
+[node name="Tier5" type="Button" parent="CardReview" unique_id=393963999]
+offset_left = 580.0
+offset_top = 10.0
+offset_right = 712.0
+offset_bottom = 70.0
+theme_override_colors/font_color = Color(0.732353, 0.56470585, 0.90882355, 1)
+theme_override_font_sizes/font_size = 20
+toggle_mode = true
+text = "Фиолетовые"
+
+[connection signal="destroyed" from="World/Tower" to="." method="_on_tower_destroyed"]
+[connection signal="health_changed" from="World/Tower" to="." method="_on_tower_health_changed"]
+[connection signal="health_changed" from="World/Tower" to="ScreenShake" method="_on_tower_health_changed"]
+[connection signal="summon_requested" from="World/Tower" to="." method="_on_summon_requested"]
+[connection signal="double_reward_requested" from="Interface/Hud" to="." method="_on_double_reward_requested"]
+[connection signal="menu_requested" from="Interface/Hud" to="." method="_on_menu_requested"]
+[connection signal="restart_requested" from="Interface/Hud" to="." method="_on_restart_requested"]
+[connection signal="resume_requested" from="Interface/Hud" to="." method="_on_resume_requested"]
+[connection signal="revive_accepted" from="Interface/Hud" to="." method="_on_revive_accepted"]
+[connection signal="revive_declined" from="Interface/Hud" to="." method="_on_revive_declined"]
+[connection signal="rewarded_view_canceled" from="Interface/Hud" to="." method="_on_rewarded_view_canceled"]
+[connection signal="save_result_requested" from="Interface/Hud" to="." method="_on_save_result_requested"]
+[connection signal="settings_requested" from="Interface/Hud" to="." method="_on_settings_requested"]
+[connection signal="pressed" from="Interface/Hud/BottomDock/Margin/Row/SettingsButton" to="Interface/Hud" method="_on_settings_button_pressed"]
+[connection signal="pressed" from="Interface/Hud/GameOverOverlay/Center/Panel/Stack/Actions/RestartButton" to="Interface/Hud" method="_on_restart_button_pressed"]
+[connection signal="pressed" from="Interface/Hud/GameOverOverlay/Center/Panel/Stack/Actions/MenuButton" to="Interface/Hud" method="_on_menu_button_pressed"]
+[connection signal="pressed" from="Interface/Hud/GameOverOverlay/Center/Panel/Stack/Actions/DoubleRewardButton" to="Interface/Hud" method="_on_double_reward_pressed"]
+[connection signal="pressed" from="Interface/Hud/GameOverOverlay/Center/Panel/Stack/SaveResult" to="Interface/Hud" method="_on_save_result_pressed"]
+[connection signal="reroll_requested" from="Interface/Hud/UpgradeChoice" to="." method="_on_upgrade_reroll_requested"]
+[connection signal="rewarded_reroll_requested" from="Interface/Hud/UpgradeChoice" to="." method="_on_upgrade_rewarded_reroll_requested"]
+[connection signal="upgrade_chosen" from="Interface/Hud/UpgradeChoice" to="." method="_on_upgrade_chosen"]
+[connection signal="pressed" from="Interface/Hud/SettingsOverlay/Center/Panel/Stack/SettingsMenuButton" to="Interface/Hud" method="_on_menu_button_pressed"]
+[connection signal="pressed" from="Interface/Hud/SettingsOverlay/Center/Panel/Stack/ResumeButton" to="Interface/Hud" method="_on_resume_button_pressed"]
+[connection signal="pressed" from="Interface/Hud/ReviveOverlay/Center/Panel/Stack/Actions/Accept" to="Interface/Hud" method="_on_revive_accepted"]
+[connection signal="pressed" from="Interface/Hud/ReviveOverlay/Center/Panel/Stack/Actions/Decline" to="Interface/Hud" method="_on_revive_declined"]
+[connection signal="pressed" from="Interface/Hud/RewardedOverlay/Center/Panel/Stack/Cancel" to="Interface/Hud" method="_on_rewarded_cancel_pressed"]
+[connection signal="state_changed" from="SummonManager" to="World/Tower" method="update_summon"]
+[connection signal="state_changed" from="SummonManager" to="Interface/Hud" method="update_summon"]
+[connection signal="unit_merged" from="SummonManager" to="RunStatistics" method="record_merge"]
+[connection signal="unit_refunded" from="SummonManager" to="World/Tower" method="_on_unit_refunded"]
+[connection signal="encounter_completed" from="WaveManager" to="." method="_on_encounter_completed"]
+[connection signal="enemy_resolved" from="WaveManager" to="." method="_on_enemy_resolved"]
+[connection signal="enemy_spawned" from="WaveManager" to="." method="_on_enemy_spawned"]
+[connection signal="state_changed" from="WaveManager" to="Interface/Hud" method="update_wave"]
+[connection signal="state_changed" from="WaveManager" to="RunStatistics" method="record_wave_state"]
+[connection signal="state_changed" from="WaveManager" to="ScreenShake" method="_on_wave_state_changed"]
+[connection signal="upgrade_requested" from="WaveManager" to="." method="_on_wave_upgrade_requested"]
+[connection signal="wave_completed" from="WaveManager" to="." method="_on_wave_completed"]
+[connection signal="wave_completed" from="WaveManager" to="RunStatistics" method="record_completed_wave"]
+[connection signal="timeout" from="WaveManager/SpawnTimer" to="WaveManager" method="_on_spawn_timeout"]
+[connection signal="timeout" from="WaveManager/IntermissionTimer" to="WaveManager" method="_on_intermission_timeout"]
+[connection signal="completed" from="AdService" to="." method="_on_ad_completed"]
+[connection signal="progress_changed" from="AdService" to="Interface/Hud" method="update_ad_progress"]
+[connection signal="timeout" from="AdService/WatchTimer" to="AdService" method="_on_watch_timer_timeout"]
+[connection signal="pressed" from="CardReview/Tier1" to="." method="show_cards" binds= [1]]
+[connection signal="pressed" from="CardReview/Tier2" to="." method="show_cards" binds= [2]]
+[connection signal="pressed" from="CardReview/Tier3" to="." method="show_cards" binds= [3]]
+[connection signal="pressed" from="CardReview/Tier4" to="." method="show_cards" binds= [4]]
+[connection signal="pressed" from="CardReview/Tier5" to="." method="show_cards" binds= [5]]

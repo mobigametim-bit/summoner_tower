@@ -37,11 +37,11 @@ func count(kind: RunUpgrade.Kind) -> int:
 
 func apply(upgrade: RunUpgrade) -> void:
 	_counts[upgrade.kind] = count(upgrade.kind) + 1
-	if upgrade.kind in [RunUpgrade.Kind.FROST_POWER, RunUpgrade.Kind.DEEP_FREEZE, RunUpgrade.Kind.REGENERATION, RunUpgrade.Kind.BETTER_SALE]:
+	if upgrade.kind in [RunUpgrade.Kind.FROST_POWER, RunUpgrade.Kind.DEEP_FREEZE, RunUpgrade.Kind.REGENERATION, RunUpgrade.Kind.BETTER_SALE, RunUpgrade.Kind.LONG_PRAYER]:
 		_additions[upgrade.kind] = added_strength(upgrade.kind) + upgrade.strength
 	elif upgrade.kind == RunUpgrade.Kind.CHEAP_SUMMONS:
 		_multipliers[upgrade.kind] = multiplier(upgrade.kind) * (1.0 - upgrade.strength)
-	elif upgrade.kind not in [RunUpgrade.Kind.MEDKIT, RunUpgrade.Kind.MANA_RESERVE, RunUpgrade.Kind.ARCHER_LV5, RunUpgrade.Kind.MAGE_LV5, RunUpgrade.Kind.FROST_MAGE_LV5]:
+	elif upgrade.kind not in [RunUpgrade.Kind.MEDKIT, RunUpgrade.Kind.MANA_RESERVE, RunUpgrade.Kind.ARCHER_LV5, RunUpgrade.Kind.MAGE_LV5, RunUpgrade.Kind.FROST_MAGE_LV5, RunUpgrade.Kind.PRIEST_SUMMON]:
 		_multipliers[upgrade.kind] = multiplier(upgrade.kind) * (1.0 + upgrade.strength)
 
 
@@ -94,6 +94,7 @@ func damage_amount_for(stats: UnitStats) -> float:
 		&"archer": specialization = multiplier(RunUpgrade.Kind.ARCHER_TRAINING)
 		&"mage": specialization = multiplier(RunUpgrade.Kind.PYROMANCY)
 		&"frost_mage": specialization = multiplier(RunUpgrade.Kind.ICE_POWER)
+		&"priest": specialization = multiplier(RunUpgrade.Kind.LIGHT_POWER)
 	return stats.damage * _meta_multiplier(MetaUpgradeConfig.Kind.UNIT_DAMAGE) * multiplier(RunUpgrade.Kind.POWER) * specialization
 
 
@@ -119,6 +120,11 @@ func combat_stats_for(stats: UnitStats) -> UnitStats:
 		effective.area_power_multiplier = stats.area_power_multiplier * area_gain
 	if stats.freeze_duration > 0.0:
 		effective.freeze_duration = stats.freeze_duration + added_strength(RunUpgrade.Kind.DEEP_FREEZE)
+	if stats.unit_type == &"priest":
+		if stats.light_mark_ratio > 0.0:
+			effective.light_mark_duration = stats.light_mark_duration + added_strength(RunUpgrade.Kind.LONG_PRAYER)
+		if stats.ability == UnitStats.Ability.CONSECRATION:
+			effective.ability_damage_ratio = stats.ability_damage_ratio * multiplier(RunUpgrade.Kind.SACRED_RADIANCE)
 	return effective
 
 

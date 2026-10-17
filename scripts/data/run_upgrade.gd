@@ -5,7 +5,8 @@ enum Kind {
 	RAPID_FIRE, POWER, MANA_FLOW, TOWER_ARMOR, FROST_POWER, CHEAP_SUMMONS,
 	MEDKIT, MANA_RESERVE, LONG_SIGHT, ARCHER_TRAINING, PYROMANCY, ICE_POWER,
 	HOT_FLAMES, WIDE_BLAST, DEEP_FREEZE, REGENERATION, BETTER_SALE,
-	ARCHER_LV5, MAGE_LV5, FROST_MAGE_LV5
+	ARCHER_LV5, MAGE_LV5, FROST_MAGE_LV5,
+	PRIEST_SUMMON, LIGHT_POWER, LONG_PRAYER, SACRED_RADIANCE
 }
 
 @export var kind: Kind = Kind.POWER
@@ -37,7 +38,7 @@ func description_text() -> String:
 		value = float(unit_stats.level)
 	elif kind == Kind.DEEP_FREEZE:
 		value *= 1000.0
-	elif kind not in [Kind.MEDKIT, Kind.MANA_RESERVE, Kind.DEEP_FREEZE, Kind.REGENERATION]:
+	elif kind not in [Kind.MEDKIT, Kind.MANA_RESERVE, Kind.LONG_PRAYER, Kind.REGENERATION]:
 		value *= 100.0
 	var formatted: String = String.num(value, 2)
 	if formatted.contains("."):
