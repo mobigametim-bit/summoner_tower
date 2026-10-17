@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://bsjdkpxyw8bvg"]
 
-[ext_resource type="Script" path="res://scripts/ui/mana_reward_popup.gd" id="1_yavt8"]
-[ext_resource type="FontFile" uid="uid://byntg4pjfdm6f" path="res://assets/fonts/tsap-tsarap/Tsap-Tsarap.ttf" id="2_h148q"]
+[ext_resource type="Script" uid="uid://dx36tjciwgbtc" path="res://scripts/ui/mana_reward_popup.gd" id="1_yavt8"]
+[ext_resource type="FontFile" uid="uid://rk3ovqjg5ure" path="res://assets/fonts/itim-kz/Itim-KZ-Regular.ttf" id="2_h148q"]
 [ext_resource type="Texture2D" uid="uid://c1i4x5u3ypwhb" path="res://assets/mana_flame.svg" id="3_7j7e8"]
 
 [node name="ManaRewardPopup" type="Node2D" unique_id=365233366]

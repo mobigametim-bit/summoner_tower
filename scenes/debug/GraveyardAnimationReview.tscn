@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://cj8di5wpgis45"]
 
-[ext_resource type="FontFile" uid="uid://byntg4pjfdm6f" path="res://assets/fonts/tsap-tsarap/Tsap-Tsarap.ttf" id="1_wybxj"]
+[ext_resource type="FontFile" uid="uid://rk3ovqjg5ure" path="res://assets/fonts/itim-kz/Itim-KZ-Regular.ttf" id="1_wybxj"]
 [ext_resource type="Script" uid="uid://7t760xl3gq1y" path="res://scripts/debug/graveyard_animation_review.gd" id="2_q7hnu"]
 [ext_resource type="PackedScene" uid="uid://ds6fw7l7lka32" path="res://scenes/visuals/SkeletonVisual.tscn" id="3_hc5q5"]
 [ext_resource type="Script" uid="uid://c8ilnu6ub4d3" path="res://scripts/visuals/undead_enemy_visual.gd" id="4_8ownb"]
@@ -1011,7 +1011,7 @@ corner_radius_bottom_left = 9
 
 [node name="GraveyardAnimationReview" type="Control" unique_id=1226710119]
 layout_mode = 3
-anchors_preset = 0
+anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 theme = SubResource("Theme_wybxj")

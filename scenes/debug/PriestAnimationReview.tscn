@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://cn7tqmcarbo8d"]
 
-[ext_resource type="FontFile" uid="uid://byntg4pjfdm6f" path="res://assets/fonts/tsap-tsarap/Tsap-Tsarap.ttf" id="1_hpugx"]
+[ext_resource type="FontFile" uid="uid://rk3ovqjg5ure" path="res://assets/fonts/itim-kz/Itim-KZ-Regular.ttf" id="1_72psy"]
 [ext_resource type="Script" uid="uid://cxi73iy7226o8" path="res://scripts/debug/priest_animation_review.gd" id="2_gnucr"]
 [ext_resource type="PackedScene" uid="uid://brsbtg7d1pfgt" path="res://scenes/vfx/priest/LightShot.tscn" id="3_xcrhc"]
 [ext_resource type="PackedScene" uid="uid://mdh0ow2046ad" path="res://scenes/vfx/priest/LightImpact.tscn" id="4_72psy"]
@@ -77,7 +77,7 @@
 [ext_resource type="Texture2D" uid="uid://dhsh6mte7nngf" path="res://assets/debug/priest/mirror.svg" id="75_qo27n"]
 
 [sub_resource type="Theme" id="Theme_72psy"]
-default_font = ExtResource("1_hpugx")
+default_font = ExtResource("1_72psy")
 default_font_size = 22
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ibjw8"]
@@ -622,7 +622,7 @@ corner_radius_bottom_left = 9
 
 [node name="PriestAnimationReview" type="Control" unique_id=966602580]
 layout_mode = 3
-anchors_preset = 0
+anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 theme = SubResource("Theme_72psy")

@@ -15,7 +15,7 @@ branding.mkdir(exist_ok=True)
 for name in ['og-image-v1.png', 'app-icon-v1.png']:
     shutil.copy2(project / 'web/branding' / name, branding / name)
 if 'id="loading-title"' in html.read_text(encoding='utf-8'):
-    fonts = project / 'assets/fonts/tsap-tsarap'
-    for name in ['Tsap-Tsarap.ttf', 'readme_216.txt']:
+    fonts = project / 'assets/fonts/itim-kz'
+    for name in ['Itim-KZ-Regular.ttf', 'LICENSE.txt', 'COPYRIGHT.txt', 'OFL_39.txt']:
         shutil.copy2(fonts / name, branding / name)
 print('Packaged Web branding: ' + str(branding))

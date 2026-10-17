@@ -1,6 +1,6 @@
 [gd_resource type="Theme" format=3 uid="uid://bufjhwj3mejwx"]
 
-[ext_resource type="FontFile" uid="uid://byntg4pjfdm6f" path="res://assets/fonts/tsap-tsarap/Tsap-Tsarap.ttf" id="1_wir6v"]
+[ext_resource type="FontFile" uid="uid://rk3ovqjg5ure" path="res://assets/fonts/itim-kz/Itim-KZ-Regular.ttf" id="1_wir6v"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rrhgg"]
 content_margin_left = 24.0

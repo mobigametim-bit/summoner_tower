@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://icaty5irafa4"]
 
 [ext_resource type="Script" uid="uid://c77ibdwfxqu8d" path="res://scripts/ui/boss_warning.gd" id="1_y23q7"]
-[ext_resource type="FontFile" uid="uid://byntg4pjfdm6f" path="res://assets/fonts/tsap-tsarap/Tsap-Tsarap.ttf" id="2_64ay4"]
+[ext_resource type="FontFile" uid="uid://rk3ovqjg5ure" path="res://assets/fonts/itim-kz/Itim-KZ-Regular.ttf" id="2_64ay4"]
 
 [sub_resource type="Animation" id="Animation_64ay4"]
 length = 0.001
@@ -115,7 +115,7 @@ pivot_offset = Vector2(300, 165)
 theme_override_colors/font_outline_color = Color(0.09411765, 0.043137256, 0.0627451, 1)
 theme_override_constants/outline_size = 14
 theme_override_fonts/font = ExtResource("2_64ay4")
-theme_override_font_sizes/font_size = 260
+theme_override_font_sizes/font_size = 220
 text = "BOSS"
 horizontal_alignment = 1
 vertical_alignment = 1
