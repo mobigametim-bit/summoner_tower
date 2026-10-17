@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="WaveConfig" format=3 uid="uid://crxru55ju5vjs"]
+
+[ext_resource type="PackedScene" uid="uid://bsj31ob0ye8q4" path="res://scenes/skeleton.tscn" id="1_8yrrq"]
+[ext_resource type="Script" uid="uid://27u7nusjawkc" path="res://scripts/data/wave_config.gd" id="2_x2cip"]
+
+[resource]
+script = ExtResource("2_x2cip")
+first_enemy_count = 5
+enemy_count_growth = 2
+spawn_interval = 0.5
+spawn_batch_maximum = 3
+intermission_duration = 1.0
+goblin_scene = ExtResource("1_8yrrq")
+orc_scene = ExtResource("1_8yrrq")
+golem_scene = ExtResource("1_8yrrq")
+boss_scene = ExtResource("1_8yrrq")

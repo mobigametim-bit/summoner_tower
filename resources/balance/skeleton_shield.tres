@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="SkeletonShieldConfig" format=3]
+
+[ext_resource type="Script" path="res://scripts/data/skeleton_shield_config.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+minimum_tier = 5
+health_trigger = 0.5
+health_ratio = 0.25
+duration = 3.0
