@@ -1,5 +1,5 @@
 {
-  "source_commit": "f67c176beec7bcc99d81ee8ac1c4e7a4e1e8962f",
+  "source_commit": "e3eade0e6faae3798f26f7d3fabe764d5f752d51",
   "godot": "4.7.2.stable",
   "preset": "Web",
   "release": true,
@@ -35,7 +35,7 @@
     },
     "index.html": {
       "bytes": 14166,
-      "sha256": "71ca2198a830a6c9e765fde8098ed1978509135d4234c71ee9a6a9dbf3ff5510"
+      "sha256": "92a0fc6dd508f046002841f0254ac854445f8c834314484c84a710ef0579f930"
     },
     "index.icon.png": {
       "bytes": 53481,
@@ -46,8 +46,8 @@
       "sha256": "33c94cb3175f3333b82e2a3be5e8e86f77986f0aa2042b1631f6367a4e5bb6ba"
     },
     "index.pck": {
-      "bytes": 8001328,
-      "sha256": "8441ff871e5856c8fcb2e82b89add0896e84dfc43a3db228d951c882b4e97e91"
+      "bytes": 8112608,
+      "sha256": "96f6d7d342da719de79bce47d3e2b933b252bbb8a9954ea21a4a1f9921e904a0"
     },
     "index.png": {
       "bytes": 38531,
@@ -80,5 +80,7 @@
   "save_format_version": 3,
   "biome_victory_revision": "2026-10-16-v1",
   "biome_navigation_revision": "2026-10-16-v1",
-  "biome_menu_title_revision": "2026-10-17-v1"
+  "biome_menu_title_revision": "2026-10-17-v1",
+  "graveyard_environment_revision": "2026-10-17-v1",
+  "graveyard_tower_revision": "2026-10-17-crypt-v1"
 }
