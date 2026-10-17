@@ -1,0 +1,25 @@
+[gd_resource type="Resource" script_class="WaveConfig" format=3 uid="uid://c8vcundfetfs1"]
+
+[ext_resource type="PackedScene" uid="uid://876ht5f0bxjy" path="res://scenes/lich.tscn" id="1_vjf5o"]
+[ext_resource type="PackedScene" uid="uid://bsj31ob0ye8q4" path="res://scenes/skeleton.tscn" id="2_lxl0y"]
+[ext_resource type="PackedScene" uid="uid://cdk2mpfxglxmt" path="res://scenes/ghoul.tscn" id="3_iw6jc"]
+[ext_resource type="PackedScene" uid="uid://p1d1qfrer122" path="res://scenes/zombie.tscn" id="4_2q5bb"]
+[ext_resource type="Resource" uid="uid://bkd3pbqyyn35e" path="res://resources/balance/graveyard_power.tres" id="5_yf07r"]
+[ext_resource type="PackedScene" uid="uid://b2unw3oh0p4pf" path="res://scenes/necromancer.tscn" id="14_o0rhg"]
+[ext_resource type="Script" uid="uid://27u7nusjawkc" path="res://scripts/data/wave_config.gd" id="15_53gbp"]
+
+[resource]
+script = ExtResource("15_53gbp")
+first_enemy_count = 5
+enemy_count_growth = 2
+spawn_interval = 0.5
+spawn_batch_maximum = 3
+intermission_duration = 1.0
+goblin_scene = ExtResource("2_lxl0y")
+orc_scene = ExtResource("4_2q5bb")
+golem_scene = ExtResource("3_iw6jc")
+boss_scene = ExtResource("1_vjf5o")
+power_balance = ExtResource("5_yf07r")
+regular_scenes = Array[PackedScene]([ExtResource("2_lxl0y"), ExtResource("4_2q5bb"), ExtResource("3_iw6jc"), ExtResource("14_o0rhg")])
+regular_first_waves = Array[int]([1, 2, 3, 4])
+regular_weights = Array[float]([0.45, 0.25, 0.2, 0.1])

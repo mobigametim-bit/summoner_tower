@@ -15,33 +15,33 @@ func make_plan(wave: int, player_power: float, rng: RandomNumberGenerator) -> Di
 	var counts: Dictionary = {}
 	var actual_power: float = 0.0
 	var boss_power: float = 0.0
+	var scenes: Array[PackedScene] = config.regular_enemy_scenes()
 	if config.is_boss_wave(wave):
-		var boss: EnemyStats = balance.enemy_stats[3]
+		var boss: EnemyStats = balance.enemy_stats[scenes.size()]
 		var health: int = config.boss_health_for(wave, boss.base_health)
 		sequence.append(config.boss_scene)
 		healths.append(health)
 		boss_power = balance.enemy_power(boss, health)
 		actual_power = boss_power
-		counts["boss"] = 1
+		counts[String(boss.enemy_type)] = 1
 	var requested: float = balance.budget_for(wave, player_power)
 	# Первая волна — фиксированное обучение; босс всегда дополнительный к обычным врагам.
 	if wave == 1:
 		for index: int in config.first_enemy_count:
-			sequence.append(config.goblin_scene)
+			sequence.append(scenes[0])
 			healths.append(balance.enemy_stats[0].base_health)
-		actual_power = float(config.first_enemy_count)
-		counts["goblin_lv1"] = config.first_enemy_count
+		actual_power = float(config.first_enemy_count)*balance.enemy_power(balance.enemy_stats[0],balance.enemy_stats[0].base_health)
+		counts[String(balance.enemy_stats[0].enemy_type)+"_lv1"] = config.first_enemy_count
 		return _result(sequence, healths, player_power, actual_power, actual_power, counts, wave, false)
 	var candidates: Array[Dictionary] = _candidates(wave)
 	var biggest: float = 0.0
 	for candidate: Dictionary in candidates:
 		biggest = maxf(biggest, candidate.power)
-	var minimum: float = float(config.first_enemy_count) + boss_power
+	var minimum: float = float(config.first_enemy_count)*balance.enemy_power(balance.enemy_stats[0],balance.enemy_stats[0].base_health) + boss_power
 	var desired: float = maxf(requested, minimum)
 	# Предел защищает Web от тысяч экземпляров; невместившийся бюджет виден в отчёте.
 	var target: float = minf(desired, boss_power + biggest * balance.maximum_regular_enemies)
 	var remaining: float = target - boss_power
-	var scenes: Array[PackedScene] = [config.goblin_scene, config.orc_scene, config.golem_scene]
 	var regular: int = 0
 	while remaining >= 1.0 - 0.000001 and regular < balance.maximum_regular_enemies:
 		var available: Array[Dictionary] = []
@@ -69,11 +69,12 @@ func make_plan(wave: int, player_power: float, rng: RandomNumberGenerator) -> Di
 
 func _candidates(wave: int) -> Array[Dictionary]:
 	var balance: PowerBalanceConfig = config.power_balance
-	var weights: Array[float] = [1.0 - config.orc_share - config.golem_share, config.orc_share, config.golem_share]
+	var weights: Array[float] = config.regular_enemy_weights()
+	var first_waves: Array[int] = config.regular_enemy_first_waves()
 	var result: Array[Dictionary] = []
 	var highest: int = balance.maximum_tier_for(wave)
-	for index: int in 3:
-		if (index == 1 and wave < config.orc_first_wave) or (index == 2 and wave < config.golem_first_wave):
+	for index: int in config.regular_enemy_scenes().size():
+		if wave < first_waves[index]:
 			continue
 		var stats: EnemyStats = balance.enemy_stats[index]
 		for tier: int in range(1, highest + 1):

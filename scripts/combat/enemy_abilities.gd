@@ -11,6 +11,7 @@ var armor_remaining: int = 0
 var shield_health: float = 0.0
 var raging: bool = false
 var rushing: bool = false
+var haste_bonus: float = 0.0
 var _type: StringName
 var _tier: int = 1
 var _max_health: int = 0
@@ -166,20 +167,21 @@ func _activate(ability: StringName) -> void:
 
 func speed_multiplier() -> float:
 	if not _enabled:
-		return 1.0
+		return 1.0 + haste_bonus
 	if _dash_preparing or (_event == &"rush" and _windup > 0.0):
 		return 0.0
 	if _dash_remaining > 0.0:
-		return 1.0 + config.dash_speed_bonus
+		return 1.0 + maxf(config.dash_speed_bonus,haste_bonus)
 	if raging:
-		return 1.0 + config.rage_speed_bonus
+		return 1.0 + maxf(config.rage_speed_bonus,haste_bonus)
 	if rushing:
-		return 1.0 + config.rush_speed_bonus
-	return 1.0
+		return 1.0 + maxf(config.rush_speed_bonus,haste_bonus)
+	return 1.0 + haste_bonus
 
 
 func stop() -> void:
 	_enabled = false
+	haste_bonus = 0.0
 	_queue.clear()
 	shield_health = 0.0
 	armor_remaining = 0

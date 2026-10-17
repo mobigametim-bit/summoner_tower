@@ -37,6 +37,7 @@
 [ext_resource type="Texture2D" uid="uid://c57tyfidrkg5k" path="res://assets/ui/confirm.svg" id="25_twgab"]
 [ext_resource type="Texture2D" uid="uid://bamagwo85soov" path="res://assets/ui/close.svg" id="26_nepv3"]
 [ext_resource type="PackedScene" uid="uid://bs7ym0iyxvdag" path="res://scenes/vfx/ScreenShake.tscn" id="32_wljb1"]
+[ext_resource type="PackedScene" uid="uid://bisiphve27otn" path="res://scenes/combat/GraveyardArmy.tscn" id="33_7025r"]
 [ext_resource type="Script" uid="uid://rgvujtsibixj" path="res://scripts/game/ad_service.gd" id="36_7025r"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qnb83"]
@@ -941,6 +942,8 @@ one_shot = true
 
 [node name="IntermissionTimer" type="Timer" parent="WaveManager" unique_id=1737258099]
 one_shot = true
+
+[node name="GraveyardArmy" parent="WaveManager" unique_id=1853895572 instance=ExtResource("33_7025r")]
 
 [node name="RunBonuses" type="Node" parent="." unique_id=1640489827]
 script = ExtResource("18_5newe")

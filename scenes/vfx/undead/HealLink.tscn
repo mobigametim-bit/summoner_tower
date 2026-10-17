@@ -1,0 +1,92 @@
+[gd_scene format=3 uid="uid://g1hgk4yayeq"]
+
+[ext_resource type="Script" uid="uid://csidjqh0fg05s" path="res://scripts/vfx/undead_heal_link.gd" id="1_jffns"]
+[ext_resource type="Texture2D" uid="uid://dpw1bhc602of6" path="res://assets/vfx/kenney_particles/light_01.png" id="2_bwqkp"]
+[ext_resource type="Texture2D" uid="uid://cnv14pq86m8ms" path="res://assets/vfx/kenney_particles/magic_05.png" id="3_x7j6q"]
+[ext_resource type="Texture2D" uid="uid://bhmdt8vbuhyi" path="res://assets/vfx/undead/spark.svg" id="4_6dxbc"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_78kn7"]
+blend_mode = 1
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_c76mx"]
+blend_mode = 1
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_cwhpn"]
+blend_mode = 1
+
+[sub_resource type="Gradient" id="Gradient_vj2ur"]
+offsets = PackedFloat32Array(0, 0.12, 0.6, 1)
+colors = PackedColorArray(1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 0.9, 1, 1, 1, 0)
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_h0xr7"]
+blend_mode = 1
+
+[sub_resource type="Gradient" id="Gradient_3ce6t"]
+offsets = PackedFloat32Array(0, 0.12, 0.6, 1)
+colors = PackedColorArray(1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 0.9, 1, 1, 1, 0)
+
+[node name="HealLink" type="Node2D" unique_id=583059076]
+z_index = 25
+script = ExtResource("1_jffns")
+
+[node name="Link" type="Line2D" parent="." unique_id=1438385756]
+width = 2.0
+default_color = Color(0.5, 1, 0.75, 0.4)
+antialiased = true
+
+[node name="Source" type="Sprite2D" parent="." unique_id=673146726]
+modulate = Color(0.47058824, 1, 0.76862746, 1)
+material = SubResource("CanvasItemMaterial_78kn7")
+scale = Vector2(0.45, 0.45)
+texture = ExtResource("2_bwqkp")
+
+[node name="Target" type="Sprite2D" parent="." unique_id=894074155]
+modulate = Color(0.47058824, 1, 0.76862746, 1)
+material = SubResource("CanvasItemMaterial_c76mx")
+scale = Vector2(0.45, 0.45)
+texture = ExtResource("2_bwqkp")
+
+[node name="Flow" type="CPUParticles2D" parent="." unique_id=88218955]
+material = SubResource("CanvasItemMaterial_cwhpn")
+emitting = false
+amount = 30
+texture = ExtResource("3_x7j6q")
+lifetime = 0.65
+one_shot = true
+emission_shape = 4
+emission_points = PackedVector2Array(0, 0)
+emission_colors = PackedColorArray()
+direction = Vector2(0, -1)
+spread = 50.0
+gravity = Vector2(0, -18)
+initial_velocity_min = 6.0
+initial_velocity_max = 18.0
+angular_velocity_min = -60.0
+angular_velocity_max = 60.0
+scale_amount_min = 0.1
+scale_amount_max = 0.18
+color = Color(0.5411765, 1, 0.78039217, 1)
+color_ramp = SubResource("Gradient_vj2ur")
+
+[node name="Receiver" type="CPUParticles2D" parent="." unique_id=571368122]
+material = SubResource("CanvasItemMaterial_h0xr7")
+emitting = false
+amount = 12
+texture = ExtResource("4_6dxbc")
+lifetime = 0.65
+one_shot = true
+explosiveness = 0.7
+local_coords = true
+emission_shape = 1
+emission_sphere_radius = 14.0
+direction = Vector2(0, -1)
+spread = 50.0
+gravity = Vector2(0, -18)
+initial_velocity_min = 20.0
+initial_velocity_max = 35.0
+angular_velocity_min = -60.0
+angular_velocity_max = 60.0
+scale_amount_min = 0.18
+scale_amount_max = 0.3
+color = Color(0.7607843, 1, 0.88235295, 1)
+color_ramp = SubResource("Gradient_3ce6t")

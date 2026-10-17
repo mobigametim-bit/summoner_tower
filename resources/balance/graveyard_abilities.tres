@@ -1,0 +1,6 @@
+[gd_resource type="Resource" script_class="GraveyardAbilityConfig" format=3 uid="uid://ctohlgqve11qn"]
+
+[ext_resource type="Script" uid="uid://cymd86b7tihjw" path="res://scripts/data/graveyard_ability_config.gd" id="1"]
+
+[resource]
+script = ExtResource("1")

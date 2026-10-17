@@ -40,6 +40,8 @@ var _damage_remainder: float = 0.0
 var _burn_remaining: float = 0.0
 var _burn_dps: float = 0.0
 var _freeze_remaining: float = 0.0
+var _haste_remaining: float = 0.0
+var _healing_remainder: float = 0.0
 var _status_visual: Node2D
 var _arrival_tween: Tween
 const STATUS_SCENE: PackedScene = preload("res://scenes/vfx/EnemyStatusVisual.tscn")
@@ -61,6 +63,8 @@ func configure(spawn_position: Vector2, target_y: float, health: int = 0, boss_l
 	max_health = health if health > 0 else stats.base_health
 	current_health = max_health
 	_damage_remainder = 0.0
+	_healing_remainder = 0.0
+	_haste_remaining = 0.0
 	_clear_status()
 	# У обычных врагов уровень задаёт HP, у босса — номер его появления.
 	difficulty_tier = clampi(boss_level, 1, EnemyStats.TIER_COLORS.size()) if stats.is_boss else stats.difficulty_tier(max_health)
@@ -96,7 +100,7 @@ func follow_caster_route(caster: ApproachingEnemy, behind: float) -> void:
 
 
 func _on_ability_started(ability: StringName) -> void:
-	if animated_visual_enabled and not _resolved and ability not in [&"dash", &"rage", &"rush"]:
+	if animated_visual_enabled and not _resolved and (undead_visual != null or ability not in [&"dash", &"rage", &"rush"]):
 		_animated_visual.play_ability(ability)
 
 
@@ -131,6 +135,11 @@ func _physics_process(delta: float) -> void:
 	if _resolved:
 		return
 
+	_haste_remaining = maxf(_haste_remaining-delta,0.0)
+	if _haste_remaining <= 0.0:
+		abilities.haste_bonus = 0.0
+		if undead_visual != null and undead_visual.has_method("set_haste_active"):
+			undead_visual.call("set_haste_active",false)
 	# Последний неполный кадр эффекта учитывается отдельно, чтобы срок не зависел от FPS.
 	if _burn_remaining > 0.0:
 		var burning_delta: float = minf(delta, _burn_remaining)
@@ -177,7 +186,7 @@ func set_animated_visual(enabled: bool) -> void:
 	_animated_visual.visible = animated_visual_enabled
 	if animated_visual_enabled:
 		_animated_visual.enable_gameplay()
-		_animated_visual.set_difficulty(difficulty_tier, EnemyStats.TIER_COLORS[difficulty_tier - 1])
+		_animated_visual.set_difficulty(int(get_meta("visual_level",difficulty_tier)), EnemyStats.TIER_COLORS[difficulty_tier - 1])
 	else:
 		_animated_visual.stop_gameplay()
 	abilities.effects.fit_to_enemy(self)
@@ -242,6 +251,29 @@ func embed_arrow(arrow_scene: PackedScene, incoming_direction: Vector2) -> void:
 
 func is_targetable() -> bool:
 	return is_inside_tree() and not _resolved and not is_queued_for_deletion() and current_health > 0
+
+
+func restore_health(amount: float) -> int:
+	if not is_targetable() or amount <= 0.0:
+		return 0
+	var total: float = amount+_healing_remainder
+	var whole: int = floori(total+RunBonuses.ROUNDING_EPSILON)
+	_healing_remainder = maxf(total-whole,0.0)
+	var restored: int = mini(whole,max_health-current_health)
+	current_health += restored
+	_update_health_bar()
+	return restored
+
+
+func apply_haste(bonus: float, duration: float) -> void:
+	if not is_targetable() or bonus <= 0.0 or duration <= 0.0:
+		return
+	if bonus < abilities.haste_bonus:
+		return
+	abilities.haste_bonus = bonus
+	_haste_remaining = maxf(_haste_remaining,duration)
+	if undead_visual != null and undead_visual.has_method("set_haste_active"):
+		undead_visual.call("set_haste_active",true)
 
 
 func apply_slow(ratio: float, duration: float) -> void:

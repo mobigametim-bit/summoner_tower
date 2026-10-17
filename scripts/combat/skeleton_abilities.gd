@@ -47,7 +47,7 @@ func _physics_process(delta: float) -> void:
 
 func advance(delta: float) -> float:
 	# Shield time advances in physics even while movement is frozen.
-	return delta
+	return delta*speed_multiplier()
 
 
 func _clear_shield() -> void:

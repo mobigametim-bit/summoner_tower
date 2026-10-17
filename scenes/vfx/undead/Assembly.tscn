@@ -1,0 +1,99 @@
+[gd_scene format=3 uid="uid://b04fdi5wnvwo1"]
+
+[ext_resource type="Script" uid="uid://707p08odl3m7" path="res://scripts/vfx/undead_assembly.gd" id="1_vheyy"]
+[ext_resource type="Texture2D" uid="uid://ckhj4u1uymch4" path="res://assets/vfx/undead/bone.svg" id="2_3nto7"]
+[ext_resource type="Texture2D" uid="uid://bhmdt8vbuhyi" path="res://assets/vfx/undead/spark.svg" id="3_uv7i0"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_8uk2s"]
+blend_mode = 1
+
+[sub_resource type="Gradient" id="Gradient_pc4ql"]
+offsets = PackedFloat32Array(0, 0.12, 0.6, 1)
+colors = PackedColorArray(1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 0.9, 1, 1, 1, 0)
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_8ednj"]
+blend_mode = 1
+
+[sub_resource type="Gradient" id="Gradient_l4ets"]
+offsets = PackedFloat32Array(0, 0.12, 0.6, 1)
+colors = PackedColorArray(1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 0.9, 1, 1, 1, 0)
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_qt52d"]
+blend_mode = 1
+
+[sub_resource type="Gradient" id="Gradient_jm53v"]
+offsets = PackedFloat32Array(0, 0.12, 0.6, 1)
+colors = PackedColorArray(1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 0.9, 1, 1, 1, 0)
+
+[node name="Assembly" type="Node2D" unique_id=956899803]
+z_index = 22
+script = ExtResource("1_vheyy")
+
+[node name="Bone0" type="Sprite2D" parent="." unique_id=1367460128]
+modulate = Color(0.8784314, 0.73333335, 1, 1)
+texture = ExtResource("2_3nto7")
+
+[node name="Souls" type="CPUParticles2D" parent="Bone0" unique_id=857965065]
+material = SubResource("CanvasItemMaterial_8uk2s")
+amount = 12
+texture = ExtResource("3_uv7i0")
+lifetime = 0.6
+emission_shape = 1
+emission_sphere_radius = 8.0
+direction = Vector2(0, -1)
+spread = 50.0
+gravity = Vector2(0, -18)
+initial_velocity_min = 8.0
+initial_velocity_max = 20.0
+angular_velocity_min = -60.0
+angular_velocity_max = 60.0
+scale_amount_min = 0.38
+scale_amount_max = 0.75
+color = Color(0.7137255, 0.4509804, 1, 1)
+color_ramp = SubResource("Gradient_pc4ql")
+
+[node name="Bone1" type="Sprite2D" parent="." unique_id=1493440156]
+modulate = Color(0.8784314, 0.73333335, 1, 1)
+texture = ExtResource("2_3nto7")
+
+[node name="Souls" type="CPUParticles2D" parent="Bone1" unique_id=141870503]
+material = SubResource("CanvasItemMaterial_8ednj")
+amount = 12
+texture = ExtResource("3_uv7i0")
+lifetime = 0.6
+emission_shape = 1
+emission_sphere_radius = 8.0
+direction = Vector2(0, -1)
+spread = 50.0
+gravity = Vector2(0, -18)
+initial_velocity_min = 8.0
+initial_velocity_max = 20.0
+angular_velocity_min = -60.0
+angular_velocity_max = 60.0
+scale_amount_min = 0.38
+scale_amount_max = 0.75
+color = Color(0.7137255, 0.4509804, 1, 1)
+color_ramp = SubResource("Gradient_l4ets")
+
+[node name="Bone2" type="Sprite2D" parent="." unique_id=1194015525]
+modulate = Color(0.8784314, 0.73333335, 1, 1)
+texture = ExtResource("2_3nto7")
+
+[node name="Souls" type="CPUParticles2D" parent="Bone2" unique_id=1948942349]
+material = SubResource("CanvasItemMaterial_qt52d")
+amount = 12
+texture = ExtResource("3_uv7i0")
+lifetime = 0.6
+emission_shape = 1
+emission_sphere_radius = 8.0
+direction = Vector2(0, -1)
+spread = 50.0
+gravity = Vector2(0, -18)
+initial_velocity_min = 8.0
+initial_velocity_max = 20.0
+angular_velocity_min = -60.0
+angular_velocity_max = 60.0
+scale_amount_min = 0.38
+scale_amount_max = 0.75
+color = Color(0.7137255, 0.4509804, 1, 1)
+color_ramp = SubResource("Gradient_jm53v")

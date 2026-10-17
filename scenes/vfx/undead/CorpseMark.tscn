@@ -1,0 +1,11 @@
+[gd_scene format=3 uid="uid://4r5o3ynmtx70"]
+
+[ext_resource type="Texture2D" uid="uid://bn3c28x1fr366" path="res://assets/vfx/undead/corpse_pile.svg" id="1_sbe3v"]
+
+[node name="CorpseMark" type="Node2D" unique_id=1095204638]
+z_index = 1
+z_as_relative = false
+
+[node name="Bones" type="Sprite2D" parent="." unique_id=1380502371]
+scale = Vector2(2, 2)
+texture = ExtResource("1_sbe3v")

@@ -14,6 +14,7 @@ signal encounter_completed
 
 @onready var spawn_timer: Timer = $SpawnTimer
 @onready var intermission_timer: Timer = $IntermissionTimer
+@onready var graveyard_army: GraveyardArmy = get_node_or_null("GraveyardArmy") as GraveyardArmy
 
 var wave_number: int = 0
 var final_wave: int = 0
@@ -48,6 +49,9 @@ func set_random_seed(value: int) -> void:
 
 
 func configure(enemies: Node2D, spawn_point: Marker2D, contact_point: Marker2D, route: Path2D = null, routes: Array[Path2D] = [], power_source: Callable = Callable()) -> void:
+	if graveyard_army != null:
+		graveyard_army.manager = self
+		graveyard_army.clear()
 	_enemies = enemies
 	_spawn_point = spawn_point
 	_contact_point = contact_point
@@ -143,6 +147,8 @@ func _spawn_enemy() -> void:
 	enemy.configure(position, _contact_point.global_position.y, health, config.boss_level_for(wave_number))
 	if selected_route != null:
 		enemy.follow_route(selected_route.curve, selected_route.global_transform, float(selected_route.get_meta("cell_size", 140.0)))
+	if graveyard_army != null:
+		graveyard_army.register(enemy)
 	if phase != Phase.FIGHTING:
 		return
 	enemy_spawned.emit(portal_index)
@@ -182,10 +188,36 @@ func _on_spawn_timeout() -> void:
 			_start_spawn_batch()
 
 
+func spawn_summoned(packed: PackedScene, caster: ApproachingEnemy, tier: int, behind: float) -> ApproachingEnemy:
+	if phase != Phase.FIGHTING or not is_instance_valid(caster) or not caster.is_targetable() or not _active.has(caster):
+		return null
+	var enemy: ApproachingEnemy = packed.instantiate() as ApproachingEnemy
+	_active.append(enemy)
+	enemy.resolved.connect(_on_enemy_resolved)
+	enemy.set_meta("summoned",true)
+	enemy.set_meta("summoner_id",caster.get_instance_id())
+	enemy.set_meta("portal_index",caster.get_meta("portal_index",0))
+	if packed == graveyard_army.flesh_scene:
+		enemy.set_meta("visual_level",5 if caster.difficulty_tier == 5 else 4)
+	_enemies.add_child(enemy)
+	if phase != Phase.FIGHTING or not caster.is_targetable():
+		_active.erase(enemy)
+		enemy.stop()
+		enemy.queue_free()
+		return null
+	enemy.configure(caster.global_position,_contact_point.global_position.y,enemy.stats.base_health*(1<<(clampi(tier,1,5)-1)))
+	enemy.follow_caster_route(caster,behind)
+	graveyard_army.register(enemy)
+	_emit_state()
+	return enemy
+
+
 func _on_enemy_resolved(enemy: ApproachingEnemy, outcome: ApproachingEnemy.Outcome) -> void:
 	if phase != Phase.FIGHTING or not _active.has(enemy):
 		return
 	_active.erase(enemy)
+	if graveyard_army != null:
+		graveyard_army.record_death(enemy,outcome)
 	if enemy.stats.is_boss and outcome == ApproachingEnemy.Outcome.KILLED:
 		_boss_killed = true
 	# После смерти HP уже нулевой: обычным врагам нужен max_health, боссу — уровень появления.
@@ -202,6 +234,8 @@ func _try_finish_wave() -> void:
 		return
 	spawn_timer.stop()
 	if final_wave > 0 and wave_number >= final_wave:
+		if graveyard_army != null:
+			graveyard_army.clear()
 		# Закрываем волну до сигналов: повторный resolved не завершит забег дважды.
 		phase = Phase.COMPLETED
 		_emit_state()
@@ -267,6 +301,8 @@ func _on_intermission_timeout() -> void:
 
 
 func stop() -> void:
+	if graveyard_army != null:
+		graveyard_army.clear()
 	_completion_suspended = false
 	if phase == Phase.STOPPED:
 		return

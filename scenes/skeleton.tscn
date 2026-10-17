@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://cowevc3ii1kms" path="res://art/source/skeleton/master.svg" id="4_3nhjk"]
 [ext_resource type="Script" uid="uid://3c7xdmkxlj0k" path="res://scripts/combat/skeleton_abilities.gd" id="6_e85v8"]
 [ext_resource type="Resource" path="res://resources/balance/skeleton_shield.tres" id="7_f63t1"]
+[ext_resource type="PackedScene" uid="uid://ddbhyecdwwyug" path="res://scenes/vfx/undead/HasteAura.tscn" id="8_luons"]
 [ext_resource type="Texture2D" uid="uid://8p4bf6vdlych" path="res://art/source/skeleton/parts/lv1/back_arm.svg" id="8_xp773"]
 [ext_resource type="Script" uid="uid://c0e4sdy5xw7fl" path="res://scripts/visuals/skeleton_gameplay_visual.gd" id="9_6yhqa"]
 [ext_resource type="Texture2D" uid="uid://pbrd8fg5q4al" path="res://art/source/skeleton/parts/lv2/back_arm.svg" id="9_rsqk3"]
@@ -679,6 +680,7 @@ scale = Vector2(0.40625, 0.40625)
 script = ExtResource("9_6yhqa")
 shield_scene = ExtResource("10_2iffn")
 shield_config = ExtResource("7_f63t1")
+haste_scene = ExtResource("8_luons")
 entity_key = &"skeleton"
 level_ids = PackedInt32Array(1, 2, 3, 4, 5)
 part_variants = Dictionary[StringName, Array]({

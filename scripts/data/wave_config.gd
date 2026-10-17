@@ -19,6 +19,27 @@ extends Resource
 @export_range(0.0, 1.0, 0.05) var golem_share: float = 0.15
 @export_range(1, 100, 1) var boss_interval: int = 5
 @export var power_balance: PowerBalanceConfig
+@export var regular_scenes: Array[PackedScene] = []
+@export var regular_first_waves: Array[int] = []
+@export var regular_weights: Array[float] = []
+
+
+func regular_enemy_scenes() -> Array[PackedScene]:
+	if not regular_scenes.is_empty():
+		return regular_scenes
+	return [goblin_scene, orc_scene, golem_scene]
+
+
+func regular_enemy_weights() -> Array[float]:
+	if not regular_scenes.is_empty():
+		return regular_weights
+	return [1.0-orc_share-golem_share, orc_share, golem_share]
+
+
+func regular_enemy_first_waves() -> Array[int]:
+	if not regular_scenes.is_empty():
+		return regular_first_waves
+	return [1,orc_first_wave,golem_first_wave]
 
 
 func spawn_batch_pause_after(count: int) -> float:

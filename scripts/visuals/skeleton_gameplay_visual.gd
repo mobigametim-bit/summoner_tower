@@ -3,14 +3,18 @@ extends "res://scripts/visuals/undead_enemy_visual.gd"
 
 const IMPACT_TIME: float = 0.28
 const CANVAS_SIZE: float = 104.0
+@export var gameplay_canvas_size: float = CANVAS_SIZE
+@export var attack_impact_time: float = IMPACT_TIME
 
 @export var shield_scene: PackedScene
 @export var shield_config: SkeletonShieldConfig
+@export var haste_scene: PackedScene
 var _gameplay: bool = false
 var _preparing: bool = false
 var _tail: bool = false
 var _impact_emitted: bool = false
 var _shield: Node2D
+var _haste: Node2D
 
 
 func enable_gameplay() -> void:
@@ -32,13 +36,13 @@ func set_difficulty(tier: int, _equipment_color: Color) -> void:
 
 func advance_gameplay(delta: float, time_to_contact: float, direction: Vector2) -> void:
 	if absf(direction.x) > 0.001:
-		scale = Vector2(-1.0 if direction.x < 0 else 1.0,1.0)*(CANVAS_SIZE/256.0)
-	if time_to_contact <= IMPACT_TIME:
+		scale = Vector2(-1.0 if direction.x < 0 else 1.0,1.0)*(gameplay_canvas_size/256.0)
+	if time_to_contact <= attack_impact_time:
 		if not _preparing:
 			play_animation(&"attack")
 			_impact_emitted = false
 			_preparing = true
-		animation_player.seek(clampf(IMPACT_TIME-time_to_contact,0.0,IMPACT_TIME-0.0001),true,true)
+		animation_player.seek(clampf(attack_impact_time-time_to_contact,0.0,attack_impact_time-0.0001),true,true)
 	elif _preparing:
 		_preparing = false
 		play_animation(&"walk_loop")
@@ -51,7 +55,7 @@ func impact_now() -> void:
 		play_animation(&"attack")
 		_impact_emitted = false
 	_preparing = false
-	animation_player.seek(IMPACT_TIME,true,true)
+	animation_player.seek(attack_impact_time,true,true)
 	_emit_effect(&"impact")
 
 
@@ -83,13 +87,18 @@ func set_shield_active(active: bool) -> void:
 	add_child(_shield)
 	_shield.z_index = 30
 	var duration: float = (_shield.get_node("AnimationPlayer") as AnimationPlayer).get_animation(&"effect").length
-	_shield.call("start",duration/shield_config.duration)
+	_shield.call("start",duration/_shield_lifetime())
+
+
+func _shield_lifetime() -> float:
+	return shield_config.duration
 
 
 func finish_as_tail(killed: bool) -> void:
 	_tail = true
 	_preparing = false
 	set_shield_active(false)
+	set_haste_active(false)
 	animation_player.callback_mode_process = AnimationMixer.ANIMATION_CALLBACK_MODE_PROCESS_PHYSICS
 	set_playback_speed(1.0)
 	if killed:
@@ -103,6 +112,17 @@ func stop_gameplay() -> void:
 	animation_player.stop()
 	effects.call("stop_effects")
 	set_shield_active(false)
+	set_haste_active(false)
+
+
+func set_haste_active(active: bool) -> void:
+	if not active:
+		if is_instance_valid(_haste):
+			_haste.queue_free()
+		_haste = null
+	elif not is_instance_valid(_haste) and haste_scene != null:
+		_haste = haste_scene.instantiate() as Node2D
+		add_child(_haste)
 
 
 func _on_animation_finished(animation_name: StringName) -> void:

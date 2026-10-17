@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="EnemyStats" format=3]
+
+[ext_resource type="Script" path="res://scripts/data/enemy_stats.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+enemy_type = &"zombie"
+base_health = 90
+move_speed = 108
+tower_damage = 24
+kill_mana = 5
+is_boss = false

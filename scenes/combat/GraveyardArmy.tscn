@@ -1,0 +1,18 @@
+[gd_scene format=3 uid="uid://bisiphve27otn"]
+
+[ext_resource type="Script" uid="uid://d35isflsyq44" path="res://scripts/combat/graveyard_army.gd" id="1_2mlki"]
+[ext_resource type="Resource" path="res://resources/balance/graveyard_abilities.tres" id="2_1jovm"]
+[ext_resource type="PackedScene" uid="uid://bsj31ob0ye8q4" path="res://scenes/skeleton.tscn" id="3_a31hk"]
+[ext_resource type="PackedScene" uid="uid://bteaj6guyjjnd" path="res://scenes/flesh_golem.tscn" id="4_45drc"]
+[ext_resource type="PackedScene" uid="uid://4r5o3ynmtx70" path="res://scenes/vfx/undead/CorpseMark.tscn" id="5_dh8qq"]
+[ext_resource type="PackedScene" uid="uid://g1hgk4yayeq" path="res://scenes/vfx/undead/HealLink.tscn" id="6_8vhhk"]
+[ext_resource type="PackedScene" uid="uid://b04fdi5wnvwo1" path="res://scenes/vfx/undead/Assembly.tscn" id="7_qtvf2"]
+
+[node name="GraveyardArmy" type="Node" unique_id=1853895572]
+script = ExtResource("1_2mlki")
+config = ExtResource("2_1jovm")
+skeleton_scene = ExtResource("3_a31hk")
+flesh_scene = ExtResource("4_45drc")
+corpse_scene = ExtResource("5_dh8qq")
+heal_scene = ExtResource("6_8vhhk")
+assembly_scene = ExtResource("7_qtvf2")

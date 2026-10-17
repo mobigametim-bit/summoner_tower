@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="PowerBalanceConfig" format=3 uid="uid://bkd3pbqyyn35e"]
+
+[ext_resource type="Script" uid="uid://bmis3a2yapkws" path="res://scripts/data/enemy_stats.gd" id="1_cohr5"]
+[ext_resource type="Resource" path="res://resources/balance/goblin_stats.tres" id="2_gfcy4"]
+[ext_resource type="Resource" path="res://resources/balance/skeleton_stats.tres" id="2_nsr43"]
+[ext_resource type="Resource" uid="uid://d3fugk8lns56s" path="res://resources/balance/archer_lv1.tres" id="3_q7tsm"]
+[ext_resource type="Resource" path="res://resources/balance/zombie_stats.tres" id="3_tahbk"]
+[ext_resource type="Script" uid="uid://hg6w2aappo5w" path="res://scripts/data/power_balance_config.gd" id="4_qyb0k"]
+[ext_resource type="Resource" path="res://resources/balance/ghoul_stats.tres" id="4_vvp84"]
+[ext_resource type="Resource" path="res://resources/balance/necromancer_stats.tres" id="5_6iev5"]
+[ext_resource type="Resource" path="res://resources/balance/lich_stats.tres" id="6_qfh0e"]
+
+[resource]
+script = ExtResource("4_qyb0k")
+reference_unit = ExtResource("3_q7tsm")
+reference_enemy = ExtResource("2_gfcy4")
+enemy_stats = Array[ExtResource("1_cohr5")]([ExtResource("2_nsr43"), ExtResource("3_tahbk"), ExtResource("4_vvp84"), ExtResource("5_6iev5"), ExtResource("6_qfh0e")])
+wave_budget_multiplier = 0.3333333333333333
