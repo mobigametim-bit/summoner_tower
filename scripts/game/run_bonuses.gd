@@ -89,12 +89,12 @@ func damage_for(stats: UnitStats) -> int:
 
 
 func damage_amount_for(stats: UnitStats) -> float:
-	var specialization: RunUpgrade.Kind = RunUpgrade.Kind.ARCHER_TRAINING
-	if stats.unit_type == &"mage":
-		specialization = RunUpgrade.Kind.PYROMANCY
-	elif stats.unit_type == &"frost_mage":
-		specialization = RunUpgrade.Kind.ICE_POWER
-	return stats.damage * _meta_multiplier(MetaUpgradeConfig.Kind.UNIT_DAMAGE) * multiplier(RunUpgrade.Kind.POWER) * multiplier(specialization)
+	var specialization: float = 1.0
+	match stats.unit_type:
+		&"archer": specialization = multiplier(RunUpgrade.Kind.ARCHER_TRAINING)
+		&"mage": specialization = multiplier(RunUpgrade.Kind.PYROMANCY)
+		&"frost_mage": specialization = multiplier(RunUpgrade.Kind.ICE_POWER)
+	return stats.damage * _meta_multiplier(MetaUpgradeConfig.Kind.UNIT_DAMAGE) * multiplier(RunUpgrade.Kind.POWER) * specialization
 
 
 func attack_range_for(stats: UnitStats) -> float:

@@ -42,6 +42,10 @@ var _burn_dps: float = 0.0
 var _freeze_remaining: float = 0.0
 var _haste_remaining: float = 0.0
 var _healing_remainder: float = 0.0
+var light_mark_ratio: float = 0.0
+var light_mark_remaining: float = 0.0
+var _light_mark_visual: Node2D
+const LIGHT_MARK_SCENE: PackedScene = preload("res://scenes/vfx/priest/LightMark.tscn")
 var _status_visual: Node2D
 var _arrival_tween: Tween
 const STATUS_SCENE: PackedScene = preload("res://scenes/vfx/EnemyStatusVisual.tscn")
@@ -64,6 +68,7 @@ func configure(spawn_position: Vector2, target_y: float, health: int = 0, boss_l
 	current_health = max_health
 	_damage_remainder = 0.0
 	_healing_remainder = 0.0
+	_clear_light_mark()
 	_haste_remaining = 0.0
 	_clear_status()
 	# У обычных врагов уровень задаёт HP, у босса — номер его появления.
@@ -141,12 +146,17 @@ func _physics_process(delta: float) -> void:
 		if undead_visual != null and undead_visual.has_method("set_haste_active"):
 			undead_visual.call("set_haste_active",false)
 	# Последний неполный кадр эффекта учитывается отдельно, чтобы срок не зависел от FPS.
-	if _burn_remaining > 0.0:
+	if _burn_remaining > 0.0 and delta > 0.0:
 		var burning_delta: float = minf(delta, _burn_remaining)
 		_burn_remaining = maxf(_burn_remaining - delta, 0.0)
-		take_damage(_burn_dps * burning_delta, false, false)
+		var exposure: float = minf(burning_delta,light_mark_remaining)/burning_delta
+		take_damage(_burn_dps * burning_delta, false, false, exposure)
 		if _resolved:
 			return
+	if light_mark_remaining > 0.0:
+		light_mark_remaining = maxf(light_mark_remaining-delta,0.0)
+		if light_mark_remaining <= 0.0:
+			_clear_light_mark()
 	var frozen_delta: float = minf(delta, _freeze_remaining)
 	_freeze_remaining = maxf(_freeze_remaining - delta, 0.0)
 	var moving_delta: float = delta - frozen_delta
@@ -204,9 +214,10 @@ func _time_to_contact() -> float:
 	return _slow_remaining + (remaining - slow_distance) / maxf(effective_base_speed, 0.001)
 
 
-func take_damage(amount: float, show_hit: bool = true, direct: bool = true) -> void:
+func take_damage(amount: float, show_hit: bool = true, direct: bool = true, light_mark_exposure: float = 1.0) -> void:
 	if not is_targetable() or amount <= 0:
 		return
+	amount *= 1.0+light_mark_ratio*clampf(light_mark_exposure,0.0,1.0)
 	amount = abilities.filter_damage(amount, direct)
 
 	# Остаток общий для прямого урона и DOT: дроби не теряются при каждом кадре.
@@ -263,6 +274,35 @@ func restore_health(amount: float) -> int:
 	current_health += restored
 	_update_health_bar()
 	return restored
+
+
+func apply_light_mark(ratio: float, duration: float) -> void:
+	if not is_targetable() or ratio <= 0.0 or duration <= 0.0:
+		return
+	if light_mark_remaining > 0.0 and ratio < light_mark_ratio-RunBonuses.ROUNDING_EPSILON:
+		return
+	light_mark_ratio = ratio
+	light_mark_remaining = duration
+	if not is_instance_valid(_light_mark_visual):
+		_light_mark_visual = LIGHT_MARK_SCENE.instantiate() as Node2D
+		add_child(_light_mark_visual)
+		_light_mark_visual.scale = Vector2.ONE*0.8
+		_light_mark_visual.z_as_relative = false
+		_light_mark_visual.z_index = 12
+	var clearance: float = 106.0 if stats.enemy_type == &"golem" and difficulty_tier == 5 else 54.0
+	_light_mark_visual.position = Vector2(health_bar.position.x+health_bar.size.x*0.5,health_bar.position.y-clearance)
+	var player: AnimationPlayer = _light_mark_visual.get_node("AnimationPlayer") as AnimationPlayer
+	# Повторный play того же клипа продолжает его; refresh должен вернуть все 3 секунды.
+	player.stop()
+	_light_mark_visual.call("start",player.get_animation(&"effect").length/duration)
+
+
+func _clear_light_mark() -> void:
+	light_mark_ratio = 0.0
+	light_mark_remaining = 0.0
+	if is_instance_valid(_light_mark_visual):
+		_light_mark_visual.queue_free()
+	_light_mark_visual = null
 
 
 func apply_haste(bonus: float, duration: float) -> void:
@@ -367,6 +407,7 @@ func _finish(outcome: Outcome) -> void:
 	# Обработчик сигнала может вызвать этот метод повторно: сначала фиксируем результат.
 	_resolved = true
 	set_physics_process(false)
+	_clear_light_mark()
 	abilities.stop()
 	_clear_arrival()
 	_clear_slow()
@@ -383,6 +424,7 @@ func _finish(outcome: Outcome) -> void:
 func stop() -> void:
 	_resolved = true
 	set_physics_process(false)
+	_clear_light_mark()
 	_clear_slow()
 	_clear_arrival()
 	if is_instance_valid(abilities):

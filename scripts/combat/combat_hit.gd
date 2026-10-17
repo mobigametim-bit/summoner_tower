@@ -13,7 +13,7 @@ static func targets_in_area(enemies: Node2D, center: Vector2, radius: float) -> 
 	return result
 
 
-static func apply(enemy: ApproachingEnemy, damage: float, slow: float, slow_duration: float, burn_ratio: float, burn_duration: float, freeze_duration: float = 0.0) -> void:
+static func apply(enemy: ApproachingEnemy, damage: float, slow: float, slow_duration: float, burn_ratio: float, burn_duration: float, freeze_duration: float = 0.0, mark_ratio: float = 0.0, mark_duration: float = 0.0) -> void:
 	if not is_instance_valid(enemy) or not enemy.is_targetable():
 		return
 	enemy.take_damage(damage)
@@ -22,3 +22,4 @@ static func apply(enemy: ApproachingEnemy, damage: float, slow: float, slow_dura
 	enemy.apply_slow(slow, slow_duration)
 	enemy.apply_burn(damage * burn_ratio, burn_duration)
 	enemy.apply_freeze(freeze_duration)
+	enemy.apply_light_mark(mark_ratio,mark_duration)

@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="UnitStats" format=3]
+
+[ext_resource type="Script" path="res://scripts/data/unit_stats.gd" id="1"]
+[ext_resource type="Texture2D" path="res://art/source/priest/master_lv3.svg" id="2"]
+[ext_resource type="Resource" path="res://resources/balance/priest_lv4.tres" id="3"]
+
+[resource]
+script = ExtResource("1")
+unit_type = &"priest"
+display_name = "PRIEST"
+level = 3
+visual_texture = ExtResource("2")
+next_level = ExtResource("3")
+damage = 80
+attack_interval = 0.8333333333333334
+attack_range = 196.0
+projectile_speed = 700.0
+light_mark_ratio = 0.15
+light_mark_duration = 3.0

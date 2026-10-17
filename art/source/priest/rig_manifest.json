@@ -1,0 +1,218 @@
+{
+  "version": 1,
+  "entity": "Priest",
+  "stage": "art_accepted",
+  "canvas": [
+    256,
+    256
+  ],
+  "actor_origin": [
+    128,
+    128
+  ],
+  "feet_baseline_y": 239,
+  "gameplay_canvas_size": 100,
+  "outline": {
+    "color": "#29180f",
+    "width": 7
+  },
+  "bones_including_root": 8,
+  "release_point_canvas": [
+    211,
+    92
+  ],
+  "parts": [
+    {
+      "name": "halo",
+      "bone": null,
+      "parent_bone": "Head",
+      "pivot": [
+        128,
+        137
+      ],
+      "sprite_offset": [
+        -128,
+        -137
+      ],
+      "z_index": 0,
+      "full_canvas": true
+    },
+    {
+      "name": "back_arm",
+      "bone": "BackArm",
+      "parent_bone": "Body",
+      "pivot": [
+        88,
+        148
+      ],
+      "sprite_offset": [
+        -88,
+        -148
+      ],
+      "z_index": 1,
+      "full_canvas": true
+    },
+    {
+      "name": "leg_left",
+      "bone": "LeftLeg",
+      "parent_bone": "Body",
+      "pivot": [
+        110,
+        207
+      ],
+      "sprite_offset": [
+        -110,
+        -207
+      ],
+      "z_index": 2,
+      "full_canvas": true
+    },
+    {
+      "name": "leg_right",
+      "bone": "RightLeg",
+      "parent_bone": "Body",
+      "pivot": [
+        146,
+        207
+      ],
+      "sprite_offset": [
+        -146,
+        -207
+      ],
+      "z_index": 3,
+      "full_canvas": true
+    },
+    {
+      "name": "body",
+      "bone": "Body",
+      "parent_bone": "Root",
+      "pivot": [
+        128,
+        175
+      ],
+      "sprite_offset": [
+        -128,
+        -175
+      ],
+      "z_index": 4,
+      "full_canvas": true
+    },
+    {
+      "name": "staff",
+      "bone": "Staff",
+      "parent_bone": "FrontArm",
+      "pivot": [
+        202,
+        177
+      ],
+      "sprite_offset": [
+        -202,
+        -177
+      ],
+      "z_index": 5,
+      "full_canvas": true
+    },
+    {
+      "name": "front_arm",
+      "bone": "FrontArm",
+      "parent_bone": "Body",
+      "pivot": [
+        162,
+        147
+      ],
+      "sprite_offset": [
+        -162,
+        -147
+      ],
+      "z_index": 6,
+      "full_canvas": true
+    },
+    {
+      "name": "head",
+      "bone": "Head",
+      "parent_bone": "Body",
+      "pivot": [
+        128,
+        137
+      ],
+      "sprite_offset": [
+        -128,
+        -137
+      ],
+      "z_index": 7,
+      "full_canvas": true
+    }
+  ],
+  "levels": {
+    "1": {
+      "color": "#88b96b",
+      "name": "Зелёный",
+      "parts": {
+        "halo": null,
+        "back_arm": "parts/back_arm.svg",
+        "leg_left": "parts/leg_left.svg",
+        "leg_right": "parts/leg_right.svg",
+        "body": "parts/body.svg",
+        "staff": "parts/staff.svg",
+        "front_arm": "parts/front_arm.svg",
+        "head": "parts/head.svg"
+      }
+    },
+    "2": {
+      "color": "#ec9b49",
+      "name": "Оранжевый",
+      "parts": {
+        "halo": null,
+        "back_arm": "parts/lv2/back_arm.svg",
+        "leg_left": "parts/leg_left.svg",
+        "leg_right": "parts/leg_right.svg",
+        "body": "parts/lv2/body.svg",
+        "staff": "parts/staff.svg",
+        "front_arm": "parts/lv2/front_arm.svg",
+        "head": "parts/lv2/head.svg"
+      }
+    },
+    "3": {
+      "color": "#df5654",
+      "name": "Красный",
+      "parts": {
+        "halo": null,
+        "back_arm": "parts/lv3/back_arm.svg",
+        "leg_left": "parts/leg_left.svg",
+        "leg_right": "parts/leg_right.svg",
+        "body": "parts/lv3/body.svg",
+        "staff": "parts/lv3/staff.svg",
+        "front_arm": "parts/lv3/front_arm.svg",
+        "head": "parts/lv3/head.svg"
+      }
+    },
+    "4": {
+      "color": "#5295ef",
+      "name": "Синий",
+      "parts": {
+        "halo": null,
+        "back_arm": "parts/lv4/back_arm.svg",
+        "leg_left": "parts/leg_left.svg",
+        "leg_right": "parts/leg_right.svg",
+        "body": "parts/lv4/body.svg",
+        "staff": "parts/lv4/staff.svg",
+        "front_arm": "parts/lv4/front_arm.svg",
+        "head": "parts/lv4/head.svg"
+      }
+    },
+    "5": {
+      "color": "#b66dea",
+      "name": "Фиолетовый",
+      "parts": {
+        "halo": "parts/halo.svg",
+        "back_arm": "parts/lv5/back_arm.svg",
+        "leg_left": "parts/leg_left.svg",
+        "leg_right": "parts/leg_right.svg",
+        "body": "parts/lv5/body.svg",
+        "staff": "parts/lv4/staff.svg",
+        "front_arm": "parts/lv5/front_arm.svg",
+        "head": "parts/lv5/head.svg"
+      }
+    }
+  }
+}

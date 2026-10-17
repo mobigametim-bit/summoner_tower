@@ -1,0 +1,1311 @@
+[gd_scene format=3 uid="uid://cn7tqmcarbo8d"]
+
+[ext_resource type="FontFile" uid="uid://byntg4pjfdm6f" path="res://assets/fonts/tsap-tsarap/Tsap-Tsarap.ttf" id="1_hpugx"]
+[ext_resource type="Script" uid="uid://cxi73iy7226o8" path="res://scripts/debug/priest_animation_review.gd" id="2_gnucr"]
+[ext_resource type="PackedScene" uid="uid://brsbtg7d1pfgt" path="res://scenes/vfx/priest/LightShot.tscn" id="3_xcrhc"]
+[ext_resource type="PackedScene" uid="uid://mdh0ow2046ad" path="res://scenes/vfx/priest/LightImpact.tscn" id="4_72psy"]
+[ext_resource type="PackedScene" uid="uid://bkd7khd3a78t3" path="res://scenes/vfx/priest/LightMark.tscn" id="5_ibjw8"]
+[ext_resource type="PackedScene" uid="uid://dp3akp88vgndg" path="res://scenes/vfx/priest/Consecration.tscn" id="6_qo27n"]
+[ext_resource type="Texture2D" uid="uid://c5tm2vtwtc0of" path="res://assets/environment/graveyard/pedestal.svg" id="7_xlvkc"]
+[ext_resource type="PackedScene" uid="uid://dp1d38i4xm5rp" path="res://scenes/visuals/PriestVisual.tscn" id="8_c6f1f"]
+[ext_resource type="Script" uid="uid://ckfv056ta8m0e" path="res://scripts/visuals/priest_visual.gd" id="9_nma6j"]
+[ext_resource type="Texture2D" uid="uid://r7gddxonbfrt" path="res://art/source/priest/parts/back_arm.svg" id="10_52e50"]
+[ext_resource type="Texture2D" uid="uid://1psbvysqk8g2" path="res://art/source/priest/parts/lv2/back_arm.svg" id="11_y81t2"]
+[ext_resource type="Texture2D" uid="uid://cy2g6b8pklbs" path="res://art/source/priest/parts/lv3/back_arm.svg" id="12_hens1"]
+[ext_resource type="Texture2D" uid="uid://b0kyb0vdgfg3l" path="res://art/source/priest/parts/lv4/back_arm.svg" id="13_6hwv8"]
+[ext_resource type="Texture2D" uid="uid://ph0o4v3wig5t" path="res://art/source/priest/parts/lv5/back_arm.svg" id="14_gdgq3"]
+[ext_resource type="Texture2D" uid="uid://bxqjkrnak34th" path="res://art/source/priest/parts/body.svg" id="15_ry8f7"]
+[ext_resource type="Texture2D" uid="uid://dqs73mdvs7him" path="res://art/source/priest/parts/lv2/body.svg" id="16_2dh76"]
+[ext_resource type="Texture2D" uid="uid://cj72eify0k6x1" path="res://art/source/priest/parts/lv3/body.svg" id="17_6ycjf"]
+[ext_resource type="Texture2D" uid="uid://dyrb08oohvlqt" path="res://art/source/priest/parts/lv4/body.svg" id="18_5511d"]
+[ext_resource type="Texture2D" uid="uid://thkmrrttwnvx" path="res://art/source/priest/parts/lv5/body.svg" id="19_ipsvd"]
+[ext_resource type="Texture2D" uid="uid://cot3s5tuyiiby" path="res://art/source/priest/parts/front_arm.svg" id="20_xo5er"]
+[ext_resource type="Texture2D" uid="uid://ddo1idwcm3ira" path="res://art/source/priest/parts/lv2/front_arm.svg" id="21_q2ouj"]
+[ext_resource type="Texture2D" uid="uid://bdwdcsrbg6u13" path="res://art/source/priest/parts/lv3/front_arm.svg" id="22_ggs8w"]
+[ext_resource type="Texture2D" uid="uid://p2eaipivqwxi" path="res://art/source/priest/parts/lv4/front_arm.svg" id="23_4qx04"]
+[ext_resource type="Texture2D" uid="uid://b6rnabohbv2g1" path="res://art/source/priest/parts/lv5/front_arm.svg" id="24_amfx8"]
+[ext_resource type="Texture2D" uid="uid://dda4q3e0s2f2o" path="res://art/source/priest/parts/halo.svg" id="25_8q02j"]
+[ext_resource type="Texture2D" uid="uid://bhpugwy8qtlx3" path="res://art/source/priest/parts/head.svg" id="26_rjfd6"]
+[ext_resource type="Texture2D" uid="uid://cc7crco27x8u8" path="res://art/source/priest/parts/lv2/head.svg" id="27_ahv4q"]
+[ext_resource type="Texture2D" uid="uid://bmkg44qakl2mi" path="res://art/source/priest/parts/lv3/head.svg" id="28_e5467"]
+[ext_resource type="Texture2D" uid="uid://cagrain0rmkxt" path="res://art/source/priest/parts/lv4/head.svg" id="29_bobh6"]
+[ext_resource type="Texture2D" uid="uid://byul13jtr1nco" path="res://art/source/priest/parts/lv5/head.svg" id="30_ipg8s"]
+[ext_resource type="Texture2D" uid="uid://dnxt464wshx2d" path="res://art/source/priest/parts/leg_left.svg" id="31_dsf7d"]
+[ext_resource type="Texture2D" uid="uid://dip5sidj3562b" path="res://art/source/priest/parts/leg_right.svg" id="32_s3e6a"]
+[ext_resource type="Texture2D" uid="uid://dw8eix4kenrd3" path="res://art/source/priest/parts/staff.svg" id="33_uw4bx"]
+[ext_resource type="Texture2D" uid="uid://dtugaugt3npwh" path="res://art/source/priest/parts/lv3/staff.svg" id="34_k7pfa"]
+[ext_resource type="Texture2D" uid="uid://d0n27apmwenog" path="res://art/source/priest/parts/lv4/staff.svg" id="35_fpd4y"]
+[ext_resource type="PackedScene" uid="uid://ds6fw7l7lka32" path="res://scenes/visuals/SkeletonVisual.tscn" id="36_hwq0u"]
+[ext_resource type="Script" uid="uid://c8ilnu6ub4d3" path="res://scripts/visuals/undead_enemy_visual.gd" id="37_pe2ri"]
+[ext_resource type="Texture2D" uid="uid://8p4bf6vdlych" path="res://art/source/skeleton/parts/lv1/back_arm.svg" id="38_0wrd5"]
+[ext_resource type="Texture2D" uid="uid://pbrd8fg5q4al" path="res://art/source/skeleton/parts/lv2/back_arm.svg" id="39_epvar"]
+[ext_resource type="Texture2D" uid="uid://bce0tks6g1ymi" path="res://art/source/skeleton/parts/lv3/back_arm.svg" id="40_whqnb"]
+[ext_resource type="Texture2D" uid="uid://dpb2ahyv64xer" path="res://art/source/skeleton/parts/lv4/back_arm.svg" id="41_1elpj"]
+[ext_resource type="Texture2D" uid="uid://sectys41mviu" path="res://art/source/skeleton/parts/lv5/back_arm.svg" id="42_wim5p"]
+[ext_resource type="Texture2D" uid="uid://bxvw1ydt8dmxy" path="res://art/source/skeleton/parts/lv1/body.svg" id="43_eejgb"]
+[ext_resource type="Texture2D" uid="uid://0upjr5lgtwps" path="res://art/source/skeleton/parts/lv2/body.svg" id="44_p3hlj"]
+[ext_resource type="Texture2D" uid="uid://c4vqckft37yg7" path="res://art/source/skeleton/parts/lv3/body.svg" id="45_mn0p4"]
+[ext_resource type="Texture2D" uid="uid://b077u1rkb1qmv" path="res://art/source/skeleton/parts/lv4/body.svg" id="46_5qrdc"]
+[ext_resource type="Texture2D" uid="uid://b0ooh1nlahqr5" path="res://art/source/skeleton/parts/lv5/body.svg" id="47_lvhjv"]
+[ext_resource type="Texture2D" uid="uid://ftlcg7mxp2gq" path="res://art/source/skeleton/parts/lv1/front_arm.svg" id="48_1e36e"]
+[ext_resource type="Texture2D" uid="uid://d0g1j3pwdwg0y" path="res://art/source/skeleton/parts/lv2/front_arm.svg" id="49_6n006"]
+[ext_resource type="Texture2D" uid="uid://c725fw6s1q0vu" path="res://art/source/skeleton/parts/lv3/front_arm.svg" id="50_rcay5"]
+[ext_resource type="Texture2D" uid="uid://jeukii548a44" path="res://art/source/skeleton/parts/lv4/front_arm.svg" id="51_yojch"]
+[ext_resource type="Texture2D" uid="uid://xlo0qqmd1snq" path="res://art/source/skeleton/parts/lv5/front_arm.svg" id="52_l4wpe"]
+[ext_resource type="Texture2D" uid="uid://xshcl163wukr" path="res://art/source/skeleton/parts/lv1/head.svg" id="53_28bpq"]
+[ext_resource type="Texture2D" uid="uid://dd8ls4vwrvo67" path="res://art/source/skeleton/parts/lv2/head.svg" id="54_t7x5j"]
+[ext_resource type="Texture2D" uid="uid://bmb8hnenhq1au" path="res://art/source/skeleton/parts/lv3/head.svg" id="55_6d0iu"]
+[ext_resource type="Texture2D" uid="uid://dery0g8csjf2s" path="res://art/source/skeleton/parts/lv4/head.svg" id="56_xoibq"]
+[ext_resource type="Texture2D" uid="uid://3q5u3dr5in6t" path="res://art/source/skeleton/parts/lv5/head.svg" id="57_kp2mb"]
+[ext_resource type="Texture2D" uid="uid://c1woffjenlsqb" path="res://art/source/skeleton/parts/lv1/leg_left.svg" id="58_j44rp"]
+[ext_resource type="Texture2D" uid="uid://tn22fa1hrh45" path="res://art/source/skeleton/parts/lv2/leg_left.svg" id="59_xqks6"]
+[ext_resource type="Texture2D" uid="uid://bky4nytq5pv32" path="res://art/source/skeleton/parts/lv3/leg_left.svg" id="60_4fm8m"]
+[ext_resource type="Texture2D" uid="uid://dywusi4dotwjx" path="res://art/source/skeleton/parts/lv4/leg_left.svg" id="61_tr3mx"]
+[ext_resource type="Texture2D" uid="uid://ceojbpbbymflr" path="res://art/source/skeleton/parts/lv5/leg_left.svg" id="62_6ghgy"]
+[ext_resource type="Texture2D" uid="uid://bk7id76myph2m" path="res://art/source/skeleton/parts/lv1/leg_right.svg" id="63_dyy8d"]
+[ext_resource type="Texture2D" uid="uid://qkdbqeygrwew" path="res://art/source/skeleton/parts/lv2/leg_right.svg" id="64_xtmr6"]
+[ext_resource type="Texture2D" uid="uid://ceic8oubbqtsp" path="res://art/source/skeleton/parts/lv3/leg_right.svg" id="65_2flo8"]
+[ext_resource type="Texture2D" uid="uid://dndi7rpj4nwth" path="res://art/source/skeleton/parts/lv4/leg_right.svg" id="66_lee3c"]
+[ext_resource type="Texture2D" uid="uid://dqklslwye3flb" path="res://art/source/skeleton/parts/lv5/leg_right.svg" id="67_yufhd"]
+[ext_resource type="Texture2D" uid="uid://besqmqoik2seu" path="res://art/source/skeleton/parts/lv1/weapon.svg" id="68_jynt3"]
+[ext_resource type="Texture2D" uid="uid://b6jm3t2tkc6dr" path="res://art/source/skeleton/parts/lv2/weapon.svg" id="69_6kmg0"]
+[ext_resource type="Texture2D" uid="uid://bedrceikpdsid" path="res://art/source/skeleton/parts/lv3/weapon.svg" id="70_vt3kx"]
+[ext_resource type="Texture2D" uid="uid://b44nof7caauag" path="res://art/source/skeleton/parts/lv4/weapon.svg" id="71_068sl"]
+[ext_resource type="Texture2D" uid="uid://kiwko88gwd8t" path="res://art/source/skeleton/parts/lv5/weapon.svg" id="72_5gd2j"]
+[ext_resource type="Texture2D" uid="uid://dttre16d7j8h3" path="res://assets/debug/priest/replay.svg" id="73_72psy"]
+[ext_resource type="Texture2D" uid="uid://ctg8it7gq2lu5" path="res://assets/debug/priest/pause.svg" id="74_ibjw8"]
+[ext_resource type="Texture2D" uid="uid://dhsh6mte7nngf" path="res://assets/debug/priest/mirror.svg" id="75_qo27n"]
+
+[sub_resource type="Theme" id="Theme_72psy"]
+default_font = ExtResource("1_hpugx")
+default_font_size = 22
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ibjw8"]
+bg_color = Color(0.2, 0.2627451, 0.29803923, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qo27n"]
+bg_color = Color(0.85882354, 0.45882353, 0.39215687, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xlvkc"]
+bg_color = Color(0.2, 0.2627451, 0.29803923, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_c6f1f"]
+bg_color = Color(0.85882354, 0.45882353, 0.39215687, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_nma6j"]
+bg_color = Color(0.13333334, 0.2, 0.23137255, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.28627452, 0.39215687, 0.36078432, 1)
+corner_radius_top_left = 9
+corner_radius_top_right = 9
+corner_radius_bottom_right = 9
+corner_radius_bottom_left = 9
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_52e50"]
+bg_color = Color(0.20392157, 0.3019608, 0.2627451, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.63529414, 0.91764706, 0.75686276, 1)
+corner_radius_top_left = 9
+corner_radius_top_right = 9
+corner_radius_bottom_right = 9
+corner_radius_bottom_left = 9
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_y81t2"]
+bg_color = Color(0.13333334, 0.2, 0.23137255, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.28627452, 0.39215687, 0.36078432, 1)
+corner_radius_top_left = 9
+corner_radius_top_right = 9
+corner_radius_bottom_right = 9
+corner_radius_bottom_left = 9
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hens1"]
+bg_color = Color(0.13333334, 0.2, 0.23137255, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.63529414, 0.91764706, 0.75686276, 1)
+corner_radius_top_left = 9
+corner_radius_top_right = 9
+corner_radius_bottom_right = 9
+corner_radius_bottom_left = 9
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6hwv8"]
+bg_color = Color(0.13333334, 0.2, 0.23137255, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.28627452, 0.39215687, 0.36078432, 1)
+corner_radius_top_left = 9
+corner_radius_top_right = 9
+corner_radius_bottom_right = 9
+corner_radius_bottom_left = 9
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gdgq3"]
+bg_color = Color(0.20392157, 0.3019608, 0.2627451, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.63529414, 0.91764706, 0.75686276, 1)
+corner_radius_top_left = 9
+corner_radius_top_right = 9
+corner_radius_bottom_right = 9
+corner_radius_bottom_left = 9
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ry8f7"]
+bg_color = Color(0.13333334, 0.2, 0.23137255, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.28627452, 0.39215687, 0.36078432, 1)
+corner_radius_top_left = 9
+corner_radius_top_right = 9
+corner_radius_bottom_right = 9
+corner_radius_bottom_left = 9
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2dh76"]
+bg_color = Color(0.13333334, 0.2, 0.23137255, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.63529414, 0.91764706, 0.75686276, 1)
+corner_radius_top_left = 9
+corner_radius_top_right = 9
+corner_radius_bottom_right = 9
+corner_radius_bottom_left = 9
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6ycjf"]
+bg_color = Color(0.13333334, 0.2, 0.23137255, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.28627452, 0.39215687, 0.36078432, 1)
+corner_radius_top_left = 9
+corner_radius_top_right = 9
+corner_radius_bottom_right = 9
+corner_radius_bottom_left = 9
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5511d"]
+bg_color = Color(0.20392157, 0.3019608, 0.2627451, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.63529414, 0.91764706, 0.75686276, 1)
+corner_radius_top_left = 9
+corner_radius_top_right = 9
+corner_radius_bottom_right = 9
+corner_radius_bottom_left = 9
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ipsvd"]
+bg_color = Color(0.13333334, 0.2, 0.23137255, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.28627452, 0.39215687, 0.36078432, 1)
+corner_radius_top_left = 9
+corner_radius_top_right = 9
+corner_radius_bottom_right = 9
+corner_radius_bottom_left = 9
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xo5er"]
+bg_color = Color(0.13333334, 0.2, 0.23137255, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.63529414, 0.91764706, 0.75686276, 1)
+corner_radius_top_left = 9
+corner_radius_top_right = 9
+corner_radius_bottom_right = 9
+corner_radius_bottom_left = 9
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_q2ouj"]
+bg_color = Color(0.13333334, 0.2, 0.23137255, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.28627452, 0.39215687, 0.36078432, 1)
+corner_radius_top_left = 9
+corner_radius_top_right = 9
+corner_radius_bottom_right = 9
+corner_radius_bottom_left = 9
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ggs8w"]
+bg_color = Color(0.20392157, 0.3019608, 0.2627451, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.63529414, 0.91764706, 0.75686276, 1)
+corner_radius_top_left = 9
+corner_radius_top_right = 9
+corner_radius_bottom_right = 9
+corner_radius_bottom_left = 9
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4qx04"]
+bg_color = Color(0.13333334, 0.2, 0.23137255, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.28627452, 0.39215687, 0.36078432, 1)
+corner_radius_top_left = 9
+corner_radius_top_right = 9
+corner_radius_bottom_right = 9
+corner_radius_bottom_left = 9
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_amfx8"]
+bg_color = Color(0.13333334, 0.2, 0.23137255, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.63529414, 0.91764706, 0.75686276, 1)
+corner_radius_top_left = 9
+corner_radius_top_right = 9
+corner_radius_bottom_right = 9
+corner_radius_bottom_left = 9
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8q02j"]
+bg_color = Color(0.13333334, 0.2, 0.23137255, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.28627452, 0.39215687, 0.36078432, 1)
+corner_radius_top_left = 9
+corner_radius_top_right = 9
+corner_radius_bottom_right = 9
+corner_radius_bottom_left = 9
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rjfd6"]
+bg_color = Color(0.20392157, 0.3019608, 0.2627451, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.63529414, 0.91764706, 0.75686276, 1)
+corner_radius_top_left = 9
+corner_radius_top_right = 9
+corner_radius_bottom_right = 9
+corner_radius_bottom_left = 9
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ahv4q"]
+bg_color = Color(0.13333334, 0.2, 0.23137255, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.28627452, 0.39215687, 0.36078432, 1)
+corner_radius_top_left = 9
+corner_radius_top_right = 9
+corner_radius_bottom_right = 9
+corner_radius_bottom_left = 9
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_e5467"]
+bg_color = Color(0.13333334, 0.2, 0.23137255, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.63529414, 0.91764706, 0.75686276, 1)
+corner_radius_top_left = 9
+corner_radius_top_right = 9
+corner_radius_bottom_right = 9
+corner_radius_bottom_left = 9
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bobh6"]
+bg_color = Color(0.13333334, 0.2, 0.23137255, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.28627452, 0.39215687, 0.36078432, 1)
+corner_radius_top_left = 9
+corner_radius_top_right = 9
+corner_radius_bottom_right = 9
+corner_radius_bottom_left = 9
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ipg8s"]
+bg_color = Color(0.20392157, 0.3019608, 0.2627451, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.63529414, 0.91764706, 0.75686276, 1)
+corner_radius_top_left = 9
+corner_radius_top_right = 9
+corner_radius_bottom_right = 9
+corner_radius_bottom_left = 9
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dsf7d"]
+bg_color = Color(0.13333334, 0.2, 0.23137255, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.28627452, 0.39215687, 0.36078432, 1)
+corner_radius_top_left = 9
+corner_radius_top_right = 9
+corner_radius_bottom_right = 9
+corner_radius_bottom_left = 9
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_s3e6a"]
+bg_color = Color(0.13333334, 0.2, 0.23137255, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.63529414, 0.91764706, 0.75686276, 1)
+corner_radius_top_left = 9
+corner_radius_top_right = 9
+corner_radius_bottom_right = 9
+corner_radius_bottom_left = 9
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_uw4bx"]
+bg_color = Color(0.13333334, 0.2, 0.23137255, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.28627452, 0.39215687, 0.36078432, 1)
+corner_radius_top_left = 9
+corner_radius_top_right = 9
+corner_radius_bottom_right = 9
+corner_radius_bottom_left = 9
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_k7pfa"]
+bg_color = Color(0.20392157, 0.3019608, 0.2627451, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.63529414, 0.91764706, 0.75686276, 1)
+corner_radius_top_left = 9
+corner_radius_top_right = 9
+corner_radius_bottom_right = 9
+corner_radius_bottom_left = 9
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fpd4y"]
+bg_color = Color(0.13333334, 0.2, 0.23137255, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.28627452, 0.39215687, 0.36078432, 1)
+corner_radius_top_left = 9
+corner_radius_top_right = 9
+corner_radius_bottom_right = 9
+corner_radius_bottom_left = 9
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hwq0u"]
+bg_color = Color(0.13333334, 0.2, 0.23137255, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.63529414, 0.91764706, 0.75686276, 1)
+corner_radius_top_left = 9
+corner_radius_top_right = 9
+corner_radius_bottom_right = 9
+corner_radius_bottom_left = 9
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_pe2ri"]
+bg_color = Color(0.13333334, 0.2, 0.23137255, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.28627452, 0.39215687, 0.36078432, 1)
+corner_radius_top_left = 9
+corner_radius_top_right = 9
+corner_radius_bottom_right = 9
+corner_radius_bottom_left = 9
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0wrd5"]
+bg_color = Color(0.20392157, 0.3019608, 0.2627451, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.63529414, 0.91764706, 0.75686276, 1)
+corner_radius_top_left = 9
+corner_radius_top_right = 9
+corner_radius_bottom_right = 9
+corner_radius_bottom_left = 9
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_epvar"]
+bg_color = Color(0.13333334, 0.2, 0.23137255, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.28627452, 0.39215687, 0.36078432, 1)
+corner_radius_top_left = 9
+corner_radius_top_right = 9
+corner_radius_bottom_right = 9
+corner_radius_bottom_left = 9
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_whqnb"]
+bg_color = Color(0.13333334, 0.2, 0.23137255, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.63529414, 0.91764706, 0.75686276, 1)
+corner_radius_top_left = 9
+corner_radius_top_right = 9
+corner_radius_bottom_right = 9
+corner_radius_bottom_left = 9
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1elpj"]
+bg_color = Color(0.13333334, 0.2, 0.23137255, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.28627452, 0.39215687, 0.36078432, 1)
+corner_radius_top_left = 9
+corner_radius_top_right = 9
+corner_radius_bottom_right = 9
+corner_radius_bottom_left = 9
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wim5p"]
+bg_color = Color(0.20392157, 0.3019608, 0.2627451, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.63529414, 0.91764706, 0.75686276, 1)
+corner_radius_top_left = 9
+corner_radius_top_right = 9
+corner_radius_bottom_right = 9
+corner_radius_bottom_left = 9
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_eejgb"]
+bg_color = Color(0.13333334, 0.2, 0.23137255, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.28627452, 0.39215687, 0.36078432, 1)
+corner_radius_top_left = 9
+corner_radius_top_right = 9
+corner_radius_bottom_right = 9
+corner_radius_bottom_left = 9
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_p3hlj"]
+bg_color = Color(0.13333334, 0.2, 0.23137255, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.63529414, 0.91764706, 0.75686276, 1)
+corner_radius_top_left = 9
+corner_radius_top_right = 9
+corner_radius_bottom_right = 9
+corner_radius_bottom_left = 9
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mn0p4"]
+bg_color = Color(0.13333334, 0.2, 0.23137255, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.28627452, 0.39215687, 0.36078432, 1)
+corner_radius_top_left = 9
+corner_radius_top_right = 9
+corner_radius_bottom_right = 9
+corner_radius_bottom_left = 9
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5qrdc"]
+bg_color = Color(0.20392157, 0.3019608, 0.2627451, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.63529414, 0.91764706, 0.75686276, 1)
+corner_radius_top_left = 9
+corner_radius_top_right = 9
+corner_radius_bottom_right = 9
+corner_radius_bottom_left = 9
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lvhjv"]
+bg_color = Color(0.13333334, 0.2, 0.23137255, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.28627452, 0.39215687, 0.36078432, 1)
+corner_radius_top_left = 9
+corner_radius_top_right = 9
+corner_radius_bottom_right = 9
+corner_radius_bottom_left = 9
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1e36e"]
+bg_color = Color(0.13333334, 0.2, 0.23137255, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.63529414, 0.91764706, 0.75686276, 1)
+corner_radius_top_left = 9
+corner_radius_top_right = 9
+corner_radius_bottom_right = 9
+corner_radius_bottom_left = 9
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6n006"]
+bg_color = Color(0.13333334, 0.2, 0.23137255, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.28627452, 0.39215687, 0.36078432, 1)
+corner_radius_top_left = 9
+corner_radius_top_right = 9
+corner_radius_bottom_right = 9
+corner_radius_bottom_left = 9
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rcay5"]
+bg_color = Color(0.20392157, 0.3019608, 0.2627451, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.63529414, 0.91764706, 0.75686276, 1)
+corner_radius_top_left = 9
+corner_radius_top_right = 9
+corner_radius_bottom_right = 9
+corner_radius_bottom_left = 9
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_yojch"]
+bg_color = Color(0.13333334, 0.2, 0.23137255, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.28627452, 0.39215687, 0.36078432, 1)
+corner_radius_top_left = 9
+corner_radius_top_right = 9
+corner_radius_bottom_right = 9
+corner_radius_bottom_left = 9
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_l4wpe"]
+bg_color = Color(0.13333334, 0.2, 0.23137255, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.63529414, 0.91764706, 0.75686276, 1)
+corner_radius_top_left = 9
+corner_radius_top_right = 9
+corner_radius_bottom_right = 9
+corner_radius_bottom_left = 9
+
+[node name="PriestAnimationReview" type="Control" unique_id=966602580]
+layout_mode = 3
+anchors_preset = 0
+anchor_right = 1.0
+anchor_bottom = 1.0
+theme = SubResource("Theme_72psy")
+script = ExtResource("2_gnucr")
+shot_scene = ExtResource("3_xcrhc")
+impact_scene = ExtResource("4_72psy")
+mark_scene = ExtResource("5_ibjw8")
+consecration_scene = ExtResource("6_qo27n")
+
+[node name="Background" type="ColorRect" parent="." unique_id=967744264]
+z_index = -100
+layout_mode = 0
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+color = Color(0.0627451, 0.09411765, 0.1254902, 1)
+
+[node name="Center" type="Control" parent="." unique_id=1953418971]
+anchors_preset = 0
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -360.0
+offset_right = 360.0
+offset_bottom = 1280.0
+
+[node name="Title" type="Label" parent="Center" unique_id=1657668876]
+layout_mode = 0
+offset_left = 18.0
+offset_top = 14.0
+offset_right = 702.0
+offset_bottom = 56.0
+theme_override_colors/font_color = Color(1, 0.8784314, 0.627451, 1)
+theme_override_font_sizes/font_size = 32
+text = "ЖРЕЦ СВЕТА · АНИМАЦИИ"
+
+[node name="Description" type="Label" parent="Center" unique_id=1394210107]
+layout_mode = 0
+offset_left = 20.0
+offset_top = 68.0
+offset_right = 700.0
+offset_bottom = 154.0
+theme_override_colors/font_color = Color(0.827451, 0.8745098, 0.8509804, 1)
+theme_override_font_sizes/font_size = 26
+autowrap_mode = 3
+
+[node name="Stage" type="Node2D" parent="Center" unique_id=1729120743]
+
+[node name="Pedestal0" type="Sprite2D" parent="Center/Stage" unique_id=145521400]
+z_index = -5
+position = Vector2(170, 407)
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("7_xlvkc")
+
+[node name="Pedestal1" type="Sprite2D" parent="Center/Stage" unique_id=1873360731]
+z_index = -5
+position = Vector2(145, 832)
+scale = Vector2(0.7, 0.7)
+texture = ExtResource("7_xlvkc")
+
+[node name="Pedestal2" type="Sprite2D" parent="Center/Stage" unique_id=653550833]
+z_index = -5
+position = Vector2(76, 602)
+scale = Vector2(0.7, 0.7)
+texture = ExtResource("7_xlvkc")
+
+[node name="Pedestal3" type="Sprite2D" parent="Center/Stage" unique_id=722115494]
+z_index = -5
+position = Vector2(218, 602)
+scale = Vector2(0.7, 0.7)
+texture = ExtResource("7_xlvkc")
+
+[node name="Pedestal4" type="Sprite2D" parent="Center/Stage" unique_id=945926543]
+z_index = -5
+position = Vector2(360, 602)
+scale = Vector2(0.7, 0.7)
+texture = ExtResource("7_xlvkc")
+
+[node name="Pedestal5" type="Sprite2D" parent="Center/Stage" unique_id=481417517]
+z_index = -5
+position = Vector2(502, 602)
+scale = Vector2(0.7, 0.7)
+texture = ExtResource("7_xlvkc")
+
+[node name="Pedestal6" type="Sprite2D" parent="Center/Stage" unique_id=1084190370]
+z_index = -5
+position = Vector2(644, 602)
+scale = Vector2(0.7, 0.7)
+texture = ExtResource("7_xlvkc")
+
+[node name="Hero" type="Node2D" parent="Center/Stage" unique_id=1683236232 instance=ExtResource("8_c6f1f")]
+position = Vector2(170, 310)
+scale = Vector2(1.1, 1.1)
+script = ExtResource("9_nma6j")
+level = 5
+part_variants = Dictionary[StringName, Array]({
+&"back_arm": [ExtResource("10_52e50"), ExtResource("11_y81t2"), ExtResource("12_hens1"), ExtResource("13_6hwv8"), ExtResource("14_gdgq3")],
+&"body": [ExtResource("15_ry8f7"), ExtResource("16_2dh76"), ExtResource("17_6ycjf"), ExtResource("18_5511d"), ExtResource("19_ipsvd")],
+&"front_arm": [ExtResource("20_xo5er"), ExtResource("21_q2ouj"), ExtResource("22_ggs8w"), ExtResource("23_4qx04"), ExtResource("24_amfx8")],
+&"halo": [null, null, null, null, ExtResource("25_8q02j")],
+&"head": [ExtResource("26_rjfd6"), ExtResource("27_ahv4q"), ExtResource("28_e5467"), ExtResource("29_bobh6"), ExtResource("30_ipg8s")],
+&"leg_left": [ExtResource("31_dsf7d"), ExtResource("31_dsf7d"), ExtResource("31_dsf7d"), ExtResource("31_dsf7d"), ExtResource("31_dsf7d")],
+&"leg_right": [ExtResource("32_s3e6a"), ExtResource("32_s3e6a"), ExtResource("32_s3e6a"), ExtResource("32_s3e6a"), ExtResource("32_s3e6a")],
+&"staff": [ExtResource("33_uw4bx"), ExtResource("33_uw4bx"), ExtResource("34_k7pfa"), ExtResource("35_fpd4y"), ExtResource("35_fpd4y")]
+})
+part_paths = Dictionary[StringName, NodePath]({
+&"back_arm": NodePath("Skeleton2D/Root/Body/BackArm/Sprite"),
+&"body": NodePath("Skeleton2D/Root/Body/Sprite"),
+&"front_arm": NodePath("Skeleton2D/Root/Body/FrontArm/Sprite"),
+&"halo": NodePath("Skeleton2D/Root/Body/Head/Halo"),
+&"head": NodePath("Skeleton2D/Root/Body/Head/Sprite"),
+&"leg_left": NodePath("Skeleton2D/Root/Body/LeftLeg/Sprite"),
+&"leg_right": NodePath("Skeleton2D/Root/Body/RightLeg/Sprite"),
+&"staff": NodePath("Skeleton2D/Root/Body/FrontArm/Staff/Sprite")
+})
+
+[node name="Target" type="Node2D" parent="Center/Stage" unique_id=204046988]
+position = Vector2(535, 330)
+
+[node name="Actor" type="Node2D" parent="Center/Stage/Target" unique_id=1619447467 instance=ExtResource("36_hwq0u")]
+scale = Vector2(0.8, 0.8)
+script = ExtResource("37_pe2ri")
+entity_key = &"skeleton"
+level_ids = PackedInt32Array(1, 2, 3, 4, 5)
+part_variants = Dictionary[StringName, Array]({
+&"back_arm": [ExtResource("38_0wrd5"), ExtResource("39_epvar"), ExtResource("40_whqnb"), ExtResource("41_1elpj"), ExtResource("42_wim5p")],
+&"body": [ExtResource("43_eejgb"), ExtResource("44_p3hlj"), ExtResource("45_mn0p4"), ExtResource("46_5qrdc"), ExtResource("47_lvhjv")],
+&"front_arm": [ExtResource("48_1e36e"), ExtResource("49_6n006"), ExtResource("50_rcay5"), ExtResource("51_yojch"), ExtResource("52_l4wpe")],
+&"head": [ExtResource("53_28bpq"), ExtResource("54_t7x5j"), ExtResource("55_6d0iu"), ExtResource("56_xoibq"), ExtResource("57_kp2mb")],
+&"leg_left": [ExtResource("58_j44rp"), ExtResource("59_xqks6"), ExtResource("60_4fm8m"), ExtResource("61_tr3mx"), ExtResource("62_6ghgy")],
+&"leg_right": [ExtResource("63_dyy8d"), ExtResource("64_xtmr6"), ExtResource("65_2flo8"), ExtResource("66_lee3c"), ExtResource("67_yufhd")],
+&"weapon": [ExtResource("68_jynt3"), ExtResource("69_6kmg0"), ExtResource("70_vt3kx"), ExtResource("71_068sl"), ExtResource("72_5gd2j")]
+})
+part_paths = Dictionary[StringName, NodePath]({
+&"back_arm": NodePath("Skeleton2D/Root/Body/BackArm/Sprite"),
+&"body": NodePath("Skeleton2D/Root/Body/Sprite"),
+&"front_arm": NodePath("Skeleton2D/Root/Body/FrontArm/Sprite"),
+&"head": NodePath("Skeleton2D/Root/Body/Head/Sprite"),
+&"leg_left": NodePath("Skeleton2D/Root/Body/LeftLeg/Sprite"),
+&"leg_right": NodePath("Skeleton2D/Root/Body/RightLeg/Sprite"),
+&"weapon": NodePath("Skeleton2D/Root/Body/FrontArm/Weapon/Sprite")
+})
+ability_levels = Dictionary[StringName, int]({
+&"bone_shield": 5
+})
+
+[node name="Health" type="ProgressBar" parent="Center/Stage/Target" unique_id=1607438039]
+z_index = 10
+offset_left = -45.0
+offset_top = -85.0
+offset_right = 45.0
+offset_bottom = -65.0
+theme_override_styles/background = SubResource("StyleBoxFlat_ibjw8")
+theme_override_styles/fill = SubResource("StyleBoxFlat_qo27n")
+value = 75.0
+show_percentage = false
+
+[node name="PeerA" type="Node2D" parent="Center/Stage/Target" unique_id=1989363337 instance=ExtResource("36_hwq0u")]
+position = Vector2(-92, 40)
+scale = Vector2(0.45, 0.45)
+script = ExtResource("37_pe2ri")
+entity_key = &"skeleton"
+level_ids = PackedInt32Array(1, 2, 3, 4, 5)
+part_variants = Dictionary[StringName, Array]({
+&"back_arm": [ExtResource("38_0wrd5"), ExtResource("39_epvar"), ExtResource("40_whqnb"), ExtResource("41_1elpj"), ExtResource("42_wim5p")],
+&"body": [ExtResource("43_eejgb"), ExtResource("44_p3hlj"), ExtResource("45_mn0p4"), ExtResource("46_5qrdc"), ExtResource("47_lvhjv")],
+&"front_arm": [ExtResource("48_1e36e"), ExtResource("49_6n006"), ExtResource("50_rcay5"), ExtResource("51_yojch"), ExtResource("52_l4wpe")],
+&"head": [ExtResource("53_28bpq"), ExtResource("54_t7x5j"), ExtResource("55_6d0iu"), ExtResource("56_xoibq"), ExtResource("57_kp2mb")],
+&"leg_left": [ExtResource("58_j44rp"), ExtResource("59_xqks6"), ExtResource("60_4fm8m"), ExtResource("61_tr3mx"), ExtResource("62_6ghgy")],
+&"leg_right": [ExtResource("63_dyy8d"), ExtResource("64_xtmr6"), ExtResource("65_2flo8"), ExtResource("66_lee3c"), ExtResource("67_yufhd")],
+&"weapon": [ExtResource("68_jynt3"), ExtResource("69_6kmg0"), ExtResource("70_vt3kx"), ExtResource("71_068sl"), ExtResource("72_5gd2j")]
+})
+part_paths = Dictionary[StringName, NodePath]({
+&"back_arm": NodePath("Skeleton2D/Root/Body/BackArm/Sprite"),
+&"body": NodePath("Skeleton2D/Root/Body/Sprite"),
+&"front_arm": NodePath("Skeleton2D/Root/Body/FrontArm/Sprite"),
+&"head": NodePath("Skeleton2D/Root/Body/Head/Sprite"),
+&"leg_left": NodePath("Skeleton2D/Root/Body/LeftLeg/Sprite"),
+&"leg_right": NodePath("Skeleton2D/Root/Body/RightLeg/Sprite"),
+&"weapon": NodePath("Skeleton2D/Root/Body/FrontArm/Weapon/Sprite")
+})
+ability_levels = Dictionary[StringName, int]({
+&"bone_shield": 5
+})
+
+[node name="PeerB" type="Node2D" parent="Center/Stage/Target" unique_id=91900997 instance=ExtResource("36_hwq0u")]
+position = Vector2(92, 40)
+scale = Vector2(0.45, 0.45)
+script = ExtResource("37_pe2ri")
+entity_key = &"skeleton"
+level_ids = PackedInt32Array(1, 2, 3, 4, 5)
+part_variants = Dictionary[StringName, Array]({
+&"back_arm": [ExtResource("38_0wrd5"), ExtResource("39_epvar"), ExtResource("40_whqnb"), ExtResource("41_1elpj"), ExtResource("42_wim5p")],
+&"body": [ExtResource("43_eejgb"), ExtResource("44_p3hlj"), ExtResource("45_mn0p4"), ExtResource("46_5qrdc"), ExtResource("47_lvhjv")],
+&"front_arm": [ExtResource("48_1e36e"), ExtResource("49_6n006"), ExtResource("50_rcay5"), ExtResource("51_yojch"), ExtResource("52_l4wpe")],
+&"head": [ExtResource("53_28bpq"), ExtResource("54_t7x5j"), ExtResource("55_6d0iu"), ExtResource("56_xoibq"), ExtResource("57_kp2mb")],
+&"leg_left": [ExtResource("58_j44rp"), ExtResource("59_xqks6"), ExtResource("60_4fm8m"), ExtResource("61_tr3mx"), ExtResource("62_6ghgy")],
+&"leg_right": [ExtResource("63_dyy8d"), ExtResource("64_xtmr6"), ExtResource("65_2flo8"), ExtResource("66_lee3c"), ExtResource("67_yufhd")],
+&"weapon": [ExtResource("68_jynt3"), ExtResource("69_6kmg0"), ExtResource("70_vt3kx"), ExtResource("71_068sl"), ExtResource("72_5gd2j")]
+})
+part_paths = Dictionary[StringName, NodePath]({
+&"back_arm": NodePath("Skeleton2D/Root/Body/BackArm/Sprite"),
+&"body": NodePath("Skeleton2D/Root/Body/Sprite"),
+&"front_arm": NodePath("Skeleton2D/Root/Body/FrontArm/Sprite"),
+&"head": NodePath("Skeleton2D/Root/Body/Head/Sprite"),
+&"leg_left": NodePath("Skeleton2D/Root/Body/LeftLeg/Sprite"),
+&"leg_right": NodePath("Skeleton2D/Root/Body/RightLeg/Sprite"),
+&"weapon": NodePath("Skeleton2D/Root/Body/FrontArm/Weapon/Sprite")
+})
+ability_levels = Dictionary[StringName, int]({
+&"bone_shield": 5
+})
+
+[node name="Levels" type="Node2D" parent="Center/Stage" unique_id=1091367393]
+
+[node name="Level1" type="Node2D" parent="Center/Stage/Levels" unique_id=12828962 instance=ExtResource("8_c6f1f")]
+position = Vector2(76, 570)
+scale = Vector2(0.390625, 0.390625)
+script = ExtResource("9_nma6j")
+part_variants = Dictionary[StringName, Array]({
+&"back_arm": [ExtResource("10_52e50"), ExtResource("11_y81t2"), ExtResource("12_hens1"), ExtResource("13_6hwv8"), ExtResource("14_gdgq3")],
+&"body": [ExtResource("15_ry8f7"), ExtResource("16_2dh76"), ExtResource("17_6ycjf"), ExtResource("18_5511d"), ExtResource("19_ipsvd")],
+&"front_arm": [ExtResource("20_xo5er"), ExtResource("21_q2ouj"), ExtResource("22_ggs8w"), ExtResource("23_4qx04"), ExtResource("24_amfx8")],
+&"halo": [null, null, null, null, ExtResource("25_8q02j")],
+&"head": [ExtResource("26_rjfd6"), ExtResource("27_ahv4q"), ExtResource("28_e5467"), ExtResource("29_bobh6"), ExtResource("30_ipg8s")],
+&"leg_left": [ExtResource("31_dsf7d"), ExtResource("31_dsf7d"), ExtResource("31_dsf7d"), ExtResource("31_dsf7d"), ExtResource("31_dsf7d")],
+&"leg_right": [ExtResource("32_s3e6a"), ExtResource("32_s3e6a"), ExtResource("32_s3e6a"), ExtResource("32_s3e6a"), ExtResource("32_s3e6a")],
+&"staff": [ExtResource("33_uw4bx"), ExtResource("33_uw4bx"), ExtResource("34_k7pfa"), ExtResource("35_fpd4y"), ExtResource("35_fpd4y")]
+})
+part_paths = Dictionary[StringName, NodePath]({
+&"back_arm": NodePath("Skeleton2D/Root/Body/BackArm/Sprite"),
+&"body": NodePath("Skeleton2D/Root/Body/Sprite"),
+&"front_arm": NodePath("Skeleton2D/Root/Body/FrontArm/Sprite"),
+&"halo": NodePath("Skeleton2D/Root/Body/Head/Halo"),
+&"head": NodePath("Skeleton2D/Root/Body/Head/Sprite"),
+&"leg_left": NodePath("Skeleton2D/Root/Body/LeftLeg/Sprite"),
+&"leg_right": NodePath("Skeleton2D/Root/Body/RightLeg/Sprite"),
+&"staff": NodePath("Skeleton2D/Root/Body/FrontArm/Staff/Sprite")
+})
+
+[node name="Level2" type="Node2D" parent="Center/Stage/Levels" unique_id=1476855348 instance=ExtResource("8_c6f1f")]
+position = Vector2(218, 570)
+scale = Vector2(0.390625, 0.390625)
+script = ExtResource("9_nma6j")
+level = 2
+part_variants = Dictionary[StringName, Array]({
+&"back_arm": [ExtResource("10_52e50"), ExtResource("11_y81t2"), ExtResource("12_hens1"), ExtResource("13_6hwv8"), ExtResource("14_gdgq3")],
+&"body": [ExtResource("15_ry8f7"), ExtResource("16_2dh76"), ExtResource("17_6ycjf"), ExtResource("18_5511d"), ExtResource("19_ipsvd")],
+&"front_arm": [ExtResource("20_xo5er"), ExtResource("21_q2ouj"), ExtResource("22_ggs8w"), ExtResource("23_4qx04"), ExtResource("24_amfx8")],
+&"halo": [null, null, null, null, ExtResource("25_8q02j")],
+&"head": [ExtResource("26_rjfd6"), ExtResource("27_ahv4q"), ExtResource("28_e5467"), ExtResource("29_bobh6"), ExtResource("30_ipg8s")],
+&"leg_left": [ExtResource("31_dsf7d"), ExtResource("31_dsf7d"), ExtResource("31_dsf7d"), ExtResource("31_dsf7d"), ExtResource("31_dsf7d")],
+&"leg_right": [ExtResource("32_s3e6a"), ExtResource("32_s3e6a"), ExtResource("32_s3e6a"), ExtResource("32_s3e6a"), ExtResource("32_s3e6a")],
+&"staff": [ExtResource("33_uw4bx"), ExtResource("33_uw4bx"), ExtResource("34_k7pfa"), ExtResource("35_fpd4y"), ExtResource("35_fpd4y")]
+})
+part_paths = Dictionary[StringName, NodePath]({
+&"back_arm": NodePath("Skeleton2D/Root/Body/BackArm/Sprite"),
+&"body": NodePath("Skeleton2D/Root/Body/Sprite"),
+&"front_arm": NodePath("Skeleton2D/Root/Body/FrontArm/Sprite"),
+&"halo": NodePath("Skeleton2D/Root/Body/Head/Halo"),
+&"head": NodePath("Skeleton2D/Root/Body/Head/Sprite"),
+&"leg_left": NodePath("Skeleton2D/Root/Body/LeftLeg/Sprite"),
+&"leg_right": NodePath("Skeleton2D/Root/Body/RightLeg/Sprite"),
+&"staff": NodePath("Skeleton2D/Root/Body/FrontArm/Staff/Sprite")
+})
+
+[node name="Level3" type="Node2D" parent="Center/Stage/Levels" unique_id=656901223 instance=ExtResource("8_c6f1f")]
+position = Vector2(360, 570)
+scale = Vector2(0.390625, 0.390625)
+script = ExtResource("9_nma6j")
+level = 3
+part_variants = Dictionary[StringName, Array]({
+&"back_arm": [ExtResource("10_52e50"), ExtResource("11_y81t2"), ExtResource("12_hens1"), ExtResource("13_6hwv8"), ExtResource("14_gdgq3")],
+&"body": [ExtResource("15_ry8f7"), ExtResource("16_2dh76"), ExtResource("17_6ycjf"), ExtResource("18_5511d"), ExtResource("19_ipsvd")],
+&"front_arm": [ExtResource("20_xo5er"), ExtResource("21_q2ouj"), ExtResource("22_ggs8w"), ExtResource("23_4qx04"), ExtResource("24_amfx8")],
+&"halo": [null, null, null, null, ExtResource("25_8q02j")],
+&"head": [ExtResource("26_rjfd6"), ExtResource("27_ahv4q"), ExtResource("28_e5467"), ExtResource("29_bobh6"), ExtResource("30_ipg8s")],
+&"leg_left": [ExtResource("31_dsf7d"), ExtResource("31_dsf7d"), ExtResource("31_dsf7d"), ExtResource("31_dsf7d"), ExtResource("31_dsf7d")],
+&"leg_right": [ExtResource("32_s3e6a"), ExtResource("32_s3e6a"), ExtResource("32_s3e6a"), ExtResource("32_s3e6a"), ExtResource("32_s3e6a")],
+&"staff": [ExtResource("33_uw4bx"), ExtResource("33_uw4bx"), ExtResource("34_k7pfa"), ExtResource("35_fpd4y"), ExtResource("35_fpd4y")]
+})
+part_paths = Dictionary[StringName, NodePath]({
+&"back_arm": NodePath("Skeleton2D/Root/Body/BackArm/Sprite"),
+&"body": NodePath("Skeleton2D/Root/Body/Sprite"),
+&"front_arm": NodePath("Skeleton2D/Root/Body/FrontArm/Sprite"),
+&"halo": NodePath("Skeleton2D/Root/Body/Head/Halo"),
+&"head": NodePath("Skeleton2D/Root/Body/Head/Sprite"),
+&"leg_left": NodePath("Skeleton2D/Root/Body/LeftLeg/Sprite"),
+&"leg_right": NodePath("Skeleton2D/Root/Body/RightLeg/Sprite"),
+&"staff": NodePath("Skeleton2D/Root/Body/FrontArm/Staff/Sprite")
+})
+
+[node name="Level4" type="Node2D" parent="Center/Stage/Levels" unique_id=1737650097 instance=ExtResource("8_c6f1f")]
+position = Vector2(502, 570)
+scale = Vector2(0.390625, 0.390625)
+script = ExtResource("9_nma6j")
+level = 4
+part_variants = Dictionary[StringName, Array]({
+&"back_arm": [ExtResource("10_52e50"), ExtResource("11_y81t2"), ExtResource("12_hens1"), ExtResource("13_6hwv8"), ExtResource("14_gdgq3")],
+&"body": [ExtResource("15_ry8f7"), ExtResource("16_2dh76"), ExtResource("17_6ycjf"), ExtResource("18_5511d"), ExtResource("19_ipsvd")],
+&"front_arm": [ExtResource("20_xo5er"), ExtResource("21_q2ouj"), ExtResource("22_ggs8w"), ExtResource("23_4qx04"), ExtResource("24_amfx8")],
+&"halo": [null, null, null, null, ExtResource("25_8q02j")],
+&"head": [ExtResource("26_rjfd6"), ExtResource("27_ahv4q"), ExtResource("28_e5467"), ExtResource("29_bobh6"), ExtResource("30_ipg8s")],
+&"leg_left": [ExtResource("31_dsf7d"), ExtResource("31_dsf7d"), ExtResource("31_dsf7d"), ExtResource("31_dsf7d"), ExtResource("31_dsf7d")],
+&"leg_right": [ExtResource("32_s3e6a"), ExtResource("32_s3e6a"), ExtResource("32_s3e6a"), ExtResource("32_s3e6a"), ExtResource("32_s3e6a")],
+&"staff": [ExtResource("33_uw4bx"), ExtResource("33_uw4bx"), ExtResource("34_k7pfa"), ExtResource("35_fpd4y"), ExtResource("35_fpd4y")]
+})
+part_paths = Dictionary[StringName, NodePath]({
+&"back_arm": NodePath("Skeleton2D/Root/Body/BackArm/Sprite"),
+&"body": NodePath("Skeleton2D/Root/Body/Sprite"),
+&"front_arm": NodePath("Skeleton2D/Root/Body/FrontArm/Sprite"),
+&"halo": NodePath("Skeleton2D/Root/Body/Head/Halo"),
+&"head": NodePath("Skeleton2D/Root/Body/Head/Sprite"),
+&"leg_left": NodePath("Skeleton2D/Root/Body/LeftLeg/Sprite"),
+&"leg_right": NodePath("Skeleton2D/Root/Body/RightLeg/Sprite"),
+&"staff": NodePath("Skeleton2D/Root/Body/FrontArm/Staff/Sprite")
+})
+
+[node name="Level5" type="Node2D" parent="Center/Stage/Levels" unique_id=1728641363 instance=ExtResource("8_c6f1f")]
+position = Vector2(644, 570)
+scale = Vector2(0.390625, 0.390625)
+script = ExtResource("9_nma6j")
+level = 5
+part_variants = Dictionary[StringName, Array]({
+&"back_arm": [ExtResource("10_52e50"), ExtResource("11_y81t2"), ExtResource("12_hens1"), ExtResource("13_6hwv8"), ExtResource("14_gdgq3")],
+&"body": [ExtResource("15_ry8f7"), ExtResource("16_2dh76"), ExtResource("17_6ycjf"), ExtResource("18_5511d"), ExtResource("19_ipsvd")],
+&"front_arm": [ExtResource("20_xo5er"), ExtResource("21_q2ouj"), ExtResource("22_ggs8w"), ExtResource("23_4qx04"), ExtResource("24_amfx8")],
+&"halo": [null, null, null, null, ExtResource("25_8q02j")],
+&"head": [ExtResource("26_rjfd6"), ExtResource("27_ahv4q"), ExtResource("28_e5467"), ExtResource("29_bobh6"), ExtResource("30_ipg8s")],
+&"leg_left": [ExtResource("31_dsf7d"), ExtResource("31_dsf7d"), ExtResource("31_dsf7d"), ExtResource("31_dsf7d"), ExtResource("31_dsf7d")],
+&"leg_right": [ExtResource("32_s3e6a"), ExtResource("32_s3e6a"), ExtResource("32_s3e6a"), ExtResource("32_s3e6a"), ExtResource("32_s3e6a")],
+&"staff": [ExtResource("33_uw4bx"), ExtResource("33_uw4bx"), ExtResource("34_k7pfa"), ExtResource("35_fpd4y"), ExtResource("35_fpd4y")]
+})
+part_paths = Dictionary[StringName, NodePath]({
+&"back_arm": NodePath("Skeleton2D/Root/Body/BackArm/Sprite"),
+&"body": NodePath("Skeleton2D/Root/Body/Sprite"),
+&"front_arm": NodePath("Skeleton2D/Root/Body/FrontArm/Sprite"),
+&"halo": NodePath("Skeleton2D/Root/Body/Head/Halo"),
+&"head": NodePath("Skeleton2D/Root/Body/Head/Sprite"),
+&"leg_left": NodePath("Skeleton2D/Root/Body/LeftLeg/Sprite"),
+&"leg_right": NodePath("Skeleton2D/Root/Body/RightLeg/Sprite"),
+&"staff": NodePath("Skeleton2D/Root/Body/FrontArm/Staff/Sprite")
+})
+
+[node name="Sample" type="Node2D" parent="Center/Stage" unique_id=1562030674 instance=ExtResource("8_c6f1f")]
+position = Vector2(145, 800)
+scale = Vector2(0.390625, 0.390625)
+script = ExtResource("9_nma6j")
+level = 5
+part_variants = Dictionary[StringName, Array]({
+&"back_arm": [ExtResource("10_52e50"), ExtResource("11_y81t2"), ExtResource("12_hens1"), ExtResource("13_6hwv8"), ExtResource("14_gdgq3")],
+&"body": [ExtResource("15_ry8f7"), ExtResource("16_2dh76"), ExtResource("17_6ycjf"), ExtResource("18_5511d"), ExtResource("19_ipsvd")],
+&"front_arm": [ExtResource("20_xo5er"), ExtResource("21_q2ouj"), ExtResource("22_ggs8w"), ExtResource("23_4qx04"), ExtResource("24_amfx8")],
+&"halo": [null, null, null, null, ExtResource("25_8q02j")],
+&"head": [ExtResource("26_rjfd6"), ExtResource("27_ahv4q"), ExtResource("28_e5467"), ExtResource("29_bobh6"), ExtResource("30_ipg8s")],
+&"leg_left": [ExtResource("31_dsf7d"), ExtResource("31_dsf7d"), ExtResource("31_dsf7d"), ExtResource("31_dsf7d"), ExtResource("31_dsf7d")],
+&"leg_right": [ExtResource("32_s3e6a"), ExtResource("32_s3e6a"), ExtResource("32_s3e6a"), ExtResource("32_s3e6a"), ExtResource("32_s3e6a")],
+&"staff": [ExtResource("33_uw4bx"), ExtResource("33_uw4bx"), ExtResource("34_k7pfa"), ExtResource("35_fpd4y"), ExtResource("35_fpd4y")]
+})
+part_paths = Dictionary[StringName, NodePath]({
+&"back_arm": NodePath("Skeleton2D/Root/Body/BackArm/Sprite"),
+&"body": NodePath("Skeleton2D/Root/Body/Sprite"),
+&"front_arm": NodePath("Skeleton2D/Root/Body/FrontArm/Sprite"),
+&"halo": NodePath("Skeleton2D/Root/Body/Head/Halo"),
+&"head": NodePath("Skeleton2D/Root/Body/Head/Sprite"),
+&"leg_left": NodePath("Skeleton2D/Root/Body/LeftLeg/Sprite"),
+&"leg_right": NodePath("Skeleton2D/Root/Body/RightLeg/Sprite"),
+&"staff": NodePath("Skeleton2D/Root/Body/FrontArm/Staff/Sprite")
+})
+
+[node name="RealTarget" type="Node2D" parent="Center/Stage" unique_id=1997720526]
+position = Vector2(540, 800)
+
+[node name="Actor" type="Node2D" parent="Center/Stage/RealTarget" unique_id=1284788758 instance=ExtResource("36_hwq0u")]
+scale = Vector2(0.390625, 0.390625)
+script = ExtResource("37_pe2ri")
+entity_key = &"skeleton"
+level_ids = PackedInt32Array(1, 2, 3, 4, 5)
+part_variants = Dictionary[StringName, Array]({
+&"back_arm": [ExtResource("38_0wrd5"), ExtResource("39_epvar"), ExtResource("40_whqnb"), ExtResource("41_1elpj"), ExtResource("42_wim5p")],
+&"body": [ExtResource("43_eejgb"), ExtResource("44_p3hlj"), ExtResource("45_mn0p4"), ExtResource("46_5qrdc"), ExtResource("47_lvhjv")],
+&"front_arm": [ExtResource("48_1e36e"), ExtResource("49_6n006"), ExtResource("50_rcay5"), ExtResource("51_yojch"), ExtResource("52_l4wpe")],
+&"head": [ExtResource("53_28bpq"), ExtResource("54_t7x5j"), ExtResource("55_6d0iu"), ExtResource("56_xoibq"), ExtResource("57_kp2mb")],
+&"leg_left": [ExtResource("58_j44rp"), ExtResource("59_xqks6"), ExtResource("60_4fm8m"), ExtResource("61_tr3mx"), ExtResource("62_6ghgy")],
+&"leg_right": [ExtResource("63_dyy8d"), ExtResource("64_xtmr6"), ExtResource("65_2flo8"), ExtResource("66_lee3c"), ExtResource("67_yufhd")],
+&"weapon": [ExtResource("68_jynt3"), ExtResource("69_6kmg0"), ExtResource("70_vt3kx"), ExtResource("71_068sl"), ExtResource("72_5gd2j")]
+})
+part_paths = Dictionary[StringName, NodePath]({
+&"back_arm": NodePath("Skeleton2D/Root/Body/BackArm/Sprite"),
+&"body": NodePath("Skeleton2D/Root/Body/Sprite"),
+&"front_arm": NodePath("Skeleton2D/Root/Body/FrontArm/Sprite"),
+&"head": NodePath("Skeleton2D/Root/Body/Head/Sprite"),
+&"leg_left": NodePath("Skeleton2D/Root/Body/LeftLeg/Sprite"),
+&"leg_right": NodePath("Skeleton2D/Root/Body/RightLeg/Sprite"),
+&"weapon": NodePath("Skeleton2D/Root/Body/FrontArm/Weapon/Sprite")
+})
+ability_levels = Dictionary[StringName, int]({
+&"bone_shield": 5
+})
+
+[node name="Health" type="ProgressBar" parent="Center/Stage/RealTarget" unique_id=1538427292]
+z_index = 10
+offset_left = -45.0
+offset_top = -45.0
+offset_right = 45.0
+offset_bottom = -25.0
+theme_override_styles/background = SubResource("StyleBoxFlat_xlvkc")
+theme_override_styles/fill = SubResource("StyleBoxFlat_c6f1f")
+value = 75.0
+show_percentage = false
+
+[node name="Effects" type="Node2D" parent="Center/Stage" unique_id=605897152]
+z_index = 12
+
+[node name="Caption0" type="Label" parent="Center" unique_id=2119184882]
+layout_mode = 0
+offset_left = 46.0
+offset_top = 632.0
+offset_right = 146.0
+offset_bottom = 667.0
+theme_override_colors/font_color = Color(0.53333336, 0.7254902, 0.41960785, 1)
+theme_override_font_sizes/font_size = 22
+text = "Lv1"
+
+[node name="Caption1" type="Label" parent="Center" unique_id=142867988]
+layout_mode = 0
+offset_left = 188.0
+offset_top = 632.0
+offset_right = 288.0
+offset_bottom = 667.0
+theme_override_colors/font_color = Color(0.9254902, 0.60784316, 0.28627452, 1)
+theme_override_font_sizes/font_size = 22
+text = "Lv2"
+
+[node name="Caption2" type="Label" parent="Center" unique_id=222032024]
+layout_mode = 0
+offset_left = 330.0
+offset_top = 632.0
+offset_right = 430.0
+offset_bottom = 667.0
+theme_override_colors/font_color = Color(0.8745098, 0.3372549, 0.32941177, 1)
+theme_override_font_sizes/font_size = 22
+text = "Lv3"
+
+[node name="Caption3" type="Label" parent="Center" unique_id=753344041]
+layout_mode = 0
+offset_left = 472.0
+offset_top = 632.0
+offset_right = 572.0
+offset_bottom = 667.0
+theme_override_colors/font_color = Color(0.32156864, 0.58431375, 0.9372549, 1)
+theme_override_font_sizes/font_size = 22
+text = "Lv4"
+
+[node name="Caption4" type="Label" parent="Center" unique_id=712174146]
+layout_mode = 0
+offset_left = 614.0
+offset_top = 632.0
+offset_right = 714.0
+offset_bottom = 667.0
+theme_override_colors/font_color = Color(0.7137255, 0.42745098, 0.91764706, 1)
+theme_override_font_sizes/font_size = 22
+text = "Lv5"
+
+[node name="LevelHint" type="Label" parent="Center" unique_id=1045999255]
+layout_mode = 0
+offset_left = 20.0
+offset_top = 485.0
+offset_right = 700.0
+offset_bottom = 520.0
+theme_override_colors/font_color = Color(0.827451, 0.8745098, 0.8509804, 1)
+theme_override_font_sizes/font_size = 22
+text = "Пять уровней · игровой размер"
+
+[node name="ScaleHint" type="Label" parent="Center" unique_id=10093609]
+layout_mode = 0
+offset_left = 20.0
+offset_top = 695.0
+offset_right = 700.0
+offset_bottom = 730.0
+theme_override_colors/font_color = Color(0.827451, 0.8745098, 0.8509804, 1)
+theme_override_font_sizes/font_size = 22
+text = "Снаряд и эффект в игровом размере"
+
+[node name="Readout" type="Label" parent="Center" unique_id=1289860553]
+layout_mode = 0
+offset_left = 20.0
+offset_top = 925.0
+offset_right = 700.0
+offset_bottom = 957.0
+theme_override_colors/font_color = Color(0.6666667, 0.7607843, 0.72156864, 1)
+theme_override_font_sizes/font_size = 22
+
+[node name="Mode" type="OptionButton" parent="Center" unique_id=1400268944]
+layout_mode = 0
+offset_left = 18.0
+offset_top = 970.0
+offset_right = 702.0
+offset_bottom = 1028.0
+theme_override_font_sizes/font_size = 26
+selected = 0
+item_count = 6
+popup/item_0/text = "Покой"
+popup/item_0/id = 0
+popup/item_1/text = "Выстрел"
+popup/item_1/id = 1
+popup/item_2/text = "Появление"
+popup/item_2/id = 2
+popup/item_3/text = "Снаряд света"
+popup/item_3/id = 3
+popup/item_4/text = "Метка света"
+popup/item_4/id = 4
+popup/item_5/text = "Освящение"
+popup/item_5/id = 5
+
+[node name="Level1" type="Button" parent="Center" unique_id=529840167]
+layout_mode = 0
+offset_left = 18.0
+offset_top = 1042.0
+offset_right = 150.0
+offset_bottom = 1100.0
+theme_override_font_sizes/font_size = 22
+theme_override_styles/normal = SubResource("StyleBoxFlat_nma6j")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_52e50")
+theme_override_styles/hover = SubResource("StyleBoxFlat_y81t2")
+theme_override_styles/focus = SubResource("StyleBoxFlat_hens1")
+toggle_mode = true
+text = "Lv1"
+
+[node name="Level2" type="Button" parent="Center" unique_id=1321736245]
+layout_mode = 0
+offset_left = 156.0
+offset_top = 1042.0
+offset_right = 288.0
+offset_bottom = 1100.0
+theme_override_font_sizes/font_size = 22
+theme_override_styles/normal = SubResource("StyleBoxFlat_6hwv8")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_gdgq3")
+theme_override_styles/hover = SubResource("StyleBoxFlat_ry8f7")
+theme_override_styles/focus = SubResource("StyleBoxFlat_2dh76")
+toggle_mode = true
+text = "Lv2"
+
+[node name="Level3" type="Button" parent="Center" unique_id=309915431]
+layout_mode = 0
+offset_left = 294.0
+offset_top = 1042.0
+offset_right = 426.0
+offset_bottom = 1100.0
+theme_override_font_sizes/font_size = 22
+theme_override_styles/normal = SubResource("StyleBoxFlat_6ycjf")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_5511d")
+theme_override_styles/hover = SubResource("StyleBoxFlat_ipsvd")
+theme_override_styles/focus = SubResource("StyleBoxFlat_xo5er")
+toggle_mode = true
+text = "Lv3"
+
+[node name="Level4" type="Button" parent="Center" unique_id=87470874]
+layout_mode = 0
+offset_left = 432.0
+offset_top = 1042.0
+offset_right = 564.0
+offset_bottom = 1100.0
+theme_override_font_sizes/font_size = 22
+theme_override_styles/normal = SubResource("StyleBoxFlat_q2ouj")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_ggs8w")
+theme_override_styles/hover = SubResource("StyleBoxFlat_4qx04")
+theme_override_styles/focus = SubResource("StyleBoxFlat_amfx8")
+toggle_mode = true
+text = "Lv4"
+
+[node name="Level5" type="Button" parent="Center" unique_id=1980929242]
+layout_mode = 0
+offset_left = 570.0
+offset_top = 1042.0
+offset_right = 702.0
+offset_bottom = 1100.0
+theme_override_font_sizes/font_size = 22
+theme_override_styles/normal = SubResource("StyleBoxFlat_8q02j")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_rjfd6")
+theme_override_styles/hover = SubResource("StyleBoxFlat_ahv4q")
+theme_override_styles/focus = SubResource("StyleBoxFlat_e5467")
+toggle_mode = true
+text = "Lv5"
+
+[node name="Replay" type="Button" parent="Center" unique_id=1321871384]
+layout_mode = 0
+offset_left = 18.0
+offset_top = 1114.0
+offset_right = 238.0
+offset_bottom = 1172.0
+theme_override_font_sizes/font_size = 22
+theme_override_styles/normal = SubResource("StyleBoxFlat_bobh6")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_ipg8s")
+theme_override_styles/hover = SubResource("StyleBoxFlat_dsf7d")
+theme_override_styles/focus = SubResource("StyleBoxFlat_s3e6a")
+icon = ExtResource("73_72psy")
+icon_alignment = 1
+
+[node name="Pause" type="Button" parent="Center" unique_id=81705340]
+layout_mode = 0
+offset_left = 250.0
+offset_top = 1114.0
+offset_right = 470.0
+offset_bottom = 1172.0
+theme_override_font_sizes/font_size = 22
+theme_override_styles/normal = SubResource("StyleBoxFlat_uw4bx")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_k7pfa")
+theme_override_styles/hover = SubResource("StyleBoxFlat_fpd4y")
+theme_override_styles/focus = SubResource("StyleBoxFlat_hwq0u")
+icon = ExtResource("74_ibjw8")
+icon_alignment = 1
+
+[node name="Mirror" type="Button" parent="Center" unique_id=696687245]
+layout_mode = 0
+offset_left = 482.0
+offset_top = 1114.0
+offset_right = 702.0
+offset_bottom = 1172.0
+theme_override_font_sizes/font_size = 22
+theme_override_styles/normal = SubResource("StyleBoxFlat_pe2ri")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_0wrd5")
+theme_override_styles/hover = SubResource("StyleBoxFlat_epvar")
+theme_override_styles/focus = SubResource("StyleBoxFlat_whqnb")
+toggle_mode = true
+icon = ExtResource("75_qo27n")
+icon_alignment = 1
+
+[node name="Speed0" type="Button" parent="Center" unique_id=1681339072]
+layout_mode = 0
+offset_left = 18.0
+offset_top = 1186.0
+offset_right = 238.0
+offset_bottom = 1244.0
+theme_override_font_sizes/font_size = 22
+theme_override_styles/normal = SubResource("StyleBoxFlat_1elpj")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_wim5p")
+theme_override_styles/hover = SubResource("StyleBoxFlat_eejgb")
+theme_override_styles/focus = SubResource("StyleBoxFlat_p3hlj")
+toggle_mode = true
+text = "0.5×"
+
+[node name="Speed1" type="Button" parent="Center" unique_id=521641536]
+layout_mode = 0
+offset_left = 250.0
+offset_top = 1186.0
+offset_right = 470.0
+offset_bottom = 1244.0
+theme_override_font_sizes/font_size = 22
+theme_override_styles/normal = SubResource("StyleBoxFlat_mn0p4")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_5qrdc")
+theme_override_styles/hover = SubResource("StyleBoxFlat_lvhjv")
+theme_override_styles/focus = SubResource("StyleBoxFlat_1e36e")
+toggle_mode = true
+button_pressed = true
+text = "1×"
+
+[node name="Speed2" type="Button" parent="Center" unique_id=1556194119]
+layout_mode = 0
+offset_left = 482.0
+offset_top = 1186.0
+offset_right = 702.0
+offset_bottom = 1244.0
+theme_override_font_sizes/font_size = 22
+theme_override_styles/normal = SubResource("StyleBoxFlat_6n006")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_rcay5")
+theme_override_styles/hover = SubResource("StyleBoxFlat_yojch")
+theme_override_styles/focus = SubResource("StyleBoxFlat_l4wpe")
+toggle_mode = true
+text = "2×"
+
+[node name="ReplayTimer" type="Timer" parent="." unique_id=1974484974]
+one_shot = true
+
+[connection signal="item_selected" from="Center/Mode" to="." method="set_mode"]
+[connection signal="pressed" from="Center/Level1" to="." method="set_level" binds= [1]]
+[connection signal="pressed" from="Center/Level2" to="." method="set_level" binds= [2]]
+[connection signal="pressed" from="Center/Level3" to="." method="set_level" binds= [3]]
+[connection signal="pressed" from="Center/Level4" to="." method="set_level" binds= [4]]
+[connection signal="pressed" from="Center/Level5" to="." method="set_level" binds= [5]]
+[connection signal="pressed" from="Center/Replay" to="." method="replay"]
+[connection signal="pressed" from="Center/Pause" to="." method="toggle_pause"]
+[connection signal="pressed" from="Center/Mirror" to="." method="toggle_mirror"]
+[connection signal="pressed" from="Center/Speed0" to="." method="set_speed" binds= [0.5]]
+[connection signal="pressed" from="Center/Speed1" to="." method="set_speed" binds= [1.0]]
+[connection signal="pressed" from="Center/Speed2" to="." method="set_speed" binds= [2.0]]
+[connection signal="timeout" from="ReplayTimer" to="." method="replay"]

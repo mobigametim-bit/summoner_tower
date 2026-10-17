@@ -3,6 +3,7 @@ extends Node2D
 
 @export var impact_scene: PackedScene
 @export var impact_scale: float = 0.4
+@export var consecration_scene: PackedScene
 @export var embedded_arrow_scene: PackedScene
 
 var _target: ApproachingEnemy
@@ -16,6 +17,7 @@ var _resolved: bool = false
 var _stats: UnitStats
 var _enemies: Node2D
 var _meteor: bool = false
+var _consecration: bool = false
 var _ground_target: Vector2
 const AREA_SCENE: PackedScene = preload("res://scenes/vfx/CombatArea.tscn")
 
@@ -39,9 +41,10 @@ func launch(origin: Vector2, target: ApproachingEnemy, stats: UnitStats, attacke
 	set_physics_process(true)
 
 
-func configure_attack(enemies: Node2D, meteor: bool = false) -> void:
+func configure_attack(enemies: Node2D, meteor: bool = false, consecration: bool = false) -> void:
 	_enemies = enemies
 	_meteor = meteor
+	_consecration = consecration
 	var trail: CPUParticles2D = get_node_or_null("Trail") as CPUParticles2D
 	if meteor:
 		_ground_target = _target.global_position
@@ -95,7 +98,16 @@ func _hit_target() -> void:
 	_resolved = true
 	set_physics_process(false)
 	if _has_valid_participants():
-		if _meteor:
+		if _consecration:
+			var victims: Array[ApproachingEnemy] = CombatHit.targets_in_area(_enemies,global_position,_stats.ability_radius)
+			var effect: Node2D = consecration_scene.instantiate() as Node2D
+			get_parent().add_child(effect)
+			effect.global_position = global_position
+			effect.scale = Vector2.ONE*(_stats.ability_radius/85.0)
+			effect.call("start",1.0)
+			for enemy: ApproachingEnemy in victims:
+				CombatHit.apply(enemy,_damage,0.0,0.0,0.0,0.0,0.0,_stats.light_mark_ratio,_stats.light_mark_duration)
+		elif _meteor:
 			_show_area(_stats.ability_radius)
 			for enemy: ApproachingEnemy in CombatHit.targets_in_area(_enemies, global_position, _stats.ability_radius):
 				CombatHit.apply(enemy, _damage, 0.0, 0.0, 0.0, 0.0)
@@ -106,7 +118,7 @@ func _hit_target() -> void:
 			var neighbors: Array[ApproachingEnemy] = []
 			if _stats.splash_radius > 0.0:
 				neighbors = CombatHit.targets_in_area(_enemies, center, _stats.splash_radius)
-			CombatHit.apply(_target, _damage, _slow_ratio, _slow_duration, _stats.burn_damage_ratio, _stats.burn_duration)
+			CombatHit.apply(_target, _damage, _slow_ratio, _slow_duration, _stats.burn_damage_ratio, _stats.burn_duration,0.0,_stats.light_mark_ratio,_stats.light_mark_duration)
 			if _stats.splash_radius > 0.0:
 				_show_area(_stats.splash_radius)
 				for enemy: ApproachingEnemy in neighbors:
@@ -128,10 +140,12 @@ func _show_impact() -> void:
 	if impact_scene == null or _stats.splash_radius > 0.0:
 		return
 	# Соседний узел переживёт снаряд и цель; смена сцены удалит незавершённый эффект.
-	var effect: CPUParticles2D = impact_scene.instantiate() as CPUParticles2D
+	var effect: Node2D = impact_scene.instantiate() as Node2D
 	get_parent().add_child(effect)
 	effect.global_position = global_position
 	effect.global_scale = Vector2.ONE * impact_scale
+	if effect.has_method("start"):
+		effect.call("start",1.0)
 
 
 func _dispose() -> void:

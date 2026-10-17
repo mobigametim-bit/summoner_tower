@@ -1,0 +1,36 @@
+[gd_scene format=3 uid="uid://brsbtg7d1pfgt"]
+
+[ext_resource type="Texture2D" uid="uid://bqb1si1fe2511" path="res://assets/vfx/priest/light_orb.svg" id="1_veo1a"]
+
+[sub_resource type="Gradient" id="Gradient_veo1a"]
+offsets = PackedFloat32Array(0, 0.15, 0.65, 1)
+colors = PackedColorArray(1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 0.9, 1, 1, 1, 0)
+
+[node name="LightShot" type="Node2D" unique_id=311718701]
+z_index = 15
+
+[node name="Core" type="Sprite2D" parent="." unique_id=1312289811]
+scale = Vector2(2, 2)
+texture = ExtResource("1_veo1a")
+
+[node name="Glow" type="Sprite2D" parent="." unique_id=2122194983]
+modulate = Color(1, 0.78, 0.3, 0.25)
+show_behind_parent = true
+scale = Vector2(3.2, 3.2)
+texture = ExtResource("1_veo1a")
+
+[node name="Trail" type="CPUParticles2D" parent="." unique_id=878406060]
+z_index = 20
+amount = 14
+texture = ExtResource("1_veo1a")
+lifetime = 0.32
+emission_shape = 1
+emission_sphere_radius = 5.0
+direction = Vector2(0, -1)
+spread = 180.0
+gravity = Vector2(0, 0)
+initial_velocity_max = 12.0
+scale_amount_min = 0.5
+scale_amount_max = 0.9
+color = Color(1, 0.8627451, 0.5176471, 1)
+color_ramp = SubResource("Gradient_veo1a")

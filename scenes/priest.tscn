@@ -1,0 +1,71 @@
+[gd_scene format=3 uid="uid://bfe14ns5f83q6"]
+
+[ext_resource type="Script" uid="uid://8px6pnunwy18" path="res://scripts/combat/combat_unit.gd" id="1_qmi8a"]
+[ext_resource type="Resource" path="res://resources/balance/priest_lv1.tres" id="2_mhfft"]
+[ext_resource type="PackedScene" uid="uid://cse0ctnsqpeex" path="res://scenes/light_bolt.tscn" id="3_tuf2f"]
+[ext_resource type="Texture2D" uid="uid://ue2768en0ptn" path="res://art/source/priest/master.svg" id="4_eb32a"]
+[ext_resource type="PackedScene" uid="uid://dp1d38i4xm5rp" path="res://scenes/visuals/PriestVisual.tscn" id="5_dh2s6"]
+[ext_resource type="Script" uid="uid://ckfv056ta8m0e" path="res://scripts/visuals/priest_visual.gd" id="6_50t6q"]
+[ext_resource type="Texture2D" uid="uid://r7gddxonbfrt" path="res://art/source/priest/parts/back_arm.svg" id="7_up8ul"]
+[ext_resource type="Texture2D" uid="uid://1psbvysqk8g2" path="res://art/source/priest/parts/lv2/back_arm.svg" id="8_614qi"]
+[ext_resource type="Texture2D" uid="uid://cy2g6b8pklbs" path="res://art/source/priest/parts/lv3/back_arm.svg" id="9_1ti8o"]
+[ext_resource type="Texture2D" uid="uid://b0kyb0vdgfg3l" path="res://art/source/priest/parts/lv4/back_arm.svg" id="10_8kd5p"]
+[ext_resource type="Texture2D" uid="uid://ph0o4v3wig5t" path="res://art/source/priest/parts/lv5/back_arm.svg" id="11_g8jty"]
+[ext_resource type="Texture2D" uid="uid://bxqjkrnak34th" path="res://art/source/priest/parts/body.svg" id="12_qrpqe"]
+[ext_resource type="Texture2D" uid="uid://dqs73mdvs7him" path="res://art/source/priest/parts/lv2/body.svg" id="13_u78vh"]
+[ext_resource type="Texture2D" uid="uid://cj72eify0k6x1" path="res://art/source/priest/parts/lv3/body.svg" id="14_byddv"]
+[ext_resource type="Texture2D" uid="uid://dyrb08oohvlqt" path="res://art/source/priest/parts/lv4/body.svg" id="15_r8p5k"]
+[ext_resource type="Texture2D" uid="uid://thkmrrttwnvx" path="res://art/source/priest/parts/lv5/body.svg" id="16_jn5hy"]
+[ext_resource type="Texture2D" uid="uid://cot3s5tuyiiby" path="res://art/source/priest/parts/front_arm.svg" id="17_1ter5"]
+[ext_resource type="Texture2D" uid="uid://ddo1idwcm3ira" path="res://art/source/priest/parts/lv2/front_arm.svg" id="18_kxb2o"]
+[ext_resource type="Texture2D" uid="uid://bdwdcsrbg6u13" path="res://art/source/priest/parts/lv3/front_arm.svg" id="19_ths8r"]
+[ext_resource type="Texture2D" uid="uid://p2eaipivqwxi" path="res://art/source/priest/parts/lv4/front_arm.svg" id="20_vyxx1"]
+[ext_resource type="Texture2D" uid="uid://b6rnabohbv2g1" path="res://art/source/priest/parts/lv5/front_arm.svg" id="21_1oxan"]
+[ext_resource type="Texture2D" uid="uid://dda4q3e0s2f2o" path="res://art/source/priest/parts/halo.svg" id="22_4yerm"]
+[ext_resource type="Texture2D" uid="uid://bhpugwy8qtlx3" path="res://art/source/priest/parts/head.svg" id="23_wjvt7"]
+[ext_resource type="Texture2D" uid="uid://cc7crco27x8u8" path="res://art/source/priest/parts/lv2/head.svg" id="24_x2qot"]
+[ext_resource type="Texture2D" uid="uid://bmkg44qakl2mi" path="res://art/source/priest/parts/lv3/head.svg" id="25_1cy8b"]
+[ext_resource type="Texture2D" uid="uid://cagrain0rmkxt" path="res://art/source/priest/parts/lv4/head.svg" id="26_3m4ib"]
+[ext_resource type="Texture2D" uid="uid://byul13jtr1nco" path="res://art/source/priest/parts/lv5/head.svg" id="27_ym0sl"]
+[ext_resource type="Texture2D" uid="uid://dnxt464wshx2d" path="res://art/source/priest/parts/leg_left.svg" id="28_f8b2f"]
+[ext_resource type="Texture2D" uid="uid://dip5sidj3562b" path="res://art/source/priest/parts/leg_right.svg" id="29_6a2jg"]
+[ext_resource type="Texture2D" uid="uid://dw8eix4kenrd3" path="res://art/source/priest/parts/staff.svg" id="30_0jk6o"]
+[ext_resource type="Texture2D" uid="uid://dtugaugt3npwh" path="res://art/source/priest/parts/lv3/staff.svg" id="31_jqiqu"]
+[ext_resource type="Texture2D" uid="uid://d0n27apmwenog" path="res://art/source/priest/parts/lv4/staff.svg" id="32_hkad4"]
+
+[node name="Priest" type="Node2D" unique_id=1494216731]
+script = ExtResource("1_qmi8a")
+stats = ExtResource("2_mhfft")
+projectile_scene = ExtResource("3_tuf2f")
+animated_visual_enabled = true
+
+[node name="Visual" type="Sprite2D" parent="." unique_id=1458678821]
+scale = Vector2(0.390625, 0.390625)
+texture = ExtResource("4_eb32a")
+
+[node name="Muzzle" type="Marker2D" parent="." unique_id=1822090425]
+position = Vector2(32.421875, -14.0625)
+
+[node name="PriestVisual" type="Node2D" parent="." unique_id=1683236232 instance=ExtResource("5_dh2s6")]
+scale = Vector2(0.390625, 0.390625)
+script = ExtResource("6_50t6q")
+part_variants = Dictionary[StringName, Array]({
+&"back_arm": [ExtResource("7_up8ul"), ExtResource("8_614qi"), ExtResource("9_1ti8o"), ExtResource("10_8kd5p"), ExtResource("11_g8jty")],
+&"body": [ExtResource("12_qrpqe"), ExtResource("13_u78vh"), ExtResource("14_byddv"), ExtResource("15_r8p5k"), ExtResource("16_jn5hy")],
+&"front_arm": [ExtResource("17_1ter5"), ExtResource("18_kxb2o"), ExtResource("19_ths8r"), ExtResource("20_vyxx1"), ExtResource("21_1oxan")],
+&"halo": [null, null, null, null, ExtResource("22_4yerm")],
+&"head": [ExtResource("23_wjvt7"), ExtResource("24_x2qot"), ExtResource("25_1cy8b"), ExtResource("26_3m4ib"), ExtResource("27_ym0sl")],
+&"leg_left": [ExtResource("28_f8b2f"), ExtResource("28_f8b2f"), ExtResource("28_f8b2f"), ExtResource("28_f8b2f"), ExtResource("28_f8b2f")],
+&"leg_right": [ExtResource("29_6a2jg"), ExtResource("29_6a2jg"), ExtResource("29_6a2jg"), ExtResource("29_6a2jg"), ExtResource("29_6a2jg")],
+&"staff": [ExtResource("30_0jk6o"), ExtResource("30_0jk6o"), ExtResource("31_jqiqu"), ExtResource("32_hkad4"), ExtResource("32_hkad4")]
+})
+part_paths = Dictionary[StringName, NodePath]({
+&"back_arm": NodePath("Skeleton2D/Root/Body/BackArm/Sprite"),
+&"body": NodePath("Skeleton2D/Root/Body/Sprite"),
+&"front_arm": NodePath("Skeleton2D/Root/Body/FrontArm/Sprite"),
+&"halo": NodePath("Skeleton2D/Root/Body/Head/Halo"),
+&"head": NodePath("Skeleton2D/Root/Body/Head/Sprite"),
+&"leg_left": NodePath("Skeleton2D/Root/Body/LeftLeg/Sprite"),
+&"leg_right": NodePath("Skeleton2D/Root/Body/RightLeg/Sprite"),
+&"staff": NodePath("Skeleton2D/Root/Body/FrontArm/Staff/Sprite")
+})

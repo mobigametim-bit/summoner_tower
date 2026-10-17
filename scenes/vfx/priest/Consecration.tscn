@@ -1,0 +1,124 @@
+[gd_scene format=3 uid="uid://dp3akp88vgndg"]
+
+[ext_resource type="Script" uid="uid://c8fp74kdyg7ic" path="res://scripts/visuals/undead_effect_clip.gd" id="1_2gg1a"]
+[ext_resource type="Texture2D" uid="uid://su7owi1li10o" path="res://assets/vfx/priest/solar_ring.svg" id="2_32hjx"]
+[ext_resource type="Texture2D" uid="uid://bqb1si1fe2511" path="res://assets/vfx/priest/light_orb.svg" id="3_cma7q"]
+[ext_resource type="Texture2D" uid="uid://w1t0d033ibya" path="res://assets/vfx/summon_portal/white_ray.svg" id="4_yoo5e"]
+
+[sub_resource type="Gradient" id="Gradient_2gg1a"]
+offsets = PackedFloat32Array(0, 0.15, 0.65, 1)
+colors = PackedColorArray(1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 0.9, 1, 1, 1, 0)
+
+[sub_resource type="Gradient" id="Gradient_32hjx"]
+offsets = PackedFloat32Array(0, 0.15, 0.65, 1)
+colors = PackedColorArray(1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 0.9, 1, 1, 1, 0)
+
+[sub_resource type="Animation" id="Animation_cma7q"]
+step = 0.01
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Ring:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.15, 0.55, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(0.15, 0.15), Vector2(0.72, 0.72), Vector2(0.9, 0.9), Vector2(1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Ring:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.6, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 0.9, 0.6, 0), Color(1, 0.9, 0.6, 1), Color(1, 0.9, 0.6, 0.8), Color(1, 0.9, 0.6, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Flash:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(5, 5), Vector2(6, 6)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Flash:modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.08, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0.3), Color(1, 1, 0.8, 0.85), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_yoo5e"]
+_data = {
+&"effect": SubResource("Animation_cma7q")
+}
+
+[node name="Consecration" type="Node2D" unique_id=1722718092]
+z_index = 12
+script = ExtResource("1_2gg1a")
+
+[node name="Ring" type="Sprite2D" parent="." unique_id=1365657832]
+modulate = Color(1, 0.88235295, 0.6039216, 1)
+texture = ExtResource("2_32hjx")
+
+[node name="Flash" type="Sprite2D" parent="." unique_id=1059853425]
+texture = ExtResource("3_cma7q")
+
+[node name="Rays" type="CPUParticles2D" parent="." unique_id=420459386]
+z_index = 20
+emitting = false
+amount = 18
+texture = ExtResource("4_yoo5e")
+lifetime = 0.65
+one_shot = true
+explosiveness = 1.0
+emission_shape = 1
+emission_sphere_radius = 45.0
+direction = Vector2(0, -1)
+spread = 35.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 70.0
+initial_velocity_max = 130.0
+scale_amount_min = 0.65
+scale_amount_max = 1.1
+color = Color(1, 0.9411765, 0.7254902, 1)
+color_ramp = SubResource("Gradient_2gg1a")
+
+[node name="Motes" type="CPUParticles2D" parent="." unique_id=1109687331]
+z_index = 20
+emitting = false
+amount = 26
+texture = ExtResource("3_cma7q")
+lifetime = 0.8
+one_shot = true
+explosiveness = 1.0
+emission_shape = 1
+emission_sphere_radius = 55.0
+direction = Vector2(0, -1)
+spread = 180.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 40.0
+initial_velocity_max = 110.0
+scale_amount_min = 0.25
+scale_amount_max = 0.5
+color = Color(1, 0.8627451, 0.5176471, 1)
+color_ramp = SubResource("Gradient_32hjx")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1493577087]
+libraries/ = SubResource("AnimationLibrary_yoo5e")

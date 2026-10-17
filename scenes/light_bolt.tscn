@@ -1,0 +1,15 @@
+[gd_scene format=3 uid="uid://cse0ctnsqpeex"]
+
+[ext_resource type="Script" uid="uid://3h64ym8kw81x" path="res://scripts/combat/combat_projectile.gd" id="1_v4nop"]
+[ext_resource type="PackedScene" uid="uid://mdh0ow2046ad" path="res://scenes/vfx/priest/LightImpact.tscn" id="2_46ufg"]
+[ext_resource type="PackedScene" uid="uid://dp3akp88vgndg" path="res://scenes/vfx/priest/Consecration.tscn" id="3_46ufg"]
+[ext_resource type="PackedScene" uid="uid://brsbtg7d1pfgt" path="res://scenes/vfx/priest/LightShot.tscn" id="3_nll88"]
+
+[node name="LightBolt" type="Node2D" unique_id=1071626934]
+script = ExtResource("1_v4nop")
+impact_scene = ExtResource("2_46ufg")
+impact_scale = 1.0
+consecration_scene = ExtResource("3_46ufg")
+
+[node name="Visual" type="Node2D" parent="." unique_id=311718701 instance=ExtResource("3_nll88")]
+z_index = 15

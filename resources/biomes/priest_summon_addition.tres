@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="SummonPool" format=3 uid="uid://donensljcp0dr"]
+
+[ext_resource type="PackedScene" uid="uid://bfe14ns5f83q6" path="res://scenes/priest.tscn" id="1_kua8j"]
+[ext_resource type="Script" uid="uid://b870214dxmmxw" path="res://scripts/data/summon_pool.gd" id="2_qkrwe"]
+
+[resource]
+script = ExtResource("2_qkrwe")
+scenes = Array[PackedScene]([ExtResource("1_kua8j")])
+weights = Array[int]([25])

@@ -14,9 +14,10 @@ var paid_mana: int = 0
 @onready var archer_visual: ArcherVisual = get_node_or_null("ArcherVisual") as ArcherVisual
 @onready var mage_visual: MageVisual = get_node_or_null("MageVisual") as MageVisual
 @onready var frost_mage_visual: FrostMageVisual = get_node_or_null("FrostMageVisual") as FrostMageVisual
+@onready var priest_visual: PriestVisual = get_node_or_null("PriestVisual") as PriestVisual
 # Godot не поддерживает union types; визуалы реализуют один небольшой контракт.
 @onready var _animated_visual: Variant = archer_visual if archer_visual != null else (
-	mage_visual if mage_visual != null else frost_mage_visual
+	mage_visual if mage_visual != null else (frost_mage_visual if frost_mage_visual != null else priest_visual)
 )
 
 var _enemies: Node2D
@@ -66,6 +67,8 @@ func _apply_visual_mode() -> void:
 
 
 func drag_texture() -> Texture2D:
+	if priest_visual != null:
+		return stats.visual_texture
 	return _animated_visual.DRAG_TEXTURE if animated_visual_enabled else $Visual.texture
 
 
@@ -74,6 +77,8 @@ func drag_material() -> Material:
 
 
 func drag_scale() -> Vector2:
+	if priest_visual != null:
+		return global_scale * absf(priest_visual.scale.x)
 	return global_scale * absf(_animated_visual.scale.x) if animated_visual_enabled else global_scale
 
 
@@ -244,15 +249,19 @@ func _fire() -> void:
 		sound = &"fire_cast"
 	elif stats.unit_type == &"frost_mage":
 		sound = &"frost_cast"
+	elif stats.unit_type == &"priest":
+		sound = &"frost_cast"
 	AudioService.play_sfx(sound)
 
 
-func _spawn_projectile(victim: ApproachingEnemy, shot_stats: UnitStats, damage: float, meteor: bool = false) -> void:
+func _spawn_projectile(victim: ApproachingEnemy, shot_stats: UnitStats, damage: float, meteor: bool = false, consecration: bool = false) -> void:
 	var projectile: CombatProjectile = projectile_scene.instantiate() as CombatProjectile
 	_projectiles.add_child(projectile)
 	var origin: Vector2 = victim.global_position + Vector2(0.0, -210.0) if meteor else muzzle.global_position
+	if not meteor and animated_visual_enabled and priest_visual != null:
+		origin = priest_visual.release_point.global_position
 	projectile.launch(origin, victim, shot_stats, self, _run_bonuses, damage)
-	projectile.configure_attack(_enemies, meteor)
+	projectile.configure_attack(_enemies, meteor, consecration)
 
 
 func _fire_skill() -> void:
@@ -275,6 +284,8 @@ func _fire_skill() -> void:
 					_shots.append({"target": victim, "stats": stats, "damage": amount, "delay": index * stats.burst_delay, "center": center, "radius": effective.ability_radius})
 		UnitStats.Ability.METEOR:
 			_spawn_projectile(_target, stats, damage, true)
+		UnitStats.Ability.CONSECRATION:
+			_spawn_projectile(_target, stats, damage, false, true)
 		UnitStats.Ability.FROST_WAVE:
 			_show_area(center, 2, effective.ability_radius)
 			var slow: float = _run_bonuses.slow_ratio_for(stats) if _run_bonuses != null else stats.slow_ratio

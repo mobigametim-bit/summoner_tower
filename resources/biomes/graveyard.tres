@@ -4,6 +4,7 @@
 [ext_resource type="Script" uid="uid://4n2lsomwxchb" path="res://scripts/data/run_upgrade.gd" id="1_j5hl7"]
 [ext_resource type="Resource" path="res://resources/biomes/graveyard_battlefield.tres" id="2"]
 [ext_resource type="PackedScene" uid="uid://d387xqbg0k0y5" path="res://scenes/ui/GraveyardMenuBackdrop.tscn" id="3"]
+[ext_resource type="Resource" uid="uid://donensljcp0dr" path="res://resources/biomes/priest_summon_addition.tres" id="5_fyned"]
 [ext_resource type="Resource" uid="uid://c8vcundfetfs1" path="res://resources/balance/graveyard_waves.tres" id="5_mjy3e"]
 
 [resource]
@@ -17,3 +18,4 @@ wave_config = ExtResource("5_mjy3e")
 battlefield_config = ExtResource("2")
 menu_backdrop = ExtResource("3")
 unlocked_unit_type = &"priest"
+summon_additions = ExtResource("5_fyned")

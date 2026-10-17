@@ -29,7 +29,7 @@ func unit_power(stats: UnitStats, damage: float, interval: float, slow_ratio: fl
 		control += control_power_weight * slow
 	if stats.ability == UnitStats.Ability.FROST_WAVE:
 		control += control_power_weight * stats.freeze_duration / stats.ability_cooldown
-	return dps / reference_dps * stats.attack_range / reference_unit.attack_range * stats.area_power_multiplier * control
+	return dps / reference_dps * stats.attack_range / reference_unit.attack_range * stats.area_power_multiplier * control * (1.0+stats.light_mark_ratio)
 
 
 func player_power(units_power: float, maximum_health: int) -> float:
