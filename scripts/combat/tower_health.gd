@@ -45,6 +45,24 @@ func set_animated_visual(enabled: bool) -> void:
 	_align_cost_label()
 
 
+func configure_visual(visual_scene: PackedScene) -> void:
+	if visual_scene == null or tower_visual.scene_file_path == visual_scene.resource_path:
+		return
+	var replacement: TowerVisual = visual_scene.instantiate() as TowerVisual
+	if replacement == null:
+		push_error("Tower visual scene must use TowerVisual")
+		return
+	var old: TowerVisual = tower_visual
+	var index: int = old.get_index()
+	summon_pulse.remove_child(old)
+	old.queue_free()
+	tower_visual = replacement
+	tower_visual.name = "TowerVisual"
+	summon_pulse.add_child(tower_visual)
+	summon_pulse.move_child(tower_visual, index)
+	set_animated_visual(animated_visual_enabled)
+
+
 func _align_cost_label() -> void:
 	var bottom: Vector2
 	if animated_visual_enabled:

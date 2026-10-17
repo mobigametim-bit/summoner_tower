@@ -33,7 +33,9 @@ func build(slots: Node2D, spawn: Marker2D, tower: TowerHealth, columns: int, see
 	spawn.global_position = to_global(layout.cell_center(layout.road_cells[0]))
 	portal.position = layout.cell_center(layout.road_cells[0])
 	portal.scale = Vector2.ONE * (layout.cell_size - config.cell_gap) / 128.0
+	portal.configure_appearance(config.portal_texture, config.portal_energy_color, config.portal_smoke_gradient)
 	portal.reset_effects()
+	tower.configure_visual(config.tower_visual_scene)
 	tower.global_position = to_global(layout.cell_center(layout.road_cells[-1]))
 	tower.fit_to_cell(layout.cell_size - config.cell_gap, config.playable_rect.get_center().x)
 	for old: Node in cells.get_children():
@@ -43,8 +45,11 @@ func build(slots: Node2D, spawn: Marker2D, tower: TowerHealth, columns: int, see
 			var cell: Vector2i = Vector2i(x, y)
 			var instance: BattlefieldCell = cell_scene.instantiate() as BattlefieldCell
 			cells.add_child(instance)
+			instance.environment_texture = config.ground_texture
 			instance.configure(layout.cell_type(cell), layout.cell_center(cell), layout.cell_size, (x + y) % 2 == 1)
 	road_edge.width = layout.cell_size * 0.70
+	road_edge.default_color = config.road_edge_color
+	road_surface.texture = config.road_texture
 	road_surface.width = layout.cell_size * 0.62
 	road_edge.points = layout.curve.get_baked_points()
 	road_surface.points = road_edge.points
@@ -84,6 +89,8 @@ func _build_branches() -> void:
 		var edge: Line2D = branch.get_node("RoadEdge") as Line2D
 		var surface: Line2D = branch.get_node("RoadSurface") as Line2D
 		edge.width = road_edge.width
+		edge.default_color = config.road_edge_color
+		surface.texture = config.road_texture
 		surface.width = road_surface.width
 		edge.points = points
 		surface.points = points
@@ -94,6 +101,7 @@ func _build_branches() -> void:
 		portals.add_child(entrance)
 		entrance.position = layout.cell_center(layout.portal_cells[index])
 		entrance.scale = portal.scale
+		entrance.configure_appearance(config.portal_texture, config.portal_energy_color, config.portal_smoke_gradient)
 
 
 func play_portal_exit(index: int) -> void:
@@ -120,4 +128,5 @@ func _resize_slots(slots: Node2D) -> void:
 			if point.distance_squared_to(layout.slots[index]) < nearest.distance_squared_to(layout.slots[index]):
 				nearest = point
 		slot.faces_left = nearest.x < layout.slots[index].x
+		(slot.get_node("Visual") as Sprite2D).texture = config.pedestal_texture
 		slot.fit_to_cell(layout.cell_size - config.cell_gap)

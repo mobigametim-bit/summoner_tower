@@ -1,6 +1,8 @@
 [gd_resource type="Resource" script_class="BiomeDefinition" format=3]
 
 [ext_resource type="Script" path="res://scripts/data/biome_definition.gd" id="1"]
+[ext_resource type="Resource" path="res://resources/biomes/graveyard_battlefield.tres" id="2"]
+[ext_resource type="PackedScene" path="res://scenes/ui/GraveyardMenuBackdrop.tscn" id="3"]
 
 [resource]
 script = ExtResource("1")
@@ -10,3 +12,5 @@ biome_number = 2
 regular_enemy_types = Array[StringName]([&"skeleton", &"zombie", &"ghoul", &"necromancer"])
 boss_type = &"lich"
 unlocked_unit_type = &"priest"
+battlefield_config = ExtResource("2")
+menu_backdrop = ExtResource("3")

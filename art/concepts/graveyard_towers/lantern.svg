@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="256" height="256" viewBox="0 0 256 256"><title>04 · Фонарь смотрителя</title><g stroke="#292421" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="128" cy="240" rx="108" ry="9" fill="#10191b" opacity=".4" stroke="none"/>
+<path d="m39 220 178 0 16 20-210 0Z" fill="#728276"/>
+<path d="m59 185 138 0 12 35-162 0Z" fill="#99a692"/>
+<path d="m78 172 100 0 7 22-114 0Z" fill="#52685b"/>
+<path d="m70 78 116 0 0 98-116 0Z" fill="#39594c"/>
+<path d="m84 86 88 0 0 77-88 0Z" fill="#6aaf8b" stroke="none"/>
+<path d="m97 99 63 0 0 48-63 0Z" fill="#b4edc7" stroke="none" opacity=".45"/>
+<path d="m64 75 23-35 82 0 23 35 3 10-134 0Z" fill="#65766c"/>
+<path d="m95 40 17-19 32 0 17 19" fill="#bfc6ac"/>
+<path d="m128 52 24 34-4 34-20 16-20-16-4-34Z" fill="#82e9be"/>
+<path d="m128 60 0 67-16-12-3-28Z" fill="#d2ffe6" stroke="none"/>
+<path d="m74 88 0 80m108-80v80" fill="none" stroke="#c0c5a5" stroke-width="10"/>
+<path d="m62 173 132 0 0 12-132 0Z" fill="#a5ad93"/>
+<path d="m76 202 20 0m64 0 20 0" fill="none" stroke="#596f5e" stroke-width="5"/>
+</g></svg>

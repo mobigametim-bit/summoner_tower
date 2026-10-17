@@ -19,6 +19,16 @@ extends Resource
 @export var decoration_probability: float = 0.40
 @export var decoration_textures: Array[Texture2D] = []
 
+@export_group("Environment")
+@export var ground_texture: Texture2D = preload("res://assets/environment/ground_cell.svg")
+@export var road_texture: Texture2D = preload("res://assets/environment/paved_road.svg")
+@export var pedestal_texture: Texture2D = preload("res://assets/environment/pedestal.svg")
+@export var tower_visual_scene: PackedScene = preload("res://scenes/visuals/TowerVisual.tscn")
+@export var portal_texture: Texture2D = preload("res://assets/environment/portal.svg")
+@export var road_edge_color: Color = Color(0.3019608, 0.31764707, 0.2509804, 1)
+@export var portal_energy_color: Color = Color("c091ff")
+@export var portal_smoke_gradient: Gradient = preload("res://resources/vfx/summon_portal/smoke_fade.tres")
+
 
 func grid_size(columns: int) -> Vector2i:
 	var width: int = clampi(columns, column_range.x, column_range.y)

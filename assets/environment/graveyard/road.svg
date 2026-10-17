@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 64 64">
+  <title>Кладбище — бесшовное мощение</title>
+  <rect width="64" height="64" fill="#4b5450"/>
+  <g stroke="#444d47" stroke-width="2" stroke-linejoin="round">
+    <path d="M2 2H29L30 30 3 31Z" fill="#929385"/>
+    <path d="m34 3 28-1-1 28-27 1Z" fill="#838b80"/>
+    <path d="m3 35 27-1-1 28H2Z" fill="#7d877b"/>
+    <path d="m34 35 27-1 1 28-28-1Z" fill="#a09e88"/>
+  </g>
+  <path d="M6 6H24 m14 1 18-1 M7 39l16-1 m16 1h17" fill="none" stroke="#b4b49f" stroke-width="1.5" stroke-linecap="round"/>
+  <path d="m15 3 3 8-5 7 3 6 M47 35l-4 8 6 6-3 8" fill="none" stroke="#606b60" stroke-width="1.5" stroke-linecap="round"/>
+</svg>

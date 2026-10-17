@@ -1,0 +1,46 @@
+[gd_scene format=3 uid="uid://b8dhp5fj5hqm"]
+
+[ext_resource type="Script" uid="uid://3ouoy56f3hm7" path="res://scripts/debug/graveyard_environment_review.gd" id="1_ssr05"]
+[ext_resource type="PackedScene" uid="uid://rkmlqc5qcsrs" path="res://scenes/game.tscn" id="2_f3eun"]
+[ext_resource type="Script" uid="uid://ci1844yuqjfb7" path="res://scripts/debug/graveyard_environment_game.gd" id="3_6q872"]
+[ext_resource type="Theme" uid="uid://bufjhwj3mejwx" path="res://resources/ui/game_theme.tres" id="4_6q872"]
+
+[node name="GraveyardEnvironmentReview" type="Node" unique_id=1079467115]
+script = ExtResource("1_ssr05")
+
+[node name="Game" parent="." unique_id=469266139 instance=ExtResource("2_f3eun")]
+script = ExtResource("3_6q872")
+battlefield_seed = 1731
+battlefield_portal_count = 3
+menu_scene_path = "res://scenes/debug/BiomeFrameworkReview.tscn"
+
+[node name="ReviewInterface" type="CanvasLayer" parent="." unique_id=1704000296]
+layer = 20
+
+[node name="Controls" type="HBoxContainer" parent="ReviewInterface" unique_id=1908213961]
+offset_left = 8.0
+offset_top = 1086.0
+theme = ExtResource("4_6q872")
+theme_override_constants/separation = 8
+
+[node name="Map" type="Button" parent="ReviewInterface/Controls" unique_id=624529615]
+custom_minimum_size = Vector2(224, 56)
+layout_mode = 2
+theme_override_font_sizes/font_size = 26
+text = "MAP · TEST"
+
+[node name="Summon" type="Button" parent="ReviewInterface/Controls" unique_id=1135588059]
+custom_minimum_size = Vector2(224, 56)
+layout_mode = 2
+theme_override_font_sizes/font_size = 26
+text = "SUMMON · TEST"
+
+[node name="Boss" type="Button" parent="ReviewInterface/Controls" unique_id=670742166]
+custom_minimum_size = Vector2(224, 56)
+layout_mode = 2
+theme_override_font_sizes/font_size = 26
+text = "BOSS 5 · TEST"
+
+[connection signal="pressed" from="ReviewInterface/Controls/Map" to="." method="_on_map_pressed"]
+[connection signal="pressed" from="ReviewInterface/Controls/Summon" to="." method="_on_summon_pressed"]
+[connection signal="pressed" from="ReviewInterface/Controls/Boss" to="." method="_on_boss_pressed"]

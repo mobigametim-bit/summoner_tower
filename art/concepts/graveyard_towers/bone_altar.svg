@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="256" height="256" viewBox="0 0 256 256"><title>03 · Костяной алтарь</title><g stroke="#292421" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="128" cy="240" rx="108" ry="9" fill="#10191b" opacity=".4" stroke="none"/>
+<path d="m35 222 186 0 12 19-210 0Z" fill="#69776b"/>
+<path d="m58 139 140 0 12 83-164 0Z" fill="#5e7163"/>
+<path d="m160 145 31 0 12 71-43 0Z" fill="#3d5449" stroke="none"/>
+<path d="m96 215 0-32q0-31 32-31t32 31v32Z" fill="#283f33"/>
+<path d="m38 115 24-8 16 97-8 17-22 0 3-25Z m180 0-24-8-16 97 8 17 22 0-3-25Z" fill="#dbd2ac"/>
+<path d="m53 128 10 61m140-61-10 61" fill="none" stroke="#a7aa8a" stroke-width="5"/>
+<path d="m42 109-14-16 8-22 18 13 13-18 12 18-10 25Z m172 0 14-16-8-22-18 13-13-18-12 18 10 25Z" fill="#e7dfbd"/>
+<path d="m70 127 16-40 13 11-4 24 66 0-4-24 13-11 16 40-18 19-80 0Z" fill="#c9c3a0"/>
+<path d="M103 125q0-22 25-22t25 22l-5 18-10 5-1 12-18 0-1-12-11-5Z" fill="#eee4bf" stroke-width="6"/>
+<path d="m112 125 10 2-2 10-9-2Z m22 2 10-2 1 10-9 2Z" fill="#3e493b" stroke="none"/>
+<path d="m128 137-4 7 8 0Z" fill="#62725b" stroke="none"/>
+<path d="m128 16 26 35-4 32-22 14-22-14-4-32Z" fill="#7ae7bf"/>
+<path d="m128 22 0 67-19-12-2-24Z" fill="#c5ffe7" stroke="none"/>
+<path d="m128 89 19-13 3-24-22 15Z" fill="#3caa96" stroke="none"/><path d="m128 177 9 11-9 15-9-15Z" fill="#98eabd" stroke-width="5"/>
+</g></svg>

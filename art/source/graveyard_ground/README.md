@@ -14,7 +14,9 @@
   Все 54 клетки в превью используют один тайл без поворотов и вариаций.
 
 Это плоская земля: Skeleton2D, части и анимации ей не требуются.
-Пока действует `.gdignore`; ресурс не импортирован и не подключён к игре.
+Исходник сохраняет `.gdignore`; runtime-копия `assets/environment/graveyard/ground.svg`
+импортирована и подключена через `resources/biomes/graveyard_battlefield.tres` в общем
+этапе окружения от 17.10.2026. Принятое изображение при копировании не изменялось.
 
 Сборка превью: `python art/previews/graveyard_ground/build_preview.py`.
 Результат: `build/web/preview/graveyard-ground/index.html`.

@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="256" height="256" viewBox="0 0 256 256"><title>02 · Обелиск душ</title><g stroke="#292421" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="128" cy="240" rx="108" ry="9" fill="#10191b" opacity=".4" stroke="none"/>
+<path d="m32 222 192 0 9 19-210 0Z" fill="#727f78"/>
+<path d="m48 200 160 0 11 23-182 0Z" fill="#a1aa9d"/>
+<path d="m81 101 94 0 13 100-120 0Z" fill="#68796e"/>
+<path d="m144 105 27 0 13 92-40 0Z" fill="#465c52" stroke="none"/>
+<path d="m85 113 16 0-7 68-16 0Z" fill="#a2b4a0" stroke="none"/>
+<path d="m128 124 17 19-5 26-12 13-12-13-5-26Z" fill="#87e4b7" stroke-width="5"/>
+<path d="m128 132 0 37" fill="none" stroke="#d4ffe5" stroke-width="5"/>
+<path d="m66 100 17-28 11-20 9 35 50 0 9-35 11 20 17 28-18 14-88 0Z" fill="#c4c9b2"/>
+<path d="m128 16 26 35-4 32-22 14-22-14-4-32Z" fill="#7ae7bf"/>
+<path d="m128 22 0 67-19-12-2-24Z" fill="#c5ffe7" stroke="none"/>
+<path d="m128 89 19-13 3-24-22 15Z" fill="#3caa96" stroke="none"/><path d="m53 190 14-9 7 18-14 1Z m130-9 15 9-7 10-14-1Z" fill="#bad8bc" stroke-width="5"/>
+</g></svg>

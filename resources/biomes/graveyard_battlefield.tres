@@ -1,0 +1,32 @@
+[gd_resource type="Resource" script_class="BattlefieldConfig" format=3]
+
+[ext_resource type="Script" path="res://scripts/data/battlefield_config.gd" id="1"]
+[ext_resource type="Texture2D" path="res://assets/environment/graveyard/ground.svg" id="2"]
+[ext_resource type="Texture2D" path="res://assets/environment/graveyard/road.svg" id="3"]
+[ext_resource type="Texture2D" path="res://assets/environment/graveyard/pedestal.svg" id="4"]
+[ext_resource type="Texture2D" path="res://assets/environment/graveyard/portal.svg" id="5"]
+[ext_resource type="Gradient" path="res://resources/vfx/graveyard_portal_smoke.tres" id="6"]
+[ext_resource type="Texture2D" path="res://assets/environment/graveyard/dead_tree.svg" id="7"]
+[ext_resource type="Texture2D" path="res://assets/environment/graveyard/headstone.svg" id="8"]
+[ext_resource type="Texture2D" path="res://assets/environment/graveyard/grave_cross.svg" id="9"]
+[ext_resource type="Texture2D" path="res://assets/environment/graveyard/crypt.svg" id="10"]
+[ext_resource type="Texture2D" path="res://assets/environment/graveyard/fence.svg" id="11"]
+[ext_resource type="Texture2D" path="res://assets/environment/graveyard/remains.svg" id="12"]
+[ext_resource type="Texture2D" path="res://assets/environment/graveyard/candles.svg" id="13"]
+[ext_resource type="Texture2D" path="res://assets/environment/graveyard/lantern.svg" id="14"]
+[ext_resource type="Texture2D" path="res://assets/environment/graveyard/flowers.svg" id="15"]
+[ext_resource type="Texture2D" path="res://assets/environment/graveyard/coffin.svg" id="16"]
+[ext_resource type="PackedScene" path="res://scenes/visuals/GraveyardTowerVisual.tscn" id="17"]
+
+[resource]
+script = ExtResource("1")
+column_range = Vector2i(6, 6)
+ground_texture = ExtResource("2")
+road_texture = ExtResource("3")
+pedestal_texture = ExtResource("4")
+tower_visual_scene = ExtResource("17")
+portal_texture = ExtResource("5")
+road_edge_color = Color(0.255, 0.29, 0.267, 1)
+portal_energy_color = Color(0.7, 1, 0.82, 1)
+portal_smoke_gradient = ExtResource("6")
+decoration_textures = [ExtResource("7"), ExtResource("8"), ExtResource("9"), ExtResource("10"), ExtResource("11"), ExtResource("12"), ExtResource("13"), ExtResource("14"), ExtResource("15"), ExtResource("16")]

@@ -1,0 +1,129 @@
+[gd_scene format=3 uid="uid://d387xqbg0k0y5"]
+
+[ext_resource type="Script" uid="uid://c7ridsk0qnvnl" path="res://scripts/ui/graveyard_menu_backdrop.gd" id="1_4q324"]
+[ext_resource type="Texture2D" uid="uid://cdoa8m7m0036o" path="res://assets/environment/graveyard/road.svg" id="2_yy12r"]
+[ext_resource type="Texture2D" uid="uid://djebrlnj56gi5" path="res://assets/environment/graveyard/dead_tree.svg" id="3_f7iy8"]
+[ext_resource type="Texture2D" uid="uid://80aj8nsvif4d" path="res://assets/environment/graveyard/headstone.svg" id="4_f7iy8"]
+[ext_resource type="Texture2D" uid="uid://f2gp8m2k0ub8" path="res://assets/environment/graveyard/candles.svg" id="5_bltqr"]
+[ext_resource type="Texture2D" uid="uid://brpobx8dffass" path="res://assets/environment/graveyard/lantern.svg" id="6_risuv"]
+[ext_resource type="PackedScene" uid="uid://dq35rgaohi2on" path="res://scenes/visuals/GraveyardTowerVisual.tscn" id="7_4q324"]
+[ext_resource type="Texture2D" uid="uid://c47rstfj6abic" path="res://assets/ui/graveyard_menu/priest.svg" id="8_4q324"]
+[ext_resource type="PackedScene" uid="uid://4j2yvn8jcf21" path="res://scenes/visuals/MageVisual.tscn" id="9_4q324"]
+[ext_resource type="Texture2D" uid="uid://dv0q5t264dqqj" path="res://assets/environment/graveyard/grave_cross.svg" id="10_risuv"]
+[ext_resource type="Texture2D" uid="uid://bnpjkwrri4wsg" path="res://assets/environment/graveyard/coffin.svg" id="11_rhyq3"]
+[ext_resource type="Texture2D" uid="uid://cbfo52j1vk2b6" path="res://assets/environment/graveyard/crypt.svg" id="12_rhyq3"]
+[ext_resource type="PackedScene" uid="uid://b2ua885nmtlx3" path="res://scenes/enemy_portal.tscn" id="12_xyx8k"]
+[ext_resource type="Texture2D" uid="uid://bp5amtkx73jq" path="res://assets/environment/graveyard/remains.svg" id="13_rhyq3"]
+[ext_resource type="Texture2D" uid="uid://4mdpm47h6cwn" path="res://assets/environment/graveyard/flowers.svg" id="14_rhyq3"]
+[ext_resource type="Texture2D" uid="uid://co1a63h0if1lx" path="res://assets/environment/graveyard/portal.svg" id="16_4q324"]
+[ext_resource type="Gradient" path="res://resources/vfx/graveyard_portal_smoke.tres" id="17_kd18b"]
+
+[node name="GraveyardGuard" type="Node2D" unique_id=1734931141]
+script = ExtResource("1_4q324")
+
+[node name="GroundShadow" type="Polygon2D" parent="." unique_id=503479104]
+color = Color(0.1254902, 0.16078432, 0.16862746, 1)
+polygon = PackedVector2Array(710, 352, 703, 376, 683, 399, 651, 421, 607, 440, 554, 455, 494, 467, 428, 474, 360, 476, 292, 474, 226, 467, 166, 455, 113, 440, 69, 421, 37, 399, 17, 376, 10, 352, 17, 328, 37, 305, 69, 283, 113, 264, 166, 249, 226, 237, 292, 230, 360, 228, 428, 230, 494, 237, 554, 249, 607, 264, 651, 283, 683, 305, 703, 328)
+
+[node name="Ground" type="Polygon2D" parent="." unique_id=1578798193]
+color = Color(0.1882353, 0.21960784, 0.21960784, 1)
+polygon = PackedVector2Array(692, 337, 686, 359, 667, 380, 636, 400, 595, 417, 544, 431, 487, 441, 425, 448, 360, 450, 295, 448, 233, 441, 176, 431, 125, 417, 84, 400, 53, 380, 34, 359, 28, 337, 34, 315, 53, 294, 84, 274, 125, 257, 176, 243, 233, 233, 295, 226, 360, 224, 425, 226, 487, 233, 544, 243, 595, 257, 636, 274, 667, 294, 686, 315)
+
+[node name="LowerGround" type="Polygon2D" parent="." unique_id=1271356690]
+color = Color(0.1882353, 0.21960784, 0.21960784, 1)
+polygon = PackedVector2Array(698, 1050, 692, 1075, 672, 1100, 641, 1122, 599, 1142, 548, 1158, 489, 1170, 426, 1178, 360, 1180, 294, 1178, 231, 1170, 172, 1158, 121, 1142, 79, 1122, 48, 1100, 28, 1075, 22, 1050, 28, 1025, 48, 1000, 79, 978, 121, 958, 172, 942, 231, 930, 294, 922, 360, 920, 426, 922, 489, 930, 548, 942, 599, 958, 641, 978, 672, 1000, 692, 1025)
+
+[node name="Path" type="Line2D" parent="." unique_id=1432463815]
+texture_repeat = 2
+points = PackedVector2Array(100, 393, 260, 393, 355, 338, 430, 378, 610, 390)
+width = 46.0
+texture = ExtResource("2_yy12r")
+texture_mode = 1
+joint_mode = 2
+begin_cap_mode = 2
+end_cap_mode = 2
+
+[node name="TreeA" type="Sprite2D" parent="." unique_id=576603672]
+position = Vector2(81, 250)
+scale = Vector2(2.3, 2.3)
+texture = ExtResource("3_f7iy8")
+
+[node name="TreeB" type="Sprite2D" parent="." unique_id=543496330]
+position = Vector2(627, 255)
+scale = Vector2(2.8, 2.8)
+texture = ExtResource("3_f7iy8")
+
+[node name="BushA" type="Sprite2D" parent="." unique_id=792491573]
+position = Vector2(62, 364)
+scale = Vector2(1.3, 1.3)
+texture = ExtResource("4_f7iy8")
+
+[node name="FlowersA" type="Sprite2D" parent="." unique_id=578664703]
+position = Vector2(136, 405)
+scale = Vector2(0.65, 0.65)
+texture = ExtResource("5_bltqr")
+
+[node name="FlowersB" type="Sprite2D" parent="." unique_id=1272339476]
+position = Vector2(595, 393)
+scale = Vector2(0.9, 0.9)
+texture = ExtResource("6_risuv")
+
+[node name="Tower" parent="." unique_id=1850618779 instance=ExtResource("7_4q324")]
+position = Vector2(360, 302)
+scale = Vector2(0.86, 0.86)
+
+[node name="Priest" type="Sprite2D" parent="." unique_id=887969313]
+position = Vector2(194, 342)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("8_4q324")
+
+[node name="FireMage" parent="." unique_id=916861954 instance=ExtResource("9_4q324")]
+position = Vector2(531, 343)
+scale = Vector2(0.5, 0.5)
+
+[node name="LowerTreeA" type="Sprite2D" parent="." unique_id=794284793]
+position = Vector2(116, 989)
+scale = Vector2(2.25, 2.25)
+texture = ExtResource("3_f7iy8")
+
+[node name="LowerTreeB" type="Sprite2D" parent="." unique_id=1550949003]
+position = Vector2(620, 1042)
+scale = Vector2(1.75, 1.75)
+texture = ExtResource("10_risuv")
+
+[node name="SheepA" type="Sprite2D" parent="." unique_id=733426491]
+position = Vector2(258, 1080)
+scale = Vector2(1.6, 1.6)
+texture = ExtResource("11_rhyq3")
+
+[node name="SheepB" type="Sprite2D" parent="." unique_id=646061075]
+position = Vector2(493, 1055)
+scale = Vector2(1.6, 1.6)
+texture = ExtResource("12_rhyq3")
+
+[node name="Grass" type="Sprite2D" parent="." unique_id=2041172965]
+position = Vector2(374, 1110)
+scale = Vector2(1.2, 1.2)
+texture = ExtResource("13_rhyq3")
+
+[node name="Flowers" type="Sprite2D" parent="." unique_id=377395006]
+position = Vector2(190, 1090)
+texture = ExtResource("14_rhyq3")
+
+[node name="Mushrooms" type="Sprite2D" parent="." unique_id=1194994639]
+position = Vector2(550, 1100)
+scale = Vector2(1.2, 1.2)
+texture = ExtResource("5_bltqr")
+
+[node name="LowerPortal" parent="." unique_id=1332716270 instance=ExtResource("12_xyx8k")]
+position = Vector2(360, 919.6)
+scale = Vector2(1.1, 1.1)
+texture = ExtResource("16_4q324")
+energy_color = Color(0.7019608, 1, 0.81960785, 1)
+smoke_gradient = ExtResource("17_kd18b")
+
+[node name="EnergyPulseTimer" type="Timer" parent="." unique_id=1494784419]
+wait_time = 4.0
+autostart = true
+
+[connection signal="timeout" from="EnergyPulseTimer" to="." method="_on_energy_pulse"]
