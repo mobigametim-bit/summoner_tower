@@ -31,9 +31,9 @@ func run_meta_checks() -> void:
 	var bought: bool = SessionProgress.try_buy(0)
 	SessionProgress.crystals_changed.disconnect(_attempt_reentrant_buy)
 	assert(bought and SessionProgress.crystals == 0 and SessionProgress.upgrade_level(0) == 1)
-	assert(config.price_for(1) == 50 and config.price_for(9) == 250 and config.price_for(10) == 0)
+	assert(config.price_for(1) == 50 and config.price_for(9) == 12800 and config.price_for(10) == 0)
 	SessionProgress.upgrade_levels = [0, 0, 0, 0]
-	SessionProgress.crystals = 5500
+	SessionProgress.crystals = 102300
 	for kind: int in 4:
 		for level: int in 10:
 			var price: int = config.price_for(level)
@@ -98,7 +98,7 @@ func run_meta_checks() -> void:
 	SessionProgress.upgrade_levels = before_levels
 	SessionProgress.crystals = before_crystals
 	game.run_bonuses.reset()
-	set_meta("meta_checks", {"passed":true, "maximum_cost_all_branches":5500, "damage_20_shots":210, "income_20_kills":63})
+	set_meta("meta_checks", {"passed":true, "maximum_cost_first_four_branches":102300, "damage_20_shots":210, "income_20_kills":63})
 
 
 func _attempt_reentrant_buy(_total: int) -> void:

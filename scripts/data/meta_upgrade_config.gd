@@ -9,7 +9,7 @@ enum Kind {
 
 @export_range(1, 100, 1) var maximum_level: int = 10
 @export_range(1, 10000, 1) var price_step: int = 25
-@export_range(1, 20, 1) var choice_price_multiplier: int = 5
+@export_range(1, 20, 1) var choice_price_multiplier: int = 10
 @export var health_per_level: float = 0.1
 @export var damage_per_level: float = 0.05
 @export var income_per_level: float = 0.05
@@ -65,7 +65,7 @@ func maximum_for(kind: int) -> int:
 
 func price_for(level: int, kind: int = Kind.TOWER_HEALTH) -> int:
 	var multiplier: int = choice_price_multiplier if kind in [Kind.LUCKY_CHOICE, Kind.EXPANDED_CHOICE] else 1
-	return price_step * (level + 1) * multiplier if level >= 0 and level < maximum_for(kind) else 0
+	return price_step * (1 << level) * multiplier if level >= 0 and level < maximum_for(kind) else 0
 
 
 func multiplier_for(kind: Kind, level: int) -> float:
