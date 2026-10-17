@@ -1,0 +1,196 @@
+{
+  "entity": "flesh_golem",
+  "canvas": [
+    256,
+    256
+  ],
+  "origin": [
+    128,
+    128
+  ],
+  "baseline": 239,
+  "pivots": {
+    "body": [
+      128,
+      174
+    ],
+    "head": [
+      130,
+      124
+    ],
+    "back_arm": [
+      70,
+      121
+    ],
+    "front_arm": [
+      171,
+      123
+    ],
+    "leg_left": [
+      103,
+      199
+    ],
+    "leg_right": [
+      157,
+      199
+    ]
+  },
+  "bones": {
+    "root": {
+      "parent": "Skeleton2D",
+      "position": [
+        -128,
+        -128
+      ]
+    },
+    "body": {
+      "parent": "root",
+      "position": [
+        128,
+        174
+      ],
+      "source_pivot": [
+        128,
+        174
+      ],
+      "sprite_offset": [
+        -128,
+        -174
+      ],
+      "rotation_origin": "bone origin"
+    },
+    "head": {
+      "parent": "body",
+      "position": [
+        2,
+        -50
+      ],
+      "source_pivot": [
+        130,
+        124
+      ],
+      "sprite_offset": [
+        -130,
+        -124
+      ],
+      "rotation_origin": "bone origin"
+    },
+    "back_arm": {
+      "parent": "body",
+      "position": [
+        -58,
+        -53
+      ],
+      "source_pivot": [
+        70,
+        121
+      ],
+      "sprite_offset": [
+        -70,
+        -121
+      ],
+      "rotation_origin": "bone origin"
+    },
+    "front_arm": {
+      "parent": "body",
+      "position": [
+        43,
+        -51
+      ],
+      "source_pivot": [
+        171,
+        123
+      ],
+      "sprite_offset": [
+        -171,
+        -123
+      ],
+      "rotation_origin": "bone origin"
+    },
+    "leg_left": {
+      "parent": "body",
+      "position": [
+        -25,
+        25
+      ],
+      "source_pivot": [
+        103,
+        199
+      ],
+      "sprite_offset": [
+        -103,
+        -199
+      ],
+      "rotation_origin": "bone origin"
+    },
+    "leg_right": {
+      "parent": "body",
+      "position": [
+        29,
+        25
+      ],
+      "source_pivot": [
+        157,
+        199
+      ],
+      "sprite_offset": [
+        -157,
+        -199
+      ],
+      "rotation_origin": "bone origin"
+    }
+  },
+  "runtime_texture_size": [
+    128,
+    128
+  ],
+  "sprite_scale": 2,
+  "part_order": [
+    "back_accessory",
+    "leg_left",
+    "leg_right",
+    "back_arm",
+    "body",
+    "weapon",
+    "front_arm",
+    "head"
+  ],
+  "levels": [
+    4,
+    5
+  ],
+  "textures": {
+    "back_accessory": [
+      null,
+      null
+    ],
+    "leg_left": [
+      "res://art/source/flesh_golem/parts/lv4/leg_left.svg",
+      "res://art/source/flesh_golem/parts/lv5/leg_left.svg"
+    ],
+    "leg_right": [
+      "res://art/source/flesh_golem/parts/lv4/leg_right.svg",
+      "res://art/source/flesh_golem/parts/lv5/leg_right.svg"
+    ],
+    "back_arm": [
+      "res://art/source/flesh_golem/parts/lv4/back_arm.svg",
+      "res://art/source/flesh_golem/parts/lv5/back_arm.svg"
+    ],
+    "body": [
+      "res://art/source/flesh_golem/parts/lv4/body.svg",
+      "res://art/source/flesh_golem/parts/lv5/body.svg"
+    ],
+    "weapon": [
+      null,
+      null
+    ],
+    "front_arm": [
+      "res://art/source/flesh_golem/parts/lv4/front_arm.svg",
+      "res://art/source/flesh_golem/parts/lv5/front_arm.svg"
+    ],
+    "head": [
+      "res://art/source/flesh_golem/parts/lv4/head.svg",
+      "res://art/source/flesh_golem/parts/lv5/head.svg"
+    ]
+  }
+}

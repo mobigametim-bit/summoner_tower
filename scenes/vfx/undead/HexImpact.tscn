@@ -1,0 +1,128 @@
+[gd_scene format=3 uid="uid://dm42118bjpm6c"]
+
+[ext_resource type="Script" uid="uid://c8fp74kdyg7ic" path="res://scripts/visuals/undead_effect_clip.gd" id="1_ryarr"]
+[ext_resource type="Texture2D" uid="uid://dpw1bhc602of6" path="res://assets/vfx/kenney_particles/light_01.png" id="2_3eqm7"]
+[ext_resource type="Texture2D" uid="uid://cnv14pq86m8ms" path="res://assets/vfx/kenney_particles/magic_05.png" id="3_lxyt7"]
+
+[sub_resource type="Animation" id="Animation_3eqm7"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Flash1:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("WhiteCore2:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_lxyt7"]
+length = 0.8
+step = 0.01
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Flash1:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.06, 0.13, 0.42),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 0.7), Color(1, 1, 1, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("WhiteCore2:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.05, 0.1, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 0.7), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_3swtg"]
+_data = {
+&"RESET": SubResource("Animation_3eqm7"),
+&"effect": SubResource("Animation_lxyt7")
+}
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_jvp7d"]
+blend_mode = 1
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_kdtcb"]
+blend_mode = 1
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_hdpxl"]
+blend_mode = 1
+
+[sub_resource type="Curve" id="Curve_073yl"]
+_data = [Vector2(0, 0.4), 0.0, 0.0, 0, 0, Vector2(0.15, 1), 0.0, 0.0, 0, 0, Vector2(0.7, 0.7), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 4
+
+[sub_resource type="Gradient" id="Gradient_cpq7x"]
+offsets = PackedFloat32Array(0, 0.12, 0.6, 1)
+colors = PackedColorArray(1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 0.9, 1, 1, 1, 0)
+
+[node name="HexImpact" type="Node2D" unique_id=1754990916]
+script = ExtResource("1_ryarr")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=6438225]
+libraries/ = SubResource("AnimationLibrary_3swtg")
+
+[node name="Flash1" type="Sprite2D" parent="." unique_id=470938754]
+self_modulate = Color(0.7019608, 0.36078432, 1, 0.85)
+material = SubResource("CanvasItemMaterial_jvp7d")
+position = Vector2(85, 20)
+scale = Vector2(0.6640625, 0.6640625)
+texture = ExtResource("2_3eqm7")
+
+[node name="WhiteCore2" type="Sprite2D" parent="." unique_id=630386598]
+self_modulate = Color(0.90588236, 0.8352941, 1, 1)
+material = SubResource("CanvasItemMaterial_kdtcb")
+position = Vector2(85, 20)
+scale = Vector2(0.39843753, 0.39843753)
+texture = ExtResource("3_lxyt7")
+
+[node name="Particles3" type="CPUParticles2D" parent="." unique_id=471078255]
+material = SubResource("CanvasItemMaterial_hdpxl")
+position = Vector2(85, 20)
+emitting = false
+amount = 16
+texture = ExtResource("3_lxyt7")
+lifetime = 0.5
+one_shot = true
+explosiveness = 0.65
+local_coords = true
+emission_shape = 1
+emission_sphere_radius = 10.0
+direction = Vector2(0, -1)
+spread = 180.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 100.0
+initial_velocity_max = 230.0
+angular_velocity_min = -60.0
+angular_velocity_max = 60.0
+scale_amount_min = 0.0546875
+scale_amount_max = 0.140625
+scale_amount_curve = SubResource("Curve_073yl")
+color = Color(0.7019608, 0.36078432, 1, 1)
+color_ramp = SubResource("Gradient_cpq7x")

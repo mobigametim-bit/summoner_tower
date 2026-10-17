@@ -1,0 +1,575 @@
+{
+  "skeleton": {
+    "title": "Скелет",
+    "levels": [
+      1,
+      2,
+      3,
+      4,
+      5
+    ],
+    "body": [
+      129,
+      177
+    ],
+    "head": [
+      129,
+      134
+    ],
+    "back_arm": [
+      92,
+      141
+    ],
+    "front_arm": [
+      164,
+      141
+    ],
+    "leg_left": [
+      110,
+      196
+    ],
+    "leg_right": [
+      154,
+      196
+    ],
+    "weapon": [
+      206,
+      182
+    ],
+    "walk": 0.76,
+    "abilities": {
+      "bone_shield": 5
+    },
+    "parts": {
+      "back_accessory": [
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      "leg_left": [
+        "res://art/source/skeleton/parts/lv1/leg_left.svg",
+        "res://art/source/skeleton/parts/lv2/leg_left.svg",
+        "res://art/source/skeleton/parts/lv3/leg_left.svg",
+        "res://art/source/skeleton/parts/lv4/leg_left.svg",
+        "res://art/source/skeleton/parts/lv5/leg_left.svg"
+      ],
+      "leg_right": [
+        "res://art/source/skeleton/parts/lv1/leg_right.svg",
+        "res://art/source/skeleton/parts/lv2/leg_right.svg",
+        "res://art/source/skeleton/parts/lv3/leg_right.svg",
+        "res://art/source/skeleton/parts/lv4/leg_right.svg",
+        "res://art/source/skeleton/parts/lv5/leg_right.svg"
+      ],
+      "back_arm": [
+        "res://art/source/skeleton/parts/lv1/back_arm.svg",
+        "res://art/source/skeleton/parts/lv2/back_arm.svg",
+        "res://art/source/skeleton/parts/lv3/back_arm.svg",
+        "res://art/source/skeleton/parts/lv4/back_arm.svg",
+        "res://art/source/skeleton/parts/lv5/back_arm.svg"
+      ],
+      "body": [
+        "res://art/source/skeleton/parts/lv1/body.svg",
+        "res://art/source/skeleton/parts/lv2/body.svg",
+        "res://art/source/skeleton/parts/lv3/body.svg",
+        "res://art/source/skeleton/parts/lv4/body.svg",
+        "res://art/source/skeleton/parts/lv5/body.svg"
+      ],
+      "weapon": [
+        "res://art/source/skeleton/parts/lv1/weapon.svg",
+        "res://art/source/skeleton/parts/lv2/weapon.svg",
+        "res://art/source/skeleton/parts/lv3/weapon.svg",
+        "res://art/source/skeleton/parts/lv4/weapon.svg",
+        "res://art/source/skeleton/parts/lv5/weapon.svg"
+      ],
+      "front_arm": [
+        "res://art/source/skeleton/parts/lv1/front_arm.svg",
+        "res://art/source/skeleton/parts/lv2/front_arm.svg",
+        "res://art/source/skeleton/parts/lv3/front_arm.svg",
+        "res://art/source/skeleton/parts/lv4/front_arm.svg",
+        "res://art/source/skeleton/parts/lv5/front_arm.svg"
+      ],
+      "head": [
+        "res://art/source/skeleton/parts/lv1/head.svg",
+        "res://art/source/skeleton/parts/lv2/head.svg",
+        "res://art/source/skeleton/parts/lv3/head.svg",
+        "res://art/source/skeleton/parts/lv4/head.svg",
+        "res://art/source/skeleton/parts/lv5/head.svg"
+      ]
+    },
+    "scene": "res://scenes/visuals/SkeletonVisual.tscn"
+  },
+  "zombie": {
+    "title": "Зомби",
+    "levels": [
+      1,
+      2,
+      3,
+      4,
+      5
+    ],
+    "body": [
+      128,
+      181
+    ],
+    "head": [
+      130,
+      140
+    ],
+    "back_arm": [
+      78,
+      147
+    ],
+    "front_arm": [
+      173,
+      150
+    ],
+    "leg_left": [
+      108,
+      205
+    ],
+    "leg_right": [
+      155,
+      205
+    ],
+    "weapon": [
+      211,
+      183
+    ],
+    "walk": 1.12,
+    "abilities": {
+      "regenerate": 5
+    },
+    "parts": {
+      "back_accessory": [
+        null,
+        null,
+        null,
+        null,
+        "res://art/source/zombie/parts/lv5/back_accessory.svg"
+      ],
+      "leg_left": [
+        "res://art/source/zombie/parts/lv1/leg_left.svg",
+        "res://art/source/zombie/parts/lv2/leg_left.svg",
+        "res://art/source/zombie/parts/lv3/leg_left.svg",
+        "res://art/source/zombie/parts/lv4/leg_left.svg",
+        "res://art/source/zombie/parts/lv5/leg_left.svg"
+      ],
+      "leg_right": [
+        "res://art/source/zombie/parts/lv1/leg_right.svg",
+        "res://art/source/zombie/parts/lv2/leg_right.svg",
+        "res://art/source/zombie/parts/lv3/leg_right.svg",
+        "res://art/source/zombie/parts/lv4/leg_right.svg",
+        "res://art/source/zombie/parts/lv5/leg_right.svg"
+      ],
+      "back_arm": [
+        "res://art/source/zombie/parts/lv1/back_arm.svg",
+        "res://art/source/zombie/parts/lv2/back_arm.svg",
+        "res://art/source/zombie/parts/lv3/back_arm.svg",
+        "res://art/source/zombie/parts/lv4/back_arm.svg",
+        "res://art/source/zombie/parts/lv5/back_arm.svg"
+      ],
+      "body": [
+        "res://art/source/zombie/parts/lv1/body.svg",
+        "res://art/source/zombie/parts/lv2/body.svg",
+        "res://art/source/zombie/parts/lv3/body.svg",
+        "res://art/source/zombie/parts/lv4/body.svg",
+        "res://art/source/zombie/parts/lv5/body.svg"
+      ],
+      "weapon": [
+        "res://art/source/zombie/parts/lv1/weapon.svg",
+        "res://art/source/zombie/parts/lv2/weapon.svg",
+        "res://art/source/zombie/parts/lv3/weapon.svg",
+        "res://art/source/zombie/parts/lv4/weapon.svg",
+        "res://art/source/zombie/parts/lv5/weapon.svg"
+      ],
+      "front_arm": [
+        "res://art/source/zombie/parts/lv1/front_arm.svg",
+        "res://art/source/zombie/parts/lv2/front_arm.svg",
+        "res://art/source/zombie/parts/lv3/front_arm.svg",
+        "res://art/source/zombie/parts/lv4/front_arm.svg",
+        "res://art/source/zombie/parts/lv5/front_arm.svg"
+      ],
+      "head": [
+        "res://art/source/zombie/parts/lv1/head.svg",
+        "res://art/source/zombie/parts/lv2/head.svg",
+        "res://art/source/zombie/parts/lv3/head.svg",
+        "res://art/source/zombie/parts/lv4/head.svg",
+        "res://art/source/zombie/parts/lv5/head.svg"
+      ]
+    },
+    "scene": "res://scenes/visuals/ZombieVisual.tscn"
+  },
+  "ghoul": {
+    "title": "Вурдалак",
+    "levels": [
+      1,
+      2,
+      3,
+      4,
+      5
+    ],
+    "body": [
+      128,
+      173
+    ],
+    "head": [
+      130,
+      140
+    ],
+    "back_arm": [
+      87,
+      148
+    ],
+    "front_arm": [
+      160,
+      147
+    ],
+    "leg_left": [
+      111,
+      198
+    ],
+    "leg_right": [
+      155,
+      192
+    ],
+    "walk": 0.56,
+    "abilities": {
+      "dash": 5
+    },
+    "parts": {
+      "back_accessory": [
+        "res://art/source/ghoul/parts/lv1/back_accessory.svg",
+        "res://art/source/ghoul/parts/lv2/back_accessory.svg",
+        "res://art/source/ghoul/parts/lv3/back_accessory.svg",
+        "res://art/source/ghoul/parts/lv4/back_accessory.svg",
+        "res://art/source/ghoul/parts/lv5/back_accessory.svg"
+      ],
+      "leg_left": [
+        "res://art/source/ghoul/parts/lv1/leg_left.svg",
+        "res://art/source/ghoul/parts/lv2/leg_left.svg",
+        "res://art/source/ghoul/parts/lv3/leg_left.svg",
+        "res://art/source/ghoul/parts/lv4/leg_left.svg",
+        "res://art/source/ghoul/parts/lv5/leg_left.svg"
+      ],
+      "leg_right": [
+        "res://art/source/ghoul/parts/lv1/leg_right.svg",
+        "res://art/source/ghoul/parts/lv2/leg_right.svg",
+        "res://art/source/ghoul/parts/lv3/leg_right.svg",
+        "res://art/source/ghoul/parts/lv4/leg_right.svg",
+        "res://art/source/ghoul/parts/lv5/leg_right.svg"
+      ],
+      "back_arm": [
+        "res://art/source/ghoul/parts/lv1/back_arm.svg",
+        "res://art/source/ghoul/parts/lv2/back_arm.svg",
+        "res://art/source/ghoul/parts/lv3/back_arm.svg",
+        "res://art/source/ghoul/parts/lv4/back_arm.svg",
+        "res://art/source/ghoul/parts/lv5/back_arm.svg"
+      ],
+      "body": [
+        "res://art/source/ghoul/parts/lv1/body.svg",
+        "res://art/source/ghoul/parts/lv2/body.svg",
+        "res://art/source/ghoul/parts/lv3/body.svg",
+        "res://art/source/ghoul/parts/lv4/body.svg",
+        "res://art/source/ghoul/parts/lv5/body.svg"
+      ],
+      "weapon": [
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      "front_arm": [
+        "res://art/source/ghoul/parts/lv1/front_arm.svg",
+        "res://art/source/ghoul/parts/lv2/front_arm.svg",
+        "res://art/source/ghoul/parts/lv3/front_arm.svg",
+        "res://art/source/ghoul/parts/lv4/front_arm.svg",
+        "res://art/source/ghoul/parts/lv5/front_arm.svg"
+      ],
+      "head": [
+        "res://art/source/ghoul/parts/lv1/head.svg",
+        "res://art/source/ghoul/parts/lv2/head.svg",
+        "res://art/source/ghoul/parts/lv3/head.svg",
+        "res://art/source/ghoul/parts/lv4/head.svg",
+        "res://art/source/ghoul/parts/lv5/head.svg"
+      ]
+    },
+    "scene": "res://scenes/visuals/GhoulVisual.tscn"
+  },
+  "necromancer": {
+    "title": "Некромант",
+    "levels": [
+      1,
+      2,
+      3,
+      4,
+      5
+    ],
+    "body": [
+      128,
+      180
+    ],
+    "head": [
+      130,
+      139
+    ],
+    "back_arm": [
+      91,
+      143
+    ],
+    "front_arm": [
+      162,
+      147
+    ],
+    "leg_left": [
+      104,
+      207
+    ],
+    "leg_right": [
+      152,
+      207
+    ],
+    "weapon": [
+      204,
+      178
+    ],
+    "walk": 1.0,
+    "abilities": {
+      "heal": 1,
+      "summon_skeletons": 3,
+      "assemble_flesh": 4
+    },
+    "parts": {
+      "back_accessory": [
+        null,
+        null,
+        null,
+        "res://art/source/necromancer/parts/lv4/back_accessory.svg",
+        "res://art/source/necromancer/parts/lv5/back_accessory.svg"
+      ],
+      "leg_left": [
+        "res://art/source/necromancer/parts/lv1/leg_left.svg",
+        "res://art/source/necromancer/parts/lv2/leg_left.svg",
+        "res://art/source/necromancer/parts/lv3/leg_left.svg",
+        "res://art/source/necromancer/parts/lv4/leg_left.svg",
+        "res://art/source/necromancer/parts/lv5/leg_left.svg"
+      ],
+      "leg_right": [
+        "res://art/source/necromancer/parts/lv1/leg_right.svg",
+        "res://art/source/necromancer/parts/lv2/leg_right.svg",
+        "res://art/source/necromancer/parts/lv3/leg_right.svg",
+        "res://art/source/necromancer/parts/lv4/leg_right.svg",
+        "res://art/source/necromancer/parts/lv5/leg_right.svg"
+      ],
+      "back_arm": [
+        "res://art/source/necromancer/parts/lv1/back_arm.svg",
+        "res://art/source/necromancer/parts/lv2/back_arm.svg",
+        "res://art/source/necromancer/parts/lv3/back_arm.svg",
+        "res://art/source/necromancer/parts/lv4/back_arm.svg",
+        "res://art/source/necromancer/parts/lv5/back_arm.svg"
+      ],
+      "body": [
+        "res://art/source/necromancer/parts/lv1/body.svg",
+        "res://art/source/necromancer/parts/lv2/body.svg",
+        "res://art/source/necromancer/parts/lv3/body.svg",
+        "res://art/source/necromancer/parts/lv4/body.svg",
+        "res://art/source/necromancer/parts/lv5/body.svg"
+      ],
+      "weapon": [
+        "res://art/source/necromancer/parts/lv1/weapon.svg",
+        "res://art/source/necromancer/parts/lv2/weapon.svg",
+        "res://art/source/necromancer/parts/lv3/weapon.svg",
+        "res://art/source/necromancer/parts/lv4/weapon.svg",
+        "res://art/source/necromancer/parts/lv5/weapon.svg"
+      ],
+      "front_arm": [
+        "res://art/source/necromancer/parts/lv1/front_arm.svg",
+        "res://art/source/necromancer/parts/lv2/front_arm.svg",
+        "res://art/source/necromancer/parts/lv3/front_arm.svg",
+        "res://art/source/necromancer/parts/lv4/front_arm.svg",
+        "res://art/source/necromancer/parts/lv5/front_arm.svg"
+      ],
+      "head": [
+        "res://art/source/necromancer/parts/lv1/head.svg",
+        "res://art/source/necromancer/parts/lv2/head.svg",
+        "res://art/source/necromancer/parts/lv3/head.svg",
+        "res://art/source/necromancer/parts/lv4/head.svg",
+        "res://art/source/necromancer/parts/lv5/head.svg"
+      ]
+    },
+    "scene": "res://scenes/visuals/NecromancerVisual.tscn"
+  },
+  "flesh_golem": {
+    "title": "Голем плоти",
+    "levels": [
+      4,
+      5
+    ],
+    "body": [
+      128,
+      174
+    ],
+    "head": [
+      130,
+      124
+    ],
+    "back_arm": [
+      70,
+      121
+    ],
+    "front_arm": [
+      171,
+      123
+    ],
+    "leg_left": [
+      103,
+      199
+    ],
+    "leg_right": [
+      157,
+      199
+    ],
+    "walk": 1.2,
+    "abilities": {},
+    "parts": {
+      "back_accessory": [
+        null,
+        null
+      ],
+      "leg_left": [
+        "res://art/source/flesh_golem/parts/lv4/leg_left.svg",
+        "res://art/source/flesh_golem/parts/lv5/leg_left.svg"
+      ],
+      "leg_right": [
+        "res://art/source/flesh_golem/parts/lv4/leg_right.svg",
+        "res://art/source/flesh_golem/parts/lv5/leg_right.svg"
+      ],
+      "back_arm": [
+        "res://art/source/flesh_golem/parts/lv4/back_arm.svg",
+        "res://art/source/flesh_golem/parts/lv5/back_arm.svg"
+      ],
+      "body": [
+        "res://art/source/flesh_golem/parts/lv4/body.svg",
+        "res://art/source/flesh_golem/parts/lv5/body.svg"
+      ],
+      "weapon": [
+        null,
+        null
+      ],
+      "front_arm": [
+        "res://art/source/flesh_golem/parts/lv4/front_arm.svg",
+        "res://art/source/flesh_golem/parts/lv5/front_arm.svg"
+      ],
+      "head": [
+        "res://art/source/flesh_golem/parts/lv4/head.svg",
+        "res://art/source/flesh_golem/parts/lv5/head.svg"
+      ]
+    },
+    "scene": "res://scenes/visuals/FleshGolemVisual.tscn"
+  },
+  "lich": {
+    "title": "Лич",
+    "levels": [
+      1,
+      2,
+      3,
+      4,
+      5
+    ],
+    "body": [
+      128,
+      179
+    ],
+    "head": [
+      130,
+      137
+    ],
+    "back_arm": [
+      78,
+      137
+    ],
+    "front_arm": [
+      173,
+      143
+    ],
+    "leg_left": [
+      104,
+      211
+    ],
+    "leg_right": [
+      153,
+      211
+    ],
+    "weapon": [
+      210,
+      178
+    ],
+    "walk": 1.12,
+    "abilities": {
+      "retinue": 3,
+      "bone_cover": 4,
+      "grave_bell": 5
+    },
+    "parts": {
+      "back_accessory": [
+        null,
+        null,
+        null,
+        null,
+        "res://art/source/lich/parts/lv5/back_accessory.svg"
+      ],
+      "leg_left": [
+        "res://art/source/lich/parts/lv1/leg_left.svg",
+        "res://art/source/lich/parts/lv2/leg_left.svg",
+        "res://art/source/lich/parts/lv3/leg_left.svg",
+        "res://art/source/lich/parts/lv4/leg_left.svg",
+        "res://art/source/lich/parts/lv5/leg_left.svg"
+      ],
+      "leg_right": [
+        "res://art/source/lich/parts/lv1/leg_right.svg",
+        "res://art/source/lich/parts/lv2/leg_right.svg",
+        "res://art/source/lich/parts/lv3/leg_right.svg",
+        "res://art/source/lich/parts/lv4/leg_right.svg",
+        "res://art/source/lich/parts/lv5/leg_right.svg"
+      ],
+      "back_arm": [
+        "res://art/source/lich/parts/lv1/back_arm.svg",
+        "res://art/source/lich/parts/lv2/back_arm.svg",
+        "res://art/source/lich/parts/lv3/back_arm.svg",
+        "res://art/source/lich/parts/lv4/back_arm.svg",
+        "res://art/source/lich/parts/lv5/back_arm.svg"
+      ],
+      "body": [
+        "res://art/source/lich/parts/lv1/body.svg",
+        "res://art/source/lich/parts/lv2/body.svg",
+        "res://art/source/lich/parts/lv3/body.svg",
+        "res://art/source/lich/parts/lv4/body.svg",
+        "res://art/source/lich/parts/lv5/body.svg"
+      ],
+      "weapon": [
+        "res://art/source/lich/parts/lv1/weapon.svg",
+        "res://art/source/lich/parts/lv2/weapon.svg",
+        "res://art/source/lich/parts/lv3/weapon.svg",
+        "res://art/source/lich/parts/lv4/weapon.svg",
+        "res://art/source/lich/parts/lv5/weapon.svg"
+      ],
+      "front_arm": [
+        "res://art/source/lich/parts/lv1/front_arm.svg",
+        "res://art/source/lich/parts/lv2/front_arm.svg",
+        "res://art/source/lich/parts/lv3/front_arm.svg",
+        "res://art/source/lich/parts/lv4/front_arm.svg",
+        "res://art/source/lich/parts/lv5/front_arm.svg"
+      ],
+      "head": [
+        "res://art/source/lich/parts/lv1/head.svg",
+        "res://art/source/lich/parts/lv2/head.svg",
+        "res://art/source/lich/parts/lv3/head.svg",
+        "res://art/source/lich/parts/lv4/head.svg",
+        "res://art/source/lich/parts/lv5/head.svg"
+      ]
+    },
+    "scene": "res://scenes/visuals/LichVisual.tscn"
+  }
+}

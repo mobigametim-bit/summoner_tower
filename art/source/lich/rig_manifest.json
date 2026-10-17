@@ -1,0 +1,243 @@
+{
+  "entity": "lich",
+  "canvas": [
+    256,
+    256
+  ],
+  "origin": [
+    128,
+    128
+  ],
+  "baseline": 239,
+  "pivots": {
+    "body": [
+      128,
+      179
+    ],
+    "head": [
+      130,
+      137
+    ],
+    "back_arm": [
+      78,
+      137
+    ],
+    "front_arm": [
+      173,
+      143
+    ],
+    "leg_left": [
+      104,
+      211
+    ],
+    "leg_right": [
+      153,
+      211
+    ],
+    "weapon": [
+      210,
+      178
+    ]
+  },
+  "bones": {
+    "root": {
+      "parent": "Skeleton2D",
+      "position": [
+        -128,
+        -128
+      ]
+    },
+    "body": {
+      "parent": "root",
+      "position": [
+        128,
+        179
+      ],
+      "source_pivot": [
+        128,
+        179
+      ],
+      "sprite_offset": [
+        -128,
+        -179
+      ],
+      "rotation_origin": "bone origin"
+    },
+    "head": {
+      "parent": "body",
+      "position": [
+        2,
+        -42
+      ],
+      "source_pivot": [
+        130,
+        137
+      ],
+      "sprite_offset": [
+        -130,
+        -137
+      ],
+      "rotation_origin": "bone origin"
+    },
+    "back_arm": {
+      "parent": "body",
+      "position": [
+        -50,
+        -42
+      ],
+      "source_pivot": [
+        78,
+        137
+      ],
+      "sprite_offset": [
+        -78,
+        -137
+      ],
+      "rotation_origin": "bone origin"
+    },
+    "front_arm": {
+      "parent": "body",
+      "position": [
+        45,
+        -36
+      ],
+      "source_pivot": [
+        173,
+        143
+      ],
+      "sprite_offset": [
+        -173,
+        -143
+      ],
+      "rotation_origin": "bone origin"
+    },
+    "leg_left": {
+      "parent": "body",
+      "position": [
+        -24,
+        32
+      ],
+      "source_pivot": [
+        104,
+        211
+      ],
+      "sprite_offset": [
+        -104,
+        -211
+      ],
+      "rotation_origin": "bone origin"
+    },
+    "leg_right": {
+      "parent": "body",
+      "position": [
+        25,
+        32
+      ],
+      "source_pivot": [
+        153,
+        211
+      ],
+      "sprite_offset": [
+        -153,
+        -211
+      ],
+      "rotation_origin": "bone origin"
+    },
+    "weapon": {
+      "parent": "front_arm",
+      "position": [
+        37,
+        35
+      ],
+      "source_pivot": [
+        210,
+        178
+      ],
+      "sprite_offset": [
+        -210,
+        -178
+      ],
+      "rotation_origin": "bone origin"
+    }
+  },
+  "runtime_texture_size": [
+    128,
+    128
+  ],
+  "sprite_scale": 2,
+  "part_order": [
+    "back_accessory",
+    "leg_left",
+    "leg_right",
+    "back_arm",
+    "body",
+    "weapon",
+    "front_arm",
+    "head"
+  ],
+  "levels": [
+    1,
+    2,
+    3,
+    4,
+    5
+  ],
+  "textures": {
+    "back_accessory": [
+      null,
+      null,
+      null,
+      null,
+      "res://art/source/lich/parts/lv5/back_accessory.svg"
+    ],
+    "leg_left": [
+      "res://art/source/lich/parts/lv1/leg_left.svg",
+      "res://art/source/lich/parts/lv2/leg_left.svg",
+      "res://art/source/lich/parts/lv3/leg_left.svg",
+      "res://art/source/lich/parts/lv4/leg_left.svg",
+      "res://art/source/lich/parts/lv5/leg_left.svg"
+    ],
+    "leg_right": [
+      "res://art/source/lich/parts/lv1/leg_right.svg",
+      "res://art/source/lich/parts/lv2/leg_right.svg",
+      "res://art/source/lich/parts/lv3/leg_right.svg",
+      "res://art/source/lich/parts/lv4/leg_right.svg",
+      "res://art/source/lich/parts/lv5/leg_right.svg"
+    ],
+    "back_arm": [
+      "res://art/source/lich/parts/lv1/back_arm.svg",
+      "res://art/source/lich/parts/lv2/back_arm.svg",
+      "res://art/source/lich/parts/lv3/back_arm.svg",
+      "res://art/source/lich/parts/lv4/back_arm.svg",
+      "res://art/source/lich/parts/lv5/back_arm.svg"
+    ],
+    "body": [
+      "res://art/source/lich/parts/lv1/body.svg",
+      "res://art/source/lich/parts/lv2/body.svg",
+      "res://art/source/lich/parts/lv3/body.svg",
+      "res://art/source/lich/parts/lv4/body.svg",
+      "res://art/source/lich/parts/lv5/body.svg"
+    ],
+    "weapon": [
+      "res://art/source/lich/parts/lv1/weapon.svg",
+      "res://art/source/lich/parts/lv2/weapon.svg",
+      "res://art/source/lich/parts/lv3/weapon.svg",
+      "res://art/source/lich/parts/lv4/weapon.svg",
+      "res://art/source/lich/parts/lv5/weapon.svg"
+    ],
+    "front_arm": [
+      "res://art/source/lich/parts/lv1/front_arm.svg",
+      "res://art/source/lich/parts/lv2/front_arm.svg",
+      "res://art/source/lich/parts/lv3/front_arm.svg",
+      "res://art/source/lich/parts/lv4/front_arm.svg",
+      "res://art/source/lich/parts/lv5/front_arm.svg"
+    ],
+    "head": [
+      "res://art/source/lich/parts/lv1/head.svg",
+      "res://art/source/lich/parts/lv2/head.svg",
+      "res://art/source/lich/parts/lv3/head.svg",
+      "res://art/source/lich/parts/lv4/head.svg",
+      "res://art/source/lich/parts/lv5/head.svg"
+    ]
+  }
+}

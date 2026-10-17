@@ -1,0 +1,243 @@
+{
+  "entity": "necromancer",
+  "canvas": [
+    256,
+    256
+  ],
+  "origin": [
+    128,
+    128
+  ],
+  "baseline": 239,
+  "pivots": {
+    "body": [
+      128,
+      180
+    ],
+    "head": [
+      130,
+      139
+    ],
+    "back_arm": [
+      91,
+      143
+    ],
+    "front_arm": [
+      162,
+      147
+    ],
+    "leg_left": [
+      104,
+      207
+    ],
+    "leg_right": [
+      152,
+      207
+    ],
+    "weapon": [
+      204,
+      178
+    ]
+  },
+  "bones": {
+    "root": {
+      "parent": "Skeleton2D",
+      "position": [
+        -128,
+        -128
+      ]
+    },
+    "body": {
+      "parent": "root",
+      "position": [
+        128,
+        180
+      ],
+      "source_pivot": [
+        128,
+        180
+      ],
+      "sprite_offset": [
+        -128,
+        -180
+      ],
+      "rotation_origin": "bone origin"
+    },
+    "head": {
+      "parent": "body",
+      "position": [
+        2,
+        -41
+      ],
+      "source_pivot": [
+        130,
+        139
+      ],
+      "sprite_offset": [
+        -130,
+        -139
+      ],
+      "rotation_origin": "bone origin"
+    },
+    "back_arm": {
+      "parent": "body",
+      "position": [
+        -37,
+        -37
+      ],
+      "source_pivot": [
+        91,
+        143
+      ],
+      "sprite_offset": [
+        -91,
+        -143
+      ],
+      "rotation_origin": "bone origin"
+    },
+    "front_arm": {
+      "parent": "body",
+      "position": [
+        34,
+        -33
+      ],
+      "source_pivot": [
+        162,
+        147
+      ],
+      "sprite_offset": [
+        -162,
+        -147
+      ],
+      "rotation_origin": "bone origin"
+    },
+    "leg_left": {
+      "parent": "body",
+      "position": [
+        -24,
+        27
+      ],
+      "source_pivot": [
+        104,
+        207
+      ],
+      "sprite_offset": [
+        -104,
+        -207
+      ],
+      "rotation_origin": "bone origin"
+    },
+    "leg_right": {
+      "parent": "body",
+      "position": [
+        24,
+        27
+      ],
+      "source_pivot": [
+        152,
+        207
+      ],
+      "sprite_offset": [
+        -152,
+        -207
+      ],
+      "rotation_origin": "bone origin"
+    },
+    "weapon": {
+      "parent": "front_arm",
+      "position": [
+        42,
+        31
+      ],
+      "source_pivot": [
+        204,
+        178
+      ],
+      "sprite_offset": [
+        -204,
+        -178
+      ],
+      "rotation_origin": "bone origin"
+    }
+  },
+  "runtime_texture_size": [
+    128,
+    128
+  ],
+  "sprite_scale": 2,
+  "part_order": [
+    "back_accessory",
+    "leg_left",
+    "leg_right",
+    "back_arm",
+    "body",
+    "weapon",
+    "front_arm",
+    "head"
+  ],
+  "levels": [
+    1,
+    2,
+    3,
+    4,
+    5
+  ],
+  "textures": {
+    "back_accessory": [
+      null,
+      null,
+      null,
+      "res://art/source/necromancer/parts/lv4/back_accessory.svg",
+      "res://art/source/necromancer/parts/lv5/back_accessory.svg"
+    ],
+    "leg_left": [
+      "res://art/source/necromancer/parts/lv1/leg_left.svg",
+      "res://art/source/necromancer/parts/lv2/leg_left.svg",
+      "res://art/source/necromancer/parts/lv3/leg_left.svg",
+      "res://art/source/necromancer/parts/lv4/leg_left.svg",
+      "res://art/source/necromancer/parts/lv5/leg_left.svg"
+    ],
+    "leg_right": [
+      "res://art/source/necromancer/parts/lv1/leg_right.svg",
+      "res://art/source/necromancer/parts/lv2/leg_right.svg",
+      "res://art/source/necromancer/parts/lv3/leg_right.svg",
+      "res://art/source/necromancer/parts/lv4/leg_right.svg",
+      "res://art/source/necromancer/parts/lv5/leg_right.svg"
+    ],
+    "back_arm": [
+      "res://art/source/necromancer/parts/lv1/back_arm.svg",
+      "res://art/source/necromancer/parts/lv2/back_arm.svg",
+      "res://art/source/necromancer/parts/lv3/back_arm.svg",
+      "res://art/source/necromancer/parts/lv4/back_arm.svg",
+      "res://art/source/necromancer/parts/lv5/back_arm.svg"
+    ],
+    "body": [
+      "res://art/source/necromancer/parts/lv1/body.svg",
+      "res://art/source/necromancer/parts/lv2/body.svg",
+      "res://art/source/necromancer/parts/lv3/body.svg",
+      "res://art/source/necromancer/parts/lv4/body.svg",
+      "res://art/source/necromancer/parts/lv5/body.svg"
+    ],
+    "weapon": [
+      "res://art/source/necromancer/parts/lv1/weapon.svg",
+      "res://art/source/necromancer/parts/lv2/weapon.svg",
+      "res://art/source/necromancer/parts/lv3/weapon.svg",
+      "res://art/source/necromancer/parts/lv4/weapon.svg",
+      "res://art/source/necromancer/parts/lv5/weapon.svg"
+    ],
+    "front_arm": [
+      "res://art/source/necromancer/parts/lv1/front_arm.svg",
+      "res://art/source/necromancer/parts/lv2/front_arm.svg",
+      "res://art/source/necromancer/parts/lv3/front_arm.svg",
+      "res://art/source/necromancer/parts/lv4/front_arm.svg",
+      "res://art/source/necromancer/parts/lv5/front_arm.svg"
+    ],
+    "head": [
+      "res://art/source/necromancer/parts/lv1/head.svg",
+      "res://art/source/necromancer/parts/lv2/head.svg",
+      "res://art/source/necromancer/parts/lv3/head.svg",
+      "res://art/source/necromancer/parts/lv4/head.svg",
+      "res://art/source/necromancer/parts/lv5/head.svg"
+    ]
+  }
+}

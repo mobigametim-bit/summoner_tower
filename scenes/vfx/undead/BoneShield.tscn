@@ -1,0 +1,306 @@
+[gd_scene format=3 uid="uid://dwyp23veqylab"]
+
+[ext_resource type="Script" uid="uid://c8fp74kdyg7ic" path="res://scripts/visuals/undead_effect_clip.gd" id="1_l2bi4"]
+[ext_resource type="Texture2D" uid="uid://ckhj4u1uymch4" path="res://assets/vfx/undead/bone.svg" id="2_1yyrv"]
+[ext_resource type="Texture2D" uid="uid://bmgbui1rhtslk" path="res://assets/vfx/kenney_particles/light_02.png" id="2_2l60s"]
+[ext_resource type="Texture2D" uid="uid://dd0t8nj1j61bg" path="res://assets/vfx/kenney_particles/spark_02.png" id="3_tge1t"]
+[ext_resource type="Texture2D" uid="uid://cnv14pq86m8ms" path="res://assets/vfx/kenney_particles/magic_05.png" id="4_ds8mh"]
+[ext_resource type="Texture2D" uid="uid://dpw1bhc602of6" path="res://assets/vfx/kenney_particles/light_01.png" id="6_0d1d0"]
+[ext_resource type="Texture2D" uid="uid://b7q303nn1c1e1" path="res://assets/vfx/kenney_particles/twirl_01.png" id="7_43gdw"]
+
+[sub_resource type="Animation" id="Animation_2l60s"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("WardAura1:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("WardAura1:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("WardLightning2:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("WardLightning2:rotation")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("FloorGlow4:modulate")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("SealSwirl5:modulate")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("SealSwirl5:rotation")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="Animation" id="Animation_tge1t"]
+length = 1.55
+step = 0.01
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("WardAura1:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.15, 1.1, 1.55),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 0.7), Color(1, 1, 1, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("WardAura1:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1.55),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [-0.35, 0.5]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("WardLightning2:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.08, 0.8, 1.55),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 0.7), Color(1, 1, 1, 0)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("WardLightning2:rotation")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 1.55),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 1.1]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("FloorGlow4:modulate")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.12, 0.775, 1.55),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 0.7), Color(1, 1, 1, 0)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("SealSwirl5:modulate")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.6975, 1.55),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 0.7), Color(1, 1, 1, 0)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("SealSwirl5:rotation")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0, 1.55),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 0.5]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ds8mh"]
+_data = {
+&"RESET": SubResource("Animation_2l60s"),
+&"effect": SubResource("Animation_tge1t")
+}
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_0d1d0"]
+blend_mode = 1
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_43gdw"]
+blend_mode = 1
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_8x3h1"]
+blend_mode = 1
+
+[sub_resource type="Curve" id="Curve_eohdg"]
+_data = [Vector2(0, 0.4), 0.0, 0.0, 0, 0, Vector2(0.15, 1), 0.0, 0.0, 0, 0, Vector2(0.7, 0.7), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 4
+
+[sub_resource type="Gradient" id="Gradient_71x2y"]
+offsets = PackedFloat32Array(0, 0.12, 0.6, 1)
+colors = PackedColorArray(1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 0.9, 1, 1, 1, 0)
+
+[sub_resource type="Gradient" id="Gradient_ekscy"]
+offsets = PackedFloat32Array(0, 0.12, 0.6, 1)
+colors = PackedColorArray(1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 0.9, 1, 1, 1, 0)
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_bsk73"]
+blend_mode = 1
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_1x4hy"]
+blend_mode = 1
+
+[node name="BoneShield" type="Node2D" unique_id=1127288761]
+script = ExtResource("1_l2bi4")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=262451521]
+libraries/ = SubResource("AnimationLibrary_ds8mh")
+
+[node name="WardAura1" type="Sprite2D" parent="." unique_id=1586863973]
+self_modulate = Color(0.44705883, 1, 0.7372549, 0.8)
+z_index = -40
+material = SubResource("CanvasItemMaterial_0d1d0")
+position = Vector2(0, -12)
+scale = Vector2(1.9828124, 1.9828124)
+texture = ExtResource("2_2l60s")
+
+[node name="WardLightning2" type="Sprite2D" parent="." unique_id=1127757371]
+self_modulate = Color(0.44705883, 1, 0.7372549, 0.85)
+material = SubResource("CanvasItemMaterial_43gdw")
+position = Vector2(0, -12)
+scale = Vector2(1.940625, 1.940625)
+texture = ExtResource("3_tge1t")
+
+[node name="Particles3" type="CPUParticles2D" parent="." unique_id=1704862521]
+material = SubResource("CanvasItemMaterial_8x3h1")
+position = Vector2(0, -12)
+emitting = false
+amount = 42
+texture = ExtResource("4_ds8mh")
+lifetime = 1.15
+one_shot = true
+explosiveness = 0.15
+local_coords = true
+emission_shape = 6
+emission_ring_inner_radius = 102.0
+emission_ring_radius = 114.0
+direction = Vector2(0, -1)
+spread = 35.0
+gravity = Vector2(0, 0)
+initial_velocity_max = 6.0
+angular_velocity_min = -60.0
+angular_velocity_max = 60.0
+orbit_velocity_min = 0.24
+orbit_velocity_max = 0.312
+scale_amount_min = 0.0859375
+scale_amount_max = 0.15625
+scale_amount_curve = SubResource("Curve_eohdg")
+color = Color(0.44705883, 1, 0.7372549, 1)
+color_ramp = SubResource("Gradient_71x2y")
+
+[node name="OrbitBones" type="CPUParticles2D" parent="." unique_id=1878660271]
+position = Vector2(0, -12)
+emitting = false
+amount = 12
+texture = ExtResource("2_1yyrv")
+lifetime = 1.3
+one_shot = true
+explosiveness = 0.15
+local_coords = true
+emission_shape = 6
+emission_ring_inner_radius = 102.0
+emission_ring_radius = 114.0
+direction = Vector2(0, -1)
+spread = 50.0
+gravity = Vector2(0, 0)
+initial_velocity_max = 6.0
+angular_velocity_min = -60.0
+angular_velocity_max = 60.0
+orbit_velocity_min = 0.18
+orbit_velocity_max = 0.234
+scale_amount_min = 0.45
+scale_amount_max = 0.6
+color = Color(1, 0.9411765, 0.8666667, 1)
+color_ramp = SubResource("Gradient_ekscy")
+
+[node name="FloorGlow4" type="Sprite2D" parent="." unique_id=1175122036]
+self_modulate = Color(0.44705883, 1, 0.7372549, 0.8)
+z_index = -40
+material = SubResource("CanvasItemMaterial_bsk73")
+position = Vector2(0, 107)
+scale = Vector2(1.265625, 0.50625)
+texture = ExtResource("6_0d1d0")
+
+[node name="SealSwirl5" type="Sprite2D" parent="." unique_id=153385387]
+self_modulate = Color(0.44705883, 1, 0.7372549, 1)
+z_index = -35
+material = SubResource("CanvasItemMaterial_1x4hy")
+position = Vector2(0, 107)
+scale = Vector2(1.265625, 0.50625)
+texture = ExtResource("7_43gdw")

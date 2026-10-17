@@ -1,0 +1,223 @@
+{
+  "entity": "ghoul",
+  "canvas": [
+    256,
+    256
+  ],
+  "origin": [
+    128,
+    128
+  ],
+  "baseline": 239,
+  "pivots": {
+    "body": [
+      128,
+      173
+    ],
+    "head": [
+      130,
+      140
+    ],
+    "back_arm": [
+      87,
+      148
+    ],
+    "front_arm": [
+      160,
+      147
+    ],
+    "leg_left": [
+      111,
+      198
+    ],
+    "leg_right": [
+      155,
+      192
+    ]
+  },
+  "bones": {
+    "root": {
+      "parent": "Skeleton2D",
+      "position": [
+        -128,
+        -128
+      ]
+    },
+    "body": {
+      "parent": "root",
+      "position": [
+        128,
+        173
+      ],
+      "source_pivot": [
+        128,
+        173
+      ],
+      "sprite_offset": [
+        -128,
+        -173
+      ],
+      "rotation_origin": "bone origin"
+    },
+    "head": {
+      "parent": "body",
+      "position": [
+        2,
+        -33
+      ],
+      "source_pivot": [
+        130,
+        140
+      ],
+      "sprite_offset": [
+        -130,
+        -140
+      ],
+      "rotation_origin": "bone origin"
+    },
+    "back_arm": {
+      "parent": "body",
+      "position": [
+        -41,
+        -25
+      ],
+      "source_pivot": [
+        87,
+        148
+      ],
+      "sprite_offset": [
+        -87,
+        -148
+      ],
+      "rotation_origin": "bone origin"
+    },
+    "front_arm": {
+      "parent": "body",
+      "position": [
+        32,
+        -26
+      ],
+      "source_pivot": [
+        160,
+        147
+      ],
+      "sprite_offset": [
+        -160,
+        -147
+      ],
+      "rotation_origin": "bone origin"
+    },
+    "leg_left": {
+      "parent": "body",
+      "position": [
+        -17,
+        25
+      ],
+      "source_pivot": [
+        111,
+        198
+      ],
+      "sprite_offset": [
+        -111,
+        -198
+      ],
+      "rotation_origin": "bone origin"
+    },
+    "leg_right": {
+      "parent": "body",
+      "position": [
+        27,
+        19
+      ],
+      "source_pivot": [
+        155,
+        192
+      ],
+      "sprite_offset": [
+        -155,
+        -192
+      ],
+      "rotation_origin": "bone origin"
+    }
+  },
+  "runtime_texture_size": [
+    128,
+    128
+  ],
+  "sprite_scale": 2,
+  "part_order": [
+    "back_accessory",
+    "leg_left",
+    "leg_right",
+    "back_arm",
+    "body",
+    "weapon",
+    "front_arm",
+    "head"
+  ],
+  "levels": [
+    1,
+    2,
+    3,
+    4,
+    5
+  ],
+  "textures": {
+    "back_accessory": [
+      "res://art/source/ghoul/parts/lv1/back_accessory.svg",
+      "res://art/source/ghoul/parts/lv2/back_accessory.svg",
+      "res://art/source/ghoul/parts/lv3/back_accessory.svg",
+      "res://art/source/ghoul/parts/lv4/back_accessory.svg",
+      "res://art/source/ghoul/parts/lv5/back_accessory.svg"
+    ],
+    "leg_left": [
+      "res://art/source/ghoul/parts/lv1/leg_left.svg",
+      "res://art/source/ghoul/parts/lv2/leg_left.svg",
+      "res://art/source/ghoul/parts/lv3/leg_left.svg",
+      "res://art/source/ghoul/parts/lv4/leg_left.svg",
+      "res://art/source/ghoul/parts/lv5/leg_left.svg"
+    ],
+    "leg_right": [
+      "res://art/source/ghoul/parts/lv1/leg_right.svg",
+      "res://art/source/ghoul/parts/lv2/leg_right.svg",
+      "res://art/source/ghoul/parts/lv3/leg_right.svg",
+      "res://art/source/ghoul/parts/lv4/leg_right.svg",
+      "res://art/source/ghoul/parts/lv5/leg_right.svg"
+    ],
+    "back_arm": [
+      "res://art/source/ghoul/parts/lv1/back_arm.svg",
+      "res://art/source/ghoul/parts/lv2/back_arm.svg",
+      "res://art/source/ghoul/parts/lv3/back_arm.svg",
+      "res://art/source/ghoul/parts/lv4/back_arm.svg",
+      "res://art/source/ghoul/parts/lv5/back_arm.svg"
+    ],
+    "body": [
+      "res://art/source/ghoul/parts/lv1/body.svg",
+      "res://art/source/ghoul/parts/lv2/body.svg",
+      "res://art/source/ghoul/parts/lv3/body.svg",
+      "res://art/source/ghoul/parts/lv4/body.svg",
+      "res://art/source/ghoul/parts/lv5/body.svg"
+    ],
+    "weapon": [
+      null,
+      null,
+      null,
+      null,
+      null
+    ],
+    "front_arm": [
+      "res://art/source/ghoul/parts/lv1/front_arm.svg",
+      "res://art/source/ghoul/parts/lv2/front_arm.svg",
+      "res://art/source/ghoul/parts/lv3/front_arm.svg",
+      "res://art/source/ghoul/parts/lv4/front_arm.svg",
+      "res://art/source/ghoul/parts/lv5/front_arm.svg"
+    ],
+    "head": [
+      "res://art/source/ghoul/parts/lv1/head.svg",
+      "res://art/source/ghoul/parts/lv2/head.svg",
+      "res://art/source/ghoul/parts/lv3/head.svg",
+      "res://art/source/ghoul/parts/lv4/head.svg",
+      "res://art/source/ghoul/parts/lv5/head.svg"
+    ]
+  }
+}
