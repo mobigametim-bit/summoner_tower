@@ -265,6 +265,12 @@ func _on_double_reward_requested() -> void:
 
 
 func _request_reward(placement: AdService.Placement) -> void:
+	if ShopService.has_no_ads():
+		# Тот же обработчик сохраняет лимиты revive, reroll и двойной награды.
+		_reward_placement = placement
+		state = State.REWARDED_VIEW
+		_on_ad_completed(placement, AdService.Outcome.SUCCESS)
+		return
 	if not ad_service.request(placement, run_statistics.config.fake_ad_duration):
 		return
 	_reward_placement = placement

@@ -1,0 +1,191 @@
+[gd_scene format=3 uid="uid://de3t3xgsbsscy"]
+
+[ext_resource type="Theme" uid="uid://bufjhwj3mejwx" path="res://resources/ui/game_theme.tres" id="1_3sl20"]
+[ext_resource type="Script" uid="uid://b3yh5iby6uvx1" path="res://scripts/ui/shop_product_card.gd" id="2_1d3h1"]
+[ext_resource type="Texture2D" uid="uid://bmetieaifma4g" path="res://assets/shop/handful.svg" id="3_2l31w"]
+[ext_resource type="Texture2D" uid="uid://b7v6r0i243ofk" path="res://assets/soul_crystal.svg" id="4_0wlya"]
+[ext_resource type="Texture2D" uid="uid://k17uuaqhmgkm" path="res://assets/heart_full.svg" id="5_i3772"]
+[ext_resource type="Texture2D" uid="uid://bd64u8utst5a2" path="res://assets/upgrades/lucky_choice.svg" id="6_xg12s"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3sl20"]
+bg_color = Color(0.105882354, 0.16078432, 0.22352941, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.47843137, 0.7137255, 0.36862746, 1)
+corner_radius_top_left = 13
+corner_radius_top_right = 13
+corner_radius_bottom_right = 13
+corner_radius_bottom_left = 13
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_x3wpf"]
+content_margin_left = 6.0
+content_margin_top = 2.0
+content_margin_right = 6.0
+content_margin_bottom = 2.0
+bg_color = Color(0.85882354, 0.68235296, 0.32156864, 1)
+corner_radius_top_left = 7
+corner_radius_top_right = 7
+corner_radius_bottom_right = 7
+corner_radius_bottom_left = 7
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hngxe"]
+content_margin_left = 6.0
+content_margin_top = 2.0
+content_margin_right = 6.0
+content_margin_bottom = 2.0
+bg_color = Color(0.70980394, 0.54509807, 0.23921569, 1)
+corner_radius_top_left = 7
+corner_radius_top_right = 7
+corner_radius_bottom_right = 7
+corner_radius_bottom_left = 7
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_i8hbx"]
+content_margin_left = 6.0
+content_margin_top = 2.0
+content_margin_right = 6.0
+content_margin_bottom = 2.0
+bg_color = Color(0.9254902, 0.7647059, 0.43137255, 1)
+corner_radius_top_left = 7
+corner_radius_top_right = 7
+corner_radius_bottom_right = 7
+corner_radius_bottom_left = 7
+
+[node name="ShopProductCard" type="Panel" unique_id=1269981811]
+offset_right = 170.0
+offset_bottom = 220.0
+theme = ExtResource("1_3sl20")
+theme_override_styles/panel = SubResource("StyleBoxFlat_3sl20")
+script = ExtResource("2_1d3h1")
+
+[node name="Art" type="TextureRect" parent="." unique_id=921253296]
+layout_mode = 0
+mouse_filter = 2
+texture = ExtResource("3_2l31w")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Title" type="Label" parent="." unique_id=1953348005]
+layout_mode = 0
+theme_override_colors/font_color = Color(0.9019608, 0.9137255, 0.90588236, 1)
+theme_override_font_sizes/font_size = 24
+text = "Handful of Souls"
+horizontal_alignment = 1
+
+[node name="Quantity" type="HBoxContainer" parent="." unique_id=933734808]
+layout_mode = 0
+mouse_filter = 2
+theme_override_constants/separation = 5
+alignment = 1
+
+[node name="Icon" type="TextureRect" parent="Quantity" unique_id=1412371093]
+custom_minimum_size = Vector2(19, 23)
+layout_mode = 2
+mouse_filter = 2
+texture = ExtResource("4_0wlya")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Amount" type="Label" parent="Quantity" unique_id=1734587066]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.8901961, 0.7882353, 1, 1)
+theme_override_font_sizes/font_size = 28
+text = "300"
+horizontal_alignment = 1
+
+[node name="Rewards" type="HBoxContainer" parent="." unique_id=7124396]
+layout_mode = 0
+mouse_filter = 2
+theme_override_constants/separation = 5
+alignment = 1
+
+[node name="Heart" type="TextureRect" parent="Rewards" unique_id=192899104]
+custom_minimum_size = Vector2(18, 20)
+layout_mode = 2
+mouse_filter = 2
+texture = ExtResource("5_i3772")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Health" type="Label" parent="Rewards" unique_id=452556316]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.9019608, 0.9137255, 0.90588236, 1)
+theme_override_font_sizes/font_size = 17
+text = "+50"
+horizontal_alignment = 1
+
+[node name="Reroll" type="TextureRect" parent="Rewards" unique_id=316371663]
+custom_minimum_size = Vector2(18, 20)
+layout_mode = 2
+mouse_filter = 2
+texture = ExtResource("6_xg12s")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Crystal" type="TextureRect" parent="Rewards" unique_id=1220667077]
+custom_minimum_size = Vector2(18, 20)
+layout_mode = 2
+mouse_filter = 2
+texture = ExtResource("4_0wlya")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Double" type="Label" parent="Rewards" unique_id=966019068]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.9019608, 0.9137255, 0.90588236, 1)
+theme_override_font_sizes/font_size = 17
+text = "×2"
+horizontal_alignment = 1
+
+[node name="Hint" type="Label" parent="." unique_id=1246415969]
+layout_mode = 0
+theme_override_colors/font_color = Color(0.78039217, 0.8235294, 0.85882354, 1)
+theme_override_font_sizes/font_size = 13
+text = "Rewards without watching ads"
+horizontal_alignment = 1
+
+[node name="PriceButton" type="Button" parent="." unique_id=224273502]
+layout_mode = 0
+theme_override_font_sizes/font_size = 23
+theme_override_styles/normal = SubResource("StyleBoxFlat_x3wpf")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_hngxe")
+theme_override_styles/hover = SubResource("StyleBoxFlat_i8hbx")
+text = "99 ₽"
+
+[node name="Pips" type="HBoxContainer" parent="." unique_id=1093418104]
+layout_mode = 0
+mouse_filter = 2
+theme_override_constants/separation = 4
+
+[node name="Pip0" type="ColorRect" parent="Pips" unique_id=65205704]
+custom_minimum_size = Vector2(4, 4)
+layout_mode = 2
+mouse_filter = 2
+color = Color(0.47843137, 0.7137255, 0.36862746, 1)
+
+[node name="Pip1" type="ColorRect" parent="Pips" unique_id=278141875]
+custom_minimum_size = Vector2(4, 4)
+layout_mode = 2
+mouse_filter = 2
+color = Color(0.47843137, 0.7137255, 0.36862746, 1)
+
+[node name="Pip2" type="ColorRect" parent="Pips" unique_id=618249213]
+custom_minimum_size = Vector2(4, 4)
+layout_mode = 2
+mouse_filter = 2
+color = Color(0.47843137, 0.7137255, 0.36862746, 1)
+
+[node name="Pip3" type="ColorRect" parent="Pips" unique_id=1237379985]
+custom_minimum_size = Vector2(4, 4)
+layout_mode = 2
+mouse_filter = 2
+color = Color(0.47843137, 0.7137255, 0.36862746, 1)
+
+[node name="Pip4" type="ColorRect" parent="Pips" unique_id=674017881]
+custom_minimum_size = Vector2(4, 4)
+layout_mode = 2
+mouse_filter = 2
+color = Color(0.47843137, 0.7137255, 0.36862746, 1)
+
+[connection signal="pressed" from="PriceButton" to="." method="_on_price_pressed"]

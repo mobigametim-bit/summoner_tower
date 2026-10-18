@@ -1,0 +1,78 @@
+[gd_resource type="Theme" format=3 uid="uid://ch46d0nstofyu"]
+
+[ext_resource type="FontFile" uid="uid://rk3ovqjg5ure" path="res://assets/fonts/itim-kz/Itim-KZ-Regular.ttf" id="1_pj0kk"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tgvu4"]
+content_margin_left = 6.0
+content_margin_top = 2.0
+content_margin_right = 6.0
+content_margin_bottom = 2.0
+bg_color = Color(0.15294118, 0.20392157, 0.28627452, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vcufh"]
+content_margin_left = 6.0
+content_margin_top = 2.0
+content_margin_right = 6.0
+content_margin_bottom = 2.0
+bg_color = Color(0, 0, 0, 0)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.5176471, 0.88235295, 0.9098039, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hujs8"]
+content_margin_left = 6.0
+content_margin_top = 2.0
+content_margin_right = 6.0
+content_margin_bottom = 2.0
+bg_color = Color(0.9254902, 0.7647059, 0.43137255, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lh30d"]
+content_margin_left = 6.0
+content_margin_top = 2.0
+content_margin_right = 6.0
+content_margin_bottom = 2.0
+bg_color = Color(0.85882354, 0.68235296, 0.32156864, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5i4u5"]
+content_margin_left = 6.0
+content_margin_top = 2.0
+content_margin_right = 6.0
+content_margin_bottom = 2.0
+bg_color = Color(0.70980394, 0.54509807, 0.23921569, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[resource]
+default_font = ExtResource("1_pj0kk")
+default_font_size = 24
+Button/colors/font_color = Color(0.12941177, 0.101960786, 0.09019608, 1)
+Button/colors/font_disabled_color = Color(0.6039216, 0.67058825, 0.72156864, 1)
+Button/colors/font_focus_color = Color(0.12941177, 0.101960786, 0.09019608, 1)
+Button/colors/font_hover_color = Color(0.12941177, 0.101960786, 0.09019608, 1)
+Button/colors/font_pressed_color = Color(0.12941177, 0.101960786, 0.09019608, 1)
+Button/styles/disabled = SubResource("StyleBoxFlat_tgvu4")
+Button/styles/focus = SubResource("StyleBoxFlat_vcufh")
+Button/styles/hover = SubResource("StyleBoxFlat_hujs8")
+Button/styles/normal = SubResource("StyleBoxFlat_lh30d")
+Button/styles/pressed = SubResource("StyleBoxFlat_5i4u5")
+Label/colors/font_color = Color(0.9019608, 0.9137255, 0.90588236, 1)

@@ -1,0 +1,73 @@
+[gd_resource type="Resource" script_class="ShopCatalog" format=3 uid="uid://boperountar7y"]
+
+[ext_resource type="Script" uid="uid://d212b24lphic1" path="res://scripts/data/shop_catalog.gd" id="1"]
+[ext_resource type="Script" uid="uid://hjv77skpbw7r" path="res://scripts/data/shop_product.gd" id="2"]
+[ext_resource type="Texture2D" uid="uid://bmetieaifma4g" path="res://assets/shop/handful.svg" id="3"]
+[ext_resource type="Texture2D" uid="uid://begtjh607ev53" path="res://assets/shop/pouch.svg" id="4"]
+[ext_resource type="Texture2D" uid="uid://bu3lhatf43mhb" path="res://assets/shop/coffer.svg" id="5"]
+[ext_resource type="Texture2D" uid="uid://dd8ytmgrmwqqr" path="res://assets/shop/chest.svg" id="6"]
+[ext_resource type="Texture2D" uid="uid://cy5rsw6kxedb5" path="res://assets/shop/treasury.svg" id="7"]
+[ext_resource type="Texture2D" uid="uid://b7fdoxdrmcc5i" path="res://assets/shop/no_ads.svg" id="8"]
+
+[sub_resource type="Resource" id="handful"]
+script = ExtResource("2")
+product_id = &"souls_300"
+title = "Handful of Souls"
+crystals = 300
+price_rub = 99
+icon = ExtResource("3")
+tier_color = Color(0.478, 0.714, 0.369, 1)
+tier = 1
+
+[sub_resource type="Resource" id="pouch"]
+script = ExtResource("2")
+product_id = &"souls_990"
+title = "Pouch of Souls"
+crystals = 990
+price_rub = 299
+icon = ExtResource("4")
+tier_color = Color(0.929, 0.612, 0.31, 1)
+tier = 2
+
+[sub_resource type="Resource" id="coffer"]
+script = ExtResource("2")
+product_id = &"souls_1800"
+title = "Coffer of Souls"
+crystals = 1800
+price_rub = 499
+icon = ExtResource("5")
+tier_color = Color(0.898, 0.416, 0.439, 1)
+tier = 3
+
+[sub_resource type="Resource" id="chest"]
+script = ExtResource("2")
+product_id = &"souls_3900"
+title = "Chest of Souls"
+crystals = 3900
+price_rub = 999
+icon = ExtResource("6")
+tier_color = Color(0.384, 0.651, 0.906, 1)
+tier = 4
+
+[sub_resource type="Resource" id="treasury"]
+script = ExtResource("2")
+product_id = &"souls_10500"
+title = "Treasury of Souls"
+crystals = 10500
+price_rub = 2490
+icon = ExtResource("7")
+tier_color = Color(0.678, 0.498, 0.878, 1)
+tier = 5
+
+[sub_resource type="Resource" id="no_ads"]
+script = ExtResource("2")
+product_id = &"no_ads"
+title = "No Ads"
+kind = 1
+price_rub = 299
+icon = ExtResource("8")
+tier_color = Color(0.929, 0.78, 0.443, 1)
+
+[resource]
+script = ExtResource("1")
+products = Array[ExtResource("2")]([SubResource("handful"), SubResource("pouch"), SubResource("coffer"), SubResource("chest"), SubResource("treasury"), SubResource("no_ads")])

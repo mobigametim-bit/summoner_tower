@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Summoner Tower — магазин душ</title>
+<link rel="icon" href="../../../assets/soul_crystal.svg">
+<link rel="stylesheet" href="shop.css">
+</head>
+<body>
+<main class="review">
+  <header class="review-header">
+    <div class="eyebrow">SUMMONER TOWER / ПРЕВЬЮ МАГАЗИНА</div>
+    <h1>Немного душ для больших планов</h1>
+    <p>Пять паков кристаллов и награды без рекламы. Тот же шрифт, цвета и квадратные кнопки, что в игре.</p>
+  </header>
+  <div class="review-toolbar">
+    <nav class="format-tabs" aria-label="Размер экрана">
+      <button data-format="portrait" aria-pressed="true">Телефон ↕</button>
+      <button data-format="landscape" aria-pressed="false">Телефон ↔</button>
+      <button data-format="tablet" aria-pressed="false">Планшет ↔</button>
+    </nav>
+    <nav class="screen-tabs" aria-label="Экран">
+      <button data-screen="shop" aria-pressed="true">Магазин</button>
+      <button data-screen="menu" aria-pressed="false">Вход из меню</button>
+    </nav>
+  </div>
+  <div class="preview-shell" id="shell"><div class="game" id="game" data-format="portrait"></div></div>
+  <div class="review-caption"><span id="caption"></span><a id="image-link" href="portrait.png" target="_blank" rel="noopener">Открыть снимок ↗</a></div>
+  <p class="review-note">Это отдельный макет. Цены предложены для обсуждения; покупки не выполняются, баланс игры не меняется. Нажмите на цену, чтобы посмотреть состав товара.</p>
+  <section class="icon-review" aria-label="Иллюстрации товаров"><h2>Собственные SVG-иконки</h2><div id="icon-gallery"></div></section>
+</main>
+<script src="shop.js"></script>
+</body>
+</html>

@@ -12,6 +12,7 @@
 [ext_resource type="Texture2D" uid="uid://c6l0etkb5s8i4" path="res://assets/ui/next.svg" id="7_flqon"]
 [ext_resource type="PackedScene" uid="uid://dqbfuxq7wneqt" path="res://scenes/ui/AudioSettingsOverlay.tscn" id="8_jk1qb"]
 [ext_resource type="Texture2D" uid="uid://d0es5bcr1fdsu" path="res://assets/ui/settings.svg" id="9_lgwnu"]
+[ext_resource type="Texture2D" uid="uid://d15p86bmke6nk" path="res://assets/ui/shop.svg" id="10_1ajci"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_8ln24"]
 
@@ -144,20 +145,29 @@ theme_override_font_sizes/font_size = 46
 text = "GRAVEYARD"
 horizontal_alignment = 1
 
-[node name="Center" type="CenterContainer" parent="." unique_id=1535144353]
+[node name="Center" type="Control" parent="." unique_id=718555682]
+propagate_maximum_size = true
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 1
 
-[node name="VBox" type="VBoxContainer" parent="Center" unique_id=997310434]
-layout_mode = 2
-theme_override_constants/separation = 16
+[node name="VBox" type="Control" parent="Center" unique_id=1932873447]
+propagate_maximum_size = true
+anchors_preset = 0
+offset_left = 144.0
+offset_top = 432.0
+offset_right = 576.0
+offset_bottom = 848.0
+mouse_filter = 1
 
 [node name="Title" type="Label" parent="Center/VBox" unique_id=1343097107]
-layout_mode = 2
+layout_mode = 0
+offset_right = 432.0
+offset_bottom = 72.0
 theme_override_colors/font_color = Color(0.96862745, 0.8352941, 0.5411765, 1)
 theme_override_font_sizes/font_size = 72
 text = "FOREST"
@@ -165,10 +175,17 @@ horizontal_alignment = 1
 
 [node name="WalletTopSpacer" type="Control" parent="Center/VBox" unique_id=288215815]
 custom_minimum_size = Vector2(0, 28)
-layout_mode = 2
+anchors_preset = 0
+offset_top = 88.0
+offset_right = 432.0
+offset_bottom = 116.0
 
 [node name="CrystalWallet" type="HBoxContainer" parent="Center/VBox" unique_id=1794124139]
-layout_mode = 2
+layout_mode = 0
+offset_left = 140.0
+offset_top = 132.0
+offset_right = 291.0
+offset_bottom = 228.0
 size_flags_horizontal = 4
 theme_override_constants/separation = 12
 
@@ -190,12 +207,17 @@ horizontal_alignment = 1
 
 [node name="WalletBottomSpacer" type="Control" parent="Center/VBox" unique_id=1512882103]
 custom_minimum_size = Vector2(0, 28)
-layout_mode = 2
+anchors_preset = 0
+offset_top = 244.0
+offset_right = 432.0
+offset_bottom = 272.0
 
-[node name="Actions" type="HBoxContainer" parent="Center/VBox" unique_id=129563169]
-layout_mode = 2
+[node name="Actions" type="GridContainer" parent="Center/VBox" unique_id=747020847]
+layout_mode = 0
+offset_top = 288.0
+offset_right = 432.0
+offset_bottom = 416.0
 size_flags_horizontal = 4
-theme_override_constants/separation = 24
 
 [node name="PlayButton" type="Button" parent="Center/VBox/Actions" unique_id=1375759145]
 unique_name_in_owner = true
@@ -257,6 +279,37 @@ pressed_style = SubResource("StyleBoxFlat_l6cm7")
 disabled_style = SubResource("StyleBoxFlat_5dd4i")
 focus_style = SubResource("StyleBoxFlat_bqqt6")
 icon = ExtResource("4_8ln24")
+icon_width = 64.0
+
+[node name="ShopButton" type="Button" parent="Center/VBox/Actions" unique_id=667046674]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(128, 128)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+tooltip_text = "Shop"
+theme_override_colors/font_color = Color(0.0627451, 0.08235294, 0.13333334, 1)
+theme_override_colors/font_focus_color = Color(0.0627451, 0.08235294, 0.13333334, 1)
+theme_override_colors/font_pressed_color = Color(0.0627451, 0.08235294, 0.13333334, 1)
+theme_override_colors/font_hover_color = Color(0.0627451, 0.08235294, 0.13333334, 1)
+theme_override_constants/icon_max_width = 48
+theme_override_font_sizes/font_size = 48
+theme_override_styles/normal = SubResource("StyleBoxEmpty_5dd4i")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_lgwnu")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_flqon")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_rcqid")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_1ajci")
+icon_alignment = 1
+
+[node name="FeedbackVisual" parent="Center/VBox/Actions/ShopButton" unique_id=476155074 instance=ExtResource("4_rtw2f")]
+layout_mode = 1
+pivot_offset = Vector2(64, 64)
+normal_style = SubResource("StyleBoxFlat_vue75")
+hover_style = SubResource("StyleBoxFlat_ekxnf")
+pressed_style = SubResource("StyleBoxFlat_l6cm7")
+disabled_style = SubResource("StyleBoxFlat_5dd4i")
+focus_style = SubResource("StyleBoxFlat_bqqt6")
+icon = ExtResource("10_1ajci")
 icon_width = 64.0
 
 [node name="SettingsButton" type="Button" parent="Center/VBox/Actions" unique_id=1488638406]
@@ -329,6 +382,7 @@ layout_mode = 1
 
 [connection signal="pressed" from="Center/VBox/Actions/PlayButton" to="." method="_on_play_button_pressed"]
 [connection signal="pressed" from="Center/VBox/Actions/UpgradesButton" to="." method="_on_upgrades_button_pressed"]
+[connection signal="pressed" from="Center/VBox/Actions/ShopButton" to="." method="_on_shop_button_pressed"]
 [connection signal="pressed" from="Center/VBox/Actions/SettingsButton" to="." method="_on_settings_button_pressed"]
 [connection signal="pressed" from="BiomeNavigation/PreviousBiome" to="." method="_on_previous_biome_pressed"]
 [connection signal="pressed" from="BiomeNavigation/NextBiome" to="." method="_on_next_biome_pressed"]

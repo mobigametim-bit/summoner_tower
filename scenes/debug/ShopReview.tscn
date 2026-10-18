@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://bxrgxex1ot1i3"]
+
+[ext_resource type="Script" uid="uid://cyk44axtubxij" path="res://scripts/debug/shop_review.gd" id="1_qemcr"]
+
+[node name="ShopReview" type="Node" unique_id=1823802653]
+script = ExtResource("1_qemcr")

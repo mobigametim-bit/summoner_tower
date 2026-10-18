@@ -432,3 +432,99 @@ msgstr "СВЯЩЕННОЕ СИЯНИЕ"
 
 msgid "+{value}% Consecration damage\nPriest Lv5 ability only."
 msgstr "+{value}% урона «Освящения»\nСпособность Жреца 5 уровня."
+
+msgid "Soul Shop"
+msgstr "Магазин душ"
+
+msgid "Rewards without viewing"
+msgstr "Награды без просмотра"
+
+msgid "Shop"
+msgstr "Магазин"
+
+msgid "Handful of Souls"
+msgstr "Горсть душ"
+
+msgid "Pouch of Souls"
+msgstr "Мешочек душ"
+
+msgid "Coffer of Souls"
+msgstr "Ларец душ"
+
+msgid "Chest of Souls"
+msgstr "Сундук душ"
+
+msgid "Treasury of Souls"
+msgstr "Сокровищница душ"
+
+msgid "No Ads"
+msgstr "Без рекламы"
+
+msgid "Purchased"
+msgstr "Куплено"
+
+msgid "Rewards without watching ads"
+msgstr "Награды без просмотра рекламы"
+
+msgid "Crystals for permanent upgrades"
+msgstr "Кристаллы для постоянных улучшений"
+
+msgid "TEST SHOP — no real charges"
+msgstr "ТЕСТОВЫЙ МАГАЗИН — без списания денег"
+
+msgid "One purchase — forever"
+msgstr "Одна покупка — навсегда"
+
+msgid "Soul crystals for permanent upgrades.\nKeep them between runs."
+msgstr "Кристаллы душ для постоянных улучшений.\nОстаются с вами между забегами."
+
+msgid "Revive +50 HP"
+msgstr "Возрождение +50 ОЗ"
+
+msgid "Once per boss wave"
+msgstr "Один раз за боссовую волну"
+
+msgid "Once per run"
+msgstr "Один раз за забег"
+
+msgid "Reroll cards"
+msgstr "Пересброс карточек"
+
+msgid "Crystals ×2"
+msgstr "Кристаллы ×2"
+
+msgid "Once on the results screen"
+msgstr "Один раз в результатах"
+
+msgid "Purchases are not available yet"
+msgstr "Покупки пока недоступны"
+
+msgid "Test purchase"
+msgstr "Тестовая покупка"
+
+msgid "Unavailable"
+msgstr "Недоступно"
+
+msgid "Test payment: choose an outcome"
+msgstr "Тестовая оплата: выберите результат"
+
+msgid "Purchase canceled"
+msgstr "Покупка отменена"
+
+msgid "Purchase failed. Try again."
+msgstr "Покупка не удалась. Попробуйте ещё раз."
+
+msgid "Rewards without ads activated"
+msgstr "Награды без рекламы активированы"
+
+msgid "Received %s crystals"
+msgstr "Получено %s кристаллов"
+
+msgid "Success"
+msgstr "Успех"
+
+msgid "Cancel"
+msgstr "Отмена"
+
+msgid "Error"
+msgstr "Ошибка"

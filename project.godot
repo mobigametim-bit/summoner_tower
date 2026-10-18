@@ -25,6 +25,8 @@ SessionProgress="*uid://bt1lt51sbthe0"
 GameFeelFlow="*uid://ckhnfaf1odnpl"
 AudioService="*uid://bwjorh3keq26j"
 LocaleService="*uid://dox4w0sali1l2"
+ScreenLayout="*res://scripts/ui/screen_layout.gd"
+ShopService="*uid://bghgj50a6hh1h"
 
 [display]
 
