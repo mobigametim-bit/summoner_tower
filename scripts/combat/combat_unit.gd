@@ -250,7 +250,7 @@ func _fire() -> void:
 	elif stats.unit_type == &"frost_mage":
 		sound = &"frost_cast"
 	elif stats.unit_type == &"priest":
-		sound = &"frost_cast"
+		sound = &"priest_cast"
 	AudioService.play_sfx(sound)
 
 
@@ -286,6 +286,7 @@ func _fire_skill() -> void:
 			_spawn_projectile(_target, stats, damage, true)
 		UnitStats.Ability.CONSECRATION:
 			_spawn_projectile(_target, stats, damage, false, true)
+			AudioService.play_sfx(&"priest_cast")
 		UnitStats.Ability.FROST_WAVE:
 			_show_area(center, 2, effective.ability_radius)
 			var slow: float = _run_bonuses.slow_ratio_for(stats) if _run_bonuses != null else stats.slow_ratio

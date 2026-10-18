@@ -291,6 +291,24 @@
       "production_file": "assets/audio/music/battle.mp3",
       "production_sha256": "6042399782e581d753d616bc703e66483d5eccb5fb687a20c9a552d68c49e620",
       "processing": "Исходный MP3, без перекодирования."
+    },
+    {
+      "id": "priest_cast",
+      "event": "Выстрел жреца",
+      "title": "Magical 6",
+      "author": "JaggedStone",
+      "source": "https://opengameart.org/content/magic-spell-sfx",
+      "download": "https://opengameart.org/sites/default/files/magical_6_0.ogg",
+      "original": "magical_6_0.ogg",
+      "license": "CC0-1.0",
+      "kind": "sfx",
+      "bytes": 37434,
+      "sha256": "0a18ee3460cf3fd79c3771bbf94c20c26d34b65ab60d0b0e15694ffcad815955",
+      "event_key": "priest_cast",
+      "production_file": "assets/audio/sfx/priest_cast.mp3",
+      "production_sha256": "d7fe7d56860e41fb150f7859245ff805c810e964abc678ad73f1e43b788b82b7",
+      "processing": "Конвертация в MP3 128 kbps / 44,1 kHz; peak исходника приведён к −3 dBFS. Темп, высота и длительность не изменены.",
+      "added": "2026-10-19"
     }
   ]
 }

@@ -180,7 +180,7 @@ func play_sfx(event: StringName) -> void:
 	if _backgrounded or not _unlocked or effects_volume <= 0.0 or not config.effects.has(event):
 		return
 	var player: AudioStreamPlayer
-	if event in [&"archer", &"fire_cast", &"frost_cast"]:
+	if event in [&"archer", &"fire_cast", &"frost_cast", &"priest_cast"]:
 		if get_tree().paused:
 			return
 		var now: int = Time.get_ticks_msec()

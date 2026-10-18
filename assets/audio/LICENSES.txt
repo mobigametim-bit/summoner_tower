@@ -1,6 +1,6 @@
 SUMMONER TOWER — лицензии музыки и звуков
 
-Все 15 используемых аудиофайлов распространяются по CC0 1.0 Universal.
+Все 16 используемых аудиофайлов распространяются по CC0 1.0 Universal.
 Разрешены коммерческое использование, изменение и распространение.
 Указание авторства не обязательно; сведения об авторах сохранены ниже.
 Лицензия: https://creativecommons.org/publicdomain/zero/1.0/
@@ -118,3 +118,14 @@ assets/audio/music/battle.mp3
 Оригинал: battleThemeA.mp3
 Источник: https://opengameart.org/content/battle-theme-a
 Лицензия: CC0-1.0
+
+assets/audio/sfx/priest_cast.mp3
+Выстрел жреца (обычный снаряд и снаряд света способности)
+Автор: JaggedStone
+Название: Magical 6, набор Magic Spell SFX
+Оригинал: magical_6_0.ogg
+Источник: https://opengameart.org/content/magic-spell-sfx
+Загрузка: https://opengameart.org/sites/default/files/magical_6_0.ogg
+Лицензия: CC0-1.0 (assets/audio/licenses/CC0-1.0.txt)
+Обработка: MP3 128 kbps, 44,1 kHz; peak исходника −3 dBFS.
+Темп, высота тона и длительность не изменены. Добавлен 19.10.2026.
