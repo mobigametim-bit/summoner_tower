@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="ru">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Summoner Tower — горизонтальная компоновка</title>
+<link rel="icon" href="../../../assets/soul_crystal.svg">
+<style>
+@font-face{font-family:Itim;src:url('../../../assets/fonts/itim-kz/Itim-KZ-Regular.ttf')}
+*{box-sizing:border-box}body{margin:0;background:#0c111b;color:#eee9db;font:20px/1.4 Itim,system-ui,sans-serif}
+main{max-width:1328px;margin:auto;padding:30px 24px 48px}h1{font-size:38px;font-weight:400;margin:5px 0 10px}p{margin:8px 0;color:#b6c7ce}.eyebrow{color:#7fc9d5;font:12px system-ui;letter-spacing:.15em;text-transform:uppercase}
+nav{display:flex;gap:10px;flex-wrap:wrap;margin:24px 0 18px}button,a{font:inherit}button{cursor:pointer;padding:10px 18px;border:1px solid #405969;border-radius:10px;background:#1b2a39;color:#d4dee0;min-height:48px}button[aria-selected=true]{background:#dbae52;border-color:#f4ce7d;color:#211c14}button:focus-visible,a:focus-visible{outline:3px solid #82e2ee;outline-offset:3px}
+.frame{background:#101521;border:1px solid #3b5361;border-radius:18px;overflow:hidden;margin:auto;max-width:1280px}.frame.tablet{max-width:960px}.frame svg{display:block;width:100%;height:auto;font-family:Itim,sans-serif}.caption{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap;margin:14px 0 24px;color:#a9bdc7}.caption span{color:#f0cc80}aside{padding:18px 22px;border:1px solid #344b5b;border-radius:12px;background:#14212e}aside p{margin:0}a{color:#8bdde5;text-underline-offset:4px}.links{display:flex;gap:22px;flex-wrap:wrap;margin-top:18px}.toggle{padding:6px 14px;font-size:17px;min-height:38px}footer{margin-top:24px;color:#94a8b6;font-size:17px}
+@media(max-width:600px){main{padding:22px 12px}h1{font-size:30px}body{font-size:18px}nav{gap:7px}nav button{padding:8px 12px}.frame{border-radius:8px}}
+@media(prefers-reduced-motion:reduce){.energy{animation:none!important}}
+.energy{animation:glow 2s ease-in-out infinite alternate;transform-box:fill-box;transform-origin:center}@keyframes glow{to{opacity:.45;transform:translateY(-7px)}}
+</style>
+<main>
+<div class="eyebrow">Summoner Tower · preview / landscape</div>
+<h1>Широкое поле, компактный интерфейс</h1>
+<p>Предложение для горизонтального режима: 9 × 6 клеток, всего 54 — столько же, сколько сейчас. Это макет из существующих SVG, без изменения игры.</p>
+<nav aria-label="Экраны превью">
+<button data-screen="phone" aria-selected="true">Телефон · бой</button>
+<button data-screen="tutorial" aria-selected="false">Телефон · обучение</button>
+<button data-screen="tablet" aria-selected="false">Планшет · бой</button>
+<button data-screen="menu" aria-selected="false">Главное меню</button>
+</nav>
+<div class="frame" id="frame"></div>
+<div class="caption"><p id="caption"></p><button class="toggle" id="ranges" aria-pressed="false">Показать радиус</button></div>
+<aside><p><span style="color:#f1ca7d">Перед внедрением нужно принять форму поля.</span> Переход 6 × 9 → 9 × 6 изменит геометрию дорог и расстановку постаментов. На макете одна иллюстративная карта; характеристики, цены и баланс здесь не пересчитываются.</p></aside>
+<div class="links"><a href="phone.png" target="_blank">Снимок боя ↗</a><a href="tutorial.png" target="_blank">Снимок обучения ↗</a><a href="tablet.png" target="_blank">Снимок планшета ↗</a><a href="menu.png" target="_blank">Снимок меню ↗</a></div>
+<footer>В игре сейчас убрана только кнопка пропуска обучения. Для горизонтальной версии после приёмки понадобятся адаптация генерации, координат touch/drag, учебной карты и модальных экранов.</footer>
+</main>
+<script>
+const root=document.querySelector('#frame'),caption=document.querySelector('#caption'),base='../../../';
+const image=(file,x,y,w,h,extra='')=>`<image href="${base+file}" x="${x}" y="${y}" width="${w}" height="${h}" ${extra}/>`;
+const text=(s,x,y,size=30,color='#efeadd',anchor='start')=>`<text x="${x}" y="${y}" font-size="${size}" fill="${color}" text-anchor="${anchor}">${s}</text>`;
+const rect=(x,y,w,h,fill,r=0,stroke='none',sw=1)=>`<rect x="${x}" y="${y}" width="${w}" height="${h}" rx="${r}" fill="${fill}" stroke="${stroke}" stroke-width="${sw}"/>`;
+const icon=(name,x,y,w)=>image('assets/'+name+'.svg',x,y,w,w);
+const defs=`<defs><pattern id="ground" width="120" height="120" patternUnits="userSpaceOnUse">${image('assets/environment/ground_cell.svg',0,0,120,120)}</pattern><pattern id="paving" width="68" height="68" patternUnits="userSpaceOnUse">${image('assets/environment/paved_road.svg',0,0,68,68)}</pattern><filter id="shine" x="-70%" y="-70%" width="240%" height="240%"><feGaussianBlur stdDeviation="10"/></filter></defs>`;
+const road='M60 60H300Q420 60 420 180V240Q420 300 540 300H780Q900 300 900 420V480Q900 540 780 540H660Q540 540 540 600Q540 660 660 660H1020';
+const slots=[[1,1,'archer'],[4,1,'mage'],[6,1,''],[0,3,''],[2,3,'frost_mage'],[4,3,''],[6,3,'archer'],[8,3,''],[2,5,''],[5,3,'mage'],[8,4,''],[3,5,'']];
+function board(){
+ let s=rect(0,0,1080,720,'url(#ground)');
+ s+=`<path d="${road}" fill="none" stroke="#474f43" stroke-width="91" stroke-linejoin="round" stroke-linecap="butt"/><path d="${road}" fill="none" stroke="url(#paving)" stroke-width="77" stroke-linejoin="round" stroke-linecap="butt"/>`;
+ const decors=[['tree',2,1,103],['mushrooms',0,2,65],['sheep',7,0,76],['rock',8,1,60],['flowers',1,3,63],['stump',0,5,64],['grass',3,4,68],['shrub',7,1,68],['gravestone',4,0,67],['abandoned_shield',1,4,57],['skull_bones',3,3,64],['tree',0,4,96],['grass',8,0,64],['flowers',1,5,68],['shrub',5,1,62]];
+ for(const [name,c,r,w]of decors)s+=image('assets/environment/'+name+'.svg',c*120+60-w/2,r*120+90-w,w,w);
+ s+=image('assets/environment/portal.svg',2,-8,116,116);
+ s+=`<ellipse class="energy" cx="60" cy="54" rx="20" ry="31" fill="#bd7aff" opacity=".65" filter="url(#shine)"/>`;
+ for(const [c,r,type]of slots){s+=image('assets/environment/pedestal.svg',c*120+7,r*120+10,106,106);if(type)s+=image('art/source/'+type+'/master.svg',c*120+1,r*120-19,118,118);}
+ s+=`<g id="attack-range" style="display:${showRange?'block':'none'}"><circle cx="300" cy="440" r="175" fill="#4caf6822" stroke="#70cb78" stroke-width="3" stroke-dasharray="8 7"/></g>`;
+ const enemies=[['goblin',290,90,83],['orc',420,170,105],['goblin',590,300,83],['golem',790,300,110]];
+ for(const[t,x,y,z]of enemies)s+=image('art/source/'+t+'/master.svg',x-z/2,y-z*.76,z,z);
+ s+=image('art/source/tower/master.svg',955,533,130,174);
+ s+=`<g class="energy">${icon('mana_flame',978,550,25)}${icon('mana_flame',1049,571,20)}${icon('mana_flame',1009,521,23)}</g>`;
+ s+=text('35',1020,701,32,'#f3cb77','middle');
+ // Полоски поверх всех объектов, как в текущем gameplay.
+ for(const[t,x,y,z]of enemies)s+=rect(x-z*.4,y-z*.8,z*.8,9,'#23302e',2)+rect(x-z*.4,y-z*.8,z*.62,9,'#df7764',2);
+ return s;
+}
+function sideHud(){return rect(1080,0,200,720,'#192936')+rect(1080,0,2,720,'#30434c')+text('ВОЛНА',1180,72,27,'#abc6ce','middle')+text('21',1180,125,52,'#f0cc7d','middle')+icon('heart_full',1114,211,44)+text('74',1203,248,40,'#ff8c94','middle')+icon('mana_flame',1114,309,44)+text('139',1203,346,40,'#78cfff','middle')+rect(1138,603,84,84,'#d9ad52',14)+image('assets/ui/settings.svg',1154,619,52,52);}
+function tutorial(){return `<path d="M0 0H1280V720H0Z M944 520V716H1076V520Z" fill="#070e17" fill-opacity=".66" fill-rule="evenodd"/>`+rect(944,520,132,196,'none',16,'#f3d283',4)+`<path d="M736 568Q838 551 916 609" fill="none" stroke="#f3d283" stroke-width="5" stroke-dasharray="10 11"/><path d="m899 593 19 18-27 3" fill="none" stroke="#f3d283" stroke-width="5"/>`+rect(34,439,704,244,'#1b2b3c',20,'#dfb45b',3)+image('assets/tutorial/borodacius.svg',44,285,182,205)+text('Бородаций',231,485,33,'#f3cb77')+text('Нажми на башню, чтобы призвать бойца.',62,544,30)+text('Число у основания — цена.',62,589,30)+text('Башня сдачу выдаёт бойцами.',62,634,30)+text('II Пауза',1180,167,24,'#abc6ce','middle');}
+function menu(){let s=rect(0,0,1280,720,'#101521');s+=`<ellipse cx="375" cy="482" rx="351" ry="164" fill="#182e25"/>`;
+ for(let x=133;x<610;x+=65)s+=image('assets/environment/paved_road.svg',x,452,65,65);
+ s+=image('assets/environment/tree.svg',40,249,157,200)+image('assets/environment/tree.svg',551,237,151,200)+image('art/source/tower/master.svg',239,216,260,300)+image('art/source/archer/master.svg',126,359,144,144)+image('art/source/frost_mage/master.svg',487,354,144,144)+image('assets/environment/portal.svg',292,520,123,151)+image('assets/environment/flowers.svg',128,566,77,77)+image('assets/environment/sheep.svg',507,560,95,95);
+ s+=`<g class="energy">${icon('mana_flame',306,237,35)}${icon('mana_flame',429,267,30)}${icon('mana_flame',362,177,31)}${icon('mana_flame',396,208,27)}</g>`;
+ s+=text('ЛЕС',375,117,58,'#e5bd66','middle');
+ s+=icon('soul_crystal',1126,157,55)+text('248',1224,200,39,'#d1acef','middle');
+ // Стрелка по центру промежутка между картинкой и кнопками, на уровне середины картинки.
+ s+=rect(877,369,110,110,'#d9ad52',15)+image('assets/ui/next.svg',900,392,64,64);
+ for(const[name,y]of[['play',264],['upgrade',390],['settings',516]])s+=rect(1138,y,110,110,'#d9ad52',15)+image('assets/ui/'+name+'.svg',1161,y+23,64,64);
+ return s;
+}
+let active='phone',showRange=false;
+const notes={phone:'Телефон 16:9 · поле во всю высоту, волна и ресурсы справа, шестерёнка под большим пальцем.',tutorial:'Обучение · подсказка сбоку от башни, цель открыта для тапа. Кнопки «Пропустить» нет.',tablet:'Планшет 4:3 · компактная строка показателей сверху, поле во всю ширину сразу под ней.',menu:'Главное меню · название биома над картинкой слева; кристаллы, старт, улучшения и настройки — вертикальной группой справа.'};
+function show(id){active=id;const tablet=id==='tablet';root.classList.toggle('tablet',tablet);let s=defs;if(id==='menu')s+=menu();else if(tablet){const hudHeight=768-720*1024/1080;s+=`<g transform="translate(0 ${hudHeight}) scale(${1024/1080})">${board()}</g>`;s+=rect(0,0,1024,hudHeight,'#192936')+text('ВОЛНА 21',31,55,29,'#b4d0d6')+icon('heart_full',365,20,41)+text('74',424,56,36,'#ff8c94')+icon('mana_flame',577,20,41)+text('139',635,56,36,'#78cfff')+rect(930,13,60,60,'#d9ad52',12)+image('assets/ui/settings.svg',941,24,38,38);}else{s+=board()+sideHud();if(id==='tutorial')s+=tutorial();}
+root.innerHTML=`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${tablet?'1024 768':'1280 720'}" role="img" aria-label="${notes[id]}">${s}</svg>`;caption.textContent=notes[id];document.querySelectorAll('[data-screen]').forEach(b=>b.setAttribute('aria-selected',String(b.dataset.screen===id)));document.querySelector('#ranges').hidden=id==='menu'||id==='tutorial';window.currentLandscapePreview=id;}
+document.querySelectorAll('[data-screen]').forEach(b=>b.onclick=()=>show(b.dataset.screen));document.querySelector('#ranges').onclick=function(){showRange=!showRange;this.setAttribute('aria-pressed',String(showRange));this.textContent=showRange?'Скрыть радиус':'Показать радиус';show(active);};
+const requested=new URLSearchParams(location.search).get('screen');show(requested in notes?requested:'phone');
+</script>
+</html>
