@@ -13,6 +13,17 @@ func _ready() -> void:
 	_update_crystals(SessionProgress.crystals)
 	SessionProgress.crystals_changed.connect(_update_crystals)
 	back_button.grab_focus()
+	Tutorial.enter_meta.call_deferred(self)
+	resized.connect(_layout)
+	_layout.call_deferred()
+
+
+func _layout() -> void:
+	var stack: VBoxContainer = $Center/Stack
+	var scroll: ScrollContainer = $Center/Stack/Scroll
+	stack.custom_minimum_size = Vector2(minf(864,size.x-96),size.y-96) if ScreenLayout.landscape() else Vector2(624,1160)
+	scroll.custom_minimum_size = Vector2(stack.custom_minimum_size.x,maxf(180,stack.custom_minimum_size.y-240))
+	stack.reset_size()
 
 
 func _update_crystals(total: int) -> void:

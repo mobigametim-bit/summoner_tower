@@ -3,6 +3,8 @@ extends Node
 
 signal state_changed(mana: int, cost: int, occupied: int, capacity: int, available: bool)
 signal unit_refunded(amount: int)
+signal unit_summoned(unit: CombatUnit, gift: bool)
+signal transfer_completed(unit: CombatUnit, destination: SummonSlot, merged: bool, swapped: bool)
 signal unit_merged
 
 @export var config: SummonConfig
@@ -10,6 +12,7 @@ signal unit_merged
 
 var mana: int = 0
 var successful_summons: int = 0
+var tutorial_archers_remaining: int = 0
 
 var _slots: Array[SummonSlot] = []
 var _enemies: Node2D
@@ -76,7 +79,8 @@ func try_summon() -> bool:
 	# Добавление узла вызывает сигналы дерева: исключаем повторный призыв до завершения операции.
 	_busy = true
 	var previous_random_state: int = _rng.state
-	var instance: Node = pool.roll(_rng).instantiate()
+	var packed: PackedScene = preload("res://scenes/archer.tscn") if tutorial_archers_remaining > 0 else pool.roll(_rng)
+	var instance: Node = packed.instantiate()
 	var unit: CombatUnit = instance as CombatUnit
 	if unit == null or unit.stats == null or unit.stats.level != 1 or not destination.place_unit(unit):
 		instance.free()
@@ -98,10 +102,12 @@ func try_summon() -> bool:
 	unit.paid_mana = current_cost()
 	mana -= unit.paid_mana
 	successful_summons += 1
+	tutorial_archers_remaining = maxi(tutorial_archers_remaining - 1, 0)
 	destination.play_summon_effect()
 	AudioService.play_sfx(&"summon")
 	_busy = false
 	_emit_state()
+	unit_summoned.emit(unit, false)
 	return true
 
 
@@ -150,6 +156,7 @@ func try_transfer(source: SummonSlot, destination: SummonSlot, expected_unit: Co
 		source.unit_host.remove_child(expected_unit)
 		_busy = false
 		_emit_state()
+		transfer_completed.emit(expected_unit, destination, true, false)
 		return true
 
 	# Фиксируем обе ссылки до reparent: сигналы дерева видят согласованную операцию.
@@ -165,6 +172,7 @@ func try_transfer(source: SummonSlot, destination: SummonSlot, expected_unit: Co
 		other.refresh_target()
 	_busy = false
 	_emit_state()
+	transfer_completed.emit(expected_unit, destination, false, other != null)
 	return true
 
 
@@ -200,6 +208,7 @@ func grant_unit(scene: PackedScene, stats: UnitStats) -> bool:
 	AudioService.play_sfx(&"summon")
 	_busy = false
 	_emit_state()
+	unit_summoned.emit(unit, true)
 	return true
 
 

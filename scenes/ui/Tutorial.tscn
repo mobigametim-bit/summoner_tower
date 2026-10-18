@@ -1,0 +1,124 @@
+[gd_scene format=3 uid="uid://c3rimuy62pvnk"]
+
+[ext_resource type="Script" uid="uid://mswxwrrp8an7" path="res://scripts/tutorial/tutorial_director.gd" id="1_iect6"]
+[ext_resource type="Theme" uid="uid://bufjhwj3mejwx" path="res://resources/ui/game_theme.tres" id="2_55ys1"]
+[ext_resource type="Script" uid="uid://bokorxhtmixwa" path="res://scripts/tutorial/tutorial_overlay.gd" id="3_qqmu1"]
+[ext_resource type="Script" uid="uid://dpqjbam60h7ls" path="res://scripts/tutorial/tutorial_shade.gd" id="4_turgd"]
+[ext_resource type="Texture2D" uid="uid://bt65g13728kfl" path="res://assets/tutorial/borodacius.svg" id="5_33cxf"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_peovl"]
+bg_color = Color(0.105882354, 0.16862746, 0.23529412, 1)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(0.8627451, 0.69411767, 0.35686275, 1)
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+
+[node name="Tutorial" type="CanvasLayer" unique_id=611772150]
+process_mode = 3
+layer = 90
+script = ExtResource("1_iect6")
+
+[node name="Overlay" type="Control" parent="." unique_id=936224010]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme = ExtResource("2_55ys1")
+script = ExtResource("3_qqmu1")
+
+[node name="Shade" type="Control" parent="Overlay" unique_id=99158823]
+anchors_preset = 0
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource("4_turgd")
+
+[node name="Panel" type="PanelContainer" parent="Overlay" unique_id=736232500]
+custom_minimum_size = Vector2(672, 0)
+layout_mode = 0
+offset_left = 24.0
+offset_top = 820.0
+offset_right = 24.0
+offset_bottom = 820.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_peovl")
+
+[node name="Margin" type="MarginContainer" parent="Overlay/Panel" unique_id=931501774]
+layout_mode = 2
+theme_override_constants/margin_left = 24
+theme_override_constants/margin_top = 24
+theme_override_constants/margin_right = 24
+theme_override_constants/margin_bottom = 24
+
+[node name="Stack" type="VBoxContainer" parent="Overlay/Panel/Margin" unique_id=614482140]
+layout_mode = 2
+theme_override_constants/separation = 18
+
+[node name="Header" type="HBoxContainer" parent="Overlay/Panel/Margin/Stack" unique_id=2142224925]
+layout_mode = 2
+
+[node name="Spacer" type="Control" parent="Overlay/Panel/Margin/Stack/Header" unique_id=82648709]
+custom_minimum_size = Vector2(140, 0)
+layout_mode = 2
+
+[node name="Name" type="Label" parent="Overlay/Panel/Margin/Stack/Header" unique_id=1216994304]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.95686275, 0.8, 0.46666667, 1)
+theme_override_font_sizes/font_size = 34
+text = "Бородаций"
+
+[node name="Speech" type="Label" parent="Overlay/Panel/Margin/Stack" unique_id=794668197]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.95686275, 0.93333334, 0.8784314, 1)
+theme_override_constants/line_spacing = 3
+theme_override_font_sizes/font_size = 32
+text = "Нажми на башню, чтобы призвать бойца."
+autowrap_mode = 3
+
+[node name="SaveError" type="Label" parent="Overlay/Panel/Margin/Stack" unique_id=1730680510]
+visible = false
+layout_mode = 2
+theme_override_colors/font_color = Color(0.9529412, 0.6117647, 0.63529414, 1)
+theme_override_font_sizes/font_size = 22
+autowrap_mode = 3
+
+[node name="Actions" type="HBoxContainer" parent="Overlay/Panel/Margin/Stack" unique_id=1707529103]
+layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="Next" type="Button" parent="Overlay/Panel/Margin/Stack/Actions" unique_id=804723348]
+custom_minimum_size = Vector2(0, 68)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 28
+text = "Понятно"
+
+[node name="Portrait" type="TextureRect" parent="Overlay" unique_id=903002245]
+layout_mode = 0
+offset_right = 176.0
+offset_bottom = 198.0
+mouse_filter = 2
+texture = ExtResource("5_33cxf")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Pause" type="Label" parent="Overlay" unique_id=1704684092]
+layout_mode = 0
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -180.0
+offset_top = 16.0
+offset_right = -24.0
+offset_bottom = 60.0
+theme_override_colors/font_color = Color(0.7019608, 0.83137256, 0.8666667, 1)
+theme_override_font_sizes/font_size = 26
+text = "Ⅱ Пауза"
+
+[connection signal="continued" from="Overlay" to="." method="_on_continued"]
+[connection signal="pressed" from="Overlay/Panel/Margin/Stack/Actions/Next" to="Overlay" method="_on_next_pressed"]

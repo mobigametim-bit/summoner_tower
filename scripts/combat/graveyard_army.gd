@@ -13,6 +13,10 @@ var _corpses: Array[Dictionary] = []
 var _assemblies: Dictionary = {}
 
 
+func remains_count() -> int:
+	return _corpses.size()
+
+
 func register(enemy: ApproachingEnemy) -> void:
 	if enemy.abilities is GraveyardAbilities:
 		(enemy.abilities as GraveyardAbilities).support = self

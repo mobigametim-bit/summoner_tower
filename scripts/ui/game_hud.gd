@@ -16,7 +16,7 @@ signal save_result_requested
 @onready var restart_button: Button = %RestartButton
 @onready var menu_button: Button = %MenuButton
 @onready var mana_label: Label = %ManaLabel
-@onready var mana_feedback: ManaFeedback = $BottomDock/Margin/Row/Counters/ManaIcon
+@onready var mana_feedback: ManaFeedback = %ManaLabel.get_parent().get_node("ManaIcon")
 @onready var wave_label: Label = %WaveLabel
 @onready var bottom_dock: PanelContainer = $BottomDock
 @onready var settings_button: Button = %SettingsButton
@@ -36,13 +36,69 @@ signal save_result_requested
 
 var _displayed_mana: int = -1
 var _last_announced_boss_wave: int = 0
+var field_rect: Rect2 = Rect2(0,0,720,1080)
+var _side_hud: bool = false
+var _wave_number: int = 1
+var _wave_title: String = ""
+
+
+func _ready() -> void:
+	# MarginContainer завершает раскладку после смены размера dock, позднее камеры.
+	$BottomDock/Margin/Row.resized.connect(_place_controls)
+
+
+func configure_layout(field: Rect2, dock: Rect2, side: bool) -> void:
+	field_rect = field
+	_side_hud = side
+	bottom_dock.set_anchors_and_offsets_preset(Control.PRESET_TOP_LEFT)
+	bottom_dock.position = dock.position
+	bottom_dock.size = dock.size
+	var row: Control = $BottomDock/Margin/Row
+	var counters: GridContainer = row.get_node("Counters")
+	counters.columns = 1 if side else 2
+	counters.add_theme_constant_override("v_separation",36 if side else 0)
+	var compact: bool = ScreenLayout.landscape()
+	for label: Label in [health_label,mana_label]:
+		label.custom_minimum_size = Vector2(100,70) if compact else Vector2(112,80)
+		label.add_theme_font_size_override("font_size",44 if compact else counter_font_size)
+	for icon: Control in [health_label.get_parent().get_node("HealthIcon"),mana_feedback]:
+		icon.custom_minimum_size = Vector2(44,54) if compact else Vector2(54,65)
+	settings_button.custom_minimum_size = Vector2(84,84) if side else (Vector2(64,64) if compact else Vector2(104,104))
+	wave_label.custom_minimum_size = Vector2.ZERO
+	wave_label.add_theme_font_size_override("font_size",38 if side else (32 if compact else 42))
+	wave_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER if side else HORIZONTAL_ALIGNMENT_LEFT
+	_format_wave()
+	_place_controls.call_deferred()
+
+
+func _place_controls() -> void:
+	var row: Control = $BottomDock/Margin/Row
+	var counters: Control = row.get_node("Counters")
+	counters.reset_size()
+	settings_button.size = settings_button.custom_minimum_size
+	if _side_hud:
+		wave_label.position = Vector2(0,24)
+		wave_label.size = Vector2(row.size.x,120)
+		counters.position = Vector2((row.size.x-counters.size.x)*0.5,row.size.y*0.31)
+		settings_button.position = Vector2((row.size.x-settings_button.size.x)*0.5,row.size.y-settings_button.size.y-32)
+	else:
+		wave_label.position = Vector2.ZERO
+		wave_label.size = Vector2(192,row.size.y)
+		counters.position = Vector2(maxf(198.0,(row.size.x-counters.size.x)*0.5),(row.size.y-counters.size.y)*0.5)
+		settings_button.position = Vector2(row.size.x-settings_button.size.x,(row.size.y-settings_button.size.y)*0.5)
+
+
+func _format_wave() -> void:
+	UiNumbers.show_value(wave_label,_wave_number,_wave_title+("\n" if _side_hud else " "))
 
 
 func update_wave(wave: int, phase: WaveManager.Phase, _seconds: int, _alive: int, _pending: int) -> void:
 	var boss_wave: bool = wave_config != null and wave_config.is_boss_wave(wave)
 	var title: String = tr("BOSS") if boss_wave else tr("WAVE")
+	_wave_title = title
+	_wave_number = wave
 	wave_label.modulate = Color("ffb968") if boss_wave else Color.WHITE
-	UiNumbers.show_value(wave_label, wave, title + " ")
+	_format_wave()
 	if phase != WaveManager.Phase.FIGHTING:
 		boss_warning.stop_warning()
 	elif boss_wave and phase == WaveManager.Phase.FIGHTING and wave != _last_announced_boss_wave:
@@ -64,7 +120,7 @@ func set_field_bottom(bottom: float) -> void:
 
 func _fit_counter(label: Label) -> void:
 	var font: Font = label.get_theme_font("font")
-	var font_size: int = counter_font_size
+	var font_size: int = 44 if ScreenLayout.landscape() else counter_font_size
 	var width: float = label.custom_minimum_size.x
 	# Реальная ширина цифр зависит от шрифта, а не только от их количества.
 	while font_size > mini(counter_minimum_font_size, counter_font_size) and font.get_string_size(label.text, HORIZONTAL_ALIGNMENT_LEFT, -1.0, font_size).x > width:
@@ -143,7 +199,7 @@ func show_mana_reward(canvas_position: Vector2, amount: int) -> void:
 	var popup: ManaRewardPopup = mana_reward_scene.instantiate() as ManaRewardPopup
 	mana_rewards.add_child(popup)
 	var local_position: Vector2 = get_global_transform_with_canvas().affine_inverse() * canvas_position
-	popup.position = Vector2(clampf(local_position.x, 80.0, size.x - 80.0), clampf(local_position.y - 32.0, 40.0, maxf(40.0, bottom_dock.position.y - 24.0)))
+	popup.position = Vector2(clampf(local_position.x, field_rect.position.x+60.0, field_rect.end.x-60.0), clampf(local_position.y-32.0,field_rect.position.y+40.0,field_rect.end.y-24.0))
 	popup.play_reward(amount)
 
 

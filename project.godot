@@ -25,6 +25,7 @@ SessionProgress="*uid://bt1lt51sbthe0"
 GameFeelFlow="*uid://ckhnfaf1odnpl"
 AudioService="*uid://bwjorh3keq26j"
 LocaleService="*uid://dox4w0sali1l2"
+Tutorial="*uid://c3rimuy62pvnk"
 ScreenLayout="*res://scripts/ui/screen_layout.gd"
 ShopService="*uid://bghgj50a6hh1h"
 
@@ -66,3 +67,4 @@ locale/translations=PackedStringArray("res://assets/localization/messages.ru.po"
 rendering_device/driver.windows="d3d12"
 renderer/rendering_method="gl_compatibility"
 renderer/rendering_method.mobile="gl_compatibility"
+environment/defaults/default_clear_color=Color(0.0627451, 0.08235294, 0.12941177, 1)

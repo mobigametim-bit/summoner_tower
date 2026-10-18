@@ -31,6 +31,7 @@ func _ready() -> void:
 	SessionProgress.biomes_changed.connect(_update_biome)
 	_update_biome()
 	_layout_menu.call_deferred()
+	Tutorial.enter_menu.call_deferred(self)
 
 
 func _notification(what: int) -> void:

@@ -6,8 +6,8 @@ signal reroll_requested
 signal rewarded_reroll_requested
 
 @onready var cards: Array[Button] = [
-	$Center/Panel/Stack/Card0, $Center/Panel/Stack/Card1, $Center/Panel/Stack/Card2,
-	$Center/Panel/Stack/Card3
+	$Center/Panel/Stack/Cards/Card0, $Center/Panel/Stack/Cards/Card1, $Center/Panel/Stack/Cards/Card2,
+	$Center/Panel/Stack/Cards/Card3
 ]
 @onready var reroll_button: Button = $Center/Panel/Stack/Rerolls/Reroll
 @onready var rewarded_reroll_button: Button = $Center/Panel/Stack/Rerolls/RewardedReroll
@@ -19,6 +19,21 @@ func _ready() -> void:
 	_minimum_card_height = cards[0].custom_minimum_size.y
 	for card: Button in cards:
 		card.set_meta(&"skip_ui_sound", true)
+	resized.connect(_layout_cards)
+	_layout_cards()
+
+
+func _layout_cards() -> void:
+	var horizontal: bool = ScreenLayout.landscape()
+	$Center/Panel.custom_minimum_size.x = minf(size.x-64.0,1100.0) if horizontal else 632.0
+	$Center/Panel/Stack/Cards.columns = 2 if horizontal else 1
+	for card: Button in cards:
+		card.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+		card.custom_minimum_size = Vector2(0,166)
+		card.get_node("Margin/Row/Content/Title").add_theme_font_size_override("font_size",32 if horizontal else 36)
+		card.get_node("Margin/Row/Content/Description").add_theme_font_size_override("font_size",26 if horizontal else 28)
+	_layout_revision += 1
+	_fit_card_heights(_layout_revision)
 
 
 func show_choices(choices: Array[RunUpgrade], bonuses: RunBonuses, rerolls: int = 0, rewarded_available: bool = true) -> void:
@@ -71,6 +86,7 @@ func _fit_card_heights(revision: int) -> void:
 			continue
 		var margin: MarginContainer = card.get_node("Margin")
 		card.custom_minimum_size.y = maxf(_minimum_card_height, margin.get_combined_minimum_size().y)
+	$Center._request_fit()
 
 
 func close_choice() -> void:

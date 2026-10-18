@@ -1282,8 +1282,10 @@ Web-версия функционально соответствует верс�
 Бородацием. Первые два учебных призыва — лучники по обычной цене. Обучение
 предлагается также существующим игрокам, если ещё не проходилось; прогресс сохраняется.
 Сначала проверяется art/UI preview, затем согласуется интеграция:
-[TUTORIAL_PLAN.md](TUTORIAL_PLAN.md), [TUTORIAL_PREVIEW_REVIEW.md](done/TUTORIAL_PREVIEW_REVIEW.md).
+[TUTORIAL_PLAN.md](done/TUTORIAL_PLAN.md), [TUTORIAL_PREVIEW_REVIEW.md](done/TUTORIAL_PREVIEW_REVIEW.md).
 Превью принято пользователем 18.10.2026, разрешён переход к интеграции.
+Интеграция реализована и проверена в Godot/Web; принята 19.10.2026:
+[TUTORIAL_GAMEPLAY_REVIEW.md](done/TUTORIAL_GAMEPLAY_REVIEW.md).
 
 ---
 

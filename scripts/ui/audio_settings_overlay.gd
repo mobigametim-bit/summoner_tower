@@ -29,6 +29,11 @@ func close() -> void:
 	closed.emit()
 
 
+func _on_replay_tutorial_pressed() -> void:
+	close()
+	Tutorial.replay_from_menu()
+
+
 func _unhandled_key_input(event: InputEvent) -> void:
 	if visible and event.is_action_pressed(&"ui_cancel"):
 		close()

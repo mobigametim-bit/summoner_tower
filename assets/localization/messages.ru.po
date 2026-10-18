@@ -430,6 +430,9 @@ msgstr "+{value} с действия метки\nДля Жреца от 3 уро
 msgid "SACRED RADIANCE"
 msgstr "СВЯЩЕННОЕ СИЯНИЕ"
 
+msgid "Repeat tutorial"
+msgstr "Повторить обучение"
+
 msgid "+{value}% Consecration damage\nPriest Lv5 ability only."
 msgstr "+{value}% урона «Освящения»\nСпособность Жреца 5 уровня."
 

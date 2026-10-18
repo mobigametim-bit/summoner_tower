@@ -31,6 +31,7 @@
 [ext_resource type="Resource" uid="uid://b6k1ho7jp755j" path="res://resources/balance/run_upgrade_pool.tres" id="19_37s47"]
 [ext_resource type="Texture2D" uid="uid://cunh3mw6fkux0" path="res://assets/ui/play.svg" id="19_qnb83"]
 [ext_resource type="Script" uid="uid://dl57wkelh3atf" path="res://scripts/game/run_statistics.gd" id="20_5newe"]
+[ext_resource type="Script" uid="uid://bgt1gg1lfr4e7" path="res://scripts/ui/adaptive_modal.gd" id="20_m4url"]
 [ext_resource type="Resource" uid="uid://c2tgfag4qq81o" path="res://resources/balance/run_reward_config.tres" id="21_37s47"]
 [ext_resource type="PackedScene" uid="uid://d2g3lda0xildr" path="res://scenes/ui/AudioControls.tscn" id="23_nepv3"]
 [ext_resource type="PackedScene" uid="uid://icaty5irafa4" path="res://scenes/ui/BossWarning.tscn" id="23_qouja"]
@@ -296,14 +297,18 @@ theme_override_constants/margin_top = 0
 theme_override_constants/margin_right = 20
 theme_override_constants/margin_bottom = 0
 
-[node name="Row" type="HBoxContainer" parent="Interface/Hud/BottomDock/Margin" unique_id=1918551115]
+[node name="Row" type="Control" parent="Interface/Hud/BottomDock/Margin" unique_id=828888561]
+propagate_maximum_size = true
 layout_mode = 2
-theme_override_constants/separation = 6
+mouse_filter = 1
 
 [node name="WaveLabel" type="Label" parent="Interface/Hud/BottomDock/Margin/Row" unique_id=33230576]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(192, 48)
-layout_mode = 2
+layout_mode = 0
+offset_top = 28.0
+offset_right = 200.0
+offset_bottom = 76.0
 size_flags_horizontal = 3
 theme_override_colors/font_color = Color(0.7058824, 0.83137256, 0.8509804, 1)
 theme_override_font_sizes/font_size = 42
@@ -311,15 +316,21 @@ text = "WAVE 1"
 vertical_alignment = 1
 clip_text = true
 
-[node name="Counters" type="HBoxContainer" parent="Interface/Hud/BottomDock/Margin/Row" unique_id=1214201480]
-layout_mode = 2
+[node name="Counters" type="GridContainer" parent="Interface/Hud/BottomDock/Margin/Row" unique_id=877799223]
+layout_mode = 0
+offset_left = 206.0
+offset_top = 12.0
+offset_right = 570.0
+offset_bottom = 92.0
 size_flags_horizontal = 0
 size_flags_vertical = 4
 mouse_filter = 2
-theme_override_constants/separation = 6
-alignment = 1
 
-[node name="HealthIcon" type="TextureRect" parent="Interface/Hud/BottomDock/Margin/Row/Counters" unique_id=970988168]
+[node name="Health" type="HBoxContainer" parent="Interface/Hud/BottomDock/Margin/Row/Counters" unique_id=391410022]
+layout_mode = 2
+theme_override_constants/separation = 6
+
+[node name="HealthIcon" type="TextureRect" parent="Interface/Hud/BottomDock/Margin/Row/Counters/Health" unique_id=970988168]
 custom_minimum_size = Vector2(54, 54)
 layout_mode = 2
 size_flags_vertical = 4
@@ -327,7 +338,7 @@ mouse_filter = 2
 texture = ExtResource("12_ssvqc")
 stretch_mode = 5
 
-[node name="HealthLabel" type="Label" parent="Interface/Hud/BottomDock/Margin/Row/Counters" unique_id=345376129]
+[node name="HealthLabel" type="Label" parent="Interface/Hud/BottomDock/Margin/Row/Counters/Health" unique_id=345376129]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(112, 80)
 layout_mode = 2
@@ -337,12 +348,11 @@ text = "100"
 vertical_alignment = 1
 clip_text = true
 
-[node name="Gap" type="Control" parent="Interface/Hud/BottomDock/Margin/Row/Counters" unique_id=1733236923]
-custom_minimum_size = Vector2(8, 0)
+[node name="Mana" type="HBoxContainer" parent="Interface/Hud/BottomDock/Margin/Row/Counters" unique_id=2045939991]
 layout_mode = 2
-mouse_filter = 2
+theme_override_constants/separation = 6
 
-[node name="ManaIcon" type="Control" parent="Interface/Hud/BottomDock/Margin/Row/Counters" unique_id=1388567042 node_paths=PackedStringArray("counter_label")]
+[node name="ManaIcon" type="Control" parent="Interface/Hud/BottomDock/Margin/Row/Counters/Mana" unique_id=1388567042 node_paths=PackedStringArray("counter_label")]
 process_mode = 3
 custom_minimum_size = Vector2(54, 65)
 layout_mode = 2
@@ -350,7 +360,7 @@ mouse_filter = 2
 script = ExtResource("13_sgl2t")
 counter_label = NodePath("../ManaLabel")
 
-[node name="Visual" type="TextureRect" parent="Interface/Hud/BottomDock/Margin/Row/Counters/ManaIcon" unique_id=1484599167]
+[node name="Visual" type="TextureRect" parent="Interface/Hud/BottomDock/Margin/Row/Counters/Mana/ManaIcon" unique_id=1484599167]
 layout_mode = 0
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -361,10 +371,10 @@ texture = ExtResource("13_264po")
 expand_mode = 1
 stretch_mode = 5
 
-[node name="GFFPlayer" type="Node" parent="Interface/Hud/BottomDock/Margin/Row/Counters/ManaIcon/Visual" unique_id=1014371456]
+[node name="GFFPlayer" type="Node" parent="Interface/Hud/BottomDock/Margin/Row/Counters/Mana/ManaIcon/Visual" unique_id=1014371456]
 script = ExtResource("14_suyxu")
 
-[node name="ManaLabel" type="Label" parent="Interface/Hud/BottomDock/Margin/Row/Counters" unique_id=1792798406]
+[node name="ManaLabel" type="Label" parent="Interface/Hud/BottomDock/Margin/Row/Counters/Mana" unique_id=1792798406]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(112, 80)
 layout_mode = 2
@@ -378,7 +388,10 @@ clip_text = true
 [node name="SettingsButton" type="Button" parent="Interface/Hud/BottomDock/Margin/Row" unique_id=248297785]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(104, 104)
-layout_mode = 2
+layout_mode = 0
+offset_left = 576.0
+offset_right = 680.0
+offset_bottom = 104.0
 size_flags_horizontal = 4
 size_flags_vertical = 4
 tooltip_text = "Settings"
@@ -422,17 +435,20 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.02745098, 0.043137256, 0.07058824, 0.8745098)
 
-[node name="Center" type="CenterContainer" parent="Interface/Hud/GameOverOverlay" unique_id=509327819]
+[node name="Center" type="Control" parent="Interface/Hud/GameOverOverlay" unique_id=1521229551]
+propagate_maximum_size = true
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 1
+script = ExtResource("20_m4url")
 
 [node name="Panel" type="PanelContainer" parent="Interface/Hud/GameOverOverlay/Center" unique_id=734330472]
 custom_minimum_size = Vector2(600, 0)
-layout_mode = 2
+layout_mode = 0
 theme_override_styles/panel = SubResource("StyleBoxFlat_wljb1")
 
 [node name="Stack" type="VBoxContainer" parent="Interface/Hud/GameOverOverlay/Center/Panel" unique_id=1514523921]
@@ -690,7 +706,8 @@ grow_vertical = 2
 mouse_filter = 2
 color = Color(0.019607844, 0.03529412, 0.0627451, 0.7372549)
 
-[node name="Center" type="CenterContainer" parent="Interface/Hud/SettingsOverlay" unique_id=1791646195]
+[node name="Center" type="Control" parent="Interface/Hud/SettingsOverlay" unique_id=870411177]
+propagate_maximum_size = true
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -698,10 +715,11 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
+script = ExtResource("20_m4url")
 
 [node name="Panel" type="PanelContainer" parent="Interface/Hud/SettingsOverlay/Center" unique_id=1200864453]
 custom_minimum_size = Vector2(560, 0)
-layout_mode = 2
+layout_mode = 0
 theme_override_styles/panel = SubResource("StyleBoxFlat_qouja")
 
 [node name="Stack" type="VBoxContainer" parent="Interface/Hud/SettingsOverlay/Center/Panel" unique_id=1743664172]
@@ -753,14 +771,17 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 color = Color(0.01, 0.025, 0.045, 0.85)
 
-[node name="Center" type="CenterContainer" parent="Interface/Hud/ReviveOverlay" unique_id=349409395]
-layout_mode = 0
+[node name="Center" type="Control" parent="Interface/Hud/ReviveOverlay" unique_id=227612558]
+propagate_maximum_size = true
+anchors_preset = 0
 anchor_right = 1.0
 anchor_bottom = 1.0
+mouse_filter = 1
+script = ExtResource("20_m4url")
 
 [node name="Panel" type="PanelContainer" parent="Interface/Hud/ReviveOverlay/Center" unique_id=2021645960]
 custom_minimum_size = Vector2(520, 0)
-layout_mode = 2
+layout_mode = 0
 theme_override_styles/panel = SubResource("StyleBoxFlat_wljb1")
 
 [node name="Stack" type="VBoxContainer" parent="Interface/Hud/ReviveOverlay/Center/Panel" unique_id=1734743785]
@@ -868,14 +889,17 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 color = Color(0.01, 0.025, 0.045, 0.85)
 
-[node name="Center" type="CenterContainer" parent="Interface/Hud/RewardedOverlay" unique_id=114118748]
-layout_mode = 0
+[node name="Center" type="Control" parent="Interface/Hud/RewardedOverlay" unique_id=1862263932]
+propagate_maximum_size = true
+anchors_preset = 0
 anchor_right = 1.0
 anchor_bottom = 1.0
+mouse_filter = 1
+script = ExtResource("20_m4url")
 
 [node name="Panel" type="PanelContainer" parent="Interface/Hud/RewardedOverlay/Center" unique_id=419741113]
 custom_minimum_size = Vector2(520, 0)
-layout_mode = 2
+layout_mode = 0
 theme_override_styles/panel = SubResource("StyleBoxFlat_wljb1")
 
 [node name="Stack" type="VBoxContainer" parent="Interface/Hud/RewardedOverlay/Center/Panel" unique_id=1851425653]

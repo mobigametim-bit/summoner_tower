@@ -1,6 +1,12 @@
 class_name UnitDragController
 extends Node2D
 
+signal drag_started(unit: CombatUnit)
+
+# Ограничение только активного учебного жеста; обычный drag остаётся прежним.
+var tutorial_source: SummonSlot
+var tutorial_destination: SummonSlot
+
 enum Pointer { NONE, MOUSE, TOUCH }
 
 @export_range(1.0, 64.0, 1.0) var drag_threshold: float = 12.0
@@ -126,6 +132,8 @@ func _begin(viewport_position: Vector2, pointer: Pointer, touch_index: int = -1)
 	var slot: SummonSlot = _slot_at(world_position)
 	if slot == null or slot.is_empty():
 		return
+	if is_instance_valid(tutorial_source) and slot != tutorial_source:
+		return
 	_source = slot
 	_unit = slot.unit
 	_pointer = pointer
@@ -150,7 +158,8 @@ func _update_drag(viewport_position: Vector2) -> void:
 		# Завершаем проявление до drag: отмена не вернёт старую прозрачность.
 		_source.clear_summon_effect()
 		_original_modulate = _unit.modulate
-	_dragging = true
+		_dragging = true
+		drag_started.emit(_unit)
 	preview.show()
 	attack_range_preview.show()
 	preview.global_position = world_position + _grab_offset
@@ -180,6 +189,8 @@ func _finish(viewport_position: Vector2) -> void:
 	var returning: bool = _dragging and _return_zone.contains_point(world_position)
 	var destination: SummonSlot = _slot_at(world_position) if _dragging else null
 	cancel_drag()
+	if is_instance_valid(tutorial_destination) and destination != tutorial_destination:
+		return
 	if returning:
 		_manager.try_refund(source, unit)
 	elif destination != null:
@@ -209,6 +220,12 @@ func cancel_drag() -> void:
 func stop() -> void:
 	_enabled = false
 	cancel_drag()
+	tutorial_source = null
+	tutorial_destination = null
+
+
+func has_pointer() -> bool:
+	return _pointer != Pointer.NONE
 
 
 func _slot_at(world_position: Vector2) -> SummonSlot:

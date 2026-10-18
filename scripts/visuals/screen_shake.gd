@@ -11,6 +11,38 @@ extends Camera2D
 var _last_health: int = -1
 var _last_boss_wave: int = 0
 var _fighting: bool = false
+var _field_rect: Rect2
+var _hud: GameHud
+
+
+func configure_field(rect: Rect2, hud: GameHud) -> void:
+	_field_rect = rect
+	_hud = hud
+	anchor_mode = Camera2D.ANCHOR_MODE_DRAG_CENTER
+	if not get_viewport().size_changed.is_connected(_request_layout):
+		get_viewport().size_changed.connect(_request_layout)
+	_layout_field()
+
+
+func _request_layout() -> void:
+	_layout_field.call_deferred()
+
+
+func _layout_field() -> void:
+	if _hud == null or not is_instance_valid(_hud):
+		return
+	var game: Node = get_parent()
+	if game.get("drag_controller") != null:
+		game.drag_controller.cancel_drag()
+	stop_shake()
+	var regions: Dictionary = ScreenLayout.battle_regions()
+	var area: Rect2 = regions.field
+	var factor: float = minf(area.size.x/_field_rect.size.x, area.size.y/_field_rect.size.y)
+	zoom = Vector2.ONE*factor
+	position = _field_rect.get_center()-(area.get_center()-get_viewport_rect().size*0.5)/factor
+	force_update_scroll()
+	var displayed: Rect2 = Rect2(area.get_center()-_field_rect.size*factor*0.5, _field_rect.size*factor)
+	_hud.configure_layout(displayed, regions.hud, regions.side)
 
 
 func _on_wave_state_changed(wave: int, phase: WaveManager.Phase, _seconds: int, _alive: int, _pending: int) -> void:

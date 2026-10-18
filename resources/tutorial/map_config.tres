@@ -1,0 +1,6 @@
+[gd_resource type="Resource" script_class="TutorialMapConfig" format=3 uid="uid://buyqvw5gmkj08"]
+
+[ext_resource type="Script" uid="uid://c423wph30ys5x" path="res://scripts/tutorial/tutorial_map_config.gd" id="1_map"]
+
+[resource]
+script = ExtResource("1_map")

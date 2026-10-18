@@ -1,12 +1,12 @@
 extends Node2D
 
-enum State { RUNNING, GAME_OVER, LEAVING, UPGRADE_CHOICE, SETTINGS, REVIVE_OFFER, REWARDED_VIEW }
+enum State { RUNNING, GAME_OVER, LEAVING, UPGRADE_CHOICE, SETTINGS, REVIVE_OFFER, REWARDED_VIEW, TUTORIAL_SETUP, TUTORIAL }
 
 @export var config: EncounterConfig
 @export var procedural_battlefield_enabled: bool = true
 @export var battlefield_seed: int = -1
 @export_range(0, 15, 1) var battlefield_slot_count: int = 0
-@export_range(0, 8, 1) var battlefield_columns: int = 0
+@export_range(0, 9, 1) var battlefield_columns: int = 0
 @export_range(0, 3, 1) var battlefield_portal_count: int = 0
 @export_file("*.tscn") var menu_scene_path: String = "res://scenes/main_menu.tscn"
 
@@ -35,10 +35,13 @@ var _upgrade_wave: int = 0
 var _rewarded_reroll_used_wave: int = -1
 var _rewarded_reroll_pending_wave: int = -1
 var _reward_placement: AdService.Placement = AdService.Placement.REVIVE
+var _source_battlefield_config: BattlefieldConfig
 
 
 func _ready() -> void:
 	biome = SessionProgress.selected_biome()
+	if Tutorial.needs_core():
+		biome = SessionProgress.biome_catalog.find(&"forest")
 	if not biome.is_playable():
 		biome = SessionProgress.biome_catalog.find(&"forest")
 	# Первый биом сохраняет настройки сцен-проверок; будущие готовые биомы задают свои.
@@ -52,6 +55,7 @@ func _ready() -> void:
 	run_statistics.reset()
 	run_bonuses.reset()
 	if procedural_battlefield_enabled:
+		_source_battlefield_config = battlefield.config
 		_build_battlefield()
 	else:
 		battlefield.hide()
@@ -59,13 +63,54 @@ func _ready() -> void:
 	drag_controller.configure(summon_manager, $World/Slots, $World/Tower/ReturnZone)
 	tower.initialize(run_bonuses.tower_health_for(config.tower_max_health))
 	wave_manager.configure(enemies, spawn_point, contact_point, battlefield.route if procedural_battlefield_enabled else null, battlefield.routes, _player_power)
+	if not Tutorial.prepare_game(self):
+		wave_manager.start()
+
+
+func finish_tutorial_setup() -> void:
+	if state != State.TUTORIAL_SETUP:
+		return
+	state = State.RUNNING
+	hud.set_settings_available(true)
 	wave_manager.start()
 
 
+func begin_tutorial_pause() -> bool:
+	if state != State.RUNNING or get_tree().paused:
+		return false
+	state = State.TUTORIAL
+	drag_controller.cancel_drag()
+	summon_manager.set_interaction_enabled(false)
+	hud.set_settings_available(false)
+	AudioService.stop_combat()
+	get_tree().paused = true
+	return true
+
+
+func end_tutorial_pause() -> void:
+	if state != State.TUTORIAL:
+		return
+	state = State.RUNNING
+	summon_manager.set_interaction_enabled(true)
+	hud.set_settings_available(true)
+	get_tree().paused = false
+
+
 func _build_battlefield() -> void:
+	# Состояние уже начатого боя не перестраивается при resize: новая форма только новой карте.
+	battlefield.config = _source_battlefield_config.duplicate() as BattlefieldConfig
+	var horizontal: bool = ScreenLayout.landscape() and battlefield_columns == 0
+	if horizontal:
+		battlefield.config.column_range = Vector2i(9,9)
+		battlefield.config.playable_rect = Rect2(0,0,1080,720)
+		battlefield.config.portal_max_y = 360.0
 	var seed_value: int = battlefield_seed + 1000 * map_changes if battlefield_seed >= 0 else -1
-	battlefield.build($World/Slots, spawn_point, tower, battlefield_columns, seed_value, battlefield_slot_count, battlefield_portal_count)
-	hud.set_field_bottom(battlefield.layout.origin.y + battlefield.layout.grid_size.y * battlefield.layout.cell_size)
+	if map_changes == 0 and Tutorial.needs_core():
+		var lesson_map: TutorialMapConfig = Tutorial.map_config
+		battlefield.build($World/Slots, spawn_point, tower, 9 if horizontal else lesson_map.columns, lesson_map.landscape_seed if horizontal else lesson_map.seed_value, lesson_map.slot_count, lesson_map.portal_count)
+	else:
+		battlefield.build($World/Slots, spawn_point, tower, battlefield_columns, seed_value, battlefield_slot_count, battlefield_portal_count)
+	$ScreenShake.configure_field(Rect2(battlefield.layout.origin, Vector2(battlefield.layout.grid_size)*battlefield.layout.cell_size), hud)
 
 
 func _renew_battlefield() -> void:
@@ -120,7 +165,7 @@ func _on_tower_health_changed(current: int, maximum: int) -> void:
 
 
 func _on_summon_requested() -> void:
-	if state == State.RUNNING:
+	if state in [State.RUNNING, State.TUTORIAL_SETUP]:
 		summon_manager.try_summon()
 
 
@@ -136,6 +181,7 @@ func _on_wave_upgrade_requested(wave: int) -> void:
 	AudioService.stop_combat()
 	hud.set_settings_available(false)
 	_show_upgrade_choices()
+	Tutorial.present_context(self, "upgrade")
 
 
 func _show_upgrade_choices() -> void:
@@ -206,6 +252,7 @@ func _on_settings_requested() -> void:
 	hud.show_settings()
 	AudioService.stop_combat()
 	get_tree().paused = true
+	Tutorial.present_context(self, "settings")
 
 
 func _on_resume_requested() -> void:
@@ -230,6 +277,7 @@ func _on_tower_destroyed() -> void:
 		hud.set_settings_available(false)
 		hud.show_revive_offer(run_statistics.config.revive_health)
 		get_tree().paused = true
+		Tutorial.present_context(self, "revive")
 		return
 	_finish_run()
 
@@ -241,6 +289,7 @@ func _finish_run(won: bool = false) -> void:
 	run_statistics.finish(won, biome.next_biome_id if won else &"")
 	_stop_encounter()
 	hud.show_game_over(run_statistics)
+	Tutorial.present_context(self, "results")
 
 
 func _on_save_result_requested() -> void:
