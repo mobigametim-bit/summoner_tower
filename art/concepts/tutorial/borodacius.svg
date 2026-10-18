@@ -1,0 +1,67 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="320" height="360" viewBox="0 0 320 360">
+  <title>Архимаг Бородаций — концепт наставника</title>
+  <desc>Нарисованный вручную SVG: приземистый маг, синяя шляпа, длинная светлая борода, посох и указывающая рука. Концепт для проверки, без интеграции в игру.</desc>
+  <g stroke="#29180f" stroke-width="8" stroke-linejoin="round" stroke-linecap="round">
+    <g id="staff">
+      <path d="m269 152-8 183" fill="none" stroke-width="14"/>
+      <path d="m269 153-8 181" fill="none" stroke="#9b6847" stroke-width="7"/>
+      <path d="m247 144 7 22 17 9 17-18 2-22-14 15-15 1Z" fill="#dfb35d" stroke-width="6"/>
+      <path d="m270 98 16 27-12 26-19-15 2-23Z" fill="#59d7ed" stroke-width="6"/>
+      <path d="m270 98-1 33-14 5 19 15 12-26Z" fill="#329abf" stroke="none"/>
+      <path d="m264 114 6-16-1 33-9-6Z" fill="#b9f5ef" stroke="none"/>
+    </g>
+    <g id="boots">
+      <path d="m113 305 40 1 5 29-48 4-12-5 5-13Z" fill="#694532"/>
+      <path d="m182 306 38-2 7 17 16 11-6 9-55-3Z" fill="#694532"/>
+      <path d="m111 323 39-3 2 9-47 4Z M190 322l30-3 13 13-44-3Z" fill="#a37349" stroke="none"/>
+    </g>
+    <g id="body">
+      <path d="M111 191Q162 174 211 194L232 229 221 260 245 311Q219 327 192 318L165 325 139 318Q111 330 86 313L110 256 99 228Z" fill="#40588e"/>
+      <path d="m110 214 13 10-5 40-20 46 32 5-17-7 18-58Z M207 211l14 20-9 35 25 42-30 7-23-52Z" fill="#2d3c64" stroke="none"/>
+      <path d="m129 197 18-7 17 30-11 31Z" fill="#6279ac" stroke="none"/>
+      <path d="m93 301 36 8 34-5 31 6 41-9 8 13-46 12-32-6-30 5-48-10Z" fill="#dfb35d" stroke-width="5"/>
+    </g>
+    <g id="pointing_arm">
+      <path d="M110 201Q94 187 78 199L65 219 89 240 117 224Z" fill="#40588e"/>
+      <path d="m76 205 25 16-10 15-20-14Z" fill="#6279ac" stroke="none"/>
+      <path d="m66 208 24 12-8 22-23-14Z" fill="#dfb35d" stroke-width="6"/>
+      <path d="M64 219Q53 221 45 211L37 198Q33 191 37 186L42 177Q48 172 53 180L58 192 61 185Q66 178 71 184L72 197Q82 208 72 219Z" fill="#ffc18c" stroke-width="6"/>
+      <path d="m44 193 9 5 m8-4 5 6" fill="none" stroke="#d28d61" stroke-width="4"/>
+    </g>
+    <g id="staff_arm">
+      <path d="M213 201Q231 190 244 211L255 228 236 247 212 233Z" fill="#40588e"/>
+      <path d="m229 207 14 11 8 15-12 10-12-19Z" fill="#6279ac" stroke="none"/>
+      <path d="m242 217 22 6-4 23-23-7Z" fill="#dfb35d" stroke-width="6"/>
+      <path d="M263 218Q276 213 281 224L279 241Q272 252 259 244L253 235Q251 224 263 218Z" fill="#ffc18c" stroke-width="6"/>
+      <path d="m271 223 5 3-2 13-7 3" fill="none" stroke="#d28d61" stroke-width="4"/>
+    </g>
+    <g id="hair">
+      <path d="M111 122Q159 107 204 128L219 153 211 171 226 191 205 189 210 209 192 203 119 202 99 211 103 188 88 192 100 169 92 148Z" fill="#f3e8ce" stroke-width="7"/>
+      <path d="m107 143 10 7-7 26-9 8 6-18Z M204 151l7 9-6 16 12 18-15-10Z" fill="#d0c3a9" stroke="none"/>
+    </g>
+    <g id="face">
+      <path d="M119 130Q159 114 199 135L207 157Q212 183 187 198L139 199Q111 185 111 162Z" fill="#ffc18c" stroke-width="7"/>
+      <path d="m118 144 15-15 44-3 22 12-40-4-30 13-13 14Z" fill="#de9668" stroke="none"/>
+      <ellipse cx="139" cy="158" rx="6" ry="9" fill="#29180f" stroke="none"/>
+      <ellipse cx="184" cy="157" rx="6" ry="9" fill="#29180f" stroke="none"/>
+      <path d="m122 142 14-8 17 8-2 7-14-4-13 5Z M174 143l17-11 11 10-4 8-10-5-12 5Z" fill="#f3e8ce" stroke-width="4"/>
+      <path d="M151 164Q159 154 168 164L174 176Q166 184 152 178Z" fill="#f3ad7a" stroke-width="5"/>
+    </g>
+    <g id="beard">
+      <path d="M116 181Q133 184 151 178L168 183 188 177 208 183Q219 211 207 238L193 267 192 290 172 318 153 299 140 304 125 278 115 246Q99 219 108 198Z" fill="#f3e8ce" stroke-width="7"/>
+      <path d="M113 208Q118 234 140 246L140 271 155 291 154 276 170 301 183 286 181 261Q204 242 207 213L205 243 193 268 192 290 172 318 153 299 140 304 125 278 115 246Q106 230 108 214Z" fill="#d0c3a9" stroke="none"/>
+      <path d="M127 202Q143 215 153 229L151 256 139 238 130 220Z M179 207l13-7-7 28-15 22 4-24Z" fill="#fff4dc" stroke="none"/>
+      <path d="M157 181Q138 171 125 179L110 195Q129 209 148 198L160 192 173 199Q191 209 210 194L197 178Q184 171 166 182Z" fill="#fff4dc" stroke-width="5"/>
+      <path d="m151 202q10 7 20 0" fill="none" stroke-width="4"/>
+    </g>
+    <g id="hat">
+      <path d="M95 118Q101 80 139 57L177 21Q202 10 230 39L208 40 198 53 187 88 204 115 161 131Z" fill="#40588e"/>
+      <path d="m177 21-18 47-29 32-20 19-15-1Q101 80 139 57Z" fill="#6279ac" stroke="none"/>
+      <path d="m198 53-11 35 17 27-39 10 11-31Z" fill="#2d3c64" stroke="none"/>
+      <path d="m104 98 28 8 56-9 12 18-65 15-38-12Z" fill="#dfb35d" stroke-width="5"/>
+      <path d="M79 112Q104 110 128 117L171 111Q193 100 214 107L235 123Q215 136 185 133L152 142 121 135Q87 139 70 125Z" fill="#40588e" stroke-width="7"/>
+      <path d="m84 117 41 9 27 4 34-9 30-8-24-1-21 7-43 7Z" fill="#6279ac" stroke="none"/>
+      <path d="m160 67 5 11 13 1-10 9 2 13-11-6-11 6 3-13-9-9 12-2Z" fill="#dfb35d" stroke-width="4"/>
+    </g>
+  </g>
+</svg>
